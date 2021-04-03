@@ -57,8 +57,7 @@ namespace ExpressionEvaluator
             float result;
             if (!float.TryParse(str, out result))
             {
-                string message = string.Format("Could not parse float for {0}.", str);
-                Log.Error(message);
+                var message = $"Could not parse float for {str}.";
                 throw new FormatException(message);
             }
             return result;
@@ -69,8 +68,7 @@ namespace ExpressionEvaluator
             int result;
             if (!int.TryParse(str, out result))
             {
-                string message = string.Format("Could not parse int for {0}.", str);
-                Log.Error(message);
+                var message = $"Could not parse int for {str}.";
                 throw new FormatException(message);
             }
             return result;
@@ -129,9 +127,8 @@ namespace ExpressionEvaluator
             }
             if (result == Operator.Null)
             {
-                string message = string.Format("Operator not found for {0}.", op);
-                Log.Error(message);
-                throw new ArgumentException(message, "op");
+                var message = $"Operator not found for {op}.";
+                throw new ArgumentException(message, nameof(op));
             }
 
             return result;
@@ -218,9 +215,8 @@ namespace ExpressionEvaluator
             }
             else
             {
-                string message = string.Format("Variable Type not found for expression {0}.", expression);
-                Log.Error(message);
-                throw new ArgumentException(message, "expression");
+                var message = $"Variable Type not found for expression {expression}.";
+                throw new ArgumentException(message, nameof(expression));
             }
         }
 
@@ -250,9 +246,8 @@ namespace ExpressionEvaluator
 
             if (index > leftHalf.Length)
             {
-                string message = string.Format("Couldn't get left operand for expression {0} using operand {1}.", leftHalf, expression[index]);
-                Log.Error(message);
-                throw new ArgumentException(message, "expression");
+                var message = $"Couldn't get left operand for expression {leftHalf} using operand {expression[index]}.";
+                throw new ArgumentException(message, nameof(expression));
             }
 
             return leftHalf.Substring(start, index - start);
@@ -277,9 +272,8 @@ namespace ExpressionEvaluator
 
             if (end > rightHalf.Length)
             {
-                string message = string.Format("Couldn't get right operand for expression {0} using operand {1}.", rightHalf, expression[index]);
-                Log.Error(message);
-                throw new ArgumentException(message, "expression");
+                var message = $"Couldn't get right operand for expression {rightHalf} using operand {expression[index]}.";
+                throw new ArgumentException(message, nameof(expression));
             }
 
             return rightHalf.Substring(0, end);
@@ -314,9 +308,8 @@ namespace ExpressionEvaluator
                         {
                             if (i > expression.Length)
                             {
-                                string message = string.Format("Couldn't get right operand for expression {0} using operand {1}.", expression, expression[index]);
-                                Log.Error(message);
-                                throw new ArgumentException(message, "expression");
+                                var message = $"Couldn't get right operand for expression {expression} using operand {expression[index]}.";
+                                throw new ArgumentException(message, nameof(expression));
                             }
                             return expression.Substring(opIndex, i - opIndex);
                         }
@@ -344,9 +337,8 @@ namespace ExpressionEvaluator
                     {
                         if (i + 1 > expression.Length)
                         {
-                            string message = string.Format("Couldn't get right operand for expression {0} using operand {1}.", expression, expression[index]);
-                            Log.Error(message);
-                            throw new ArgumentException(message, "expression");
+                            var message = $"Couldn't get right operand for expression {expression} using operand {expression[index]}.";
+                            throw new ArgumentException(message, nameof(expression));
                         }
                         result = expression.Substring(start, (i + 1) - start);
                     }
@@ -371,9 +363,8 @@ namespace ExpressionEvaluator
                     {
                         if (index > expression.Length)
                         {
-                            string message = string.Format("Couldn't get right operand for expression {0} using operand {1}.", expression, expression[index]);
-                            Log.Error(message);
-                            throw new ArgumentException(message, "expression");
+                            var message = $"Couldn't get right operand for expression {expression} using operand {expression[index]}.";
+                            throw new ArgumentException(message, nameof(expression));
                         }
                         result = expression.Substring(i, index - i);
                     }
@@ -414,8 +405,7 @@ namespace ExpressionEvaluator
 
                             if (substringLength > expression.Length - startSubstringIndex)
                             {
-                                string message = string.Format("Couldn't get right operand for expression {0} using operand {1}.", expression, expression[index]);
-                                Log.Error(message);
+                                var message = $"Couldn't get right operand for expression {expression} using operand {expression[index]}.";
                                 throw new ArgumentException(message, "expression");
                             }
 
@@ -433,14 +423,18 @@ namespace ExpressionEvaluator
 
         public string GetOuterMostParentheticalExpression(string expression, Func<string, ExpressionResult> action)
         {
-            int start = expression.IndexOfOutsideQuotes('(') + 1; int length = GetParentheticalLength(expression); // always default to non same level
+            int start = expression.IndexOfOutsideQuotes('(') + 1; 
+            
+            int length = GetParentheticalLength(expression); // always default to non same level
+            
             if (length > expression.Length || start == 0)
             {
-                string message = string.Format("Couldn't get parenthetical expression for {0}.", expression);
-                Log.Error(message);
-                throw new ArgumentException(message, "expression");
+                var message = $"Couldn't get parenthetical expression for {expression}.";
+                throw new ArgumentException(message, nameof(expression));
             }
+
             string outer = expression.Substring(start, length - start);
+            
             return expression.ReplaceFirst("(" + outer + ")", action(outer).Value);
         }
 
@@ -511,9 +505,8 @@ namespace ExpressionEvaluator
             {
                 if (expression.Length < 2)
                 {
-                    string message = string.Format("Couldn't find operand for expression {0}.", expression);
-                    Log.Error(message);
-                    throw new ArgumentException(message, "expression");
+                    var message = $"Couldn't find operand for expression {expression}.";
+                    throw new ArgumentException(message, nameof(expression));
                 }
                 expression = expression.Substring(1); isNegative = true;
             }
@@ -570,21 +563,18 @@ namespace ExpressionEvaluator
 
             if (leftType == ArithmeticType.None)
             {
-                string message = string.Format("Couldn't find Arithmetic Type for left operand for expression {0}.", expression);
-                Log.Error(message);
-                throw new ArgumentException(message, "expression");
+                var message = $"Couldn't find Arithmetic Type for left operand for expression {expression}.";
+                throw new ArgumentException(message, nameof(expression));
             }
             else if (rightType == ArithmeticType.None)
             {
-                string message = string.Format("Couldn't find Arithmetic Type for right operand for expression {0}.", expression);
-                Log.Error(message);
-                throw new ArgumentException(message, "expression");
+                var message  = $"Couldn't find Arithmetic Type for right operand for expression {expression}.";
+                throw new ArgumentException(message, nameof(expression));
             }
             else if (expType == ArithmeticType.None)
             {
-                string message = string.Format("Couldn't find Arithmetic Type for expression {0}.", expression);
-                Log.Error(message);
-                throw new ArgumentException(message, "expression");
+                var message = $"Couldn't find Arithmetic Type for expression {expression}.";
+                 throw new ArgumentException(message, nameof(expression));
             }
 
             var arGroup = new ArithmeticGroup

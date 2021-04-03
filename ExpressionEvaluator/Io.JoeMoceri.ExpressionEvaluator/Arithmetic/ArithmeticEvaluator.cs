@@ -80,9 +80,8 @@ namespace ExpressionEvaluator
 			}
 			else if (arGroup.LeftType == ArithmeticType.None) 
 			{
-				string message = string.Format(@"Left Operand Arithmetic Type not found for expression {0}.\nOperator: {1}. Operator Location: {2}.\n", expression, opGroup.Value, opGroup.Location);
-				Log.Error(message);
-				throw new ArgumentException(message, "expression");
+				var message = $"Left Operand Arithmetic Type not found for expression {expression}.{Environment.NewLine}Operator: {opGroup.Value}. Operator Location: {opGroup.Location}.{Environment.NewLine}";
+				throw new ArgumentException(message, nameof(expression));
 			}
 
 			if (arGroup.RightType == ArithmeticType.String) 
@@ -95,9 +94,8 @@ namespace ExpressionEvaluator
 			}
 			else if (arGroup.RightType == ArithmeticType.None) 
 			{
-				string message = string.Format(@"Right Operand Arithmetic Type not found for expression {0}.\nOperator: {1}. Operator Location: {2}.\n", expression, opGroup.Value, opGroup.Location);
-				Log.Error(message);
-				throw new ArgumentException(message, "expression");
+				var message = $"Right Operand Arithmetic Type not found for expression {expression}.{Environment.NewLine}Operator: {opGroup.Value}. Operator Location: {opGroup.Location}.{Environment.NewLine}";
+				throw new ArgumentException(message, nameof(expression));
 			}
 
 			op = arithmetic.GetOperator(opGroup.Value);

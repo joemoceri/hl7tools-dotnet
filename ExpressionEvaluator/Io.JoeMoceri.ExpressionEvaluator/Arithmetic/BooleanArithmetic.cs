@@ -120,9 +120,8 @@ namespace ExpressionEvaluator
             }
             else
             {
-                string message = string.Format("Couldn't convert {0} to its boolean equivalent." + Environment.NewLine, value.ToString());
-                Log.Error(message);
-                throw new ArgumentException(message, "value");
+                var message = $"Couldn't convert {value.ToString()} to its boolean equivalent.{Environment.NewLine}";
+				throw new ArgumentException(message, nameof(value));
             }
         }
 
