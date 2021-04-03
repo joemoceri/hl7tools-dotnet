@@ -5,7 +5,7 @@ namespace ExpressionEvaluator.Tests
 	[TestClass]
 	public class BooleanExpressionTest
 	{
-		private Evaluator solver = new Evaluator(new Arithmetic());
+		private Evaluator solver = new Evaluator();
 
 		[TestMethod]
 		public void Boolean01()
