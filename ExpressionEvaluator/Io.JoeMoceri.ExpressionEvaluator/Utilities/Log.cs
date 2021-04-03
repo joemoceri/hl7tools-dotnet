@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ExpressionEvaluator.Utilities
+namespace ExpressionEvaluator
 {
 	/// <summary>
 	/// Used for logging errors. Can be turned on. Default is off.

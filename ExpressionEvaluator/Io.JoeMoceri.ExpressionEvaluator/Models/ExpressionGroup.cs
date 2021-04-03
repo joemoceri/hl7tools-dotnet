@@ -1,7 +1,4 @@
-﻿using ExpressionEvaluator.Services;
-using ExpressionEvaluator.Utilities;
-
-namespace ExpressionEvaluator.Models
+﻿namespace ExpressionEvaluator
 {
 	public class ExpressionGroup
 	{

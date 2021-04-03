@@ -1,10 +1,6 @@
-﻿using ExpressionEvaluator.Arithmetic;
-using ExpressionEvaluator.Models;
-using ExpressionEvaluator.Services;
-using ExpressionEvaluator.Utilities;
-using System;
+﻿using System;
 
-namespace ExpressionEvaluator.Controllers
+namespace ExpressionEvaluator
 {
 	public interface IArithmeticController
 	{
@@ -14,14 +10,14 @@ namespace ExpressionEvaluator.Controllers
 	/// <summary>
 	/// This is the main entry point for evaluating expressions. Use this class and its Evaluate method.
 	/// </summary>
-	public class ArithmeticController : IArithmeticController
+	public class Evaluator : IArithmeticController
 	{
 
 		private ArithmeticService arithmetic;
 
-		public ArithmeticController() : this(new ArithmeticService()) { }
+		public Evaluator() : this(new ArithmeticService()) { }
 
-		public ArithmeticController(ArithmeticService arithmetic) 
+		public Evaluator(ArithmeticService arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}
@@ -73,7 +69,7 @@ namespace ExpressionEvaluator.Controllers
 				}
 				else if (arithmeticExpType == ArithmeticExpressionType.MathAndString)
 				{
-					result = new Evaluator(new ArithmeticService()).Evaluate(expression);
+					result = new ArithmeticEvaluator(new ArithmeticService()).Evaluate(expression);
 				}
 				else if (arithmeticExpType == ArithmeticExpressionType.Null)
 				{

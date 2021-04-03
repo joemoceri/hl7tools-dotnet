@@ -1,12 +1,6 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExpressionEvaluator;
-using ExpressionEvaluator.Arithmetic;
-using ExpressionEvaluator.Services;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ExpressionEvaluator_UnitTesting
+namespace ExpressionEvaluator.Tests
 {
 	/// <summary>
 	/// Summary description for StringArithmetic_Test_NonExpressionTests

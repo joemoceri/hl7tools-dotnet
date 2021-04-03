@@ -1,10 +1,8 @@
-﻿using ExpressionEvaluator.Models;
-using ExpressionEvaluator.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ExpressionEvaluator.Services
+namespace ExpressionEvaluator
 {
 	/// <summary>
 	/// Service class used publicly. Should not be created directly. Use ArithmeticController instead.

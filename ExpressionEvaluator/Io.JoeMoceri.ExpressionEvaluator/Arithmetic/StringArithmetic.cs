@@ -1,9 +1,6 @@
-﻿using ExpressionEvaluator.Models;
-using ExpressionEvaluator.Services;
-using ExpressionEvaluator.Utilities;
-using System.Text;
+﻿using System.Text;
 
-namespace ExpressionEvaluator.Arithmetic
+namespace ExpressionEvaluator
 {
 	public class StringArithmetic
 	{

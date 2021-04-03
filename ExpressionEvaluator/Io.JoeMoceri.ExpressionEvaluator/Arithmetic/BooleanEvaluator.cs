@@ -1,9 +1,6 @@
-﻿using ExpressionEvaluator.Models;
-using ExpressionEvaluator.Services;
-using ExpressionEvaluator.Utilities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ExpressionEvaluator.Arithmetic
+namespace ExpressionEvaluator
 {
 	public class BooleanEvaluator
 	{
@@ -46,10 +43,10 @@ namespace ExpressionEvaluator.Arithmetic
 				string originalLeft = expGroup.LeftOperand;
 				string originalRight = expGroup.RightOperand;
 
-				var leftResult = new Evaluator(new ArithmeticService()).Evaluate(expGroup.LeftOperand);
+				var leftResult = new ArithmeticEvaluator(new ArithmeticService()).Evaluate(expGroup.LeftOperand);
 				expGroup.LeftOperand = leftResult.Value;
 
-				var rightResult = new Evaluator(new ArithmeticService()).Evaluate(expGroup.RightOperand);
+				var rightResult = new ArithmeticEvaluator(new ArithmeticService()).Evaluate(expGroup.RightOperand);
 				expGroup.RightOperand = rightResult.Value;
 				
 				string answer = null;

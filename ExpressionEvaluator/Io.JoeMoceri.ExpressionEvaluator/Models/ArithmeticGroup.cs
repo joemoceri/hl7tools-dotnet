@@ -1,6 +1,4 @@
-﻿using ExpressionEvaluator.Utilities;
-
-namespace ExpressionEvaluator.Models
+﻿namespace ExpressionEvaluator
 {
 	public class ArithmeticGroup
 	{

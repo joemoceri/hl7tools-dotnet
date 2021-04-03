@@ -1,19 +1,16 @@
-﻿using ExpressionEvaluator.Models;
-using ExpressionEvaluator.Services;
-using ExpressionEvaluator.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace ExpressionEvaluator.Arithmetic
+namespace ExpressionEvaluator
 {
-	public class Evaluator
+	public class ArithmeticEvaluator
 	{
 		private readonly ArithmeticService arithmetic;
 		private VarType ExpressionVarType;
 
-		public Evaluator() : this(new ArithmeticService()) { }
+		public ArithmeticEvaluator() : this(new ArithmeticService()) { }
 
-		public Evaluator(ArithmeticService arithmetic) 
+		public ArithmeticEvaluator(ArithmeticService arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}

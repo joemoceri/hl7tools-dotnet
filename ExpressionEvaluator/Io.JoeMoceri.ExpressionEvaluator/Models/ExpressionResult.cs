@@ -1,7 +1,6 @@
-﻿using ExpressionEvaluator.Utilities;
-using System;
+﻿using System;
 
-namespace ExpressionEvaluator.Models
+namespace ExpressionEvaluator
 {
 	/// <summary>
 	/// Contains three properties which hold information about the result of the expression evaluation.

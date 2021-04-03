@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ExpressionEvaluator_UnitTesting
+namespace ExpressionEvaluator.Tests
 {
 	[TestClass]
 	public class StringArithmeticTest_SingleQuotes

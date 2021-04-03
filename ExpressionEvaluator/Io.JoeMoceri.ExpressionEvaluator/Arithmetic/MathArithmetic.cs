@@ -1,8 +1,4 @@
-﻿using ExpressionEvaluator.Models;
-using ExpressionEvaluator.Services;
-using ExpressionEvaluator.Utilities;
-
-namespace ExpressionEvaluator.Arithmetic
+﻿namespace ExpressionEvaluator
 {
 	public class MathArithmetic
 	{

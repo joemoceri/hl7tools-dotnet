@@ -1,19 +1,12 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExpressionEvaluator;
-using ExpressionEvaluator.Arithmetic;
-using ExpressionEvaluator.Controllers;
-using ExpressionEvaluator.Services;
-using ExpressionEvaluator.Utilities;
-using ExpressionEvaluator.Models;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ExpressionEvaluator_UnitTesting
+namespace ExpressionEvaluator.Tests
 {
 	[TestClass]
 	public class StringArithmeticTest_ExpressionTests
 	{
 
-		private ArithmeticController solver = new ArithmeticController(new ArithmeticService());
+		private Evaluator solver = new Evaluator(new ArithmeticService());
 
 		[TestMethod]
 		public void StringArithmetic_Single()

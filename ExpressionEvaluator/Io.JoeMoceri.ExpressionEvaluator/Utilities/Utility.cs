@@ -1,4 +1,4 @@
-﻿namespace ExpressionEvaluator.Utilities
+﻿namespace ExpressionEvaluator
 {
 	public static class Utility
 	{

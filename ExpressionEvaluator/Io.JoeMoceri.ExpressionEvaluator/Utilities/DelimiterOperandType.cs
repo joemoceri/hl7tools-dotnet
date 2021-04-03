@@ -1,4 +1,4 @@
-﻿namespace ExpressionEvaluator.Utilities
+﻿namespace ExpressionEvaluator
 {
 	public enum DelimiterOperandType
 	{

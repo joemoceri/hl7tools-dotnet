@@ -1,9 +1,6 @@
-﻿using ExpressionEvaluator.Models;
-using ExpressionEvaluator.Services;
-using ExpressionEvaluator.Utilities;
-using System;
+﻿using System;
 
-namespace ExpressionEvaluator.Arithmetic
+namespace ExpressionEvaluator
 {
 	public class BooleanArithmetic
 	{

@@ -1,14 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExpressionEvaluator.Controllers;
-using ExpressionEvaluator.Services;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ExpressionEvaluator_UnitTesting
+namespace ExpressionEvaluator.Tests
 {
 	[TestClass]
 	public class ErrorTests
 	{
-		private ArithmeticController solver = new ArithmeticController(new ArithmeticService());
+		private Evaluator solver = new Evaluator(new ArithmeticService());
 
 		[TestMethod]
 		public void BadInput_ShouldReturnExpressionResultWithNullValuesAndException()
