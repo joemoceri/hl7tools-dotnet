@@ -22,8 +22,16 @@ namespace ExpressionEvaluator
 
 		public override bool Equals(object x)
 		{
-			if (x == null) { return false; }
-			if(x.GetType() != this.GetType()){return false;}
+			if (x == null)
+			{ 
+				return false; 
+			}
+
+			if (x.GetType() != this.GetType())
+			{
+				return false;
+			}
+
 			var compareTo = (ExpressionResult)x;
 			return compareTo.Value == this.Value && compareTo.Type == this.Type;
 		}
