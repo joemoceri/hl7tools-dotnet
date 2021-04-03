@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace ExpressionEvaluator
 {
-	public class ArithmeticEvaluator
+	public class MathStringEvaluator
 	{
 		private readonly IArithmetic arithmetic;
 		private VarType ExpressionVarType;
 
-		public ArithmeticEvaluator() : this(new Arithmetic()) { }
+		public MathStringEvaluator() : this(new Arithmetic()) { }
 
-		public ArithmeticEvaluator(IArithmetic arithmetic) 
+		public MathStringEvaluator(IArithmetic arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}

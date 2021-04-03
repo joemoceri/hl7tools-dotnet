@@ -7,7 +7,6 @@ namespace ExpressionEvaluator
     public interface IArithmetic
     {
         bool CheckDelimiterForRight(int index, string delimiter, string expression);
-        int GetCharCount(string original, char ch);
         OperatorGroup GetFirstSelection(string expression, IEnumerable<string> delimiters);
         float GetFloat(string str);
         int GetInt(string str);
@@ -16,13 +15,10 @@ namespace ExpressionEvaluator
         string GetLeftStringOperand(string expression, int index);
         ArithmeticGroup GetOperandTypes(string expression, int opIndex);
         Operator GetOperator(string op);
-        string GetOuterMostParentheticalExpression(string expression, Func<string, ExpressionResult> action);
-        int GetParentheticalLength(string str);
         string GetRightBooleanOperand(string expression, int index, int opLength);
         string GetRightMathOperand(string expression, int index);
         string GetRightStringOperand(string expression, int index);
         VarType GetVarType(string expression);
-        string HandleImplicitNegative(string expression);
         void SetDelimiterRange(DelimiterOperandType type);
         VarType UpdateVarType(VarType curExpType, VarType leftOperandType, VarType rightOperandType);
     }
@@ -329,7 +325,7 @@ namespace ExpressionEvaluator
 
             for (int i = start; i < expression.Length; i++)
             {
-                if (Utility.CheckQuotes(expression, i, curQuote))
+                if (expression.CheckQuotes(i, curQuote))
                 {
                     if (quoteCount == 0) { curQuote = expression[i]; }
                     quoteCount++;
@@ -355,7 +351,7 @@ namespace ExpressionEvaluator
             char curQuote = char.MinValue;
             for (int i = start; i >= 0; i--)
             {
-                if (Utility.CheckQuotes(expression, i, curQuote))
+                if (expression.CheckQuotes(i, curQuote))
                 {
                     curQuote = expression[i];
                     quoteCount++;
@@ -416,82 +412,6 @@ namespace ExpressionEvaluator
             }
             if (result == "") { result = expression.Substring(0, index); }
 
-            return result;
-        }
-
-        public string HandleImplicitNegative(string expression) { return expression.Replace("-(", ("-1*(")); }
-
-        public string GetOuterMostParentheticalExpression(string expression, Func<string, ExpressionResult> action)
-        {
-            int start = expression.IndexOfOutsideQuotes('(') + 1; 
-            
-            int length = GetParentheticalLength(expression); // always default to non same level
-            
-            if (length > expression.Length || start == 0)
-            {
-                var message = $"Couldn't get parenthetical expression for {expression}.";
-                throw new ArgumentException(message, nameof(expression));
-            }
-
-            string outer = expression.Substring(start, length - start);
-            
-            return expression.ReplaceFirst("(" + outer + ")", action(outer).Value);
-        }
-
-        public int GetCharCount(string original, char ch)
-        {
-            int result = 0;
-            bool inQuote = false;
-            char curQuote = char.MinValue;
-
-            for (int i = 0; i < original.Length; i++)
-            {
-                if (Utility.CheckQuotes(original, i, curQuote))
-                {
-                    curQuote = original[i];
-                    inQuote = !inQuote;
-                    if (!inQuote) { curQuote = char.MinValue; }
-                    if (curQuote == ch) { result++; }
-                }
-                if (!inQuote)
-                {
-                    if (original[i] == ch)
-                    {
-                        result++;
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public int GetParentheticalLength(string str)
-        {
-            int result = 0, leftCount = 0;
-            char curQuote = char.MinValue;
-            bool inQuote = false;
-            for (int i = 0; i < str.Length; i++)
-            {
-                if (Utility.CheckQuotes(str, i, curQuote))
-                {
-                    curQuote = str[i];
-                    inQuote = !inQuote;
-                }
-                if (!inQuote)
-                {
-                    if (str[i] == '(') { leftCount++; }
-                    else if (str[i] == ')')
-                    {
-                        leftCount--;
-                        if (leftCount == 0)
-                        {
-                            result = i;
-                            break;
-                        }
-
-                    }
-                }
-            }
             return result;
         }
 

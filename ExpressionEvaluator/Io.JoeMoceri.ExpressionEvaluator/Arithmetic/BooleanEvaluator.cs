@@ -43,10 +43,10 @@ namespace ExpressionEvaluator
 				string originalLeft = expGroup.LeftOperand;
 				string originalRight = expGroup.RightOperand;
 
-				var leftResult = new ArithmeticEvaluator(new Arithmetic()).Evaluate(expGroup.LeftOperand);
+				var leftResult = new MathStringEvaluator(new Arithmetic()).Evaluate(expGroup.LeftOperand);
 				expGroup.LeftOperand = leftResult.Value;
 
-				var rightResult = new ArithmeticEvaluator(new Arithmetic()).Evaluate(expGroup.RightOperand);
+				var rightResult = new MathStringEvaluator(new Arithmetic()).Evaluate(expGroup.RightOperand);
 				expGroup.RightOperand = rightResult.Value;
 				
 				string answer = null;

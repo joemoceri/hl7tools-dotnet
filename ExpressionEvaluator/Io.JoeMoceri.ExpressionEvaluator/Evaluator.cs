@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ExpressionEvaluator
 {
@@ -37,18 +38,21 @@ namespace ExpressionEvaluator
 				// if the expression is empty, return it and null
 				if (string.IsNullOrWhiteSpace(expression.Trim()))
 				{
-					return new ExpressionResult { Value = expression, Type = VarType.Null }; 
+					return new ExpressionResult 
+					{ 
+						Value = expression, 
+						Type = VarType.Null 
+					}; 
 				};
 
 				// get the whitespace outside of quotes out of the way
-				expression = expression.RemoveWhitespaceOutsideQuotes();
+				expression = RemoveWhitespaceOutsideQuotes(expression);
 
 				// an implicit negative is -1 or -(1)
-				expression = arithmetic.HandleImplicitNegative(expression);
+				expression = HandleImplicitNegative(expression);
 
-
-				int parenthesesAmount = arithmetic.GetCharCount(expression, '(') + arithmetic.GetCharCount(expression, ')');
-				int doubleQuoteAmount = arithmetic.GetCharCount(expression, '"');
+				int parenthesesAmount = GetCharCount(expression, '(') + GetCharCount(expression, ')');
+				int doubleQuoteAmount = GetCharCount(expression, '"');
 
 				// validate quotes and parentheses. There should never be an odd amount of actually used quotes and parentheses (inside strings doesn't matter)
 				if (doubleQuoteAmount % 2 != 0)
@@ -65,8 +69,8 @@ namespace ExpressionEvaluator
 				// recursively break down the expressions parentheses, then work your way back up, like most interpreters do :)
 				while (parenthesesAmount != 0)
 				{
-					expression = arithmetic.GetOuterMostParentheticalExpression(expression, Evaluate);
-					parenthesesAmount = arithmetic.GetCharCount(expression, '(') + arithmetic.GetCharCount(expression, ')');
+					expression = GetOuterMostParentheticalExpression(expression, Evaluate);
+					parenthesesAmount = GetCharCount(expression, '(') + GetCharCount(expression, ')');
 				}
 
 				// determine what kind of expression it is (math, string, boolean)
@@ -80,7 +84,7 @@ namespace ExpressionEvaluator
 				// get the math (same as string) evaluated result
 				else if (arithmeticExpType == ArithmeticExpressionType.MathAndString)
 				{
-					result = new ArithmeticEvaluator(arithmetic).Evaluate(expression);
+					result = new MathStringEvaluator(arithmetic).Evaluate(expression);
 				}
 				else if (arithmeticExpType == ArithmeticExpressionType.Null)
 				{
@@ -123,6 +127,120 @@ namespace ExpressionEvaluator
 				}
 
 				return ArithmeticExpressionType.Null;
+			}
+
+			string RemoveWhitespaceOutsideQuotes(string str)
+			{
+				var result = new StringBuilder();
+				bool inQuote = false;
+				int start = 0, length = 0;
+				char curQuote = char.MinValue;
+
+				for (int i = 0; i < str.Length; i++)
+				{
+					if (str.CheckQuotes(i, curQuote))
+					{
+						curQuote = str[i];
+						if (!inQuote)
+						{
+							start = i; length = 0;
+						}
+						else
+						{
+							length = (i + 1) - start; // + 1 to get the extra quote
+							string temp = str.Substring(start, length);
+							result.Append(temp);
+							curQuote = char.MinValue;
+						}
+						inQuote = !inQuote;
+					}
+					else if (str[i] != ' ' && !inQuote)
+					{
+						result.Append(str[i]);
+					}
+
+				}
+
+				return result.ToString();
+			}
+
+			string HandleImplicitNegative(string expression) 
+			{ 
+				return expression.Replace("-(", ("-1*(")); 
+			}
+
+			int GetCharCount(string original, char ch)
+			{
+				int result = 0;
+				bool inQuote = false;
+				char curQuote = char.MinValue;
+
+				for (int i = 0; i < original.Length; i++)
+				{
+					if (original.CheckQuotes(i, curQuote))
+					{
+						curQuote = original[i];
+						inQuote = !inQuote;
+						if (!inQuote) { curQuote = char.MinValue; }
+						if (curQuote == ch) { result++; }
+					}
+					if (!inQuote)
+					{
+						if (original[i] == ch)
+						{
+							result++;
+						}
+					}
+				}
+
+				return result;
+			}
+
+			string GetOuterMostParentheticalExpression(string expression, Func<string, ExpressionResult> action)
+			{
+				int start = expression.IndexOfOutsideQuotes('(') + 1;
+
+				int length = GetParentheticalLength(expression); // always default to non same level
+
+				if (length > expression.Length || start == 0)
+				{
+					var message = $"Couldn't get parenthetical expression for {expression}.";
+					throw new ArgumentException(message, nameof(expression));
+				}
+
+				string outer = expression.Substring(start, length - start);
+
+				return expression.ReplaceFirst("(" + outer + ")", action(outer).Value);
+
+				int GetParentheticalLength(string str)
+				{
+					int result = 0, leftCount = 0;
+					char curQuote = char.MinValue;
+					bool inQuote = false;
+					for (int i = 0; i < str.Length; i++)
+					{
+						if (str.CheckQuotes(i, curQuote))
+						{
+							curQuote = str[i];
+							inQuote = !inQuote;
+						}
+						if (!inQuote)
+						{
+							if (str[i] == '(') { leftCount++; }
+							else if (str[i] == ')')
+							{
+								leftCount--;
+								if (leftCount == 0)
+								{
+									result = i;
+									break;
+								}
+
+							}
+						}
+					}
+					return result;
+				}
 			}
 		}
 	}

@@ -4,6 +4,26 @@ namespace ExpressionEvaluator
 {
 	public static class ExtensionMethods
 	{
+		public static bool CheckQuotes(this string line, int index, char curQuote)
+		{
+			bool result = false;
+			char ch = line[index];
+			char pChar = index - 1 >= 0 ? line[index - 1] : char.MinValue;
+			if (pChar == '\\')
+			{
+				result = false; // skip over escaped quotes
+			}
+			else if (curQuote == char.MinValue)
+			{
+				result = ch == '"'; // default
+			}
+			else
+			{
+				result = ch == curQuote; // otherwise a chosen curQuote
+			}
+			return result;
+		}
+
 
 		public static string ReplaceFirst(this string text, string search, string replace)
 		{
@@ -19,41 +39,6 @@ namespace ExpressionEvaluator
 			return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
 		}
 
-		public static string RemoveWhitespaceOutsideQuotes(this string str) 
-		{
-			StringBuilder result = new StringBuilder();
-			bool inQuote = false;
-			int start = 0, length = 0;
-			char curQuote = char.MinValue;
-
-			for (int i = 0; i < str.Length; i++) 
-			{
-				if (Utility.CheckQuotes(str, i, curQuote)) 
-				{
-					curQuote = str[i];
-					if (!inQuote)
-					{
-						start = i; length = 0;
-					}
-					else 
-					{
-						length = (i + 1) - start; // + 1 to get the extra quote
-						string temp = str.Substring(start, length);
-						result.Append(temp);
-						curQuote = char.MinValue;
-					}
-					inQuote = !inQuote;
-				}
-				else if (str[i] != ' ' && !inQuote) 
-				{
-					result.Append(str[i]);
-				}			
-
-			}
-
-			return result.ToString();
-		}
-
 		public static int IndexOfOutsideQuotes(this string str, char ch, int startIndex = 0) 
 		{
 			int result = -1;
@@ -62,7 +47,7 @@ namespace ExpressionEvaluator
 
 			for (int i = startIndex; i < str.Length; i++) 
 			{
-				if (Utility.CheckQuotes(str, i, curQuote)) 
+				if (str.CheckQuotes(i, curQuote))
 				{
 					curQuote = str[i];
 					inQuote = !inQuote;
@@ -89,7 +74,7 @@ namespace ExpressionEvaluator
 
 			for (int i = startIndex; i < str.Length; i++)
 			{
-				if (Utility.CheckQuotes(str, i, curQuote))
+				if (str.CheckQuotes(i, curQuote))
 				{
 					curQuote = str[i];
 					inQuote = !inQuote;
@@ -125,7 +110,7 @@ namespace ExpressionEvaluator
 
 			for (int i = str.Length - 1; i >= startIndex; i--)
 			{
-				if (Utility.CheckQuotes(str, i, curQuote))
+				if (str.CheckQuotes(i, curQuote))
 				{
 					curQuote = str[i];
 					inQuote = !inQuote;
