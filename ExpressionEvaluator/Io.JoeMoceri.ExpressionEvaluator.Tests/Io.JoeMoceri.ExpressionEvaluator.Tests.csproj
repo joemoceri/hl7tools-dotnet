@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExpressionEvaluator\ExpressionEvaluator.csproj" />
+    <ProjectReference Include="..\Io.JoeMoceri.ExpressionEvaluator\Io.JoeMoceri.ExpressionEvaluator.csproj" />
   </ItemGroup>
 
 </Project>
