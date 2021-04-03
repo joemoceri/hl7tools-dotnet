@@ -4,11 +4,11 @@ namespace ExpressionEvaluator
 {
 	public class BooleanArithmetic
 	{
-		private readonly ArithmeticService arithmetic;
+		private readonly Arithmetic arithmetic;
 
-		public BooleanArithmetic() : this(new ArithmeticService()) { }
+		public BooleanArithmetic() : this(new Arithmetic()) { }
 
-		public BooleanArithmetic(ArithmeticService arithmetic) 
+		public BooleanArithmetic(Arithmetic arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}

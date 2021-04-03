@@ -6,7 +6,7 @@ namespace ExpressionEvaluator.Tests
 	public class StringArithmeticTest_ExpressionTests
 	{
 
-		private Evaluator solver = new Evaluator(new ArithmeticService());
+		private Evaluator solver = new Evaluator(new Arithmetic());
 
 		[TestMethod]
 		public void StringArithmetic_Single()

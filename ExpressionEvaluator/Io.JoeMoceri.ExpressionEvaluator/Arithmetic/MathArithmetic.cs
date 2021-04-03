@@ -2,12 +2,12 @@
 {
 	public class MathArithmetic
 	{
-		private readonly ArithmeticService arithmetic;
+		private readonly Arithmetic arithmetic;
 		private VarType ExpressionVarType;
 
-		public MathArithmetic() : this(new ArithmeticService()) { }
+		public MathArithmetic() : this(new Arithmetic()) { }
 
-		public MathArithmetic(ArithmeticService arithmetic) 
+		public MathArithmetic(Arithmetic arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}

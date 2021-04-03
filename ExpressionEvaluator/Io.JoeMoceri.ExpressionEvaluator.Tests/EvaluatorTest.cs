@@ -5,7 +5,7 @@ namespace ExpressionEvaluator.Tests
 	[TestClass]
 	public class EvaluatorTest
 	{
-		private Evaluator solver = new Evaluator(new ArithmeticService());
+		private Evaluator solver = new Evaluator(new Arithmetic());
 
 		[TestMethod]
 		public void EvaluatorTest_NoParenthesesStringOnLeft()

@@ -9,7 +9,7 @@ namespace ExpressionEvaluator.Tests
 	public class StringArithmeticTest_NonExpressionTests
 	{
 
-		private StringArithmetic solver = new StringArithmetic(new ArithmeticService());
+		private StringArithmetic solver = new StringArithmetic(new Arithmetic());
 
 		[TestMethod]
 		public void StringArithmetic_RemoveWhitespaceOutsideQuotes_DoubleQuotes()

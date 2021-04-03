@@ -2,7 +2,7 @@
 
 namespace ExpressionEvaluator
 {
-	public interface IArithmeticController
+	public interface IEvaluator
 	{
 		ExpressionResult Evaluate(string expression);
 	}
@@ -10,14 +10,13 @@ namespace ExpressionEvaluator
 	/// <summary>
 	/// This is the main entry point for evaluating expressions. Use this class and its Evaluate method.
 	/// </summary>
-	public class Evaluator : IArithmeticController
+	public class Evaluator : IEvaluator
 	{
+		private IArithmetic arithmetic;
 
-		private ArithmeticService arithmetic;
+		public Evaluator() : this(new Arithmetic()) { }
 
-		public Evaluator() : this(new ArithmeticService()) { }
-
-		public Evaluator(ArithmeticService arithmetic) 
+		public Evaluator(IArithmetic arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}
@@ -35,7 +34,10 @@ namespace ExpressionEvaluator
 
 			try
 			{
-				if (expression.Trim() == "") { return new ExpressionResult { Value = expression, Type = VarType.Null }; };
+				if (string.IsNullOrWhiteSpace(expression.Trim()))
+				{
+					return new ExpressionResult { Value = expression, Type = VarType.Null }; 
+				};
 				expression = expression.RemoveWhitespaceOutsideQuotes();
 				expression = arithmetic.HandleImplicitNegative(expression);
 
@@ -65,11 +67,11 @@ namespace ExpressionEvaluator
 
 				if (arithmeticExpType == ArithmeticExpressionType.Boolean)
 				{
-					result = new BooleanEvaluator(new ArithmeticService()).Evaluate(expression);
+					result = new BooleanEvaluator(arithmetic).Evaluate(expression);
 				}
 				else if (arithmeticExpType == ArithmeticExpressionType.MathAndString)
 				{
-					result = new ArithmeticEvaluator(new ArithmeticService()).Evaluate(expression);
+					result = new ArithmeticEvaluator(arithmetic).Evaluate(expression);
 				}
 				else if (arithmeticExpType == ArithmeticExpressionType.Null)
 				{

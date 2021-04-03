@@ -5,13 +5,13 @@ namespace ExpressionEvaluator
 	public class BooleanEvaluator
 	{
 		private const VarType ExpressionVarType = VarType.Boolean;
-		private readonly ArithmeticService arithmetic;
+		private readonly IArithmetic arithmetic;
 		private readonly IEnumerable<string> HigherPrecedenceOperators = new[] { "<=", ">=", "==", "!=", "<", ">", };
 		private readonly IEnumerable<string> LowerPrecedenceOperators = new[] { "&&", "||", "and", "or" };
 
-		public BooleanEvaluator() : this(new ArithmeticService()) { }
+		public BooleanEvaluator() : this(new Arithmetic()) { }
 
-		public BooleanEvaluator(ArithmeticService arithmetic) 
+		public BooleanEvaluator(IArithmetic arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}
@@ -43,14 +43,14 @@ namespace ExpressionEvaluator
 				string originalLeft = expGroup.LeftOperand;
 				string originalRight = expGroup.RightOperand;
 
-				var leftResult = new ArithmeticEvaluator(new ArithmeticService()).Evaluate(expGroup.LeftOperand);
+				var leftResult = new ArithmeticEvaluator(new Arithmetic()).Evaluate(expGroup.LeftOperand);
 				expGroup.LeftOperand = leftResult.Value;
 
-				var rightResult = new ArithmeticEvaluator(new ArithmeticService()).Evaluate(expGroup.RightOperand);
+				var rightResult = new ArithmeticEvaluator(new Arithmetic()).Evaluate(expGroup.RightOperand);
 				expGroup.RightOperand = rightResult.Value;
 				
 				string answer = null;
-				var expResult = new BooleanArithmetic(new ArithmeticService()).Solve(expGroup);
+				var expResult = new BooleanArithmetic(new Arithmetic()).Solve(expGroup);
 
 				answer = expResult.Value;
 				

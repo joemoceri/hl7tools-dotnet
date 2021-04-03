@@ -5,7 +5,7 @@ namespace ExpressionEvaluator.Tests
 	[TestClass]
 	public class MathArithmeticTest
 	{
-		private Evaluator solver = new Evaluator(new ArithmeticService());
+		private Evaluator solver = new Evaluator(new Arithmetic());
 
 		[TestMethod]
 		public void MathArithmetic_NoParentheses()
@@ -41,9 +41,9 @@ namespace ExpressionEvaluator.Tests
 		public void MathArithmetic_NestedOverallParentheses()
 		{
 			// Arrange
-			var ans = (((((4.563) + 12) * 3) * 4) + ((3) / 3) - (4 * 2 + 3));
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Float };
-			var exp = "(((((4.563) + 12) * 3) * 4) + ((3) / 3) - (4 * 2 + 3))";
+			var ans = (((((4) + 12) * 3) * 4) + ((3) / 3) - (4 * 2 + 3));
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var exp = "(((((4) + 12) * 3) * 4) + ((3) / 3) - (4 * 2 + 3))";
 
 			// Act
 			var result = solver.Evaluate(exp);
@@ -56,9 +56,9 @@ namespace ExpressionEvaluator.Tests
 		public void MathArithmetic_NestedOverallParenthesesNegative()
 		{
 			// Arrange
-			var ans = (((((-4.563) + -12) * -3) * -4) + ((-3) / -3) - (-4 * -2 + -3));
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Float };
-			var exp = "(((((-4.563) + -12) * -3) * -4) + ((-3) / -3) - (-4 * -2 + -3))";
+			var ans = (((((-4) + -12) * -3) * -4) + ((-3) / -3) - (-4 * -2 + -3));
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var exp = "(((((-4) + -12) * -3) * -4) + ((-3) / -3) - (-4 * -2 + -3))";
 
 			// Act
 			var result = solver.Evaluate(exp);
@@ -116,9 +116,9 @@ namespace ExpressionEvaluator.Tests
 		public void MathArithmetic_SameLevelParentheses()
 		{
 			// Arrange
-			var ans = 4.563 + 12 - 3 * (4 + 3) / 3 - (4 * 2 + 3);
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Float };
-			var exp = "4.563 + 12 - 3 * (4 + 3) / 3 - (4 * 2 + 3)";
+			var ans = 4 + 12 - 3 * (4 + 3) / 3 - (4 * 2 + 3);
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var exp = "4 + 12 - 3 * (4 + 3) / 3 - (4 * 2 + 3)";
 
 			// Act
 			var result = solver.Evaluate(exp);
@@ -131,9 +131,9 @@ namespace ExpressionEvaluator.Tests
 		public void MathArithmetic_SameLevelParenthesesNegative()
 		{
 			// Arrange
-			var ans = -4.563 + -12 - -3 * (-4 + -3) / -3 - -(-4 * -2 + -3);
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Float };
-			var exp = "-4.563 + -12 - -3 * (-4 + -3) / -3 - -(-4 * -2 + -3)";
+			var ans = -4 + -12 - -3 * (-4 + -3) / -3 - -(-4 * -2 + -3);
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var exp = "-4 + -12 - -3 * (-4 + -3) / -3 - -(-4 * -2 + -3)";
 
 			// Act
 			var result = solver.Evaluate(exp);
@@ -161,9 +161,9 @@ namespace ExpressionEvaluator.Tests
 		public void MathArithmetic_SameLevelParenthesesNegativeSamePrecedence()
 		{
 			// Arrange
-			var ans = -4.563 + -12 - -3 * -(-4 + -3);
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Float };
-			var exp = "-4.563 + -12 - -3 * -(-4 + -3)";
+			var ans = -4 + -12 - -3 * -(-4 + -3);
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var exp = "-4 + -12 - -3 * -(-4 + -3)";
 
 			// Act
 			var result = solver.Evaluate(exp);

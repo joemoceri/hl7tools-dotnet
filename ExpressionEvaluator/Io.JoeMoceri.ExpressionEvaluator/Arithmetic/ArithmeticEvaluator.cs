@@ -5,12 +5,12 @@ namespace ExpressionEvaluator
 {
 	public class ArithmeticEvaluator
 	{
-		private readonly ArithmeticService arithmetic;
+		private readonly IArithmetic arithmetic;
 		private VarType ExpressionVarType;
 
-		public ArithmeticEvaluator() : this(new ArithmeticService()) { }
+		public ArithmeticEvaluator() : this(new Arithmetic()) { }
 
-		public ArithmeticEvaluator(ArithmeticService arithmetic) 
+		public ArithmeticEvaluator(IArithmetic arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}
@@ -45,11 +45,11 @@ namespace ExpressionEvaluator
 				var expResult = new ExpressionResult { Value = null, Type = VarType.Null };
 				if (expGroup.ExpressionType == ArithmeticType.Math)
 				{
-					expResult = new MathArithmetic(new ArithmeticService()).Solve(expGroup);
+					expResult = new MathArithmetic(new Arithmetic()).Solve(expGroup);
 				}
 				else if (expGroup.ExpressionType == ArithmeticType.String)
 				{
-					expResult = new StringArithmetic(new ArithmeticService()).Solve(expGroup);
+					expResult = new StringArithmetic(new Arithmetic()).Solve(expGroup);
 				}
 
 				answer = expResult.Value;

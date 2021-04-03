@@ -4,12 +4,12 @@ namespace ExpressionEvaluator
 {
 	public class StringArithmetic
 	{
-		private ArithmeticService arithmetic;
+		private Arithmetic arithmetic;
 		private VarType ExpressionVarType;
 
-		public StringArithmetic() : this(new ArithmeticService()) { }
+		public StringArithmetic() : this(new Arithmetic()) { }
 
-		public StringArithmetic(ArithmeticService arithmetic) 
+		public StringArithmetic(Arithmetic arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}

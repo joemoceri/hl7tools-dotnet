@@ -9,7 +9,7 @@
 
 		public string Combine() 
 		{
-			return LeftOperand + ArithmeticService.GetOperator(ExpressionOperator) + RightOperand;
+			return LeftOperand + Arithmetic.GetOperator(ExpressionOperator) + RightOperand;
 		}
 	
 	}
