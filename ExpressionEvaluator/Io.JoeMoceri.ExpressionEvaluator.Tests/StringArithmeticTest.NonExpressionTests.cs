@@ -22,57 +22,57 @@ namespace ExpressionEvaluator.Tests
 			//Assert.AreEqual(answer, result);
 		}
 
-		[TestMethod]
-		public void StringArithmetic_FindFirstSelectionOutsideQuotes_HigherPrecedence()
-		{
-			// Arrange
-			var check = " \" ab \" + \" cd \"*\"5\"*5";
+		//[TestMethod]
+		//public void StringArithmetic_FindFirstSelectionOutsideQuotes_HigherPrecedence()
+		//{
+		//	// Arrange
+		//	var check = " \" ab \" + \" cd \"*\"5\"*5";
 
-			// Act
-			var result = check.IndexOfOutsideQuotes('*');
+		//	// Act
+		//	var result = check.IndexOfOutsideQuotes('*');
 
-			// Assert
-			Assert.AreEqual(result, 16);
-		}
+		//	// Assert
+		//	Assert.AreEqual(result, 16);
+		//}
 
-		[TestMethod]
-		public void StringArithmetic_FindFirstSelectionOutsideQuotes_HigherPrecedence_InsideQuotes()
-		{
-			// Arrange
-			var check = " \" ab * \" + \" cd \"*\"5\"*5";
+		//[TestMethod]
+		//public void StringArithmetic_FindFirstSelectionOutsideQuotes_HigherPrecedence_InsideQuotes()
+		//{
+		//	// Arrange
+		//	var check = " \" ab * \" + \" cd \"*\"5\"*5";
 
-			// Act
-			var result = check.IndexOfOutsideQuotes('*');
+		//	// Act
+		//	var result = check.IndexOfOutsideQuotes('*');
 
-			// Assert
-			Assert.AreEqual(result, 18);
-		}
+		//	// Assert
+		//	Assert.AreEqual(result, 18);
+		//}
 
-		[TestMethod]
-		public void StringArithmetic_FindFirstSelectionOutsideQuotes_LowerPrecedence()
-		{
-			// Arrange
-			var check = " \" ab \" + \" cd \"*\"5\"*5";
+		//[TestMethod]
+		//public void StringArithmetic_FindFirstSelectionOutsideQuotes_LowerPrecedence()
+		//{
+		//	// Arrange
+		//	var check = " \" ab \" + \" cd \"*\"5\"*5";
 
-			// Act
-			var result = check.IndexOfOutsideQuotes('+');
+		//	// Act
+		//	var result = check.IndexOfOutsideQuotes('+');
 
-			// Assert
-			Assert.AreEqual(result, 8);
-		}
+		//	// Assert
+		//	Assert.AreEqual(result, 8);
+		//}
 
-		[TestMethod]
-		public void StringArithmetic_FindFirstSelectionOutsideQuotes_LowerPrecedence_InsideQuotes()
-		{
-			// Arrange
-			var check = " \" ab + \" + \" cd \"*\"5\"*5";
+		//[TestMethod]
+		//public void StringArithmetic_FindFirstSelectionOutsideQuotes_LowerPrecedence_InsideQuotes()
+		//{
+		//	// Arrange
+		//	var check = " \" ab + \" + \" cd \"*\"5\"*5";
 
-			// Act
-			var result = check.IndexOfOutsideQuotes('+');
+		//	// Act
+		//	var result = check.IndexOfOutsideQuotes('+');
 
-			// Assert
-			Assert.AreEqual(result, 10);
-		}
+		//	// Assert
+		//	Assert.AreEqual(result, 10);
+		//}
 
 		//[TestMethod]
 		//public void StringArithmetic_GetLeftOperand()

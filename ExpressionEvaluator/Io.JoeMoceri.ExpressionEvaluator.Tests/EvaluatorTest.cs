@@ -133,50 +133,50 @@ namespace ExpressionEvaluator.Tests
 			Assert.AreEqual(answer, result);
 		}
 
-		[TestMethod]
-		public void EvaluatorTest_IndexOfOutsideQuotesForString()
-		{
-			var expression = "5 > 3 + 5";
-			int result = expression.IndexOfOutsideQuotes(">");
+		//[TestMethod]
+		//public void EvaluatorTest_IndexOfOutsideQuotesForString()
+		//{
+		//	var expression = "5 > 3 + 5";
+		//	int result = IndexOfOutsideQuotes(expression, ">");
 
-			Assert.IsTrue(result != -1);
-		}
+		//	Assert.IsTrue(result != -1);
+		//}
 
-		[TestMethod]
-		public void EvaluatorTest_IndexOfOutsideQuotesForString02()
-		{
-			var expression = "5 >= 3 + 5";
-			int result = expression.IndexOfOutsideQuotes(">=");
+		//[TestMethod]
+		//public void EvaluatorTest_IndexOfOutsideQuotesForString02()
+		//{
+		//	var expression = "5 >= 3 + 5";
+		//	int result = expression.IndexOfOutsideQuotes(">=");
 
-			Assert.IsTrue(result != -1);
-		}
+		//	Assert.IsTrue(result != -1);
+		//}
 
-		[TestMethod]
-		public void EvaluatorTest_IndexOfOutsideQuotesForString03()
-		{
-			var expression = "true and true + 5";
-			int result = expression.IndexOfOutsideQuotes("and");
+		//[TestMethod]
+		//public void EvaluatorTest_IndexOfOutsideQuotesForString03()
+		//{
+		//	var expression = "true and true + 5";
+		//	int result = expression.IndexOfOutsideQuotes("and");
 
-			Assert.IsTrue(result != -1);
-		}
+		//	Assert.IsTrue(result != -1);
+		//}
 
-		[TestMethod]
-		public void EvaluatorTest_IndexOfOutsideQuotesForString04()
-		{
-			var expression = "true \"and\" or true + 5";
-			int result = expression.IndexOfOutsideQuotes("and");
+		//[TestMethod]
+		//public void EvaluatorTest_IndexOfOutsideQuotesForString04()
+		//{
+		//	var expression = "true \"and\" or true + 5";
+		//	int result = expression.IndexOfOutsideQuotes("and");
 
-			Assert.IsTrue(result == -1);
-		}
+		//	Assert.IsTrue(result == -1);
+		//}
 
-		[TestMethod]
-		public void EvaluatorTest_IndexOfOutsideQuotesForString05()
-		{
-			var expression = "true + \"and\" or true + 5";
-			int result = expression.IndexOfOutsideQuotes("or");
+		//[TestMethod]
+		//public void EvaluatorTest_IndexOfOutsideQuotesForString05()
+		//{
+		//	var expression = "true + \"and\" or true + 5";
+		//	int result = expression.IndexOfOutsideQuotes("or");
 
-			Assert.IsTrue(result != -1);
-		}
+		//	Assert.IsTrue(result != -1);
+		//}
 
 		[TestMethod]
 		public void EvaluatorTest_BooleanStandard01() 
