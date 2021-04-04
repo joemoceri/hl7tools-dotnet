@@ -2,8 +2,8 @@
 {
 	public enum ArithmeticExpressionType
 	{
-		Null,
+		Invalid,
 		Boolean,
-		MathAndString,
+		MathString,
 	}
 }

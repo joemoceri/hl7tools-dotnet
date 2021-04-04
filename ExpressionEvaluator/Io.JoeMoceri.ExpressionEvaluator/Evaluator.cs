@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ExpressionEvaluator
@@ -21,7 +22,7 @@ namespace ExpressionEvaluator
 
 		public Evaluator() : this(new Arithmetic()) { }
 
-		public Evaluator(IArithmetic arithmetic) 
+		private Evaluator(IArithmetic arithmetic) 
 		{
 			this.arithmetic = arithmetic;
 		}
@@ -70,7 +71,7 @@ namespace ExpressionEvaluator
 					throw new ArithmeticException(message);
 				}
 
-				// recursively break down the expressions parentheses, then work your way back up, like most interpreters do :)
+				// recursively break down the expressions parentheses, then work your way back up
 				while (parenthesesAmount != 0)
 				{
 					expression = GetOuterMostParentheticalExpression(expression, Evaluate);
@@ -86,11 +87,12 @@ namespace ExpressionEvaluator
 					result = EvaluateBooleanExpression(expression);
 				}
 				// get the math (same as string) evaluated result
-				else if (arithmeticExpType == ArithmeticExpressionType.MathAndString)
+				else if (arithmeticExpType == ArithmeticExpressionType.MathString)
 				{
 					result = EvaluateMathStringExpression(expression);
 				}
-				else if (arithmeticExpType == ArithmeticExpressionType.Null)
+				// not a valid expression
+				else if (arithmeticExpType == ArithmeticExpressionType.Invalid)
 				{
 					var message = $"Type of Arithmetic Expression not found for {expression}.";
 					throw new ArgumentException(message, nameof(expression));
@@ -98,7 +100,12 @@ namespace ExpressionEvaluator
 			}
 			catch (Exception ex) 
 			{
-				return new ExpressionResult { Value = null, Type = VarType.Null, Error = ex };	
+				return new ExpressionResult 
+				{ 
+					Value = null, 
+					Type = VarType.Null, 
+					Error = ex 
+				};	
 			}
 
 			return result;
@@ -119,7 +126,7 @@ namespace ExpressionEvaluator
 				{
 					if (expression.IndexOfOutsideQuotes(delimiters[i]) != -1)
 					{
-						return ArithmeticExpressionType.MathAndString;
+						return ArithmeticExpressionType.MathString;
 					}
 				}
 
@@ -127,10 +134,10 @@ namespace ExpressionEvaluator
 				float floatingPointNumber;
 				if (int.TryParse(expression, out integer) || float.TryParse(expression, out floatingPointNumber))
 				{
-					return ArithmeticExpressionType.MathAndString;
+					return ArithmeticExpressionType.MathString;
 				}
 
-				return ArithmeticExpressionType.Null;
+				return ArithmeticExpressionType.Invalid;
 			}
 
 			string RemoveWhitespaceOutsideQuotes(string str)
@@ -412,8 +419,8 @@ namespace ExpressionEvaluator
 
 						// TODO: Maybe a better way to do this?
 						arithmetic.SetDelimiterRange(DelimiterOperandType.Boolean);
-						string leftOperand = arithmetic.GetLeftBooleanOperand(expression, opGroup.Location);
-						string rightOperand = arithmetic.GetRightBooleanOperand(expression, opGroup.Location, opGroup.Value.Length);
+						string leftOperand = GetLeftBooleanOperand(expression, opGroup.Location);
+						string rightOperand = GetRightBooleanOperand(expression, opGroup.Location, opGroup.Value.Length);
 						arithmetic.SetDelimiterRange(DelimiterOperandType.Math);
 
 						op = arithmetic.GetOperator(opGroup.Value);
@@ -426,6 +433,67 @@ namespace ExpressionEvaluator
 						};
 
 						return expGroup;
+
+						string GetLeftBooleanOperand(string expression, int index)
+						{
+							string leftHalf = expression.Substring(0, index);
+							int start = int.MinValue;
+							int dIndex = int.MinValue;
+							var Delimiters = arithmetic.GetBooleanDelimiters().ToList();
+							for (int i = 0; i < Delimiters.Count(); i++)
+							{
+								int selection = leftHalf.LastIndexOfOutsideQuotes(Delimiters.ElementAt(i));
+								if (selection > start && selection != -1)
+								{
+									start = selection;
+									dIndex = i;
+								}
+							}
+
+							if (start == int.MinValue)
+							{
+								start = 0;
+							}
+							else
+							{
+								start += Delimiters.ElementAt(dIndex).Length;
+							}
+
+							if (index > leftHalf.Length)
+							{
+								var message = $"Couldn't get left operand for expression {leftHalf} using operand {expression[index]}.";
+								throw new ArgumentException(message, nameof(expression));
+							}
+
+							return leftHalf.Substring(start, index - start);
+						}
+
+						string GetRightBooleanOperand(string expression, int index, int opLength)
+						{
+							string rightHalf = expression.Substring(index + opLength);
+							int end = int.MaxValue;
+							var Delimiters = arithmetic.GetBooleanDelimiters().ToList();
+							for (int i = 0; i < Delimiters.Count(); i++)
+							{
+								int selection = rightHalf.IndexOfOutsideQuotes(Delimiters.ElementAt(i));
+								if (selection < end && selection != -1)
+								{
+									end = selection;
+								}
+							}
+							if (end == int.MaxValue)
+							{
+								end = rightHalf.Length;
+							}
+
+							if (end > rightHalf.Length)
+							{
+								var message = $"Couldn't get right operand for expression {rightHalf} using operand {expression[index]}.";
+								throw new ArgumentException(message, nameof(expression));
+							}
+
+							return rightHalf.Substring(0, end);
+						}
 					}
 				}
 			}
@@ -631,15 +699,15 @@ namespace ExpressionEvaluator
 						string leftOperand = null, rightOperand = null;
 						Operator op = Operator.Null;
 
-						var arGroup = arithmetic.GetOperandTypes(expression, opGroup.Location);
+						var arGroup = GetOperandTypes(expression, opGroup.Location);
 
 						if (arGroup.LeftType == ArithmeticType.String)
 						{
-							leftOperand = arithmetic.GetLeftStringOperand(expression, opGroup.Location);
+							leftOperand = GetLeftStringOperand(expression, opGroup.Location);
 						}
 						else if (arGroup.LeftType == ArithmeticType.Math)
 						{
-							leftOperand = arithmetic.GetLeftMathOperand(expression, opGroup.Location);
+							leftOperand = GetLeftMathOperand(expression, opGroup.Location);
 						}
 						else if (arGroup.LeftType == ArithmeticType.None)
 						{
@@ -649,11 +717,11 @@ namespace ExpressionEvaluator
 
 						if (arGroup.RightType == ArithmeticType.String)
 						{
-							rightOperand = arithmetic.GetRightStringOperand(expression, opGroup.Location);
+							rightOperand = GetRightStringOperand(expression, opGroup.Location);
 						}
 						else if (arGroup.RightType == ArithmeticType.Math)
 						{
-							rightOperand = arithmetic.GetRightMathOperand(expression, opGroup.Location);
+							rightOperand = GetRightMathOperand(expression, opGroup.Location);
 						}
 						else if (arGroup.RightType == ArithmeticType.None)
 						{
@@ -671,6 +739,244 @@ namespace ExpressionEvaluator
 						};
 
 						return expGroup;
+
+						ArithmeticGroup GetOperandTypes(string expression, int opIndex)
+						{
+							var leftType = ArithmeticType.None;
+							var rightType = ArithmeticType.None;
+							var expType = ArithmeticType.None;
+
+							if (expression[opIndex - 1] == '"')
+							{
+								leftType = ArithmeticType.String;
+							}
+							else
+							{
+								leftType = ArithmeticType.Math;
+							}
+
+							if (expression[opIndex + 1] == '"')
+							{
+								rightType = ArithmeticType.String;
+							}
+							else
+							{
+								rightType = ArithmeticType.Math;
+							}
+
+							if (leftType == ArithmeticType.String || rightType == ArithmeticType.String)
+							{
+								expType = ArithmeticType.String;
+							}
+							else if (leftType == ArithmeticType.Math && rightType == ArithmeticType.Math)
+							{
+								expType = ArithmeticType.Math;
+							}
+
+							if (leftType == ArithmeticType.None)
+							{
+								var message = $"Couldn't find Arithmetic Type for left operand for expression {expression}.";
+								throw new ArgumentException(message, nameof(expression));
+							}
+							else if (rightType == ArithmeticType.None)
+							{
+								var message = $"Couldn't find Arithmetic Type for right operand for expression {expression}.";
+								throw new ArgumentException(message, nameof(expression));
+							}
+							else if (expType == ArithmeticType.None)
+							{
+								var message = $"Couldn't find Arithmetic Type for expression {expression}.";
+								throw new ArgumentException(message, nameof(expression));
+							}
+
+							var arGroup = new ArithmeticGroup
+							{
+								LeftType = leftType,
+								RightType = rightType,
+								ExpressionType = expType,
+							};
+
+							return arGroup;
+						}
+
+						string GetRightMathOperand(string expression, int index)
+						{
+							string result = "";
+							int start = index + 1, opIndex = index + 1;
+							if (expression[start] == '-') { start++; result += '-'; }
+							var Delimiters = arithmetic.GetMathDelimiters().ToList();
+							for (int i = start; i < expression.Length; i++)
+							{
+								for (int j = 0; j < Delimiters.Count(); j++)
+								{
+									char delimStart = Delimiters.ElementAt(j)[0];
+									if (expression[i] == delimStart)
+									{
+										if (CheckDelimiterForRight(i, Delimiters.ElementAt(j), expression))
+										{
+											if (i > expression.Length)
+											{
+												var message = $"Couldn't get right operand for expression {expression} using operand {expression[index]}.";
+												throw new ArgumentException(message, nameof(expression));
+											}
+											return expression.Substring(opIndex, i - opIndex);
+										}
+									}
+								}
+							}
+							if (result == "" || result == "-") { result = expression.Substring(opIndex); }
+
+							return result;
+
+							bool CheckDelimiterForRight(int index, string delimiter, string expression)
+							{
+								if (index > 0 && expression.Length > index + delimiter.Length)
+								{
+									var str = expression.Substring(index, delimiter.Length);
+									return str == delimiter;
+								}
+								else
+								{
+									return false;
+								}
+							}
+						}
+
+						string GetRightStringOperand(string expression, int index)
+						{
+							string result = null;
+							int start = index + 1, quoteCount = 0;
+							char curQuote = char.MinValue;
+
+							for (int i = start; i < expression.Length; i++)
+							{
+								if (expression.CheckQuotes(i, curQuote))
+								{
+									if (quoteCount == 0) { curQuote = expression[i]; }
+									quoteCount++;
+									if (quoteCount == 2)
+									{
+										if (i + 1 > expression.Length)
+										{
+											var message = $"Couldn't get right operand for expression {expression} using operand {expression[index]}.";
+											throw new ArgumentException(message, nameof(expression));
+										}
+										result = expression.Substring(start, (i + 1) - start);
+									}
+								}
+							}
+							if (result == null) { result = expression.Substring(start); }
+							return result.Trim();
+						}
+
+						string GetLeftStringOperand(string expression, int index)
+						{
+							string result = null;
+							int start = index - 1, quoteCount = 0;
+							char curQuote = char.MinValue;
+							for (int i = start; i >= 0; i--)
+							{
+								if (expression.CheckQuotes(i, curQuote))
+								{
+									curQuote = expression[i];
+									quoteCount++;
+									if (quoteCount == 2)
+									{
+										if (index > expression.Length)
+										{
+											var message = $"Couldn't get right operand for expression {expression} using operand {expression[index]}.";
+											throw new ArgumentException(message, nameof(expression));
+										}
+										result = expression.Substring(i, index - i);
+									}
+								}
+							}
+							if (result == null) { result = expression.Substring(0, index); }
+
+							return result.Trim();
+						}
+
+						string GetLeftMathOperand(string expression, int index)
+						{
+							string result = "";
+							int start = index - 1;
+							var Delimiters = arithmetic.GetMathDelimiters().ToList();
+							for (int i = start; i >= 0; i--)
+							{
+								for (int j = 0; j < Delimiters.Count(); j++)
+								{
+									char delimEnd = Delimiters.ElementAt(j).Last();
+									if (expression[i] == delimEnd)
+									{
+										if (CheckDelimiterForLeft(i, Delimiters.ElementAt(j), expression))
+										{
+											int startSubstringIndex = i + 1, substringLength = start - i;
+											if (i != 0)
+											{
+												if (CheckDelimiter(expression[i - 1], Delimiters, expression, i - 1)) // the one after the negative is an operator
+												{
+													startSubstringIndex = i; // then include the negative, otherwise default to normal i + 1
+													substringLength++;
+												}
+											}
+											else if (i == 0 || expression[i] == '-')
+											{
+												startSubstringIndex = i;
+												substringLength++;
+											}
+
+											if (substringLength > expression.Length - startSubstringIndex)
+											{
+												var message = $"Couldn't get right operand for expression {expression} using operand {expression[index]}.";
+												throw new ArgumentException(message, "expression");
+											}
+
+											return expression.Substring(startSubstringIndex, substringLength);
+										}
+									}
+								}
+							}
+							if (result == "")
+							{
+								result = expression.Substring(0, index);
+							}
+
+							return result;
+
+							bool CheckDelimiter(char ch, IEnumerable<string> delimiters, string expression, int opIndex)
+							{
+								bool result = false;
+								for (int i = 0; i < Delimiters.Count(); i++)
+								{
+									char delimEnd = delimiters.ElementAt(i).Last();
+									if (ch == delimEnd)
+									{
+										if (CheckDelimiterForLeft(opIndex, delimiters.ElementAt(i), expression))
+										{
+											result = true;
+											break;
+										}
+									}
+								}
+
+								return result;
+							}
+
+							bool CheckDelimiterForLeft(int index, string delimiter, string expression)
+							{
+								int start = index - (delimiter.Length - 1);
+								if (start >= 0 && expression.Length > start + delimiter.Length)
+								{
+									string result = expression.Substring(start, delimiter.Length);
+									return result == delimiter;
+								}
+								else
+								{
+									return false;
+								}
+							}
+						}
+
 					}
 				}
 			}
