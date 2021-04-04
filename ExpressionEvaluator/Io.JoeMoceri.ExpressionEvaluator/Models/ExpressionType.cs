@@ -1,6 +1,6 @@
 ﻿namespace ExpressionEvaluator
 {
-	public enum ArithmeticExpressionType
+	public enum ExpressionType
 	{
 		Invalid,
 		Boolean,

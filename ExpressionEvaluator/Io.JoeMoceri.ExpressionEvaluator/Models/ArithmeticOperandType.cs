@@ -1,6 +1,6 @@
 ﻿namespace ExpressionEvaluator
 {
-	public enum ArithmeticType
+	public enum ArithmeticOperandType
 	{
 		None,
 		Math,
