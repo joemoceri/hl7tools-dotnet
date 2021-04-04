@@ -6,7 +6,6 @@ namespace ExpressionEvaluator
 {
     public interface IArithmetic
     {
-        bool CheckDelimiterForRight(int index, string delimiter, string expression);
         OperatorGroup GetFirstSelection(string expression, IEnumerable<string> delimiters);
         float GetFloat(string str);
         int GetInt(string str);
@@ -20,7 +19,6 @@ namespace ExpressionEvaluator
         string GetRightStringOperand(string expression, int index);
         VarType GetVarType(string expression);
         void SetDelimiterRange(DelimiterOperandType type);
-        VarType UpdateVarType(VarType curExpType, VarType leftOperandType, VarType rightOperandType);
     }
 
     /// <summary>
@@ -130,65 +128,6 @@ namespace ExpressionEvaluator
             return result;
         }
 
-        public VarType UpdateVarType(VarType curExpType, VarType leftOperandType, VarType rightOperandType)
-        {
-            if (curExpType == VarType.String)
-            {
-                return VarType.String;
-            }
-            else if (curExpType == VarType.Boolean)
-            {
-                return VarType.Boolean;
-            }
-            else if (curExpType == VarType.Float)
-            {
-                if (leftOperandType == VarType.String || rightOperandType == VarType.String)
-                {
-                    return VarType.String;
-                }
-                else
-                {
-                    return VarType.Float;
-                }
-            }
-            else if (curExpType == VarType.Int)
-            {
-                if (leftOperandType == VarType.Float || rightOperandType == VarType.Float)
-                {
-                    return VarType.Float;
-                }
-                else if (leftOperandType == VarType.String || rightOperandType == VarType.String)
-                {
-                    return VarType.String;
-                }
-                else
-                {
-                    return VarType.Int;
-                }
-            }
-            else if (curExpType == VarType.Null)
-            {
-                if (leftOperandType == VarType.String || rightOperandType == VarType.String)
-                {
-                    return VarType.String;
-                }
-                else if (leftOperandType == VarType.Boolean || rightOperandType == VarType.Boolean)
-                {
-                    return VarType.Boolean;
-                }
-                else if (leftOperandType == VarType.Float || rightOperandType == VarType.Float)
-                {
-                    return VarType.Float;
-                }
-                else if (leftOperandType == VarType.Int || rightOperandType == VarType.Int)
-                {
-                    return VarType.Int;
-                }
-            }
-
-            return curExpType;
-        }
-
         public VarType GetVarType(string expression)
         {
             int tempInteger = 0; float tempFloat = 0.0f;
@@ -275,19 +214,6 @@ namespace ExpressionEvaluator
             return rightHalf.Substring(0, end);
         }
 
-        public bool CheckDelimiterForRight(int index, string delimiter, string expression)
-        {
-            if (index > 0 && expression.Length > index + delimiter.Length)
-            {
-                var str = expression.Substring(index, delimiter.Length);
-                return str == delimiter;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public string GetRightMathOperand(string expression, int index)
         {
             string result = "";
@@ -315,6 +241,19 @@ namespace ExpressionEvaluator
             if (result == "" || result == "-") { result = expression.Substring(opIndex); }
 
             return result;
+
+            bool CheckDelimiterForRight(int index, string delimiter, string expression)
+            {
+                if (index > 0 && expression.Length > index + delimiter.Length)
+                {
+                    var str = expression.Substring(index, delimiter.Length);
+                    return str == delimiter;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
         public string GetRightStringOperand(string expression, int index)

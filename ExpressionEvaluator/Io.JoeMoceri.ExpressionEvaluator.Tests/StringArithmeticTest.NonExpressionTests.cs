@@ -8,9 +8,6 @@ namespace ExpressionEvaluator.Tests
 	[TestClass]
 	public class StringArithmeticTest_NonExpressionTests
 	{
-
-		private StringArithmetic solver = new StringArithmetic(new Arithmetic());
-
 		[TestMethod]
 		public void StringArithmetic_RemoveWhitespaceOutsideQuotes_DoubleQuotes()
 		{
