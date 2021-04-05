@@ -91,7 +91,8 @@ namespace ExpressionEvaluator
 
 			return result;
 
-			InputExpressionType GetInputExpressionType(string expression)
+            #region Pre
+            InputExpressionType GetInputExpressionType(string expression)
 			{
 				// is the expression boolean?
 				var operators = new[] { ">", ">=", "<", "<=", "==", "!=", "&&", "||", "and", "or", "False", "True" };
@@ -267,15 +268,15 @@ namespace ExpressionEvaluator
 								result = i;
 								break;
 							}
-
 						}
 					}
 
 					return result;
 				}
 			}
+            #endregion
 
-			ExpressionResult EvaluateBooleanExpression(string expression)
+            ExpressionResult EvaluateBooleanExpression(string expression)
 			{
 				var higherPrecedenceOperators = new[] { "<=", ">=", "==", "!=", "<", ">", };
 				var result = SolveExpressionPrecedence(expression, higherPrecedenceOperators);
@@ -1081,7 +1082,8 @@ namespace ExpressionEvaluator
 				}
 			}
 
-			OperatorLocation GetNextOperatorLocation(string expression, IEnumerable<string> operators)
+            #region Post
+            OperatorLocation GetNextOperatorLocation(string expression, IEnumerable<string> operators)
 			{
 				string nextOperatorValue = null;
 
@@ -1383,6 +1385,7 @@ namespace ExpressionEvaluator
 
 				return result;
 			}
-		}
-	}
+            #endregion
+        }
+    }
 }
