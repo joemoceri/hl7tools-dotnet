@@ -8,7 +8,7 @@ namespace ExpressionEvaluator.Tests
 		private Evaluator solver = new Evaluator();
 
 		[TestMethod]
-		public void EvaluatorTest_NoParenthesesStringOnLeft()
+		public void EvaluatorTests_NoParenthesesStringOnLeft()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "\"5lol\"", Type = VariableType.String }; ;
@@ -22,7 +22,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_SingleParenthesesForString()
+		public void EvaluatorTests_SingleParenthesesForString()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "\"5lol\"", Type = VariableType.String }; ;
@@ -36,7 +36,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_ParenthesesForStringAddition()
+		public void EvaluatorTests_ParenthesesForStringAddition()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "\"5lol5\"", Type = VariableType.String }; ;
@@ -50,7 +50,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_NestedParenthesesForString()
+		public void EvaluatorTests_NestedParenthesesForString()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "\"5lol5\"", Type = VariableType.String }; ;
@@ -64,7 +64,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_NestedParenthesesForStringAddition()
+		public void EvaluatorTests_NestedParenthesesForStringAddition()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "\"5lol75\"", Type = VariableType.String }; ;
@@ -78,7 +78,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanTrue()
+		public void EvaluatorTests_BooleanTrue()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "True", Type = VariableType.Boolean };
@@ -92,7 +92,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanFalse()
+		public void EvaluatorTests_BooleanFalse()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "False", Type = VariableType.Boolean };
@@ -106,7 +106,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanSingleParentheses()
+		public void EvaluatorTests_BooleanSingleParentheses()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "False", Type = VariableType.Boolean };
@@ -120,7 +120,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanDoubleParentheses()
+		public void EvaluatorTests_BooleanDoubleParentheses()
 		{
 			// Arrange
 			var answer = new ExpressionResult { Value = "False", Type = VariableType.Boolean };
@@ -134,7 +134,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanStandard01() 
+		public void EvaluatorTests_BooleanStandard01() 
 		{
 			// Arrange
 			var ans = 2 + 3 > 1 - 4 && 3 > 2;
@@ -149,7 +149,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanStandard02()
+		public void EvaluatorTests_BooleanStandard02()
 		{
 			// Arrange
 			var ans = 1 > 2;
@@ -164,7 +164,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanStandard03()
+		public void EvaluatorTests_BooleanStandard03()
 		{
 			// Arrange
 			var ans = (5 / 3) > 2;
@@ -179,7 +179,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanStandard04()
+		public void EvaluatorTests_BooleanStandard04()
 		{
 			// Arrange
 			var ans = -(-1 - -2) > -(-3 - -4);
@@ -194,7 +194,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanStandard05()
+		public void EvaluatorTests_BooleanStandard05()
 		{
 			// Arrange
 			var ans = 2 > 1 == true;
@@ -209,7 +209,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void EvaluatorTest_BooleanStandard06()
+		public void EvaluatorTests_BooleanStandard06()
 		{
 			// Arrange
 			var ans = 2 > 1 != true;

@@ -8,7 +8,7 @@ namespace ExpressionEvaluator.Tests
 		private Evaluator solver = new Evaluator();
 
 		[TestMethod]
-		public void MathArithmetic_NoParentheses()
+		public void MathExpressionTests_NoParentheses()
 		{
 			// Arrange
 			var ans = 4.563 + 12 * 3 * 4 + 3 / 3 - 4 * 2 + 3 + 12 % 5;
@@ -23,7 +23,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_NoParenthesesNegative()
+		public void MathExpressionTests_NoParenthesesNegative()
 		{
 			// Arrange
 			var ans = -4.563 + -12 * -3 * -4 + -3 / -3 - -4 * -2 + -3 + -12 % -5;
@@ -38,7 +38,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_NestedOverallParentheses()
+		public void MathExpressionTests_NestedOverallParentheses()
 		{
 			// Arrange
 			var ans = (((((4) + 12) * 3) * 4) + ((3) / 3) - (4 * 2 + 3));
@@ -53,7 +53,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_NestedOverallParenthesesNegative()
+		public void MathExpressionTests_NestedOverallParenthesesNegative()
 		{
 			// Arrange
 			var ans = (((((-4) + -12) * -3) * -4) + ((-3) / -3) - (-4 * -2 + -3));
@@ -68,7 +68,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_NestedSingleParentheses()
+		public void MathExpressionTests_NestedSingleParentheses()
 		{
 			// Arrange
 			var ans = (((5 + 3)));
@@ -83,7 +83,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_NestedSingleParenthesesNegative()
+		public void MathExpressionTests_NestedSingleParenthesesNegative()
 		{
 			// Arrange
 			var ans = -(-(-(5 + 3)));
@@ -98,7 +98,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_ParenthesesNegative()
+		public void MathExpressionTests_ParenthesesNegative()
 		{
 			// Arrange
 			var ans = -(5 + 3);
@@ -113,7 +113,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_SameLevelParentheses()
+		public void MathExpressionTests_SameLevelParentheses()
 		{
 			// Arrange
 			var ans = 4 + 12 - 3 * (4 + 3) / 3 - (4 * 2 + 3);
@@ -128,7 +128,7 @@ namespace ExpressionEvaluator.Tests
 		}
 		
 		[TestMethod]
-		public void MathArithmetic_SameLevelParenthesesNegative()
+		public void MathExpressionTests_SameLevelParenthesesNegative()
 		{
 			// Arrange
 			var ans = -4 + -12 - -3 * (-4 + -3) / -3 - -(-4 * -2 + -3);
@@ -143,7 +143,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_SolveDoubleNegative()
+		public void MathExpressionTests_SolveDoubleNegative()
 		{
 			// Arrange
 			var ans = -3 - -(-4 * -2 + -3);
@@ -158,7 +158,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_SameLevelParenthesesNegativeSamePrecedence()
+		public void MathExpressionTests_SameLevelParenthesesNegativeSamePrecedence()
 		{
 			// Arrange
 			var ans = -4 + -12 - -3 * -(-4 + -3);
@@ -173,7 +173,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_SolveNegative()
+		public void MathExpressionTests_SolveNegative()
 		{
 			// Arrange
 			var ans = 3 + -3;
@@ -189,7 +189,7 @@ namespace ExpressionEvaluator.Tests
 
 
 		[TestMethod]
-		public void MathArithmetic_SolveNegativeWithoutEnd()
+		public void MathExpressionTests_SolveNegativeWithoutEnd()
 		{
 			// Arrange
 			var ans = 3 + -3 + 4;
@@ -204,7 +204,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_SolveNegativeBeginning()
+		public void MathExpressionTests_SolveNegativeBeginning()
 		{
 			// Arrange
 			var ans = -3 + 3 + 4;
@@ -219,7 +219,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_Single()
+		public void MathExpressionTests_Single()
 		{
 			// Arrange
 			var ans = 10;
@@ -234,7 +234,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void MathArithmetic_SingleNegative()
+		public void MathExpressionTests_SingleNegative()
 		{
 			// Arrange
 			var ans = -5 - -10;
@@ -249,7 +249,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math01()
+		public void MathExpressionTests_Math01()
 		{
 			// Arrange
 			var ans = 1 + 2;
@@ -264,7 +264,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math02()
+		public void MathExpressionTests_Math02()
 		{
 			// Arrange
 			var ans = 1 + 2 - 3;
@@ -279,7 +279,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math03()
+		public void MathExpressionTests_Math03()
 		{
 			// Arrange
 			var ans = 1 + 2 * 3;
@@ -294,7 +294,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math04()
+		public void MathExpressionTests_Math04()
 		{
 			// Arrange
 			var ans = 1 * 2 + 3;
@@ -309,7 +309,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math05()
+		public void MathExpressionTests_Math05()
 		{
 			// Arrange
 			var ans = 1 * 2 * 3;
@@ -324,7 +324,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math06()
+		public void MathExpressionTests_Math06()
 		{
 			// Arrange
 			var ans = 1 - 2;
@@ -339,7 +339,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math07()
+		public void MathExpressionTests_Math07()
 		{
 			// Arrange
 			var ans = 1 * 2;
@@ -354,7 +354,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math08()
+		public void MathExpressionTests_Math08()
 		{
 			// Arrange
 			var ans = 1 / 2;
@@ -369,7 +369,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math09()
+		public void MathExpressionTests_Math09()
 		{
 			// Arrange
 			var ans = 1 % 2;
@@ -384,7 +384,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math10()
+		public void MathExpressionTests_Math10()
 		{
 			// Arrange
 			var ans = 1;
@@ -399,7 +399,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math11()
+		public void MathExpressionTests_Math11()
 		{
 			// Arrange
 			var ans = -1;
@@ -414,7 +414,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math12()
+		public void MathExpressionTests_Math12()
 		{
 			// Arrange
 			var ans = -1 + -2;
@@ -429,7 +429,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math13()
+		public void MathExpressionTests_Math13()
 		{
 			// Arrange
 			var ans = -1 - -2;
@@ -444,7 +444,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math14()
+		public void MathExpressionTests_Math14()
 		{
 			// Arrange
 			var ans = -1 * -2;
@@ -459,7 +459,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math15()
+		public void MathExpressionTests_Math15()
 		{
 			// Arrange
 			var ans = -1 % -2;
@@ -474,7 +474,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math16()
+		public void MathExpressionTests_Math16()
 		{
 			// Arrange
 			var ans = -1 / -2;
@@ -489,7 +489,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math17()
+		public void MathExpressionTests_Math17()
 		{
 			// Arrange
 			var ans = -1 + -2 * -3;
@@ -504,7 +504,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math18()
+		public void MathExpressionTests_Math18()
 		{
 			// Arrange
 			var ans = -1 * -2 + -3;
@@ -519,7 +519,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math19()
+		public void MathExpressionTests_Math19()
 		{
 			// Arrange
 			var ans = -1 - -2 - -3;
@@ -534,7 +534,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math20()
+		public void MathExpressionTests_Math20()
 		{
 			// Arrange
 			var ans = (1);
@@ -549,7 +549,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math21()
+		public void MathExpressionTests_Math21()
 		{
 			// Arrange
 			var ans = (-1);
@@ -564,7 +564,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math22()
+		public void MathExpressionTests_Math22()
 		{
 			// Arrange
 			var ans = (1 + 2);
@@ -579,7 +579,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math23()
+		public void MathExpressionTests_Math23()
 		{
 			// Arrange
 			var ans = (1 + 2 - 3);
@@ -594,7 +594,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math24()
+		public void MathExpressionTests_Math24()
 		{
 			// Arrange
 			var ans = ((1) + (2) - (3));
@@ -609,7 +609,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math25()
+		public void MathExpressionTests_Math25()
 		{
 			// Arrange
 			var ans = -(-(-1) + -(-2) - -(-3));
@@ -624,7 +624,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math26()
+		public void MathExpressionTests_Math26()
 		{
 			// Arrange
 			var ans = -(-(-(-1) + -(-2)) - -(-3));
@@ -639,7 +639,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math27()
+		public void MathExpressionTests_Math27()
 		{
 			// Arrange
 			var ans = -(-(-(-1 * 2 + (3 / 3) - 4 * 4 / (5) % 6) + -(-2)) - -(-3));
@@ -654,7 +654,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void Math28()
+		public void MathExpressionTests_Math28()
 		{
 			// Arrange
 			float ans = -(-(-(-1.25f * 2.5f + (3.75f / 3f) - 4.01f * 4.03f / (5.00f) % 6.0f) + -(-2.1234567890f)) - -(-3.000f));

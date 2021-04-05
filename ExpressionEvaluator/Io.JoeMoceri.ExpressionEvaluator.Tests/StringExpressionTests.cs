@@ -9,7 +9,7 @@ namespace ExpressionEvaluator.Tests
 		private Evaluator solver = new Evaluator();
 
 		[TestMethod]
-		public void StringArithmetic_Single()
+		public void StringExpressionTests_Single()
 		{
 			// Arrange
 			var check = " \" ab + \"";
@@ -23,7 +23,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_TwoStringAddition()
+		public void StringExpressionTests_TwoStringAddition()
 		{
 			// Arrange
 			var check = " \" ab + \" + \" cd \"";
@@ -37,7 +37,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_ThreeStringAddition()
+		public void StringExpressionTests_ThreeStringAddition()
 		{
 			// Arrange
 			var check = " \" ab + \" + \" cd \" + \" ef \"";
@@ -51,7 +51,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_ThreeOperandExpression()
+		public void StringExpressionTests_ThreeOperandExpression()
 		{
 			// Arrange
 			var check = " \" ab + \" + \" cd \" * 3";
@@ -65,7 +65,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_LeftStringAddition()
+		public void StringExpressionTests_LeftStringAddition()
 		{
 			// Arrange
 			var check = " \" ab + \" + 3";
@@ -79,7 +79,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_LeftStringMultiplication()
+		public void StringExpressionTests_LeftStringMultiplication()
 		{
 			// Arrange
 			var check = " \" ab + \" * 3";
@@ -93,7 +93,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_RightStringAddition()
+		public void StringExpressionTests_RightStringAddition()
 		{
 			// Arrange
 			var check = " 4 + \" cd \"";
@@ -107,7 +107,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_RightStringMultiplication()
+		public void StringExpressionTests_RightStringMultiplication()
 		{
 			// Arrange
 			var check = " 4 * \" cd \"";
@@ -121,7 +121,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_RightStringMultiplication_EscapedDoubleQuote()
+		public void StringExpressionTests_RightStringMultiplication_EscapedDoubleQuote()
 		{
 			// Arrange
 			var check = " 4 * \" \\\"cd \"";
@@ -135,7 +135,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_ParenthesesLeftMultiplication()
+		public void StringExpressionTests_ParenthesesLeftMultiplication()
 		{
 			// Arrange
 			var check = " 4 * (\" cd \" + \"lol\")";
@@ -149,7 +149,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_ParenthesesRightMultiplication()
+		public void StringExpressionTests_ParenthesesRightMultiplication()
 		{
 			// Arrange
 			var check = "(\" cd \" + \"lol\") * 4  ";
@@ -163,7 +163,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_NestedParentheses()
+		public void StringExpressionTests_NestedParentheses()
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"lol\")) * 4  ";
@@ -177,7 +177,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_NestedParenthesesInsideLeftParentheses()
+		public void StringExpressionTests_NestedParenthesesInsideLeftParentheses()
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"lol(\")) * 4  ";
@@ -191,7 +191,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_NestedParenthesesInsideRightParentheses()
+		public void StringExpressionTests_NestedParenthesesInsideRightParentheses()
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"lol)\")) * 4  ";
@@ -205,7 +205,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_NestedParenthesesInsideBothParentheses()
+		public void StringExpressionTests_NestedParenthesesInsideBothParentheses()
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"(lol)\")) * 4  ";
@@ -219,7 +219,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringArithmetic_NestedParenthesesExpression()
+		public void StringExpressionTests_NestedParenthesesExpression()
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"lol\" + \"lmao\")) * 4  ";
@@ -233,7 +233,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String01()
+		public void StringExpressionTests_String01()
 		{
 			// Arrange
 			var ans = "\"test\"";
@@ -248,7 +248,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String02()
+		public void StringExpressionTests_String02()
 		{
 			// Arrange
 			var ans = "\" test \"";
@@ -263,7 +263,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String03()
+		public void StringExpressionTests_String03()
 		{
 			// Arrange
 			var ans = "\" \\\"test \"";
@@ -278,7 +278,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String04()
+		public void StringExpressionTests_String04()
 		{
 			// Arrange
 			var ans = "\"test \"";
@@ -293,7 +293,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String05()
+		public void StringExpressionTests_String05()
 		{
 			// Arrange
 			var ans = "\" test\"";
@@ -308,7 +308,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String06()
+		public void StringExpressionTests_String06()
 		{
 			// Arrange
 			var ans = "\" test " + "test2\"";
@@ -323,7 +323,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String07()
+		public void StringExpressionTests_String07()
 		{
 			// Arrange
 			var ans = "\" test " + 1 + "\"";
@@ -338,7 +338,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String08()
+		public void StringExpressionTests_String08()
 		{
 			// Arrange
 			var ans = "\"" + 1 + " test \"";
@@ -353,7 +353,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String09()
+		public void StringExpressionTests_String09()
 		{
 			// Arrange
 			var ans = "\" test  test \"";
@@ -368,7 +368,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String10()
+		public void StringExpressionTests_String10()
 		{
 			// Arrange
 			var ans = "\" test  test \"";
@@ -383,7 +383,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String11()
+		public void StringExpressionTests_String11()
 		{
 			// Arrange
 			var ans = "\" test  test 3\"";
@@ -398,7 +398,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String12()
+		public void StringExpressionTests_String12()
 		{
 			// Arrange
 			var ans = "\"3 test  test \"";
@@ -413,7 +413,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String13()
+		public void StringExpressionTests_String13()
 		{
 			// Arrange
 			var ans = "\"3 test  test 3\"";
@@ -428,7 +428,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String14()
+		public void StringExpressionTests_String14()
 		{
 			// Arrange
 			var ans = "\"7 test  test 8\"";
@@ -443,7 +443,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String15()
+		public void StringExpressionTests_String15()
 		{
 			// Arrange
 			var ans = "\"7 test  test 8\"";
@@ -458,7 +458,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String16()
+		public void StringExpressionTests_String16()
 		{
 			// Arrange
 			var ans = "\"7 test 6 test 68\"";
@@ -473,7 +473,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String17()
+		public void StringExpressionTests_String17()
 		{
 			// Arrange
 			var ans = "\"7 test 6  test 6 8\"";
@@ -488,7 +488,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String18()
+		public void StringExpressionTests_String18()
 		{
 			// Arrange
 			var ans = "\"7 test 6  test 6 8\"";
@@ -503,7 +503,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String19()
+		public void StringExpressionTests_String19()
 		{
 			// Arrange
 			var ans = "\"7 test        test       8\"";
@@ -518,7 +518,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String20()
+		public void StringExpressionTests_String20()
 		{
 			// Arrange
 			var ans = "\"test\"";
@@ -533,7 +533,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void String21()
+		public void StringExpressionTests_String21()
 		{
 			// Arrange
 			var ans = "\"7 test 6test2 test 6test28\"";

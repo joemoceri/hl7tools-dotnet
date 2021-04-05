@@ -8,7 +8,7 @@ namespace ExpressionEvaluator.Tests
 		private Evaluator solver = new Evaluator();
 
 		[TestMethod]
-		public void BadInput_ShouldReturnExpressionResultWithNullValuesAndException()
+		public void ErrorTests_BadInput_ShouldReturnExpressionResultWithNullValuesAndException()
 		{
 			var result = solver.Evaluate("asdjhas;dglasd;a;s");
 

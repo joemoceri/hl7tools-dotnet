@@ -9,7 +9,7 @@ namespace ExpressionEvaluator.Tests
 		private Evaluator solver = new Evaluator();
 
 		[TestMethod]
-		public void CustomOperatorTests_AdditionOnBeforeOperatorExpressionSolvedTest()
+		public void CustomOperatorTests_AdditionOnBeforeOperatorExpressionSolved()
 		{
 			// Arrange
 			var languageTemplate = new EEExpressionsLanguageTemplate();
@@ -52,7 +52,7 @@ namespace ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void CustomOperatorTests_AdditionOnAfterOperatorExpressionSolvedTest()
+		public void CustomOperatorTests_AdditionOnAfterOperatorExpressionSolved()
 		{
 			// Arrange
 			var languageTemplate = new EEExpressionsLanguageTemplate();
