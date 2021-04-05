@@ -1,63 +1,71 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ExpressionEvaluator
 {
     public class EEExpressionsLanguageTemplate : LanguageTemplateBase
     {
-        private readonly IList<LanguageTemplateOperator> mathOperators;
-        private readonly IList<LanguageTemplateOperator> booleanOperators;
+        private readonly IList<LanguageTemplateOperator> operators;
 
         public EEExpressionsLanguageTemplate()
         {
-            mathOperators = new List<LanguageTemplateOperator>
+            operators = new List<LanguageTemplateOperator>
             {
-                CreateLanguageTemplateOperator(Operator.Addition, OperatorPrecedence.Lower, "+"),
-                CreateLanguageTemplateOperator(Operator.Subtraction, OperatorPrecedence.Lower, "-"),
-                CreateLanguageTemplateOperator(Operator.Multiplication, OperatorPrecedence.Higher, "*"),
-                CreateLanguageTemplateOperator(Operator.Division, OperatorPrecedence.Higher, "/"),
-                CreateLanguageTemplateOperator(Operator.Modulus, OperatorPrecedence.Higher, "%"),
-            };
-
-            booleanOperators = new List<LanguageTemplateOperator>
-            {
-                CreateLanguageTemplateOperator(Operator.And, OperatorPrecedence.Lower, "and"),
-                CreateLanguageTemplateOperator(Operator.And, OperatorPrecedence.Lower, "&&"),
-                CreateLanguageTemplateOperator(Operator.Or, OperatorPrecedence.Lower, "||"),
-                CreateLanguageTemplateOperator(Operator.Or, OperatorPrecedence.Lower, "or"),
-                CreateLanguageTemplateOperator(Operator.LessThanOrEqualTo, OperatorPrecedence.Higher, "<="),
-                CreateLanguageTemplateOperator(Operator.GreaterThanOrEqualTo, OperatorPrecedence.Higher, ">="),
-                CreateLanguageTemplateOperator(Operator.EqualTo, OperatorPrecedence.Higher, "=="),
-                CreateLanguageTemplateOperator(Operator.NotEqualTo, OperatorPrecedence.Higher, "!="),
-                CreateLanguageTemplateOperator(Operator.LessThan, OperatorPrecedence.Higher, "<"),
-                CreateLanguageTemplateOperator(Operator.GreaterThan, OperatorPrecedence.Higher, ">"),
+                CreateLanguageTemplateOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, "+"),
+                CreateLanguageTemplateOperator(Operator.Subtraction, OperatorPrecedence.Lower, OperatorType.MathString, "-"),
+                CreateLanguageTemplateOperator(Operator.Multiplication, OperatorPrecedence.Higher, OperatorType.MathString, "*"),
+                CreateLanguageTemplateOperator(Operator.Division, OperatorPrecedence.Higher, OperatorType.MathString, "/"),
+                CreateLanguageTemplateOperator(Operator.Modulus, OperatorPrecedence.Higher, OperatorType.MathString, "%"),
+                CreateLanguageTemplateOperator(Operator.And, OperatorPrecedence.Lower, OperatorType.Boolean, "and"),
+                CreateLanguageTemplateOperator(Operator.And, OperatorPrecedence.Lower, OperatorType.Boolean, "&&"),
+                CreateLanguageTemplateOperator(Operator.Or, OperatorPrecedence.Lower, OperatorType.Boolean, "||"),
+                CreateLanguageTemplateOperator(Operator.Or, OperatorPrecedence.Lower, OperatorType.Boolean, "or"),
+                CreateLanguageTemplateOperator(Operator.LessThanOrEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, "<="),
+                CreateLanguageTemplateOperator(Operator.GreaterThanOrEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, ">="),
+                CreateLanguageTemplateOperator(Operator.EqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, "=="),
+                CreateLanguageTemplateOperator(Operator.NotEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, "!="),
+                CreateLanguageTemplateOperator(Operator.LessThan, OperatorPrecedence.Higher, OperatorType.Boolean, "<"),
+                CreateLanguageTemplateOperator(Operator.GreaterThan, OperatorPrecedence.Higher, OperatorType.Boolean, ">"),
             };
         }
 
-        private LanguageTemplateOperator CreateLanguageTemplateOperator(Operator expressionOperator, OperatorPrecedence operatorPrecedence, string operatorName)
+        private LanguageTemplateOperator CreateLanguageTemplateOperator(
+            Operator expressionOperator, 
+            OperatorPrecedence operatorPrecedence, 
+            OperatorType expressionOperatorType,
+            string operatorName, 
+            Func<ExpressionGroup, ExpressionResult> solveOperatorExpression = null,
+            Action<ExpressionGroup> onBeforeOperatorExpressionSolved = null,
+            Action<ExpressionResult> onAfterOperatorExpressionSolved = null)
         {
             return new LanguageTemplateOperator
             {
                 ExpressionOperator = expressionOperator,
                 ExpressionOperatorPrecedence = operatorPrecedence,
-                OperatorName = operatorName
+                ExpressionOperatorType = expressionOperatorType,
+                OperatorName = operatorName,
+                SolveOperatorExpression = solveOperatorExpression,
+                OnBeforeOperatorExpressionSolved = onBeforeOperatorExpressionSolved,
+                OnAfterOperatorExpressionSolved = onAfterOperatorExpressionSolved
             };
         }
 
         public override string Name => "EE Expressions";
 
-        public override IList<LanguageTemplateOperator> BooleanOperators 
+        public override IList<LanguageTemplateOperator> MathStringOperators 
         {
             get
             {
-                return booleanOperators;
+                return operators.Where(o => o.ExpressionOperatorType == OperatorType.MathString).ToList();
             }
         }
 
-        public override IList<LanguageTemplateOperator> MathOperators
+        public override IList<LanguageTemplateOperator> BooleanOperators
         {
             get
             {
-                return mathOperators;
+                return operators.Where(o => o.ExpressionOperatorType == OperatorType.Boolean).ToList();
             }
         }
     }

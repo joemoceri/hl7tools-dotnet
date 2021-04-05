@@ -265,7 +265,7 @@ namespace ExpressionEvaluator
 
             ExpressionResult EvaluateBooleanExpression(string expression)
 			{
-				var higherPrecedenceOperators = languageTemplate.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher).ToList();
+				var higherPrecedenceOperators = languageTemplate.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher ).ToList();
 				var result = SolveExpressionPrecedence(expression, higherPrecedenceOperators);
 				
 				var lowerPrecedenceOperators = languageTemplate.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
@@ -291,31 +291,43 @@ namespace ExpressionEvaluator
 					// if nothing is found, this is skipped, and the expression is returned.
 					while (operatorLocation.Index != null)
 					{
+
+						ExpressionResult expResult;
 						var expressionGroup = GetNextExpressionGroup(result, operatorLocation);
 
-						// store the originals to be able to copy over
-						var originalLeft = expressionGroup.LeftOperand;
-						var originalRight = expressionGroup.RightOperand;
+						var precedenceOperator = precedenceOperators.First(o => o.OperatorName.Equals(operatorLocation.Value));
 
-						// boolean expressions broken down are composed of 2 math/string expressions that need to be evaluated (1>2, 1+2>3+4, etc)
-						var leftResult = EvaluateMathStringExpression(expressionGroup.LeftOperand);
-						expressionGroup.LeftOperand = leftResult.Value;
+						precedenceOperator.OnBeforeOperatorExpressionSolved?.Invoke(expressionGroup);
+
+						if (precedenceOperator.SolveOperatorExpression != null)
+                        {
+							expResult = precedenceOperator.SolveOperatorExpression.Invoke(expressionGroup);
+						}
+                        else
+                        {
+							// store the originals to be able to copy over
+							var originalLeft = expressionGroup.LeftOperand;
+							var originalRight = expressionGroup.RightOperand;
+
+							// boolean expressions broken down are composed of 2 math/string expressions that need to be evaluated (1>2, 1+2>3+4, etc)
+							var leftResult = EvaluateMathStringExpression(expressionGroup.LeftOperand);
+							expressionGroup.LeftOperand = leftResult.Value;
 						
-						var rightResult = EvaluateMathStringExpression(expressionGroup.RightOperand);
-						expressionGroup.RightOperand = rightResult.Value;
+							var rightResult = EvaluateMathStringExpression(expressionGroup.RightOperand);
+							expressionGroup.RightOperand = rightResult.Value;
 
-						// then, after updating those values, solve THAT boolean expression
-						var expResult = SolveBooleanExpressionGroup(expressionGroup);
+							// then, after updating those values, solve THAT boolean expression
+							expResult = SolveBooleanExpressionGroup(expressionGroup);
+							
+							// reset the values
+							expressionGroup.LeftOperand = originalLeft;
+							expressionGroup.RightOperand = originalRight;
+                        }
 
-						// get the answer
-						var answer = expResult.Value;
-
-						// reset the values
-						expressionGroup.LeftOperand = originalLeft;
-						expressionGroup.RightOperand = originalRight;
+						precedenceOperator.OnAfterOperatorExpressionSolved?.Invoke(expResult);
 
 						// replace the original result with the new computed result
-						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup), answer);
+						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup), expResult.Value);
 
 						// any more left?
 						operatorLocation = GetNextOperatorLocation(result, precedenceOperators);
@@ -538,10 +550,10 @@ namespace ExpressionEvaluator
 
 			ExpressionResult EvaluateMathStringExpression(string expression)
 			{
-				var higherPrecedenceOperators = languageTemplate.MathOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher).ToList();
+				var higherPrecedenceOperators = languageTemplate.MathStringOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher).ToList();
 				string result = SolveExpressionPrecedence(expression, higherPrecedenceOperators);
 
-				var lowerPrecedenceOperators = languageTemplate.MathOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
+				var lowerPrecedenceOperators = languageTemplate.MathStringOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
 				result = SolveExpressionPrecedence(result, lowerPrecedenceOperators);
 
 				var expResult = new ExpressionResult
@@ -568,8 +580,16 @@ namespace ExpressionEvaluator
 
 						ExpressionResult expressionResult;
 
+						var precedenceOperator = precedenceOperators.First(o => o.OperatorName.Equals(operatorLocation.Value));
+
+						precedenceOperator.OnBeforeOperatorExpressionSolved?.Invoke(expressionGroup);
+
+						if (precedenceOperator.SolveOperatorExpression != null)
+						{
+							expressionResult = precedenceOperator.SolveOperatorExpression.Invoke(expressionGroup);
+						}
 						// solve math 
-						if (expressionGroup.ExpressionType == ExpressionType.Math)
+						else if (expressionGroup.ExpressionType == ExpressionType.Math)
 						{
 							expressionResult = SolveMathExpression(expressionGroup);
 						}
@@ -579,10 +599,10 @@ namespace ExpressionEvaluator
 							expressionResult = SolveStringExpression(expressionGroup);
 						}
 
-						var answer = expressionResult.Value;
+						precedenceOperator.OnAfterOperatorExpressionSolved?.Invoke(expressionResult);
 
 						// replace it with the original, re-create the new expression
-						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup), answer);
+						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup), expressionResult.Value);
 
 						// get the next operator, if any
 						operatorLocation = GetNextOperatorLocation(result, precedenceOperators);
@@ -875,7 +895,7 @@ namespace ExpressionEvaluator
 								start++; 
 							}
 
-							var mathOperators = languageTemplate.MathOperators;
+							var mathOperators = languageTemplate.MathStringOperators;
 							for (int i = start; i < expression.Length; i++)
 							{
 								for (int j = 0; j < mathOperators.Count(); j++)
@@ -986,7 +1006,7 @@ namespace ExpressionEvaluator
 						string GetLeftMathOperand(string expression, int operatorLocationIndex)
 						{
 							var start = operatorLocationIndex - 1;
-							var mathOperators = languageTemplate.MathOperators;
+							var mathOperators = languageTemplate.MathStringOperators;
 							for (var i = start; i >= 0; i--)
 							{
 								// for each character behind the location of the operator
@@ -1205,8 +1225,6 @@ namespace ExpressionEvaluator
 						result = Operator.Or;
 						break;
 				}
-
-				// TODO: Check for custom operators, and return Operator.Custom if that's the case
 
 				if (result == null)
 				{
