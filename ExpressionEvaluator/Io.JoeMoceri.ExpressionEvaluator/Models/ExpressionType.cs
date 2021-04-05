@@ -2,8 +2,9 @@
 {
 	public enum ExpressionType
 	{
-		Invalid,
-		Boolean,
-		MathString,
+		None,
+		Math,
+		String,
+		Boolean
 	}
 }

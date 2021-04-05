@@ -13,7 +13,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 > 1;
 			var expression = "1 > 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -28,7 +28,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 > 2;
 			var expression = "1 > 2";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -43,7 +43,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 2 > 1;
 			var expression = "2 > 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -58,7 +58,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 >= 1;
 			var expression = "1 >= 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -73,7 +73,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 >= 2;
 			var expression = "1 >= 2";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -88,7 +88,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 2 >= 1;
 			var expression = "2 >= 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -103,7 +103,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 < 1;
 			var expression = "1 < 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -118,7 +118,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 < 2;
 			var expression = "1 < 2";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -133,7 +133,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 2 < 1;
 			var expression = "2 < 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -148,7 +148,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 <= 1;
 			var expression = "1 <= 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -163,7 +163,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 <= 2;
 			var expression = "1 <= 2";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -178,7 +178,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 2 <= 1;
 			var expression = "2 <= 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -193,7 +193,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 != 1;
 			var expression = "1 != 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -208,7 +208,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 != 2;
 			var expression = "1 != 2";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -223,7 +223,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 2 != 1;
 			var expression = "2 != 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -238,7 +238,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 == 1;
 			var expression = "1 == 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -253,7 +253,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 == 2;
 			var expression = "1 == 2";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -268,7 +268,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 2 == 1;
 			var expression = "2 == 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -283,7 +283,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = true && true;
 			var expression = "True && True";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -298,7 +298,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = true && false;
 			var expression = "True && False";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -313,7 +313,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = false && true;
 			var expression = "False && True";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -328,7 +328,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = false && false;
 			var expression = "False && False";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -343,7 +343,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = true || true;
 			var expression = "True || True";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -358,7 +358,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = true || false;
 			var expression = "True || False";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -373,7 +373,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = false || true;
 			var expression = "False || True";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -388,7 +388,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = false || false;
 			var expression = "False || False";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -403,7 +403,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 > 2 && true || false;
 			var expression = "1 > 2 && True || False";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -418,7 +418,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 > 2 && false || true;
 			var expression = "1 > 2 && False || True";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -433,7 +433,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 > 2 || false && true;
 			var expression = "1 > 2 || False && True";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -448,7 +448,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 > 2 || (false || true);
 			var expression = "1 > 2 || (False || True)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -463,7 +463,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = 1 > 2 && (false || true);
 			var expression = "1 > 2 && (False || True)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Boolean };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Boolean };
 
 			// Act
 			var result = solver.Evaluate(expression);

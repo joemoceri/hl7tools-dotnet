@@ -13,7 +13,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"test\"";
 			var expression = "\"test\"";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -28,7 +28,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\" test \"";
 			var expression = "\" test \"";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -43,7 +43,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\" \\\"test \"";
 			var expression = "\" \\\"test \"";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -58,7 +58,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"test \"";
 			var expression = "\"test \"";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -73,7 +73,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\" test\"";
 			var expression = "\" test\"";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -88,7 +88,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\" test " + "test2\"";
 			var expression = "\" test \" + \"test2\"";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -103,7 +103,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\" test " + 1 + "\"";
 			var expression = "\" test \" + 1";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -118,7 +118,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"" + 1 + " test \"";
 			var expression = "1 + \" test \"";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -133,7 +133,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\" test  test \"";
 			var expression = "2 * \" test \"";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -148,7 +148,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\" test  test \"";
 			var expression = "\" test \" * 2";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -163,7 +163,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\" test  test 3\"";
 			var expression = "\" test \" * 2 + 3";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -178,7 +178,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"3 test  test \"";
 			var expression = "3 + \" test \" * 2";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -193,7 +193,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"3 test  test 3\"";
 			var expression = "3 + \" test \" * 2 + 3";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -208,7 +208,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"7 test  test 8\"";
 			var expression = "( 3 + 4 ) + \" test \" * 2 + ( 3 + 5)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -223,7 +223,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"7 test  test 8\"";
 			var expression = "( 3 + 4 ) + (\" test \") * 2 + ( 3 + 5)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -238,7 +238,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"7 test 6 test 68\"";
 			var expression = "( 3 + 4 ) + (\" test \" + 6) * 2 + ( 3 + 5)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -253,7 +253,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"7 test 6  test 6 8\"";
 			var expression = "( 3 + 4 ) + (\" test \" + 6 + \" \") * 2 + ( 3 + 5)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -268,7 +268,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"7 test 6  test 6 8\"";
 			var expression = "( 3 + 4 ) + (\" test \" + 6 + \" \") * 2 + ( 3 + 5)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -283,7 +283,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"7 test        test       8\"";
 			var expression = "( 3 + 4 ) + (\" test \" + (6) * (\" \")) * 2 + ( 3 + 5)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -298,7 +298,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"test\"";
 			var expression = "(\"test\")";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);
@@ -313,7 +313,7 @@ namespace ExpressionEvaluator.Tests
 			// Arrange
 			var ans = "\"7 test 6test2 test 6test28\"";
 			var expression = "( 3 + 4 ) + ((\" test \" + (6)) + (\"test2\")) * 2 + ( 3 + 5)";
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.String };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(expression);

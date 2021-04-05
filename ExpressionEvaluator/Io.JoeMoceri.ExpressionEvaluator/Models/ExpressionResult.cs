@@ -14,7 +14,7 @@ namespace ExpressionEvaluator
 		/// <summary>
 		/// The type of the value
 		/// </summary>
-		public VarType? Type { get; set; }
+		public VariableType? Type { get; set; }
 		/// <summary>
 		/// The error, if any. Will be null if completed successfully.
 		/// </summary>

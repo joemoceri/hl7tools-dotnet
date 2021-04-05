@@ -12,8 +12,8 @@ namespace ExpressionEvaluator
 
 	public class Evaluator : IEvaluator
 	{
-		public readonly IEnumerable<string> MathDelimiters = new[] { "+", "-", "*", "/", "%" };
-		public readonly IEnumerable<string> BooleanDelimiters = new[] { "<=", ">=", "!=", "==", "&&", "||", "and", "or", ">", "<" };
+		public readonly IEnumerable<string> MathOperators = new[] { "+", "-", "*", "/", "%" };
+		public readonly IEnumerable<string> BooleanOperators = new[] { "<=", ">=", "!=", "==", "&&", "||", "and", "or", ">", "<" };
 
 		public ExpressionResult Evaluate(string expression)
 		{
@@ -27,7 +27,7 @@ namespace ExpressionEvaluator
 					return new ExpressionResult 
 					{ 
 						Value = expression, 
-						Type = VarType.Null 
+						Type = VariableType.Null 
 					}; 
 				};
 
@@ -37,8 +37,8 @@ namespace ExpressionEvaluator
 				// handle implicit negative. an implicit negative is -1 or -(1)
 				expression = expression.Replace("-(", ("-1*("));
 
-				int parenthesesAmount = GetCharCount(expression, '(') + GetCharCount(expression, ')');
-				int doubleQuoteAmount = GetCharCount(expression, '"');
+				int parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
+				int doubleQuoteAmount = GetCharacterCount(expression, '"');
 
 				// validate quotes and parentheses. There should never be an odd amount of actually used quotes and parentheses (inside strings doesn't matter)
 				if (doubleQuoteAmount % 2 != 0)
@@ -56,32 +56,32 @@ namespace ExpressionEvaluator
 				while (parenthesesAmount != 0)
 				{
 					expression = GetOuterMostParentheticalExpression(expression, Evaluate);
-					parenthesesAmount = GetCharCount(expression, '(') + GetCharCount(expression, ')');
+					parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
 				}
 
 				// determine what kind of expression it is (math, string, boolean)
-				var expressionType = GetExpressionType(expression);
+				var inputExpressionType = GetInputExpressionType(expression);
 
 				// get the boolean evaluated result
-				if (expressionType == ExpressionType.Boolean)
+				if (inputExpressionType == InputExpressionType.Boolean)
 				{
 					result = EvaluateBooleanExpression(expression);
 				}
 				// get the math (same as string) evaluated result
-				else if (expressionType == ExpressionType.MathString)
+				else if (inputExpressionType == InputExpressionType.MathString)
 				{
 					result = EvaluateMathStringExpression(expression);
 				}
 				// not a valid expression
-				else if (expressionType == ExpressionType.Invalid)
+				else if (inputExpressionType == InputExpressionType.Invalid)
 				{
 					var message = $"Type of Arithmetic Expression not found for {expression}.";
 					throw new ArgumentException(message, nameof(expression));
 				}
 			}
-			catch (Exception ex) 
+			catch (Exception ex)
 			{
-				return new ExpressionResult 
+				return new ExpressionResult
 				{ 
 					Value = null, 
 					Type = null, 
@@ -91,7 +91,7 @@ namespace ExpressionEvaluator
 
 			return result;
 
-			ExpressionType GetExpressionType(string expression)
+			InputExpressionType GetInputExpressionType(string expression)
 			{
 				// is the expression boolean?
 				var operators = new[] { ">", ">=", "<", "<=", "==", "!=", "&&", "||", "and", "or", "False", "True" };
@@ -99,7 +99,7 @@ namespace ExpressionEvaluator
 				{
 					if (IndexOfOutsideQuotes(expression, operators[i]) != -1)
 					{
-						return ExpressionType.Boolean;
+						return InputExpressionType.Boolean;
 					}
 				}
 
@@ -109,16 +109,16 @@ namespace ExpressionEvaluator
 				{
 					if (IndexOfOutsideQuotes(expression, operators[i]) != -1)
 					{
-						return ExpressionType.MathString;
+						return InputExpressionType.MathString;
 					}
 				}
 
 				if (int.TryParse(expression, out int integer) || float.TryParse(expression, out float floatingPointNumber))
 				{
-					return ExpressionType.MathString;
+					return InputExpressionType.MathString;
 				}
 
-				return ExpressionType.Invalid;
+				return InputExpressionType.Invalid;
 			}
 
 			// Removing whitespace outside of quotes is necessary since expressions are still valid with infinite white space between operators and operands.
@@ -135,7 +135,7 @@ namespace ExpressionEvaluator
 				for (int i = 0; i < expression.Length; i++)
 				{
 					// did it run into a quote?
-					if (QuoteMatched(expression, i, currentQuote))
+					if (FoundAQuote(expression, i, currentQuote))
 					{
 						// set the current quote
 						currentQuote = expression[i];
@@ -170,37 +170,44 @@ namespace ExpressionEvaluator
 				return result.ToString();
 			}
 
-			int GetCharCount(string original, char ch)
+			int GetCharacterCount(string expression, char characterSearchingFor)
 			{
-				int result = 0;
-				bool inQuote = false;
+				var result = 0;
+				var inQuote = false;
 				char? currentQuote = null;
 
-				for (int i = 0; i < original.Length; i++)
+				for (int i = 0; i < expression.Length; i++)
 				{
-					if (QuoteMatched(original, i, currentQuote))
+					// handle quotes
+					if (FoundAQuote(expression, i, currentQuote))
 					{
-						currentQuote = original[i];
+						currentQuote = expression[i];
 						inQuote = !inQuote;
-						if (!inQuote) 
+						if (!inQuote)
 						{ 
 							currentQuote = null;
 						}
 
-						if (currentQuote == ch) 
+						if (currentQuote == characterSearchingFor)
 						{ 
 							result++; 
 						}
 					}
-					if (!inQuote)
+
+					// in a quote, skip iteration
+					if (inQuote)
 					{
-						if (original[i] == ch)
-						{
-							result++;
-						}
+						continue;
+					}
+
+					// was it found?
+					if (expression[i] == characterSearchingFor)
+					{
+						result++;
 					}
 				}
 
+				// let 'em know
 				return result;
 			}
 
@@ -210,7 +217,7 @@ namespace ExpressionEvaluator
 				var start = IndexOfOutsideQuotes(expression, "(") + 1;
 
 				// how far this set of parentheses goes
-				var length = GetParentheticalLength(expression); // always default to non same level
+				var length = GetParenthesesExpressionLength(expression); // always default to non same level
 
 				// invalid length
 				if (length > expression.Length || start == 0)
@@ -225,36 +232,45 @@ namespace ExpressionEvaluator
 				// then, take the result of evaluating that inner expression, and replace it's original representation with the new result, and keep doing that until there's no parentheses, and read it left-to-right
 				return ReplaceExpressionWithResult(expression, "(" + outer + ")", action(outer).Value);
 
-				int GetParentheticalLength(string str)
+				int GetParenthesesExpressionLength(string expression)
 				{
-					int result = 0, leftCount = 0;
+					var result = 0;
+					var leftCount = 0;
 					char? currentQuote = null;
 					bool inQuote = false;
-					for (int i = 0; i < str.Length; i++)
+
+					for (var i = 0; i < expression.Length; i++)
 					{
-						if (QuoteMatched(str, i, currentQuote))
+						// handle quotes
+						if (FoundAQuote(expression, i, currentQuote))
 						{
-							currentQuote = str[i];
+							currentQuote = expression[i];
 							inQuote = !inQuote;
 						}
-						if (!inQuote)
-						{
-							if (str[i] == '(') 
-							{
-								leftCount++; 
-							}
-							else if (str[i] == ')')
-							{
-								leftCount--;
-								if (leftCount == 0)
-								{
-									result = i;
-									break;
-								}
 
+						// in a quote, skip
+						if (inQuote)
+						{
+							continue;
+						}
+
+						// get the length
+						if (expression[i] == '(') 
+						{
+							leftCount++; 
+						}
+						else if (expression[i] == ')')
+						{
+							leftCount--;
+							if (leftCount == 0)
+							{
+								result = i;
+								break;
 							}
+
 						}
 					}
+
 					return result;
 				}
 			}
@@ -263,13 +279,14 @@ namespace ExpressionEvaluator
 			{
 				var higherPrecedenceOperators = new[] { "<=", ">=", "==", "!=", "<", ">", };
 				var result = SolveExpressionPrecedence(expression, higherPrecedenceOperators);
+				
 				var lowerPrecedenceOperators = new[] { "&&", "||", "and", "or" };
 				result = SolveExpressionPrecedence(result, lowerPrecedenceOperators);
 
 				var expResult = new ExpressionResult
 				{
 					Value = result,
-					Type = VarType.Boolean
+					Type = VariableType.Boolean
 				};
 
 				return expResult;
@@ -279,94 +296,197 @@ namespace ExpressionEvaluator
 					// start with the expression
 					var result = expression;
 
-					// get the next operator group. A group is a value of the operator and it's location in the current expression (result)
-					var operatorGroup = GetNextOperatorGroup(result, precedenceOperators);
+					// get the next operator location. An operator location is a value of the operator and it's location in the current expression
+					// this is used to build an expression group, the simplest form of an expression
+					var operatorLocation = GetNextOperatorLocation(result, precedenceOperators);
 
-					// the default value is int.MinValue
-					while (operatorGroup.Location != int.MinValue)
+					// if nothing is found, this is skipped, and the expression is returned.
+					while (operatorLocation.Index != null)
 					{
-						var expressionGroup = GetNextPrecedenceExpressionGroup(result, operatorGroup);
+						var expressionGroup = GetNextExpressionGroup(result, operatorLocation);
 
+						// store the originals to be able to copy over
 						var originalLeft = expressionGroup.LeftOperand;
 						var originalRight = expressionGroup.RightOperand;
 
+						// boolean expressions broken down are composed of 2 math/string expressions that need to be evaluated (1>2, 1+2>3+4, etc)
 						var leftResult = EvaluateMathStringExpression(expressionGroup.LeftOperand);
 						expressionGroup.LeftOperand = leftResult.Value;
 						
 						var rightResult = EvaluateMathStringExpression(expressionGroup.RightOperand);
 						expressionGroup.RightOperand = rightResult.Value;
 
-						string answer = null;
-						var expResult = SolveBooleanExpression(expressionGroup);
+						// then, after updating those values, solve THAT boolean expression
+						var expResult = SolveBooleanExpressionGroup(expressionGroup);
 
-						answer = expResult.Value;
+						// get the answer
+						var answer = expResult.Value;
 
+						// reset the values
 						expressionGroup.LeftOperand = originalLeft;
 						expressionGroup.RightOperand = originalRight;
 
+						// replace the original result with the new computed result
 						result = ReplaceExpressionWithResult(result, expressionGroup.Combine(), answer);
-						operatorGroup = GetNextOperatorGroup(result, precedenceOperators);
+
+						// any more left?
+						operatorLocation = GetNextOperatorLocation(result, precedenceOperators);
 					}
 
 					return result;
 
-					ExpressionResult SolveBooleanExpression(ExpressionGroup expGroup)
+					ExpressionGroup GetNextExpressionGroup(string expression, OperatorLocation operatorLocation)
+					{
+						var leftOperand = GetLeftBooleanOperand(expression, operatorLocation.Index.Value);
+						var rightOperand = GetRightBooleanOperand(expression, operatorLocation.Index.Value, operatorLocation.Value.Length);
+
+						var op = GetOperator(operatorLocation.Value);
+						var expGroup = new ExpressionGroup
+						{
+							LeftOperand = leftOperand,
+							RightOperand = rightOperand,
+							ExpressionOperator = op,
+							ExpressionType = ExpressionType.Boolean
+						};
+
+						return expGroup;
+
+						string GetLeftBooleanOperand(string expression, int operatorLocationIndex)
+						{
+							var leftHalf = expression.Substring(0, operatorLocationIndex);
+							int? startIndex = null;
+							int? booleanOperatorIndex = null;
+							var booleanOperators = BooleanOperators.ToList();
+
+							for (int i = 0; i < booleanOperators.Count(); i++)
+							{
+								var operatorIndex = LastIndexOfOutsideQuotes(leftHalf, booleanOperators[i]);
+
+								if (operatorIndex == -1)
+								{
+									continue;
+								}
+
+								// get the furthest away operator to get the correct left operand
+								if (startIndex == null || operatorIndex > startIndex)
+								{
+									startIndex = operatorIndex;
+									booleanOperatorIndex = i;
+								}
+							}
+
+							if (startIndex == null)
+							{
+								startIndex = 0;
+							}
+							else
+							{
+								startIndex += booleanOperators.ElementAt(booleanOperatorIndex.Value).Length;
+							}
+
+							if (operatorLocationIndex > leftHalf.Length)
+							{
+								var message = $"Couldn't get left operand for expression {leftHalf} using operand {expression[operatorLocationIndex]}.";
+								throw new ArgumentException(message, nameof(expression));
+							}
+
+							return leftHalf.Substring(startIndex.Value, operatorLocationIndex - startIndex.Value);
+						}
+
+						string GetRightBooleanOperand(string expression, int operatorLocationIndex, int operatorValueLength)
+						{
+							var rightHalf = expression.Substring(operatorLocationIndex + operatorValueLength);
+							int? endIndex = null;
+							var booleanOperators = BooleanOperators.ToList();
+							for (int i = 0; i < booleanOperators.Count(); i++)
+							{
+								var operatorIndex = IndexOfOutsideQuotes(rightHalf, booleanOperators.ElementAt(i));
+
+								if (operatorIndex == -1)
+								{
+									continue;
+								}
+
+								// get the closest one
+								if (endIndex == null || operatorIndex < endIndex)
+								{
+									endIndex = operatorIndex;
+								}
+							}
+
+							if (endIndex == null)
+							{
+								endIndex = rightHalf.Length;
+							}
+
+							if (endIndex > rightHalf.Length)
+							{
+								var message = $"Couldn't get right operand for expression {rightHalf} using operand {expression[operatorLocationIndex]}.";
+								throw new ArgumentException(message, nameof(expression));
+							}
+
+							return rightHalf.Substring(0, endIndex.Value);
+						}
+					}
+
+					ExpressionResult SolveBooleanExpressionGroup(ExpressionGroup expGroup)
 					{
 						var Left = new Operand
 						{
 							Value = expGroup.LeftOperand,
-							Type = GetVarType(expGroup.LeftOperand)
+							Type = GetVariableType(expGroup.LeftOperand)
 						};
+
 						var Right = new Operand
 						{
 							Value = expGroup.RightOperand,
-							Type = GetVarType(expGroup.RightOperand)
+							Type = GetVariableType(expGroup.RightOperand)
 						};
 
 						string result;
-						if (Left.Type == VarType.Float || Right.Type == VarType.Float) // floating point addition
+						if (Left.Type == VariableType.Float || Right.Type == VariableType.Float) // floating point addition
 						{
 							float left = GetFloat(Left.Value), right = GetFloat(Right.Value);
-							result = GetAnswer(left, right, expGroup.ExpressionOperator);
+							result = CalculateExpression(left, right, expGroup.ExpressionOperator);
 						}
-						else if (Left.Type == VarType.Int && Right.Type == VarType.Int) // integer division
+						else if (Left.Type == VariableType.Int && Right.Type == VariableType.Int) // integer division
 						{
 							int left = GetInt(Left.Value), right = GetInt(Right.Value);
-							result = GetAnswer(left, right, expGroup.ExpressionOperator);
+							result = CalculateExpression(left, right, expGroup.ExpressionOperator);
 						}
 						else
 						{ // Boolean and string 
-							result = GetAnswer(Left.Value, Right.Value, expGroup.ExpressionOperator);
+							result = CalculateExpression(Left.Value, Right.Value, expGroup.ExpressionOperator);
 						}
 
 						var expResult = new ExpressionResult 
 						{
 							Value = result, 
-							Type = VarType.Boolean 
+							Type = VariableType.Boolean 
 						};
 
 						return expResult;
 
-						string GetAnswer<T>(T left, T right, Operator op) where T : IComparable<T>
+						string CalculateExpression<T>(T leftOperand, T rightOperand, Operator expressionOperator) where T : IComparable<T>
 						{
-							switch (op)
+							switch (expressionOperator)
 							{
 								case Operator.LessThan:
-									return LessThan(left, right);
+									return LessThan(leftOperand, rightOperand);
 								case Operator.LessThanOrEqualTo:
-									return LessThanOrEqualTo(left, right);
+									return LessThanOrEqualTo(leftOperand, rightOperand);
 								case Operator.GreaterThan:
-									return GreaterThan(left, right);
+									return GreaterThan(leftOperand, rightOperand);
 								case Operator.GreaterThanOrEqualTo:
-									return GreaterThanOrEqualTo(left, right);
+									return GreaterThanOrEqualTo(leftOperand, rightOperand);
 								case Operator.NotEqualTo:
-									return NotEqualTo(left, right);
+									return NotEqualTo(leftOperand, rightOperand);
 								case Operator.EqualTo:
-									return EqualTo(left, right);
+									return EqualTo(leftOperand, rightOperand);
 								case Operator.And:
-									return And(left, right);
+									return And(leftOperand, rightOperand);
 								case Operator.Or:
-									return Or(left, right);
+									return Or(leftOperand, rightOperand);
 								default:
 									return null;
 							}
@@ -425,87 +545,6 @@ namespace ExpressionEvaluator
 							}
 						}
 					}
-
-					ExpressionGroup GetNextPrecedenceExpressionGroup(string expression, OperatorGroup opGroup)
-					{
-						ExpressionGroup expGroup;
-						Operator op = Operator.Null;
-
-						string leftOperand = GetLeftBooleanOperand(expression, opGroup.Location);
-						string rightOperand = GetRightBooleanOperand(expression, opGroup.Location, opGroup.Value.Length);
-
-						op = GetOperator(opGroup.Value);
-						expGroup = new ExpressionGroup
-						{
-							LeftOperand = leftOperand,
-							RightOperand = rightOperand,
-							ExpressionOperator = op,
-							ExpressionType = ArithmeticOperandType.Boolean
-						};
-
-						return expGroup;
-
-						string GetLeftBooleanOperand(string expression, int index)
-						{
-							string leftHalf = expression.Substring(0, index);
-							int start = int.MinValue;
-							int dIndex = int.MinValue;
-							var Delimiters = BooleanDelimiters.ToList();
-							for (int i = 0; i < Delimiters.Count(); i++)
-							{
-								int selection = LastIndexOfOutsideQuotes(leftHalf, Delimiters.ElementAt(i));
-								if (selection > start && selection != -1)
-								{
-									start = selection;
-									dIndex = i;
-								}
-							}
-
-							if (start == int.MinValue)
-							{
-								start = 0;
-							}
-							else
-							{
-								start += Delimiters.ElementAt(dIndex).Length;
-							}
-
-							if (index > leftHalf.Length)
-							{
-								var message = $"Couldn't get left operand for expression {leftHalf} using operand {expression[index]}.";
-								throw new ArgumentException(message, nameof(expression));
-							}
-
-							return leftHalf.Substring(start, index - start);
-						}
-
-						string GetRightBooleanOperand(string expression, int index, int opLength)
-						{
-							string rightHalf = expression.Substring(index + opLength);
-							int end = int.MaxValue;
-							var Delimiters = BooleanDelimiters.ToList();
-							for (int i = 0; i < Delimiters.Count(); i++)
-							{
-								int selection = IndexOfOutsideQuotes(rightHalf, Delimiters.ElementAt(i));
-								if (selection < end && selection != -1)
-								{
-									end = selection;
-								}
-							}
-							if (end == int.MaxValue)
-							{
-								end = rightHalf.Length;
-							}
-
-							if (end > rightHalf.Length)
-							{
-								var message = $"Couldn't get right operand for expression {rightHalf} using operand {expression[index]}.";
-								throw new ArgumentException(message, nameof(expression));
-							}
-
-							return rightHalf.Substring(0, end);
-						}
-					}
 				}
 			}
 
@@ -517,7 +556,7 @@ namespace ExpressionEvaluator
 				var expResult = new ExpressionResult
 				{
 					Value = result,
-					Type = GetVarType(result)
+					Type = GetVariableType(result)
 				};
 
 				return expResult;
@@ -526,18 +565,18 @@ namespace ExpressionEvaluator
 				{
 					string result = expression;
 
-					var opGroup = GetNextOperatorGroup(expression, delimiters);
+					var opGroup = GetNextOperatorLocation(expression, delimiters);
 
-					while (opGroup.Location != int.MinValue)
+					while (opGroup.Index != null)
 					{
 						var expGroup = GetHigestPrecedencePureExpression(result, opGroup);
 						string answer = null;
-						var expResult = new ExpressionResult { Value = null, Type = VarType.Null };
-						if (expGroup.ExpressionType == ArithmeticOperandType.Math)
+						var expResult = new ExpressionResult { Value = null, Type = VariableType.Null };
+						if (expGroup.ExpressionType == ExpressionType.Math)
 						{
 							expResult = SolveMathExpression(expGroup);
 						}
-						else if (expGroup.ExpressionType == ArithmeticOperandType.String)
+						else if (expGroup.ExpressionType == ExpressionType.String)
 						{
 							expResult = SolveStringExpression(expGroup);
 						}
@@ -545,7 +584,7 @@ namespace ExpressionEvaluator
 						answer = expResult.Value;
 
 						result = ReplaceExpressionWithResult(result, expGroup.Combine(), answer);
-						opGroup = GetNextOperatorGroup(result, delimiters);
+						opGroup = GetNextOperatorLocation(result, delimiters);
 					}
 
 					return result;
@@ -556,15 +595,15 @@ namespace ExpressionEvaluator
 						var Left = new Operand
 						{
 							Value = expGroup.LeftOperand,
-							Type = GetVarType(expGroup.LeftOperand)
+							Type = GetVariableType(expGroup.LeftOperand)
 						};
 						var Right = new Operand
 						{
 							Value = expGroup.RightOperand,
-							Type = GetVarType(expGroup.RightOperand)
+							Type = GetVariableType(expGroup.RightOperand)
 						};
 
-						if (Left.Type == VarType.Float || Right.Type == VarType.Float) // floating point addition
+						if (Left.Type == VariableType.Float || Right.Type == VariableType.Float) // floating point addition
 						{
 							float left = GetFloat(Left.Value), right = GetFloat(Right.Value);
 							result = GetAnswer(left, right, expGroup.ExpressionOperator);
@@ -578,31 +617,31 @@ namespace ExpressionEvaluator
 						var expResult = new ExpressionResult 
 						{ 
 							Value = result, 
-							Type = UpdateVarType(Left.Type, Right.Type) 
+							Type = UpdateVariableType(Left.Type, Right.Type) 
 						};
 
 						return expResult;
 
-						VarType UpdateVarType(VarType leftOperandType, VarType rightOperandType)
+						VariableType UpdateVariableType(VariableType leftOperandType, VariableType rightOperandType)
 						{
-							if (leftOperandType == VarType.String || rightOperandType == VarType.String)
+							if (leftOperandType == VariableType.String || rightOperandType == VariableType.String)
 							{
-								return VarType.String;
+								return VariableType.String;
 							}
-							else if (leftOperandType == VarType.Boolean || rightOperandType == VarType.Boolean)
+							else if (leftOperandType == VariableType.Boolean || rightOperandType == VariableType.Boolean)
 							{
-								return VarType.Boolean;
+								return VariableType.Boolean;
 							}
-							else if (leftOperandType == VarType.Float || rightOperandType == VarType.Float)
+							else if (leftOperandType == VariableType.Float || rightOperandType == VariableType.Float)
 							{
-								return VarType.Float;
+								return VariableType.Float;
 							}
-							else if (leftOperandType == VarType.Int || rightOperandType == VarType.Int)
+							else if (leftOperandType == VariableType.Int || rightOperandType == VariableType.Int)
 							{
-								return VarType.Int;
+								return VariableType.Int;
 							}
 
-							return VarType.Null;
+							return VariableType.Null;
 						}
 
 						string GetAnswer<T>(T left, T right, Operator op)
@@ -651,7 +690,7 @@ namespace ExpressionEvaluator
 								return temp.ToString(); 
 							}
 
-							string Subtraction(T left, T right) 
+							string Subtraction(T left, T right)
 							{ 
 								dynamic temp = left; 
 								temp -= right; 
@@ -665,12 +704,12 @@ namespace ExpressionEvaluator
 						var Left = new Operand
 						{
 							Value = expGroup.LeftOperand,
-							Type = GetVarType(expGroup.LeftOperand)
+							Type = GetVariableType(expGroup.LeftOperand)
 						};
 						var Right = new Operand
 						{
 							Value = expGroup.RightOperand,
-							Type = GetVarType(expGroup.RightOperand)
+							Type = GetVariableType(expGroup.RightOperand)
 						};
 
 						string answer = null;
@@ -684,12 +723,12 @@ namespace ExpressionEvaluator
 						{
 							int number = int.MinValue;
 							string expression = null;
-							if (Left.Type == VarType.Int || Left.Type == VarType.Float)
+							if (Left.Type == VariableType.Int || Left.Type == VariableType.Float)
 							{
 								number = GetInt(Left.Value);
 								expression = Right.Value;
 							}
-							else if (Right.Type == VarType.Int || Right.Type == VarType.Float)
+							else if (Right.Type == VariableType.Int || Right.Type == VariableType.Float)
 							{
 								number = GetInt(Right.Value);
 								expression = Left.Value;
@@ -701,7 +740,7 @@ namespace ExpressionEvaluator
 						ExpressionResult expResult = new ExpressionResult
 						{
 							Value = result.ToString(),
-							Type = VarType.String
+							Type = VariableType.String
 						};
 
 						return expResult;
@@ -733,43 +772,42 @@ namespace ExpressionEvaluator
 						}
 					}
 
-					ExpressionGroup GetHigestPrecedencePureExpression(string expression, OperatorGroup opGroup)
+					ExpressionGroup GetHigestPrecedencePureExpression(string expression, OperatorLocation opGroup)
 					{
 						ExpressionGroup expGroup;
 						string leftOperand = null, rightOperand = null;
-						Operator op = Operator.Null;
 
-						var arGroup = GetOperandTypes(expression, opGroup.Location);
+						var arGroup = GetOperandTypes(expression, opGroup.Index.Value);
 
-						if (arGroup.LeftType == ArithmeticOperandType.String)
+						if (arGroup.LeftType == ExpressionType.String)
 						{
-							leftOperand = GetLeftStringOperand(expression, opGroup.Location);
+							leftOperand = GetLeftStringOperand(expression, opGroup.Index.Value);
 						}
-						else if (arGroup.LeftType == ArithmeticOperandType.Math)
+						else if (arGroup.LeftType == ExpressionType.Math)
 						{
-							leftOperand = GetLeftMathOperand(expression, opGroup.Location);
+							leftOperand = GetLeftMathOperand(expression, opGroup.Index.Value);
 						}
-						else if (arGroup.LeftType == ArithmeticOperandType.None)
+						else if (arGroup.LeftType == ExpressionType.None)
 						{
-							var message = $"Left Operand Arithmetic Type not found for expression {expression}.{Environment.NewLine}Operator: {opGroup.Value}. Operator Location: {opGroup.Location}.{Environment.NewLine}";
+							var message = $"Left Operand Arithmetic Type not found for expression {expression}.{Environment.NewLine}Operator: {opGroup.Value}. Operator Location: {opGroup.Index}.{Environment.NewLine}";
 							throw new ArgumentException(message, nameof(expression));
 						}
 
-						if (arGroup.RightType == ArithmeticOperandType.String)
+						if (arGroup.RightType == ExpressionType.String)
 						{
-							rightOperand = GetRightStringOperand(expression, opGroup.Location);
+							rightOperand = GetRightStringOperand(expression, opGroup.Index.Value);
 						}
-						else if (arGroup.RightType == ArithmeticOperandType.Math)
+						else if (arGroup.RightType == ExpressionType.Math)
 						{
-							rightOperand = GetRightMathOperand(expression, opGroup.Location);
+							rightOperand = GetRightMathOperand(expression, opGroup.Index.Value);
 						}
-						else if (arGroup.RightType == ArithmeticOperandType.None)
+						else if (arGroup.RightType == ExpressionType.None)
 						{
-							var message = $"Right Operand Arithmetic Type not found for expression {expression}.{Environment.NewLine}Operator: {opGroup.Value}. Operator Location: {opGroup.Location}.{Environment.NewLine}";
+							var message = $"Right Operand Arithmetic Type not found for expression {expression}.{Environment.NewLine}Operator: {opGroup.Value}. Operator Location: {opGroup.Index}.{Environment.NewLine}";
 							throw new ArgumentException(message, nameof(expression));
 						}
 
-						op = GetOperator(opGroup.Value);
+						var op = GetOperator(opGroup.Value);
 						expGroup = new ExpressionGroup
 						{
 							LeftOperand = leftOperand,
@@ -782,48 +820,48 @@ namespace ExpressionEvaluator
 
 						ExpressionTypesGroup GetOperandTypes(string expression, int opIndex)
 						{
-							var leftType = ArithmeticOperandType.None;
-							var rightType = ArithmeticOperandType.None;
-							var expType = ArithmeticOperandType.None;
+							var leftType = ExpressionType.None;
+							var rightType = ExpressionType.None;
+							var expType = ExpressionType.None;
 
 							if (expression[opIndex - 1] == '"')
 							{
-								leftType = ArithmeticOperandType.String;
+								leftType = ExpressionType.String;
 							}
 							else
 							{
-								leftType = ArithmeticOperandType.Math;
+								leftType = ExpressionType.Math;
 							}
 
 							if (expression[opIndex + 1] == '"')
 							{
-								rightType = ArithmeticOperandType.String;
+								rightType = ExpressionType.String;
 							}
 							else
 							{
-								rightType = ArithmeticOperandType.Math;
+								rightType = ExpressionType.Math;
 							}
 
-							if (leftType == ArithmeticOperandType.String || rightType == ArithmeticOperandType.String)
+							if (leftType == ExpressionType.String || rightType == ExpressionType.String)
 							{
-								expType = ArithmeticOperandType.String;
+								expType = ExpressionType.String;
 							}
-							else if (leftType == ArithmeticOperandType.Math && rightType == ArithmeticOperandType.Math)
+							else if (leftType == ExpressionType.Math && rightType == ExpressionType.Math)
 							{
-								expType = ArithmeticOperandType.Math;
+								expType = ExpressionType.Math;
 							}
 
-							if (leftType == ArithmeticOperandType.None)
+							if (leftType == ExpressionType.None)
 							{
 								var message = $"Couldn't find Arithmetic Type for left operand for expression {expression}.";
 								throw new ArgumentException(message, nameof(expression));
 							}
-							else if (rightType == ArithmeticOperandType.None)
+							else if (rightType == ExpressionType.None)
 							{
 								var message = $"Couldn't find Arithmetic Type for right operand for expression {expression}.";
 								throw new ArgumentException(message, nameof(expression));
 							}
-							else if (expType == ArithmeticOperandType.None)
+							else if (expType == ExpressionType.None)
 							{
 								var message = $"Couldn't find Arithmetic Type for expression {expression}.";
 								throw new ArgumentException(message, nameof(expression));
@@ -849,7 +887,7 @@ namespace ExpressionEvaluator
 								result += '-'; 
 							}
 
-							var Delimiters = MathDelimiters.ToList();
+							var Delimiters = MathOperators.ToList();
 							for (int i = start; i < expression.Length; i++)
 							{
 								for (int j = 0; j < Delimiters.Count(); j++)
@@ -899,7 +937,7 @@ namespace ExpressionEvaluator
 
 							for (int i = start; i < expression.Length; i++)
 							{
-								if (QuoteMatched(expression, i, currentQuote))
+								if (FoundAQuote(expression, i, currentQuote))
 								{
 									if (quoteCount == 0) 
 									{
@@ -933,7 +971,7 @@ namespace ExpressionEvaluator
 							char? currentQuote = null;
 							for (int i = start; i >= 0; i--)
 							{
-								if (QuoteMatched(expression, i, currentQuote))
+								if (FoundAQuote(expression, i, currentQuote))
 								{
 									currentQuote = expression[i];
 									quoteCount++;
@@ -961,7 +999,7 @@ namespace ExpressionEvaluator
 						{
 							string result = "";
 							int start = index - 1;
-							var Delimiters = MathDelimiters.ToList();
+							var Delimiters = MathOperators.ToList();
 							for (int i = start; i >= 0; i--)
 							{
 								for (int j = 0; j < Delimiters.Count(); j++)
@@ -997,6 +1035,7 @@ namespace ExpressionEvaluator
 									}
 								}
 							}
+
 							if (result == "")
 							{
 								result = expression.Substring(0, index);
@@ -1042,59 +1081,78 @@ namespace ExpressionEvaluator
 				}
 			}
 
-			OperatorGroup GetNextOperatorGroup(string expression, IEnumerable<string> delimiters)
+			OperatorLocation GetNextOperatorLocation(string expression, IEnumerable<string> operators)
 			{
-				string result = null;
-				int min = int.MaxValue, index = int.MinValue;
-				bool isNegative = false;
+				string nextOperatorValue = null;
 
+				// start at the maximum, work your way down
+				var currentMaxOperatorIndex = int.MaxValue;
+				int? index = null;
+				var isNegative = false;
+
+				// check for implicit negatives
 				if (expression[0] == '-')
 				{
+					// too short of an expression
 					if (expression.Length < 2)
 					{
 						var message = $"Couldn't find operand for expression {expression}.";
 						throw new ArgumentException(message, nameof(expression));
 					}
-					expression = expression.Substring(1); isNegative = true;
+
+					// remove the negative, easier to handle later
+					expression = expression.Substring(1); 
+					isNegative = true;
 				}
 
-				for (int i = 0; i < delimiters.Count(); i++)
+				// iterate over the operators
+				for (int i = 0; i < operators.Count(); i++)
 				{
-					int selection = IndexOfOutsideQuotes(expression, delimiters.ElementAt(i));
-					if (selection == -1) 
+					// look for the operator
+					var operatorIndex = IndexOfOutsideQuotes(expression, operators.ElementAt(i));
+					if (operatorIndex == -1) 
 					{
-						continue; 
+						continue;
 					}
-					if (min > selection)
+
+					// find the next closest one, left to right
+					if (currentMaxOperatorIndex > operatorIndex)
 					{
-						min = selection;
-						result = delimiters.ElementAt(i).ToString();
-						index = isNegative ? selection + 1 : selection;
+						// keep track of the max
+						currentMaxOperatorIndex = operatorIndex;
+
+						// update the values
+						nextOperatorValue = operators.ElementAt(i).ToString();
+						index = isNegative ? operatorIndex + 1 : operatorIndex;
 					}
 				}
 
-				var opGroup = new OperatorGroup { Value = result, Location = index };
+				var result = new OperatorLocation 
+				{
+					Value = nextOperatorValue,
+					Index = index.HasValue ? index.Value : null
+				};
 
-				return opGroup;
+				return result;
 			}
 
-			VarType GetVarType(string expression)
+			VariableType GetVariableType(string expression)
 			{
 				if (int.TryParse(expression, out int tempInteger))
 				{
-					return VarType.Int;
+					return VariableType.Int;
 				}
 				else if (float.TryParse(expression, out float tempFloat))
 				{
-					return VarType.Float;
+					return VariableType.Float;
 				}
 				else if (expression[0] == '"' && expression[expression.Length - 1] == '"')
 				{
-					return VarType.String;
+					return VariableType.String;
 				}
 				else if (expression == "True" || expression == "False")
 				{
-					return VarType.Boolean;
+					return VariableType.Boolean;
 				}
 				else
 				{
@@ -1105,7 +1163,7 @@ namespace ExpressionEvaluator
 
 			Operator GetOperator(string op)
 			{
-				Operator result = Operator.Null;
+				Operator? result = null;
 				switch (op)
 				{
 					case "+":
@@ -1154,13 +1212,14 @@ namespace ExpressionEvaluator
 						result = Operator.Or;
 						break;
 				}
-				if (result == Operator.Null)
+
+				if (result == null)
 				{
 					var message = $"Operator not found for {op}.";
 					throw new ArgumentException(message, nameof(op));
 				}
 
-				return result;
+				return result.Value;
 			}
 
 			float GetFloat(string expression)
@@ -1185,7 +1244,7 @@ namespace ExpressionEvaluator
 				return result;
 			}
 
-			bool QuoteMatched(string expression, int index, char? currentQuote)
+			bool FoundAQuote(string expression, int index, char? currentQuote)
 			{
 				// get the current character
 				var currentCharacter = expression[index];
@@ -1201,7 +1260,7 @@ namespace ExpressionEvaluator
 				// the current quote doesn't exist? check if it's a double quote
 				else if (currentQuote == null)
 				{
-					return currentCharacter == '"'; // || currentCharacter == '\''; // default
+					return currentCharacter == '"'; // default
 				}
 
 				// otherwise check if the current character is equal to the current quote, single or double
@@ -1239,7 +1298,8 @@ namespace ExpressionEvaluator
 
 				for (int i = 0; i < expression.Length; i++)
 				{
-					if (QuoteMatched(expression, i, currentQuote))
+					// handle quotes
+					if (FoundAQuote(expression, i, currentQuote))
 					{
 						currentQuote = expression[i];
 						inQuote = !inQuote;
@@ -1249,22 +1309,28 @@ namespace ExpressionEvaluator
 							currentQuote = null; 
 						}
 					}
-					if (!inQuote)
+
+					// in a quote, skip the iteration
+					if (inQuote)
+                    {
+						continue;
+                    }
+
+					// not matching at the first character
+					if (expression[i] != searchingFor[searchIndex])
 					{
-						if (expression[i] == searchingFor[searchIndex])
-						{
-							if (searchIndex == searchingFor.Length - 1)
-							{
-								result = i - (searchingFor.Length - 1);
-								break;
-							}
-							searchIndex++;
-						}
-						else
-						{
-							searchIndex = 0;
-						}
+						continue;
 					}
+
+					// if it reached the end, the index is found, break out
+					if (searchIndex == searchingFor.Length - 1)
+					{
+						result = i - (searchingFor.Length - 1);
+						break;
+					}
+
+					// otherwise keep going until it does
+					searchIndex++;
 				}
 
 				return result;
@@ -1277,9 +1343,11 @@ namespace ExpressionEvaluator
 				var inQuote = false;
 				char? currentQuote = null;
 
+				// go backwards on it
 				for (int i = expression.Length - 1; i >= 0; i--)
 				{
-					if (QuoteMatched(expression, i, currentQuote))
+					// handle quotes
+					if (FoundAQuote(expression, i, currentQuote))
 					{
 						currentQuote = expression[i];
 						inQuote = !inQuote;
@@ -1289,22 +1357,28 @@ namespace ExpressionEvaluator
 							currentQuote = null; 
 						}
 					}
-					if (!inQuote)
+
+					// in a quote, skip the iteration
+					if (inQuote)
 					{
-						if (expression[i] == searchingFor[searchIndex])
-						{
-							if (searchIndex == 0)
-							{
-								result = i;
-								break;
-							}
-							searchIndex--;
-						}
-						else
-						{
-							searchIndex = searchingFor.Length - 1;
-						}
+						continue;
 					}
+
+					// haven't found a match on the last character
+					if (expression[i] != searchingFor[searchIndex])
+					{
+						continue;
+					}
+					
+					// if it reached the end of the searchingFor string, the index is found
+					if (searchIndex == 0)
+					{
+						result = i;
+						break;
+					}
+
+					// otherwise reduce and continue
+					searchIndex--;
 				}
 
 				return result;

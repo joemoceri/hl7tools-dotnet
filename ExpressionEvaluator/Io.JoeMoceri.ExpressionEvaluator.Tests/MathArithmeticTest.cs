@@ -12,7 +12,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = 4.563 + 12 * 3 * 4 + 3 / 3 - 4 * 2 + 3 + 12 % 5;
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Float };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Float };
 			var exp = "4.563 + 12 * 3 * 4 + 3 / 3 - 4 * 2 + 3 + 12 % 5";
 			
 			// Act
@@ -27,7 +27,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = -4.563 + -12 * -3 * -4 + -3 / -3 - -4 * -2 + -3 + -12 % -5;
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Float };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Float };
 			var exp = "-4.563 + -12 * -3 * -4 + -3 / -3 - -4 * -2 + -3 + -12 % -5";
 
 			// Act
@@ -42,7 +42,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = (((((4) + 12) * 3) * 4) + ((3) / 3) - (4 * 2 + 3));
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "(((((4) + 12) * 3) * 4) + ((3) / 3) - (4 * 2 + 3))";
 
 			// Act
@@ -57,7 +57,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = (((((-4) + -12) * -3) * -4) + ((-3) / -3) - (-4 * -2 + -3));
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "(((((-4) + -12) * -3) * -4) + ((-3) / -3) - (-4 * -2 + -3))";
 
 			// Act
@@ -72,7 +72,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = (((5 + 3)));
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "((( 5 + 3 )))";
 
 			// Act
@@ -87,7 +87,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = -(-(-(5 + 3)));
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "-(-(-( 5 + 3 )))";
 
 			// Act
@@ -102,7 +102,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = -(5 + 3);
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "-(5 + 3)";
 
 			// Act
@@ -117,7 +117,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = 4 + 12 - 3 * (4 + 3) / 3 - (4 * 2 + 3);
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "4 + 12 - 3 * (4 + 3) / 3 - (4 * 2 + 3)";
 
 			// Act
@@ -132,7 +132,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = -4 + -12 - -3 * (-4 + -3) / -3 - -(-4 * -2 + -3);
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "-4 + -12 - -3 * (-4 + -3) / -3 - -(-4 * -2 + -3)";
 
 			// Act
@@ -147,7 +147,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = -3 - -(-4 * -2 + -3);
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "-3 - -(-4 * -2 + -3)";
 
 			// Act
@@ -162,7 +162,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = -4 + -12 - -3 * -(-4 + -3);
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "-4 + -12 - -3 * -(-4 + -3)";
 
 			// Act
@@ -177,7 +177,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = 3 + -3;
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "3 + -3";
 
 			// Act
@@ -193,7 +193,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = 3 + -3 + 4;
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "3 + -3 + 4";
 
 			// Act
@@ -208,7 +208,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = -3 + 3 + 4;
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "-3 + 3 + 4";
 
 			// Act
@@ -223,7 +223,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = 10;
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "10";
 
 			// Act
@@ -238,7 +238,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var ans = -5 - -10;
-			var answer = new ExpressionResult { Value = ans.ToString(), Type = VarType.Int };
+			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 			var exp = "-5 - -10";
 
 			// Act

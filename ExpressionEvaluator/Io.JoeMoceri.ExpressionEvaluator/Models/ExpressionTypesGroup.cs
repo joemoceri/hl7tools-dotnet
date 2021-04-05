@@ -2,8 +2,8 @@
 {
 	public class ExpressionTypesGroup
 	{
-		public ArithmeticOperandType LeftType { get; set; }
-		public ArithmeticOperandType RightType { get; set; }
-		public ArithmeticOperandType ExpressionType { get; set; }
+		public ExpressionType LeftType { get; set; }
+		public ExpressionType RightType { get; set; }
+		public ExpressionType ExpressionType { get; set; }
 	}
 }

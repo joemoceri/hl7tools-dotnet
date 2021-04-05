@@ -3,7 +3,7 @@
 	/// <summary>
 	/// The variable types supported for the evaluator are Null, Boolean, Int, Float and String.
 	/// </summary>
-	public enum VarType
+	public enum VariableType
 	{
 		Null,
 		Boolean,

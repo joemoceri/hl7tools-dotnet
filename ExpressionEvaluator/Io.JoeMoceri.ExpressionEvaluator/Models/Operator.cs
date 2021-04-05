@@ -1,6 +1,6 @@
 ﻿namespace ExpressionEvaluator
 {
-	public enum Operator 
+	public enum Operator
 	{
 		Addition,
 		Subtraction,
@@ -14,7 +14,6 @@
 		NotEqualTo,
 		EqualTo,
 		And,
-		Or,
-		Null
+		Or
 	};
 }

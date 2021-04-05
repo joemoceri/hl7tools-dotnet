@@ -3,6 +3,6 @@
 	public class Operand
 	{
 		public string Value { get; set; }
-		public VarType Type { get; set; }
+		public VariableType Type { get; set; }
 	}
 }

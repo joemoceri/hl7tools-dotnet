@@ -13,7 +13,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " \" ab + \"";
-			var answer = new ExpressionResult { Value = "\" ab + \"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" ab + \"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -27,7 +27,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " \" ab + \" + \" cd \"";
-			var answer = new ExpressionResult { Value = "\" ab +  cd \"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" ab +  cd \"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -41,7 +41,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " \" ab + \" + \" cd \" + \" ef \"";
-			var answer = new ExpressionResult { Value = "\" ab +  cd  ef \"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" ab +  cd  ef \"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -55,7 +55,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " \" ab + \" + \" cd \" * 3";
-			var answer = new ExpressionResult { Value = "\" ab +  cd  cd  cd \"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" ab +  cd  cd  cd \"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -69,7 +69,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " \" ab + \" + 3";
-			var answer = new ExpressionResult { Value = "\" ab + 3\"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" ab + 3\"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -83,7 +83,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " \" ab + \" * 3";
-			var answer = new ExpressionResult { Value = "\" ab +  ab +  ab + \"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" ab +  ab +  ab + \"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -97,7 +97,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " 4 + \" cd \"";
-			var answer = new ExpressionResult { Value = "\"4 cd \"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\"4 cd \"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -111,7 +111,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " 4 * \" cd \"";
-			var answer = new ExpressionResult { Value = "\" cd  cd  cd  cd \"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" cd  cd  cd  cd \"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -125,7 +125,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " 4 * \" \\\"cd \"";
-			var answer = new ExpressionResult { Value = "\" \\\"cd  \\\"cd  \\\"cd  \\\"cd \"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" \\\"cd  \\\"cd  \\\"cd  \\\"cd \"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -139,7 +139,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = " 4 * (\" cd \" + \"lol\")";
-			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -153,7 +153,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = "(\" cd \" + \"lol\") * 4  ";
-			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -167,7 +167,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"lol\")) * 4  ";
-			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -181,7 +181,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"lol(\")) * 4  ";
-			var answer = new ExpressionResult { Value = "\" cd lol( cd lol( cd lol( cd lol(\"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" cd lol( cd lol( cd lol( cd lol(\"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -195,7 +195,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"lol)\")) * 4  ";
-			var answer = new ExpressionResult { Value = "\" cd lol) cd lol) cd lol) cd lol)\"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" cd lol) cd lol) cd lol) cd lol)\"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -209,7 +209,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"(lol)\")) * 4  ";
-			var answer = new ExpressionResult { Value = "\" cd (lol) cd (lol) cd (lol) cd (lol)\"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" cd (lol) cd (lol) cd (lol) cd (lol)\"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
@@ -223,7 +223,7 @@ namespace ExpressionEvaluator.Tests
 		{
 			// Arrange
 			var check = "(\" cd \" + (\"lol\" + \"lmao\")) * 4  ";
-			var answer = new ExpressionResult { Value = "\" cd lollmao cd lollmao cd lollmao cd lollmao\"", Type = VarType.String };
+			var answer = new ExpressionResult { Value = "\" cd lollmao cd lollmao cd lollmao cd lollmao\"", Type = VariableType.String };
 
 			// Act
 			var result = solver.Evaluate(check);
