@@ -21,7 +21,6 @@ namespace ExpressionEvaluator
 			this.languageTemplate = languageTemplate;
 		}
 
-
 		public ExpressionResult Evaluate(string expression)
 		{
 			try

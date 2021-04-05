@@ -546,6 +546,5 @@ namespace ExpressionEvaluator.Tests
 			// Assert
 			Assert.AreEqual(answer, result);
 		}
-
 	}
 }
