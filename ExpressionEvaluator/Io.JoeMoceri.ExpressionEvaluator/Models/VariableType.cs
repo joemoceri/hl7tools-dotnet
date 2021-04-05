@@ -5,7 +5,6 @@
 	/// </summary>
 	public enum VariableType
 	{
-		Null,
 		Boolean,
 		Int,
 		Float,

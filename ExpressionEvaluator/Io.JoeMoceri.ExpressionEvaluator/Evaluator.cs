@@ -27,7 +27,7 @@ namespace ExpressionEvaluator
 					return new ExpressionResult 
 					{ 
 						Value = expression, 
-						Type = VariableType.Null 
+						Type = null
 					}; 
 				};
 
@@ -37,19 +37,17 @@ namespace ExpressionEvaluator
 				// handle implicit negative. an implicit negative is -1 or -(1)
 				expression = expression.Replace("-(", ("-1*("));
 
-				int parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
-				int doubleQuoteAmount = GetCharacterCount(expression, '"');
+				var parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
+				var doubleQuoteAmount = GetCharacterCount(expression, '"');
 
 				// validate quotes and parentheses. There should never be an odd amount of actually used quotes and parentheses (inside strings doesn't matter)
 				if (doubleQuoteAmount % 2 != 0)
 				{
-					string message = string.Format("Odd number of double quotes found: {0}. Are you missing a double quote?", doubleQuoteAmount);
-					throw new ArithmeticException(message);
+					throw new ArithmeticException($"Odd number of double quotes found: {doubleQuoteAmount}. Are you missing a double quote?");
 				}
 				else if (parenthesesAmount % 2 != 0)
 				{
-					string message = string.Format("Odd number of parentheses found: {0}. Are you missing a parentheses?", parenthesesAmount);
-					throw new ArithmeticException(message);
+					throw new ArithmeticException($"Odd number of parentheses found: {parenthesesAmount}. Are you missing a parentheses?");
 				}
 
 				// recursively break down the expressions parentheses, then work your way back up
@@ -60,23 +58,17 @@ namespace ExpressionEvaluator
 				}
 
 				// determine what kind of expression it is (math, string, boolean)
-				var inputExpressionType = GetInputExpressionType(expression);
+				var isBooleanExpression = IsBooleanExpression(expression);
 
 				// get the boolean evaluated result
-				if (inputExpressionType == InputExpressionType.Boolean)
+				if (isBooleanExpression)
 				{
 					result = EvaluateBooleanExpression(expression);
 				}
 				// get the math (same as string) evaluated result
-				else if (inputExpressionType == InputExpressionType.MathString)
+				else
 				{
 					result = EvaluateMathStringExpression(expression);
-				}
-				// not a valid expression
-				else if (inputExpressionType == InputExpressionType.Invalid)
-				{
-					var message = $"Type of Arithmetic Expression not found for {expression}.";
-					throw new ArgumentException(message, nameof(expression));
 				}
 			}
 			catch (Exception ex)
@@ -92,34 +84,26 @@ namespace ExpressionEvaluator
 			return result;
 
             #region Pre
-            InputExpressionType GetInputExpressionType(string expression)
+            bool IsBooleanExpression(string expression)
 			{
 				// is the expression boolean?
-				var operators = new[] { ">", ">=", "<", "<=", "==", "!=", "&&", "||", "and", "or", "False", "True" };
+				var operators = BooleanOperators.ToArray();
 				for (int i = 0; i < operators.Length; i++)
 				{
 					if (IndexOfOutsideQuotes(expression, operators[i]) != -1)
 					{
-						return InputExpressionType.Boolean;
+						return true;
 					}
 				}
 
-				// or math?
-				operators = new[] { "+", "-", "/", "%", "*", "\"" };
-				for (int i = 0; i < operators.Length; i++)
-				{
-					if (IndexOfOutsideQuotes(expression, operators[i]) != -1)
-					{
-						return InputExpressionType.MathString;
-					}
-				}
+				// check for single bool expression
+				if (bool.TryParse(expression, out bool boolean))
+                {
+					return true;
+                }
 
-				if (int.TryParse(expression, out int integer) || float.TryParse(expression, out float floatingPointNumber))
-				{
-					return InputExpressionType.MathString;
-				}
-
-				return InputExpressionType.Invalid;
+				// default is math/string
+				return false;
 			}
 
 			// Removing whitespace outside of quotes is necessary since expressions are still valid with infinite white space between operators and operands.
@@ -328,7 +312,7 @@ namespace ExpressionEvaluator
 						expressionGroup.RightOperand = originalRight;
 
 						// replace the original result with the new computed result
-						result = ReplaceExpressionWithResult(result, expressionGroup.Combine(), answer);
+						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup), answer);
 
 						// any more left?
 						operatorLocation = GetNextOperatorLocation(result, precedenceOperators);
@@ -595,7 +579,7 @@ namespace ExpressionEvaluator
 						var answer = expressionResult.Value;
 
 						// replace it with the original, re-create the new expression
-						result = ReplaceExpressionWithResult(result, expressionGroup.Combine(), answer);
+						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup), answer);
 
 						// get the next operator, if any
 						operatorLocation = GetNextOperatorLocation(result, precedenceOperators);
@@ -658,7 +642,7 @@ namespace ExpressionEvaluator
 								return VariableType.Int;
 							}
 
-							return VariableType.Null;
+							throw new Exception($"Variable Type for operands {leftOperandType} and {rightOperandType} not found.");
 						}
 
 						string CalculateExpression<T>(T left, T right, Operator op)
@@ -829,9 +813,9 @@ namespace ExpressionEvaluator
 
 						ExpressionTypesGroup GetOperandTypes(string expression, int operatorLocationIndex)
 						{
-							var leftType = ExpressionType.None;
-							var rightType = ExpressionType.None;
-							var expType = ExpressionType.None;
+							ExpressionType leftType;
+							ExpressionType rightType;
+							ExpressionType expType;
 
 							// if it starts with a quote
 							if (expression[operatorLocationIndex - 1] == '"')
@@ -860,27 +844,10 @@ namespace ExpressionEvaluator
 							{
 								expType = ExpressionType.String;
 							}
-							// both have to be type math to be math
-							else if (leftType == ExpressionType.Math && rightType == ExpressionType.Math)
+							// otherwise assume math
+							else 
 							{
 								expType = ExpressionType.Math;
-							}
-
-							// validate
-							if (leftType == ExpressionType.None)
-							{
-								var message = $"Couldn't find Arithmetic Type for left operand for expression {expression}.";
-								throw new ArgumentException(message, nameof(expression));
-							}
-							else if (rightType == ExpressionType.None)
-							{
-								var message = $"Couldn't find Arithmetic Type for right operand for expression {expression}.";
-								throw new ArgumentException(message, nameof(expression));
-							}
-							else if (expType == ExpressionType.None)
-							{
-								var message = $"Couldn't find Arithmetic Type for expression {expression}.";
-								throw new ArgumentException(message, nameof(expression));
 							}
 
 							var result = new ExpressionTypesGroup
@@ -1177,6 +1144,7 @@ namespace ExpressionEvaluator
 				}
 				else
 				{
+					// invalid expressions usually break here first
 					var message = $"Variable Type not found for expression {expression}.";
 					throw new ArgumentException(message, nameof(expression));
 				}
@@ -1404,7 +1372,47 @@ namespace ExpressionEvaluator
 
 				return result;
 			}
-            #endregion
-        }
+
+			string CombineExpressionGroup(ExpressionGroup expressionGroup)
+			{
+				return expressionGroup.LeftOperand + GetOperatorString(expressionGroup.ExpressionOperator) + expressionGroup.RightOperand;
+			}
+
+			string GetOperatorString(Operator op)
+			{
+				switch (op)
+				{
+					case Operator.Addition:
+						return "+";
+					case Operator.Division:
+						return "/";
+					case Operator.Modulus:
+						return "%";
+					case Operator.Multiplication:
+						return "*";
+					case Operator.Subtraction:
+						return "-";
+					case Operator.LessThan:
+						return "<";
+					case Operator.LessThanOrEqualTo:
+						return "<=";
+					case Operator.GreaterThan:
+						return ">";
+					case Operator.GreaterThanOrEqualTo:
+						return ">=";
+					case Operator.NotEqualTo:
+						return "!=";
+					case Operator.EqualTo:
+						return "==";
+					case Operator.And:
+						return "&&";
+					case Operator.Or:
+						return "||";
+					default:
+						return null;
+				}
+			}
+			#endregion
+		}
     }
 }

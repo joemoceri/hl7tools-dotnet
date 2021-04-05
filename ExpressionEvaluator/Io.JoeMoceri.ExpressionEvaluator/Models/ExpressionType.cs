@@ -2,7 +2,6 @@
 {
 	public enum ExpressionType
 	{
-		None,
 		Math,
 		String,
 		Boolean
