@@ -3,7 +3,7 @@
 namespace ExpressionEvaluator.Tests
 {
 	[TestClass]
-	public class StringArithmeticTest_ExpressionTests
+	public class StringExpressionTests
 	{
 
 		private Evaluator solver = new Evaluator();
