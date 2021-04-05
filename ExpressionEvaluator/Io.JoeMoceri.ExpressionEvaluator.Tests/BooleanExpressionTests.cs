@@ -3,7 +3,7 @@
 namespace ExpressionEvaluator.Tests
 {
 	[TestClass]
-	public class BooleanExpressionTest
+	public class BooleanExpressionTests
 	{
 		private Evaluator solver = new Evaluator();
 

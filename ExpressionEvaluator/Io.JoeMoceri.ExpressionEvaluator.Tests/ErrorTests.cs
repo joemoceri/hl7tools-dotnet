@@ -11,6 +11,9 @@ namespace ExpressionEvaluator.Tests
 		public void BadInput_ShouldReturnExpressionResultWithNullValuesAndException()
 		{
 			var result = solver.Evaluate("asdjhas;dglasd;a;s");
+
+			Assert.IsNull(result.Type);
+			Assert.IsNull(result.Value);
 			Assert.IsNotNull(result.Error);
 		}
 	}
