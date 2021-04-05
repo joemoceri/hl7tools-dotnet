@@ -1,8 +1,7 @@
 ﻿namespace ExpressionEvaluator
 {
-	public enum ArithmeticType
+	public enum ExpressionType
 	{
-		None,
 		Math,
 		String,
 		Boolean

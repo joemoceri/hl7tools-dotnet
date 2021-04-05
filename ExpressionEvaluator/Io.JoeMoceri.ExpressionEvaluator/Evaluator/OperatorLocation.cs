@@ -1,8 +1,8 @@
 ﻿namespace ExpressionEvaluator
 {
-	public class Operand
+	public class OperatorLocation
 	{
 		public string Value { get; set; }
-		public VarType Type { get; set; }
+		public int? Index { get; set; }
 	}
 }
