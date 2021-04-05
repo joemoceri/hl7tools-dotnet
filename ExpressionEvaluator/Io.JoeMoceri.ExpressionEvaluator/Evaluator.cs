@@ -160,7 +160,7 @@ namespace ExpressionEvaluator
 						// invert it
 						inQuote = !inQuote;
 					}
-					// if we're not in a quote, and it's not white space, add the character to the final result
+					// if it's not in a quote, and it's not white space, add the character to the final result
 					else if (expression[i] != ' ' && !inQuote)
 					{
 						result.Append(expression[i]);
