@@ -12,13 +12,18 @@ namespace ExpressionEvaluator
 
 	public class Evaluator : IEvaluator
 	{
-		public readonly IEnumerable<string> MathOperators = new[] { "+", "-", "*", "/", "%" };
-		public readonly IEnumerable<string> BooleanOperators = new[] { "<=", ">=", "!=", "==", "&&", "||", "and", "or", ">", "<" };
+		public LanguageTemplateBase languageTemplate;
+
+		public Evaluator(): this(new EEExpressionsLanguageTemplate()) { } 
+
+		public Evaluator(LanguageTemplateBase languageTemplate)
+        {
+			this.languageTemplate = languageTemplate;
+		}
+
 
 		public ExpressionResult Evaluate(string expression)
 		{
-			ExpressionResult result = null;
-
 			try
 			{
 				// if the expression is empty, return it and null
@@ -63,12 +68,12 @@ namespace ExpressionEvaluator
 				// get the boolean evaluated result
 				if (isBooleanExpression)
 				{
-					result = EvaluateBooleanExpression(expression);
+					return EvaluateBooleanExpression(expression);
 				}
 				// get the math (same as string) evaluated result
 				else
 				{
-					result = EvaluateMathStringExpression(expression);
+					return EvaluateMathStringExpression(expression);
 				}
 			}
 			catch (Exception ex)
@@ -81,16 +86,14 @@ namespace ExpressionEvaluator
 				};	
 			}
 
-			return result;
-
             #region Pre
             bool IsBooleanExpression(string expression)
 			{
 				// is the expression boolean?
-				var operators = BooleanOperators.ToArray();
-				for (int i = 0; i < operators.Length; i++)
+				var operators = languageTemplate.BooleanOperators;
+				for (int i = 0; i < operators.Count; i++)
 				{
-					if (IndexOfOutsideQuotes(expression, operators[i]) != -1)
+					if (IndexOfOutsideQuotes(expression, operators[i].OperatorName) != -1)
 					{
 						return true;
 					}
@@ -262,10 +265,10 @@ namespace ExpressionEvaluator
 
             ExpressionResult EvaluateBooleanExpression(string expression)
 			{
-				var higherPrecedenceOperators = new[] { "<=", ">=", "==", "!=", "<", ">", };
+				var higherPrecedenceOperators = languageTemplate.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher).ToList();
 				var result = SolveExpressionPrecedence(expression, higherPrecedenceOperators);
 				
-				var lowerPrecedenceOperators = new[] { "&&", "||", "and", "or" };
+				var lowerPrecedenceOperators = languageTemplate.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
 				result = SolveExpressionPrecedence(result, lowerPrecedenceOperators);
 
 				var expResult = new ExpressionResult
@@ -276,7 +279,7 @@ namespace ExpressionEvaluator
 
 				return expResult;
 
-				string SolveExpressionPrecedence(string expression, IEnumerable<string> precedenceOperators)
+				string SolveExpressionPrecedence(string expression, IList<LanguageTemplateOperator> precedenceOperators)
 				{
 					// start with the expression
 					var result = expression;
@@ -341,11 +344,11 @@ namespace ExpressionEvaluator
 							var leftHalf = expression.Substring(0, operatorLocationIndex);
 							int? startIndex = null;
 							int? booleanOperatorIndex = null;
-							var booleanOperators = BooleanOperators.ToList();
+							var booleanOperators = languageTemplate.BooleanOperators;
 
-							for (int i = 0; i < booleanOperators.Count(); i++)
+							for (int i = 0; i < booleanOperators.Count; i++)
 							{
-								var operatorIndex = LastIndexOfOutsideQuotes(leftHalf, booleanOperators[i]);
+								var operatorIndex = LastIndexOfOutsideQuotes(leftHalf, booleanOperators[i].OperatorName);
 
 								if (operatorIndex == -1)
 								{
@@ -366,7 +369,7 @@ namespace ExpressionEvaluator
 							}
 							else
 							{
-								startIndex += booleanOperators.ElementAt(booleanOperatorIndex.Value).Length;
+								startIndex += booleanOperators.ElementAt(booleanOperatorIndex.Value).OperatorName.Length;
 							}
 
 							if (operatorLocationIndex > leftHalf.Length)
@@ -382,10 +385,10 @@ namespace ExpressionEvaluator
 						{
 							var rightHalf = expression.Substring(operatorLocationIndex + operatorValueLength);
 							int? endIndex = null;
-							var booleanOperators = BooleanOperators.ToList();
-							for (int i = 0; i < booleanOperators.Count(); i++)
+							var booleanOperators = languageTemplate.BooleanOperators;
+							for (int i = 0; i < booleanOperators.Count; i++)
 							{
-								var operatorIndex = IndexOfOutsideQuotes(rightHalf, booleanOperators.ElementAt(i));
+								var operatorIndex = IndexOfOutsideQuotes(rightHalf, booleanOperators[i].OperatorName);
 
 								if (operatorIndex == -1)
 								{
@@ -535,10 +538,10 @@ namespace ExpressionEvaluator
 
 			ExpressionResult EvaluateMathStringExpression(string expression)
 			{
-				var higherPrecedenceOperators = new[] { "*", "/", "%" };
+				var higherPrecedenceOperators = languageTemplate.MathOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher).ToList();
 				string result = SolveExpressionPrecedence(expression, higherPrecedenceOperators);
 
-				var lowerPrecedenceOperators = new[] { "-", "+" };
+				var lowerPrecedenceOperators = languageTemplate.MathOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
 				result = SolveExpressionPrecedence(result, lowerPrecedenceOperators);
 
 				var expResult = new ExpressionResult
@@ -549,7 +552,7 @@ namespace ExpressionEvaluator
 
 				return expResult;
 
-				string SolveExpressionPrecedence(string expression, IEnumerable<string> precedenceOperators)
+				string SolveExpressionPrecedence(string expression, IList<LanguageTemplateOperator> precedenceOperators)
 				{
 					// start with the expression
 					var result = expression;
@@ -613,6 +616,7 @@ namespace ExpressionEvaluator
 							var left = GetInt(Left.Value);
 							var right = GetInt(Right.Value);
 							answer = CalculateExpression(left, right, expressionGroup.ExpressionOperator);
+
 						}
 
 						var result = new ExpressionResult 
@@ -871,13 +875,13 @@ namespace ExpressionEvaluator
 								start++; 
 							}
 
-							var mathOperators = MathOperators.ToList();
+							var mathOperators = languageTemplate.MathOperators;
 							for (int i = start; i < expression.Length; i++)
 							{
 								for (int j = 0; j < mathOperators.Count(); j++)
 								{
 									// get the first character of the operator
-									char operatorStartIndex = mathOperators[j][0];
+									char operatorStartIndex = mathOperators[j].OperatorName[0];
 
 									// wait until it's found
 									if (expression[i] != operatorStartIndex)
@@ -886,7 +890,7 @@ namespace ExpressionEvaluator
 									}
 
 									// operator signals the end
-									if (!CheckForOperatorOnRight(i, mathOperators[j], expression))
+									if (!CheckForOperatorOnRight(i, mathOperators[j].OperatorName, expression))
 									{
 										continue;
 									}
@@ -982,14 +986,14 @@ namespace ExpressionEvaluator
 						string GetLeftMathOperand(string expression, int operatorLocationIndex)
 						{
 							var start = operatorLocationIndex - 1;
-							var mathOperators = MathOperators.ToList();
+							var mathOperators = languageTemplate.MathOperators;
 							for (var i = start; i >= 0; i--)
 							{
 								// for each character behind the location of the operator
 								for (var j = 0; j < mathOperators.Count(); j++)
 								{
 									// get the last character index of the current math operator
-									var operatorEndIndex = mathOperators[j].Last();
+									var operatorEndIndex = mathOperators[j].OperatorName.Last();
 
 									// wait until it hits one
 									if (expression[i] != operatorEndIndex)
@@ -1029,15 +1033,15 @@ namespace ExpressionEvaluator
 
 							return expression.Substring(0, operatorLocationIndex);
 
-							bool CheckNextCharacterForOperator(char ch, IEnumerable<string> delimiters, string expression, int opIndex)
+							bool CheckNextCharacterForOperator(char ch, IList<LanguageTemplateOperator> mathOperators, string expression, int opIndex)
 							{
 								bool result = false;
 								for (int i = 0; i < mathOperators.Count(); i++)
 								{
-									char delimEnd = delimiters.ElementAt(i).Last();
+									char delimEnd = mathOperators[i].OperatorName.Last();
 									if (ch == delimEnd)
 									{
-										if (CheckForOperatorOnTheLeft(opIndex, delimiters.ElementAt(i), expression))
+										if (CheckForOperatorOnTheLeft(opIndex, mathOperators[i].OperatorName, expression))
 										{
 											result = true;
 											break;
@@ -1069,7 +1073,7 @@ namespace ExpressionEvaluator
 			}
 
             #region Post
-            OperatorLocation GetNextOperatorLocation(string expression, IEnumerable<string> operators)
+            OperatorLocation GetNextOperatorLocation(string expression, IList<LanguageTemplateOperator> operators)
 			{
 				string nextOperatorValue = null;
 
@@ -1097,7 +1101,7 @@ namespace ExpressionEvaluator
 				for (int i = 0; i < operators.Count(); i++)
 				{
 					// look for the operator
-					var operatorIndex = IndexOfOutsideQuotes(expression, operators.ElementAt(i));
+					var operatorIndex = IndexOfOutsideQuotes(expression, operators[i].OperatorName);
 					if (operatorIndex == -1) 
 					{
 						continue;
@@ -1110,7 +1114,7 @@ namespace ExpressionEvaluator
 						currentMaxOperatorIndex = operatorIndex;
 
 						// update the values
-						nextOperatorValue = operators.ElementAt(i).ToString();
+						nextOperatorValue = operators[i].OperatorName.ToString();
 						index = isNegative ? operatorIndex + 1 : operatorIndex;
 					}
 				}
@@ -1201,6 +1205,8 @@ namespace ExpressionEvaluator
 						result = Operator.Or;
 						break;
 				}
+
+				// TODO: Check for custom operators, and return Operator.Custom if that's the case
 
 				if (result == null)
 				{
@@ -1376,40 +1382,40 @@ namespace ExpressionEvaluator
 			string CombineExpressionGroup(ExpressionGroup expressionGroup)
 			{
 				return expressionGroup.LeftOperand + GetOperatorString(expressionGroup.ExpressionOperator) + expressionGroup.RightOperand;
-			}
 
-			string GetOperatorString(Operator op)
-			{
-				switch (op)
+				string GetOperatorString(Operator op)
 				{
-					case Operator.Addition:
-						return "+";
-					case Operator.Division:
-						return "/";
-					case Operator.Modulus:
-						return "%";
-					case Operator.Multiplication:
-						return "*";
-					case Operator.Subtraction:
-						return "-";
-					case Operator.LessThan:
-						return "<";
-					case Operator.LessThanOrEqualTo:
-						return "<=";
-					case Operator.GreaterThan:
-						return ">";
-					case Operator.GreaterThanOrEqualTo:
-						return ">=";
-					case Operator.NotEqualTo:
-						return "!=";
-					case Operator.EqualTo:
-						return "==";
-					case Operator.And:
-						return "&&";
-					case Operator.Or:
-						return "||";
-					default:
-						return null;
+					switch (op)
+					{
+						case Operator.Addition:
+							return "+";
+						case Operator.Division:
+							return "/";
+						case Operator.Modulus:
+							return "%";
+						case Operator.Multiplication:
+							return "*";
+						case Operator.Subtraction:
+							return "-";
+						case Operator.LessThan:
+							return "<";
+						case Operator.LessThanOrEqualTo:
+							return "<=";
+						case Operator.GreaterThan:
+							return ">";
+						case Operator.GreaterThanOrEqualTo:
+							return ">=";
+						case Operator.NotEqualTo:
+							return "!=";
+						case Operator.EqualTo:
+							return "==";
+						case Operator.And:
+							return "&&";
+						case Operator.Or:
+							return "||";
+						default:
+							return null;
+					}
 				}
 			}
 			#endregion
