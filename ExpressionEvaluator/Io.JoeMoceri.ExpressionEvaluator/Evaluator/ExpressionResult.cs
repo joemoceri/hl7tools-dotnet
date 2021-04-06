@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExpressionEvaluator
+namespace Io.JoeMoceri.ExpressionEvaluator
 {
 	/// <summary>
 	/// Contains three properties which hold information about the result of the expression evaluation.

@@ -1,4 +1,4 @@
-﻿namespace ExpressionEvaluator
+﻿namespace Io.JoeMoceri.ExpressionEvaluator
 {
 	public enum ExpressionType
 	{

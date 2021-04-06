@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ExpressionEvaluator
+namespace Io.JoeMoceri.ExpressionEvaluator
 {
 	public interface IEvaluator
 	{
@@ -326,7 +326,7 @@ namespace ExpressionEvaluator
 						precedenceOperator.OnAfterOperatorExpressionSolved?.Invoke(expResult);
 
 						// replace the original result with the new computed result
-						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup), expResult.Value);
+						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup, precedenceOperator.OperatorName), expResult.Value);
 
 						// any more left?
 						operatorLocation = GetNextOperatorLocation(result, precedenceOperators);
@@ -601,7 +601,7 @@ namespace ExpressionEvaluator
 						precedenceOperator.OnAfterOperatorExpressionSolved?.Invoke(expressionResult);
 
 						// replace it with the original, re-create the new expression
-						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup), expressionResult.Value);
+						result = ReplaceExpressionWithResult(result, CombineExpressionGroup(expressionGroup, precedenceOperator.OperatorName), expressionResult.Value);
 
 						// get the next operator, if any
 						operatorLocation = GetNextOperatorLocation(result, precedenceOperators);
@@ -1175,63 +1175,7 @@ namespace ExpressionEvaluator
 
 			Operator GetOperator(string op)
 			{
-				Operator? result = null;
-				switch (op)
-				{
-					case "+":
-						result = Operator.Addition;
-						break;
-					case "-":
-						result = Operator.Subtraction;
-						break;
-					case "*":
-						result = Operator.Multiplication;
-						break;
-					case "/":
-						result = Operator.Division;
-						break;
-					case "%":
-						result = Operator.Modulus;
-						break;
-					case "<":
-						result = Operator.LessThan;
-						break;
-					case "<=":
-						result = Operator.LessThanOrEqualTo;
-						break;
-					case ">":
-						result = Operator.GreaterThan;
-						break;
-					case ">=":
-						result = Operator.GreaterThanOrEqualTo;
-						break;
-					case "!=":
-						result = Operator.NotEqualTo;
-						break;
-					case "==":
-						result = Operator.EqualTo;
-						break;
-					case "&&":
-						result = Operator.And;
-						break;
-					case "||":
-						result = Operator.Or;
-						break;
-					case "and":
-						result = Operator.And;
-						break;
-					case "or":
-						result = Operator.Or;
-						break;
-				}
-
-				if (result == null)
-				{
-					var message = $"Operator not found for {op}.";
-					throw new ArgumentException(message, nameof(op));
-				}
-
-				return result.Value;
+				return languageTemplate.Operators.First(o => o.OperatorName.Equals(op)).ExpressionOperator;
 			}
 
 			float GetFloat(string expression)
@@ -1396,44 +1340,9 @@ namespace ExpressionEvaluator
 				return result;
 			}
 
-			string CombineExpressionGroup(ExpressionGroup expressionGroup)
+			string CombineExpressionGroup(ExpressionGroup expressionGroup, string operatorName)
 			{
-				return expressionGroup.LeftOperand + GetOperatorString(expressionGroup.ExpressionOperator) + expressionGroup.RightOperand;
-
-				string GetOperatorString(Operator op)
-				{
-					switch (op)
-					{
-						case Operator.Addition:
-							return "+";
-						case Operator.Division:
-							return "/";
-						case Operator.Modulus:
-							return "%";
-						case Operator.Multiplication:
-							return "*";
-						case Operator.Subtraction:
-							return "-";
-						case Operator.LessThan:
-							return "<";
-						case Operator.LessThanOrEqualTo:
-							return "<=";
-						case Operator.GreaterThan:
-							return ">";
-						case Operator.GreaterThanOrEqualTo:
-							return ">=";
-						case Operator.NotEqualTo:
-							return "!=";
-						case Operator.EqualTo:
-							return "==";
-						case Operator.And:
-							return "&&";
-						case Operator.Or:
-							return "||";
-						default:
-							return null;
-					}
-				}
+				return expressionGroup.LeftOperand + operatorName + expressionGroup.RightOperand;
 			}
 			#endregion
 		}

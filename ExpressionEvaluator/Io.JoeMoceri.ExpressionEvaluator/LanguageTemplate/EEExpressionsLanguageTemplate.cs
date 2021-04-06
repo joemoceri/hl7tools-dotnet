@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ExpressionEvaluator
+namespace Io.JoeMoceri.ExpressionEvaluator
 {
     public class EEExpressionsLanguageTemplate : LanguageTemplateBase
     {
@@ -68,5 +68,7 @@ namespace ExpressionEvaluator
                 return operators.Where(o => o.ExpressionOperatorType == OperatorType.Boolean).ToList();
             }
         }
+
+        public override IList<LanguageTemplateOperator> Operators => operators;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ExpressionEvaluator.Tests
+namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 {
 	[TestClass]
 	public class ErrorTests

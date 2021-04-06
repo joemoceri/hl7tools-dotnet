@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace ExpressionEvaluator.Tests
+namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 {
 	[TestClass]
 	public class CustomOperatorTests
@@ -124,6 +125,56 @@ namespace ExpressionEvaluator.Tests
 			// Assert
 			Assert.AreEqual(answer, result);
 		}
+
+		[TestMethod]
+		public void CustomOperatorTests_HL7MSHExpression()
+        {
+			// Arrange
+			var answer = new ExpressionResult
+			{
+				Value = "\"done\"",
+				Type = VariableType.String
+			};
+
+			var languageTemplate = new HL7MshExpressionsLanguageTemplate();
+
+			var parts = new List<Hl7MshPart>();
+
+			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+
+			var delimiterCount = 0;
+
+			additionOperator.SolveOperatorExpression = (expGroup) =>
+			{
+				// this is the real work. Check the right operand for your value, the left will be whatever is being returned after the first time, in this case the string "done"
+				delimiterCount++;
+				parts.Add(new Hl7MshPart
+				{
+					DelimiterIndex = delimiterCount,
+					LeftOperand = expGroup.LeftOperand,
+					RightOperand = expGroup.RightOperand
+				});
+
+				// just return something to make the evaluator happy. The final expression will always be this if it runs successfully.
+				return answer;
+			};
+
+
+			solver = new Evaluator(languageTemplate);
+
+			var exp = "MSH|^~\\&|EPIC|EPICADT|SMS|SMSADT|199912271408|CHARRIS|ADT^A04|1817457|D|2.5|";
+
+			// Act
+			var result = solver.Evaluate(exp);
+
+			foreach (var part in parts)
+            {
+				// do whatever you need to here
+            }
+
+            // Assert
+            Assert.AreEqual(answer, result);
+        }
 
 	}
 }

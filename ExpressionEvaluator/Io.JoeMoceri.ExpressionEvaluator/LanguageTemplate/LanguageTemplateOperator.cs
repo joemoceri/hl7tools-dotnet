@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExpressionEvaluator
+namespace Io.JoeMoceri.ExpressionEvaluator
 {
     public class LanguageTemplateOperator
     {
