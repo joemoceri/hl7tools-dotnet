@@ -8,7 +8,7 @@
 
 <a name="overview"></a>
 ## Overview
-This is a project written in C# that will, given a math, string or boolean expression, evaluate it using a built-in Language Template called EE Expressions. EE Expressions is influenced by Python syntax by default, but the operations are fully customizable. Using this Language Template you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic.
+This is a project written in C# that will, given a math, string or boolean expression, evaluate it using a built-in Language Template called EE Expressions. Language Templates are what the Expression Evaluator uses when defining math, string, and boolean operators like '+', '-', '||', and so on.  EE Expressions is influenced by Python syntax by default, but the operations are fully customizable. Using this Language Template you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic.
 
 Not Supported:
  * Single quotes (') as strings. You must use double quotes (") for strings. You can still use single quotes inside strings, and escaped double quotes.
