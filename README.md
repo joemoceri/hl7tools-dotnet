@@ -26,7 +26,7 @@ Install-Package Io.JoeMoceri.ExpressionEvaluator
 <a name="usage"></a>
 ## Usage
 
-Please see Tests section of project for examples on how to use it and below.
+Please see Tests section of project for examples on how to use it and below. The variable solver is (new Evaluator()).
 
 Example #1: No parentheses order of operations
 
