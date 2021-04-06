@@ -8,9 +8,13 @@
 
 <a name="overview"></a>
 ## Overview
-This is a project written in C# that will, given a math, string or boolean expression, evaluate it using a built-in Language Template called EE Expressions. Using this Language Template you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic.
+This is a project written in C# that will, given a math, string or boolean expression, evaluate it using a built-in Language Template called EE Expressions. EE Expressions is influenced by Python syntax by default, but the operations are fully customizable. Using this Language Template you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic.
 
-For example, if you have an expression in C# like '1 > 2', it will return 'True', with a type of Boolean. The operator '>' you can hook into with the following methods: OnBeforeOperatorExpressionSolved (before the expression is solved), OnAfterOperatorExpressionSolved (after the expression is solved), SolveOperatorExpression (override the default behaviour and solve it yourself). You can also use 'greater-than' as an operator instead of '>'. If any kind of error happens, the error is returned and the values are null. The result you get back after a call to Evaluate is a class called ExpressionResult that contains the value, variable type, and error, if any. Please see Usage for examples.
+Not Supported:
+ * Single quotes (') as strings. You must use double quotes (") for strings. You can still use single quotes inside strings, and escaped double quotes.
+ * Customizing what defines a quote, a parentheses (())
+
+For example, if you have an expression in C# like '1 > 2', it will return 'True', with a type of Boolean. You can hook into the '>' operator with the following methods: OnBeforeOperatorExpressionSolved (before the expression is solved), OnAfterOperatorExpressionSolved (after the expression is solved), SolveOperatorExpression (override the default behaviour and solve it yourself). You can also customize the operator to use 'greater-than' as an operator instead of '>', so that '1 greater-than 2' will return 'True' too. If any kind of error happens, the error is returned and the values are null. The result you get back after a call to Evaluate is a class called ExpressionResult that contains the value, variable type, and error, if any. Please see Usage for examples.
 
 <a name="install"></a>
 ## Install
