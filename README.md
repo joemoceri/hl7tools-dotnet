@@ -28,7 +28,7 @@ Example #1: No parentheses order of operations
 
 ```csharp
 			// Arrange
-			var answer = new ExpressionResult { Value = "\"5example\"", Type = VariableType.String }; ;
+			var answer = new ExpressionResult { Value = "\"5example\"", Type = VariableType.String };
 			var exp = "5 * 3 / 3 + \"example\"";
 
 			// Act
@@ -37,8 +37,165 @@ Example #1: No parentheses order of operations
 			// Assert
 			Assert.AreEqual(answer, result);
       
-      // produces an ExpressionResult that looks like this
+      			// produces an ExpressionResult that looks like this
 			// Value = "\"5example\""
 			// Type = VariableType.String
 			// Error = null
+```
+
+Example #2: Parentheses can be handled
+```csharp
+			// Arrange
+			var answer = new ExpressionResult { Value = "\"5example275\"", Type = VariableType.String }; ;
+			var exp = "5 * 3 / 3 + ((\"example2\") + (5 * 15))";
+
+			// Act
+			var result = solver.Evaluate(exp);
+
+			// Assert
+			Assert.AreEqual(answer, result);
+			
+			// produces an ExpressionResult that looks like this
+			// Value = "\"5example275\""
+			// Type = VariableType.String
+			// Error = null
+```
+
+Example #3: Single boolean value
+```csharp
+			// Arrange
+			var answer = new ExpressionResult { Value = "True", Type = VariableType.Boolean };
+			var exp = "True";
+
+			// Act
+			var result = solver.Evaluate(exp);
+
+			// Assert
+			Assert.AreEqual(answer, result);
+			
+			// produces an ExpressionResult that looks like this
+			// Value = "True"
+			// Type = VariableType.Boolean
+			// Error = null
+```
+
+Example #4: Hooking into OnBeforeOperatorExpressionSolved
+```csharp
+			// Arrange
+			var languageTemplate = new EEExpressionsLanguageTemplate();
+			
+			// get the operator
+			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+
+			var count = 0;
+
+			// Each time it evaluates an 'addition' operation, increment the count
+			additionOperator.OnBeforeOperatorExpressionSolved = (expGroup) =>
+			{
+				count++;
+			};
+
+			solver = new Evaluator(languageTemplate);
+
+			var answer = new ExpressionResult 
+			{
+				Value = "3", Type = VariableType.Int 
+			};
+
+			// simple expression to test
+			var exp = "1+2";
+
+			// Act
+			var result = solver.Evaluate(exp);
+
+			// Assert
+			Assert.AreEqual(answer, result);
+			
+			// should increment
+			Assert.AreEqual(count, 1);
+
+			solver.Evaluate(exp);
+
+			// here too
+			Assert.AreEqual(count, 2);
+
+			// null it out
+			additionOperator.OnBeforeOperatorExpressionSolved = null;
+
+			solver.Evaluate(exp);
+
+			// shouldn't be incremented
+			Assert.AreEqual(count, 2);
+```
+
+Example #5: Hooking into OnAfterOperatorExpressionSolved
+```csharp
+			// Arrange
+			var languageTemplate = new EEExpressionsLanguageTemplate();
+
+			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+
+			var count = 0;
+
+			additionOperator.OnAfterOperatorExpressionSolved = (expressionResult) =>
+			{
+				// the expression is known, so this is safe, and the point. You're in control.
+				var v = int.Parse(expressionResult.Value);
+
+				count += v;
+			};
+
+			solver = new Evaluator(languageTemplate);
+
+			var exp = "1+2";
+
+			// Act
+			var result = solver.Evaluate(exp);
+
+			// Assert
+			Assert.AreEqual(count, 3);
+
+			solver.Evaluate(exp);
+
+			Assert.AreEqual(count, 6);
+
+			additionOperator.OnAfterOperatorExpressionSolved = null;
+
+			solver.Evaluate(exp);
+
+			// shouldn't be incremented
+			Assert.AreEqual(count, 6);
+```
+
+Example #6: Hooking into SolveOperatorExpression
+```csharp
+			// Arrange
+			var languageTemplate = new EEExpressionsLanguageTemplate();
+
+			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+
+			additionOperator.SolveOperatorExpression = (expGroup) =>
+			{
+				return new ExpressionResult
+				{
+					Value = "0",
+					Type = VariableType.Int
+				};
+			};
+
+			solver = new Evaluator(languageTemplate);
+
+			var answer = new ExpressionResult
+			{
+				Value = "0",
+				Type = VariableType.Int
+			};
+
+			var exp = "1+2";
+
+			// Act
+			var result = solver.Evaluate(exp);
+
+			// Assert: Will be 0, not 3 because of the addition overwrite
+			Assert.AreEqual(answer, result);
 ```
