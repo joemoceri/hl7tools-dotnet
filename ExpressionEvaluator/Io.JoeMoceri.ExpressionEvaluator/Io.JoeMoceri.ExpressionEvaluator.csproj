@@ -11,6 +11,7 @@
     <PackageTags>interpreter, expressions, evaluator, csharp, languages, templates</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>Joe Moceri</Authors>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
