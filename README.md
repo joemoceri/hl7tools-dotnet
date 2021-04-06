@@ -26,7 +26,7 @@ Install-Package Io.JoeMoceri.ExpressionEvaluator
 <a name="usage"></a>
 ## Usage
 
-Please see Tests section of project for examples on how to use it and below. The variable solver is (new Evaluator()).
+Please see Tests section of project for examples on how to use it and below.
 
 Example #1: No parentheses order of operations
 
@@ -36,6 +36,7 @@ Example #1: No parentheses order of operations
 			var exp = "5 * 3 / 3 + \"example\"";
 
 			// Act
+			Evaluator solver = new Evaluator();
 			var result = solver.Evaluate(exp);
 
 			// Assert
@@ -54,6 +55,7 @@ Example #2: Parentheses can be handled
 			var exp = "5 * 3 / 3 + ((\"example2\") + (5 * 15))";
 
 			// Act
+			Evaluator solver = new Evaluator();
 			var result = solver.Evaluate(exp);
 
 			// Assert
@@ -72,6 +74,7 @@ Example #3: Single boolean value
 			var exp = "True";
 
 			// Act
+			Evaluator solver = new Evaluator();
 			var result = solver.Evaluate(exp);
 
 			// Assert
@@ -99,7 +102,7 @@ Example #4: Hooking into OnBeforeOperatorExpressionSolved
 				count++;
 			};
 
-			solver = new Evaluator(languageTemplate);
+			Evaluator solver = new Evaluator(languageTemplate);
 
 			var answer = new ExpressionResult 
 			{
@@ -149,7 +152,7 @@ Example #5: Hooking into OnAfterOperatorExpressionSolved
 				count += v;
 			};
 
-			solver = new Evaluator(languageTemplate);
+			Evaluator solver = new Evaluator(languageTemplate);
 
 			var exp = "1+2";
 
@@ -187,7 +190,7 @@ Example #6: Hooking into SolveOperatorExpression
 				};
 			};
 
-			solver = new Evaluator(languageTemplate);
+			Evaluator solver = new Evaluator(languageTemplate);
 
 			var answer = new ExpressionResult
 			{
