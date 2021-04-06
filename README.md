@@ -51,7 +51,7 @@ Example #1: No parentheses order of operations
 Example #2: Parentheses can be handled
 ```csharp
 			// Arrange
-			var answer = new ExpressionResult { Value = "\"5example275\"", Type = VariableType.String }; ;
+			var answer = new ExpressionResult { Value = "\"5example275\"", Type = VariableType.String };
 			var exp = "5 * 3 / 3 + ((\"example2\") + (5 * 15))";
 
 			// Act
