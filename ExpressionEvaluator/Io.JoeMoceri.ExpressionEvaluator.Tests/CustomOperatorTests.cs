@@ -47,7 +47,7 @@ namespace ExpressionEvaluator.Tests
 
 			solver.Evaluate(exp);
 
-			// shouldn't be called
+			// shouldn't be incremented
 			Assert.AreEqual(count, 2);
 		}
 

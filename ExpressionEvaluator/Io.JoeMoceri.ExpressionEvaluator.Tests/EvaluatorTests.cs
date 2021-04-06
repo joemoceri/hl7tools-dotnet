@@ -11,22 +11,24 @@ namespace ExpressionEvaluator.Tests
 		public void EvaluatorTests_NoParenthesesStringOnLeft()
 		{
 			// Arrange
-			var answer = new ExpressionResult { Value = "\"5lol\"", Type = VariableType.String }; ;
-			var exp = "5 * 3 / 3 + \"lol\"";
+			var answer = new ExpressionResult { Value = "\"5example\"", Type = VariableType.String };
+			var exp = "5 * 3 / 3 + \"example\"";
 
 			// Act
 			var result = solver.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
+
+
 		}
 
 		[TestMethod]
 		public void EvaluatorTests_SingleParenthesesForString()
 		{
 			// Arrange
-			var answer = new ExpressionResult { Value = "\"5lol\"", Type = VariableType.String }; ;
-			var exp = "5 * 3 / 3 + (\"lol\")";
+			var answer = new ExpressionResult { Value = "\"5example2\"", Type = VariableType.String };
+			var exp = "5 * 3 / 3 + (\"example2\")";
 
 			// Act
 			var result = solver.Evaluate(exp);
@@ -39,8 +41,8 @@ namespace ExpressionEvaluator.Tests
 		public void EvaluatorTests_ParenthesesForStringAddition()
 		{
 			// Arrange
-			var answer = new ExpressionResult { Value = "\"5lol5\"", Type = VariableType.String }; ;
-			var exp = "5 * 3 / 3 + (\"lol\" + 5)";
+			var answer = new ExpressionResult { Value = "\"5example25\"", Type = VariableType.String }; ;
+			var exp = "5 * 3 / 3 + (\"example2\" + 5)";
 
 			// Act
 			var result = solver.Evaluate(exp);
@@ -67,8 +69,8 @@ namespace ExpressionEvaluator.Tests
 		public void EvaluatorTests_NestedParenthesesForStringAddition()
 		{
 			// Arrange
-			var answer = new ExpressionResult { Value = "\"5lol75\"", Type = VariableType.String }; ;
-			var exp = "5 * 3 / 3 + ((\"lol\") + (5 * 15))";
+			var answer = new ExpressionResult { Value = "\"5example275\"", Type = VariableType.String }; ;
+			var exp = "5 * 3 / 3 + ((\"example2\") + (5 * 15))";
 
 			// Act
 			var result = solver.Evaluate(exp);
