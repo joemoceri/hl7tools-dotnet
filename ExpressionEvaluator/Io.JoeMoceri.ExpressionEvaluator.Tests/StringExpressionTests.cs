@@ -6,7 +6,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 	public class StringExpressionTests
 	{
 
-		private Evaluator solver = new Evaluator();
+		private Evaluator evaluator = new Evaluator();
 
 		[TestMethod]
 		public void StringExpressionTests_Single()
@@ -16,7 +16,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" ab + \"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -30,7 +30,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" ab +  cd \"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -44,7 +44,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" ab +  cd  ef \"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -58,7 +58,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" ab +  cd  cd  cd \"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -72,7 +72,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" ab + 3\"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -86,7 +86,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" ab +  ab +  ab + \"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -100,7 +100,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\"4 cd \"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -114,7 +114,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" cd  cd  cd  cd \"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -128,7 +128,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" \\\"cd  \\\"cd  \\\"cd  \\\"cd \"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -142,7 +142,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -156,7 +156,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -170,7 +170,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" cd lol cd lol cd lol cd lol\"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -184,7 +184,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" cd lol( cd lol( cd lol( cd lol(\"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -198,7 +198,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" cd lol) cd lol) cd lol) cd lol)\"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -212,7 +212,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" cd (lol) cd (lol) cd (lol) cd (lol)\"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -226,7 +226,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = "\" cd lollmao cd lollmao cd lollmao cd lollmao\"", Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(check);
+			var result = evaluator.Evaluate(check);
 
 			// Assert
 			Assert.AreEqual(result, answer);
@@ -241,7 +241,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -256,7 +256,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -271,7 +271,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -286,7 +286,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -301,7 +301,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -316,7 +316,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -331,7 +331,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -346,7 +346,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -361,7 +361,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -376,7 +376,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -391,7 +391,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -406,7 +406,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -421,7 +421,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -436,7 +436,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -451,7 +451,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -466,7 +466,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -481,7 +481,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -496,7 +496,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -511,7 +511,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -526,7 +526,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -541,7 +541,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.String };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);

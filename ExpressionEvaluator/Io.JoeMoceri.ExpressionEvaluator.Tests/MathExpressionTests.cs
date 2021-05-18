@@ -5,7 +5,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 	[TestClass]
 	public class MathExpressionTests
 	{
-		private Evaluator solver = new Evaluator();
+		private Evaluator evaluator = new Evaluator();
 
 		[TestMethod]
 		public void MathExpressionTests_NoParentheses()
@@ -16,7 +16,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "4.563 + 12 * 3 * 4 + 3 / 3 - 4 * 2 + 3 + 12 % 5";
 			
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -31,7 +31,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "-4.563 + -12 * -3 * -4 + -3 / -3 - -4 * -2 + -3 + -12 % -5";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -46,7 +46,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "(((((4) + 12) * 3) * 4) + ((3) / 3) - (4 * 2 + 3))";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -61,7 +61,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "(((((-4) + -12) * -3) * -4) + ((-3) / -3) - (-4 * -2 + -3))";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -76,7 +76,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "((( 5 + 3 )))";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -91,7 +91,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "-(-(-( 5 + 3 )))";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -106,7 +106,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "-(5 + 3)";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -121,7 +121,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "4 + 12 - 3 * (4 + 3) / 3 - (4 * 2 + 3)";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -136,7 +136,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "-4 + -12 - -3 * (-4 + -3) / -3 - -(-4 * -2 + -3)";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -151,7 +151,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "-3 - -(-4 * -2 + -3)";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -166,7 +166,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "-4 + -12 - -3 * -(-4 + -3)";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -181,7 +181,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "3 + -3";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -197,7 +197,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "3 + -3 + 4";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -212,7 +212,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "-3 + 3 + 4";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -227,7 +227,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "10";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -242,7 +242,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var exp = "-5 - -10";
 
 			// Act
-			var result = solver.Evaluate(exp);
+			var result = evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -257,7 +257,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -272,7 +272,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -287,7 +287,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -302,7 +302,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -317,7 +317,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -332,7 +332,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -347,7 +347,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -362,7 +362,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -377,7 +377,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -392,7 +392,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -407,7 +407,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -422,7 +422,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -437,7 +437,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -452,7 +452,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -467,7 +467,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -482,7 +482,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -497,7 +497,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -512,7 +512,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -527,7 +527,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -542,7 +542,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -557,7 +557,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -572,7 +572,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -587,7 +587,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -602,7 +602,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -617,7 +617,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -632,7 +632,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -647,7 +647,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Int };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
@@ -662,7 +662,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var answer = new ExpressionResult { Value = ans.ToString(), Type = VariableType.Float };
 
 			// Act
-			var result = solver.Evaluate(expression);
+			var result = evaluator.Evaluate(expression);
 
 			// Assert
 			Assert.AreEqual(answer, result);
