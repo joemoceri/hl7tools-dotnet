@@ -256,7 +256,7 @@ Example #7: HL7 Message MSH Line Expression Evaluation
             		Assert.AreEqual(answer, result);
 ```
 
-To create your own LanguageTemplate, inherit from [LanguageTemplateBase](https://github.com/jmoceri34/expression-evaluator/blob/5270bdf7b600050cd3496eb2e7f094aa5a83693f/ExpressionEvaluator/Io.JoeMoceri.ExpressionEvaluator/LanguageTemplate/LanguageTemplateBase.cs#L5)
+To create your own LanguageTemplate, inherit from [LanguageTemplateBase](https://github.com/jmoceri34/expression-evaluator/blob/master/ExpressionEvaluator/Io.JoeMoceri.ExpressionEvaluator/LanguageTemplate/LanguageTemplateBase.cs#L5)
 
 Please see Io.JoeMoceri.ExpressionEvaluator.Sample project for usage.
 
