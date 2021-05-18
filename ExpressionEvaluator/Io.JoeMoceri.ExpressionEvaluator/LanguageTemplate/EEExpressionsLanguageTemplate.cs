@@ -7,6 +7,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     public class EEExpressionsLanguageTemplate : LanguageTemplateBase
     {
         private readonly IList<LanguageTemplateOperator> operators;
+        private readonly LanguageTemplateOptions options;
 
         public EEExpressionsLanguageTemplate()
         {
@@ -27,6 +28,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 CreateLanguageTemplateOperator(Operator.NotEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, "!="),
                 CreateLanguageTemplateOperator(Operator.LessThan, OperatorPrecedence.Higher, OperatorType.Boolean, "<"),
                 CreateLanguageTemplateOperator(Operator.GreaterThan, OperatorPrecedence.Higher, OperatorType.Boolean, ">"),
+            };
+
+            options = new LanguageTemplateOptions
+            {
+                IgnoreWhitespaceOutsideQuotes = false,
+                IgnoreParentheses = false
             };
         }
 
@@ -70,5 +77,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         public override IList<LanguageTemplateOperator> Operators => operators;
+
+        public override LanguageTemplateOptions Options => options;
     }
 }

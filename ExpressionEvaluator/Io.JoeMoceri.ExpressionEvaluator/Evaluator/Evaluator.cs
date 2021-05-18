@@ -35,8 +35,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 					}; 
 				};
 
-				// get the whitespace outside of quotes out of the way
-				expression = RemoveWhitespaceOutsideQuotes(expression);
+				if (!languageTemplate.Options.IgnoreWhitespaceOutsideQuotes)
+                {
+					// get the whitespace outside of quotes out of the way
+					expression = RemoveWhitespaceOutsideQuotes(expression);
+                }
 
 				// handle implicit negative. an implicit negative is -1 or -(1)
 				expression = expression.Replace("-(", ("-1*("));
@@ -54,12 +57,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 					throw new ArithmeticException($"Odd number of parentheses found: {parenthesesAmount}. Are you missing a parentheses?");
 				}
 
-				// recursively break down the expressions parentheses, then work your way back up
-				while (parenthesesAmount != 0)
-				{
-					expression = GetOuterMostParentheticalExpression(expression, Evaluate);
-					parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
-				}
+				if (!languageTemplate.Options.IgnoreParentheses)
+                {
+					// recursively break down the expressions parentheses, then work your way back up
+					while (parenthesesAmount != 0)
+					{
+						expression = GetOuterMostParentheticalExpression(expression, Evaluate);
+						parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
+					}
+                }
 
 				// determine what kind of expression it is (math, string, boolean)
 				var isBooleanExpression = IsBooleanExpression(expression);
@@ -309,10 +315,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 							var originalRight = expressionGroup.RightOperand;
 
 							// boolean expressions broken down are composed of 2 math/string expressions that need to be evaluated (1>2, 1+2>3+4, etc)
-							var leftResult = EvaluateMathStringExpression(expressionGroup.LeftOperand);
+							var leftResult = Evaluate(expressionGroup.LeftOperand);
 							expressionGroup.LeftOperand = leftResult.Value;
-						
-							var rightResult = EvaluateMathStringExpression(expressionGroup.RightOperand);
+
+							var rightResult = Evaluate(expressionGroup.RightOperand);
 							expressionGroup.RightOperand = rightResult.Value;
 
 							// then, after updating those values, solve THAT boolean expression

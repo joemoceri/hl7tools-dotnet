@@ -9,5 +9,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public abstract IList<LanguageTemplateOperator> BooleanOperators { get; }
 
         public abstract IList<LanguageTemplateOperator> Operators { get; }
+
+        public abstract LanguageTemplateOptions Options { get; }
     }
 }

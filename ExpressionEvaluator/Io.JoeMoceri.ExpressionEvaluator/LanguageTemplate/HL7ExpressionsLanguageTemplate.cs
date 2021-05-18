@@ -4,15 +4,22 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class HL7MshExpressionsLanguageTemplate : LanguageTemplateBase
+    public class HL7ExpressionsLanguageTemplate : LanguageTemplateBase
     {
         private readonly IList<LanguageTemplateOperator> operators;
+        private readonly LanguageTemplateOptions options;
 
-        public HL7MshExpressionsLanguageTemplate()
+        public HL7ExpressionsLanguageTemplate()
         {
             operators = new List<LanguageTemplateOperator>
             {
                 CreateLanguageTemplateOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, "|")
+            };
+
+            options = new LanguageTemplateOptions
+            {
+                IgnoreWhitespaceOutsideQuotes = true,
+                IgnoreParentheses = true
             };
         }
 
@@ -37,7 +44,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             };
         }
 
-        public override string Name => "HL7 MSH Expressions";
+        public override string Name => "HL7 Expressions";
 
         public override IList<LanguageTemplateOperator> MathStringOperators 
         {
@@ -56,5 +63,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         public override IList<LanguageTemplateOperator> Operators => operators;
+
+        public override LanguageTemplateOptions Options => options;
     }
 }
