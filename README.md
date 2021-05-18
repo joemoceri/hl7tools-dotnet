@@ -257,3 +257,57 @@ Example #7: HL7 Message MSH Line Expression Evaluation
 ```
 
 To create your own LanguageTemplate, inherit from [LanguageTemplateBase](https://github.com/jmoceri34/expression-evaluator/blob/5270bdf7b600050cd3496eb2e7f094aa5a83693f/ExpressionEvaluator/Io.JoeMoceri.ExpressionEvaluator/LanguageTemplate/LanguageTemplateBase.cs#L5)
+
+Please see Io.JoeMoceri.ExpressionEvaluator.Sample project for usage.
+
+Sample.cs
+
+```csharp
+using Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate;
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace Io.JoeMoceri.ExpressionEvaluator.Sample
+{
+    public class App
+    {
+        public void Run()
+        {
+            ParseHL7FileExample();
+
+            Console.ReadLine();
+        }
+
+        public void ParseHL7FileExample()
+        {
+            var lines = File.ReadLines("HL7File.txt");
+
+            var languageTemplate = new HL7ExpressionsLanguageTemplate();
+
+            var evaluator = new Evaluator(languageTemplate);
+
+            var results = new List<HL7Result>();
+
+            foreach (var line in lines)
+            {
+                evaluator.Evaluate(line);
+
+                var hl7Result = languageTemplate.GetHL7Result();
+
+                Console.WriteLine(hl7Result.ToString());
+
+                results.Add(hl7Result);
+            }
+
+            Console.WriteLine("Final Output:");
+
+            foreach (var result in results)
+            {
+                Console.WriteLine(result.ToString());
+            }
+        }
+    }
+}
+
+```
