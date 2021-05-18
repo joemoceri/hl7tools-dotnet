@@ -260,7 +260,7 @@ To create your own LanguageTemplate, inherit from [LanguageTemplateBase](https:/
 
 Please see Io.JoeMoceri.ExpressionEvaluator.Sample project for usage.
 
-Sample.cs
+App.cs
 
 ```csharp
 using Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate;
