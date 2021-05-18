@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate
 {
     public class HL7Result
     {
+		public string Segment { get; set; }
+
         public IList<HL7Part> Parts { get; set; }
 
         public override string ToString()
@@ -21,7 +19,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate
 					return null;
 				}
 
-				var result = Parts[0].Segment;
+				var result = Segment;
 
 				for (var i = 0; i < Parts.Count; i++)
 				{

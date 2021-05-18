@@ -35,6 +35,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 					}; 
 				};
 
+				if (languageTemplate is HL7ExpressionsLanguageTemplate)
+                {
+					((HL7ExpressionsLanguageTemplate)languageTemplate).Setup();
+                }
+
 				if (!languageTemplate.Options.IgnoreWhitespaceOutsideQuotes)
                 {
 					// get the whitespace outside of quotes out of the way

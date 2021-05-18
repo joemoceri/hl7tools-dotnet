@@ -11,5 +11,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public abstract IList<LanguageTemplateOperator> Operators { get; }
 
         public abstract LanguageTemplateOptions Options { get; }
+
+        public ExpressionResult DefaultExpressionResult => new ExpressionResult
+        {
+            Value = "\"done\"",
+            Type = VariableType.String
+        };
     }
 }

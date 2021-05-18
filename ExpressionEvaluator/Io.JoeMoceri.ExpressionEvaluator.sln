@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Io.JoeMoceri.ExpressionEvaluator", "Io.JoeMoceri.ExpressionEvaluator\Io.JoeMoceri.ExpressionEvaluator.csproj", "{F1C5404E-B577-4D69-A3F1-806298087494}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Io.JoeMoceri.ExpressionEvaluator", "Io.JoeMoceri.ExpressionEvaluator\Io.JoeMoceri.ExpressionEvaluator.csproj", "{F1C5404E-B577-4D69-A3F1-806298087494}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Io.JoeMoceri.ExpressionEvaluator.Tests", "Io.JoeMoceri.ExpressionEvaluator.Tests\Io.JoeMoceri.ExpressionEvaluator.Tests.csproj", "{EC5D3581-1E86-496D-9235-0C305DC3FB69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Io.JoeMoceri.ExpressionEvaluator.Sample", "Io.JoeMoceri.ExpressionEvaluator.Sample\Io.JoeMoceri.ExpressionEvaluator.Sample.csproj", "{3D276047-A3BB-423C-AFD9-3C105030198B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{EC5D3581-1E86-496D-9235-0C305DC3FB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5D3581-1E86-496D-9235-0C305DC3FB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5D3581-1E86-496D-9235-0C305DC3FB69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D276047-A3BB-423C-AFD9-3C105030198B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D276047-A3BB-423C-AFD9-3C105030198B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D276047-A3BB-423C-AFD9-3C105030198B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D276047-A3BB-423C-AFD9-3C105030198B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
         private readonly IList<LanguageTemplateOperator> operators;
         private readonly LanguageTemplateOptions options;
+        private int delimiterCount;
+        private string segment;
+        private IList<HL7Part> parts;
 
         public HL7ExpressionsLanguageTemplate()
         {
@@ -16,11 +20,42 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 CreateLanguageTemplateOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, "|")
             };
 
+            Setup();
+
+            var additionOperator = MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+
+            additionOperator.SolveOperatorExpression = (expGroup) =>
+            {
+                if (delimiterCount == 0)
+                {
+                    segment = expGroup.LeftOperand;
+                }
+
+                delimiterCount++;
+                parts.Add(new HL7Part
+                {
+                    Delimiter = additionOperator.OperatorName,
+                    DelimiterIndex = delimiterCount,
+                    Value = expGroup.RightOperand
+                });
+
+                // just return something to make the evaluator happy. The final expression will always be this if it runs successfully.
+                return DefaultExpressionResult;
+            };
+
             options = new LanguageTemplateOptions
             {
                 IgnoreWhitespaceOutsideQuotes = true,
                 IgnoreParentheses = true
             };
+
+        }
+
+        public void Setup()
+        {
+            parts = new List<HL7Part>();
+
+            delimiterCount = 0;
         }
 
         private LanguageTemplateOperator CreateLanguageTemplateOperator(
@@ -65,5 +100,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public override IList<LanguageTemplateOperator> Operators => operators;
 
         public override LanguageTemplateOptions Options => options;
+
+        public HL7Result GetHL7Result()
+        {
+            var result = new HL7Result
+            {
+                Parts = parts,
+                Segment = segment
+            };
+
+            return result;
+        }
     }
 }
