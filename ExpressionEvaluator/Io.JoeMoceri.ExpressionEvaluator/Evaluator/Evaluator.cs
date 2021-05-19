@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -7,6 +8,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 {
 	public interface IEvaluator
 	{
+		IHL7V2Message EvaluateHL7V2File(string path);
+
+		IHL7V2Message EvaluateHL7V2File(string[] expressions);
+
 		ExpressionResult Evaluate(string expression);
 	}
 
@@ -19,6 +24,44 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		public Evaluator(ExpressionConfigurationBase expressionConfiguration)
         {
 			this.expressionConfiguration = expressionConfiguration;
+		}
+
+		public IHL7V2Message EvaluateHL7V2File(string path)
+        {
+			if (!File.Exists(path))
+            {
+				throw new ArgumentException($"File {path} doesn't exist.", nameof(path));
+            }
+
+			var expressions = File.ReadAllLines(path);
+
+			var result = EvaluateHL7V2File(expressions);
+
+			return result;
+        }
+
+		public IHL7V2Message EvaluateHL7V2File(string[] expressions)
+        {
+			if (!(expressionConfiguration is HL7V2ExpressionConfiguration))
+			{
+				throw new InvalidOperationException($"Expression Configuration must be of type {nameof(HL7V2ExpressionConfiguration)}");
+			}
+
+			var hl7v2Message = new HL7V2Message();
+
+			foreach (var expression in expressions)
+			{
+				Evaluate(expression);
+
+				var messageSegment = ((HL7V2ExpressionConfiguration)expressionConfiguration).GetHL7V2MessageSegment();
+
+				hl7v2Message.Add(messageSegment);
+			}
+
+			//var segment = hl7v2Message["PID"];
+			//var field = hl7v2Message.GetField("PID.3.1");
+
+			return hl7v2Message;
 		}
 
 		public ExpressionResult Evaluate(string expression)
@@ -778,7 +821,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 						}
 
 						var result = new StringBuilder("\"").Append(answer).Append("\"");
-						ExpressionResult expResult = new ExpressionResult
+						var expResult = new ExpressionResult
 						{
 							Value = result.ToString(),
 							Type = VariableType.String

@@ -1,6 +1,4 @@
-﻿using Io.JoeMoceri.ExpressionEvaluator.ExpressionConfiguration;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 
 namespace Io.JoeMoceri.ExpressionEvaluator.Sample
@@ -38,28 +36,18 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
         public void ParseHL7FileExample()
         {
-            var lines = File.ReadLines("HL7File.txt");
-
             var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
             var evaluator = new Evaluator(expressionConfiguration);
 
-            var messageSegments = new List<HL7V2MessageSegment>();
+            var hl7v2Message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
-            foreach (var line in lines)
-            {
-                evaluator.Evaluate(line);
-
-                var messageSegment = expressionConfiguration.GetHL7V2MessageSegment();
-
-                Console.WriteLine(messageSegment.ToString());
-
-                messageSegments.Add(messageSegment);
-            }
+            var segment = hl7v2Message["PID"];
+            var field = hl7v2Message.GetField("PID.3.1");
 
             Console.WriteLine("Final Output:");
 
-            foreach (var messageSegment in messageSegments)
+            foreach (var messageSegment in hl7v2Message.MessageSegments)
             {
                 Console.WriteLine(messageSegment.ToString());
             }

@@ -1,5 +1,4 @@
-﻿using Io.JoeMoceri.ExpressionEvaluator.ExpressionConfiguration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -232,7 +231,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				"IN1|3|SELF PAY|1|SELF PAY|||||||||||5||1",
 			};
 
-			var results = new List<HL7V2MessageSegment>();
+			var results = new List<IHL7V2MessageSegment>();
 
 			// Act
 			for (var i = 0; i < hl7Lines.Length; i++)

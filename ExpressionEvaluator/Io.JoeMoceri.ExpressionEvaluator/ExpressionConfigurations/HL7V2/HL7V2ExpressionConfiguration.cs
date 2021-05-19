@@ -1,22 +1,15 @@
-﻿using Io.JoeMoceri.ExpressionEvaluator.ExpressionConfiguration;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
-{
-    // TODO: Look into adding language templates for sub-fields and sub-sub-fields.
-    // | : Field delimiter
-    // ^ : Sub-Field delimiter
-    // & : Sub-Sub-Field delimiter
-    // ~ : Separates repeating fields
+{ 
     public class HL7V2ExpressionConfiguration : ExpressionConfigurationBase
     {
         private readonly IList<ExpressionConfigurationOperator> operators;
         private readonly ExpressionConfigurationOptions options;
         private int delimiterCount;
         private string segment;
-        private IList<HL7V2Field> fields;
+        private IList<IHL7V2Field> fields;
 
         public HL7V2ExpressionConfiguration()
         {
@@ -59,7 +52,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public void Setup()
         {
-            fields = new List<HL7V2Field>();
+            fields = new List<IHL7V2Field>();
 
             delimiterCount = 0;
         }
@@ -86,7 +79,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public override ExpressionConfigurationOptions Options => options;
 
-        public HL7V2MessageSegment GetHL7V2MessageSegment()
+        public IHL7V2MessageSegment GetHL7V2MessageSegment()
         {
             var result = new HL7V2MessageSegment
             {
