@@ -1,4 +1,4 @@
-﻿using Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate;
+﻿using Io.JoeMoceri.ExpressionEvaluator.ExpressionConfiguration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,16 +11,38 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
         {
             ParseHL7FileExample();
 
+            // SolveMathExample();
+
+            // SolveBooleanExample();
+
             Console.ReadLine();
+        }
+
+        public void SolveMathExample()
+        {
+            var evaluator = new Evaluator();
+
+            var result = evaluator.Evaluate("1 + 2 * (3 - 4) / 18");
+
+            Console.WriteLine(result.ToString());
+        }
+
+        public void SolveBooleanExample()
+        {
+            var evaluator = new Evaluator();
+
+            var result = evaluator.Evaluate("1 > 2 and (3 + 4) / 2 == 5");
+
+            Console.WriteLine(result.ToString());
         }
 
         public void ParseHL7FileExample()
         {
             var lines = File.ReadLines("HL7File.txt");
 
-            var languageTemplate = new HL7V2LanguageTemplate();
+            var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
-            var evaluator = new Evaluator(languageTemplate);
+            var evaluator = new Evaluator(expressionConfiguration);
 
             var messageSegments = new List<HL7V2MessageSegment>();
 
@@ -28,7 +50,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
             {
                 evaluator.Evaluate(line);
 
-                var messageSegment = languageTemplate.GetHL7V2MessageSegment();
+                var messageSegment = expressionConfiguration.GetHL7V2MessageSegment();
 
                 Console.WriteLine(messageSegment.ToString());
 

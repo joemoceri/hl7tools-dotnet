@@ -2,7 +2,7 @@
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class LanguageTemplateOperator
+    public class ExpressionConfigurationOperator
     {
         public Operator ExpressionOperator;
         public OperatorPrecedence ExpressionOperatorPrecedence;

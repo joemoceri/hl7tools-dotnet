@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Io.JoeMoceri.ExpressionEvaluator
+﻿namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class LanguageTemplateOptions
+    public class ExpressionConfigurationOptions
     {
         public bool IgnoreWhitespaceOutsideQuotes { get; set; }
 

@@ -5,13 +5,13 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/jmoceri34/expression-evaluator</PackageProjectUrl>
-    <Description>This is a project written in C# that will, given a math, string or boolean expression, evaluate it using built-in Language Templates. Language Templates are what the Expression Evaluator uses when defining math, string, and boolean operators like '+', '-', '||', and so on. The operations are fully customizable. Using Language Templates you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic. Please visit the github repository for more information.</Description>
+    <Description>This is a project written in C# that will, given a math, string or boolean expression, evaluate it using built-in Expression Configurations. Expression Configurations are what the Expression Evaluator uses when defining math, string, and boolean operators like '+', '-', '||', and so on. The operations are fully customizable. Using Expression Configurations you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic. Please visit the github repository for more information.</Description>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/jmoceri34/expression-evaluator</RepositoryUrl>
     <PackageTags>interpreter, expressions, evaluator, csharp, languages, templates</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>Joe Moceri</Authors>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>

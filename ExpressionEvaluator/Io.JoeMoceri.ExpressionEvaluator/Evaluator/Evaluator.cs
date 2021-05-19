@@ -12,13 +12,13 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 	public class Evaluator : IEvaluator
 	{
-		public LanguageTemplateBase languageTemplate;
+		public ExpressionConfigurationBase expressionConfiguration;
 
-		public Evaluator(): this(new PythonLanguageTemplate()) { } 
+		public Evaluator(): this(new PythonExpressionConfiguration()) { } 
 
-		public Evaluator(LanguageTemplateBase languageTemplate)
+		public Evaluator(ExpressionConfigurationBase expressionConfiguration)
         {
-			this.languageTemplate = languageTemplate;
+			this.expressionConfiguration = expressionConfiguration;
 		}
 
 		public ExpressionResult Evaluate(string expression)
@@ -35,12 +35,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 					}; 
 				};
 
-				if (languageTemplate is HL7V2LanguageTemplate)
+				if (expressionConfiguration is HL7V2ExpressionConfiguration)
                 {
-					((HL7V2LanguageTemplate)languageTemplate).Setup();
+					((HL7V2ExpressionConfiguration)expressionConfiguration).Setup();
                 }
 
-				if (!languageTemplate.Options.IgnoreWhitespaceOutsideQuotes)
+				if (!expressionConfiguration.Options.IgnoreWhitespaceOutsideQuotes)
                 {
 					// get the whitespace outside of quotes out of the way
 					expression = RemoveWhitespaceOutsideQuotes(expression);
@@ -50,7 +50,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 				expression = expression.Replace("-(", ("-1*("));
 
 
-				if (!languageTemplate.Options.IgnoreQuotesValidation)
+				if (!expressionConfiguration.Options.IgnoreQuotesValidation)
                 {
 					var doubleQuoteAmount = GetCharacterCount(expression, '"');
 					// validate quotes (inside strings doesn't matter)
@@ -60,7 +60,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 					}
                 }
 
-				if (!languageTemplate.Options.IgnoreParentheses)
+				if (!expressionConfiguration.Options.IgnoreParentheses)
                 {
 					var parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
 					// validate parentheses (inside strings doesn't matter)
@@ -105,7 +105,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             bool IsBooleanExpression(string expression)
 			{
 				// is the expression boolean?
-				var operators = languageTemplate.BooleanOperators;
+				var operators = expressionConfiguration.BooleanOperators;
 				for (int i = 0; i < operators.Count; i++)
 				{
 					if (IndexOfOutsideQuotes(expression, operators[i].OperatorName) != -1)
@@ -280,10 +280,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             ExpressionResult EvaluateBooleanExpression(string expression)
 			{
-				var higherPrecedenceOperators = languageTemplate.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher ).ToList();
+				var higherPrecedenceOperators = expressionConfiguration.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher ).ToList();
 				var result = SolveExpressionPrecedence(expression, higherPrecedenceOperators);
 				
-				var lowerPrecedenceOperators = languageTemplate.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
+				var lowerPrecedenceOperators = expressionConfiguration.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
 				result = SolveExpressionPrecedence(result, lowerPrecedenceOperators);
 
 				var expResult = new ExpressionResult
@@ -294,7 +294,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				return expResult;
 
-				string SolveExpressionPrecedence(string expression, IList<LanguageTemplateOperator> precedenceOperators)
+				string SolveExpressionPrecedence(string expression, IList<ExpressionConfigurationOperator> precedenceOperators)
 				{
 					// start with the expression
 					var result = expression;
@@ -371,7 +371,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 							var leftHalf = expression.Substring(0, operatorLocationIndex);
 							int? startIndex = null;
 							int? booleanOperatorIndex = null;
-							var booleanOperators = languageTemplate.BooleanOperators;
+							var booleanOperators = expressionConfiguration.BooleanOperators;
 
 							for (int i = 0; i < booleanOperators.Count; i++)
 							{
@@ -412,7 +412,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 						{
 							var rightHalf = expression.Substring(operatorLocationIndex + operatorValueLength);
 							int? endIndex = null;
-							var booleanOperators = languageTemplate.BooleanOperators;
+							var booleanOperators = expressionConfiguration.BooleanOperators;
 							for (int i = 0; i < booleanOperators.Count; i++)
 							{
 								var operatorIndex = IndexOfOutsideQuotes(rightHalf, booleanOperators[i].OperatorName);
@@ -565,10 +565,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 			ExpressionResult EvaluateMathStringExpression(string expression)
 			{
-				var higherPrecedenceOperators = languageTemplate.MathStringOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher).ToList();
+				var higherPrecedenceOperators = expressionConfiguration.MathStringOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Higher).ToList();
 				string result = SolveExpressionPrecedence(expression, higherPrecedenceOperators);
 
-				var lowerPrecedenceOperators = languageTemplate.MathStringOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
+				var lowerPrecedenceOperators = expressionConfiguration.MathStringOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
 				result = SolveExpressionPrecedence(result, lowerPrecedenceOperators);
 
 				var expResult = new ExpressionResult
@@ -579,7 +579,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				return expResult;
 
-				string SolveExpressionPrecedence(string expression, IList<LanguageTemplateOperator> precedenceOperators)
+				string SolveExpressionPrecedence(string expression, IList<ExpressionConfigurationOperator> precedenceOperators)
 				{
 					// start with the expression
 					var result = expression;
@@ -911,7 +911,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 								start++; 
 							}
 
-							var mathOperators = languageTemplate.MathStringOperators;
+							var mathOperators = expressionConfiguration.MathStringOperators;
 							for (int i = start; i < expression.Length; i++)
 							{
 								for (int j = 0; j < mathOperators.Count(); j++)
@@ -1022,7 +1022,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 						string GetLeftMathOperand(string expression, int operatorLocationIndex)
 						{
 							var start = operatorLocationIndex - 1;
-							var mathOperators = languageTemplate.MathStringOperators;
+							var mathOperators = expressionConfiguration.MathStringOperators;
 							for (var i = start; i >= 0; i--)
 							{
 								// for each character behind the location of the operator
@@ -1069,7 +1069,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 							return expression.Substring(0, operatorLocationIndex);
 
-							bool CheckNextCharacterForOperator(char ch, IList<LanguageTemplateOperator> mathOperators, string expression, int opIndex)
+							bool CheckNextCharacterForOperator(char ch, IList<ExpressionConfigurationOperator> mathOperators, string expression, int opIndex)
 							{
 								bool result = false;
 								for (int i = 0; i < mathOperators.Count(); i++)
@@ -1109,7 +1109,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			}
 
             #region Post
-            OperatorLocation GetNextOperatorLocation(string expression, IList<LanguageTemplateOperator> operators)
+            OperatorLocation GetNextOperatorLocation(string expression, IList<ExpressionConfigurationOperator> operators)
 			{
 				string nextOperatorValue = null;
 
@@ -1192,7 +1192,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 			Operator GetOperator(string op)
 			{
-				return languageTemplate.Operators.First(o => o.OperatorName.Equals(op)).ExpressionOperator;
+				return expressionConfiguration.Operators.First(o => o.OperatorName.Equals(op)).ExpressionOperator;
 			}
 
 			float GetFloat(string expression)

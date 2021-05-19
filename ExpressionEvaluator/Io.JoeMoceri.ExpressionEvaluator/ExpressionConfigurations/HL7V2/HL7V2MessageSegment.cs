@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate
+namespace Io.JoeMoceri.ExpressionEvaluator.ExpressionConfiguration
 {
     public class HL7V2MessageSegment
     {

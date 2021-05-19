@@ -20,7 +20,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		/// </summary>
 		public Exception Error { get; set; }
 
-		public override bool Equals(object x)
+        public override string ToString()
+        {
+            return Value;
+        }
+
+        public override bool Equals(object x)
 		{
 			if (x == null)
 			{ 

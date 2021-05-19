@@ -1,4 +1,4 @@
-﻿using Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate;
+﻿using Io.JoeMoceri.ExpressionEvaluator.ExpressionConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +10,19 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     // ^ : Sub-Field delimiter
     // & : Sub-Sub-Field delimiter
     // ~ : Separates repeating fields
-    public class HL7V2LanguageTemplate : LanguageTemplateBase
+    public class HL7V2ExpressionConfiguration : ExpressionConfigurationBase
     {
-        private readonly IList<LanguageTemplateOperator> operators;
-        private readonly LanguageTemplateOptions options;
+        private readonly IList<ExpressionConfigurationOperator> operators;
+        private readonly ExpressionConfigurationOptions options;
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;
 
-        public HL7V2LanguageTemplate()
+        public HL7V2ExpressionConfiguration()
         {
-            operators = new List<LanguageTemplateOperator>
+            operators = new List<ExpressionConfigurationOperator>
             {
-                CreateLanguageTemplateOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, "|")
+                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, "|")
             };
 
             Setup();
@@ -48,7 +48,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return DefaultExpressionResult;
             };
 
-            options = new LanguageTemplateOptions
+            options = new ExpressionConfigurationOptions
             {
                 IgnoreWhitespaceOutsideQuotes = true,
                 IgnoreParentheses = true,
@@ -64,30 +64,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             delimiterCount = 0;
         }
 
-        private LanguageTemplateOperator CreateLanguageTemplateOperator(
-            Operator expressionOperator, 
-            OperatorPrecedence operatorPrecedence, 
-            OperatorType expressionOperatorType,
-            string operatorName, 
-            Func<ExpressionGroup, ExpressionResult> solveOperatorExpression = null,
-            Action<ExpressionGroup> onBeforeOperatorExpressionSolved = null,
-            Action<ExpressionResult> onAfterOperatorExpressionSolved = null)
-        {
-            return new LanguageTemplateOperator
-            {
-                ExpressionOperator = expressionOperator,
-                ExpressionOperatorPrecedence = operatorPrecedence,
-                ExpressionOperatorType = expressionOperatorType,
-                OperatorName = operatorName,
-                SolveOperatorExpression = solveOperatorExpression,
-                OnBeforeOperatorExpressionSolved = onBeforeOperatorExpressionSolved,
-                OnAfterOperatorExpressionSolved = onAfterOperatorExpressionSolved
-            };
-        }
-
         public override string Name => "HL7 V2";
 
-        public override IList<LanguageTemplateOperator> MathStringOperators 
+        public override IList<ExpressionConfigurationOperator> MathStringOperators 
         {
             get
             {
@@ -95,7 +74,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
-        public override IList<LanguageTemplateOperator> BooleanOperators
+        public override IList<ExpressionConfigurationOperator> BooleanOperators
         {
             get
             {
@@ -103,9 +82,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
-        public override IList<LanguageTemplateOperator> Operators => operators;
+        public override IList<ExpressionConfigurationOperator> Operators => operators;
 
-        public override LanguageTemplateOptions Options => options;
+        public override ExpressionConfigurationOptions Options => options;
 
         public HL7V2MessageSegment GetHL7V2MessageSegment()
         {

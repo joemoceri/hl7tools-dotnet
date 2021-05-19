@@ -1,4 +1,4 @@
-﻿using Io.JoeMoceri.ExpressionEvaluator.LanguageTemplate;
+﻿using Io.JoeMoceri.ExpressionEvaluator.ExpressionConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +12,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionOnBeforeOperatorExpressionSolved()
 		{
 			// Arrange
-			var languageTemplate = new PythonLanguageTemplate();
+			var expressionConfiguration = new PythonExpressionConfiguration();
 
-			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+			var additionOperator = expressionConfiguration.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 
 			var count = 0;
 
@@ -23,7 +23,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				count++;
 			};
 
-			var evaluator = new Evaluator(languageTemplate);
+			var evaluator = new Evaluator(expressionConfiguration);
 
 			var answer = new ExpressionResult 
 			{
@@ -55,9 +55,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionOnAfterOperatorExpressionSolved()
 		{
 			// Arrange
-			var languageTemplate = new PythonLanguageTemplate();
+			var expressionConfiguration = new PythonExpressionConfiguration();
 
-			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+			var additionOperator = expressionConfiguration.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 
 			var count = 0;
 
@@ -69,7 +69,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				count += v;
 			};
 
-			var evaluator = new Evaluator(languageTemplate);
+			var evaluator = new Evaluator(expressionConfiguration);
 
 			var exp = "1+2";
 
@@ -95,9 +95,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionSolveOperatorExpression()
 		{
 			// Arrange
-			var languageTemplate = new PythonLanguageTemplate();
+			var expressionConfiguration = new PythonExpressionConfiguration();
 
-			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+			var additionOperator = expressionConfiguration.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 
 			additionOperator.SolveOperatorExpression = (expGroup) =>
 			{
@@ -108,7 +108,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				};
 			};
 
-			var evaluator = new Evaluator(languageTemplate);
+			var evaluator = new Evaluator(expressionConfiguration);
 
 			var answer = new ExpressionResult
 			{
@@ -129,9 +129,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
         public void CustomOperatorTests_HL7MSHExpression()
         {
             // Arrange
-            var languageTemplate = new HL7V2LanguageTemplate();
+            var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
-            var evaluator = new Evaluator(languageTemplate);
+            var evaluator = new Evaluator(expressionConfiguration);
 
             var msh = @"MSH|^~\&|AccMgr|1|||20050110045504||ADT^A08|599102|P|2.3|||";
 
@@ -139,9 +139,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
             var result = evaluator.Evaluate(msh);
 
             // Assert
-            Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
+            Assert.AreEqual(expressionConfiguration.DefaultExpressionResult, result);
 
-			var combinedParts = languageTemplate.GetHL7V2MessageSegment().ToString();
+			var combinedParts = expressionConfiguration.GetHL7V2MessageSegment().ToString();
 
 			Assert.AreEqual(combinedParts, msh);
         }
@@ -150,9 +150,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
         public void CustomOperatorTests_HL7PIDExpression()
         {
             // Arrange
-            var languageTemplate = new HL7V2LanguageTemplate();
+            var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
-            var evaluator = new Evaluator(languageTemplate);
+            var evaluator = new Evaluator(expressionConfiguration);
 
             var pid = "PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO";
 
@@ -160,9 +160,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
             var result = evaluator.Evaluate(pid);
 
             // Assert
-            Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
+            Assert.AreEqual(expressionConfiguration.DefaultExpressionResult, result);
 
-			var combinedParts = languageTemplate.GetHL7V2MessageSegment().ToString();
+			var combinedParts = expressionConfiguration.GetHL7V2MessageSegment().ToString();
 
 			Assert.AreEqual(combinedParts, pid);
         }
@@ -171,9 +171,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
         public void CustomOperatorTests_HL7NK1Expression()
         {
             // Arrange
-            var languageTemplate = new HL7V2LanguageTemplate();
+            var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
-            var evaluator = new Evaluator(languageTemplate);
+            var evaluator = new Evaluator(expressionConfiguration);
 
             var nk1 = "NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y||||||||||||||";
 
@@ -181,9 +181,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
             var result = evaluator.Evaluate(nk1);
 
             // Assert
-            Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
+            Assert.AreEqual(expressionConfiguration.DefaultExpressionResult, result);
 
-            var combinedParts = languageTemplate.GetHL7V2MessageSegment().ToString();
+            var combinedParts = expressionConfiguration.GetHL7V2MessageSegment().ToString();
 
             Assert.AreEqual(combinedParts, nk1);
         }
@@ -192,9 +192,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_HL7PV1Expression()
 		{
 			// Arrange
-			var languageTemplate = new HL7V2LanguageTemplate();
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
 			
-			var evaluator = new Evaluator(languageTemplate);
+			var evaluator = new Evaluator(expressionConfiguration);
 
 			var pv1 = "PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253||||||";
 
@@ -202,9 +202,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var result = evaluator.Evaluate(pv1);
 
 			// Assert
-			Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
+			Assert.AreEqual(expressionConfiguration.DefaultExpressionResult, result);
 
-			var combinedParts = languageTemplate.GetHL7V2MessageSegment().ToString();
+			var combinedParts = expressionConfiguration.GetHL7V2MessageSegment().ToString();
 
 			Assert.AreEqual(combinedParts, pv1);
 		}
@@ -213,9 +213,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_ParseMultipleHL7Expressions()
 		{
 			// Arrange
-			var languageTemplate = new HL7V2LanguageTemplate();
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
-			var evaluator = new Evaluator(languageTemplate);
+			var evaluator = new Evaluator(expressionConfiguration);
 
 			var hl7Lines = new[] {
 				@"MSH|^~\&|AccMgr|1|||20050110045504||ADT^A08|599102|P|2.3|||",
@@ -239,10 +239,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
             {
 				var result = evaluator.Evaluate(hl7Lines[i]);
 
-				results.Add(languageTemplate.GetHL7V2MessageSegment());
+				results.Add(expressionConfiguration.GetHL7V2MessageSegment());
 
 				// Assert
-				Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
+				Assert.AreEqual(expressionConfiguration.DefaultExpressionResult, result);
             }
 
 			// Act
