@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-	public class HL7V2MessageSegment : List<IHL7V2Field>, IHL7V2MessageSegment
+	public class HL7V2MessageSegment
     {
 		public string SegmentName { get; set; }
 
-        public IList<IHL7V2Field> Fields { get; set; }
+        public IList<HL7V2Field> Fields { get; set; }
 
         public override string ToString()
         {
@@ -31,12 +31,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			}
 		}
 
-		public new IHL7V2Field this[int id]
+		public HL7V2Field GetField(int id)
 		{
-			get
-			{
-				return Fields.FirstOrDefault(f => f.DelimiterIndex.Equals(id));
-			}
+			return Fields.FirstOrDefault(f => f.DelimiterIndex.Equals(id));
 		}
 	}
 }

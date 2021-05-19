@@ -4,16 +4,16 @@ using System.Linq;
  
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class HL7V2Message : List<IHL7V2MessageSegment>, IHL7V2Message
+    public class HL7V2Message
     {
-        private readonly IList<IHL7V2MessageSegment> messageSegments;
+        private readonly IList<HL7V2MessageSegment> messageSegments;
 
         public HL7V2Message()
         {
-            messageSegments = new List<IHL7V2MessageSegment>();
+            messageSegments = new List<HL7V2MessageSegment>();
         }
 
-        public IHL7V2Field GetField(string id)
+        public HL7V2Field GetField(string id)
         {
             // ["PID.3.2.1"]
             var split = id.Split('.', StringSplitOptions.RemoveEmptyEntries);
@@ -25,7 +25,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             if (split.Length <= 1)
             {
-                throw new ArgumentException("Must contain at least one level of depth, such as PID.1", nameof(id));
+                return null;
             }
 
             int parsedInt = -1;
@@ -51,22 +51,29 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 }
             }
 
-            IHL7V2Field result = this[messageSegmentName][fieldIndex.Value];
+            var segment = messageSegments.FirstOrDefault(s => s.SegmentName.Equals(messageSegmentName));
 
-            if (subFieldIndex.HasValue && subFieldIndex.Value < result.Fields.Count())
+            if (segment == null)
             {
-                result = result[subFieldIndex.Value];
+                return null;
             }
 
-            if (subSubFieldIndex.HasValue && subSubFieldIndex.Value < result.Fields.Count())
+            var result = segment.GetField(fieldIndex.Value);
+
+            if (result.Fields != null && subFieldIndex.HasValue && subFieldIndex.Value < result.Fields.Count())
             {
-                result = result[subSubFieldIndex.Value];
+                result = result.GetField(subFieldIndex.Value);
+            }
+
+            if (result.Fields != null && subSubFieldIndex.HasValue && subSubFieldIndex.Value < result.Fields.Count())
+            {
+                result = result.GetField(subSubFieldIndex.Value);
             }
 
             return result;
         }
 
-        public IHL7V2MessageSegment this[string segmentName]
+        public HL7V2MessageSegment this[string segmentName]
         {
             get
             {
@@ -75,6 +82,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
-        public IList<IHL7V2MessageSegment> MessageSegments => messageSegments;
+        public IList<HL7V2MessageSegment> MessageSegments => messageSegments;
     }
 }

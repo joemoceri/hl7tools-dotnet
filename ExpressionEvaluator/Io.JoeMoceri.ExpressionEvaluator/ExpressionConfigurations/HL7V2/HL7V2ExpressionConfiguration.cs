@@ -9,7 +9,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         private readonly ExpressionConfigurationOptions options;
         private int delimiterCount;
         private string segment;
-        private IList<IHL7V2Field> fields;
+        private IList<HL7V2Field> fields;
 
         public HL7V2ExpressionConfiguration()
         {
@@ -52,7 +52,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public void Setup()
         {
-            fields = new List<IHL7V2Field>();
+            fields = new List<HL7V2Field>();
 
             delimiterCount = 0;
         }
@@ -79,7 +79,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public override ExpressionConfigurationOptions Options => options;
 
-        public IHL7V2MessageSegment GetHL7V2MessageSegment()
+        public HL7V2MessageSegment GetHL7V2MessageSegment()
         {
             var result = new HL7V2MessageSegment
             {

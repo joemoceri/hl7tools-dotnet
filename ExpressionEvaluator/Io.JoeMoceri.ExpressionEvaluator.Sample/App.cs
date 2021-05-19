@@ -36,6 +36,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
         public void ParseHL7FileExample()
         {
+            // TODO: Implement the rest of the delimiters
+            // one liner
+            //var hl7v2Message = new Evaluator(new HL7V2ExpressionConfiguration()).EvaluateHL7V2File("HL7File.txt");
+
             var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
             var evaluator = new Evaluator(expressionConfiguration);
@@ -43,7 +47,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
             var hl7v2Message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
             var segment = hl7v2Message["PID"];
-            var field = hl7v2Message.GetField("PID.3.1");
+
+            // MSH.3 : Sending Application
+            var field = hl7v2Message.GetField("MSH.3");
+
+            var patientNameField = hl7v2Message.GetField("PID.5");
+            var birthdateField = hl7v2Message.GetField("PID.7");
 
             Console.WriteLine("Final Output:");
 

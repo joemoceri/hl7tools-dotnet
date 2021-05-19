@@ -8,9 +8,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 {
 	public interface IEvaluator
 	{
-		IHL7V2Message EvaluateHL7V2File(string path);
+		HL7V2Message EvaluateHL7V2File(string path);
 
-		IHL7V2Message EvaluateHL7V2File(string[] expressions);
+		HL7V2Message EvaluateHL7V2File(string[] expressions);
 
 		ExpressionResult Evaluate(string expression);
 	}
@@ -26,7 +26,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			this.expressionConfiguration = expressionConfiguration;
 		}
 
-		public IHL7V2Message EvaluateHL7V2File(string path)
+		public HL7V2Message EvaluateHL7V2File(string path)
         {
 			if (!File.Exists(path))
             {
@@ -40,7 +40,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			return result;
         }
 
-		public IHL7V2Message EvaluateHL7V2File(string[] expressions)
+		public HL7V2Message EvaluateHL7V2File(string[] expressions)
         {
 			if (!(expressionConfiguration is HL7V2ExpressionConfiguration))
 			{
@@ -55,11 +55,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				var messageSegment = ((HL7V2ExpressionConfiguration)expressionConfiguration).GetHL7V2MessageSegment();
 
-				hl7v2Message.Add(messageSegment);
+				hl7v2Message.MessageSegments.Add(messageSegment);
 			}
-
-			//var segment = hl7v2Message["PID"];
-			//var field = hl7v2Message.GetField("PID.3.1");
 
 			return hl7v2Message;
 		}
