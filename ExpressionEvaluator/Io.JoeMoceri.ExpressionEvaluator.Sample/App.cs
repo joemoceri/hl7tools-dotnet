@@ -18,28 +18,28 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
         {
             var lines = File.ReadLines("HL7File.txt");
 
-            var languageTemplate = new HL7ExpressionsLanguageTemplate();
+            var languageTemplate = new HL7V2LanguageTemplate();
 
             var evaluator = new Evaluator(languageTemplate);
 
-            var results = new List<HL7Result>();
+            var messageSegments = new List<HL7V2MessageSegment>();
 
             foreach (var line in lines)
             {
                 evaluator.Evaluate(line);
 
-                var hl7Result = languageTemplate.GetHL7Result();
+                var messageSegment = languageTemplate.GetHL7V2MessageSegment();
 
-                Console.WriteLine(hl7Result.ToString());
+                Console.WriteLine(messageSegment.ToString());
 
-                results.Add(hl7Result);
+                messageSegments.Add(messageSegment);
             }
 
             Console.WriteLine("Final Output:");
 
-            foreach (var result in results)
+            foreach (var messageSegment in messageSegments)
             {
-                Console.WriteLine(result.ToString());
+                Console.WriteLine(messageSegment.ToString());
             }
         }
     }

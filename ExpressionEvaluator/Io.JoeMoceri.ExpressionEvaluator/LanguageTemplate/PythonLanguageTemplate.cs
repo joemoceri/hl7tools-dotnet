@@ -4,12 +4,13 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class EEExpressionsLanguageTemplate : LanguageTemplateBase
+    // TODO: Make this actually python (remove || && and look into other operators)
+    public class PythonLanguageTemplate : LanguageTemplateBase
     {
         private readonly IList<LanguageTemplateOperator> operators;
         private readonly LanguageTemplateOptions options;
 
-        public EEExpressionsLanguageTemplate()
+        public PythonLanguageTemplate()
         {
             operators = new List<LanguageTemplateOperator>
             {
@@ -33,7 +34,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             options = new LanguageTemplateOptions
             {
                 IgnoreWhitespaceOutsideQuotes = false,
-                IgnoreParentheses = false
+                IgnoreParentheses = false,
+                IgnoreQuotesValidation = false
             };
         }
 
@@ -58,7 +60,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             };
         }
 
-        public override string Name => "EE Expressions";
+        public override string Name => "Python";
 
         public override IList<LanguageTemplateOperator> MathStringOperators 
         {

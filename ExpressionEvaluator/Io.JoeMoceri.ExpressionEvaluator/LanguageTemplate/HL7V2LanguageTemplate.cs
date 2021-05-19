@@ -5,15 +5,20 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class HL7ExpressionsLanguageTemplate : LanguageTemplateBase
+    // TODO: Look into adding language templates for sub-fields and sub-sub-fields.
+    // | : Field delimiter
+    // ^ : Sub-Field delimiter
+    // & : Sub-Sub-Field delimiter
+    // ~ : Separates repeating fields
+    public class HL7V2LanguageTemplate : LanguageTemplateBase
     {
         private readonly IList<LanguageTemplateOperator> operators;
         private readonly LanguageTemplateOptions options;
         private int delimiterCount;
         private string segment;
-        private IList<HL7Part> parts;
+        private IList<HL7V2Field> fields;
 
-        public HL7ExpressionsLanguageTemplate()
+        public HL7V2LanguageTemplate()
         {
             operators = new List<LanguageTemplateOperator>
             {
@@ -32,7 +37,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 }
 
                 delimiterCount++;
-                parts.Add(new HL7Part
+                fields.Add(new HL7V2Field
                 {
                     Delimiter = additionOperator.OperatorName,
                     DelimiterIndex = delimiterCount,
@@ -46,14 +51,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             options = new LanguageTemplateOptions
             {
                 IgnoreWhitespaceOutsideQuotes = true,
-                IgnoreParentheses = true
+                IgnoreParentheses = true,
+                IgnoreQuotesValidation = true
             };
 
         }
 
         public void Setup()
         {
-            parts = new List<HL7Part>();
+            fields = new List<HL7V2Field>();
 
             delimiterCount = 0;
         }
@@ -79,7 +85,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             };
         }
 
-        public override string Name => "HL7 Expressions";
+        public override string Name => "HL7 V2";
 
         public override IList<LanguageTemplateOperator> MathStringOperators 
         {
@@ -101,12 +107,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public override LanguageTemplateOptions Options => options;
 
-        public HL7Result GetHL7Result()
+        public HL7V2MessageSegment GetHL7V2MessageSegment()
         {
-            var result = new HL7Result
+            var result = new HL7V2MessageSegment
             {
-                Parts = parts,
-                Segment = segment
+                Fields = fields,
+                SegmentName = segment
             };
 
             return result;

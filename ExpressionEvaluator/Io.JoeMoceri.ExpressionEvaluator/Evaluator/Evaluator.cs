@@ -14,7 +14,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 	{
 		public LanguageTemplateBase languageTemplate;
 
-		public Evaluator(): this(new EEExpressionsLanguageTemplate()) { } 
+		public Evaluator(): this(new PythonLanguageTemplate()) { } 
 
 		public Evaluator(LanguageTemplateBase languageTemplate)
         {
@@ -35,9 +35,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 					}; 
 				};
 
-				if (languageTemplate is HL7ExpressionsLanguageTemplate)
+				if (languageTemplate is HL7V2LanguageTemplate)
                 {
-					((HL7ExpressionsLanguageTemplate)languageTemplate).Setup();
+					((HL7V2LanguageTemplate)languageTemplate).Setup();
                 }
 
 				if (!languageTemplate.Options.IgnoreWhitespaceOutsideQuotes)
@@ -49,21 +49,26 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 				// handle implicit negative. an implicit negative is -1 or -(1)
 				expression = expression.Replace("-(", ("-1*("));
 
-				var parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
-				var doubleQuoteAmount = GetCharacterCount(expression, '"');
 
-				// validate quotes and parentheses. There should never be an odd amount of actually used quotes and parentheses (inside strings doesn't matter)
-				if (doubleQuoteAmount % 2 != 0)
-				{
-					throw new ArithmeticException($"Odd number of double quotes found: {doubleQuoteAmount}. Are you missing a double quote?");
-				}
-				else if (parenthesesAmount % 2 != 0)
-				{
-					throw new ArithmeticException($"Odd number of parentheses found: {parenthesesAmount}. Are you missing a parentheses?");
-				}
+				if (!languageTemplate.Options.IgnoreQuotesValidation)
+                {
+					var doubleQuoteAmount = GetCharacterCount(expression, '"');
+					// validate quotes (inside strings doesn't matter)
+					if (doubleQuoteAmount % 2 != 0)
+					{
+						throw new ArithmeticException($"Odd number of double quotes found: {doubleQuoteAmount}. Are you missing a double quote?");
+					}
+                }
 
 				if (!languageTemplate.Options.IgnoreParentheses)
                 {
+					var parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
+					// validate parentheses (inside strings doesn't matter)
+					if (parenthesesAmount % 2 != 0)
+					{
+						throw new ArithmeticException($"Odd number of parentheses found: {parenthesesAmount}. Are you missing a parentheses?");
+					}
+
 					// recursively break down the expressions parentheses, then work your way back up
 					while (parenthesesAmount != 0)
 					{
@@ -750,6 +755,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 						string answer = null;
 						Left.Value = TrimOperand(Left.Value);
 						Right.Value = TrimOperand(Right.Value);
+						
 						if (expGroup.ExpressionOperator == Operator.Addition)
 						{
 							answer = Addition(Left.Value, Right.Value);

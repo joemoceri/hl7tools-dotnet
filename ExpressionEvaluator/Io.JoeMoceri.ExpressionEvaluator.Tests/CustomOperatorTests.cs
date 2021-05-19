@@ -12,7 +12,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionOnBeforeOperatorExpressionSolved()
 		{
 			// Arrange
-			var languageTemplate = new EEExpressionsLanguageTemplate();
+			var languageTemplate = new PythonLanguageTemplate();
 
 			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 
@@ -55,7 +55,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionOnAfterOperatorExpressionSolved()
 		{
 			// Arrange
-			var languageTemplate = new EEExpressionsLanguageTemplate();
+			var languageTemplate = new PythonLanguageTemplate();
 
 			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 
@@ -95,7 +95,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionSolveOperatorExpression()
 		{
 			// Arrange
-			var languageTemplate = new EEExpressionsLanguageTemplate();
+			var languageTemplate = new PythonLanguageTemplate();
 
 			var additionOperator = languageTemplate.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 
@@ -129,11 +129,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
         public void CustomOperatorTests_HL7MSHExpression()
         {
             // Arrange
-            var languageTemplate = new HL7ExpressionsLanguageTemplate();
+            var languageTemplate = new HL7V2LanguageTemplate();
 
             var evaluator = new Evaluator(languageTemplate);
 
-            var msh = "MSH|^~\\&|EPIC|EPICADT|SMS|SMSADT|199912271408|CHARRIS|ADT^A04|1817457|D|2.5|";
+            var msh = @"MSH|^~\&|AccMgr|1|||20050110045504||ADT^A08|599102|P|2.3|||";
 
             // Act
             var result = evaluator.Evaluate(msh);
@@ -141,7 +141,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
             // Assert
             Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
 
-			var combinedParts = languageTemplate.GetHL7Result().ToString();
+			var combinedParts = languageTemplate.GetHL7V2MessageSegment().ToString();
 
 			Assert.AreEqual(combinedParts, msh);
         }
@@ -150,11 +150,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
         public void CustomOperatorTests_HL7PIDExpression()
         {
             // Arrange
-            var languageTemplate = new HL7ExpressionsLanguageTemplate();
+            var languageTemplate = new HL7V2LanguageTemplate();
 
             var evaluator = new Evaluator(languageTemplate);
 
-            var pid = "PID||0493575^^^2^ID 1|454721||DOE^JOHN^^^^|DOE^JOHN^^^^|19480203|M||B|254 MYSTREET AVE^^MYTOWN^OH^44123^USA||(216)123-4567|||M|NON|400003403~1129086|";
+            var pid = "PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO";
 
             // Act
             var result = evaluator.Evaluate(pid);
@@ -162,7 +162,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
             // Assert
             Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
 
-			var combinedParts = languageTemplate.GetHL7Result().ToString();
+			var combinedParts = languageTemplate.GetHL7V2MessageSegment().ToString();
 
 			Assert.AreEqual(combinedParts, pid);
         }
@@ -171,11 +171,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
         public void CustomOperatorTests_HL7NK1Expression()
         {
             // Arrange
-            var languageTemplate = new HL7ExpressionsLanguageTemplate();
+            var languageTemplate = new HL7V2LanguageTemplate();
 
             var evaluator = new Evaluator(languageTemplate);
 
-            var nk1 = "NK1||ROE^MARIE^^^^|SPO||(216)123-4567||EC|||||||||||||||||||||||||||";
+            var nk1 = "NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y||||||||||||||";
 
             // Act
             var result = evaluator.Evaluate(nk1);
@@ -183,7 +183,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
             // Assert
             Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
 
-            var combinedParts = languageTemplate.GetHL7Result().ToString();
+            var combinedParts = languageTemplate.GetHL7V2MessageSegment().ToString();
 
             Assert.AreEqual(combinedParts, nk1);
         }
@@ -192,11 +192,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_HL7PV1Expression()
 		{
 			// Arrange
-			var languageTemplate = new HL7ExpressionsLanguageTemplate();
+			var languageTemplate = new HL7V2LanguageTemplate();
 			
 			var evaluator = new Evaluator(languageTemplate);
 
-			var pv1 = "PV1||O|168 ~219~C~PMA^^^^^^^^^||||277^ALLEN MYLASTNAME^BONNIE^^^^|||||||||| ||2688684|||||||||||||||||||||||||199912271408||||||002376853";
+			var pv1 = "PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253||||||";
 
 			// Act
 			var result = evaluator.Evaluate(pv1);
@@ -204,7 +204,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// Assert
 			Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);
 
-			var combinedParts = languageTemplate.GetHL7Result().ToString();
+			var combinedParts = languageTemplate.GetHL7V2MessageSegment().ToString();
 
 			Assert.AreEqual(combinedParts, pv1);
 		}
@@ -213,25 +213,33 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_ParseMultipleHL7Expressions()
 		{
 			// Arrange
-			var languageTemplate = new HL7ExpressionsLanguageTemplate();
+			var languageTemplate = new HL7V2LanguageTemplate();
 
 			var evaluator = new Evaluator(languageTemplate);
 
-			var hl7Lines = new[] { 
-				@"MSH|^~\&|EPIC|EPICADT|SMS|SMSADT|199912271408|CHARRIS|ADT^A04|1817457|D|2.5|",
-				"PID||0493575^^^2^ID 1|454721||DOE^JOHN^^^^|DOE^JOHN^^^^|19480203|M||B|254 MYSTREET AVE^^MYTOWN^OH^44123^USA||(216)123-4567|||M|NON|400003403~1129086|",
-				"NK1||ROE^MARIE^^^^|SPO||(216)123-4567||EC|||||||||||||||||||||||||||",
-				"PV1||O|168 ~219~C~PMA^^^^^^^^^||||277^ALLEN MYLASTNAME^BONNIE^^^^|||||||||| ||2688684|||||||||||||||||||||||||199912271408||||||002376853",
+			var hl7Lines = new[] {
+				@"MSH|^~\&|AccMgr|1|||20050110045504||ADT^A08|599102|P|2.3|||",
+				"EVN|A01|20050110045502|||||",
+				"PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO",
+				"NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y||||||||||||||",
+				"PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253||||||",
+				"GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT|",
+				"DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG ^I9|OSTEOARTHROS NOS-L/LEG ||A|",
+				@"IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCK ""ST^^FOWL^CA^999990000|||||8291",
+				"IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212",
+				@"IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ""ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291",
+				"IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212",
+				"IN1|3|SELF PAY|1|SELF PAY|||||||||||5||1",
 			};
 
-			var results = new List<HL7Result>();
+			var results = new List<HL7V2MessageSegment>();
 
 			// Act
 			for (var i = 0; i < hl7Lines.Length; i++)
             {
 				var result = evaluator.Evaluate(hl7Lines[i]);
 
-				results.Add(languageTemplate.GetHL7Result());
+				results.Add(languageTemplate.GetHL7V2MessageSegment());
 
 				// Assert
 				Assert.AreEqual(languageTemplate.DefaultExpressionResult, result);

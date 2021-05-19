@@ -1,6 +1,6 @@
 ﻿namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class HL7Part
+    public class HL7V2Field
     {
         public int DelimiterIndex { get; set; }
 
