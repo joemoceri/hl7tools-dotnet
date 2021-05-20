@@ -5,7 +5,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 {
     public class HL7V2FieldRepetition
     {
-        public int DelimiterIndex { get; set; }
+        public int Id { get; set; }
 
         public string Delimiter { get; set; }
 
