@@ -19,7 +19,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 	{
 		public ExpressionConfigurationBase expressionConfiguration;
 
-		public Evaluator(): this(new PythonExpressionConfiguration()) { } 
+		public Evaluator(): this(new CSharpExpressionConfiguration()) { } 
 
 		public Evaluator(ExpressionConfigurationBase expressionConfiguration)
         {

@@ -24,6 +24,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				for (var i = 0; i < Fields.Count; i++)
 				{
+					if (SegmentName.Equals("MSH") && i == 0)
+                    {
+						continue;
+                    }
+
 					result += $"{Fields[i].Delimiter}{Fields[i].Value}";
 				}
 

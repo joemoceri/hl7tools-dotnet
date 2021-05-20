@@ -11,7 +11,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionOnBeforeOperatorExpressionSolved()
 		{
 			// Arrange
-			var expressionConfiguration = new PythonExpressionConfiguration();
+			var expressionConfiguration = new CSharpExpressionConfiguration();
 
 			var additionOperator = expressionConfiguration.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 
@@ -54,7 +54,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionOnAfterOperatorExpressionSolved()
 		{
 			// Arrange
-			var expressionConfiguration = new PythonExpressionConfiguration();
+			var expressionConfiguration = new CSharpExpressionConfiguration();
 
 			var additionOperator = expressionConfiguration.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 
@@ -94,7 +94,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void CustomOperatorTests_AdditionSolveOperatorExpression()
 		{
 			// Arrange
-			var expressionConfiguration = new PythonExpressionConfiguration();
+			var expressionConfiguration = new CSharpExpressionConfiguration();
 
 			var additionOperator = expressionConfiguration.MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
 

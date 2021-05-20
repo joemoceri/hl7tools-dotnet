@@ -4,13 +4,12 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    // TODO: Make this actually python (remove || && and look into other operators)
-    public class PythonExpressionConfiguration : ExpressionConfigurationBase
+    public class CSharpExpressionConfiguration : ExpressionConfigurationBase
     {
         private readonly IList<ExpressionConfigurationOperator> operators;
         private readonly ExpressionConfigurationOptions options;
 
-        public PythonExpressionConfiguration()
+        public CSharpExpressionConfiguration()
         {
             operators = new List<ExpressionConfigurationOperator>
             {
@@ -19,10 +18,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 CreateExpressionConfigurationOperator(Operator.Multiplication, OperatorPrecedence.Higher, OperatorType.MathString, "*"),
                 CreateExpressionConfigurationOperator(Operator.Division, OperatorPrecedence.Higher, OperatorType.MathString, "/"),
                 CreateExpressionConfigurationOperator(Operator.Modulus, OperatorPrecedence.Higher, OperatorType.MathString, "%"),
-                CreateExpressionConfigurationOperator(Operator.And, OperatorPrecedence.Lower, OperatorType.Boolean, "and"),
                 CreateExpressionConfigurationOperator(Operator.And, OperatorPrecedence.Lower, OperatorType.Boolean, "&&"),
                 CreateExpressionConfigurationOperator(Operator.Or, OperatorPrecedence.Lower, OperatorType.Boolean, "||"),
-                CreateExpressionConfigurationOperator(Operator.Or, OperatorPrecedence.Lower, OperatorType.Boolean, "or"),
                 CreateExpressionConfigurationOperator(Operator.LessThanOrEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, "<="),
                 CreateExpressionConfigurationOperator(Operator.GreaterThanOrEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, ">="),
                 CreateExpressionConfigurationOperator(Operator.EqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, "=="),
@@ -39,7 +36,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             };
         }
 
-        public override string Name => "Python";
+        public override string Name => "CSharp";
 
         public override IList<ExpressionConfigurationOperator> MathStringOperators 
         {
