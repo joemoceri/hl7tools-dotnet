@@ -3,7 +3,7 @@
 namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 {
 	[TestClass]
-	public class BooleanExpressionTests
+	public class CSharpBooleanExpressionTests
 	{
 		private Evaluator evaluator = new Evaluator();
 
