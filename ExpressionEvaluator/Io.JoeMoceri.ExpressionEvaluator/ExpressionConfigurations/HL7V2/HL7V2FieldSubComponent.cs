@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class HL7V2Field
+    public class HL7V2FieldSubComponent
     {
-        public HL7V2Field()
+        public HL7V2FieldSubComponent()
         {
-            Components = new List<HL7V2FieldComponent>();
+            FieldRepetitions = new List<HL7V2FieldRepetition>();
         }
 
         public int Id { get; set; }
@@ -16,6 +16,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public string Value { get; set; }
 
-        public IList<HL7V2FieldComponent> Components { get; set; }
+        public IList<HL7V2FieldRepetition> FieldRepetitions { get; set; }
     }
 }

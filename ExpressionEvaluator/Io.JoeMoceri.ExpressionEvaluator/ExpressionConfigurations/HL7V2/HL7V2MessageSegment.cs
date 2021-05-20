@@ -33,7 +33,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 		public HL7V2Field GetField(int id)
 		{
-			return Fields.FirstOrDefault(f => f.DelimiterIndex.Equals(id));
+			return Fields.FirstOrDefault(f => f.Id.Equals(id));
 		}
 	}
 }

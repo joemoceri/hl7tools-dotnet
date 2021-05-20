@@ -18,29 +18,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, "|")
             };
 
-            Setup();
-
-            var additionOperator = MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
-
-            additionOperator.SolveOperatorExpression = (expGroup) =>
-            {
-                if (delimiterCount == 0)
-                {
-                    segment = expGroup.LeftOperand;
-                }
-
-                delimiterCount++;
-                fields.Add(new HL7V2Field
-                {
-                    Delimiter = additionOperator.OperatorName,
-                    DelimiterIndex = delimiterCount,
-                    Value = expGroup.RightOperand
-                });
-
-                // just return something to make the evaluator happy. The final expression will always be this if it runs successfully.
-                return DefaultExpressionResult;
-            };
-
             options = new ExpressionConfigurationOptions
             {
                 IgnoreWhitespaceOutsideQuotes = true,
@@ -48,6 +25,44 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 IgnoreQuotesValidation = true
             };
 
+            Setup();
+
+            var additionOperator = MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
+
+            additionOperator.SolveOperatorExpression = FieldSolveOperatorExpression;
+
+            ExpressionResult FieldSolveOperatorExpression(ExpressionGroup expGroup)
+            {
+                if (delimiterCount == 0)
+                {
+                    segment = expGroup.LeftOperand;
+                    if (segment.Equals("MSH"))
+                    {
+                        delimiterCount++;
+
+                        fields.Add(new HL7V2Field
+                        {
+                            Delimiter = additionOperator.OperatorName,
+                            Id = delimiterCount,
+                            Value = additionOperator.OperatorName
+                        });
+                    }
+
+                }
+
+                delimiterCount++;
+
+                var field = new HL7V2Field
+                {
+                    Delimiter = additionOperator.OperatorName,
+                    Id = delimiterCount,
+                    Value = expGroup.RightOperand
+                }; 
+
+                fields.Add(field);
+
+                return DefaultExpressionResult;
+            }
         }
 
         public void Setup()

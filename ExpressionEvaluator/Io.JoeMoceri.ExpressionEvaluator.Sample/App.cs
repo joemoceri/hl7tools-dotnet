@@ -9,9 +9,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
         {
             ParseHL7FileExample();
 
-            // SolveMathExample();
+            //SolveMathExample();
 
-            // SolveBooleanExample();
+            //SolveBooleanExample();
 
             Console.ReadLine();
         }
@@ -20,18 +20,22 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
         {
             var evaluator = new Evaluator();
 
+            var r = 1 + 2 * (3 - 4) / 18;
+
             var result = evaluator.Evaluate("1 + 2 * (3 - 4) / 18");
 
-            Console.WriteLine(result.ToString());
+            Console.WriteLine($"{r} = {result}");
         }
 
         public void SolveBooleanExample()
         {
             var evaluator = new Evaluator();
 
+            var r = 1 > 2 && (3 + 4) / 2 == 5;
+
             var result = evaluator.Evaluate("1 > 2 and (3 + 4) / 2 == 5");
 
-            Console.WriteLine(result.ToString());
+            Console.WriteLine($"{r} = {result}");
         }
 
         public void ParseHL7FileExample()
@@ -46,13 +50,22 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var hl7v2Message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
-            var segment = hl7v2Message["PID"];
+            var msh = hl7v2Message["MSH"];
+            var msh1 = hl7v2Message.GetFieldValue("MSH.1");
+            var msh2 = hl7v2Message.GetFieldValue("MSH.2");
+            var msh3 = hl7v2Message.GetFieldValue("MSH.3");
+            var msh4 = hl7v2Message.GetFieldValue("MSH.4");
+            var msh7 = hl7v2Message.GetFieldValue("MSH.7");
+            var msh8 = hl7v2Message.GetFieldValue("MSH.8");
+            var msh9 = hl7v2Message.GetFieldValue("MSH.9");
+            //var msh91 = hl7v2Message.GetFieldValue("MSH.9.1");
+            //var msh92 = hl7v2Message.GetFieldValue("MSH.9.2");
+            //var ob33 = hl7v2Message.GetFieldValue("OBR.33");
+            //var ob3312 = hl7v2Message.GetFieldValue("OBR.33.1.2");
 
-            // MSH.3 : Sending Application
-            var field = hl7v2Message.GetField("MSH.3");
-
-            var patientNameField = hl7v2Message.GetField("PID.5");
-            var birthdateField = hl7v2Message.GetField("PID.7");
+            var pid = hl7v2Message["PID"];
+            var pid5 = hl7v2Message.GetFieldValue("PID.5");
+            var pid7 = hl7v2Message.GetFieldValue("PID.7");
 
             Console.WriteLine("Final Output:");
 
