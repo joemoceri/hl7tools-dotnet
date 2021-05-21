@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
@@ -10,5 +11,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public string Delimiter { get; set; }
 
         public string Value { get; set; }
+
+        public void Rebuild(Func<IList<IHL7V2Field>, bool, string> combine)
+        {
+
+        }
     }
 }

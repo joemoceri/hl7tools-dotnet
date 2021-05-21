@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
@@ -21,6 +22,19 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public HL7V2FieldComponent GetComponent(int id)
         {
             return Components.FirstOrDefault(f => f.Id.Equals(id));
+        }
+
+        public void Rebuild(Func<IList<IHL7V2Field>, bool, string> combine)
+        {
+            if (Components.Count > 0)
+            {
+                foreach (var component in Components)
+                {
+                    component.Rebuild(combine);
+                }
+
+                Value = combine(Components.Cast<IHL7V2Field>().ToList(), false);
+            }
         }
 
         public HL7V2FieldComponent this[int id]

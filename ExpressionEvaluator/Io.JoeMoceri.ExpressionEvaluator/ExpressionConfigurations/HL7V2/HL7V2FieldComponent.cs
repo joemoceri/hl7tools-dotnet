@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
@@ -38,6 +39,39 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public HL7V2FieldRepetition GetFieldRepetition(int id)
         {
             return FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(id));
+        }
+
+        public void Rebuild(Func<IList<IHL7V2Field>, bool, string> combine)
+        {
+            // Components can have sub components or field repetition, check for both
+
+            // |A&CYTO~JOE~TEST&JANE~JOE~TEST^201410060929
+            if (SubComponents.Count > 0)
+            {
+                foreach (var sc in SubComponents)
+                {
+                    sc.Rebuild(combine);
+                }
+
+                Value = combine(SubComponents.Cast<IHL7V2Field>().ToList(), false);
+            }
+
+            // handle field repetitions
+            // 168 ~219~C~PMA^101^1~2~3^1^^^S
+            if (FieldRepetitions.Count > 0)
+            {
+                Value = combine(FieldRepetitions.Cast<IHL7V2Field>().ToList(), false);
+            }
+        }
+
+        public void AddFieldRepetition(string delimiter, string value)
+        {
+            FieldRepetitions.Add(new HL7V2FieldRepetition
+            {
+                Delimiter = FieldRepetitions.First().Delimiter,
+                Id = FieldRepetitions.Count > 0 ? FieldRepetitions.Last().Id + 1 : 1,
+                Value = value,
+            });
         }
     }
 }

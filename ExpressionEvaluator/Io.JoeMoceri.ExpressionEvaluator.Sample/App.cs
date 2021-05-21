@@ -78,12 +78,30 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
             var pid5 = hl7v2Message.Get("PID.5");
             var pid7 = hl7v2Message.Get("PID.7");
 
+            var pv1 = hl7v2Message["PV1"];
+            var pv131 = hl7v2Message.Get("PV1.3.1");
+
+            var fieldComponent = (HL7V2FieldComponent)pv131;
+
+            fieldComponent.AddFieldRepetition(expressionConfiguration.fieldRepetitionDelimiter, "TEST JOE");
+
+            Console.WriteLine("Before:");
+
+            foreach (var messageSegment in hl7v2Message.MessageSegments)
+            {
+                Console.WriteLine(messageSegment.ToString());
+            }
+
+            hl7v2Message.Rebuild();
+
             Console.WriteLine("Final Output:");
 
             foreach (var messageSegment in hl7v2Message.MessageSegments)
             {
                 Console.WriteLine(messageSegment.ToString());
             }
+
+            Console.Read();
         }
     }
 }

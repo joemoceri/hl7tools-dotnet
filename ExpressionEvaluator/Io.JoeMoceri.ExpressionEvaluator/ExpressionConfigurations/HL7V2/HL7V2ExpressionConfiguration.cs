@@ -177,7 +177,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             var result = new HL7V2MessageSegment
             {
-                Fields = fields,
+                Fields = fields.Cast<IHL7V2Field>().ToList(),
                 SegmentName = segment
             };
 

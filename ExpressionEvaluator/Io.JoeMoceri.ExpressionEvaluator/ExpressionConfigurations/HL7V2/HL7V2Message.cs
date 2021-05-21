@@ -15,6 +15,18 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             messageSegments = new List<HL7V2MessageSegment>();
         }
 
+        /// <summary>
+        /// Rebuild the HL7 after making modifications, this updates the Value of each IHL7V2Field and the ToString method of HL7V2MessageSegment
+        /// </summary>
+        public void Rebuild()
+        {
+            //messageSegments.First(ms => ms.SegmentName.Equals("MSH")).Rebuild();
+            foreach (var messageSegment in messageSegments)
+            {
+                messageSegment.Rebuild();
+            }
+        }
+
         public IHL7V2Field Get(string id)
         {
             // ["PID.3.2.1"]
@@ -88,5 +100,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         public IList<HL7V2MessageSegment> MessageSegments => messageSegments;
+
+        public IList<string> ToHL7File()
+        {
+            var result = new List<string>();
+
+            for (var i = 0; i < messageSegments.Count; i++)
+            {
+                result.Add(messageSegments[i].ToString());
+            }
+
+            return result;
+        }
     }
 }

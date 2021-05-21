@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
@@ -21,6 +22,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public HL7V2FieldRepetition GetFieldRepetition(int id)
         {
             return FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(id));
+        }
+
+        public void Rebuild(Func<IList<IHL7V2Field>, bool, string> combine)
+        {
+            // &CYTO~JOE~TEST&JANE
+            if (FieldRepetitions.Count > 0)
+            {
+                Value = combine(FieldRepetitions.Cast<IHL7V2Field>().ToList(), false);
+            }
         }
 
         public HL7V2FieldRepetition this[int id]
