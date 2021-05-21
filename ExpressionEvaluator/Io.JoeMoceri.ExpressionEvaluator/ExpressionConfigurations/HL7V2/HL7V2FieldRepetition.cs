@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class HL7V2FieldRepetition
+    public class HL7V2FieldRepetition : IHL7V2Field
     {
         public int Id { get; set; }
 

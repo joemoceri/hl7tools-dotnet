@@ -13,7 +13,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             messageSegments = new List<HL7V2MessageSegment>();
         }
 
-        public string Get(string id)
+        public IHL7V2Field Get(string id)
         {
             // ["PID.3.2.1"]
             var split = id.Split('.', StringSplitOptions.RemoveEmptyEntries);
@@ -60,19 +60,18 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             var field = segment.GetField(fieldIndex.Value);
 
-            var result = field.Value;
+            IHL7V2Field result = field;
 
             if (field.Components.Count > 0 && subFieldIndex.HasValue && subFieldIndex.Value <= field.Components.Count)
             {
                 var component = field.Components[subFieldIndex.Value - 1];
-                result = component.Value;
+                result = component;
 
                 if (component.SubComponents.Count > 0 && subSubFieldIndex.HasValue && subSubFieldIndex.Value <= component.SubComponents.Count)
                 {
-                    result = component.SubComponents[subSubFieldIndex.Value - 1].Value;
+                    result = component.SubComponents[subSubFieldIndex.Value - 1];
                 }
             }
-
 
             return result;
         }

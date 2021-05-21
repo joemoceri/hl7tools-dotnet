@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-    public class HL7V2FieldSubComponent
+    public class HL7V2FieldSubComponent : IHL7V2Field
     {
         public HL7V2FieldSubComponent()
         {
