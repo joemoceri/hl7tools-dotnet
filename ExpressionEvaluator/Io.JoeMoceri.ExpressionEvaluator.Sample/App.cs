@@ -33,7 +33,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var r = 1 > 2 && (3 + 4) / 2 == 5;
 
-            var result = evaluator.Evaluate("1 > 2 and (3 + 4) / 2 == 5");
+            var result = evaluator.Evaluate("1 > 2 && (3 + 4) / 2 == 5");
 
             Console.WriteLine($"{r} = {result}");
         }
