@@ -122,8 +122,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                                             var fieldRepetition = new HL7V2FieldRepetition
                                             {
                                                 Delimiter = fieldRepetitionDelimiter,
-                                                Value = fieldRepetitionSplit[j],
-                                                Id = j + 1
+                                                Value = fieldRepetitionSplit[k],
+                                                Id = k + 1
                                             };
 
                                             subComponent.FieldRepetitions.Add(fieldRepetition);
