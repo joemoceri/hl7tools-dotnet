@@ -7,11 +7,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
         private readonly IList<ExpressionConfigurationOperator> operators;
         private readonly ExpressionConfigurationOptions options;
-        public string fieldDelimiter = "|";
-        public string componentDelimiter = "^";
-        public string escapeDelimiter = "\\";
-        public string subComponentDelimiter = "&";
-        public string fieldRepetitionDelimiter = "~";
+        public static string fieldDelimiter = "|";
+        public static string componentDelimiter = "^";
+        public static string escapeDelimiter = "\\";
+        public static string subComponentDelimiter = "&";
+        public static string fieldRepetitionDelimiter = "~";
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;

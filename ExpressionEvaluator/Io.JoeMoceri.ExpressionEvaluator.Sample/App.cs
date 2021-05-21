@@ -83,23 +83,27 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var fieldComponent = (HL7V2FieldComponent)pv131;
 
-            fieldComponent.AddFieldRepetition(expressionConfiguration.fieldRepetitionDelimiter, "TEST JOE");
+            fieldComponent.AddFieldRepetition("TEST JOE");
 
             Console.WriteLine("Before:");
 
-            foreach (var messageSegment in hl7v2Message.MessageSegments)
-            {
-                Console.WriteLine(messageSegment.ToString());
-            }
+            Console.WriteLine(hl7v2Message.ToString());
+
+            //foreach (var messageSegment in hl7v2Message.MessageSegments)
+            //{
+            //    Console.WriteLine(messageSegment.ToString());
+            //}
 
             hl7v2Message.Rebuild();
 
             Console.WriteLine("Final Output:");
 
-            foreach (var messageSegment in hl7v2Message.MessageSegments)
-            {
-                Console.WriteLine(messageSegment.ToString());
-            }
+            Console.WriteLine(hl7v2Message.ToString());
+
+            //foreach (var messageSegment in hl7v2Message.MessageSegments)
+            //{
+            //    Console.WriteLine(messageSegment.ToString());
+            //}
 
             Console.Read();
         }

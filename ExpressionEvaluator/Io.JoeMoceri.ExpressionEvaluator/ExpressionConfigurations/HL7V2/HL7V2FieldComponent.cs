@@ -64,11 +64,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
-        public void AddFieldRepetition(string delimiter, string value)
+        public void AddFieldRepetition(string value)
         {
             FieldRepetitions.Add(new HL7V2FieldRepetition
             {
-                Delimiter = delimiter,
+                Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
                 Id = FieldRepetitions.Count > 0 ? FieldRepetitions.Last().Id + 1 : 1,
                 Value = value,
             });

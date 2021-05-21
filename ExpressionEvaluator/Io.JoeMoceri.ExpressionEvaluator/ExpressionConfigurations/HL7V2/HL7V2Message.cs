@@ -112,5 +112,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             return result;
         }
+
+        public override string ToString()
+        {
+            return string.Join(Environment.NewLine, ToHL7File());
+        }
     }
 }
