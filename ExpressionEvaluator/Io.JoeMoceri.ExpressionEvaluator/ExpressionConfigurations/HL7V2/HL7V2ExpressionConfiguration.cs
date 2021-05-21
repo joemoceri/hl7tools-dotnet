@@ -126,7 +126,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                                                 Id = j + 1
                                             };
 
-                                            component.FieldRepetitions.Add(fieldRepetition);
+                                            subComponent.FieldRepetitions.Add(fieldRepetition);
                                         }
                                     }
 
