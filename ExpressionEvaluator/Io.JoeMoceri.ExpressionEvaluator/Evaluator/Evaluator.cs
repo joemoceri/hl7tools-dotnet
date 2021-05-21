@@ -66,13 +66,13 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				var fieldDelimiter = expressions[0].Substring(3, 1);
 
-				expConfig.fieldDelimiter = fieldDelimiter;
+				HL7V2ExpressionConfiguration.fieldDelimiter = fieldDelimiter;
 				additionOperator.OperatorName = fieldDelimiter;
 
-				expConfig.componentDelimiter = expressions[0].Substring(4, 1);
-				expConfig.fieldRepetitionDelimiter = expressions[0].Substring(5, 1);
-				expConfig.escapeDelimiter = expressions[0].Substring(6, 1);
-				expConfig.subComponentDelimiter = expressions[0].Substring(7, 1);
+				HL7V2ExpressionConfiguration.componentDelimiter = expressions[0].Substring(4, 1);
+				HL7V2ExpressionConfiguration.fieldRepetitionDelimiter = expressions[0].Substring(5, 1);
+				HL7V2ExpressionConfiguration.escapeDelimiter = expressions[0].Substring(6, 1);
+				HL7V2ExpressionConfiguration.subComponentDelimiter = expressions[0].Substring(7, 1);
 
 				foreach (var expression in expressions)
 				{
