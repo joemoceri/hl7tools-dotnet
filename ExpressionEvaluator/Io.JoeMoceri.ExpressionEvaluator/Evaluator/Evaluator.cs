@@ -28,37 +28,67 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 		public HL7V2Message EvaluateHL7V2File(string path)
         {
-			if (!File.Exists(path))
+			var result = new HL7V2Message();
+
+            try
             {
-				throw new ArgumentException($"File {path} doesn't exist.", nameof(path));
+				if (!File.Exists(path))
+				{
+					throw new ArgumentException($"File {path} doesn't exist.", nameof(path));
+				}
+
+				var expressions = File.ReadAllLines(path);
+
+				result = EvaluateHL7V2File(expressions);
             }
-
-			var expressions = File.ReadAllLines(path);
-
-			var result = EvaluateHL7V2File(expressions);
+			catch(Exception ex)
+            {
+				result.Error = ex;
+            }
 
 			return result;
         }
 
 		public HL7V2Message EvaluateHL7V2File(string[] expressions)
         {
-			if (!(expressionConfiguration is HL7V2ExpressionConfiguration))
-			{
-				throw new InvalidOperationException($"Expression Configuration must be of type {nameof(HL7V2ExpressionConfiguration)}");
-			}
+			var result = new HL7V2Message();
 
-			var hl7v2Message = new HL7V2Message();
+            try
+            {
+				if (!(expressionConfiguration is HL7V2ExpressionConfiguration))
+				{
+					throw new InvalidOperationException($"Expression Configuration must be of type {nameof(HL7V2ExpressionConfiguration)}");
+				}
 
-			foreach (var expression in expressions)
-			{
-				Evaluate(expression);
+				var expConfig = ((HL7V2ExpressionConfiguration)expressionConfiguration);
 
-				var messageSegment = ((HL7V2ExpressionConfiguration)expressionConfiguration).GetHL7V2MessageSegment();
+				var additionOperator = expConfig.MathStringOperators.First(f => f.ExpressionOperator.Equals(Operator.Addition));
 
-				hl7v2Message.MessageSegments.Add(messageSegment);
-			}
+				var fieldDelimiter = expressions[0].Substring(3, 1);
 
-			return hl7v2Message;
+				expConfig.fieldDelimiter = fieldDelimiter;
+				additionOperator.OperatorName = fieldDelimiter;
+
+				expConfig.componentDelimiter = expressions[0].Substring(4, 1);
+				expConfig.fieldRepetitionDelimiter = expressions[0].Substring(5, 1);
+				expConfig.escapeDelimiter = expressions[0].Substring(6, 1);
+				expConfig.subComponentDelimiter = expressions[0].Substring(7, 1);
+
+				foreach (var expression in expressions)
+				{
+					Evaluate(expression);
+
+					var messageSegment = ((HL7V2ExpressionConfiguration)expressionConfiguration).GetHL7V2MessageSegment();
+
+					result.MessageSegments.Add(messageSegment);
+				}
+            }
+			catch (Exception ex)
+            {
+				result.Error = ex;
+            }
+
+			return result;
 		}
 
 		public ExpressionResult Evaluate(string expression)

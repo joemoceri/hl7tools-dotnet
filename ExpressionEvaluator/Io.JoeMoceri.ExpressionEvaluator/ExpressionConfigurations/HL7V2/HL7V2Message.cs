@@ -8,6 +8,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
         private readonly IList<HL7V2MessageSegment> messageSegments;
 
+        public Exception Error;
+
         public HL7V2Message()
         {
             messageSegments = new List<HL7V2MessageSegment>();

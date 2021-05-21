@@ -7,10 +7,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
         private readonly IList<ExpressionConfigurationOperator> operators;
         private readonly ExpressionConfigurationOptions options;
-        private string fieldDelimiter = "|";
-        private string componentDelimiter = "^";
-        private string subComponentDelimiter = "&";
-        private string fieldRepetitionDelimiter = "~";
+        public string fieldDelimiter = "|";
+        public string componentDelimiter = "^";
+        public string escapeDelimiter = "\\";
+        public string subComponentDelimiter = "&";
+        public string fieldRepetitionDelimiter = "~";
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;
@@ -65,7 +66,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
                 fields.Add(field);
 
-                if (!expGroup.RightOperand.Equals(@"^~\&"))
+                if (!expGroup.LeftOperand.Equals("MSH"))
                 {
                     // get the components
                     if (expGroup.RightOperand.Contains(componentDelimiter))
