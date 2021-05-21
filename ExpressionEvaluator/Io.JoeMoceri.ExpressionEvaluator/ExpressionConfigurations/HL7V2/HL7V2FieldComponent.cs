@@ -68,7 +68,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             FieldRepetitions.Add(new HL7V2FieldRepetition
             {
-                Delimiter = FieldRepetitions.First().Delimiter,
+                Delimiter = delimiter,
                 Id = FieldRepetitions.Count > 0 ? FieldRepetitions.Last().Id + 1 : 1,
                 Value = value,
             });
