@@ -40,7 +40,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
         public void ParseHL7FileExample()
         {
-            // TODO: Implement the rest of the delimiters
             // one liner
             //var hl7v2Message = new Evaluator(new HL7V2ExpressionConfiguration()).EvaluateHL7V2File("HL7File.txt");
 
