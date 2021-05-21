@@ -7,6 +7,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
         private readonly IList<ExpressionConfigurationOperator> operators;
         private readonly ExpressionConfigurationOptions options;
+        private string fieldDelimiter = "|";
+        private string componentDelimiter = "^";
+        private string subComponentDelimiter = "&";
+        private string fieldRepetitionDelimiter = "~";
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;
@@ -15,7 +19,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             operators = new List<ExpressionConfigurationOperator>
             {
-                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, "|")
+                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, fieldDelimiter)
             };
 
             options = new ExpressionConfigurationOptions
@@ -60,6 +64,80 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 }; 
 
                 fields.Add(field);
+
+                if (!expGroup.RightOperand.Equals(@"^~\&"))
+                {
+                    // get the components
+                    if (expGroup.RightOperand.Contains(componentDelimiter))
+                    {
+                        field.Components = new List<HL7V2FieldComponent>();
+
+                        var componentSplit = expGroup.RightOperand.Split(componentDelimiter);
+
+                        for (var i = 0; i < componentSplit.Length; i++)
+                        {
+                            var component = new HL7V2FieldComponent
+                            {
+                                Delimiter = componentDelimiter,
+                                Value = componentSplit[i],
+                                Id = i + 1
+                            };
+
+                            if (component.Value.Contains(fieldRepetitionDelimiter))
+                            {
+                                var fieldRepetitionSplit = component.Value.Split(fieldRepetitionDelimiter);
+
+                                for (var j = 0; j < fieldRepetitionSplit.Length; j++)
+                                {
+                                    var fieldRepetition = new HL7V2FieldRepetition
+                                    {
+                                        Delimiter = fieldRepetitionDelimiter,
+                                        Value = fieldRepetitionSplit[j],
+                                        Id = j + 1
+                                    };
+
+                                    component.FieldRepetitions.Add(fieldRepetition);
+                                }
+                            }
+
+                            if (component.Value.Contains(subComponentDelimiter))
+                            {
+                                var subComponentSplit = component.Value.Split(subComponentDelimiter);
+
+                                for (var j = 0; j < subComponentSplit.Length; j++)
+                                {
+                                    var subComponent = new HL7V2FieldSubComponent
+                                    {
+                                        Delimiter = subComponentDelimiter,
+                                        Value = subComponentSplit[j],
+                                        Id = j + 1
+                                    };
+
+                                    if (subComponent.Value.Contains(fieldRepetitionDelimiter))
+                                    {
+                                        var fieldRepetitionSplit = subComponent.Value.Split(fieldRepetitionDelimiter);
+
+                                        for (var k = 0; k < fieldRepetitionSplit.Length; k++)
+                                        {
+                                            var fieldRepetition = new HL7V2FieldRepetition
+                                            {
+                                                Delimiter = fieldRepetitionDelimiter,
+                                                Value = fieldRepetitionSplit[j],
+                                                Id = j + 1
+                                            };
+
+                                            component.FieldRepetitions.Add(fieldRepetition);
+                                        }
+                                    }
+
+                                    component.SubComponents.Add(subComponent);
+                                }
+                            }
+
+                            field.Components.Add(component);
+                        }
+                    }
+                }
 
                 return DefaultExpressionResult;
             }

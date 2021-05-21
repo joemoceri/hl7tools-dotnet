@@ -36,6 +36,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			}
 		}
 
+		public HL7V2Field this[int id]
+        {
+            get
+            {
+				return Fields.FirstOrDefault(f => f.Id.Equals(id));
+            }
+        }
+
 		public HL7V2Field GetField(int id)
 		{
 			return Fields.FirstOrDefault(f => f.Id.Equals(id));

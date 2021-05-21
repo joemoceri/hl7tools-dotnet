@@ -17,5 +17,18 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public string Value { get; set; }
 
         public IList<HL7V2FieldComponent> Components { get; set; }
+
+        public HL7V2FieldComponent GetComponent(int id)
+        {
+            return Components.FirstOrDefault(f => f.Id.Equals(id));
+        }
+
+        public HL7V2FieldComponent this[int id]
+        {
+            get
+            {
+                return Components.FirstOrDefault(f => f.Id.Equals(id));
+            }
+        }
     }
 }
