@@ -16,7 +16,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Rebuild the HL7 after making modifications, this updates the Value of each HL7V2FieldBase and the ToString method of HL7V2MessageSegment
+        /// Rebuild the HL7 after making modifications, this updates the Value of each HL7V2FieldBase in this message and the ToString method
         /// </summary>
         public void Rebuild()
         {
@@ -35,8 +35,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             // ["PID.3.2.1"]
             // TODO:
-            // ["PID(1).3.2.1]
-            // ["PID(2).3.2.1}
+	        //Get("PID(2).1") // gets the 2nd PID repetition's 1st field
+	        //Get("PID.1(2)") // gets the 1st PID repetition's 1st first field's 2nd repetition
 
             var split = id.Split('.', StringSplitOptions.RemoveEmptyEntries);
 
@@ -110,6 +110,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        public IList<HL7V2MessageSegment> Segments(string segmentName)
+        {
+            return messageSegments.Where(s => s.SegmentName.Equals(segmentName)).ToList();
+        }
+
         public IList<HL7V2MessageSegment> MessageSegments => messageSegments;
 
         public IList<string> ToHL7File()
@@ -128,5 +133,76 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             return string.Join(Environment.NewLine, ToHL7File());
         }
+
+        #region Message Segment Operations
+        public HL7V2MessageSegment AddMessageSegment(string segmentName)
+        {
+            var result = new HL7V2MessageSegment
+            {
+                SegmentName = segmentName,
+            };
+
+            messageSegments.Add(result);
+
+            return result;
+        }
+
+        public bool RemoveMessageSegment(string segmentName, int index = 0)
+        {
+            var fr = messageSegments.Where(f => f.SegmentName.Equals(segmentName)).ToList()[index];
+
+            if (fr == null)
+            {
+                return false;
+            }
+
+            return messageSegments.Remove(fr);
+        }
+
+        public HL7V2MessageSegment InsertMessageSegment(string segmentName, int index = 0)
+        {
+            if (index >= messageSegments.Count || index <= 0)
+            {
+                return null;
+            }
+
+            var messageSegment = new HL7V2MessageSegment
+            {
+                SegmentName = segmentName,
+            };
+
+            var pFr = messageSegments.Where(fr => fr.SegmentName.Equals(segmentName)).ToList()[index];
+
+            if (pFr == null)
+            {
+                return null;
+            }
+
+            var previousIndex = messageSegments.IndexOf(pFr);
+
+            messageSegments.Insert(previousIndex, messageSegment);
+
+            return messageSegment;
+        }
+
+        public HL7V2MessageSegment UpdateMessageSegment(string segmentName, int index = 0)
+        {
+            if (index >= messageSegments.Count || index <= 0)
+            {
+                return null;
+            }
+
+            var messageSegment = messageSegments.Where(f => f.SegmentName.Equals(segmentName)).ToList()[index];
+
+            if (messageSegment == null)
+            {
+                return null;
+            }
+
+            messageSegment.SegmentName = segmentName;
+
+            return messageSegment;
+        }
+        #endregion
     }
 }

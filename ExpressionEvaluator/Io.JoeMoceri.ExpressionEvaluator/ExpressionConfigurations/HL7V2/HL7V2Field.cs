@@ -160,33 +160,39 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         #endregion
 
         #region Field Repetition Operations
-        public void AddFieldRepetition(string value)
+        public HL7V2FieldRepetition AddFieldRepetition(string value)
         {
-            FieldRepetitions.Add(new HL7V2FieldRepetition
+            var result = new HL7V2FieldRepetition
             {
                 Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
                 Id = FieldRepetitions.Count > 0 ? FieldRepetitions.Last().Id + 1 : 1,
                 Value = value,
-            });
+            };
+
+            FieldRepetitions.Add(result);
+
+            return result;
         }
 
-        public void RemoveFieldRepetition(int id)
+        public HL7V2FieldRepetition RemoveFieldRepetition(int id)
         {
             var fr = FieldRepetitions.FirstOrDefault(f => f.Id.Equals(id));
 
             if (fr == null)
             {
-                return;
+                return fr;
             }
 
             FieldRepetitions.Remove(fr);
+
+            return fr;
         }
 
-        public void InsertFieldRepetition(int id, string value)
+        public HL7V2FieldRepetition InsertFieldRepetition(int id, string value)
         {
             if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
             {
-                return;
+                return null;
             }
 
             var fieldRepetition = new HL7V2FieldRepetition
@@ -200,7 +206,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             if (pFr == null)
             {
-                return;
+                return pFr;
             }
 
             var previousIndex = FieldRepetitions.IndexOf(pFr);
@@ -214,23 +220,27 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
 
             FieldRepetitions.Insert(previousIndex, fieldRepetition);
+
+            return fieldRepetition;
         }
 
-        public void UpdateFieldRepetition(int id, string value)
+        public HL7V2FieldRepetition UpdateFieldRepetition(int id, string value)
         {
             if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
             {
-                return;
+                return null;
             }
 
             var fr = FieldRepetitions.FirstOrDefault(f => f.Id.Equals(id));
 
             if (fr == null)
             {
-                return;
+                return null;
             }
 
             fr.Value = value;
+
+            return fr;
         }
         #endregion
     }

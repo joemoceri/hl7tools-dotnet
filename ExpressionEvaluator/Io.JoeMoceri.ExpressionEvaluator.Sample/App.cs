@@ -50,15 +50,28 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
             var hl7v2Message = evaluator.EvaluateHL7V2File("HL7File.2.txt");
 
             var gt1 = hl7v2Message["GT1"];
+            var msh = hl7v2Message["MSH"];
+            var allMsh = hl7v2Message.Segments("MSH");
+
             var gt16 = gt1[6];
+
+            var pid3HasRepetitions = hl7v2Message["PV1"][2].FieldRepetitions.Count > 0;
+
+            var segment = new HL7V2MessageSegment
+            {
+                SegmentName = "MSH",
+            };
+
+            var field = segment.AddField("A");
+
             var gt161 = gt1[6][1]; // same as r1
             var gt161r1 = gt1[6][1, 1]; // also default
             var gt161r2 = gt1[6][1, 2];
 
-
+            hl7v2Message.Get("MSH.21.4").Value = "";
 
             //var msh = hl7v2Message["MSH"];
-            //var msh214 = hl7v2Message["MSH"][21][4];
+            var msh214 = hl7v2Message["MSH"][21][4];
             //var msh214fr1 = hl7v2Message["MSH"][21][4].GetFieldRepetition(1);
             //var msh214fr2 = hl7v2Message["MSH"][21][4].GetFieldRepetition(2);
             //var msh1 = hl7v2Message.Get("MSH.1");
