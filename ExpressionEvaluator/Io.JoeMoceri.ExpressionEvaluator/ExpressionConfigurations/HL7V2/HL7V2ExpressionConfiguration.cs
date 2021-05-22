@@ -7,6 +7,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
         private readonly IList<ExpressionConfigurationOperator> operators;
         private readonly ExpressionConfigurationOptions options;
+        public static string headerSegmentName = "MSH";
         public static string fieldDelimiter = "|";
         public static string componentDelimiter = "^";
         public static string escapeDelimiter = "\\";
@@ -41,7 +42,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 if (delimiterCount == 0)
                 {
                     segment = expGroup.LeftOperand;
-                    if (segment.Equals("MSH"))
+                    if (segment.Equals(headerSegmentName))
                     {
                         delimiterCount++;
 
@@ -66,7 +67,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
                 fields.Add(field);
 
-                if (!expGroup.LeftOperand.Equals("MSH"))
+                if (!expGroup.LeftOperand.Equals(headerSegmentName))
                 {
                     // get the components
                     if (expGroup.RightOperand.Contains(componentDelimiter))
