@@ -69,60 +69,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
                 if (!expGroup.LeftOperand.Equals(headerSegmentName))
                 {
-                    // get the components
-                    if (expGroup.RightOperand.Contains(componentDelimiter))
-                    {
-                        field.Components = new List<HL7V2FieldComponent>();
-
-                        var componentSplit = expGroup.RightOperand.Split(componentDelimiter);
-
-                        for (var i = 0; i < componentSplit.Length; i++)
-                        {
-                            var component = new HL7V2FieldComponent
-                            {
-                                Delimiter = componentDelimiter,
-                                Value = componentSplit[i],
-                                Id = i + 1
-                            };
-
-                            if (component.Value.Contains(subComponentDelimiter))
-                            {
-                                var subComponentSplit = component.Value.Split(subComponentDelimiter);
-
-                                for (var j = 0; j < subComponentSplit.Length; j++)
-                                {
-                                    var subComponent = new HL7V2FieldSubComponent
-                                    {
-                                        Delimiter = subComponentDelimiter,
-                                        Value = subComponentSplit[j],
-                                        Id = j + 1
-                                    };
-
-                                    if (subComponent.Value.Contains(fieldRepetitionDelimiter))
-                                    {
-                                        var fieldRepetitionSplit = subComponent.Value.Split(fieldRepetitionDelimiter);
-
-                                        for (var k = 0; k < fieldRepetitionSplit.Length; k++)
-                                        {
-                                            var fieldRepetition = new HL7V2FieldRepetition
-                                            {
-                                                Delimiter = fieldRepetitionDelimiter,
-                                                Value = fieldRepetitionSplit[k],
-                                                Id = k + 1
-                                            };
-
-                                            subComponent.FieldRepetitions.Add(fieldRepetition);
-                                        }
-                                    }
-
-                                    component.SubComponents.Add(subComponent);
-                                }
-                            }
-
-                            field.Components.Add(component);
-                        }
-                    }
-
                     // fields contain field repetition
                     if (expGroup.RightOperand.Contains(fieldRepetitionDelimiter))
                     {
@@ -138,6 +84,57 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                             };
 
                             field.FieldRepetitions.Add(fieldRepetition);
+                        }
+                    }
+                    else
+                    {
+                        field.FieldRepetitions.Add(new HL7V2FieldRepetition
+                        {
+                            Delimiter = fieldRepetitionDelimiter,
+                            Value = expGroup.RightOperand,
+                            Id = 1
+                        });
+                    }
+
+                    for (var k = 0; k < field.FieldRepetitions.Count; k++)
+                    {
+                        var fieldRepetition = field.FieldRepetitions[k];
+
+                        // get the components
+                        if (fieldRepetition.Value.Contains(componentDelimiter))
+                        {
+                            fieldRepetition.Components = new List<HL7V2Component>();
+
+                            var componentSplit = expGroup.RightOperand.Split(componentDelimiter);
+
+                            for (var i = 0; i < componentSplit.Length; i++)
+                            {
+                                var component = new HL7V2Component
+                                {
+                                    Delimiter = componentDelimiter,
+                                    Value = componentSplit[i],
+                                    Id = i + 1
+                                };
+
+                                if (component.Value.Contains(subComponentDelimiter))
+                                {
+                                    var subComponentSplit = component.Value.Split(subComponentDelimiter);
+
+                                    for (var j = 0; j < subComponentSplit.Length; j++)
+                                    {
+                                        var subComponent = new HL7V2SubComponent
+                                        {
+                                            Delimiter = subComponentDelimiter,
+                                            Value = subComponentSplit[j],
+                                            Id = j + 1
+                                        };
+
+                                        component.SubComponents.Add(subComponent);
+                                    }
+                                }
+
+                                fieldRepetition.Components.Add(component);
+                            }
                         }
                     }
                 }
@@ -179,7 +176,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             var result = new HL7V2MessageSegment
             {
-                Fields = fields.Cast<IHL7V2Field>().ToList(),
+                Fields = fields.Cast<HL7V2FieldBase>().ToList(),
                 SegmentName = segment
             };
 

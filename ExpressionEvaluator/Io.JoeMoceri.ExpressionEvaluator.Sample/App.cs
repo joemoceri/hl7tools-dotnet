@@ -51,6 +51,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var gt1 = hl7v2Message["GT1"];
             var gt16 = gt1[6];
+            var gt161 = gt1[6][1]; // same as r1
+            var gt161r1 = gt1[6][1, 1]; // also default
+            var gt161r2 = gt1[6][1, 2];
 
 
 
