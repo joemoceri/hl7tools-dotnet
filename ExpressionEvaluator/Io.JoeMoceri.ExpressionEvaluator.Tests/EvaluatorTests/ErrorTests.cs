@@ -5,11 +5,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 	[TestClass]
 	public class ErrorTests
 	{
-		private Evaluator evaluator = new Evaluator();
-
 		[TestMethod]
 		public void ErrorTests_BadInput_ShouldReturnExpressionResultWithNullValuesAndException()
 		{
+			var evaluator = new Evaluator();
+
 			var result = evaluator.Evaluate("asdjhas;dglasd;a;s");
 
 			Assert.IsNull(result.Type);
@@ -20,6 +20,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		[TestMethod]
 		public void ErrorTests_NullInput_ShouldReturnExpressionResultWithNullValuesAndException()
 		{
+			var evaluator = new Evaluator();
+
 			var result = evaluator.Evaluate(null);
 
 			Assert.IsNull(result.Type);

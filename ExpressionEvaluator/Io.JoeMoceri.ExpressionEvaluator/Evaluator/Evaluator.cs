@@ -356,6 +356,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 				var lowerPrecedenceOperators = expressionConfiguration.BooleanOperators.Where(o => o.ExpressionOperatorPrecedence == OperatorPrecedence.Lower).ToList();
 				result = SolveExpressionPrecedence(result, lowerPrecedenceOperators);
 
+				if (result.Equals("true"))
+				{
+					result = "True";
+				}
+				else if (result.Equals("false"))
+				{
+					result = "False";
+				}
+
 				var expResult = new ExpressionResult
 				{
 					Value = result,
@@ -544,7 +553,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 							result = CalculateExpression(Left.Value, Right.Value, expGroup.ExpressionOperator);
 						}
 
-						var expResult = new ExpressionResult 
+                        var expResult = new ExpressionResult 
 						{
 							Value = result, 
 							Type = VariableType.Boolean 
