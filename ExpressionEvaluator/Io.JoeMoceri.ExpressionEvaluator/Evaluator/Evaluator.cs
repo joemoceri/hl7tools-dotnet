@@ -830,22 +830,22 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 						{
 							answer = Addition(Left.Value, Right.Value);
 						}
-						else if (expGroup.ExpressionOperator == Operator.Multiplication)
-						{
-							int number = int.MinValue;
-							string expression = null;
-							if (Left.Type == VariableType.Int || Left.Type == VariableType.Float)
-							{
-								number = GetInt(Left.Value);
-								expression = Right.Value;
-							}
-							else if (Right.Type == VariableType.Int || Right.Type == VariableType.Float)
-							{
-								number = GetInt(Right.Value);
-								expression = Left.Value;
-							}
-							answer = Multiply(number, expression);
-						}
+						//else if (expGroup.ExpressionOperator == Operator.Multiplication)
+						//{
+						//	int number = int.MinValue;
+						//	string expression = null;
+						//	if (Left.Type == VariableType.Int || Left.Type == VariableType.Float)
+						//	{
+						//		number = GetInt(Left.Value);
+						//		expression = Right.Value;
+						//	}
+						//	else if (Right.Type == VariableType.Int || Right.Type == VariableType.Float)
+						//	{
+						//		number = GetInt(Right.Value);
+						//		expression = Left.Value;
+						//	}
+						//	answer = Multiply(number, expression);
+						//}
 
 						var result = new StringBuilder("\"").Append(answer).Append("\"");
 						var expResult = new ExpressionResult
@@ -861,16 +861,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 							return left + right;
 						}
 
-						string Multiply(int multiplier, string expression)
-						{
-							var result = new StringBuilder();
-							for (int i = 0; i < multiplier; i++)
-							{
-								result.Append(expression);
-							}
+						//string Multiply(int multiplier, string expression)
+						//{
+						//	var result = new StringBuilder();
+						//	for (int i = 0; i < multiplier; i++)
+						//	{
+						//		result.Append(expression);
+						//	}
 
-							return result.ToString();
-						}
+						//	return result.ToString();
+						//}
 
 						string TrimOperand(string operand)
 						{
@@ -1248,7 +1248,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 				{
 					return VariableType.String;
 				}
-				else if (expression == "True" || expression == "False")
+				else if (expression == "True" || expression == "False" || expression == "true" || expression == "false")
 				{
 					return VariableType.Boolean;
 				}
