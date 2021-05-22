@@ -10,6 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="HL7File.2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="HL7File.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

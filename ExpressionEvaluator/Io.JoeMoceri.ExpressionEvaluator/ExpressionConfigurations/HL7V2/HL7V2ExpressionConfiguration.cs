@@ -84,23 +84,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                                 Id = i + 1
                             };
 
-                            if (component.Value.Contains(fieldRepetitionDelimiter))
-                            {
-                                var fieldRepetitionSplit = component.Value.Split(fieldRepetitionDelimiter);
-
-                                for (var j = 0; j < fieldRepetitionSplit.Length; j++)
-                                {
-                                    var fieldRepetition = new HL7V2FieldRepetition
-                                    {
-                                        Delimiter = fieldRepetitionDelimiter,
-                                        Value = fieldRepetitionSplit[j],
-                                        Id = j + 1
-                                    };
-
-                                    component.FieldRepetitions.Add(fieldRepetition);
-                                }
-                            }
-
                             if (component.Value.Contains(subComponentDelimiter))
                             {
                                 var subComponentSplit = component.Value.Split(subComponentDelimiter);
@@ -136,6 +119,24 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                             }
 
                             field.Components.Add(component);
+                        }
+                    }
+
+                    // fields contain field repetition
+                    if (expGroup.RightOperand.Contains(fieldRepetitionDelimiter))
+                    {
+                        var fieldRepetitionSplit = expGroup.RightOperand.Split(fieldRepetitionDelimiter);
+
+                        for (var j = 0; j < fieldRepetitionSplit.Length; j++)
+                        {
+                            var fieldRepetition = new HL7V2FieldRepetition
+                            {
+                                Delimiter = fieldRepetitionDelimiter,
+                                Value = fieldRepetitionSplit[j],
+                                Id = j + 1
+                            };
+
+                            field.FieldRepetitions.Add(fieldRepetition);
                         }
                     }
                 }

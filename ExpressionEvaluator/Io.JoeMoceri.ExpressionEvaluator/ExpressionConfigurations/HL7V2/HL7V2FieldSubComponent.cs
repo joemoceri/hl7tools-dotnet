@@ -40,5 +40,78 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return FieldRepetitions.FirstOrDefault(f => f.Id.Equals(id));
             }
         }
+
+        public void AddFieldRepetition(string value)
+        {
+            FieldRepetitions.Add(new HL7V2FieldRepetition
+            {
+                Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
+                Id = FieldRepetitions.Count > 0 ? FieldRepetitions.Last().Id + 1 : 1,
+                Value = value,
+            });
+        }
+
+        public void RemoveFieldRepetition(int id)
+        {
+            var fr = FieldRepetitions.FirstOrDefault(f => f.Id.Equals(id));
+
+            if (fr == null)
+            {
+                return;
+            }
+
+            FieldRepetitions.Remove(fr);
+        }
+
+        public void InsertFieldRepetition(int id, string value)
+        {
+            if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
+            {
+                return;
+            }
+
+            var fieldRepetition = new HL7V2FieldRepetition
+            {
+                Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
+                Id = id,
+                Value = value
+            };
+
+            var pFr = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(id));
+
+            if (pFr == null)
+            {
+                return;
+            }
+
+            var previousIndex = FieldRepetitions.IndexOf(pFr);
+
+            foreach (var f in FieldRepetitions)
+            {
+                if (f.Id > previousIndex)
+                {
+                    f.Id++;
+                }
+            }
+
+            FieldRepetitions.Insert(previousIndex, fieldRepetition);
+        }
+
+        public void UpdateFieldRepetition(int id, string value)
+        {
+            if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
+            {
+                return;
+            }
+
+            var fr = FieldRepetitions.FirstOrDefault(f => f.Id.Equals(id));
+
+            if (fr == null)
+            {
+                return;
+            }
+
+            fr.Value = value;
+        }
     }
 }
