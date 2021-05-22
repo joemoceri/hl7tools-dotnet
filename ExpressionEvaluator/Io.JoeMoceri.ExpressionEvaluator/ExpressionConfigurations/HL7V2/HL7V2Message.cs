@@ -16,11 +16,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Rebuild the HL7 after making modifications, this updates the Value of each IHL7V2Field and the ToString method of HL7V2MessageSegment
+        /// Rebuild the HL7 after making modifications, this updates the Value of each HL7V2FieldBase and the ToString method of HL7V2MessageSegment
         /// </summary>
         public void Rebuild()
         {
-            //messageSegments.First(ms => ms.SegmentName.Equals("MSH")).Rebuild();
+            if (messageSegments.Count == 0)
+            {
+                return;
+            }
+
             foreach (var messageSegment in messageSegments)
             {
                 messageSegment.Rebuild();
@@ -30,6 +34,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public HL7V2FieldBase Get(string id)
         {
             // ["PID.3.2.1"]
+            // TODO:
+            // ["PID(1).3.2.1]
+            // ["PID(2).3.2.1}
+
             var split = id.Split('.', StringSplitOptions.RemoveEmptyEntries);
 
             var messageSegmentName = split[0];
