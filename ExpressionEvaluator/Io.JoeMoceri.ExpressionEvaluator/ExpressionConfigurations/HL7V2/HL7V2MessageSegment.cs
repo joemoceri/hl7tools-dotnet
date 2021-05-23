@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
@@ -68,7 +67,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 		public HL7V2Field GetField(int id)
 		{
-			return (HL7V2Field)Fields.FirstOrDefault(f => f.Id.Equals(id));
+			return Fields.FirstOrDefault(f => f.Id.Equals(id));
 		}
 
         #region Field Operations
