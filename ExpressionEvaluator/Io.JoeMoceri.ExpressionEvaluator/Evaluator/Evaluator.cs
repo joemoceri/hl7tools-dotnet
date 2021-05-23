@@ -78,7 +78,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				foreach (var expression in expressions)
 				{
-					Evaluate(expression);
+					var exp = expression;
+					if (expression.EndsWith(HL7V2ExpressionConfiguration.fieldDelimiter) ||
+						expression.EndsWith(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter) ||
+						expression.EndsWith(HL7V2ExpressionConfiguration.componentDelimiter) ||
+						expression.EndsWith(HL7V2ExpressionConfiguration.subComponentDelimiter)
+						)
+					{
+						exp += HL7V2ExpressionConfiguration.endCharacter;
+					}
+
+					Evaluate(exp);
 
 					var messageSegment = ((HL7V2ExpressionConfiguration)expressionConfiguration).GetHL7V2MessageSegment();
 

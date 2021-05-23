@@ -14,6 +14,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static string subComponentDelimiter = "&";
         public static string fieldRepetitionDelimiter = "~";
         public static string presentButNull = "\"\"";
+        public static string endCharacter = "{END_CHARACTER}";
         public static IDictionary<string, string> encodingConversions;
         private int delimiterCount;
         private string segment;
@@ -96,6 +97,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             ExpressionResult FieldSolveOperatorExpression(ExpressionGroup expGroup)
             {
+                if (expGroup.RightOperand.Equals(endCharacter))
+                {
+                    expGroup.RightOperand = string.Empty;
+                }
+
                 if (delimiterCount == 0)
                 {
                     segment = expGroup.LeftOperand;
