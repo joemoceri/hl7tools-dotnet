@@ -19,15 +19,18 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 					continue;
                 }
 
-				// the lines should be the same as the message segment
-				Assert.AreEqual(lines[i], message.MessageSegments[i].ToString());
+				var segment = message.MessageSegments[i];
 
+				// the lines should be the same as the message segment
+				Assert.AreEqual(lines[i], segment.ToString());
+
+				// segment names are the first 3 characters
 				var segmentName = lines[i].Substring(0, 3);
 
 				// check the segment name
 				Assert.AreEqual(segmentName, message.MessageSegments[i].SegmentName);
 
-				// remove the segment from the rest
+				// remove the segment name from the rest
 				lines[i] = lines[i].Remove(0, 4);
 
 				// Compare this to the message Values, they should be the same and order should be respected
@@ -38,12 +41,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 					fields.Insert(0, HL7V2ExpressionConfiguration.fieldDelimiter);
 				}
 
-				var segment = message.MessageSegments[i];
-
 				// check field values
 				for (var j = 0; j < fields.Count; j++)
 				{
 					var field = segment[j + 1];
+
 					Assert.AreEqual(fields[j], field.Value);
 
 					if (HL7V2ExpressionConfiguration.specialSegmentHeaders.Any(a => a.Equals(segmentName)) && j <= 1)
@@ -56,7 +58,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 					for (var a = 0; a < fieldRepetitions.Length; a++)
                     {
-						Assert.AreEqual(fieldRepetitions[a], segment[j + 1].GetFieldRepetition(a + 1).Value);
+						var fieldRepetition = segment[j + 1].GetFieldRepetition(a + 1);
+
+						Assert.AreEqual(fieldRepetitions[a], fieldRepetition.Value);
 
 						var components = fieldRepetitions[a].Split(HL7V2ExpressionConfiguration.componentDelimiter);
 

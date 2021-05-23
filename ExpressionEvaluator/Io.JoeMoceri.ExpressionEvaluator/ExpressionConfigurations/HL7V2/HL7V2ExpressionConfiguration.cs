@@ -17,7 +17,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static string presentButNull = "\"\"";
         public static IList<string> specialSegmentHeaders;
         public static IDictionary<string, string> encodingConversions;
-        public string endCharacter;
+        internal string endCharacter;
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;
