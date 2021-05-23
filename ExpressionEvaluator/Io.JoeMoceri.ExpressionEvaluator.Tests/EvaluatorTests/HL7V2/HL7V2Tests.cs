@@ -19,7 +19,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				// check the segment name
 				Assert.AreEqual(segmentName, message.MessageSegments[i].SegmentName);
 
+				// remove the segment from the rest
 				lines[i] = lines[i].Remove(0, 4);
+
 				// Compare this to the message Values, they should be the same and order should be respected
 				var fields = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter).ToList();
 
