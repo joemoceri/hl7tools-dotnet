@@ -132,7 +132,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_MessageSegment_UpdateField()
+		public void HL7V2Tests_EvaluateHL7V2Message_Message()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
@@ -155,5 +155,147 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// Assert
 			Assert.IsNull(message.Error);
 		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment()
+		{
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			// Act
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			var msh = message["MSH"];
+
+			var value = $"{Guid.NewGuid()}";
+
+			Assert.AreNotEqual(msh[2].Value, value);
+
+			msh.UpdateField(2, value);
+
+			Assert.AreEqual(msh[2].Value, value);
+
+			// Assert
+			Assert.IsNull(message.Error);
+		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment_Field()
+		{
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			// Act
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			var msh = message["MSH"];
+
+			var value = $"{Guid.NewGuid()}";
+
+			Assert.AreNotEqual(msh[2].Value, value);
+
+			msh.UpdateField(2, value);
+
+			Assert.AreEqual(msh[2].Value, value);
+
+			// Assert
+			Assert.IsNull(message.Error);
+		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment_Field_FieldRepetition()
+		{
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			// Act
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			var msh = message["MSH"];
+
+			var value = $"{Guid.NewGuid()}";
+
+			Assert.AreNotEqual(msh[2].Value, value);
+
+			msh.UpdateField(2, value);
+
+			Assert.AreEqual(msh[2].Value, value);
+
+			// Assert
+			Assert.IsNull(message.Error);
+		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment_Field_FieldRepetition_Component()
+		{
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			// Act
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			var msh = message["MSH"];
+
+			var value = $"{Guid.NewGuid()}";
+
+			Assert.AreNotEqual(msh[2].Value, value);
+
+			msh.UpdateField(2, value);
+
+			Assert.AreEqual(msh[2].Value, value);
+
+			// Assert
+			Assert.IsNull(message.Error);
+		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment_Field_FieldRepetition_Component_SubComponent()
+		{
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			// Act
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			var msh = message["MSH"];
+
+			var value = $"{Guid.NewGuid()}";
+
+			Assert.AreNotEqual(msh[2].Value, value);
+
+			msh.UpdateField(2, value);
+
+			Assert.AreEqual(msh[2].Value, value);
+
+			// Assert
+			Assert.IsNull(message.Error);
+		}
+
+		[TestMethod]
+		public void HL7V2Tests_HL7V2ExpressionConfiguration()
+        {
+
+        }
+
+		[TestMethod]
+		public void HL7V2Tests_EvaluateHL7V2File()
+        {
+
+        }
 	}
 }
