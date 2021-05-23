@@ -92,6 +92,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 					var messageSegment = ((HL7V2ExpressionConfiguration)expressionConfiguration).GetHL7V2MessageSegment();
 
+					if (messageSegment == null)
+                    {
+						continue;
+                    }
+
 					result.MessageSegments.Add(messageSegment);
 				}
             }
@@ -120,6 +125,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 				if (expressionConfiguration is HL7V2ExpressionConfiguration)
                 {
 					((HL7V2ExpressionConfiguration)expressionConfiguration).Setup();
+
+					if ((char.IsControl(expression[0]) && expression.Length == 1))
+                    {
+						return new ExpressionResult
+						{
+							Value = expression,
+							Type = null
+						};
+					}
                 }
 
 				if (!expressionConfiguration.Options.IgnoreWhitespaceOutsideQuotes)

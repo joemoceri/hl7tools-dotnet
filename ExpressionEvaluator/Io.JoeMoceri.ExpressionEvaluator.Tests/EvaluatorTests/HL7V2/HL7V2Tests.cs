@@ -14,6 +14,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			for (var i = 0; i < lines.Length; i++)
 			{
+                if (char.IsControl(lines[i][0]) && lines[i].Length == 1)
+                {
+					continue;
+                }
+
 				var segmentName = lines[i].Substring(0, 3);
 
 				// check the segment name
@@ -80,14 +85,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A28 Add Patient.txt")]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT_A01 - 1.txt")]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT_A01 - 2.txt")]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT_A01 - 3.txt")]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT_A01 - 4.txt")]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT_A04 - 1.txt")]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT_A05.txt")]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages")]
 		public void HL7V2Tests_EvaluateHL7V2Message_CompareFileWithMessage()
 		{
 			// Arrange
@@ -96,40 +94,48 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var evaluator = new Evaluator(expressionConfiguration);
 
 			// Act
-			var path = "ADT-A08 Update Patient.txt";
-			var message = evaluator.EvaluateHL7V2File(path);
-            CompareFileWithMessage(path, message);
+			var paths = Directory.GetFiles("EvaluatorTests/HL7V2/sample-messages");
 
-			path = "ADT-A28 Add Patient.txt";
-			message = evaluator.EvaluateHL7V2File(path);
-			CompareFileWithMessage(path, message);
+			for (var i = 0; i < paths.Length; i++)
+            {
+				var message = evaluator.EvaluateHL7V2File(paths[i]);
+				CompareFileWithMessage(paths[i], message);
+            }
 
-			path = "ADT_A01 - 1.txt";
-			message = evaluator.EvaluateHL7V2File(path);
-			CompareFileWithMessage(path, message);
+			//var path = "ADT-A08 Update Patient.txt";
+			//var message = evaluator.EvaluateHL7V2File(path);
+   //         CompareFileWithMessage(path, message);
 
-			path = "ADT_A01 - 2.txt";
-			message = evaluator.EvaluateHL7V2File(path);
-			CompareFileWithMessage(path, message);
+			//path = "ADT-A28 Add Patient.txt";
+			//message = evaluator.EvaluateHL7V2File(path);
+			//CompareFileWithMessage(path, message);
+
+			//path = "ADT_A01 - 1.txt";
+			//message = evaluator.EvaluateHL7V2File(path);
+			//CompareFileWithMessage(path, message);
+
+			//path = "ADT_A01 - 2.txt";
+			//message = evaluator.EvaluateHL7V2File(path);
+			//CompareFileWithMessage(path, message);
 			
-			path = "ADT_A01 - 3.txt";
-			message = evaluator.EvaluateHL7V2File(path);
-			CompareFileWithMessage(path, message);
+			//path = "ADT_A01 - 3.txt";
+			//message = evaluator.EvaluateHL7V2File(path);
+			//CompareFileWithMessage(path, message);
 			
-			path = "ADT_A01 - 4.txt";
-			message = evaluator.EvaluateHL7V2File(path);
-			CompareFileWithMessage(path, message);
+			//path = "ADT_A01 - 4.txt";
+			//message = evaluator.EvaluateHL7V2File(path);
+			//CompareFileWithMessage(path, message);
 			
-			path = "ADT_A04 - 1.txt";
-			message = evaluator.EvaluateHL7V2File(path);
-			CompareFileWithMessage(path, message);
+			//path = "ADT_A04 - 1.txt";
+			//message = evaluator.EvaluateHL7V2File(path);
+			//CompareFileWithMessage(path, message);
 
-			path = "ADT_A05.txt";
-			message = evaluator.EvaluateHL7V2File(path);
-			CompareFileWithMessage(path, message);
+			//path = "ADT_A05.txt";
+			//message = evaluator.EvaluateHL7V2File(path);
+			//CompareFileWithMessage(path, message);
 
-			// Assert
-			Assert.IsNull(message.Error);
+			//// Assert
+			//Assert.IsNull(message.Error);
 		}
 
 		[TestMethod]

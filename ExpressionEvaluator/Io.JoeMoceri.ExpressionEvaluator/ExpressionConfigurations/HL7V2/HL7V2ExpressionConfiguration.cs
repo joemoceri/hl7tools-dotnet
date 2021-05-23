@@ -15,6 +15,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static string fieldRepetitionDelimiter = "~";
         public static string presentButNull = "\"\"";
         public static string endCharacter = "{END_CHARACTER}";
+        public static IList<string> specialSegmentHeaders;
         public static IDictionary<string, string> encodingConversions;
         private int delimiterCount;
         private string segment;
@@ -23,6 +24,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         static HL7V2ExpressionConfiguration()
         {
             RebuildEncodingConversions();
+
+            // TODO: Finish this
+            specialSegmentHeaders = new List<string>()
+            {
+                "MSH",
+                "FHS",
+                "BHS"
+            };
         }
 
         public static void RebuildEncodingConversions()
@@ -213,6 +222,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             fields = new List<HL7V2Field>();
 
             delimiterCount = 0;
+
+            segment = null;
         }
 
         public override string Name => "HL7 V2";
@@ -239,6 +250,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public HL7V2MessageSegment GetHL7V2MessageSegment()
         {
+            if (segment == null)
+            {
+                return null;
+            }
+
             var result = new HL7V2MessageSegment
             {
                 Fields = fields,
