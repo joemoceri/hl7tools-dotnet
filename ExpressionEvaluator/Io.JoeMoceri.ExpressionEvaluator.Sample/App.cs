@@ -49,6 +49,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
+            var url = "https://test.com/test?id=1&test=2";
+
+            var newUrl = HL7V2ExpressionConfiguration.EscapeString(url);
+
             Console.WriteLine("Before:");
 
             Console.WriteLine(message.ToString());

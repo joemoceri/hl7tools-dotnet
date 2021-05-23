@@ -11,11 +11,32 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static string fieldDelimiter = "|";
         public static string componentDelimiter = "^";
         public static string escapeDelimiter = "\\";
+        public static IDictionary<string, string> escapeConversions;
         public static string subComponentDelimiter = "&";
         public static string fieldRepetitionDelimiter = "~";
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;
+
+        static HL7V2ExpressionConfiguration()
+        {
+            escapeConversions = new Dictionary<string, string>();
+            escapeConversions.Add("\\", $"{escapeDelimiter}E{escapeDelimiter}");
+            escapeConversions.Add("|", $"{escapeDelimiter}F{escapeDelimiter}");
+            escapeConversions.Add("~", $"{escapeDelimiter}R{escapeDelimiter}");
+            escapeConversions.Add("^", $"{escapeDelimiter}S{escapeDelimiter}");
+            escapeConversions.Add("&", $"{escapeDelimiter}T{escapeDelimiter}");
+        }
+
+        public static string EscapeString(string input)
+        {
+            foreach (var escapeConversion in escapeConversions)
+            {
+                input = input.Replace(escapeConversion.Key, escapeConversion.Value);
+            }
+
+            return input;
+        }
 
         public HL7V2ExpressionConfiguration()
         {
