@@ -200,7 +200,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringExpressionTests_RightStringMultiplication_EscapedDoubleQuote()
+		public void StringExpressionTests_RightStringAddition_EscapedDoubleQuote()
 		{
 			// Arrange
 			var expressionAnswer =  4 + " \\\"cd ";
@@ -242,7 +242,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
-		public void StringExpressionTests_ParenthesesRightMultiplication()
+		public void StringExpressionTests_ParenthesesRightAddition()
 		{
 			// Arrange
 			var expressionAnswer = (" cd " + "lol") + 4  ;
@@ -534,27 +534,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// Assert
 			Assert.AreEqual(answer, result);
 		}
-
-		//[TestMethod]
-		//public void StringExpressionTests_String09()
-		//{
-		//	// Arrange
-		//	var ans = "\" test  test \"";
-		//	var expression = "2 * \" test \"";
-		//	var answer = new ExpressionResult 
-		//	{ 
-		//		Value = ans, 
-		//		Type = VariableType.String 
-		//	};
-
-		//	var evaluator = new Evaluator();
-
-		//	// Act
-		//	var result = evaluator.Evaluate(expression);
-
-		//	// Assert
-		//	Assert.AreEqual(answer, result);
-		//}
 
 		[TestMethod]
 		public void StringExpressionTests_String10()

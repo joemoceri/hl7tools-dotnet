@@ -51,7 +51,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
 
             //Get("PID.3.2.1")
-            //Get("OBR(2).1") // gets the 2nd PID repetition's 1st field
+            //Get("OBR(2).1") // gets the 2nd OBR repetition's 1st field
 	        //Get("GT1.6(2)") // gets the 1st GT1 repetition's 6th field's 2nd repetition
 
             var split = id.Split('.', StringSplitOptions.RemoveEmptyEntries);

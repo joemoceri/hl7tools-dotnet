@@ -124,74 +124,76 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
                 fields.Add(field);
 
-                if (!expGroup.LeftOperand.Equals(headerSegmentName))
+                if (expGroup.LeftOperand.Equals(headerSegmentName))
                 {
-                    // fields contain field repetition
-                    if (expGroup.RightOperand.Contains(fieldRepetitionDelimiter))
-                    {
-                        var fieldRepetitionSplit = expGroup.RightOperand.Split(fieldRepetitionDelimiter);
+                    return DefaultExpressionResult;
+                }
 
-                        for (var j = 0; j < fieldRepetitionSplit.Length; j++)
-                        {
-                            var fieldRepetition = new HL7V2FieldRepetition
-                            {
-                                Delimiter = fieldRepetitionDelimiter,
-                                Value = fieldRepetitionSplit[j],
-                                Id = j + 1
-                            };
+                // fields contain field repetition
+                if (expGroup.RightOperand.Contains(fieldRepetitionDelimiter))
+                {
+                    var fieldRepetitionSplit = expGroup.RightOperand.Split(fieldRepetitionDelimiter);
 
-                            field.FieldRepetitions.Add(fieldRepetition);
-                        }
-                    }
-                    else
+                    for (var j = 0; j < fieldRepetitionSplit.Length; j++)
                     {
-                        field.FieldRepetitions.Add(new HL7V2FieldRepetition
+                        var fieldRepetition = new HL7V2FieldRepetition
                         {
                             Delimiter = fieldRepetitionDelimiter,
-                            Value = expGroup.RightOperand,
-                            Id = 1
-                        });
+                            Value = fieldRepetitionSplit[j],
+                            Id = j + 1
+                        };
+
+                        field.FieldRepetitions.Add(fieldRepetition);
                     }
-
-                    for (var k = 0; k < field.FieldRepetitions.Count; k++)
+                }
+                else
+                {
+                    field.FieldRepetitions.Add(new HL7V2FieldRepetition
                     {
-                        var fieldRepetition = field.FieldRepetitions[k];
+                        Delimiter = fieldRepetitionDelimiter,
+                        Value = expGroup.RightOperand,
+                        Id = 1
+                    });
+                }
 
-                        // get the components
-                        if (fieldRepetition.Value.Contains(componentDelimiter))
+                for (var k = 0; k < field.FieldRepetitions.Count; k++)
+                {
+                    var fieldRepetition = field.FieldRepetitions[k];
+
+                    // get the components
+                    if (fieldRepetition.Value.Contains(componentDelimiter))
+                    {
+                        fieldRepetition.Components = new List<HL7V2Component>();
+
+                        var componentSplit = fieldRepetition.Value.Split(componentDelimiter);
+
+                        for (var i = 0; i < componentSplit.Length; i++)
                         {
-                            fieldRepetition.Components = new List<HL7V2Component>();
-
-                            var componentSplit = fieldRepetition.Value.Split(componentDelimiter);
-
-                            for (var i = 0; i < componentSplit.Length; i++)
+                            var component = new HL7V2Component
                             {
-                                var component = new HL7V2Component
-                                {
-                                    Delimiter = componentDelimiter,
-                                    Value = componentSplit[i],
-                                    Id = i + 1
-                                };
+                                Delimiter = componentDelimiter,
+                                Value = componentSplit[i],
+                                Id = i + 1
+                            };
 
-                                if (component.Value.Contains(subComponentDelimiter))
-                                {
-                                    var subComponentSplit = component.Value.Split(subComponentDelimiter);
+                            if (component.Value.Contains(subComponentDelimiter))
+                            {
+                                var subComponentSplit = component.Value.Split(subComponentDelimiter);
 
-                                    for (var j = 0; j < subComponentSplit.Length; j++)
+                                for (var j = 0; j < subComponentSplit.Length; j++)
+                                {
+                                    var subComponent = new HL7V2SubComponent
                                     {
-                                        var subComponent = new HL7V2SubComponent
-                                        {
-                                            Delimiter = subComponentDelimiter,
-                                            Value = subComponentSplit[j],
-                                            Id = j + 1
-                                        };
+                                        Delimiter = subComponentDelimiter,
+                                        Value = subComponentSplit[j],
+                                        Id = j + 1
+                                    };
 
-                                        component.SubComponents.Add(subComponent);
-                                    }
+                                    component.SubComponents.Add(subComponent);
                                 }
-
-                                fieldRepetition.Components.Add(component);
                             }
+
+                            fieldRepetition.Components.Add(component);
                         }
                     }
                 }
