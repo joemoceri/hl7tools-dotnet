@@ -11,28 +11,64 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static string fieldDelimiter = "|";
         public static string componentDelimiter = "^";
         public static string escapeDelimiter = "\\";
-        public static IDictionary<string, string> escapeConversions;
         public static string subComponentDelimiter = "&";
         public static string fieldRepetitionDelimiter = "~";
+        public static string presentButNull = "\"\"";
+        public static IDictionary<string, string> encodingConversions;
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;
 
         static HL7V2ExpressionConfiguration()
         {
-            escapeConversions = new Dictionary<string, string>();
-            escapeConversions.Add("\\", $"{escapeDelimiter}E{escapeDelimiter}");
-            escapeConversions.Add("|", $"{escapeDelimiter}F{escapeDelimiter}");
-            escapeConversions.Add("~", $"{escapeDelimiter}R{escapeDelimiter}");
-            escapeConversions.Add("^", $"{escapeDelimiter}S{escapeDelimiter}");
-            escapeConversions.Add("&", $"{escapeDelimiter}T{escapeDelimiter}");
+            RebuildEncodingConversions();
         }
 
-        public static string EscapeString(string input)
+        public static void RebuildEncodingConversions()
         {
-            foreach (var escapeConversion in escapeConversions)
+            encodingConversions = new Dictionary<string, string>();
+            encodingConversions.Add(escapeDelimiter, $"{escapeDelimiter}E{escapeDelimiter}");
+            encodingConversions.Add(fieldDelimiter, $"{escapeDelimiter}F{escapeDelimiter}");
+            encodingConversions.Add(fieldRepetitionDelimiter, $"{escapeDelimiter}R{escapeDelimiter}");
+            encodingConversions.Add(componentDelimiter, $"{escapeDelimiter}S{escapeDelimiter}");
+            encodingConversions.Add(subComponentDelimiter, $"{escapeDelimiter}T{escapeDelimiter}");
+        }
+
+        public static string EncodeString(string input, bool rebuildEncodingConversions = false)
+        {
+            if (input == null)
             {
-                input = input.Replace(escapeConversion.Key, escapeConversion.Value);
+                return presentButNull;
+            }
+
+            if (rebuildEncodingConversions)
+            {
+                RebuildEncodingConversions();
+            }
+
+            foreach (var encodingConversion in encodingConversions)
+            {
+                input = input.Replace(encodingConversion.Key, encodingConversion.Value);
+            }
+
+            return input;
+        }
+
+        public static string DecodeString(string input, bool rebuildEncodingConversions = false)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return input;
+            }
+
+            if (rebuildEncodingConversions)
+            {
+                RebuildEncodingConversions();
+            }
+
+            foreach (var escapeConversion in encodingConversions)
+            {
+                input = input.Replace(escapeConversion.Value, escapeConversion.Key);
             }
 
             return input;

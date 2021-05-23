@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace Io.JoeMoceri.ExpressionEvaluator.Sample
@@ -51,7 +52,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var url = "https://test.com/test?id=1&test=2";
 
-            var newUrl = HL7V2ExpressionConfiguration.EscapeString(url);
+            var newUrl = HL7V2ExpressionConfiguration.EncodeString(url);
 
             Console.WriteLine("Before:");
 
@@ -120,6 +121,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
             var gt162 = message.Get("GT1.6(2)");
 
             var gt162test = message["GT1"][6].GetFieldRepetition(2);
+
+            var json = JsonConvert.SerializeObject(message);
 
             Console.WriteLine(gt162test.Value);
             Console.WriteLine(gt162.Value);
