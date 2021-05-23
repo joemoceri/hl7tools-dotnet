@@ -72,7 +72,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
                                 }
 							}
                         }
-
                     }
 				}
 			}
