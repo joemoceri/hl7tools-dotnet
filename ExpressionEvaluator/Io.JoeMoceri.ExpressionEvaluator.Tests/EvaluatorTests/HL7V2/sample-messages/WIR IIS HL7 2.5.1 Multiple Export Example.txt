@@ -1,0 +1,15 @@
+MSH|^~\&|WIR|||36|20200514152729-0500||VXU^V04^VXU_V04|1219468|P|2.5.1|||ER|AL|||||Z22^CDCPHINVS
+PID|1||2887302^^^WIA^SR~1414107^^^WIA^PI||TESTGR^TESTSAW^B^^^^^L||20150808|M|||243321^^REEDSBURG^WI^53958^^H||^PRN^^^^608^4152248|||||||||||||||||N
+PD1|||||||||||02^Reminder/recall - any method^HL70215|N||||A
+NK1|1|TESTGR^TESTSAW^B^^^^^L|SEL^Self^HL70063|243321^^REEDSBURG^WI^53958^^H|^PRN^^^^608^4152248
+NK1|2|GREEN^TIMOTHY^^^^^^L|GRD^Guardian^HL70063||^PRN^^^^608^4157795
+PV1||R
+ORC|RE||37900006^WIA||||||||||||||||||Jason PHINMS Org^D^^^^WIA^XX^^^15010
+RXA|0|1|20160425|20160425|110^DTAP/Polio/Hep B^CVX^Pediarix^DTAP/Polio/Hep B^WVTN|1.0|mL^MilliLiter^UCUM||01|37998^Anders^Carol^^^^^^WIA^^^^^^D
+OBX|1|CE|64994-7^Vaccine funding program eligibility category^LN|1|V01^Not VFC eligible^HL70064||||||F|||20160425|||VXC40^per immunization^CDCPHINVS
+ORC|RE||37900012^WIA|||||||^time^real^^^^^^WIA^^^^^^L|||||||||||Jason PHINMS Org^D^^^^WIA^XX^^^15010
+RXA|0|1|20160113|20160113|24^Anthrax^CVX^Anthrax^Anthrax^WVTN|0.5|mL^MilliLiter^UCUM||01||||||100|20170506|MIP
+RXR|C28161^Intramuscular^NCIT
+OBX|1|CE|64994-7^Vaccine funding program eligibility category^LN|1|V01^Not VFC eligible^HL70064||||||F|||20160113|||VXC40^per immunization^CDCPHINVS
+ORC|RE||38237626^WIA||||||||||||||||||WIR Physicians^D^^^^WIA^XX^^^36
+RXA|0|1|20161206|20161206|133^Pneumo-Conjugate 13^CVX^Prevnar 13^Pneumo-Conjugate 13^WVTN|999|||01

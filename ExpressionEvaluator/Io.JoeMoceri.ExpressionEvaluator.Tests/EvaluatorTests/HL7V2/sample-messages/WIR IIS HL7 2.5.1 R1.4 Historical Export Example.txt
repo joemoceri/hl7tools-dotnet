@@ -1,0 +1,7 @@
+MSH|^~\&|WIR|||36|20200514123930||VXU^V04^VXU_V04|43|P|2.5.1|||ER
+PID|1||3089409^^^WIA^SR||CHARTNO^TEST^^^^^^L|M^TESTCHART^^^^^^M|20190501|U|||^^MADISON^WI^^^H|||||||||||||||||||N
+PD1|||||||||||02^Reminder/recall - any method^HL70215|N||||A
+NK1|1||MTH^Mother^HL70063|^^MADISON^WI^^^H
+PV1||R||||||||||||||||||V02
+ORC|RE||38230637^WIA||||||||||||||||||State of Wisconsin DHCF^D^^^^WIA^XX^^^54
+RXA|0|1|20190503|20190503|110^DTAP/Polio/Hep B^CVX^Pediarix^DTAP/Polio/Hep B^WVTN|999|||01^Historical information - source unspecified^NIP001

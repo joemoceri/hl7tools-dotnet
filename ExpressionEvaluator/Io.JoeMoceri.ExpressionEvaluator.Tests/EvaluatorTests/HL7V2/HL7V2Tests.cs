@@ -6,7 +6,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
     public class HL7V2Tests
     {
 		[TestMethod]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/sample-hl7v2-message.1.txt")]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
 		public void HL7V2Tests_EvaluateHL7V2Message_VerifyAllFields()
 		{
 			// Arrange
@@ -15,7 +15,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var evaluator = new Evaluator(expressionConfiguration);
 
 			// Act
-			var message = evaluator.EvaluateHL7V2File("sample-hl7v2-message.1.txt");
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
 			// TODO: Fill this out
 

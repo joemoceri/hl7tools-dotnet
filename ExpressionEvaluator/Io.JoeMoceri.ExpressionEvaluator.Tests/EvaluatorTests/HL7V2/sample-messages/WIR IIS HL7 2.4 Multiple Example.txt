@@ -1,0 +1,8 @@
+MSH|^~\&|WIR11.3.2^^|WIR^^||WIRPH^^|20200514||VXU^V04|2020051411020600|P^|2.4^^|||ER
+PID|||3073884^^^^SR^~^^^^PI^||DOSE^PARTIAL^^^^^^||20190301|M|||^^MADISON^WI^^^^^^^||||||||||||||||||
+PD1|||||||||||02^^^^^|Y||||A
+NK1|1|DOSE^PARTIAL^^^^^^|SEL^SELF^HL70063^^^^^|^^MADISON^WI^^^^^^^|
+PV1||R||||||||||||||||||V03^
+RXA|0|999|20190301|20190301|08^HepB pediatric^CVX^90744^HepB pediatric^CPT|1.0|||00^^^^^~38211407^WIR immunization id^IMM_ID^^^|^Suchon^Jason^S^^^^^^^^^REI^^|^^^Capitol Square^^^^^^^^^^^||||Lot_951753||SKB^SKB^MVX^^^|||
+RXR|IM^^^^^|
+RXA|0|999|20190521|20190521|133^Pneumo-conjugate 13^CVX^90670^Pneumo-conjugate 13^CPT|1.0|||01^^^^^~38237610^WIR immunization id^IMM_ID^^^|||||||||||
