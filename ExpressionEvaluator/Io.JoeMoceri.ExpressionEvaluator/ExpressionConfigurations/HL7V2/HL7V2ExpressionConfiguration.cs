@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
@@ -14,9 +15,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static string subComponentDelimiter = "&";
         public static string fieldRepetitionDelimiter = "~";
         public static string presentButNull = "\"\"";
-        public static string endCharacter = "{END_CHARACTER}";
         public static IList<string> specialSegmentHeaders;
         public static IDictionary<string, string> encodingConversions;
+        public string endCharacter;
+        public bool endCharacterAdded = false;
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;
@@ -106,7 +108,31 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             ExpressionResult FieldSolveOperatorExpression(ExpressionGroup expGroup)
             {
-                expGroup.RightOperand = expGroup.RightOperand.Replace(endCharacter, string.Empty);
+                // found the end character
+                if (endCharacterAdded && expGroup.RightOperand.EndsWith(endCharacter))
+                {
+                    var split = expGroup.RightOperand.Split(endCharacter);
+
+                    // on the absolutely out there case somebody else uses this same end character in the data
+                    if (split.Length > 2)
+                    {
+                        var result = "";
+
+                        // get the value, ignoring the end one I put there
+                        for (var i = 0; i < split.Length - 1; i++)
+                        {
+                            result += split[i];
+                        }
+
+                        // update it
+                        expGroup.RightOperand = result;
+                    }
+                    // only 2 elements if it's just my end character, ignore the empty
+                    else
+                    {
+                        expGroup.RightOperand = split[0];
+                    }
+                }
 
                 if (delimiterCount == 0)
                 {

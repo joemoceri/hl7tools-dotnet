@@ -85,12 +85,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 						expression.EndsWith(HL7V2ExpressionConfiguration.subComponentDelimiter)
 						)
 					{
-						exp += HL7V2ExpressionConfiguration.endCharacter;
+						expConfig.endCharacter = $"{{END_CHARACTER:{Guid.NewGuid()}}}";
+						exp += expConfig.endCharacter;
+						expConfig.endCharacterAdded = true;
 					}
 
 					Evaluate(exp);
 
-					var messageSegment = ((HL7V2ExpressionConfiguration)expressionConfiguration).GetHL7V2MessageSegment();
+					var messageSegment = expConfig.GetHL7V2MessageSegment();
 
 					if (messageSegment == null)
                     {
@@ -98,6 +100,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                     }
 
 					result.MessageSegments.Add(messageSegment);
+
+					expConfig.endCharacterAdded = false;
 				}
             }
 			catch (Exception ex)
