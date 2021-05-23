@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 {
@@ -11,6 +12,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		private void CompareFileWithMessage(string path, HL7V2Message message)
         {
 			var lines = File.ReadAllLines(path);
+
+			var messageToString = message.ToString();
+
+			var joinedMessageFile = string.Join(Environment.NewLine, lines.Where(l => !char.IsControl(l[0])));
+
+            Assert.AreEqual(messageToString, joinedMessageFile);
 
 			for (var i = 0; i < lines.Length; i++)
 			{
