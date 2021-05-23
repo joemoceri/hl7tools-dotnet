@@ -158,7 +158,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public IList<HL7V2MessageSegment> MessageSegments => messageSegments;
 
-        public IList<string> ToHL7File()
+        public IList<string> ToHL7V2MessageFile()
         {
             var result = new List<string>();
 
@@ -172,7 +172,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public override string ToString()
         {
-            return string.Join(Environment.NewLine, ToHL7File());
+            return string.Join(Environment.NewLine, ToHL7V2MessageFile());
         }
 
         #region Message Segment Operations

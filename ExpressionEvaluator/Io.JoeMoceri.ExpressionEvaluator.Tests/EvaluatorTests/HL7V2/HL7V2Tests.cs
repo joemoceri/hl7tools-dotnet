@@ -46,6 +46,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				{
 					var field = segment[j + 1];
 
+					// check the field ids
+					Assert.AreEqual(j + 1, field.Id);
+
+					Assert.AreEqual(field.Delimiter, HL7V2ExpressionConfiguration.fieldDelimiter);
+
 					Assert.AreEqual(fields[j], field.Value);
 
 					if (HL7V2ExpressionConfiguration.specialSegmentHeaders.Any(a => a.Equals(segmentName)) && j <= 1)
@@ -58,7 +63,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 					for (var a = 0; a < fieldRepetitions.Length; a++)
                     {
-						var fieldRepetition = segment[j + 1].GetFieldRepetition(a + 1);
+						var fieldRepetition = field.GetFieldRepetition(a + 1);
+
+						Assert.AreEqual(a + 1, fieldRepetition.Id);
+
+						Assert.AreEqual(fieldRepetition.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
 
 						Assert.AreEqual(fieldRepetitions[a], fieldRepetition.Value);
 
@@ -70,6 +79,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 							for (var b = 0; b < components.Length; b++)
 							{
 								var component = field[b + 1, a + 1];
+
+								Assert.AreEqual(b + 1, component.Id);
+
+								Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+
 								Assert.AreEqual(components[b], component.Value);
 
 								var subComponents = components[b].Split(HL7V2ExpressionConfiguration.subComponentDelimiter);
@@ -80,6 +94,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 									for (var c = 0; c < subComponents.Length; c++)
                                     {
 										var subComponent = component[c + 1];
+
+										Assert.AreEqual(c + 1, subComponent.Id);
+
+										Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
 
 										Assert.AreEqual(subComponents[c], subComponent.Value);
                                     }
@@ -107,6 +125,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
             {
 				var message = evaluator.EvaluateHL7V2File(paths[i]);
 				CompareFileWithMessage(paths[i], message);
+
+				Assert.IsNull(message.Error);
             }
 		}
 
