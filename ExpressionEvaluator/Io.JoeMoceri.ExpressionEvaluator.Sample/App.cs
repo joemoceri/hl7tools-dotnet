@@ -47,84 +47,84 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var evaluator = new Evaluator(expressionConfiguration);
 
-            var hl7v2Message = evaluator.EvaluateHL7V2File("HL7File.2.txt");
-
-            var gt1 = hl7v2Message["GT1"];
-            var msh = hl7v2Message["MSH"];
-            var allMsh = hl7v2Message.Segments("MSH");
-
-            var gt16 = gt1[6];
-
-            var pid3HasRepetitions = hl7v2Message["PV1"][2].FieldRepetitions.Count > 0;
-
-            var segment = new HL7V2MessageSegment
-            {
-                SegmentName = "MSH",
-            };
-
-            var field = segment.AddField("A");
-
-            var gt161 = gt1[6][1]; // same as r1
-            var gt161r1 = gt1[6][1, 1]; // also default
-            var gt161r2 = gt1[6][1, 2];
-
-            hl7v2Message.Get("MSH.21.4").Value = "";
-
-            //var msh = hl7v2Message["MSH"];
-            var msh214 = hl7v2Message["MSH"][21][4];
-            //var msh214fr1 = hl7v2Message["MSH"][21][4].GetFieldRepetition(1);
-            //var msh214fr2 = hl7v2Message["MSH"][21][4].GetFieldRepetition(2);
-            //var msh1 = hl7v2Message.Get("MSH.1");
-            //var msh2 = hl7v2Message.Get("MSH.2");
-            //var msh3 = hl7v2Message.Get("MSH.3");
-            //var msh4 = hl7v2Message.Get("MSH.4");
-            //var msh7 = hl7v2Message.Get("MSH.7");
-            //var msh8 = hl7v2Message.Get("MSH.8");
-            //var msh9 = hl7v2Message.Get("MSH.9");
-            //var msh91 = hl7v2Message.Get("MSH.9.1");
-            //var msh92 = hl7v2Message.Get("MSH.9.2");
-            //var obr = hl7v2Message["OBR"];
-            //var obr33test = hl7v2Message["OBR"][33];
-            //var obr331test = hl7v2Message["OBR"][33][1];
-            //var obr3311test = hl7v2Message["OBR"][33][1][1];
-            //var obr3312test = hl7v2Message["OBR"][33][1][2];
-            //var obr3313test = hl7v2Message["OBR"][33][1][3];
-            //var obr33 = hl7v2Message.Get("OBR.33");
-            //var obr331 = hl7v2Message.Get("OBR.33.1");
-            //var obr3311 = hl7v2Message.Get("OBR.33.1.1");
-            //var obr3312 = hl7v2Message.Get("OBR.33.1.2");
-            //var obr3313 = hl7v2Message.Get("OBR.33.1.3");
-
-            //var pid = hl7v2Message["PID"];
-            //var pid5 = hl7v2Message.Get("PID.5");
-            //var pid7 = hl7v2Message.Get("PID.7");
-
-            //var pv1 = hl7v2Message["PV1"];
-            //var pv131 = hl7v2Message.Get("PV1.3.1");
-
-            //var fieldComponent = (HL7V2FieldComponent)pv131;
-
-            //fieldComponent.AddFieldRepetition("TEST JOE");
-
-            //var pFr = fieldComponent.GetFieldRepetition(2);
-
-            //fieldComponent.InsertFieldRepetition(2, "SAMPLE_INSERT");
-
-            //var fr = fieldComponent.GetFieldRepetition(2);
-
-            //fieldComponent.UpdateFieldRepetition(2, "SAMPLE_INSERT_TEST_UPDATE");
-
-            //fieldComponent.RemoveFieldRepetition(4);
+            var message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
             Console.WriteLine("Before:");
 
-            Console.WriteLine(hl7v2Message.ToString());
+            Console.WriteLine(message.ToString());
 
-            hl7v2Message.Rebuild();
+            var obrMessageSegment = message.AddMessageSegment("OBR");
+
+            for (var i = 1; i <= 53; i++)
+            {
+                var result = string.Empty;
+                if (i % 2 == 0)
+                {
+                    result = "1";
+                }
+                else if (i % 3 == 0)
+                {
+                    result = "2";
+                }
+
+                obrMessageSegment.AddField(result);
+            }
+
+            obrMessageSegment = message.AddMessageSegment("OBR");
+
+            for (var i = 1; i <= 53; i++)
+            {
+                var result = string.Empty;
+                if (i % 2 == 0)
+                {
+                    result = "3";
+                }
+                else if (i % 3 == 0)
+                {
+                    result = "4";
+                }
+
+                var field = obrMessageSegment.AddField(result);
+
+                if (i % 2 == 0 && i < 15)
+                {
+                    field.AddFieldRepetition("5");
+
+                    var component = field.AddComponent("test_comp");
+
+                    component.AddSubComponent("sub_1");
+                    component.AddSubComponent("sub_2");
+                    component.AddSubComponent("sub_3");
+                }
+                else if (i % 3 == 0)
+                {
+                    field.AddFieldRepetition("6");
+                }
+            }
+
+            //Get("OBR(1).2") // gets the 1st OBR repetition's 2nd field
+            var obrr12 = message.Get("OBR(1).2");
+
+            var obrr12test = message["OBR", 0][2];
+
+            //Get("OBR(2).3") // gets the 2nd OBR repetition's 3rd field
+            var obrr23 = message.Get("OBR(2).3");
+
+            var obrr23test = message["OBR", 1][3];
+
+            //Get("GT1.6(2)") // gets the 1st GT1 repetition's 6th field's 2nd repetition
+            var gt162 = message.Get("GT1.6(2)");
+
+            var gt162test = message["GT1"][6].GetFieldRepetition(2);
+
+            Console.WriteLine(gt162test.Value);
+            Console.WriteLine(gt162.Value);
+
+            message.Rebuild();
 
             Console.WriteLine("Final Output:");
 
-            Console.WriteLine(hl7v2Message.ToString());
+            Console.WriteLine(message.ToString());
 
             Console.Read();
         }

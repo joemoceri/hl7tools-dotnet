@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
@@ -7,18 +8,18 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
 		public HL7V2MessageSegment()
         {
-			Fields = new List<HL7V2FieldBase>();
+			Fields = new List<HL7V2Field>();
         }
 
 		public string SegmentName { get; set; }
 
-        public IList<HL7V2FieldBase> Fields { get; set; }
+        public IList<HL7V2Field> Fields { get; set; }
 
         public override string ToString()
         {
             return Combine(Fields);
 
-			string Combine(IList<HL7V2FieldBase> fields, bool useSegmentName = true)
+			string Combine(IList<HL7V2Field> fields, bool useSegmentName = true)
 			{
 				if (fields == null || fields.Count == 0)
 				{
@@ -51,9 +52,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 		public void Rebuild()
         {
-			foreach (var field in Fields)
+			for (var i = 0; i < Fields.Count; i++)
             {
-				field.Rebuild();
+				Fields[i].Rebuild();
             }
         }
 
@@ -61,7 +62,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             get
             {
-				return (HL7V2Field)Fields.FirstOrDefault(f => f.Id.Equals(id));
+				return Fields.FirstOrDefault(f => f.Id.Equals(id));
             }
         }
 
@@ -75,10 +76,37 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             var result = new HL7V2Field
             {
-                Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
+                Delimiter = HL7V2ExpressionConfiguration.fieldDelimiter,
                 Id = Fields.Count > 0 ? Fields.Last().Id + 1 : 1,
                 Value = value,
             };
+
+            var fieldRepetition = new HL7V2FieldRepetition
+            {
+                Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
+                Value = value,
+                Id = 1
+            };
+
+            result.FieldRepetitions.Add(fieldRepetition);
+
+            var component = new HL7V2Component
+            {
+                Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
+                Value = value,
+                Id = 1
+            };
+
+            fieldRepetition.Components.Add(component);
+
+            var subComponent = new HL7V2SubComponent
+            {
+                Delimiter = HL7V2ExpressionConfiguration.subComponentDelimiter,
+                Value = value,
+                Id = 1
+            };
+
+            component.SubComponents.Add(subComponent);
 
             Fields.Add(result);
 
@@ -128,6 +156,36 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 }
             }
 
+            if (Fields.Count == 0)
+            {
+                var fieldRepetition = new HL7V2FieldRepetition
+                {
+                    Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
+                    Value = value,
+                    Id = 1
+                };
+
+                field.FieldRepetitions.Add(fieldRepetition);
+
+                var component = new HL7V2Component
+                {
+                    Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
+                    Value = value,
+                    Id = 1
+                };
+
+                fieldRepetition.Components.Add(component);
+
+                var subComponent = new HL7V2SubComponent
+                {
+                    Delimiter = HL7V2ExpressionConfiguration.subComponentDelimiter,
+                    Value = value,
+                    Id = 1
+                };
+
+                component.SubComponents.Add(subComponent);
+            }
+
             Fields.Insert(previousIndex, field);
 
             return field;
@@ -149,7 +207,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             fr.Value = value;
 
-            return (HL7V2Field)fr;
+            return fr;
         }
         #endregion
     }

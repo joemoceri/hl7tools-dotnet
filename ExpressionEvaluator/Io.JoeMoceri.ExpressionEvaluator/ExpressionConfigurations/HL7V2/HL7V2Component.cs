@@ -39,34 +39,38 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
-        #region Field SubComponent Operations
-        public void AddSubComponent(string value)
+        #region SubComponent Operations
+        public HL7V2SubComponent AddSubComponent(string value)
         {
-            SubComponents.Add(new HL7V2SubComponent
+            var result = new HL7V2SubComponent
             {
                 Delimiter = HL7V2ExpressionConfiguration.subComponentDelimiter,
                 Id = SubComponents.Count > 0 ? SubComponents.Last().Id + 1 : 1,
                 Value = value
-            });
+            };
+
+            SubComponents.Add(result);
+
+            return result;
         }
 
-        public void RemoveSubComponent(int id)
+        public bool RemoveSubComponent(int id)
         {
             var subComponent = SubComponents.FirstOrDefault(c => c.Id.Equals(id));
 
             if (subComponent == null)
             {
-                return;
+                return false;
             }
 
-            SubComponents.Remove(subComponent);
+            return SubComponents.Remove(subComponent);
         }
 
-        public void InsertSubComponent(int id, string value)
+        public HL7V2SubComponent InsertSubComponent(int id, string value)
         {
             if (id >= SubComponents.Max(fr => fr.Id) || id <= 0)
             {
-                return;
+                return null;
             }
 
             var subComponent = new HL7V2SubComponent
@@ -80,7 +84,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             if (currentSubComponent == null)
             {
-                return;
+                return null;
             }
 
             var currentIndex = SubComponents.IndexOf(currentSubComponent);
@@ -95,23 +99,27 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
 
             SubComponents.Insert(currentIndex, subComponent);
+
+            return subComponent;
         }
 
-        public void UpdateSubComponent(int id, string value)
+        public HL7V2SubComponent UpdateSubComponent(int id, string value)
         {
             if (id >= SubComponents.Max(sc => sc.Id) || id <= 0)
             {
-                return;
+                return null;
             }
 
             var subComponent = SubComponents.FirstOrDefault(sc => sc.Id.Equals(id));
 
             if (subComponent == null)
             {
-                return;
+                return null;
             }
 
             subComponent.Value = value;
+
+            return subComponent;
         }
         #endregion
     }

@@ -25,25 +25,45 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return;
             }
 
-            foreach (var messageSegment in messageSegments)
+            for (var i = 0; i < messageSegments.Count; i++)
             {
-                messageSegment.Rebuild();
+                messageSegments[i].Rebuild();
             }
         }
 
         public HL7V2FieldBase Get(string id)
         {
-            // ["PID.3.2.1"]
-            // TODO:
-	        //Get("PID(2).1") // gets the 2nd PID repetition's 1st field
-	        //Get("PID.1(2)") // gets the 1st PID repetition's 1st first field's 2nd repetition
+            int GetRepetitionIndex(string input)
+            {
+                var startIndex = input.IndexOf("(") + 1;
+                var endIndex = input.LastIndexOf(")");
+
+                var indexString = input.Substring(startIndex, endIndex - startIndex);
+
+                if (int.TryParse(indexString, out int i))
+                {
+                    return i;
+                }
+                else
+                {
+                    throw new ArgumentException($"Cannot get repetition using index {indexString} for input {input}.");
+                }
+            }
+
+            //Get("PID.3.2.1")
+            //Get("OBR(2).1") // gets the 2nd PID repetition's 1st field
+	        //Get("GT1.6(2)") // gets the 1st GT1 repetition's 6th field's 2nd repetition
 
             var split = id.Split('.', StringSplitOptions.RemoveEmptyEntries);
 
-            var messageSegmentName = split[0];
-            int? fieldIndex = null;
-            int? subFieldIndex = null;
-            int? subSubFieldIndex = null;
+            var containsRepetition = split[0].Contains("(");
+            var messageSegmentName = containsRepetition ? split[0].Substring(0, split[0].IndexOf("(")) : split[0];
+            int? segmentRepetitionIndex = null;
+
+            if (containsRepetition)
+            {
+                segmentRepetitionIndex = GetRepetitionIndex(split[0]);
+            }
 
             if (split.Length <= 1)
             {
@@ -51,46 +71,67 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
 
             int parsedInt = -1;
+            int? fieldIndex = null;
+            int? fieldRepetitionIndex = null;
+            bool containsFieldRepetition = false;
 
-            if (int.TryParse(split[1], out parsedInt))
+            containsFieldRepetition = split[1].Contains("(");
+
+            if (containsFieldRepetition)
+            {
+                fieldRepetitionIndex = GetRepetitionIndex(split[1]);
+            }
+
+            if (int.TryParse(containsFieldRepetition ? split[1].Substring(0, split[1].IndexOf("(")) : split[1], out parsedInt))
             {
                 fieldIndex = parsedInt;
             }
 
+            int? componentIndex = null;
             if (split.Length > 2)
             {
                 if (int.TryParse(split[2], out parsedInt))
                 {
-                    subFieldIndex = parsedInt;
+                    componentIndex = parsedInt;
                 }
             }
 
+            int? subComponentIndex = null;
             if (split.Length > 3)
             {
                 if (int.TryParse(split[3], out parsedInt))
                 {
-                    subSubFieldIndex = parsedInt;
+                    subComponentIndex = parsedInt;
                 }
             }
 
-            var segment = messageSegments.FirstOrDefault(s => s.SegmentName.Equals(messageSegmentName));
+            var segments = messageSegments.Where(s => s.SegmentName.Equals(messageSegmentName)).ToList();
 
-            if (segment == null)
+            if (segments.Count == 0)
             {
                 return null;
             }
 
-            var field = segment.GetField(fieldIndex.Value);
+            var field = segments[segmentRepetitionIndex.HasValue ? segmentRepetitionIndex.Value - 1 : 0].GetField(fieldIndex.Value);
 
-            var result = field;
+            HL7V2FieldBase result = field;
 
-            if (field.Components().Count > 0 && subFieldIndex.HasValue && subFieldIndex.Value <= field.Components().Count)
+            var repetition = containsFieldRepetition ? fieldRepetitionIndex.Value : 1;
+
+            if (containsFieldRepetition)
             {
-                var component = field.Components()[subFieldIndex.Value - 1];
+                result = field.GetFieldRepetition(fieldRepetitionIndex.Value);
+            }
 
-                if (component.SubComponents.Count > 0 && subSubFieldIndex.HasValue && subSubFieldIndex.Value <= component.SubComponents.Count)
+            var components = field.Components(repetition);
+
+            if (components != null && components.Count > 0 && componentIndex.HasValue && componentIndex.Value <= components.Count)
+            {
+                var component = components[componentIndex.Value - 1];
+
+                if (component.SubComponents != null && component.SubComponents.Count > 0 && subComponentIndex.HasValue && subComponentIndex.Value <= component.SubComponents.Count)
                 {
-                    return component.SubComponents[subSubFieldIndex.Value - 1];
+                    return component.SubComponents[subComponentIndex.Value - 1];
                 }
                 else
                 {
@@ -101,11 +142,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
-        public HL7V2MessageSegment this[string segmentName]
+        public HL7V2MessageSegment this[string segmentName, int index = 0]
         {
             get
             {
-                var result = messageSegments.FirstOrDefault(s => s.SegmentName.Equals(segmentName));
+                var result = messageSegments.Where(s => s.SegmentName.Equals(segmentName)).ToList()[index];
                 return result;
             }
         }
@@ -161,7 +202,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public HL7V2MessageSegment InsertMessageSegment(string segmentName, int index = 0)
         {
-            if (index >= messageSegments.Count || index <= 0)
+            if (index > messageSegments.Count || index < 0)
             {
                 return null;
             }
@@ -171,23 +212,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 SegmentName = segmentName,
             };
 
-            var pFr = messageSegments.Where(fr => fr.SegmentName.Equals(segmentName)).ToList()[index];
-
-            if (pFr == null)
-            {
-                return null;
-            }
-
-            var previousIndex = messageSegments.IndexOf(pFr);
-
-            messageSegments.Insert(previousIndex, messageSegment);
+            messageSegments.Insert(index, messageSegment);
 
             return messageSegment;
         }
 
         public HL7V2MessageSegment UpdateMessageSegment(string segmentName, int index = 0)
         {
-            if (index >= messageSegments.Count || index <= 0)
+            if (index > messageSegments.Count || index < 0)
             {
                 return null;
             }

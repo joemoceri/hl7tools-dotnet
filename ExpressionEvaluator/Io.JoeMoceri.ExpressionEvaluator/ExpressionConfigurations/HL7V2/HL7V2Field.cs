@@ -38,9 +38,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             if (FieldRepetitions.Count > 0)
             {
-                foreach (var fieldRepetition in FieldRepetitions)
+                for (var i = 0; i < FieldRepetitions.Count; i++)
                 {
-                    fieldRepetition.Rebuild();
+                    FieldRepetitions[i].Rebuild();
                 }
 
                 Value = CombineHL7Fields(FieldRepetitions.Cast<HL7V2FieldBase>().ToList());
@@ -56,54 +56,58 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         #region Field Component Operations
-        public void AddComponent(string value, int repetition = 1)
+        public HL7V2Component AddComponent(string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
 
             if (fieldRepetition == null)
             {
-                return;
+                return null;
             }
 
-            fieldRepetition.Components.Add(new HL7V2Component
+            var result = new HL7V2Component
             {
                 Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
                 Id = fieldRepetition.Components.Count > 0 ? fieldRepetition.Components.Last().Id + 1 : 1,
                 Value = value
-            });
+            };
+
+            fieldRepetition.Components.Add(result);
+
+            return result;
         }
 
-        public void RemoveComponent(int id, int repetition = 1)
+        public bool RemoveComponent(int id, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
 
             if (fieldRepetition == null)
             {
-                return;
+                return false;
             }
 
             var component = fieldRepetition.Components.FirstOrDefault(c => c.Id.Equals(id));
 
             if (component == null)
             {
-                return;
+                return false;
             }
 
-            fieldRepetition.Components.Remove(component);
+            return fieldRepetition.Components.Remove(component);
         }
 
-        public void InsertComponent(int id, string value, int repetition = 1)
+        public HL7V2Component InsertComponent(int id, string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
 
             if (fieldRepetition == null)
             {
-                return;
+                return null;
             }
 
             if (id >= fieldRepetition.Components.Max(fr => fr.Id) || id <= 0)
             {
-                return;
+                return null;
             }
 
             var component = new HL7V2Component
@@ -117,7 +121,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             if (currentComponent == null)
             {
-                return;
+                return null;
             }
 
             var currentIndex = fieldRepetition.Components.IndexOf(currentComponent);
@@ -132,30 +136,34 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
 
             fieldRepetition.Components.Insert(currentIndex, component);
+
+            return component;
         }
 
-        public void UpdateComponent(int id, string value, int repetition = 1)
+        public HL7V2Component UpdateComponent(int id, string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
 
             if (fieldRepetition == null)
             {
-                return;
+                return null;
             }
 
             if (id >= fieldRepetition.Components.Max(fr => fr.Id) || id <= 0)
             {
-                return;
+                return null;
             }
 
             var component = fieldRepetition.Components.FirstOrDefault(c => c.Id.Equals(id));
 
             if (component == null)
             {
-                return;
+                return null;
             }
 
             component.Value = value;
+
+            return component;
         }
         #endregion
 
@@ -174,18 +182,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
-        public HL7V2FieldRepetition RemoveFieldRepetition(int id)
+        public bool RemoveFieldRepetition(int id)
         {
             var fr = FieldRepetitions.FirstOrDefault(f => f.Id.Equals(id));
 
             if (fr == null)
             {
-                return fr;
+                return false;
             }
 
-            FieldRepetitions.Remove(fr);
-
-            return fr;
+            return FieldRepetitions.Remove(fr);
         }
 
         public HL7V2FieldRepetition InsertFieldRepetition(int id, string value)

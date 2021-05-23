@@ -105,7 +105,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                         {
                             fieldRepetition.Components = new List<HL7V2Component>();
 
-                            var componentSplit = expGroup.RightOperand.Split(componentDelimiter);
+                            var componentSplit = fieldRepetition.Value.Split(componentDelimiter);
 
                             for (var i = 0; i < componentSplit.Length; i++)
                             {
@@ -176,7 +176,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             var result = new HL7V2MessageSegment
             {
-                Fields = fields.Cast<HL7V2FieldBase>().ToList(),
+                Fields = fields,
                 SegmentName = segment
             };
 

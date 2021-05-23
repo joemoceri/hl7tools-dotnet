@@ -21,9 +21,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             if (Components.Count > 0)
             {
-                foreach (var component in Components)
+                for (var i = 0; i < Components.Count; i++)
                 {
-                    component.Rebuild();
+                    Components[i].Rebuild();
                 }
 
                 Value = CombineHL7Fields(Components.Cast<HL7V2FieldBase>().ToList());
@@ -33,33 +33,37 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public IList<HL7V2Component> Components { get; set; }
 
         #region Component Operations
-        public void AddComponent(string value)
+        public HL7V2Component AddComponent(string value)
         {
-            Components.Add(new HL7V2Component
+            var result = new HL7V2Component
             {
                 Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
                 Id = Components.Count > 0 ? Components.Last().Id + 1 : 1,
                 Value = value
-            });
+            };
+
+            Components.Add(result);
+
+            return result;
         }
 
-        public void RemoveComponent(int id)
+        public bool RemoveComponent(int id)
         {
             var component = Components.FirstOrDefault(c => c.Id.Equals(id));
 
             if (component == null)
             {
-                return;
+                return false;
             }
 
-            Components.Remove(component);
+            return Components.Remove(component);
         }
 
-        public void InsertComponent(int id, string value)
+        public HL7V2Component InsertComponent(int id, string value)
         {
             if (id >= Components.Max(fr => fr.Id) || id <= 0)
             {
-                return;
+                return null;
             }
 
             var component = new HL7V2Component
@@ -73,7 +77,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             if (currentComponent == null)
             {
-                return;
+                return null;
             }
 
             var currentIndex = Components.IndexOf(currentComponent);
@@ -88,23 +92,27 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
 
             Components.Insert(currentIndex, component);
+
+            return component;
         }
 
-        public void UpdateComponent(int id, string value)
+        public HL7V2Component UpdateComponent(int id, string value)
         {
             if (id >= Components.Max(fr => fr.Id) || id <= 0)
             {
-                return;
+                return null;
             }
 
             var component = Components.FirstOrDefault(c => c.Id.Equals(id));
 
             if (component == null)
             {
-                return;
+                return null;
             }
 
             component.Value = value;
+
+            return component;
         }
         #endregion
     }
