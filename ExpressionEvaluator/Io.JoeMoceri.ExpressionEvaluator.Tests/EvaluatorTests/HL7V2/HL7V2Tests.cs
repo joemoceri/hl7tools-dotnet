@@ -15,7 +15,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			var messageToString = message.ToString();
 
-			var joinedMessageFile = string.Join(Environment.NewLine, lines.Where(l => !char.IsControl(l[0])));
+			var joinedMessageFile = string.Join(Environment.NewLine, lines.Where(l => !char.IsControl(l[0]) && l.Length > 1));
 
             Assert.AreEqual(messageToString, joinedMessageFile);
 
