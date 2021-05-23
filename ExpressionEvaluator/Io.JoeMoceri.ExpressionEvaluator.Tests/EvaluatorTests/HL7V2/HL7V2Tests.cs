@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 {
@@ -38,10 +39,26 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			for (var i = 0; i < lines.Length; i++)
             {
-				// TODO: Compare this to the message Values, they should be the same and order should be respected
-				var split = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter);
+				var segmentName = lines[i].Substring(0, 3);
 
+				Assert.AreEqual(segmentName, message.MessageSegments[i].SegmentName);
 
+				lines[i] = lines[i].Remove(0, 4);
+				// Compare this to the message Values, they should be the same and order should be respected
+				// TODO: Check for the rest
+				var split = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter).ToList();
+
+				if (segmentName.Equals("MSH"))
+                {
+					split.Insert(0, HL7V2ExpressionConfiguration.fieldDelimiter);
+                }
+
+				var segment = message.MessageSegments[i];
+
+				for (var j = 0; j < split.Count; j++)
+                {
+					Assert.AreEqual(split[j], segment[j + 1].Value);
+                }
             }
 
 			var evn = message["EVN"];
