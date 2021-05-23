@@ -17,4 +17,10 @@
     <ProjectReference Include="..\Io.JoeMoceri.ExpressionEvaluator\Io.JoeMoceri.ExpressionEvaluator.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="EvaluatorTests\HL7V2\sample-messages\sample-hl7v2-message.1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
