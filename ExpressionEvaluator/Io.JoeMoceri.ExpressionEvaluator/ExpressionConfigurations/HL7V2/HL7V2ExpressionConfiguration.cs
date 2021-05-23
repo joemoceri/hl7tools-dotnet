@@ -25,7 +25,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             RebuildEncodingConversions();
 
-            // TODO: Finish this
+            // TODO: I think this should update the delimiters. I need more concrete examples to test against. But this will work for single FHS / BHS segments, I'm not sure for more. I need a test message to see.
             specialSegmentHeaders = new List<string>()
             {
                 "MSH",
@@ -106,15 +106,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             ExpressionResult FieldSolveOperatorExpression(ExpressionGroup expGroup)
             {
-                if (expGroup.RightOperand.Equals(endCharacter))
-                {
-                    expGroup.RightOperand = string.Empty;
-                }
+                expGroup.RightOperand = expGroup.RightOperand.Replace(endCharacter, string.Empty);
 
                 if (delimiterCount == 0)
                 {
                     segment = expGroup.LeftOperand;
-                    if (segment.Equals(headerSegmentName))
+                    if (specialSegmentHeaders.Any(a => a.Equals(segment)))
                     {
                         delimiterCount++;
 
@@ -139,7 +136,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
                 fields.Add(field);
 
-                if (expGroup.LeftOperand.Equals(headerSegmentName))
+                if (specialSegmentHeaders.Any(a => a.Equals(expGroup.LeftOperand)))
                 {
                     return DefaultExpressionResult;
                 }

@@ -34,7 +34,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				for (var i = 0; i < fields.Count; i++)
 				{
-					if (SegmentName.Equals("MSH") && i == 0 && useSegmentName)
+					if (HL7V2ExpressionConfiguration.specialSegmentHeaders.Any(a => a.Equals(SegmentName)) && i == 0 && useSegmentName)
 					{
 						continue;
 					}

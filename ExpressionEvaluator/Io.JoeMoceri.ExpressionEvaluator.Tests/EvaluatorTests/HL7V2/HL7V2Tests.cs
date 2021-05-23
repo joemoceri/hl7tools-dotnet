@@ -30,7 +30,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				// Compare this to the message Values, they should be the same and order should be respected
 				var fields = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter).ToList();
 
-				if (segmentName.Equals("MSH"))
+				if (HL7V2ExpressionConfiguration.specialSegmentHeaders.Any(a => a.Equals(segmentName)))
 				{
 					fields.Insert(0, HL7V2ExpressionConfiguration.fieldDelimiter);
 				}
@@ -43,7 +43,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 					var field = segment[j + 1];
 					Assert.AreEqual(fields[j], field.Value);
 
-					if (segmentName.Equals("MSH") && j <= 1)
+					if (HL7V2ExpressionConfiguration.specialSegmentHeaders.Any(a => a.Equals(segmentName)) && j <= 1)
                     {
 						continue;
                     }
@@ -101,41 +101,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				var message = evaluator.EvaluateHL7V2File(paths[i]);
 				CompareFileWithMessage(paths[i], message);
             }
-
-			//var path = "ADT-A08 Update Patient.txt";
-			//var message = evaluator.EvaluateHL7V2File(path);
-   //         CompareFileWithMessage(path, message);
-
-			//path = "ADT-A28 Add Patient.txt";
-			//message = evaluator.EvaluateHL7V2File(path);
-			//CompareFileWithMessage(path, message);
-
-			//path = "ADT_A01 - 1.txt";
-			//message = evaluator.EvaluateHL7V2File(path);
-			//CompareFileWithMessage(path, message);
-
-			//path = "ADT_A01 - 2.txt";
-			//message = evaluator.EvaluateHL7V2File(path);
-			//CompareFileWithMessage(path, message);
-			
-			//path = "ADT_A01 - 3.txt";
-			//message = evaluator.EvaluateHL7V2File(path);
-			//CompareFileWithMessage(path, message);
-			
-			//path = "ADT_A01 - 4.txt";
-			//message = evaluator.EvaluateHL7V2File(path);
-			//CompareFileWithMessage(path, message);
-			
-			//path = "ADT_A04 - 1.txt";
-			//message = evaluator.EvaluateHL7V2File(path);
-			//CompareFileWithMessage(path, message);
-
-			//path = "ADT_A05.txt";
-			//message = evaluator.EvaluateHL7V2File(path);
-			//CompareFileWithMessage(path, message);
-
-			//// Assert
-			//Assert.IsNull(message.Error);
 		}
 
 		[TestMethod]
