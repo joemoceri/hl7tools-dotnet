@@ -87,7 +87,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 					{
 						expConfig.endCharacter = $"{{END_CHARACTER:{Guid.NewGuid()}}}";
 						exp += expConfig.endCharacter;
-						expConfig.endCharacterAdded = true;
 					}
 
 					Evaluate(exp);
@@ -101,7 +100,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 					result.MessageSegments.Add(messageSegment);
 
-					expConfig.endCharacterAdded = false;
+					expConfig.endCharacter = null;
 				}
             }
 			catch (Exception ex)

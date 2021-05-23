@@ -18,7 +18,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static IList<string> specialSegmentHeaders;
         public static IDictionary<string, string> encodingConversions;
         public string endCharacter;
-        public bool endCharacterAdded = false;
         private int delimiterCount;
         private string segment;
         private IList<HL7V2Field> fields;
@@ -109,7 +108,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             ExpressionResult FieldSolveOperatorExpression(ExpressionGroup expGroup)
             {
                 // found the end character
-                if (endCharacterAdded && expGroup.RightOperand.EndsWith(endCharacter))
+                if (endCharacter != null && expGroup.RightOperand.EndsWith(endCharacter))
                 {
                     var split = expGroup.RightOperand.Split(endCharacter);
 
