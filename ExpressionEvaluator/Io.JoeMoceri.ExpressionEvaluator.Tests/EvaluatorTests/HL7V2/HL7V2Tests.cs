@@ -19,6 +19,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 					continue;
                 }
 
+				// the lines should be the same as the message segment
+				Assert.AreEqual(lines[i], message.MessageSegments[i].ToString());
+
 				var segmentName = lines[i].Substring(0, 3);
 
 				// check the segment name
