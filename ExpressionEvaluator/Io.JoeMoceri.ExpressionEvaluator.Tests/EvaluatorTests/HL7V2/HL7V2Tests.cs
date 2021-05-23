@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 {
@@ -32,6 +33,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(msh.GetField(3).Value, msh[3].Value);
 
 			Assert.AreEqual(msh[3].GetFieldRepetition(1).Value, msh[3].Value);
+
+			var lines = File.ReadAllLines("ADT-A08 Update Patient.txt");
+
+			for (var i = 0; i < lines.Length; i++)
+            {
+				// TODO: Compare this to the message Values, they should be the same and order should be respected
+				var split = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter);
+
+
+            }
 
 			var evn = message["EVN"];
 
