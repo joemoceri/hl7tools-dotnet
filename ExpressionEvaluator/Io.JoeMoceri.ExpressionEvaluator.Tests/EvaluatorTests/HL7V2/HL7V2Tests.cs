@@ -8,39 +8,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
     [TestClass]
     public class HL7V2Tests
     {
-		[TestMethod]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_VerifyAllFields()
-		{
-			// Arrange
-			var expressionConfiguration = new HL7V2ExpressionConfiguration();
-
-			var evaluator = new Evaluator(expressionConfiguration);
-
-			// Act
-			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
-
-			// TODO: Fill this out
-			var msh = message["MSH"];
-
-			Assert.AreEqual(msh.GetField(3).Value, msh[3].Value);
-
-			Assert.AreEqual(msh[3].GetFieldRepetition(1).Value, msh[3].Value);
-
-			msh[3].Value = $"{Guid.NewGuid()}";
-
-			message.Rebuild();
-
-			Assert.AreEqual(msh.GetField(3).Value, msh[3].Value);
-
-			Assert.AreEqual(msh[3].GetFieldRepetition(1).Value, msh[3].Value);
-
-			var lines = File.ReadAllLines("ADT-A08 Update Patient.txt");
+		private void CompareFileWithMessage(string path, HL7V2Message message)
+        {
+			var lines = File.ReadAllLines(path);
 
 			for (var i = 0; i < lines.Length; i++)
-            {
+			{
 				var segmentName = lines[i].Substring(0, 3);
 
+				// check the segment name
 				Assert.AreEqual(segmentName, message.MessageSegments[i].SegmentName);
 
 				lines[i] = lines[i].Remove(0, 4);
@@ -49,35 +25,27 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 				var split = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter).ToList();
 
 				if (segmentName.Equals("MSH"))
-                {
+				{
 					split.Insert(0, HL7V2ExpressionConfiguration.fieldDelimiter);
-                }
+				}
 
 				var segment = message.MessageSegments[i];
 
+				// check field values
 				for (var j = 0; j < split.Count; j++)
-                {
+				{
 					Assert.AreEqual(split[j], segment[j + 1].Value);
-                }
-            }
 
-			var evn = message["EVN"];
-
-			var pid = message["PID"];
-
-			var nk1 = message["NK1"];
-
-			var pv1 = message["PV1"];
-
-			var gt1 = message["GT1"];
-
-			// Assert
-			Assert.IsNull(message.Error);
+					// check field repetitions
+					// inside field repetitions, check components
+					// inside components, check sub components
+				}
+			}
 		}
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_UpdateFieldValue()
+		public void HL7V2Tests_EvaluateHL7V2Message_CompareFileWithMessage()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
@@ -87,24 +55,33 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// Act
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			// TODO: Fill this out
+			CompareFileWithMessage("ADT-A08 Update Patient.txt", message);
+
+			// Assert
+			Assert.IsNull(message.Error);
+		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		public void HL7V2Tests_EvaluateHL7V2Message_MessageSegment_UpdateField()
+		{
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			// Act
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
 			var msh = message["MSH"];
 
-			var value = "testtierenterprise";
+			var value = $"{Guid.NewGuid()}";
+
+			Assert.AreNotEqual(msh[2].Value, value);
 
 			msh.UpdateField(2, value);
 
 			Assert.AreEqual(msh[2].Value, value);
-
-			var evn = message["EVN"];
-
-			var pid = message["PID"];
-
-			var nk1 = message["NK1"];
-
-			var pv1 = message["PV1"];
-
-			var gt1 = message["GT1"];
 
 			// Assert
 			Assert.IsNull(message.Error);
