@@ -21,30 +21,66 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 				lines[i] = lines[i].Remove(0, 4);
 				// Compare this to the message Values, they should be the same and order should be respected
-				// TODO: Check for the rest
-				var split = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter).ToList();
+				var fields = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter).ToList();
 
 				if (segmentName.Equals("MSH"))
 				{
-					split.Insert(0, HL7V2ExpressionConfiguration.fieldDelimiter);
+					fields.Insert(0, HL7V2ExpressionConfiguration.fieldDelimiter);
 				}
 
 				var segment = message.MessageSegments[i];
 
 				// check field values
-				for (var j = 0; j < split.Count; j++)
+				for (var j = 0; j < fields.Count; j++)
 				{
-					Assert.AreEqual(split[j], segment[j + 1].Value);
+					var field = segment[j + 1];
+					Assert.AreEqual(fields[j], field.Value);
+
+					if (segmentName.Equals("MSH") && j <= 1)
+                    {
+						continue;
+                    }
 
 					// check field repetitions
-					// inside field repetitions, check components
-					// inside components, check sub components
+					var fieldRepetitions = fields[j].Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+
+					for (var a = 0; a < fieldRepetitions.Length; a++)
+                    {
+						Assert.AreEqual(fieldRepetitions[a], segment[j + 1].GetFieldRepetition(a + 1).Value);
+
+						var components = fieldRepetitions[a].Split(HL7V2ExpressionConfiguration.componentDelimiter);
+
+						// check components
+						if (components.Length > 1)
+                        {
+							for (var b = 0; b < components.Length; b++)
+							{
+								var component = field[b + 1, a + 1];
+								Assert.AreEqual(components[b], component.Value);
+
+								var subComponents = components[b].Split(HL7V2ExpressionConfiguration.subComponentDelimiter);
+
+								// check sub components
+								if (subComponents.Length > 1)
+                                {
+									for (var c = 0; c < subComponents.Length; c++)
+                                    {
+										var subComponent = component[c + 1];
+
+										Assert.AreEqual(subComponents[c], subComponent.Value);
+                                    }
+                                }
+							}
+                        }
+
+                    }
 				}
 			}
 		}
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A28 Add Patient.txt")]
 		public void HL7V2Tests_EvaluateHL7V2Message_CompareFileWithMessage()
 		{
 			// Arrange
@@ -52,10 +88,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			var evaluator = new Evaluator(expressionConfiguration);
 
-			// Act
-			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+            // Act
+            var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			CompareFileWithMessage("ADT-A08 Update Patient.txt", message);
+            CompareFileWithMessage("ADT-A08 Update Patient.txt", message);
+
+            // TODO: Fix this PV1||N|
+
+            message = evaluator.EvaluateHL7V2File("ADT-A28 Add Patient.txt");
+
+			CompareFileWithMessage("ADT-A28 Add Patient.txt", message);
 
 			// Assert
 			Assert.IsNull(message.Error);
