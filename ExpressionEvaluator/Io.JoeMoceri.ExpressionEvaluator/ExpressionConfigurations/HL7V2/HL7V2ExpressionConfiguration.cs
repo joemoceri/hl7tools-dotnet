@@ -107,30 +107,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             ExpressionResult FieldSolveOperatorExpression(ExpressionGroup expGroup)
             {
+                bool? endCharacterFound = false;
                 // found the end character
                 if (endCharacter != null && expGroup.RightOperand.EndsWith(endCharacter))
                 {
-                    var split = expGroup.RightOperand.Split(endCharacter);
-
-                    // on the absolutely out there case somebody else uses this same end character in the data
-                    if (split.Length > 2)
-                    {
-                        var result = "";
-
-                        // get the value, ignoring the end one I put there
-                        for (var i = 0; i < split.Length - 1; i++)
-                        {
-                            result += split[i];
-                        }
-
-                        // update it
-                        expGroup.RightOperand = result;
-                    }
-                    // only 2 elements if it's just my end character, ignore the empty
-                    else
-                    {
-                        expGroup.RightOperand = split[0];
-                    }
+                    endCharacterFound = true;
                 }
 
                 if (delimiterCount == 0)
@@ -156,7 +137,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 {
                     Delimiter = additionOperator.OperatorName,
                     Id = delimiterCount,
-                    Value = expGroup.RightOperand
+                    Value = endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand
                 }; 
 
                 fields.Add(field);
@@ -167,7 +148,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 }
 
                 // fields contain field repetition
-                if (expGroup.RightOperand.Contains(fieldRepetitionDelimiter))
+                if (field.Value.Contains(fieldRepetitionDelimiter))
                 {
                     var fieldRepetitionSplit = expGroup.RightOperand.Split(fieldRepetitionDelimiter);
 
@@ -188,7 +169,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                     field.FieldRepetitions.Add(new HL7V2FieldRepetition
                     {
                         Delimiter = fieldRepetitionDelimiter,
-                        Value = expGroup.RightOperand,
+                        Value = field.Value,
                         Id = 1
                     });
                 }

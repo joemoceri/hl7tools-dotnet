@@ -78,18 +78,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				foreach (var expression in expressions)
 				{
-					var exp = expression;
-					if (expression.EndsWith(HL7V2ExpressionConfiguration.fieldDelimiter) ||
-						expression.EndsWith(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter) ||
-						expression.EndsWith(HL7V2ExpressionConfiguration.componentDelimiter) ||
-						expression.EndsWith(HL7V2ExpressionConfiguration.subComponentDelimiter)
-						)
-					{
-						expConfig.endCharacter = $"{{END_CHARACTER:{Guid.NewGuid()}}}";
-						exp += expConfig.endCharacter;
-					}
-
-					Evaluate(exp);
+					Evaluate(expression);
 
 					var messageSegment = expConfig.GetHL7V2MessageSegment();
 
@@ -99,8 +88,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                     }
 
 					result.MessageSegments.Add(messageSegment);
-
-					expConfig.endCharacter = null;
 				}
             }
 			catch (Exception ex)
@@ -112,6 +99,33 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		}
 
 		public ExpressionResult Evaluate(string expression)
+        {
+            if (expressionConfiguration is HL7V2ExpressionConfiguration)
+            {
+                if (expression.EndsWith(HL7V2ExpressionConfiguration.fieldDelimiter) ||
+                expression.EndsWith(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter) ||
+                expression.EndsWith(HL7V2ExpressionConfiguration.componentDelimiter) ||
+                expression.EndsWith(HL7V2ExpressionConfiguration.subComponentDelimiter)
+                )
+                {
+					var expConfig = ((HL7V2ExpressionConfiguration)expressionConfiguration);
+                    expConfig.endCharacter = $"{{END_CHARACTER:{Guid.NewGuid()}}}";
+                    expression += expConfig.endCharacter;
+                }
+            }
+
+            var result = EvaluateInternal(expression);
+
+            if (expressionConfiguration is HL7V2ExpressionConfiguration)
+            {
+                var expConfig = ((HL7V2ExpressionConfiguration)expressionConfiguration);
+                expConfig.endCharacter = null;
+            }
+
+            return result;
+        }
+
+		internal ExpressionResult EvaluateInternal(string expression)
 		{
 			try
 			{
@@ -123,11 +137,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 						Value = expression, 
 						Type = null
 					}; 
-				};
+				}
 
 				if (expressionConfiguration is HL7V2ExpressionConfiguration)
                 {
-					((HL7V2ExpressionConfiguration)expressionConfiguration).Setup();
+					var expConfig = ((HL7V2ExpressionConfiguration)expressionConfiguration);
+					expConfig.Setup();
 
 					if ((char.IsControl(expression[0]) && expression.Length == 1))
                     {
@@ -137,7 +152,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 							Type = null
 						};
 					}
-                }
+				}
 
 				if (!expressionConfiguration.Options.IgnoreWhitespaceOutsideQuotes)
                 {
@@ -171,7 +186,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 					// recursively break down the expressions parentheses, then work your way back up
 					while (parenthesesAmount != 0)
 					{
-						expression = GetOuterMostParentheticalExpression(expression, Evaluate);
+						expression = GetOuterMostParentheticalExpression(expression, EvaluateInternal);
 						parenthesesAmount = GetCharacterCount(expression, '(') + GetCharacterCount(expression, ')');
 					}
                 }
@@ -433,10 +448,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 							var originalRight = expressionGroup.RightOperand;
 
 							// boolean expressions broken down are composed of 2 math/string expressions that need to be evaluated (1>2, 1+2>3+4, etc)
-							var leftResult = Evaluate(expressionGroup.LeftOperand);
+							var leftResult = EvaluateInternal(expressionGroup.LeftOperand);
 							expressionGroup.LeftOperand = leftResult.Value;
 
-							var rightResult = Evaluate(expressionGroup.RightOperand);
+							var rightResult = EvaluateInternal(expressionGroup.RightOperand);
 							expressionGroup.RightOperand = rightResult.Value;
 
 							// then, after updating those values, solve THAT boolean expression
@@ -1290,6 +1305,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 				{
 					return VariableType.Boolean;
 				}
+				else if (expressionConfiguration is HL7V2ExpressionConfiguration)
+                {
+					return VariableType.String;
+                }
 				else
 				{
 					// invalid expressions usually break here first

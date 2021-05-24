@@ -17,6 +17,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public override string Value { get; set; }
 
+        public HL7V2Component this[int id]
+        {
+            get
+            {
+                return Components.FirstOrDefault(f => f.Id.Equals(id));
+            }
+        }
+
         public override void Rebuild()
         {
             if (Components.Count > 0)

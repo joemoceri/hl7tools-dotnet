@@ -151,6 +151,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			var msh = message["MSH"];
 
+			// Update Field
 			var value = $"{Guid.NewGuid()}";
 
 			Assert.AreNotEqual(msh[2].Value, value);
@@ -158,6 +159,59 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			msh.UpdateField(2, value);
 
 			Assert.AreEqual(msh[2].Value, value);
+
+			// Add Field
+			value = $"{Guid.NewGuid()}";
+
+			var previousCount = msh.Fields.Count;
+
+			var field = msh.AddField(value);
+
+			var lastField = msh.Fields.Last();
+
+			Assert.AreEqual(msh.Fields.Count, previousCount + 1);
+
+			Assert.AreEqual(field.Delimiter, HL7V2ExpressionConfiguration.fieldDelimiter);
+			
+			Assert.AreEqual(field.Value, value);
+
+			Assert.AreEqual(field.Id, lastField.Id);
+
+			Assert.AreEqual(field.Value, lastField.Value);
+
+			var fieldRepetition = field.GetFieldRepetition(1);
+
+			Assert.AreEqual(fieldRepetition.Id, 1);
+
+			Assert.AreEqual(field.Value, fieldRepetition.Value);
+
+			Assert.AreEqual(fieldRepetition.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+
+			fieldRepetition = field.FieldRepetitions[0];
+
+			Assert.AreEqual(fieldRepetition.Id, 1);
+
+			Assert.AreEqual(field.Value, fieldRepetition.Value);
+
+			Assert.AreEqual(fieldRepetition.Components.Count, 1);
+
+			var component = fieldRepetition[1];
+
+			Assert.AreEqual(component.Id, 1);
+
+			Assert.AreEqual(field.Value, component.Value);
+
+			Assert.AreEqual(component.SubComponents.Count, 1);
+
+			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+
+			var subComponent = component[1];
+
+			Assert.AreEqual(subComponent.Id, 1);
+
+			Assert.AreEqual(field.Value, subComponent.Value);
+
+			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
 
 			// Assert
 			Assert.IsNull(message.Error);
