@@ -172,7 +172,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public override string ToString()
         {
-            return string.Join(Environment.NewLine, ToHL7V2MessageFile());
+            return string.Join(Environment.NewLine, ToHL7V2MessageFile()).Trim();
         }
 
         #region Message Segment Operations

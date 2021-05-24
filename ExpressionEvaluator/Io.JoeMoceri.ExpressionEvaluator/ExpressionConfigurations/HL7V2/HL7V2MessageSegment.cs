@@ -39,8 +39,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 						continue;
 					}
 
-
-
 					result += $"{(i == 0 && !useSegmentName ? "" : fields[i].Delimiter)}{fields[i].Value}";
 				}
 
@@ -73,43 +71,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         #region Field Operations
         public HL7V2Field AddField(string value)
         {
-            var result = new HL7V2Field
+            var field = new HL7V2Field
             {
                 Delimiter = HL7V2ExpressionConfiguration.fieldDelimiter,
                 Id = Fields.Count > 0 ? Fields.Last().Id + 1 : 1,
                 Value = value,
             };
 
-            var fieldRepetition = new HL7V2FieldRepetition
-            {
-                Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
-                Value = value,
-                Id = 1
-            };
+            Fields.Add(field);
 
-            result.FieldRepetitions.Add(fieldRepetition);
-
-            var component = new HL7V2Component
-            {
-                Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
-                Value = value,
-                Id = 1
-            };
-
-            fieldRepetition.Components.Add(component);
-
-            var subComponent = new HL7V2SubComponent
-            {
-                Delimiter = HL7V2ExpressionConfiguration.subComponentDelimiter,
-                Value = value,
-                Id = 1
-            };
-
-            component.SubComponents.Add(subComponent);
-
-            Fields.Add(result);
-
-            return result;
+            return field;
         }
 
         public bool RemoveField(int id)
@@ -153,36 +124,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 {
                     f.Id++;
                 }
-            }
-
-            if (Fields.Count == 0)
-            {
-                var fieldRepetition = new HL7V2FieldRepetition
-                {
-                    Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
-                    Value = value,
-                    Id = 1
-                };
-
-                field.FieldRepetitions.Add(fieldRepetition);
-
-                var component = new HL7V2Component
-                {
-                    Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
-                    Value = value,
-                    Id = 1
-                };
-
-                fieldRepetition.Components.Add(component);
-
-                var subComponent = new HL7V2SubComponent
-                {
-                    Delimiter = HL7V2ExpressionConfiguration.subComponentDelimiter,
-                    Value = value,
-                    Id = 1
-                };
-
-                component.SubComponents.Add(subComponent);
             }
 
             Fields.Insert(previousIndex, field);

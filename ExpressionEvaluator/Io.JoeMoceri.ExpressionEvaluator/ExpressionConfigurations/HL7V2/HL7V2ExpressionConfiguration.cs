@@ -18,9 +18,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static IList<string> specialSegmentHeaders;
         public static IDictionary<string, string> encodingConversions;
         internal string endCharacter;
-        private int delimiterCount;
-        private string segment;
-        private IList<HL7V2Field> fields;
+        private HL7V2MessageSegment messageSegment;
 
         static HL7V2ExpressionConfiguration()
         {
@@ -108,39 +106,23 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             ExpressionResult FieldSolveOperatorExpression(ExpressionGroup expGroup)
             {
                 bool? endCharacterFound = false;
+
                 // found the end character
                 if (endCharacter != null && expGroup.RightOperand.EndsWith(endCharacter))
                 {
                     endCharacterFound = true;
                 }
 
-                if (delimiterCount == 0)
+                if (messageSegment.Fields.Count == 0)
                 {
-                    segment = expGroup.LeftOperand;
-                    if (specialSegmentHeaders.Any(a => a.Equals(segment)))
+                    messageSegment.SegmentName = expGroup.LeftOperand;
+                    if (specialSegmentHeaders.Any(a => a.Equals(messageSegment.SegmentName)))
                     {
-                        delimiterCount++;
-
-                        fields.Add(new HL7V2Field
-                        {
-                            Delimiter = additionOperator.OperatorName,
-                            Id = delimiterCount,
-                            Value = additionOperator.OperatorName
-                        });
+                        messageSegment.AddField(fieldDelimiter);
                     }
-
                 }
 
-                delimiterCount++;
-
-                var field = new HL7V2Field
-                {
-                    Delimiter = additionOperator.OperatorName,
-                    Id = delimiterCount,
-                    Value = endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand
-                }; 
-
-                fields.Add(field);
+                var field = messageSegment.AddField(endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand);
 
                 if (specialSegmentHeaders.Any(a => a.Equals(expGroup.LeftOperand)))
                 {
@@ -154,24 +136,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
                     for (var j = 0; j < fieldRepetitionSplit.Length; j++)
                     {
-                        var fieldRepetition = new HL7V2FieldRepetition
-                        {
-                            Delimiter = fieldRepetitionDelimiter,
-                            Value = fieldRepetitionSplit[j],
-                            Id = j + 1
-                        };
-
-                        field.FieldRepetitions.Add(fieldRepetition);
+                        field.AddFieldRepetition(fieldRepetitionSplit[j]);
                     }
                 }
                 else
                 {
-                    field.FieldRepetitions.Add(new HL7V2FieldRepetition
-                    {
-                        Delimiter = fieldRepetitionDelimiter,
-                        Value = field.Value,
-                        Id = 1
-                    });
+                    field.AddFieldRepetition(field.Value);
                 }
 
                 for (var k = 0; k < field.FieldRepetitions.Count; k++)
@@ -181,37 +151,22 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                     // get the components
                     if (fieldRepetition.Value.Contains(componentDelimiter))
                     {
-                        fieldRepetition.Components = new List<HL7V2Component>();
-
                         var componentSplit = fieldRepetition.Value.Split(componentDelimiter);
 
                         for (var i = 0; i < componentSplit.Length; i++)
                         {
-                            var component = new HL7V2Component
-                            {
-                                Delimiter = componentDelimiter,
-                                Value = componentSplit[i],
-                                Id = i + 1
-                            };
+                            var component = fieldRepetition.AddComponent(componentSplit[i]);
 
+                            // get the sub components
                             if (component.Value.Contains(subComponentDelimiter))
                             {
                                 var subComponentSplit = component.Value.Split(subComponentDelimiter);
 
                                 for (var j = 0; j < subComponentSplit.Length; j++)
                                 {
-                                    var subComponent = new HL7V2SubComponent
-                                    {
-                                        Delimiter = subComponentDelimiter,
-                                        Value = subComponentSplit[j],
-                                        Id = j + 1
-                                    };
-
-                                    component.SubComponents.Add(subComponent);
+                                    component.AddSubComponent(subComponentSplit[j]);
                                 }
                             }
-
-                            fieldRepetition.Components.Add(component);
                         }
                     }
                 }
@@ -222,11 +177,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public void Setup()
         {
-            fields = new List<HL7V2Field>();
-
-            delimiterCount = 0;
-
-            segment = null;
+            messageSegment = new HL7V2MessageSegment();
         }
 
         public override string Name => "HL7 V2";
@@ -253,18 +204,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public HL7V2MessageSegment GetHL7V2MessageSegment()
         {
-            if (segment == null)
-            {
-                return null;
-            }
-
-            var result = new HL7V2MessageSegment
-            {
-                Fields = fields,
-                SegmentName = segment
-            };
-
-            return result;
+            return messageSegment;
         }
     }
 }
