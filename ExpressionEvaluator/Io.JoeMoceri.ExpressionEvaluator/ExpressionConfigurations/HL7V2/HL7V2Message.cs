@@ -56,6 +56,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             var split = id.Split('.', StringSplitOptions.RemoveEmptyEntries);
 
+            if (split.Length == 0)
+            {
+                return null;
+            }
+
             var containsRepetition = split[0].Contains("(");
             var messageSegmentName = containsRepetition ? split[0].Substring(0, split[0].IndexOf("(")) : split[0];
             int? segmentRepetitionIndex = null;

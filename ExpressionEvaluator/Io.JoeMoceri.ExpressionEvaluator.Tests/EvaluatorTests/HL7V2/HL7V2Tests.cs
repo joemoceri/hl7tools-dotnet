@@ -182,9 +182,20 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(message.Get("PD1.4.9.2").Value, message["PD1"][4][9][2].Value);
 
-			var previousCount = message.MessageSegments.Count;
+			// validation
+			Assert.AreEqual(message.Get("INVALID"), null);
+
+			Assert.AreEqual(message.Get("...."), null);
+
+			Assert.AreEqual(message.Get("a.ba.c.d"), null);
+
+			Assert.AreEqual(message.Get(".a.ba.c.d"), null);
+
+			Assert.AreEqual(message.Get("a.ba.c.d."), null);
 
 			// Add message segment
+			var previousCount = message.MessageSegments.Count;
+			
 			var obr = message.AddMessageSegment("OBR");
 
 			var lastSegment = message.MessageSegments.Last();
@@ -228,6 +239,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(message.MessageSegments.First().SegmentName, "OBR");
 
+			// validation
 			frontObr = message.InsertMessageSegment("OBR", -1);
 
 			Assert.AreEqual(frontObr, null);
@@ -460,6 +472,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(field, null);
 
+			field = msh[0];
+
+			Assert.AreEqual(field, null);
+
 			// to string
 			var lines = File.ReadAllLines("ADT-A08 Update Patient.txt");
 
@@ -473,8 +489,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(messageSegmentToString, joinedMessageSegment);
 
-            // rebuild
-            value = $"{Guid.NewGuid()}";
+			// validation
+			message["NK1"].Fields.Clear();
+
+			Assert.AreEqual(message["NK1"].ToString(), null);
+
+			message["NK1"].Fields = null;
+
+			Assert.AreEqual(message["NK1"].ToString(), null);
+
+			// rebuild
+			value = $"{Guid.NewGuid()}";
 
 			msh[9].AddComponent(value);
 
