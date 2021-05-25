@@ -43,16 +43,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             encodingConversions.Add(subComponentDelimiter, $"{escapeDelimiter}T{escapeDelimiter}");
         }
 
-        public static string EncodeString(string input, bool rebuildEncodingConversions = false)
+        public static string EncodeString(string input)
         {
             if (input == null)
             {
                 return presentButNull;
-            }
-
-            if (rebuildEncodingConversions)
-            {
-                RebuildEncodingConversions();
             }
 
             foreach (var encodingConversion in encodingConversions)
@@ -63,16 +58,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return input;
         }
 
-        public static string DecodeString(string input, bool rebuildEncodingConversions = false)
+        public static string DecodeString(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
                 return input;
-            }
-
-            if (rebuildEncodingConversions)
-            {
-                RebuildEncodingConversions();
             }
 
             foreach (var escapeConversion in encodingConversions)
@@ -175,12 +165,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
-        public void Setup()
+        internal void Setup()
         {
             messageSegment = new HL7V2MessageSegment();
         }
-
-        public override string Name => "HL7 V2";
 
         public override IList<ExpressionConfigurationOperator> MathStringOperators 
         {

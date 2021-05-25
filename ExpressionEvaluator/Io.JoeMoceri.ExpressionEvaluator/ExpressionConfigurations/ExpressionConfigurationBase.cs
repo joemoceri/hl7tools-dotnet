@@ -5,7 +5,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 {
     public abstract class ExpressionConfigurationBase
     {
-        public abstract string Name { get; }
         public abstract IList<ExpressionConfigurationOperator> MathStringOperators { get; }
         public abstract IList<ExpressionConfigurationOperator> BooleanOperators { get; }
 

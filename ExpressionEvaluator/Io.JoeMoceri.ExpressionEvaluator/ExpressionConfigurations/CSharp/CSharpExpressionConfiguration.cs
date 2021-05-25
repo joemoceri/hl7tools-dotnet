@@ -36,8 +36,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             };
         }
 
-        public override string Name => "CSharp";
-
         public override IList<ExpressionConfigurationOperator> MathStringOperators 
         {
             get

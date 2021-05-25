@@ -723,8 +723,73 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		[TestMethod]
 		public void HL7V2Tests_HL7V2ExpressionConfiguration()
         {
+			// static
+			Assert.AreEqual(HL7V2ExpressionConfiguration.headerSegmentName, "MSH");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldDelimiter, "|");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.componentDelimiter, "^");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.escapeDelimiter, "\\");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.subComponentDelimiter, "&");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter, "~");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.presentButNull, "\"\"");
 
-        }
+			foreach (var ssh in HL7V2ExpressionConfiguration.specialSegmentHeaders)
+            {
+				var valid = new[] { "MSH", "FHS", "BHS" }.Contains(ssh);
+				Assert.AreEqual(valid, true);
+            }
+
+			var ec = HL7V2ExpressionConfiguration.encodingConversions;
+
+			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.escapeDelimiter], $"{HL7V2ExpressionConfiguration.escapeDelimiter}E{HL7V2ExpressionConfiguration.escapeDelimiter}");
+			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.fieldDelimiter], $"{HL7V2ExpressionConfiguration.escapeDelimiter}F{HL7V2ExpressionConfiguration.escapeDelimiter}");
+			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.fieldRepetitionDelimiter], $"{HL7V2ExpressionConfiguration.escapeDelimiter}R{HL7V2ExpressionConfiguration.escapeDelimiter}");
+			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.componentDelimiter], $"{HL7V2ExpressionConfiguration.escapeDelimiter}S{HL7V2ExpressionConfiguration.escapeDelimiter}");
+			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.subComponentDelimiter], $"{HL7V2ExpressionConfiguration.escapeDelimiter}T{HL7V2ExpressionConfiguration.escapeDelimiter}");
+
+			var input = HL7V2ExpressionConfiguration.escapeDelimiter;
+
+			// encode string
+			var output = HL7V2ExpressionConfiguration.EncodeString(input);
+
+			Assert.AreEqual(ec[input], output);
+
+			// decode string
+			output = HL7V2ExpressionConfiguration.DecodeString(output);
+
+			Assert.AreEqual(input, output);
+
+			// rebuild encoding conversions
+			HL7V2ExpressionConfiguration.escapeDelimiter = "$";
+			Assert.AreEqual(ec.ContainsKey(HL7V2ExpressionConfiguration.escapeDelimiter), false);
+
+			HL7V2ExpressionConfiguration.RebuildEncodingConversions();
+
+			ec = HL7V2ExpressionConfiguration.encodingConversions;
+
+			Assert.AreEqual(ec.ContainsKey(HL7V2ExpressionConfiguration.escapeDelimiter), true);
+
+			var expConfig = new HL7V2ExpressionConfiguration();
+
+			Assert.AreEqual(expConfig.Operators.Count, 1);
+
+			Assert.AreEqual(expConfig.MathStringOperators.Count, 1);
+
+			Assert.AreEqual(expConfig.BooleanOperators.Count, 0);
+
+			Assert.AreEqual(expConfig.Options.IgnoreParentheses, true);
+
+			Assert.AreEqual(expConfig.Options.IgnoreWhitespaceOutsideQuotes, true);
+
+			Assert.AreEqual(expConfig.Options.IgnoreQuotesValidation, true);
+
+			Assert.AreEqual(expConfig.Operators[0].ExpressionOperator, Operator.Addition);
+			
+			Assert.AreEqual(expConfig.Operators[0].OperatorName, HL7V2ExpressionConfiguration.fieldDelimiter);
+
+			Assert.AreNotEqual(expConfig.Operators[0].SolveOperatorExpression, null);
+
+			Assert.AreNotEqual(expConfig.GetHL7V2MessageSegment(), null);
+		}
 
 		[TestMethod]
 		public void HL7V2Tests_EvaluateHL7V2File()
