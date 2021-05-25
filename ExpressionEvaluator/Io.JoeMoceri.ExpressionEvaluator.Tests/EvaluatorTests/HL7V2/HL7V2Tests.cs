@@ -1115,5 +1115,20 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(message.Error, null);
 		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		public void HLV2Tests_EvaluateHL7V2File_BuildFromScratch()
+        {
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			var evaluatedMessage = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			var message = new HL7V2Message();
+
+		}
 	}
 }
