@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
@@ -56,7 +55,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
-        #region Field Component Operations
+        #region Component Operations
         public HL7V2Component AddComponent(string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));

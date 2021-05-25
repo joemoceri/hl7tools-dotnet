@@ -272,26 +272,21 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(messageToString, joinedMessageFile);
 
+			// rebuild
 			var msh9 = ((HL7V2Field)message.Get("MSH.9"));
 
-			// rebuild
 			msh9.AddComponent("_test");
 
-			// check they're equal before
 			Assert.AreEqual(message.ToString(), joinedMessageFile);
 
 			message.Rebuild();
 
-			// after they should be different, the value of msh 9 is different because of the new component
 			Assert.AreNotEqual(message.ToString(), joinedMessageFile);
 
-			// remove the component, it's the last one
 			removed = msh9.RemoveComponent(msh9.Components().Count);
 
-			// make sure it's removed
 			Assert.AreEqual(removed, true);
 
-			// when rebuilding, it should be the same now, as it was
 			message.Rebuild();
 
 			messageToString = message.ToString();
@@ -401,7 +396,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(field.Value, msh[5].Value);
 			Assert.AreEqual(field.Value, message.Get("MSH.5").Value);
 
-
 			// to string
 			var lines = File.ReadAllLines("ADT-A08 Update Patient.txt");
 
@@ -439,45 +433,167 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// Act
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			var msh = message["MSH"];
-
-			// Update Field
-			var value = $"{Guid.NewGuid()}";
-
-			Assert.AreNotEqual(msh[2].Value, value);
-
-			var updateField = msh.UpdateField(2, value);
-
-			Assert.AreEqual(msh[2].Value, value);
-
-			Assert.AreEqual(updateField.Value, value);
-
-			// Add Field
-			value = $"{Guid.NewGuid()}";
-
-			var previousCount = msh.Fields.Count;
-
-			var field = msh.AddField(value);
-
-			// new field should be last field
-			var lastField = msh.Fields.Last();
-
-			// count should be 1 higher
-			Assert.AreEqual(msh.Fields.Count, previousCount + 1);
-
-			Assert.AreEqual(field.Delimiter, HL7V2ExpressionConfiguration.fieldDelimiter);
-
-			Assert.AreEqual(field.Value, value);
-
-			Assert.AreEqual(field.FieldRepetitions.Count, 0);
-
-			// make sure the field and the last field are the same
-			Assert.AreEqual(field.Id, lastField.Id);
-
-			Assert.AreEqual(field.Value, lastField.Value);
-
 			// Assert
 			Assert.IsNull(message.Error);
+
+			var gt16 = (HL7V2Field)message.Get("GT1.6");
+
+			Assert.AreEqual(gt16.Delimiter, HL7V2ExpressionConfiguration.fieldDelimiter);
+
+			Assert.AreEqual(gt16.Id, 6);
+
+			Assert.AreEqual(gt16.Value, message["GT1"][6].Value);
+
+			// get field repetition
+			var frSplit = gt16.Value.Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+
+			Assert.AreEqual(gt16.GetFieldRepetition(1).Value, frSplit[0]);
+			Assert.AreEqual(gt16.GetFieldRepetition(2).Value, frSplit[1]);
+			Assert.AreEqual(gt16.GetFieldRepetition(3).Value, frSplit[2]);
+
+			// rebuild
+			var value = $"{Guid.NewGuid()}";
+
+			var oldValue = gt16.Value;
+
+			gt16.AddFieldRepetition(value);
+
+			Assert.AreEqual(gt16.Value, oldValue);
+
+			gt16.Rebuild();
+
+			Assert.AreNotEqual(gt16.Value, oldValue);
+
+			// components
+			Assert.AreEqual(gt16.Components()[0].Value, gt16[1].Value);
+			Assert.AreEqual(gt16.GetComponent(1).Value, gt16[1].Value);
+
+			// add component
+			var previousCount = gt16.Components().Count;
+
+			var component = gt16.AddComponent("_test");
+
+			Assert.AreEqual(previousCount + 1, gt16.Components().Count);
+
+			Assert.AreEqual(component.Value, "_test");
+
+			Assert.AreEqual(component.Id, gt16.Components().Count);
+
+			// add component by repetition
+			previousCount = gt16.Components(2).Count;
+
+			component = gt16.AddComponent("_test", 2);
+
+			Assert.AreEqual(previousCount + 1, gt16.Components(2).Count);
+
+			Assert.AreEqual(component.Value, "_test");
+
+			Assert.AreEqual(component.Id, gt16.Components(2).Count);
+
+			// remove component
+			previousCount = gt16.Components().Count;
+			var removed = gt16.RemoveComponent(gt16.Components().Count);
+
+			Assert.AreEqual(removed, true);
+			Assert.AreEqual(previousCount - 1, gt16.Components().Count);
+
+			// remove component by repetition
+			previousCount = gt16.Components(2).Count;
+			removed = gt16.RemoveComponent(gt16.Components(2).Count, 2);
+
+			Assert.AreEqual(removed, true);
+			Assert.AreEqual(previousCount - 1, gt16.Components(2).Count);
+
+			// insert component
+			var id = gt16.Components().Count / 2;
+			previousCount = gt16.Components().Count;
+			component = gt16.InsertComponent(id, "_test");
+
+			Assert.AreEqual(component.Id, id);
+			Assert.AreEqual(component.Value, "_test");
+			Assert.AreEqual(previousCount + 1, gt16.Components().Count);
+
+			removed = gt16.RemoveComponent(id);
+
+			Assert.AreEqual(removed, true);
+			Assert.AreEqual(previousCount, gt16.Components().Count);
+
+			// insert component by repetition
+			id = gt16.Components(2).Count / 2;
+			previousCount = gt16.Components(2).Count;
+			component = gt16.InsertComponent(id, "_test", 2);
+
+			Assert.AreEqual(component.Id, id);
+			Assert.AreEqual(component.Value, "_test");
+			Assert.AreEqual(previousCount + 1, gt16.Components(2).Count);
+
+			removed = gt16.RemoveComponent(id, 2);
+
+			Assert.AreEqual(removed, true);
+			Assert.AreEqual(previousCount, gt16.Components(2).Count);
+
+			// update component 
+			oldValue = gt16[1].Value;
+			component = gt16.UpdateComponent(1, "_test");
+
+			Assert.AreEqual(component.Value, "_test");
+			Assert.AreEqual(gt16[1].Value, "_test");
+			Assert.AreEqual(gt16.GetFieldRepetition(1)[1].Value, "_test");
+
+			component.Value = oldValue;
+
+			// update component by repetition
+			oldValue = gt16[1, 2].Value;
+			component = gt16.UpdateComponent(1, "_test", 2);
+			Assert.AreEqual(component.Value, "_test");
+			Assert.AreEqual(gt16[1, 2].Value, "_test");
+			Assert.AreEqual(gt16.GetFieldRepetition(2)[1].Value, "_test");
+
+			component.Value = oldValue;
+
+			// add field repetition
+			previousCount = gt16.FieldRepetitions.Count;
+			var fieldRepetition = gt16.AddFieldRepetition("_test");
+
+			Assert.AreEqual(previousCount + 1, gt16.FieldRepetitions.Count);
+
+			Assert.AreEqual(fieldRepetition.Value, "_test");
+
+			Assert.AreEqual(fieldRepetition.Id, gt16.FieldRepetitions.Count);
+
+			Assert.AreEqual(fieldRepetition.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+
+			// remove field repetition
+			removed = gt16.RemoveFieldRepetition(fieldRepetition.Id);
+
+			Assert.AreEqual(removed, true);
+			Assert.AreEqual(previousCount, gt16.FieldRepetitions.Count);
+
+			// insert field repetition
+			id = gt16.FieldRepetitions.Count / 2;
+			previousCount = gt16.FieldRepetitions.Count;
+			fieldRepetition = gt16.InsertFieldRepetition(id, "_test");
+
+			Assert.AreEqual(fieldRepetition.Id, id);
+			Assert.AreEqual(fieldRepetition.Value, "_test");
+			Assert.AreEqual(previousCount + 1, gt16.FieldRepetitions.Count);
+
+			removed = gt16.RemoveFieldRepetition(fieldRepetition.Id);
+
+			Assert.AreEqual(removed, true);
+			Assert.AreEqual(previousCount, gt16.FieldRepetitions.Count);
+
+			// update field repetition
+			gt16.Rebuild();
+
+			oldValue = gt16.GetFieldRepetition(2).Value;
+
+			Assert.AreNotEqual(oldValue, "_test");
+
+			fieldRepetition = gt16.UpdateFieldRepetition(2, "_test");
+
+			Assert.AreEqual(fieldRepetition.Value, "_test");
+			Assert.AreEqual(gt16.GetFieldRepetition(2).Value, "_test");
 		}
 
 		[TestMethod]
