@@ -140,7 +140,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A05 Pre-admit Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_Message()
+		public void HL7V2Tests_EvaluateHL7V2File_Message()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
@@ -345,7 +345,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment()
+		public void HL7V2Tests_EvaluateHL7V2File_Message_MessageSegment()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
@@ -355,23 +355,81 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// Act
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
+			// Assert
+			Assert.IsNull(message.Error);
+
 			var msh = message["MSH"];
 
 			var value = $"{Guid.NewGuid()}";
 
+			Assert.AreEqual(msh.SegmentName, "MSH");
+
+			// update field
 			Assert.AreNotEqual(msh[2].Value, value);
 
-			msh.UpdateField(2, value);
+			var field = msh.UpdateField(2, value);
 
 			Assert.AreEqual(msh[2].Value, value);
+			Assert.AreEqual(field.Value, value);
+			Assert.AreEqual(field.Id, msh[2].Id);
 
-			// Assert
-			Assert.IsNull(message.Error);
+			var id = msh.Fields.Count / 2;
+
+			// insert field
+			field = msh.InsertField(id, "_test");
+
+			Assert.AreEqual(field.Id, id);
+			Assert.AreEqual(field.Value, "_test");
+
+			// remove field
+			var removed = msh.RemoveField(id);
+
+			Assert.AreEqual(removed, true);
+
+			// add field
+			value = $"{Guid.NewGuid()}";
+
+			field = msh.AddField(value);
+
+			Assert.AreEqual(field.Value, value);
+
+			Assert.AreEqual(field.Id, msh.Fields.Count + 1);
+
+			// get field
+			field = msh.GetField(5);
+
+			Assert.AreEqual(field.Value, msh[5].Value);
+			Assert.AreEqual(field.Value, message.Get("MSH.5").Value);
+
+
+			// to string
+			var lines = File.ReadAllLines("ADT-A08 Update Patient.txt");
+
+			message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			msh = message["MSH"];
+
+			var messageSegmentToString = msh.ToString();
+
+			var joinedMessageSegment = lines[0].Trim();
+
+			Assert.AreEqual(messageSegmentToString, joinedMessageSegment);
+
+            // rebuild
+            value = $"{Guid.NewGuid()}";
+
+			msh[9].AddComponent(value);
+
+			Assert.AreEqual(msh.ToString(), joinedMessageSegment);
+
+			msh.Rebuild();
+
+			Assert.AreNotEqual(msh.ToString(), joinedMessageSegment);
 		}
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment_Field()
+		public void HL7V2Tests_EvaluateHL7V2File_Message_MessageSegment_Field()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
@@ -424,7 +482,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment_Field_FieldRepetition()
+		public void HL7V2Tests_EvaluateHL7V2File_Message_MessageSegment_Field_FieldRepetition()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
@@ -482,7 +540,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment_Field_FieldRepetition_Component()
+		public void HL7V2Tests_EvaluateHL7V2File_Message_MessageSegment_Field_FieldRepetition_Component()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
@@ -518,7 +576,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2Message_Message_MessageSegment_Field_FieldRepetition_Component_SubComponent()
+		public void HL7V2Tests_EvaluateHL7V2File_Message_MessageSegment_Field_FieldRepetition_Component_SubComponent()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();

@@ -46,7 +46,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			}
 		}
 
-
 		public void Rebuild()
         {
 			for (var i = 0; i < Fields.Count; i++)
