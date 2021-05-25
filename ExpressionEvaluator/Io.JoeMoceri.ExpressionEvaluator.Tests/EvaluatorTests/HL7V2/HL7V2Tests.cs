@@ -139,6 +139,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A05 Pre-admit Patient.txt")]
 		public void HL7V2Tests_EvaluateHL7V2Message_Message()
 		{
 			// Arrange
@@ -150,6 +151,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
 			var msh = message["MSH"];
+
+			// Assert
+			Assert.AreEqual(message.Error, null);
 
 			Assert.AreEqual(message.MessageSegments.Count > 0, true);
 
@@ -163,10 +167,180 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(message["MSH", 0].SegmentName, "MSH");
 
+			// Get
 			Assert.AreEqual(message.Get("MSH.1").Value, message["MSH"][1].Value);
 
-            // Assert
-            Assert.IsNull(message.Error);
+			Assert.AreEqual(message.Get("PID.5.1").Value, message["PID"][5][1].Value);
+
+			Assert.AreEqual(message.Get("PID(1).5.1").Value, message["PID"][5][1].Value);
+
+			Assert.AreEqual(message.Get("GT1.6(2).1").Value, message["GT1"][6][1, 2].Value);
+
+			message = evaluator.EvaluateHL7V2File("ADT-A05 Pre-admit Patient.txt");
+
+			Assert.AreEqual(message.Error, null);
+
+			Assert.AreEqual(message.Get("PD1.4.9.2").Value, message["PD1"][4][9][2].Value);
+
+			var previousCount = message.MessageSegments.Count;
+
+			// Add message segment
+			var obr = message.AddMessageSegment("OBR");
+
+			var lastSegment = message.MessageSegments.Last();
+
+			Assert.AreEqual(obr.Fields.Count, 0);
+
+			Assert.AreEqual(obr.SegmentName, "OBR");
+
+			Assert.AreEqual(previousCount + 1, message.MessageSegments.Count);
+
+			Assert.AreEqual(message["OBR"].SegmentName, obr.SegmentName);
+
+			Assert.AreEqual(message["OBR", 0].SegmentName, obr.SegmentName);
+
+			Assert.AreEqual(lastSegment.SegmentName, obr.SegmentName);
+
+			// Remove message segment
+			var removed = message.RemoveMessageSegment("OBR");
+
+			Assert.AreEqual(removed, true);
+
+			// Insert message segment
+			var frontObr = message.InsertMessageSegment("OBR");
+
+			Assert.AreEqual(previousCount + 1, message.MessageSegments.Count);
+
+			Assert.AreEqual(message.MessageSegments.First().SegmentName, frontObr.SegmentName);
+
+			Assert.AreEqual(message.MessageSegments.First().SegmentName, "OBR");
+
+			removed = message.RemoveMessageSegment("OBR");
+
+			Assert.AreEqual(removed, true);
+
+			// Insert message segment at index
+			var index = message.MessageSegments.Count / 2;
+
+			obr = message.InsertMessageSegment("OBR", index);
+
+			var obrByIndex = message.MessageSegments[index];
+
+			Assert.AreEqual(obr.SegmentName, obrByIndex.SegmentName);
+
+			Assert.AreEqual(previousCount + 1, message.MessageSegments.Count);
+
+			Assert.AreEqual(obrByIndex.SegmentName, "OBR");
+
+			removed = message.RemoveMessageSegment("OBR");
+
+			Assert.AreEqual(removed, true);
+
+			// Remove message segment at index
+			Assert.AreEqual(message.MessageSegments.First().SegmentName, "MSH");
+
+			message.AddMessageSegment("OBR");
+
+			var obrtest = message.AddMessageSegment("OBR");
+
+			obrtest.AddField("test_value");
+
+			Assert.AreEqual(obrtest.Fields.Count == 1, true);
+
+			message.AddMessageSegment("OBR");
+
+			removed = message.RemoveMessageSegment("OBR", 1);
+
+			Assert.AreEqual(removed, true);
+
+			Assert.AreEqual(message["OBR", 1].Fields.Count, 0);
+
+			// ToHL7V2MessageFile
+			var messageToFile = message.ToHL7V2MessageFile();
+
+			for (var i = 0; i < messageToFile.Count; i++)
+            {
+				Assert.AreEqual(messageToFile[i], message.MessageSegments[i].ToString());
+            }
+
+			// to string
+			var lines = File.ReadAllLines("ADT-A05 Pre-admit Patient.txt");
+
+			var messageToString = message.ToString();
+
+			var joinedMessageFile = string.Join(Environment.NewLine, lines.Where(l => !char.IsControl(l[0]) && l.Length > 1)).Trim();
+
+			Assert.AreEqual(messageToString, joinedMessageFile);
+
+			var msh9 = ((HL7V2Field)message.Get("MSH.9"));
+
+			// rebuild
+			msh9.AddComponent("_test");
+
+			// check they're equal before
+			Assert.AreEqual(message.ToString(), joinedMessageFile);
+
+			message.Rebuild();
+
+			// after they should be different, the value of msh 9 is different because of the new component
+			Assert.AreNotEqual(message.ToString(), joinedMessageFile);
+
+			// remove the component, it's the last one
+			removed = msh9.RemoveComponent(msh9.Components().Count);
+
+			// make sure it's removed
+			Assert.AreEqual(removed, true);
+
+			// when rebuilding, it should be the same now, as it was
+			message.Rebuild();
+
+			messageToString = message.ToString();
+
+			Assert.AreEqual(messageToString, joinedMessageFile);
+
+			// check rebuild for field repetition
+			var fieldRepetition = msh9.AddFieldRepetition("_test");
+
+			Assert.AreEqual(fieldRepetition.Value, "_test");
+
+			message.Rebuild();
+
+			messageToString = message.ToString();
+
+			Assert.AreNotEqual(messageToString, joinedMessageFile);
+
+			removed = msh9.RemoveFieldRepetition(msh9.FieldRepetitions.Count);
+
+			Assert.AreEqual(removed, true);
+
+			message.Rebuild();
+
+			messageToString = message.ToString();
+
+			Assert.AreEqual(messageToString, joinedMessageFile);
+
+			// check rebuild for sub component
+			var component = (HL7V2Component)message.Get("PD1.4.9");
+
+			var subComponent = component.AddSubComponent("_test");
+
+			Assert.AreEqual(subComponent.Value, "_test");
+
+			message.Rebuild();
+
+			messageToString = message.ToString();
+
+			Assert.AreNotEqual(messageToString, joinedMessageFile);
+
+			removed = component.RemoveSubComponent(component.SubComponents.Count);
+
+			Assert.AreEqual(removed, true);
+
+			message.Rebuild();
+
+			messageToString = message.ToString();
+
+			Assert.AreEqual(messageToString, joinedMessageFile);
 		}
 
 		[TestMethod]

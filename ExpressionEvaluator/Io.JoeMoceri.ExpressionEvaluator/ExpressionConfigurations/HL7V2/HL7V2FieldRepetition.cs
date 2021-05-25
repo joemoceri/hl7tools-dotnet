@@ -32,6 +32,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 for (var i = 0; i < Components.Count; i++)
                 {
                     Components[i].Rebuild();
+                    Components[i].Id = i + 1;
                 }
 
                 Value = CombineHL7Fields(Components.Cast<HL7V2FieldBase>().ToList());

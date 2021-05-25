@@ -216,25 +216,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             return messageSegment;
         }
-
-        public HL7V2MessageSegment UpdateMessageSegment(string segmentName, int index = 0)
-        {
-            if (index > messageSegments.Count || index < 0)
-            {
-                return null;
-            }
-
-            var messageSegment = messageSegments.Where(f => f.SegmentName.Equals(segmentName)).ToList()[index];
-
-            if (messageSegment == null)
-            {
-                return null;
-            }
-
-            messageSegment.SegmentName = segmentName;
-
-            return messageSegment;
-        }
         #endregion
     }
 }
