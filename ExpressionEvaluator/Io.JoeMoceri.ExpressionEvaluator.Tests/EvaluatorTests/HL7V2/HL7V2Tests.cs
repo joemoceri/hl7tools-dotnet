@@ -540,6 +540,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(gt16.GetFieldRepetition(2).Value, frSplit[1]);
 			Assert.AreEqual(gt16.GetFieldRepetition(3).Value, frSplit[2]);
 
+			// validation
+			Assert.AreEqual(gt16.GetFieldRepetition(0), null);
+
 			// rebuild
 			var value = $"{Guid.NewGuid()}";
 
@@ -557,6 +560,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(gt16.Components()[0].Value, gt16[1].Value);
 			Assert.AreEqual(gt16.GetComponent(1).Value, gt16[1].Value);
 
+			// validation
+			Assert.AreEqual(gt16.Components(0), null);
+			Assert.AreEqual(gt16.GetComponent(0), null);
+
 			// add component
 			var previousCount = gt16.Components().Count;
 
@@ -567,6 +574,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(component.Value, "_test");
 
 			Assert.AreEqual(component.Id, gt16.Components().Count);
+
+			// validation
+			component = gt16.AddComponent("_test", 0);
+
+			Assert.AreEqual(component, null);
 
 			// add component by repetition
 			previousCount = gt16.Components(2).Count;
@@ -586,6 +598,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(removed, true);
 			Assert.AreEqual(previousCount - 1, gt16.Components().Count);
 
+			// validation
+			removed = gt16.RemoveComponent(1, 0);
+
+			Assert.AreEqual(removed, false);
+
+			removed = gt16.RemoveComponent(0, 1);
+
+			Assert.AreEqual(removed, false);
+
 			// remove component by repetition
 			previousCount = gt16.Components(2).Count;
 			removed = gt16.RemoveComponent(gt16.Components(2).Count, 2);
@@ -594,6 +615,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(previousCount - 1, gt16.Components(2).Count);
 
 			// insert component
+			for (var i = 0; i < gt16.Components().Count; i++)
+			{
+				Assert.AreEqual(gt16.Components()[i].Id, i + 1);
+			}
+
 			var id = gt16.Components().Count / 2;
 			previousCount = gt16.Components().Count;
 			component = gt16.InsertComponent(id, "_test");
@@ -602,10 +628,32 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(component.Value, "_test");
 			Assert.AreEqual(previousCount + 1, gt16.Components().Count);
 
+			for (var i = 0; i < gt16.Components().Count; i++)
+            {
+				Assert.AreEqual(gt16.Components()[i].Id, i + 1);
+            }
+
 			removed = gt16.RemoveComponent(id);
 
 			Assert.AreEqual(removed, true);
 			Assert.AreEqual(previousCount, gt16.Components().Count);
+
+			// validation
+			component = gt16.InsertComponent(0, "_test", 1);
+
+			Assert.AreEqual(component, null);
+
+			component = gt16.InsertComponent(1, "_test", 0);
+
+			Assert.AreEqual(component, null);
+
+			gt16[1].Id = 16;
+
+			component = gt16.InsertComponent(1, "_test", 1);
+
+			Assert.AreEqual(component, null);
+
+			gt16[16].Id = 1;
 
 			// insert component by repetition
 			id = gt16.Components(2).Count / 2;
@@ -630,6 +678,23 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(gt16.GetFieldRepetition(1)[1].Value, "_test");
 
 			component.Value = oldValue;
+
+			// validation
+			component = gt16.UpdateComponent(0, "_test", 1);
+
+			Assert.AreEqual(component, null);
+
+			component = gt16.UpdateComponent(1, "_test", 0);
+
+			Assert.AreEqual(component, null);
+
+			gt16[1].Id = 16;
+
+			component = gt16.UpdateComponent(1, "_test");
+
+			Assert.AreEqual(component, null);
+
+			gt16[16].Id = 1;
 
 			// update component by repetition
 			oldValue = gt16[1, 2].Value;
@@ -658,7 +723,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(removed, true);
 			Assert.AreEqual(previousCount, gt16.FieldRepetitions.Count);
 
+			// validation
+			removed = gt16.RemoveFieldRepetition(0);
+
+			Assert.AreEqual(removed, false);
+
 			// insert field repetition
+			for (var i = 0; i < gt16.FieldRepetitions.Count; i++)
+			{
+				Assert.AreEqual(gt16.FieldRepetitions[i].Id, i + 1);
+			}
+
 			id = gt16.FieldRepetitions.Count / 2;
 			previousCount = gt16.FieldRepetitions.Count;
 			fieldRepetition = gt16.InsertFieldRepetition(id, "_test");
@@ -667,10 +742,32 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(fieldRepetition.Value, "_test");
 			Assert.AreEqual(previousCount + 1, gt16.FieldRepetitions.Count);
 
+			for (var i = 0; i < gt16.FieldRepetitions.Count; i++)
+			{
+				Assert.AreEqual(gt16.FieldRepetitions[i].Id, i + 1);
+			}
+
 			removed = gt16.RemoveFieldRepetition(fieldRepetition.Id);
 
 			Assert.AreEqual(removed, true);
 			Assert.AreEqual(previousCount, gt16.FieldRepetitions.Count);
+
+			// validation
+			fieldRepetition = gt16.InsertFieldRepetition(0, null);
+
+			Assert.AreEqual(fieldRepetition, null);
+
+			fieldRepetition = gt16.InsertFieldRepetition(gt16.FieldRepetitions.Count + 1, "_test");
+
+			Assert.AreEqual(fieldRepetition, null);
+
+			gt16.GetFieldRepetition(1).Id = 16;
+
+			fieldRepetition = gt16.InsertFieldRepetition(1, "_test");
+
+			Assert.AreEqual(fieldRepetition, null);
+
+			gt16.GetFieldRepetition(16).Id = 1;
 
 			// update field repetition
 			gt16.Rebuild();
@@ -683,6 +780,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(fieldRepetition.Value, "_test");
 			Assert.AreEqual(gt16.GetFieldRepetition(2).Value, "_test");
+
+			// validation
+			fieldRepetition = gt16.UpdateFieldRepetition(0, "_test");
+
+			Assert.AreEqual(fieldRepetition, null);
+
+			fieldRepetition = gt16.UpdateFieldRepetition(gt16.FieldRepetitions.Count, "_test");
+
+			Assert.AreEqual(fieldRepetition, null);
+
+
 		}
 
 		[TestMethod]
@@ -720,7 +828,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(removed, true);
 			Assert.AreEqual(previousCount, gt161.Components.Count);
 
+			// validation
+			removed = gt161.RemoveComponent(0);
+
+			Assert.AreEqual(removed, false);
+
 			// insert component
+			for (var i = 0; i < gt161.Components.Count; i++)
+			{
+				Assert.AreEqual(gt161.Components[i].Id, i + 1);
+			}
 			var id = gt161.Components.Count / 2;
 			component = gt161.InsertComponent(id, "_test");
 
@@ -728,7 +845,21 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(component.Id, id);
 			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
 
+			for (var i = 0; i < gt161.Components.Count; i++)
+			{
+				Assert.AreEqual(gt161.Components[i].Id, i + 1);
+			}
+
 			removed = gt161.RemoveComponent(component.Id);
+
+			// validation
+			component = gt161.InsertComponent(0, "_test");
+
+			Assert.AreEqual(component, null);
+
+			component = gt161.InsertComponent(gt161.Components.Count + 1, "_test");
+
+			Assert.AreEqual(component, null);
 
 			Assert.AreEqual(removed, true);
 
@@ -742,6 +873,23 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(component.Value, "_test");
 			Assert.AreEqual(component.Id, 1);
 			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+
+			// validation
+			component = gt161.UpdateComponent(0, "_test");
+
+			Assert.AreEqual(component, null);
+
+			component = gt161.UpdateComponent(gt161.Components.Count + 1, "_test");
+
+			Assert.AreEqual(component, null);
+
+			gt161[1].Id = 16;
+
+			component = gt161.UpdateComponent(1, "_test");
+
+			Assert.AreEqual(component, null);
+
+			gt161[16].Id = 1;
 		}
 
 		[TestMethod]
@@ -773,25 +921,55 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
 			Assert.AreEqual(previousCount + 1, pv179.SubComponents.Count);
 
+			// validation
+			var testSubComponent = pv179.GetSubComponent(0);
+
+			Assert.AreEqual(testSubComponent, null);
+
+			testSubComponent = pv179[0];
+
+			Assert.AreEqual(testSubComponent, null);
+
 			// remove sub component
 			var removed = pv179.RemoveSubComponent(subComponent.Id);
 
 			Assert.AreEqual(removed, true);
 			Assert.AreEqual(previousCount, pv179.SubComponents.Count);
 
+			removed = pv179.RemoveSubComponent(0);
+
+			Assert.AreEqual(removed, false);
+
 			// insert sub component
+			for (var i = 0; i < pv179.SubComponents.Count; i++)
+			{
+				Assert.AreEqual(pv179.SubComponents[i].Id, i + 1);
+			}
 			var id = pv179.SubComponents.Count / 2;
 			subComponent = pv179.InsertSubComponent(id, "_test");
 
 			Assert.AreEqual(subComponent.Value, "_test");
 			Assert.AreEqual(subComponent.Id, id);
 			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
+			for (var i = 0; i < pv179.SubComponents.Count; i++)
+			{
+				Assert.AreEqual(pv179.SubComponents[i].Id, i + 1);
+			}
 
 			removed = pv179.RemoveSubComponent(subComponent.Id);
 
 			Assert.AreEqual(removed, true);
 
 			Assert.AreEqual(previousCount, pv179.SubComponents.Count);
+
+			// validation
+			subComponent = pv179.InsertSubComponent(0, "_test");
+
+			Assert.AreEqual(subComponent, null);
+
+			subComponent = pv179.InsertSubComponent(pv179.SubComponents.Count + 1, "_test");
+
+			Assert.AreEqual(subComponent, null);
 
 			// update sub component
 			Assert.AreEqual(pv179.SubComponents[0].Id, 2);
@@ -807,6 +985,23 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(subComponent.Value, "_test");
 			Assert.AreEqual(subComponent.Id, 1);
 			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
+
+			// validations
+			subComponent = pv179.UpdateSubComponent(0, "_test");
+
+			Assert.AreEqual(subComponent, null);
+
+			subComponent = pv179.UpdateSubComponent(pv179.SubComponents.Count + 1, "_test");
+
+			Assert.AreEqual(subComponent, null);
+
+			pv179[1].Id = 16;
+
+			subComponent = pv179.UpdateSubComponent(1, "_test");
+
+			Assert.AreEqual(subComponent, null);
+
+			pv179[16].Id = 1;
 		}
 
 		[TestMethod]
