@@ -1119,7 +1119,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
 		public void HLV2Tests_EvaluateHL7V2File_BuildFromScratch()
-        {
+		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
@@ -1129,6 +1129,176 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			var message = new HL7V2Message();
 
+			var msh = message.AddMessageSegment("MSH");
+
+			var field = msh.AddField("|");
+
+			Assert.AreEqual(field.FieldRepetitions.Count, 1);
+			Assert.AreEqual(field.GetFieldRepetition(1).Value, field.Value);
+
+			msh.AddField("^~\\&");
+			msh.AddField("Ntierprise");
+			msh.AddField("Ntierprise Clinic");
+			msh.AddField("Healthmatics EHR");
+			msh.AddField("Healthmatics Clinic");
+			msh.AddField("20190423113910");
+			msh.AddField("");
+
+			field = msh.AddField("ADT^A08");
+
+			for (var i = 0; i < field.Components().Count; i++)
+			{
+				Assert.AreEqual(field.Components()[i].Id, i + 1);
+			}
+
+			Assert.AreEqual(field.Components()[0].Value, "ADT");
+			Assert.AreEqual(field.Components()[1].Value, "A08");
+
+			msh.AddField("8899-39");
+			msh.AddField("P");
+			msh.AddField("2.3");
+			msh.AddField("");
+			msh.AddField("");
+			msh.AddField("NE");
+			msh.AddField("NE");
+
+			Assert.AreEqual(msh.ToString(), evaluatedMessage["MSH"].ToString());
+
+			var evn = message.AddMessageSegment("EVN");
+			evn.AddField("A08");
+			evn.AddField("20190423113910");
+			evn.AddField("");
+			evn.AddField("01");
+
+			Assert.AreEqual(evn.ToString(), evaluatedMessage["EVN"].ToString());
+
+			var pid = message.AddMessageSegment("PID");
+			pid.AddField("1");
+			pid.AddField("");
+			pid.AddField("151");
+			pid.AddField("");
+			pid.AddField("Bond^Tiny");
+			pid.AddField("");
+			pid.AddField("19990723");
+			pid.AddField("M");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("8388 Secret Agent Way^^Raleigh^NC^27677");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("151");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("");
+			pid.AddField("N");
+
+			Assert.AreEqual(pid.ToString(), evaluatedMessage["PID"].ToString());
+
+			var nk1 = message.AddMessageSegment("NK1");
+
+			nk1.AddField("1");
+			nk1.AddField("Bond^Lady^T");
+			nk1.AddField("Spouse^Spouse");
+			nk1.AddField("007 Soho Lane^^Cary^NC^27511");
+			nk1.AddField("(919)007-0007^^PH^^^919^0070007");
+
+			Assert.AreEqual(nk1.ToString(), evaluatedMessage["NK1"].ToString());
+
+			var pv1 = message.AddMessageSegment("PV1");
+
+			pv1.AddField("1");
+			pv1.AddField("R");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("Manning^Manning^Terry^^^^^^&7654321&UPIN");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("");
+			pv1.AddField("N");
+			pv1.AddField("");
+			pv1.AddField("A");
+
+			Assert.AreEqual(pv1.ToString(), evaluatedMessage["PV1"].ToString());
+
+			var gt1 = message.AddMessageSegment("GT1");
+
+			gt1.AddField("1");
+			gt1.AddField("150");
+			gt1.AddField("Bond^James^^007");
+			gt1.AddField("");
+			gt1.AddField("007 Soho Lane^^Cary^NC^27511");
+			gt1.AddField("(919)007-0007^^PH^^^919^0070007~(777)707-0707^^CP^^^777^7070707~^NET^X.400^007@BritishSecretService.com");
+			gt1.AddField("(919)851-6177 X007^^^^^919^8516177^007");
+			gt1.AddField("19770920");
+			gt1.AddField("M");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("007-00-0007");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("2988 England Drive^^London^DC");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("F");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("M");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("");
+			gt1.AddField("British Secret Service");
+
+			Assert.AreEqual(gt1.ToString(), message["GT1"].ToString());
+
+			var messageToString = message.ToString();
+			var evaluatedMessageToString = evaluatedMessage.ToString();
+
+			Assert.AreEqual(messageToString, evaluatedMessageToString);
 		}
 	}
 }

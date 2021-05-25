@@ -72,6 +72,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 Value = value
             };
 
+            if (value.Contains(HL7V2ExpressionConfiguration.subComponentDelimiter))
+            {
+                var subComponents = result.Value.Split(HL7V2ExpressionConfiguration.subComponentDelimiter);
+                for (var i = 0; i < subComponents.Length; i++)
+                {
+                    result.AddSubComponent(subComponents[i]);
+                }
+            }
+
             fieldRepetition.Components.Add(result);
 
             return result;
@@ -176,6 +185,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 Id = FieldRepetitions.Count > 0 ? FieldRepetitions.Last().Id + 1 : 1,
                 Value = value,
             };
+
+            if (value.Contains(HL7V2ExpressionConfiguration.componentDelimiter))
+            {
+                var components = result.Value.Split(HL7V2ExpressionConfiguration.componentDelimiter);
+                for (var i = 0; i < components.Length; i++)
+                {
+                    result.AddComponent(components[i]);
+                }
+            }
 
             FieldRepetitions.Add(result);
 

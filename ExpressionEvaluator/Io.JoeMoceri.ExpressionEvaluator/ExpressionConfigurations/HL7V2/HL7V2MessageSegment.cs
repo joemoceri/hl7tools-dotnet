@@ -79,6 +79,28 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             Fields.Add(field);
 
+            if (value.Contains(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter))
+            {
+                var fieldRepetitions = field.Value.Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+                for (var i = 0; i < fieldRepetitions.Length; i++)
+                {
+                    field.AddFieldRepetition(fieldRepetitions[i]);
+                }
+            }
+            else
+            {
+                field.AddFieldRepetition(field.Value);
+            }
+
+            if (value.Contains(HL7V2ExpressionConfiguration.componentDelimiter))
+            {
+                var components = field.Value.Split(HL7V2ExpressionConfiguration.componentDelimiter);
+                for (var i = 0; i < components.Length; i++)
+                {
+                    field.AddComponent(components[i]);
+                }
+            }
+
             return field;
         }
 

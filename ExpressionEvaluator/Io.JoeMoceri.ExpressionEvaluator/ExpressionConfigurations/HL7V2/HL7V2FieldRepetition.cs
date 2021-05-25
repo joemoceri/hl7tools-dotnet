@@ -51,6 +51,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 Value = value
             };
 
+            if (value.Contains(HL7V2ExpressionConfiguration.subComponentDelimiter))
+            {
+                var subComponents = result.Value.Split(HL7V2ExpressionConfiguration.subComponentDelimiter);
+                for (var i = 0; i < subComponents.Length; i++)
+                {
+                    result.AddSubComponent(subComponents[i]);
+                }
+            }
+
             Components.Add(result);
 
             return result;
