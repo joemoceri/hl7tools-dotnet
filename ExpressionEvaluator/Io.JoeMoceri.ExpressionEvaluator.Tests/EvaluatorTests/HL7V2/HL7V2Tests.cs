@@ -792,9 +792,44 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		}
 
 		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
 		public void HL7V2Tests_EvaluateHL7V2File()
         {
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
 
-        }
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			// invalid path
+			var message = evaluator.EvaluateHL7V2File($"{Guid.NewGuid()}");
+
+			Assert.AreNotEqual(message.Error, null);
+
+			// invalid configuration
+			evaluator = new Evaluator();
+			message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			Assert.AreNotEqual(message.Error, null);
+
+			evaluator = new Evaluator(expressionConfiguration);
+
+			HL7V2ExpressionConfiguration.headerSegmentName = "_test";
+			HL7V2ExpressionConfiguration.fieldDelimiter = "_test";
+			HL7V2ExpressionConfiguration.componentDelimiter = "_test";
+			HL7V2ExpressionConfiguration.fieldRepetitionDelimiter = "_test";
+			HL7V2ExpressionConfiguration.escapeDelimiter = "_test";
+			HL7V2ExpressionConfiguration.subComponentDelimiter = "_test";
+
+			// MSH|^~\&
+			message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			Assert.AreEqual(HL7V2ExpressionConfiguration.headerSegmentName, "MSH");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldDelimiter, "|");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.componentDelimiter, "^");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter, "~");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.escapeDelimiter, "\\");
+			Assert.AreEqual(HL7V2ExpressionConfiguration.subComponentDelimiter, "&");
+
+			Assert.AreEqual(message.Error, null);
+		}
 	}
 }
