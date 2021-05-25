@@ -9,6 +9,68 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
     [TestClass]
     public class HL7V2Tests
     {
+		private void CompareMessageWithMessage(HL7V2Message message1, HL7V2Message message2)
+        {
+			Assert.AreEqual(message1.ToString(), message2.ToString());
+
+			for (var i = 0; i < message1.MessageSegments.Count; i++)
+            {
+				var m1Segment = message1.MessageSegments[i];
+				var m2Segment = message2.MessageSegments[i];
+
+				Assert.AreEqual(m1Segment.ToString(), m2Segment.ToString());
+				Assert.AreEqual(m1Segment.SegmentName, m2Segment.SegmentName);
+				Assert.AreEqual(message1.MessageSegments.Count, message2.MessageSegments.Count);
+
+				for (var j = 0; j < m1Segment.Fields.Count; j++)
+                {
+					var m1Field = m1Segment.Fields[j];
+					var m2Field = m2Segment.Fields[j];
+
+					Assert.AreEqual(m1Field.Id, m2Field.Id);
+					Assert.AreEqual(m1Field.Value, m2Field.Value);
+					Assert.AreEqual(m1Field.FieldRepetitions.Count, m2Field.FieldRepetitions.Count);
+
+					if (m1Field.FieldRepetitions.Count > 0)
+                    {
+						Assert.AreEqual(m1Field.Components().Count, m2Field.Components().Count);
+                    }
+
+					for (var k = 0; k < m1Field.FieldRepetitions.Count; k++)
+                    {
+						var m1FieldRepetition = m1Field.FieldRepetitions[k];
+						var m2FieldRepetition = m2Field.FieldRepetitions[k];
+
+						Assert.AreEqual(m1FieldRepetition.Id, m2FieldRepetition.Id);
+						Assert.AreEqual(m1FieldRepetition.Value, m2FieldRepetition.Value);
+						Assert.AreEqual(m1FieldRepetition.Components.Count, m2FieldRepetition.Components.Count);
+						Assert.AreEqual(m1FieldRepetition.Delimiter, m2FieldRepetition.Delimiter);
+
+						for (var a = 0; a < m1FieldRepetition.Components.Count; a++)
+                        {
+							var m1Component = m1FieldRepetition.Components[a];
+							var m2Component = m2FieldRepetition.Components[a];
+
+							Assert.AreEqual(m1Component.Id, m2Component.Id);
+							Assert.AreEqual(m1Component.Value, m2Component.Value);
+							Assert.AreEqual(m1Component.SubComponents.Count, m2Component.SubComponents.Count);
+							Assert.AreEqual(m1Component.Delimiter, m2Component.Delimiter);
+
+							for (var b = 0; b < m1Component.SubComponents.Count; b++)
+                            {
+								var m1subComponent = m1Component.SubComponents[b];
+								var m2subComponent = m2Component.SubComponents[b];
+
+								Assert.AreEqual(m1subComponent.Id, m2subComponent.Id);
+								Assert.AreEqual(m1subComponent.Value, m2subComponent.Value);
+								Assert.AreEqual(m1subComponent.Delimiter, m2subComponent.Delimiter);
+							}
+						}
+					}
+				}
+			}
+        }
+
 		private void CompareFileWithMessage(string path, HL7V2Message message)
         {
 			var lines = File.ReadAllLines(path);
@@ -1131,18 +1193,45 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			var msh = message.AddMessageSegment("MSH");
 
-			var field = msh.AddField("|");
+			var field = msh.AddField("|", false);
+
+			Assert.AreEqual(field.FieldRepetitions.Count, 0);
+			Assert.AreEqual(field.GetFieldRepetition(0), null);
+
+			field = msh.AddField("^~\\&", false);
+
+			Assert.AreEqual(field.FieldRepetitions.Count, 0);
+			Assert.AreEqual(field.GetFieldRepetition(0), null);
+
+			field = msh.AddField("Ntierprise");
+			
+			Assert.AreEqual(field.FieldRepetitions.Count, 1);
+			Assert.AreEqual(field.GetFieldRepetition(1).Value, field.Value);
+
+			field = msh.AddField("Ntierprise Clinic");
 
 			Assert.AreEqual(field.FieldRepetitions.Count, 1);
 			Assert.AreEqual(field.GetFieldRepetition(1).Value, field.Value);
 
-			msh.AddField("^~\\&");
-			msh.AddField("Ntierprise");
-			msh.AddField("Ntierprise Clinic");
-			msh.AddField("Healthmatics EHR");
-			msh.AddField("Healthmatics Clinic");
-			msh.AddField("20190423113910");
-			msh.AddField("");
+			field = msh.AddField("Healthmatics EHR");
+
+			Assert.AreEqual(field.FieldRepetitions.Count, 1);
+			Assert.AreEqual(field.GetFieldRepetition(1).Value, field.Value);
+
+			field = msh.AddField("Healthmatics Clinic");
+
+			Assert.AreEqual(field.FieldRepetitions.Count, 1);
+			Assert.AreEqual(field.GetFieldRepetition(1).Value, field.Value);
+
+			field = msh.AddField("20190423113910");
+
+			Assert.AreEqual(field.FieldRepetitions.Count, 1);
+			Assert.AreEqual(field.GetFieldRepetition(1).Value, field.Value);
+
+			field = msh.AddField("");
+
+			Assert.AreEqual(field.FieldRepetitions.Count, 1);
+			Assert.AreEqual(field.GetFieldRepetition(1).Value, field.Value);
 
 			field = msh.AddField("ADT^A08");
 
@@ -1224,7 +1313,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			pv1.AddField("");
 			pv1.AddField("");
 			pv1.AddField("");
-			pv1.AddField("Manning^Manning^Terry^^^^^^&7654321&UPIN");
+			field = pv1.AddField("Manning^Manning^Terry^^^^^^&7654321&UPIN");
+
+			var component = field[9];
+
+			Assert.AreEqual(component.Value, "&7654321&UPIN");
+			Assert.AreEqual(component[1].Value, "");
+			Assert.AreEqual(component[2].Value, "7654321");
+			Assert.AreEqual(component[3].Value, "UPIN");
+
 			pv1.AddField("");
 			pv1.AddField("");
 			pv1.AddField("");
@@ -1246,7 +1343,13 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			gt1.AddField("Bond^James^^007");
 			gt1.AddField("");
 			gt1.AddField("007 Soho Lane^^Cary^NC^27511");
-			gt1.AddField("(919)007-0007^^PH^^^919^0070007~(777)707-0707^^CP^^^777^7070707~^NET^X.400^007@BritishSecretService.com");
+			field = gt1.AddField("(919)007-0007^^PH^^^919^0070007~(777)707-0707^^CP^^^777^7070707~^NET^X.400^007@BritishSecretService.com");
+
+			Assert.AreEqual(field.FieldRepetitions.Count, 3);
+			Assert.AreEqual(field[1, 1].Value, "(919)007-0007");
+			Assert.AreEqual(field[1, 2].Value, "(777)707-0707");
+			Assert.AreEqual(field[1, 3].Value, "");
+
 			gt1.AddField("(919)851-6177 X007^^^^^919^8516177^007");
 			gt1.AddField("19770920");
 			gt1.AddField("M");
@@ -1299,6 +1402,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			var evaluatedMessageToString = evaluatedMessage.ToString();
 
 			Assert.AreEqual(messageToString, evaluatedMessageToString);
+
+			CompareMessageWithMessage(message, evaluatedMessage);
 		}
 	}
 }

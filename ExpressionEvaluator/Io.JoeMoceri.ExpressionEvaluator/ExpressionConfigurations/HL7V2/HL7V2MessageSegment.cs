@@ -68,7 +68,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		}
 
         #region Field Operations
-        public HL7V2Field AddField(string value)
+        public HL7V2Field AddField(string value, bool includeFieldRepetition = true)
         {
             var field = new HL7V2Field
             {
@@ -79,17 +79,20 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             Fields.Add(field);
 
-            if (value.Contains(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter))
+            if (includeFieldRepetition)
             {
-                var fieldRepetitions = field.Value.Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
-                for (var i = 0; i < fieldRepetitions.Length; i++)
+                if (value.Contains(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter))
                 {
-                    field.AddFieldRepetition(fieldRepetitions[i]);
+                    var fieldRepetitions = field.Value.Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+                    for (var i = 0; i < fieldRepetitions.Length; i++)
+                    {
+                        field.AddFieldRepetition(fieldRepetitions[i]);
+                    }
                 }
-            }
-            else
-            {
-                field.AddFieldRepetition(field.Value);
+                else
+                {
+                    field.AddFieldRepetition(field.Value);
+                }
             }
 
             return field;

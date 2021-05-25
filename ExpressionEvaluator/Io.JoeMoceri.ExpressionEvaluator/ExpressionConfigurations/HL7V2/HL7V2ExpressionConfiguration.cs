@@ -108,11 +108,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                     messageSegment.SegmentName = expGroup.LeftOperand;
                     if (specialSegmentHeaders.Any(a => a.Equals(messageSegment.SegmentName)))
                     {
-                        messageSegment.AddField(fieldDelimiter);
+                        messageSegment.AddField(fieldDelimiter, false);
                     }
                 }
 
-                var field = messageSegment.AddField(endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand);
+                //^~\&
+                var input = $"{componentDelimiter}{fieldRepetitionDelimiter}{escapeDelimiter}{subComponentDelimiter}";
+                var includeFieldRepetition = !expGroup.RightOperand.Equals(input);
+
+                var field = messageSegment.AddField(endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand, includeFieldRepetition);
 
                 return DefaultExpressionResult;
             }
