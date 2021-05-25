@@ -608,50 +608,15 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// Act
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			var msh = message["MSH"];
-
-			var value = $"{Guid.NewGuid()}";
-
-			Assert.AreNotEqual(msh[2].Value, value);
-
-			var field = msh.UpdateField(2, value);
-
-			Assert.AreEqual(msh[2].Value, value);
-
-			//Assert.AreEqual(field.GetFieldRepetition(1).Value, value);
-
-			//Assert.AreEqual(field.GetFieldRepetition(1).Id, 1);
-
-			//Assert.AreEqual(field.GetFieldRepetition(1).Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
-
-			//Assert.AreEqual(field.GetFieldRepetition(1).Components.Count, 0);
-
-
-
-			//var fieldRepetition = field.GetFieldRepetition(1);
-
-			//Assert.AreEqual(fieldRepetition.Id, 1);
-
-			//Assert.AreEqual(field.Value, fieldRepetition.Value);
-
-			//Assert.AreEqual(fieldRepetition.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
-
-			//Assert.AreEqual(fieldRepetition.Components.Count, 1);
-
-			//fieldRepetition = field.FieldRepetitions[0];
-
-			//Assert.AreEqual(fieldRepetition.Id, 1);
-
-			//Assert.AreEqual(field.Value, fieldRepetition.Value);
-
-			//Assert.AreEqual(fieldRepetition.Components.Count, 1);
-
-			//Assert.AreEqual(fieldRepetition.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
-
-
+			var gt161 = (HL7V2FieldRepetition)message.Get("GT1.6(1)");
 
 			// Assert
 			Assert.IsNull(message.Error);
+			
+			Assert.AreEqual(gt161.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+			Assert.AreEqual(gt161.Id, 1);
+
+			// add component
 		}
 
 		[TestMethod]
@@ -665,26 +630,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			// Act
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
-
-			var msh = message["MSH"];
-
-			var value = $"{Guid.NewGuid()}";
-
-			Assert.AreNotEqual(msh[2].Value, value);
-
-			msh.UpdateField(2, value);
-
-			Assert.AreEqual(msh[2].Value, value);
-
-			//var component = fieldRepetition[1];
-
-			//Assert.AreEqual(component.Id, 1);
-
-			//Assert.AreEqual(field.Value, component.Value);
-
-			//Assert.AreEqual(component.SubComponents.Count, 1);
-
-			//Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
 
 			// Assert
 			Assert.IsNull(message.Error);
@@ -701,24 +646,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			// Act
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
-
-			var msh = message["MSH"];
-
-			var value = $"{Guid.NewGuid()}";
-
-			Assert.AreNotEqual(msh[2].Value, value);
-
-			msh.UpdateField(2, value);
-
-			Assert.AreEqual(msh[2].Value, value);
-
-			//var subComponent = component[1];
-
-			//Assert.AreEqual(subComponent.Id, 1);
-
-			//Assert.AreEqual(field.Value, subComponent.Value);
-
-			//Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
 
 			// Assert
 			Assert.IsNull(message.Error);
