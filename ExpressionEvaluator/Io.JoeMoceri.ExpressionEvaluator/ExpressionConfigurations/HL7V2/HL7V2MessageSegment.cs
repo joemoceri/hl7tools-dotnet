@@ -108,20 +108,20 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 Value = value
             };
 
-            var pFr = Fields.FirstOrDefault(fr => fr.Id.Equals(id));
+            var f = Fields.FirstOrDefault(f => f.Id.Equals(id));
 
-            if (pFr == null)
+            if (f == null)
             {
                 return null;
             }
 
-            var previousIndex = Fields.IndexOf(pFr);
+            var previousIndex = Fields.IndexOf(f);
 
-            foreach (var f in Fields)
+            foreach (var fi in Fields)
             {
-                if (f.Id > previousIndex)
+                if (fi.Id > previousIndex)
                 {
-                    f.Id++;
+                    fi.Id++;
                 }
             }
 
@@ -137,16 +137,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return null;
             }
 
-            var fr = Fields.FirstOrDefault(f => f.Id.Equals(id));
+            var f = Fields.FirstOrDefault(f => f.Id.Equals(id));
 
-            if (fr == null)
+            if (f == null)
             {
                 return null;
             }
 
-            fr.Value = value;
+            f.Value = value;
 
-            return fr;
+            return f;
         }
         #endregion
     }

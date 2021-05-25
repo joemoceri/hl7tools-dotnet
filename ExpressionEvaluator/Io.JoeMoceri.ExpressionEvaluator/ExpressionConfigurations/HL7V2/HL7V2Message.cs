@@ -190,14 +190,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public bool RemoveMessageSegment(string segmentName, int index = 0)
         {
-            var fr = messageSegments.Where(f => f.SegmentName.Equals(segmentName)).ToList()[index];
+            var fr = messageSegments.Where(f => f.SegmentName.Equals(segmentName)).ToList();
 
-            if (fr == null)
+            if (fr.Count == 0 || index < 0 || index > fr.Count)
             {
                 return false;
             }
 
-            return messageSegments.Remove(fr);
+            return messageSegments.Remove(fr[index]);
         }
 
         public HL7V2MessageSegment InsertMessageSegment(string segmentName, int index = 0)

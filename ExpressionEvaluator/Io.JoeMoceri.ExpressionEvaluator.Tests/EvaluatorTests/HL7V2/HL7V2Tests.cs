@@ -206,6 +206,19 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(removed, true);
 
+			// validation
+			removed = message.RemoveMessageSegment("NOPE");
+
+			Assert.AreEqual(removed, false);
+
+			removed = message.RemoveMessageSegment("MSH", -1);
+
+			Assert.AreEqual(removed, false);
+
+			removed = message.RemoveMessageSegment("MSH", message.MessageSegments.Count);
+
+			Assert.AreEqual(removed, false);
+
 			// Insert message segment
 			var frontObr = message.InsertMessageSegment("OBR");
 
@@ -214,6 +227,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(message.MessageSegments.First().SegmentName, frontObr.SegmentName);
 
 			Assert.AreEqual(message.MessageSegments.First().SegmentName, "OBR");
+
+			frontObr = message.InsertMessageSegment("OBR", -1);
+
+			Assert.AreEqual(frontObr, null);
+
+			frontObr = message.InsertMessageSegment("OBR", message.MessageSegments.Count + 1);
+
+			Assert.AreEqual(frontObr, null);
 
 			removed = message.RemoveMessageSegment("OBR");
 
@@ -368,18 +389,56 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(field.Value, value);
 			Assert.AreEqual(field.Id, msh[2].Id);
 
-			var id = msh.Fields.Count / 2;
+			// validation
+			field = msh.UpdateField(0, value);
+
+			Assert.AreEqual(field, null);
+
+			field = msh.UpdateField(msh.Fields.Count, value);
+
+			Assert.AreEqual(field, null);
+
+			msh[2].Id = 8;
+
+			field = msh.UpdateField(2, value);
+
+			Assert.AreEqual(field, null);
+
+			msh[8].Id = 2;
 
 			// insert field
+			var id = msh.Fields.Count / 2;
 			field = msh.InsertField(id, "_test");
 
 			Assert.AreEqual(field.Id, id);
 			Assert.AreEqual(field.Value, "_test");
 
+			// validation
+			field = msh.InsertField(0, "_test");
+
+			Assert.AreEqual(field, null);
+
+			field = msh.InsertField(msh.Fields.Count, "_test");
+
+			Assert.AreEqual(field, null);
+
+			msh[2].Id = 8;
+
+			field = msh.InsertField(2, "_test");
+
+			Assert.AreEqual(field, null);
+
+			msh[8].Id = 2;
+
 			// remove field
 			var removed = msh.RemoveField(id);
 
 			Assert.AreEqual(removed, true);
+
+			// validation
+			removed = msh.RemoveField(0);
+
+			Assert.AreEqual(removed, false);
 
 			// add field
 			value = $"{Guid.NewGuid()}";
@@ -395,6 +454,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(field.Value, msh[5].Value);
 			Assert.AreEqual(field.Value, message.Get("MSH.5").Value);
+
+			// validation
+			field = msh.GetField(0);
+
+			Assert.AreEqual(field, null);
 
 			// to string
 			var lines = File.ReadAllLines("ADT-A08 Update Patient.txt");
