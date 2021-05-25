@@ -114,53 +114,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
                 var field = messageSegment.AddField(endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand);
 
-                if (specialSegmentHeaders.Any(a => a.Equals(expGroup.LeftOperand)))
-                {
-                    return DefaultExpressionResult;
-                }
-
-                // fields contain field repetition
-                if (field.Value.Contains(fieldRepetitionDelimiter))
-                {
-                    var fieldRepetitionSplit = expGroup.RightOperand.Split(fieldRepetitionDelimiter);
-
-                    for (var j = 0; j < fieldRepetitionSplit.Length; j++)
-                    {
-                        field.AddFieldRepetition(fieldRepetitionSplit[j]);
-                    }
-                }
-                else
-                {
-                    field.AddFieldRepetition(field.Value);
-                }
-
-                for (var k = 0; k < field.FieldRepetitions.Count; k++)
-                {
-                    var fieldRepetition = field.FieldRepetitions[k];
-
-                    // get the components
-                    if (fieldRepetition.Value.Contains(componentDelimiter))
-                    {
-                        var componentSplit = fieldRepetition.Value.Split(componentDelimiter);
-
-                        for (var i = 0; i < componentSplit.Length; i++)
-                        {
-                            var component = fieldRepetition.AddComponent(componentSplit[i]);
-
-                            // get the sub components
-                            if (component.Value.Contains(subComponentDelimiter))
-                            {
-                                var subComponentSplit = component.Value.Split(subComponentDelimiter);
-
-                                for (var j = 0; j < subComponentSplit.Length; j++)
-                                {
-                                    component.AddSubComponent(subComponentSplit[j]);
-                                }
-                            }
-                        }
-                    }
-                }
-
                 return DefaultExpressionResult;
             }
         }

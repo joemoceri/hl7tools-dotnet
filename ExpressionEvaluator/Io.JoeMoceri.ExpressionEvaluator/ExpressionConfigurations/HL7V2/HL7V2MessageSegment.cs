@@ -92,15 +92,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 field.AddFieldRepetition(field.Value);
             }
 
-            if (value.Contains(HL7V2ExpressionConfiguration.componentDelimiter))
-            {
-                var components = field.Value.Split(HL7V2ExpressionConfiguration.componentDelimiter);
-                for (var i = 0; i < components.Length; i++)
-                {
-                    field.AddComponent(components[i]);
-                }
-            }
-
             return field;
         }
 
