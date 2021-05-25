@@ -617,6 +617,42 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(gt161.Id, 1);
 
 			// add component
+			var previousCount = gt161.Components.Count;
+			var component = gt161.AddComponent("_test");
+
+			Assert.AreEqual(component.Value, "_test");
+			Assert.AreEqual(component.Id, gt161.Components.Count);
+			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+			Assert.AreEqual(previousCount + 1, gt161.Components.Count);
+
+			// remove component
+			var removed = gt161.RemoveComponent(component.Id);
+
+			Assert.AreEqual(removed, true);
+			Assert.AreEqual(previousCount, gt161.Components.Count);
+
+			// insert component
+			var id = gt161.Components.Count / 2;
+			component = gt161.InsertComponent(id, "_test");
+
+			Assert.AreEqual(component.Value, "_test");
+			Assert.AreEqual(component.Id, id);
+			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+
+			removed = gt161.RemoveComponent(component.Id);
+
+			Assert.AreEqual(removed, true);
+
+			Assert.AreEqual(previousCount, gt161.Components.Count);
+
+			// update component
+			Assert.AreNotEqual(gt161[1].Value, "_test");
+
+			component = gt161.UpdateComponent(1, "_test");
+
+			Assert.AreEqual(component.Value, "_test");
+			Assert.AreEqual(component.Id, 1);
+			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
 		}
 
 		[TestMethod]
@@ -631,24 +667,57 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// Act
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			// Assert
-			Assert.IsNull(message.Error);
-		}
-
-		[TestMethod]
-		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HL7V2Tests_EvaluateHL7V2File_Message_MessageSegment_Field_FieldRepetition_Component_SubComponent()
-		{
-			// Arrange
-			var expressionConfiguration = new HL7V2ExpressionConfiguration();
-
-			var evaluator = new Evaluator(expressionConfiguration);
-
-			// Act
-			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+			var pv179 = (HL7V2Component)message.Get("PV1.7.9");
 
 			// Assert
 			Assert.IsNull(message.Error);
+
+			Assert.AreEqual(pv179.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+			Assert.AreEqual(pv179.Id, 9);
+
+			// add sub component
+			var previousCount = pv179.SubComponents.Count;
+			var subComponent = pv179.AddSubComponent("_test");
+
+			Assert.AreEqual(subComponent.Value, "_test");
+			Assert.AreEqual(subComponent.Id, pv179.SubComponents.Count);
+			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
+			Assert.AreEqual(previousCount + 1, pv179.SubComponents.Count);
+
+			// remove sub component
+			var removed = pv179.RemoveSubComponent(subComponent.Id);
+
+			Assert.AreEqual(removed, true);
+			Assert.AreEqual(previousCount, pv179.SubComponents.Count);
+
+			// insert sub component
+			var id = pv179.SubComponents.Count / 2;
+			subComponent = pv179.InsertSubComponent(id, "_test");
+
+			Assert.AreEqual(subComponent.Value, "_test");
+			Assert.AreEqual(subComponent.Id, id);
+			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
+
+			removed = pv179.RemoveSubComponent(subComponent.Id);
+
+			Assert.AreEqual(removed, true);
+
+			Assert.AreEqual(previousCount, pv179.SubComponents.Count);
+
+			// update sub component
+			Assert.AreEqual(pv179.SubComponents[0].Id, 2);
+
+			message.Rebuild();
+
+			Assert.AreEqual(pv179.SubComponents[0].Id, 1);
+
+			Assert.AreNotEqual(pv179[1].Value, "_test");
+
+			subComponent = pv179.UpdateSubComponent(1, "_test");
+
+			Assert.AreEqual(subComponent.Value, "_test");
+			Assert.AreEqual(subComponent.Id, 1);
+			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
 		}
 
 		[TestMethod]
