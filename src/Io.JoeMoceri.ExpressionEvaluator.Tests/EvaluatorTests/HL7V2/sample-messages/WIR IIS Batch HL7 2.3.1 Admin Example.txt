@@ -1,0 +1,10 @@
+FHS|^~\&|WIR11.3.2^^^|WIR^^^|||20200514||1218918.update|||
+BHS|^~\&|WIR11.3.2^^^|WIR^^^|||20200514|||||
+MSH|^~\&|WIR11.3.2^^^|WIR^^^||WIRPH^^^|20200514||VXU^V04|2020051409183900|P^|2.3.1^^|||ER
+PID|||3019190^^^^^||NEW^BORNBOY^^^^^^||20180711|U||B^^^^^|185 4TH AVE^^EAU CLAIRE^WI^54703^^^^WI035^^||(608)696-9696^PRN^PH^^^608^6969696^^|||||||||H^^^^^|||||||
+PD1|||||||||||02^^^^^|Y||A
+NK1|1|NEW^BORNBOY^^^^^^|18^SELF^HL70063^^^|185 4TH AVE^^EAU CLAIRE^WI^54703^^^^^^|(608)696-9696^PRN^PH^^^608^6969696^^
+RXA|0|999|20190221|20190221|150^Influenza Quadrivalent P-Free^CVX^90686^Influenza Quadrivalent P-Free^CPT|1.0|||00^^^^^~38198027^WIR immunization id^IMM_ID^^^|^Maribeth H Baker MD^^^^^^^^^^^^^|^^^WIR Physicians^^^^^^^^^^^||||1112223||SEQ^SEQ^MVX^^^
+RXR|IM^^^^^|LD^^^^^
+BTS|1|
+FTS|1|

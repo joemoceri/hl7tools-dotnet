@@ -1,0 +1,9 @@
+MSH|^~\&|WIR|||36|20200514152729-0500||VXU^V04^VXU_V04|1219468|P|2.5.1|||ER|AL|||||Z22^CDCPHINVS
+PID|1||2889619^^^WIA^SR~1TESTA^^^WIA^PI||TESTA^INVENTORY^^^^^^L|TESTA^INVENTORY^^^^^^M|20160501|U|||^^MADISON^WI^^^H|||||||||||||||||||N
+PD1|||||||||||02^Reminder/recall - any method^HL70215|N||||A
+NK1|1|TESTA^INVENTORY^^^^^^L|SEL^Self^HL70063|^^MADISON^WI^^^H
+PV1||R
+ORC|RE||37907472^WIA|||||||^Suchon^Jason^^^^^^WIA^^^^^^L||27744^Ace^Jack^b^^^^^WIA^^^^^^D|||||||||WIR Physicians^D^^^^WIA^XX^^^36
+RXA|0|1|20160501|20160501|141^Influenza^CVX^FluLaval^Influenza^WVTN|1.0|mL^MilliLiter^UCUM||01|27743^AdminUser^Admin^^^^^^WIA^^^^^^D^^^^^^MD|||||JLB-12345-67890-JLB|20201020|SKB
+RXR|C28161^Intramuscular^NCIT|LA^Left Arm^HL70163
+OBX|1|CE|64994-7^Vaccine funding program eligibility category^LN|1|V02^VFC eligible - Medicaid/Medicaid Managed Care^HL70064||||||F|||20160501|||VXC40^per immunization^CDCPHINVS

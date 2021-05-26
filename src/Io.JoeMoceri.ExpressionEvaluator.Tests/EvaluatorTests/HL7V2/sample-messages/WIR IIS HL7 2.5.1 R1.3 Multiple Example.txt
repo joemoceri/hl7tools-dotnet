@@ -1,0 +1,11 @@
+MSH|^~\&|WIR11.3.2^^|WIR^^||WIRPH^^|20200514||VXU^V04^VXU_V04|2020051412382900|P^|2.5.1^^|||ER||||||^CDCPHINVS
+PID|||3080500^^^^SR^~^^^^PI^||DTAP^TEST^M^^^^^|TESTM^TESTMOM^^^^^^|20180804|F|||1 E MAIN ST^1 main st^MADISON^WI^53703^^^^WI025^^||(354)686-5555^PRN^PH^^^354^6865555^^||||||||||||||||
+PD1|||||||||||02^^^^^|N||||A
+NK1|1|DTAP^TESTMOM^^^^^^|MTH^MOTHER^HL70063^^^^^|^^MADISON^WI^^^^^^^|
+NK1|2|DTAP^TEST^^^^^^|SEL^SELF^HL70063^^^^^|1 E MAIN ST^1 main st^MADISON^WI^53703^^^^^^|(354)686-6575^PRN^PH^^^354^6866575^^
+PV1||R||||||||||||||||||V07^
+ORC|RE||0|
+RXA|0|999|20180910|20180910|20^DtaP^CVX^Infanrix^Infanrix^WVTN|1.0|||01^^^^^~38217674^WIR immunization id^IMM_ID^^^|||||||||||
+ORC|RE||0|
+RXA|0|999|20190807|20190807|150^Influenza Quadrivalent P-Free^CVX^Fluarix Quadrivalent, P-Free^Fluarix Quadrivalent, P-Free^WVTN|1.0|||00^^^^^~38253123^WIR immunization id^IMM_ID^^^||^^^Division of Public Health^^^^^^^^^^^||||jlb234||SKB^SKB^MVX^^^|||
+RXR|IM^^HL70162^^^|^^HL70163^^^
