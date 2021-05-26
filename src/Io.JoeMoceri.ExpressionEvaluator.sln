@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Io.JoeMoceri.ExpressionEval
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Io.JoeMoceri.ExpressionEvaluator.Tests", "Io.JoeMoceri.ExpressionEvaluator.Tests\Io.JoeMoceri.ExpressionEvaluator.Tests.csproj", "{EC5D3581-1E86-496D-9235-0C305DC3FB69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Io.JoeMoceri.ExpressionEvaluator.Sample", "Io.JoeMoceri.ExpressionEvaluator.Sample\Io.JoeMoceri.ExpressionEvaluator.Sample.csproj", "{3D276047-A3BB-423C-AFD9-3C105030198B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Io.JoeMoceri.ExpressionEvaluator.Sample", "Io.JoeMoceri.ExpressionEvaluator.Sample\Io.JoeMoceri.ExpressionEvaluator.Sample.csproj", "{3D276047-A3BB-423C-AFD9-3C105030198B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{DE6CD7A7-C7F4-4A73-AC48-D5BA0406E2EC}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\dotnet.yml = ..\.github\workflows\dotnet.yml
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
