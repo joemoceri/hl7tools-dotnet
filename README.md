@@ -2,165 +2,82 @@
 
 [![NuGet](https://img.shields.io/nuget/v/Io.JoeMoceri.ExpressionEvaluator.svg)](https://www.nuget.org/packages/Io.JoeMoceri.ExpressionEvaluator/) ![GitHub Workflow](https://github.com/jmoceri34/expression-evaluator/actions/workflows/dotnet.yml/badge.svg) 
 
-* [Overview](#overview)
-* [Install](#install)
-* [Usage](#usage)
-
-<a name="overview"></a>
-## Overview
-This is a project written in C# that will, given a math, string or boolean expression, evaluate it using built-in Expression Configurations. Expression Configurations are what the Expression Evaluator uses when defining math, string, and boolean operators like '+', '-', '||', and so on. The operations are fully customizable. Using Expression Configurations you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic. The default expression configuration is Python.
+This is a project written in C# that will, given a math, string or boolean expression, evaluate it using built-in Expression Configurations. Expression Configurations are what the Expression Evaluator uses when defining math, string, and boolean operators like '+', '-', '||', and so on. The operations are fully customizable. Using Expression Configurations you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic. The default expression configuration is C#. You can also use this to evaluate segments of an hl7v2 pipe delimited message. Using an HL7V2ExpressionConfiguration the Evaluator can be configured to parse and return a structured HL7V2Message object layered with fields, field repetitions, components, and subcomponents. You can also perform CRUD operations on all of them, build a message from scratch, and more.
 
 Not Supported:
  * Single quotes (') as strings. You must use double quotes (") for strings. You can still use single quotes inside strings, and escaped double quotes.
- * Customizing what defines a quote and a parentheses (())
+ * Customizing what defines a quote and a parentheses (()).
+ * Bitwise operations and anything else not +,-,*,/,%,&&,||,>,<,>=,<=,==, !=, int, float, or boolean.
 
-For example, if you have an expression in Python like '1 > 2', it will return 'False', with a type of Boolean. You can hook into the '>' operator with the following methods: OnBeforeOperatorExpressionSolved (before the expression is solved), OnAfterOperatorExpressionSolved (after the expression is solved), SolveOperatorExpression (override the default behavior and solve it yourself). You can also customize the operator to use 'greater-than' as an operator instead of '>', so that '1 greater-than 2' will return 'False' too. If any kind of error happens, the error is returned and the values are null. The result you get back after a call to Evaluate is a class called ExpressionResult that contains the value, variable type, and error, if any. Please see Usage for examples.
+
+For the C# Expression Configruration, if you try to [Evaluate](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/Evaluator.cs#L101) '1 > 2', it will return 'false', with a type of Boolean. You can hook into the '>' operator with the following methods: [OnBeforeOperatorExpressionSolved](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L14) (before the expression is solved), [OnAfterOperatorExpressionSolved](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L15) (after the expression is solved), [SolveOperatorExpression](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L16) (override the default behavior and solve it yourself). You can also customize the operator to use 'greater-than' as an operator instead of '>', so that '1 greater-than 2' will return 'false' too. If any kind of error happens, the error is returned and the values are null. The result you get back after a call to Evaluate is a class called [ExpressionResult](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/ExpressionResult.cs#L8) that contains the value, variable type, and error, if any.
+
+**Table of Contents**
+- [Expression Evaluator for .NET](#expression-evaluator-for-net)
+  - [Installation](#installation)
+    - [Requirements](#requirements)
+  - [Overview](#overview)
+    - [C# Expressions](#c#-expressions)
+    - [HL7V2 Message Segment Expressions](#hl7v2-message-segment-expressions)
+    - [Expression Configurations](#expression-configurations)
+  - [Reference & Examples](#reference-&-examples)
+    - [C#](#c#)
+    - [HL7V2Message](#hl7v2message)
+    - [HL7V2MessageSegment](#hl7v2messagesegment)
+    - [HL7V2Field](#hl7v2field)
+    - [HL7V2FieldRepetition](#hl7v2fieldrepetition)
+    - [HL7V2Component](#hl7v2component)
+    - [HL7V2SubComponent](#hl7v2subcomponent)
 
 <a name="install"></a>
-## Install
-Using NuGet
+## Installation
+[NuGet Expression Evaluator package](https://www.nuget.org/packages/Io.JoeMoceri.ExpressionEvaluator/).
+
+You can install using the following methods.
+
+Using the .NET Core command-line interface (CLI) tools:
+
 ```sh
+dotnet add package Io.JoeMoceri.ExpressionEvaluator
+```
+
+Using the NuGet Command Line Interface (CLI):
+
+```sh
+nuget install Io.JoeMoceri.ExpressionEvaluator
+```
+
+Using the Package Manager Console:
+
+```powershell
 Install-Package Io.JoeMoceri.ExpressionEvaluator
 ```
 
-<a name="usage"></a>
-## Usage
+### Requirements
+ - .NET 5.0+
 
-Please see Tests section of project for examples on how to use it and below.
+## Overview
+TBD
+### C# Expressions
+TBD
+### HL7V2 Message Segment Expressions
+TBD
+### Expression Configurations
+TBD
 
-Example #1: No parentheses order of operations
-
-```csharp
-			// Arrange
-			var answer = new ExpressionResult { Value = "\"5example\"", Type = VariableType.String };
-			var exp = "5 * 3 / 3 + \"example\"";
-
-			// Act
-			Evaluator evaluator = new Evaluator();
-			var result = evaluator.Evaluate(exp);
-
-			// Assert
-			Assert.AreEqual(answer, result);
-      
-      			// produces an ExpressionResult that looks like this
-			// Value = "\"5example\""
-			// Type = VariableType.String
-			// Error = null
-```
-
-Example #2: Parentheses can be handled
-```csharp
-			// Arrange
-			var answer = new ExpressionResult { Value = "\"5example275\"", Type = VariableType.String };
-			var exp = "5 * 3 / 3 + ((\"example2\") + (5 * 15))";
-
-			// Act
-			Evaluator evaluator = new Evaluator();
-			var result = evaluator.Evaluate(exp);
-
-			// Assert
-			Assert.AreEqual(answer, result);
-			
-			// produces an ExpressionResult that looks like this
-			// Value = "\"5example275\""
-			// Type = VariableType.String
-			// Error = null
-```
-
-Example #3: Single boolean value
-```csharp
-			// Arrange
-			var answer = new ExpressionResult { Value = "True", Type = VariableType.Boolean };
-			var exp = "True";
-
-			// Act
-			Evaluator evaluator = new Evaluator();
-			var result = evaluator.Evaluate(exp);
-
-			// Assert
-			Assert.AreEqual(answer, result);
-			
-			// produces an ExpressionResult that looks like this
-			// Value = "True"
-			// Type = VariableType.Boolean
-			// Error = null
-```
-
-To create your own ExpressionConfiguration, inherit from [ExpressionConfigurationBase](https://github.com/jmoceri34/expression-evaluator/blob/master/ExpressionEvaluator/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L5)
-
-Please see Io.JoeMoceri.ExpressionEvaluator.Sample project for more.
-
-App.cs
-
-```csharp
-using Io.JoeMoceri.ExpressionEvaluator.ExpressionConfiguration;
-using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace Io.JoeMoceri.ExpressionEvaluator.Sample
-{
-    public class App
-    {
-        public void Run()
-        {
-            ParseHL7FileExample();
-
-            // SolveMathExample();
-
-            // SolveBooleanExample();
-
-            Console.ReadLine();
-        }
-
-        public void SolveMathExample()
-        {
-            var evaluator = new Evaluator();
-
-            var result = evaluator.Evaluate("1 + 2 * (3 - 4) / 18");
-
-            Console.WriteLine(result.ToString());
-        }
-
-        public void SolveBooleanExample()
-        {
-            var evaluator = new Evaluator();
-
-            var result = evaluator.Evaluate("1 > 2 and (3 + 4) / 2 == 5");
-
-            Console.WriteLine(result.ToString());
-        }
-
-        public void ParseHL7FileExample()
-        {
-            var lines = File.ReadLines("HL7File.txt");
-
-            var expressionConfiguration = new HL7V2ExpressionConfiguration();
-
-            var evaluator = new Evaluator(expressionConfiguration);
-
-            var messageSegments = new List<HL7V2MessageSegment>();
-
-            foreach (var line in lines)
-            {
-                evaluator.Evaluate(line);
-
-                var messageSegment = expressionConfiguration.GetHL7V2MessageSegment();
-
-                Console.WriteLine(messageSegment.ToString());
-
-                messageSegments.Add(messageSegment);
-            }
-
-            Console.WriteLine("Final Output:");
-
-            foreach (var messageSegment in messageSegments)
-            {
-                Console.WriteLine(messageSegment.ToString());
-            }
-        }
-    }
-}
-
-
-```
+## Reference & Examples
+TBD
+### C#
+TBD
+### HL7V2Message
+TBD
+### HL7V2MessageSegment
+TBD
+### HL7V2Field
+TBD
+### HL7V2FieldRepetition
+TBD
+### HL7V2Component
+TBD
+### HL7V2SubComponent
+TBD
