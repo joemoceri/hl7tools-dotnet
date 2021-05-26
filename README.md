@@ -1,4 +1,6 @@
-# expression-evaluator
+# Expression Evaluator for .NET
+
+[![NuGet](https://img.shields.io/nuget/v/Io.JoeMoceri.ExpressionEvaluator.svg)](https://www.nuget.org/packages/Io.JoeMoceri.ExpressionEvaluator/) ![GitHub Workflow](https://github.com/jmoceri34/expression-evaluator/actions/workflows/dotnet.yml/badge.svg) 
 
 > Expression Evaluator is built for C# .NET and will evaluate math, string and boolean arithmetic expressions given an expression configuration. This can also be used to parse HL7 V2 Messages and more.
 
