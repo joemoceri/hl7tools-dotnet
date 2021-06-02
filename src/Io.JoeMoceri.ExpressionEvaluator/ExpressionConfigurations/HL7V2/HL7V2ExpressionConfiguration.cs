@@ -45,11 +45,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public static string EncodeString(string input)
         {
-            if (input == null)
-            {
-                return presentButNull;
-            }
-
             foreach (var encodingConversion in encodingConversions)
             {
                 input = input.Replace(encodingConversion.Key, encodingConversion.Value);
