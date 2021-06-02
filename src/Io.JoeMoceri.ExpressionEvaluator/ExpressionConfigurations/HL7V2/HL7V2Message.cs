@@ -50,6 +50,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 }
             }
 
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return null;
+            }
+
             //Get("PID.3.2.1")
             //Get("OBR(2).1") // gets the 2nd OBR repetition's 1st field
 	        //Get("GT1.6(2)") // gets the 1st GT1 repetition's 6th field's 2nd repetition
@@ -222,5 +227,155 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return messageSegment;
         }
         #endregion
+
+        public override bool Equals(object x)
+        {
+            if (x == null)
+            {
+                return false;
+            }
+
+            if (x.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            var compareTo = (HL7V2Message)x;
+            return AreMessagesTheSame(this, compareTo);
+
+            bool AreMessagesTheSame(HL7V2Message message1, HL7V2Message message2)
+            {
+                if (message1.ToString() != message2.ToString())
+                {
+                    return false;
+                }
+
+                for (var i = 0; i < message1.MessageSegments.Count; i++)
+                {
+                    var m1Segment = message1.MessageSegments[i];
+                    var m2Segment = message2.MessageSegments[i];
+
+                    if (m1Segment.ToString() != m2Segment.ToString())
+                    {
+                        return false;
+                    }
+
+                    if (m1Segment.SegmentName != m2Segment.SegmentName)
+                    {
+                        return false;
+                    }
+
+                    if (message1.MessageSegments.Count != message2.MessageSegments.Count)
+                    {
+                        return false;
+                    }
+
+                    for (var j = 0; j < m1Segment.Fields.Count; j++)
+                    {
+                        var m1Field = m1Segment.Fields[j];
+                        var m2Field = m2Segment.Fields[j];
+
+                        if (m1Field.Id != m2Field.Id)
+                        {
+                            return false;
+                        }
+
+                        if (m1Field.Value != m2Field.Value)
+                        {
+                            return false;
+                        }
+
+                        if (m1Field.FieldRepetitions.Count != m2Field.FieldRepetitions.Count)
+                        {
+                            return false;
+                        }
+
+                        if (m1Field.FieldRepetitions.Count > 0)
+                        {
+                            if (m1Field.Components().Count != m2Field.Components().Count)
+                            {
+                                return false;
+                            }
+                        }
+
+                        for (var k = 0; k < m1Field.FieldRepetitions.Count; k++)
+                        {
+                            var m1FieldRepetition = m1Field.FieldRepetitions[k];
+                            var m2FieldRepetition = m2Field.FieldRepetitions[k];
+
+                            if (m1FieldRepetition.Id != m2FieldRepetition.Id)
+                            {
+                                return false;
+                            }
+
+                            if (m1FieldRepetition.Value != m2FieldRepetition.Value)
+                            {
+                                return false;
+                            }
+
+                            if (m1FieldRepetition.Components.Count != m2FieldRepetition.Components.Count)
+                            {
+                                return false;
+                            }
+
+                            if (m1FieldRepetition.Delimiter != m2FieldRepetition.Delimiter)
+                            {
+                                return false;
+                            }
+
+                            for (var a = 0; a < m1FieldRepetition.Components.Count; a++)
+                            {
+                                var m1Component = m1FieldRepetition.Components[a];
+                                var m2Component = m2FieldRepetition.Components[a];
+
+                                if (m1Component.Id != m2Component.Id)
+                                {
+                                    return false;
+                                }
+
+                                if (m1Component.Value != m2Component.Value)
+                                {
+                                    return false;
+                                }
+
+                                if (m1Component.SubComponents.Count != m2Component.SubComponents.Count)
+                                {
+                                    return false;
+                                }
+
+                                if (m1Component.Delimiter != m2Component.Delimiter)
+                                {
+                                    return false;
+                                }
+
+                                for (var b = 0; b < m1Component.SubComponents.Count; b++)
+                                {
+                                    var m1subComponent = m1Component.SubComponents[b];
+                                    var m2subComponent = m2Component.SubComponents[b];
+
+                                    if (m1subComponent.Id != m2subComponent.Id)
+                                    {
+                                        return false;
+                                    }
+
+                                    if (m1subComponent.Value != m2subComponent.Value)
+                                    {
+                                        return false;
+                                    }
+
+                                    if (m1subComponent.Delimiter != m2subComponent.Delimiter)
+                                    {
+                                        return false;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            }
+        }
     }
 }

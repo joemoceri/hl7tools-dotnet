@@ -50,6 +50,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
+            var mv23 = new HL7V23Message(message);
+
+            var fs = mv23.msh.FieldSeparator;
+            var datetimeofmessage = mv23.msh.DateTimeOfMessage;
+
             var url = "https://test.com/test?id=1&test=2";
 
             var newUrl = HL7V2ExpressionConfiguration.EncodeString(url);

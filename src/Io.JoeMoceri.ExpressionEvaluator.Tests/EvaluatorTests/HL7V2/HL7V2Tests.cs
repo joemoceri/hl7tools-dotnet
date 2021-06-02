@@ -9,68 +9,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
     [TestClass]
     public class HL7V2Tests
     {
-		private void CompareMessageWithMessage(HL7V2Message message1, HL7V2Message message2)
-        {
-			Assert.AreEqual(message1.ToString(), message2.ToString());
-
-			for (var i = 0; i < message1.MessageSegments.Count; i++)
-            {
-				var m1Segment = message1.MessageSegments[i];
-				var m2Segment = message2.MessageSegments[i];
-
-				Assert.AreEqual(m1Segment.ToString(), m2Segment.ToString());
-				Assert.AreEqual(m1Segment.SegmentName, m2Segment.SegmentName);
-				Assert.AreEqual(message1.MessageSegments.Count, message2.MessageSegments.Count);
-
-				for (var j = 0; j < m1Segment.Fields.Count; j++)
-                {
-					var m1Field = m1Segment.Fields[j];
-					var m2Field = m2Segment.Fields[j];
-
-					Assert.AreEqual(m1Field.Id, m2Field.Id);
-					Assert.AreEqual(m1Field.Value, m2Field.Value);
-					Assert.AreEqual(m1Field.FieldRepetitions.Count, m2Field.FieldRepetitions.Count);
-
-					if (m1Field.FieldRepetitions.Count > 0)
-                    {
-						Assert.AreEqual(m1Field.Components().Count, m2Field.Components().Count);
-                    }
-
-					for (var k = 0; k < m1Field.FieldRepetitions.Count; k++)
-                    {
-						var m1FieldRepetition = m1Field.FieldRepetitions[k];
-						var m2FieldRepetition = m2Field.FieldRepetitions[k];
-
-						Assert.AreEqual(m1FieldRepetition.Id, m2FieldRepetition.Id);
-						Assert.AreEqual(m1FieldRepetition.Value, m2FieldRepetition.Value);
-						Assert.AreEqual(m1FieldRepetition.Components.Count, m2FieldRepetition.Components.Count);
-						Assert.AreEqual(m1FieldRepetition.Delimiter, m2FieldRepetition.Delimiter);
-
-						for (var a = 0; a < m1FieldRepetition.Components.Count; a++)
-                        {
-							var m1Component = m1FieldRepetition.Components[a];
-							var m2Component = m2FieldRepetition.Components[a];
-
-							Assert.AreEqual(m1Component.Id, m2Component.Id);
-							Assert.AreEqual(m1Component.Value, m2Component.Value);
-							Assert.AreEqual(m1Component.SubComponents.Count, m2Component.SubComponents.Count);
-							Assert.AreEqual(m1Component.Delimiter, m2Component.Delimiter);
-
-							for (var b = 0; b < m1Component.SubComponents.Count; b++)
-                            {
-								var m1subComponent = m1Component.SubComponents[b];
-								var m2subComponent = m2Component.SubComponents[b];
-
-								Assert.AreEqual(m1subComponent.Id, m2subComponent.Id);
-								Assert.AreEqual(m1subComponent.Value, m2subComponent.Value);
-								Assert.AreEqual(m1subComponent.Delimiter, m2subComponent.Delimiter);
-							}
-						}
-					}
-				}
-			}
-        }
-
 		private void CompareFileWithMessage(string path, HL7V2Message message)
         {
 			var lines = File.ReadAllLines(path);
@@ -254,6 +192,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(message.Get(".a.ba.c.d"), null);
 
 			Assert.AreEqual(message.Get("a.ba.c.d."), null);
+
+			Assert.AreEqual(message.Get(null), null);
+
+			Assert.AreEqual(message.Get(string.Empty), null);
 
 			// Add message segment
 			var previousCount = message.MessageSegments.Count;
@@ -1403,7 +1345,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(messageToString, evaluatedMessageToString);
 
-			CompareMessageWithMessage(message, evaluatedMessage);
+			Assert.AreEqual(message, evaluatedMessage);
 		}
 	}
 }
