@@ -124,6 +124,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             var field = segments[segmentRepetitionIndex.HasValue ? segmentRepetitionIndex.Value - 1 : 0].GetField(fieldIndex.Value);
 
+            // optional fields
+            if (field == null)
+            {
+                return null;
+            }
+
             HL7V2FieldBase result = field;
 
             var repetition = containsFieldRepetition ? fieldRepetitionIndex.Value : 1;

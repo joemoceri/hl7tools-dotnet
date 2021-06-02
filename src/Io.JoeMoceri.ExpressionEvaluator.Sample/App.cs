@@ -127,7 +127,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var gt162test = message["GT1"][6].GetFieldRepetition(2);
 
-            var json = JsonConvert.SerializeObject(message);
+            var json = JsonConvert.SerializeObject(mv23);
+
+            var back = JsonConvert.DeserializeObject<HL7V23Message>(json);
+
+            var aat = back.msh.AcceptAcknowledgementType;
 
             Console.WriteLine(gt162test.Value);
             Console.WriteLine(gt162.Value);
