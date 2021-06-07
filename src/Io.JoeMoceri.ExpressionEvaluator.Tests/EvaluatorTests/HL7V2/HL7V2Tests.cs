@@ -793,8 +793,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			fieldRepetition = gt16.UpdateFieldRepetition(gt16.FieldRepetitions.Count, "_test");
 
 			Assert.AreEqual(fieldRepetition, null);
-
-
 		}
 
 		[TestMethod]

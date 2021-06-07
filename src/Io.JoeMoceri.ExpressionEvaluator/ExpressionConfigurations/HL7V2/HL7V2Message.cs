@@ -20,11 +20,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// </summary>
         public void Rebuild()
         {
-            if (messageSegments.Count == 0)
-            {
-                return;
-            }
-
             for (var i = 0; i < messageSegments.Count; i++)
             {
                 messageSegments[i].Rebuild();
@@ -287,6 +282,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                         }
 
                         if (m1Field.Value != m2Field.Value)
+                        {
+                            return false;
+                        }
+
+                        if (m1Field.Delimiter != m2Field.Delimiter)
                         {
                             return false;
                         }
