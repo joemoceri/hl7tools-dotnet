@@ -1,12 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
     public abstract class ExpressionConfigurationBase
     {
-        public abstract IList<ExpressionConfigurationOperator> MathStringOperators { get; }
-        public abstract IList<ExpressionConfigurationOperator> BooleanOperators { get; }
+        public virtual IList<ExpressionConfigurationOperator> MathStringOperators
+        {
+            get
+            {
+                return Operators.Where(o => o.ExpressionOperatorType == OperatorType.MathString).ToList();
+            }
+        }
+
+        public virtual IList<ExpressionConfigurationOperator> BooleanOperators
+        {
+            get
+            {
+                return Operators.Where(o => o.ExpressionOperatorType == OperatorType.Boolean).ToList();
+            }
+        }
 
         public abstract IList<ExpressionConfigurationOperator> Operators { get; }
 

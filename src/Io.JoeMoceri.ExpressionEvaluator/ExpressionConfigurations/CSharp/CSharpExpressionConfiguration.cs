@@ -36,22 +36,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             };
         }
 
-        public override IList<ExpressionConfigurationOperator> MathStringOperators 
-        {
-            get
-            {
-                return operators.Where(o => o.ExpressionOperatorType == OperatorType.MathString).ToList();
-            }
-        }
-
-        public override IList<ExpressionConfigurationOperator> BooleanOperators
-        {
-            get
-            {
-                return operators.Where(o => o.ExpressionOperatorType == OperatorType.Boolean).ToList();
-            }
-        }
-
         public override IList<ExpressionConfigurationOperator> Operators => operators;
 
         public override ExpressionConfigurationOptions Options => options;
