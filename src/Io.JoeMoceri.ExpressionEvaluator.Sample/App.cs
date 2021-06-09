@@ -8,9 +8,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
     {
         public void Run()
         {
-            ParseHL7FileExample();
+            //ParseHL7FileExample();
 
-            //SolveMathExample();
+            SolveMathExample();
 
             //SolveBooleanExample();
 
@@ -50,10 +50,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
 
             var message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
-            var mv23 = new HL7V23Message(message);
-
-            var fs = mv23.msh.FieldSeparator;
-            var datetimeofmessage = mv23.msh.DateTimeOfMessage;
 
             var url = "https://test.com/test?id=1&test=2";
 
@@ -126,12 +122,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Sample
             var gt162 = message.Get("GT1.6(2)");
 
             var gt162test = message["GT1"][6].GetFieldRepetition(2);
-
-            var json = JsonConvert.SerializeObject(mv23);
-
-            var back = JsonConvert.DeserializeObject<HL7V23Message>(json);
-
-            var aat = back.msh.AcceptAcknowledgementType;
 
             Console.WriteLine(gt162test.Value);
             Console.WriteLine(gt162.Value);
