@@ -21,9 +21,9 @@ Expression Evaluator for .NET parses any C# math, boolean, or string expression.
     - [HL7V2FieldRepetition](#hl7v2fieldrepetition)
     - [HL7V2Component](#hl7v2component)
     - [HL7V2SubComponent](#hl7v2subcomponent)
-  -[Roadmap](#roadmap)
-  -[Contributing](#contributing)
-  -[License](#license)
+  - [Roadmap](#roadmap)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 
 
@@ -73,6 +73,7 @@ public void SolveMathExample()
     var result = evaluator.Evaluate("1 + 2 * (3 - 4) / 18");
 
     Console.WriteLine($"{r} = {result}");
+
     // outputs
     // 1 = 1
 }
@@ -101,12 +102,13 @@ Console.WriteLine(msh4.Value);
 
 
 ### Expression Configurations
-The default is [CSharpExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs) which inherits from [ExpressionConfigurationBase](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs). You can customize the evaluator through Expression Configurations, such as [HL7V2ExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/HL7V2/HL7V2ExpressionConfiguration.cs) to allow HL7V2 message parsing.
+Expression Configurations are customizable settings you use to change the behavior of the Evaluator.
+
+The default is [CSharpExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs) which inherits from [ExpressionConfigurationBase](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs). Using [HL7V2ExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/HL7V2/HL7V2ExpressionConfiguration.cs) allows HL7V2 message parsing. To create your own Expression Configuration, inherit from ExpressionConfigurationBase.
 
 ## Reference & Examples
-TBD
 ### C#
-TBD
+
 ### Expression Configuration
 TBD
 ### HL7V2Message
@@ -126,8 +128,11 @@ TBD
 * Version objects for HL7
 * MLLP for HL7
 * JSON support for HL7
+* XML support for HL7
 * Validation for HL7
 * ACK and NACK for HL7
+* V3 support for HL7
+* FHIR support for HL7
 * Multiple languages. JavaScript, Java, Go, Elixir, Rust, Python, Swift.
 
 ## Contributing
