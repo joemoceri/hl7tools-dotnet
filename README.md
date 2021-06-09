@@ -12,9 +12,21 @@ Expression Evaluator for .NET parses any C# math, boolean, or string expression.
     - [C# Expressions](#c#-expressions)
     - [HL7V2 Message Segment Expressions](#hl7v2-message-segment-expressions)
     - [Expression Configurations](#expression-configurations)
-  - [Reference & Examples](#reference-&-examples)
-    - [C#](#c#)
-    - [ExpressionConfiguration](#expression-configuration)
+  - [Reference and Examples](#reference-and-examples)
+    - [ExpressionConfigurationBase](#ExpressionConfigurationBase)
+    - [CSharpExpressionConfiguration](#CSharpExpressionConfiguration)
+    - [ExpressionConfigurationOperator](#ExpressionConfigurationOperator)
+    - [ExpressionConfigurationOptions](#ExpressionConfigurationOptions)
+    - [ExpressionGroup](#ExpressionGroup)
+    - [ExpressionResult](#ExpressionResult)
+    - [ExpressionType](#ExpressionType)
+    - [ExpressionOperandTypes](#ExpressionOperandTypes)
+    - [Operand](#Operand)
+    - [Operator](#Operator)
+    - [OperatorLocation](#OperatorLocation)
+    - [OperatorPrecedence](#OperatorPrecedence)
+    - [OperatorType](#OperatorType)
+    - [VariableType](#VariableType)
     - [HL7V2Message](#hl7v2message)
     - [HL7V2MessageSegment](#hl7v2messagesegment)
     - [HL7V2Field](#hl7v2field)
@@ -107,7 +119,7 @@ Expression Configurations are customizable settings you use to change the behavi
 
 The default is [CSharpExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs) which inherits from [ExpressionConfigurationBase](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs). Using [HL7V2ExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/HL7V2/HL7V2ExpressionConfiguration.cs) allows HL7V2 message parsing. To create your own Expression Configuration, inherit from ExpressionConfigurationBase.
 
-## Reference & Examples
+## Reference and Examples
 
 ### ExpressionConfigurationBase
 
@@ -118,14 +130,14 @@ Inherit from this class to create your own ExpressionConfiguration.
 This exposes two virtual and two abstract properties:
 
 - Virtual
-  - [MathStringOperators](https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L39): A list of ExpressionConfigurationOperator where their ExpressionOperatorType equals OperatorType.MathString.
+  - [MathStringOperators](https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L9): A list of ExpressionConfigurationOperator where their ExpressionOperatorType equals OperatorType.MathString.
 
-  - [BooleanOperators](https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L47): A list of ExpressionConfigurationOperator where their ExpressionOperatorType equals OperatorType.Boolean.
+  - [BooleanOperators](https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L17): A list of ExpressionConfigurationOperator where their ExpressionOperatorType equals OperatorType.Boolean.
 
 - Abstract
-  - [Operators](https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L55): A list of ExpressionConfigurationOperator.
+  - [Operators](https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L25): A list of ExpressionConfigurationOperator.
 
-  - [Options](https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L57): ExpressionConfigurationOptions.
+  - [Options](https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L27): ExpressionConfigurationOptions.
 
 ### CSharpExpressionConfiguration
 
@@ -150,7 +162,7 @@ options = new ExpressionConfigurationOptions
 
 - IgnoreParentheses: By default the CSharpExpressionConfiguration breaks expressions down from the outer most parentheses set to the inner most, so this is set to false.
 
-- IgnoreQuotesValidation: By default the CSharpExpressionConfiguration validates if there are an balanced (1:1 ratio) set of quotes inside of the expression, so this is set to false.
+- IgnoreQuotesValidation: By default the CSharpExpressionConfiguration validates if there are a balanced (1:1 ratio) set of quotes inside of the expression, so this is set to false.
 
 The default operators are the following:
 ```csharp
@@ -174,24 +186,47 @@ operators = new List<ExpressionConfigurationOperator>
 
 Inside of the Evaluator, higher precedence operators are solved first, followed by lower precedence operators. Only the operators shown are supported.
 
+### ExpressionConfigurationOperator
+
+### ExpressionConfigurationOptions
+
+### ExpressionGroup
+
+### ExpressionResult
+
+### ExpressionType
+
+### ExpressionOperandTypes
+
+### Operand
+
+### Operator
+
+### OperatorLocation
+
+### OperatorPrecedence
+
+### OperatorType
+
+### VariableType
+
 ### HL7V2ExpressionConfiguration
 
 
 
 ### HL7V2Message
-TBD
+
 ### HL7V2MessageSegment
-TBD
+
 ### HL7V2FieldBase
-TBD
+
 ### HL7V2Field
-TBD
+
 ### HL7V2FieldRepetition
-TBD
+
 ### HL7V2Component
-TBD
+
 ### HL7V2SubComponent
-TBD
 
 ## Roadmap
 * Version objects for HL7

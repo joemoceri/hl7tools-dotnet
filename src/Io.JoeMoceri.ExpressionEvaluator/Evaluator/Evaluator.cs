@@ -974,7 +974,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 						return result;
 
-						ExpressionTypesGroup GetOperandTypes(string expression, int operatorLocationIndex)
+						ExpressionOperandTypes GetOperandTypes(string expression, int operatorLocationIndex)
 						{
 							ExpressionType leftType;
 							ExpressionType rightType;
@@ -1013,7 +1013,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 								expType = ExpressionType.Math;
 							}
 
-							var result = new ExpressionTypesGroup
+							var result = new ExpressionOperandTypes
 							{
 								LeftOperandType = leftType,
 								RightOperandType = rightType,
