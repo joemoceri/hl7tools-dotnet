@@ -21,9 +21,9 @@ Expression Evaluator for .NET parses any C# math, boolean, or string expression.
     - [HL7V2FieldRepetition](#hl7v2fieldrepetition)
     - [HL7V2Component](#hl7v2component)
     - [HL7V2SubComponent](#hl7v2subcomponent)
-  -[Roadmap](#roadmap)
-  -[Contributing](#contributing)
-  -[License](#license)
+  - [Roadmap](#roadmap)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 
 
