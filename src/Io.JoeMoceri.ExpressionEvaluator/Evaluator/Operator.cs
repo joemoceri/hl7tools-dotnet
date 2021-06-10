@@ -1,7 +1,7 @@
 ﻿namespace Io.JoeMoceri.ExpressionEvaluator
 {
 	/// <summary>
-	/// 
+	/// This enumeration serves to identify operators used within math, string, or boolean expressions.
 	/// </summary>
 	public enum Operator
 	{
