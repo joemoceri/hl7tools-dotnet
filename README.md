@@ -355,6 +355,8 @@ The following seven methods are exposed
 - InsertField:
 - UpdateField:
 
+An indexer is exposed to access fields by their Id
+
 ### HL7V2FieldBase
 
 This is an abstract base class that all 'field' type objects inherit from. This includes the following: HL7V2Field, HL7V2FieldRepetition, HL7V2Component, and HL7V2SubComponent.
@@ -375,11 +377,80 @@ One protected method is exposed
 
 ### HL7V2Field
 
+The following four properties are exposed
+
+- Id:
+- Delimiter:
+- Value:
+- FieldRepetitions:
+
+The following twelve methods are exposed
+
+- GetFieldRepetition:
+- Components:
+- GetComponent:
+- Rebuild:
+- AddComponent:
+- RemoveComponent:
+- InsertComponent:
+- UpdateComponent:
+- AddFieldRepetition:
+- RemoveFieldRepetition:
+- InsertFieldRepetition:
+- UpdateFieldRepetition:
+
+An indexer is exposed to access this field's HL7V2Components by their Ids and repetition (default is 1)
+
 ### HL7V2FieldRepetition
+
+The following four properties are exposed
+
+- Id:
+- Delimiter:
+- Value:
+- Components:
+
+The following five methods are exposed
+
+- Rebuild:
+- AddComponent:
+- RemoveComponent:
+- InsertComponent:
+- UpdateComponent:
+
+An indexer is exposed to allow access to this field repetitions HL7V2Components
 
 ### HL7V2Component
 
+The following four properties are exposed
+
+- Id:
+- Delimiter:
+- Value:
+- SubComponents:
+
+The following six methods are exposed
+
+- GetSubComponent:
+- Rebuild:
+- AddSubComponent:
+- RemoveSubComponent:
+- InsertSubComponent:
+- UpdateSubComponent:
+
+An indexer is exposed to allow access to this components HL7V2SubComponents
+
 ### HL7V2SubComponent
+
+The following three properties are exposed
+
+- Id:
+- Delimiter:
+- Value:
+
+The following method is exposed
+
+- Rebuild:
 
 ## Examples
 

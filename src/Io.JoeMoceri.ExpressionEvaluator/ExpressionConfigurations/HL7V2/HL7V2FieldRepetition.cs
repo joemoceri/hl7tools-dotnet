@@ -17,6 +17,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         public override string Value { get; set; }
 
+        public IList<HL7V2Component> Components { get; set; }
+        
         public HL7V2Component this[int id]
         {
             get
@@ -38,8 +40,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 Value = CombineHL7Fields(Components.Cast<HL7V2FieldBase>().ToList());
             }
         }
-
-        public IList<HL7V2Component> Components { get; set; }
 
         #region Component Operations
         public HL7V2Component AddComponent(string value)
