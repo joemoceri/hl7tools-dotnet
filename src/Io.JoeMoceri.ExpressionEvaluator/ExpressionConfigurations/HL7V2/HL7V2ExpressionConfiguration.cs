@@ -5,72 +5,72 @@ using System.Linq;
 namespace Io.JoeMoceri.ExpressionEvaluator
 { 
     /// <summary>
-    /// 
+    /// Use this configuration when using the Evaluator to evaluate HL7V2 flat file messages.
     /// </summary>
     public class HL7V2ExpressionConfiguration : ExpressionConfigurationBase
     {
         /// <summary>
-        /// 
+        /// A list of <see cref="ExpressionConfigurationOperator"/> used by the expression configuration.
         /// </summary>
         private readonly IList<ExpressionConfigurationOperator> operators;
 
         /// <summary>
-        /// 
+        /// The options used by the expression configuration.
         /// </summary>
         private readonly ExpressionConfigurationOptions options;
 
         /// <summary>
-        /// 
+        /// The field delimiter used by the expression configuration. By default is "|".
         /// </summary>
         public static string fieldDelimiter = "|";
 
         /// <summary>
-        /// 
+        /// The component delimiter used by the expression configuration. By default is "^".
         /// </summary>
         public static string componentDelimiter = "^";
 
         /// <summary>
-        /// 
+        /// The escape character used by the expression configuration. By default is "\".
         /// </summary>
-        public static string escapeDelimiter = "\\";
+        public static string escapeCharacter = "\\";
 
         /// <summary>
-        /// 
+        /// The sub component delimiter used by the expression configuration. By default is "&".
         /// </summary>
         public static string subComponentDelimiter = "&";
         
         /// <summary>
-        /// 
+        /// The field repetition delimiter used by the expression configuration. By default is "~".
         /// </summary>
         public static string fieldRepetitionDelimiter = "~";
 
         /// <summary>
-        /// 
+        /// The present but null character used by the expression configuration. By default is """" (two double quotes).
         /// </summary>
         public static string presentButNull = "\"\"";
 
         /// <summary>
-        /// 
+        /// Special segment headers are special headers defined by the hl7 spec that should be treated uniquely. MSH, BSH, and FSH.
         /// </summary>
         public static IList<string> specialSegmentHeaders;
 
         /// <summary>
-        /// 
+        /// The encoding conversions define how <see cref="EncodeString(string)"/> behaves. It uses the escape character and delimiters to hl7 encode data.
         /// </summary>
         public static IDictionary<string, string> encodingConversions;
 
         /// <summary>
-        /// 
+        /// The end character is used internally to handle when theirs empty data for the Evaluator.
         /// </summary>
         internal string endCharacter;
 
         /// <summary>
-        /// 
+        /// The message segment for each line of the hl7v2 message.
         /// </summary>
         private HL7V2MessageSegment messageSegment;
 
         /// <summary>
-        /// 
+        /// On static constructor load, the encoding conversions are rebuilt, and the special segment headers are initialized.
         /// </summary>
         static HL7V2ExpressionConfiguration()
         {
@@ -86,23 +86,23 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Rebuilds the <see cref="encodingConversions"/>, using the <see cref="escapeCharacter"/>, <see cref="fieldDelimiter"/>, <see cref="fieldRepetitionDelimiter"/>, <see cref="componentDelimiter"/>, <see cref="subComponentDelimiter"/>. Call this if you update any of those fields before calling <see cref="EncodeString(string)"/>.
         /// </summary>
         public static void RebuildEncodingConversions()
         {
             encodingConversions = new Dictionary<string, string>();
-            encodingConversions.Add(escapeDelimiter, $"{escapeDelimiter}E{escapeDelimiter}");
-            encodingConversions.Add(fieldDelimiter, $"{escapeDelimiter}F{escapeDelimiter}");
-            encodingConversions.Add(fieldRepetitionDelimiter, $"{escapeDelimiter}R{escapeDelimiter}");
-            encodingConversions.Add(componentDelimiter, $"{escapeDelimiter}S{escapeDelimiter}");
-            encodingConversions.Add(subComponentDelimiter, $"{escapeDelimiter}T{escapeDelimiter}");
+            encodingConversions.Add(escapeCharacter, $"{escapeCharacter}E{escapeCharacter}");
+            encodingConversions.Add(fieldDelimiter, $"{escapeCharacter}F{escapeCharacter}");
+            encodingConversions.Add(fieldRepetitionDelimiter, $"{escapeCharacter}R{escapeCharacter}");
+            encodingConversions.Add(componentDelimiter, $"{escapeCharacter}S{escapeCharacter}");
+            encodingConversions.Add(subComponentDelimiter, $"{escapeCharacter}T{escapeCharacter}");
         }
 
         /// <summary>
-        /// 
+        /// Encodes input data if any of the <see cref="encodingConversions"/> key's are found in the data.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">The data to encode.</param>
+        /// <returns>The newly encoded <see cref="string"/> data.</returns>
         public static string EncodeString(string input)
         {
             foreach (var encodingConversion in encodingConversions)
@@ -114,10 +114,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Decodes input data if any of the <see cref="encodingConversions"/> value's are found in the data.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">The data to decode.</param>
+        /// <returns>The newly decoded <see cref="string"/> data.</returns>
         public static string DecodeString(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
@@ -134,7 +134,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Initializes the operators with one Addition operator and it's <see cref="ExpressionConfigurationOperator.SolveOperatorExpression"/> callback to grab the fields from the Evaluator, initializes the options, and initializes the <see cref="messageSegment"/>.
         /// </summary>
         public HL7V2ExpressionConfiguration()
         {
@@ -176,7 +176,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 }
 
                 //^~\&
-                var input = $"{componentDelimiter}{fieldRepetitionDelimiter}{escapeDelimiter}{subComponentDelimiter}";
+                var input = $"{componentDelimiter}{fieldRepetitionDelimiter}{escapeCharacter}{subComponentDelimiter}";
                 var includeFieldRepetition = !expGroup.RightOperand.Equals(input);
 
                 var field = messageSegment.AddField(endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand, includeFieldRepetition);
@@ -186,7 +186,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Internal method to initialize the <see cref="messageSegment"/>.
         /// </summary>
         internal void Setup()
         {
@@ -194,41 +194,19 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public override IList<ExpressionConfigurationOperator> MathStringOperators 
-        {
-            get
-            {
-                return operators.Where(o => o.ExpressionOperatorType == OperatorType.MathString).ToList();
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override IList<ExpressionConfigurationOperator> BooleanOperators
-        {
-            get
-            {
-                return operators.Where(o => o.ExpressionOperatorType == OperatorType.Boolean).ToList();
-            }
-        }
-
-        /// <summary>
-        /// 
+        /// A list of operators used by the expression configuration.
         /// </summary>
         public override IList<ExpressionConfigurationOperator> Operators => operators;
 
         /// <summary>
-        /// 
+        /// The options used by the expression configuration.
         /// </summary>
         public override ExpressionConfigurationOptions Options => options;
 
         /// <summary>
-        /// 
+        /// Get's the message segment. 
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="HL7V2MessageSegment"/></returns>
         public HL7V2MessageSegment GetHL7V2MessageSegment()
         {
             return messageSegment;

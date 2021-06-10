@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
     /// <summary>
-    /// 
+    /// This is the default expression configuration used by the <see cref="Evaluator"/>. It has settings for evaluating math, string, and boolean expressions relative to C# syntax.
     /// </summary>
     public class CSharpExpressionConfiguration : ExpressionConfigurationBase
     {
         /// <summary>
-        /// 
+        /// A list of <see cref="ExpressionConfigurationOperator"/> used by the expression configuration.
         /// </summary>
         private readonly IList<ExpressionConfigurationOperator> operators;
 
         /// <summary>
-        /// 
+        /// The options used by the expression configuration.
         /// </summary>
         private readonly ExpressionConfigurationOptions options;
 
         /// <summary>
-        /// 
+        /// This constructor initializes the operators and options for the expression configuration.
         /// </summary>
         public CSharpExpressionConfiguration()
         {
@@ -50,12 +48,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// A list of operators used by the expression configuration.
         /// </summary>
         public override IList<ExpressionConfigurationOperator> Operators => operators;
 
         /// <summary>
-        /// 
+        /// The options used by the expression configuration.
         /// </summary>
         public override ExpressionConfigurationOptions Options => options;
     }
