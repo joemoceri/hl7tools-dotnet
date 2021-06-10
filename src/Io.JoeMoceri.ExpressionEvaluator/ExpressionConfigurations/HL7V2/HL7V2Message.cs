@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
  
-namespace Io.JoeMoceri.ExpressionEvaluator
+namespace Io.JoeMoceri.ExpressionEvaluator 
 {
     public class HL7V2Message
     {
         private readonly IList<HL7V2MessageSegment> messageSegments;
+
+        public IList<HL7V2MessageSegment> MessageSegments => messageSegments;
 
         public Exception Error;
 
@@ -166,8 +168,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         {
             return messageSegments.Where(s => s.SegmentName.Equals(segmentName)).ToList();
         }
-
-        public IList<HL7V2MessageSegment> MessageSegments => messageSegments;
 
         public IList<string> ToHL7V2MessageFile()
         {
@@ -381,6 +381,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 }
 
                 return true;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = (int)2166136261;
+                hash = hash * 16777619 ^ ToString().GetHashCode();
+                return hash;
             }
         }
     }

@@ -12,7 +12,7 @@ Expression Evaluator for .NET parses any C# math, boolean, or string expression.
     - [C# Expressions](#c#-expressions)
     - [HL7V2 Message Segment Expressions](#hl7v2-message-segment-expressions)
     - [Expression Configurations](#expression-configurations)
-  - [Reference and Examples](#reference-and-examples)
+  - [Reference](#reference)
     - [ExpressionConfigurationBase](#ExpressionConfigurationBase)
     - [CSharpExpressionConfiguration](#CSharpExpressionConfiguration)
     - [ExpressionConfigurationOperator](#ExpressionConfigurationOperator)
@@ -33,6 +33,7 @@ Expression Evaluator for .NET parses any C# math, boolean, or string expression.
     - [HL7V2FieldRepetition](#hl7v2fieldrepetition)
     - [HL7V2Component](#hl7v2component)
     - [HL7V2SubComponent](#hl7v2subcomponent)
+  - [Examples](#examples)
   - [Roadmap](#roadmap)
   - [Contributing](#contributing)
   - [License](#license)
@@ -119,7 +120,7 @@ Expression Configurations are customizable settings you use to change the behavi
 
 The default is [CSharpExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs) which inherits from [ExpressionConfigurationBase](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs). Using [HL7V2ExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/HL7V2/HL7V2ExpressionConfiguration.cs) allows HL7V2 message parsing. To create your own Expression Configuration, inherit from ExpressionConfigurationBase.
 
-## Reference and Examples
+## Reference
 
 ### ExpressionConfigurationBase
 
@@ -317,9 +318,60 @@ The following method is exposed
 
 ### HL7V2Message
 
+The following two properties are exposed
+
+- MessageSegments:
+- Error:
+
+The following ten methods are exposed
+
+- Rebuild:
+- Get:
+- Segments:
+- ToHL7V2MessageFile:
+- ToString:
+- AddMessageSegment:
+- RemoveMessageSegment:
+- InsertMessageSegment:
+- Equals:
+- GetHashCode:
+
+An indexer is exposed, to access segments by segmentName and optionally, by index in case of multiple.
+
 ### HL7V2MessageSegment
 
+The following two properties are exposed
+
+- SegmentName:
+- Fields:
+
+The following seven methods are exposed
+
+- ToString:
+- Rebuild:
+- GetField:
+- AddField:
+- RemoveField:
+- InsertField:
+- UpdateField:
+
 ### HL7V2FieldBase
+
+This is an abstract base class that all 'field' type objects inherit from. This includes the following: HL7V2Field, HL7V2FieldRepetition, HL7V2Component, and HL7V2SubComponent.
+
+The following three abstract properties must be implemented
+
+- Id:
+- Delimiter:
+- Value:
+
+The following method must be implemented
+
+- Rebuild:
+
+One protected method is exposed
+
+- CombineHL7Fields:
 
 ### HL7V2Field
 
@@ -328,6 +380,8 @@ The following method is exposed
 ### HL7V2Component
 
 ### HL7V2SubComponent
+
+## Examples
 
 ## Roadmap
 * Version objects for HL7
