@@ -64,8 +64,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
 				var additionOperator = expConfig.MathStringOperators.First(f => f.ExpressionOperator.Equals(Operator.Addition));
 
-				HL7V2ExpressionConfiguration.headerSegmentName = expressions[0].Substring(0, 3);
-
 				var fieldDelimiter = expressions[0].Substring(3, 1);
 
 				HL7V2ExpressionConfiguration.fieldDelimiter = fieldDelimiter;

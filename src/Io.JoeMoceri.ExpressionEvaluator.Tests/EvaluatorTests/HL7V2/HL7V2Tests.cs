@@ -1010,7 +1010,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 		public void HL7V2Tests_HL7V2ExpressionConfiguration()
         {
 			// static
-			Assert.AreEqual(HL7V2ExpressionConfiguration.headerSegmentName, "MSH");
 			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldDelimiter, "|");
 			Assert.AreEqual(HL7V2ExpressionConfiguration.componentDelimiter, "^");
 			Assert.AreEqual(HL7V2ExpressionConfiguration.escapeDelimiter, "\\");
@@ -1098,7 +1097,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			evaluator = new Evaluator(expressionConfiguration);
 
-			HL7V2ExpressionConfiguration.headerSegmentName = "_test";
 			HL7V2ExpressionConfiguration.fieldDelimiter = "_test";
 			HL7V2ExpressionConfiguration.componentDelimiter = "_test";
 			HL7V2ExpressionConfiguration.fieldRepetitionDelimiter = "_test";
@@ -1108,7 +1106,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			// MSH|^~\&
 			message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			Assert.AreEqual(HL7V2ExpressionConfiguration.headerSegmentName, "MSH");
 			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldDelimiter, "|");
 			Assert.AreEqual(HL7V2ExpressionConfiguration.componentDelimiter, "^");
 			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter, "~");

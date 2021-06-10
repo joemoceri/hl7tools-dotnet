@@ -8,7 +8,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
         private readonly IList<ExpressionConfigurationOperator> operators;
         private readonly ExpressionConfigurationOptions options;
-        public static string headerSegmentName = "MSH";
         public static string fieldDelimiter = "|";
         public static string componentDelimiter = "^";
         public static string escapeDelimiter = "\\";
