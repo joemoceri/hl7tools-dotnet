@@ -158,11 +158,11 @@ options = new ExpressionConfigurationOptions
     IgnoreQuotesValidation = false
 };
 ```
-- IgnoreWhitespaceOutsideQuotes: By default the CSharpExpressionConfiguration removes whitespace outside of quotes inside of the expression, so this is set to false.
+- IgnoreWhitespaceOutsideQuotes: By default the CSharpExpressionConfiguration removes whitespace outside of quotes inside of the expression, so this is set to **false**.
 
-- IgnoreParentheses: By default the CSharpExpressionConfiguration breaks expressions down from the outer most parentheses set to the inner most, so this is set to false.
+- IgnoreParentheses: By default the CSharpExpressionConfiguration breaks expressions down from the outer most parentheses set to the inner most, so this is set to **false**.
 
-- IgnoreQuotesValidation: By default the CSharpExpressionConfiguration validates if there are a balanced (1:1 ratio) set of quotes inside of the expression, so this is set to false.
+- IgnoreQuotesValidation: By default the CSharpExpressionConfiguration validates if there are a balanced (1:1 ratio) set of quotes inside of the expression, so this is set to **false**.
 
 The default operators are the following:
 ```csharp
@@ -188,31 +188,96 @@ Inside of the Evaluator, higher precedence operators are solved first, followed 
 
 ### ExpressionConfigurationOperator
 
+This is used inside of ExpressionConfigurations when defining the operators that should be used. A protected method on ExpressionConfigurationBase named CreateExpressionConfigurationOperator uses it to generate operators for ExpressionConfigurations. Please see inside each expression configuration for usage.
+
+It exposes the following values
+
+- ExpressionOperator: The Operator
+- ExpressionOperatorPrecedence: The OperatorPrecedence
+- ExpressionOperatorType: The OperatorType
+- OperatorName: The name of the operator (+, -, %, /, so on)
+- OnBeforeOperatorExpressionSolved: An action you can hook into to invoke before an operator (inner) expression is solved.
+- OnAfterOperatorExpressionSolved: An action you can hook into to invoke after an operator (inner) expression is solved.
+- SolveOperatorExpression: A Func you can hook into to invoke and override solving an operator (inner) expression.
+
 ### ExpressionConfigurationOptions
+
+These are the options used to customize ExpressionConfigurations. 
+
+It exposes three properties
+
+- IgnoreWhitespaceOutsideQuotes: Whether whitespace outside of quotes inside the expression should be ignored.
+
+- IgnoreParentheses: Whether parentheses inside the expression should be ignored.
+
+- IgnoreQuotesValidation: Whether quote validation inside the expression should be ignored.
 
 ### ExpressionGroup
 
+This is passed inside SolveOperatorExpression. It exposes four properties:
+
+- LeftOperand: The left operand of the expression (1 of 1+2)
+- RightOperand: The right operand of the expression (2 of 1+2)
+- ExpressionOperator: The Operator of the expression (Addition, Subtraction, and so forth)
+- ExpressionType: The ExpressionType of the expression (Math, String, or Boolean)
+
 ### ExpressionResult
+
+This is the object you get back when you call Evaluate. It exposes the following three properties
+
+- Value: The resulting value after evaluating the expression, represented as a string.
+- Type: The VariableType of the Value.
+- Error: An Exception containing the error. This is null if the result is successful.
+
+The following three methods are overridden
+
+- ToString: Returns the Value
+- Equals: Compares two expression results using the Value and Type for equality
+- GetHashCode: Generates a unique hash code
 
 ### ExpressionType
 
+An enumeration used internally for specifying the type of an expression (Math, String, or Boolean)
+
 ### ExpressionOperandTypes
+
+A class used internally for identifying types for an expression. Three properties are exposed
+
+- LeftOperandType: The ExpressionType of the left operand of the expression
+- RightOperandType: The ExpressionType of the right operand of the expression
+- ExpressionType: The ExpressionType of the expression
 
 ### Operand
 
+A class used internally for describing an Operand's Value and Type of an expression. Two properties are exposed.
+
+- Value: A string representing the operand of the expression
+- Type: The VariableType of the operand of the expression
+
 ### Operator
+
+An enumeration for the available operators used in the ExpressionConfigurations
 
 ### OperatorLocation
 
+A class used internally inside the Evaluator for keeping track of which inner expression to evaluate next. Two properties are exposed
+
+- Value: The Value at the Index
+- Index: The index of the Operator. If null, there are no more expressions to evaluate
+
 ### OperatorPrecedence
+
+An enumeration that defines the different levels of precedence for operations. Options are Higher and Lower.
 
 ### OperatorType
 
+An enumeration for defining operator types. Options are MathString and Boolean.
+
 ### VariableType
 
+An enumeration for variable types of results of expressions. Options are Boolean, Int, Float, and String.
+
 ### HL7V2ExpressionConfiguration
-
-
 
 ### HL7V2Message
 
