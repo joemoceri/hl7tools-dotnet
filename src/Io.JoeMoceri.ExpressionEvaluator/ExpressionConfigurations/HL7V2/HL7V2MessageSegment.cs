@@ -3,17 +3,33 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class HL7V2MessageSegment
     {
+        /// <summary>
+        /// 
+        /// </summary>
 		public HL7V2MessageSegment()
         {
 			Fields = new List<HL7V2Field>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
 		public string SegmentName { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IList<HL7V2Field> Fields { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Combine(Fields);
@@ -46,6 +62,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			}
 		}
 
+        /// <summary>
+        /// 
+        /// </summary>
 		public void Rebuild()
         {
 			for (var i = 0; i < Fields.Count; i++)
@@ -54,6 +73,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HL7V2Field this[int id]
         {
             get
@@ -62,12 +86,23 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 		public HL7V2Field GetField(int id)
 		{
 			return Fields.FirstOrDefault(f => f.Id.Equals(id));
 		}
 
         #region Field Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="includeFieldRepetition"></param>
+        /// <returns></returns>
         public HL7V2Field AddField(string value, bool includeFieldRepetition = true)
         {
             var field = new HL7V2Field
@@ -98,6 +133,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return field;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool RemoveField(int id)
         {
             var fr = Fields.FirstOrDefault(f => f.Id.Equals(id));
@@ -110,6 +150,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return Fields.Remove(fr);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HL7V2Field InsertField(int id, string value)
         {
             if (id >= Fields.Max(fr => fr.Id) || id <= 0)
@@ -146,6 +192,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return field;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HL7V2Field UpdateField(int id, string value)
         {
             if (id >= Fields.Max(fr => fr.Id) || id <= 0)

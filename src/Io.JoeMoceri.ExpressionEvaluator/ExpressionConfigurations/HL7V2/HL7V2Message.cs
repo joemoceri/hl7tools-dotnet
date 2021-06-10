@@ -4,21 +4,36 @@ using System.Linq;
  
 namespace Io.JoeMoceri.ExpressionEvaluator 
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HL7V2Message
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly IList<HL7V2MessageSegment> messageSegments;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IList<HL7V2MessageSegment> MessageSegments => messageSegments;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Exception Error;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public HL7V2Message()
         {
             messageSegments = new List<HL7V2MessageSegment>();
         }
 
         /// <summary>
-        /// Rebuild the HL7 after making modifications, this updates the Value of each HL7V2FieldBase in this message and the ToString method
+        /// Rebuild the HL7 Message after making modifications, this updates the Value of each HL7V2FieldBase in this message and the ToString method.
         /// </summary>
         public void Rebuild()
         {
@@ -28,6 +43,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HL7V2FieldBase Get(string id)
         {
             int GetRepetitionIndex(string input)
@@ -155,6 +175,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="segmentName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public HL7V2MessageSegment this[string segmentName, int index = 0]
         {
             get
@@ -164,11 +190,20 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="segmentName"></param>
+        /// <returns></returns>
         public IList<HL7V2MessageSegment> Segments(string segmentName)
         {
             return messageSegments.Where(s => s.SegmentName.Equals(segmentName)).ToList();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IList<string> ToHL7V2MessageFile()
         {
             var result = new List<string>();
@@ -181,12 +216,21 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Join(Environment.NewLine, ToHL7V2MessageFile()).Trim();
         }
 
         #region Message Segment Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="segmentName"></param>
+        /// <returns></returns>
         public HL7V2MessageSegment AddMessageSegment(string segmentName)
         {
             var result = new HL7V2MessageSegment
@@ -199,6 +243,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="segmentName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public bool RemoveMessageSegment(string segmentName, int index = 0)
         {
             var fr = messageSegments.Where(f => f.SegmentName.Equals(segmentName)).ToList();
@@ -211,6 +261,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return messageSegments.Remove(fr[index]);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="segmentName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public HL7V2MessageSegment InsertMessageSegment(string segmentName, int index = 0)
         {
             if (index > messageSegments.Count || index < 0)
@@ -229,6 +285,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public override bool Equals(object x)
         {
             if (x == null)
@@ -384,6 +445,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             unchecked

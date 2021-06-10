@@ -4,11 +4,24 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CSharpExpressionConfiguration : ExpressionConfigurationBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly IList<ExpressionConfigurationOperator> operators;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly ExpressionConfigurationOptions options;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public CSharpExpressionConfiguration()
         {
             operators = new List<ExpressionConfigurationOperator>
@@ -36,8 +49,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override IList<ExpressionConfigurationOperator> Operators => operators;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override ExpressionConfigurationOptions Options => options;
     }
 }

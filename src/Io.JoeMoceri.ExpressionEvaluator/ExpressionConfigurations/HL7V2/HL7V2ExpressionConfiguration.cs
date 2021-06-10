@@ -4,21 +4,74 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 { 
+    /// <summary>
+    /// 
+    /// </summary>
     public class HL7V2ExpressionConfiguration : ExpressionConfigurationBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly IList<ExpressionConfigurationOperator> operators;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly ExpressionConfigurationOptions options;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static string fieldDelimiter = "|";
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static string componentDelimiter = "^";
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static string escapeDelimiter = "\\";
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static string subComponentDelimiter = "&";
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public static string fieldRepetitionDelimiter = "~";
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static string presentButNull = "\"\"";
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static IList<string> specialSegmentHeaders;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static IDictionary<string, string> encodingConversions;
+
+        /// <summary>
+        /// 
+        /// </summary>
         internal string endCharacter;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private HL7V2MessageSegment messageSegment;
 
+        /// <summary>
+        /// 
+        /// </summary>
         static HL7V2ExpressionConfiguration()
         {
             RebuildEncodingConversions();
@@ -32,6 +85,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static void RebuildEncodingConversions()
         {
             encodingConversions = new Dictionary<string, string>();
@@ -42,6 +98,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             encodingConversions.Add(subComponentDelimiter, $"{escapeDelimiter}T{escapeDelimiter}");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string EncodeString(string input)
         {
             foreach (var encodingConversion in encodingConversions)
@@ -52,6 +113,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return input;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string DecodeString(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
@@ -67,6 +133,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return input;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public HL7V2ExpressionConfiguration()
         {
             operators = new List<ExpressionConfigurationOperator>
@@ -116,11 +185,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         internal void Setup()
         {
             messageSegment = new HL7V2MessageSegment();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override IList<ExpressionConfigurationOperator> MathStringOperators 
         {
             get
@@ -129,6 +204,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override IList<ExpressionConfigurationOperator> BooleanOperators
         {
             get
@@ -137,10 +215,20 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override IList<ExpressionConfigurationOperator> Operators => operators;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override ExpressionConfigurationOptions Options => options;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public HL7V2MessageSegment GetHL7V2MessageSegment()
         {
             return messageSegment;

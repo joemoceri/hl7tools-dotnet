@@ -20,11 +20,20 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		/// </summary>
 		public Exception Error { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			return Value;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="x"></param>
+		/// <returns></returns>
 		public override bool Equals(object x)
 		{
 			if (x == null)
@@ -41,6 +50,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			return compareTo.Value == this.Value && compareTo.Type == this.Type;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public override int GetHashCode()
 		{
 			unchecked

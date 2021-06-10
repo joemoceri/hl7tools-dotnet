@@ -6,26 +6,35 @@ using System.Text;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
-	public interface IEvaluator
+	/// <summary>
+	/// This is the main class used for evaluating expressions.
+	/// </summary>
+	public class Evaluator
 	{
-		HL7V2Message EvaluateHL7V2File(string path);
-
-		HL7V2Message EvaluateHL7V2File(string[] expressions);
-
-		ExpressionResult Evaluate(string expression);
-	}
-
-	public class Evaluator : IEvaluator
-	{
+		/// <summary>
+		/// The configuration to use when evaluating expressions.
+		/// </summary>
 		public ExpressionConfigurationBase expressionConfiguration;
 
-		public Evaluator(): this(new CSharpExpressionConfiguration()) { } 
+		/// <summary>
+		/// The evaluator uses <see cref="CSharpExpressionConfiguration" /> as it's default expression configuration.
+		/// </summary>
+		public Evaluator(): this(new CSharpExpressionConfiguration()) { }
 
+		/// <summary>
+		/// You can override the default configuration by passing in your own.
+		/// </summary>
+		/// <param name="expressionConfiguration">The expression configuration the evaluator should use when evaluating expressions.</param>
 		public Evaluator(ExpressionConfigurationBase expressionConfiguration)
         {
 			this.expressionConfiguration = expressionConfiguration;
 		}
 
+		/// <summary>
+		/// Accepts a path to an hl7v2 flat file message, parses it, and returns a structured <see cref="HL7V2Message"/> object.
+		/// </summary>
+		/// <param name="path">The path to the hl7v2 flat file message.</param>
+		/// <returns><see cref="HL7V2Message"/> object.</returns>
 		public HL7V2Message EvaluateHL7V2File(string path)
         {
 			var result = new HL7V2Message();
@@ -49,6 +58,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			return result;
         }
 
+		/// <summary>
+		/// Accepts an hl7v2 flat file message as an array of expressions and returns a structured <see cref="HL7V2Message"/> object.
+		/// </summary>
+		/// <param name="expressions">The hl7v2 message array of expressions.</param>
+		/// <returns><see cref="HL7V2Message"/> object.</returns>
 		public HL7V2Message EvaluateHL7V2File(string[] expressions)
         {
 			var result = new HL7V2Message();
@@ -96,6 +110,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			return result;
 		}
 
+		/// <summary>
+		/// Accepts any kind of valid expression (csharp = math, boolean, string, hl7v2 = message segment) and returns a structured <see cref="ExpressionResult"/> object.
+		/// </summary>
+		/// <param name="expression">The expression to evaluate.</param>
+		/// <returns><see cref="ExpressionResult"/></returns>
 		public ExpressionResult Evaluate(string expression)
         {
             if (expressionConfiguration is HL7V2ExpressionConfiguration)
@@ -123,7 +142,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
-		internal ExpressionResult EvaluateInternal(string expression)
+		/// <summary>
+		/// Used internally for evaluating expressions.
+		/// </summary>
+		/// <param name="expression">The expression to evaluate.</param>
+		/// <returns><see cref="ExpressionResult"/></returns>
+		private ExpressionResult EvaluateInternal(string expression)
 		{
 			try
 			{

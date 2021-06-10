@@ -3,36 +3,73 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HL7V2Field : HL7V2FieldBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public HL7V2Field()
         {
             FieldRepetitions = new List<HL7V2FieldRepetition>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override int Id { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string Delimiter { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string Value { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IList<HL7V2FieldRepetition> FieldRepetitions { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HL7V2FieldRepetition GetFieldRepetition(int id)
         {
             return FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(id));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repetition"></param>
+        /// <returns></returns>
         public IList<HL7V2Component> Components(int repetition = 1)
         {
             return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetition))?.Components;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="repetition"></param>
+        /// <returns></returns>
         public HL7V2Component GetComponent(int id, int repetition = 1)
         {
             return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetition))?.Components?.FirstOrDefault(f => f.Id.Equals(id));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Rebuild()
         {
             if (FieldRepetitions.Count > 0)
@@ -47,6 +84,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="repetition"></param>
+        /// <returns></returns>
         public HL7V2Component this[int id, int repetition = 1]
         {
             get
@@ -56,6 +99,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         #region Component Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="repetition"></param>
+        /// <returns></returns>
         public HL7V2Component AddComponent(string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
@@ -86,6 +135,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="repetition"></param>
+        /// <returns></returns>
         public bool RemoveComponent(int id, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
@@ -105,6 +160,13 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return fieldRepetition.Components.Remove(component);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <param name="repetition"></param>
+        /// <returns></returns>
         public HL7V2Component InsertComponent(int id, string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
@@ -149,6 +211,13 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return component;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <param name="repetition"></param>
+        /// <returns></returns>
         public HL7V2Component UpdateComponent(int id, string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
@@ -177,6 +246,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         #endregion
 
         #region Field Repetition Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HL7V2FieldRepetition AddFieldRepetition(string value)
         {
             var result = new HL7V2FieldRepetition
@@ -200,6 +274,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool RemoveFieldRepetition(int id)
         {
             var fr = FieldRepetitions.FirstOrDefault(f => f.Id.Equals(id));
@@ -212,6 +291,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return FieldRepetitions.Remove(fr);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HL7V2FieldRepetition InsertFieldRepetition(int id, string value)
         {
             if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
@@ -248,6 +333,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return fieldRepetition;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HL7V2FieldRepetition UpdateFieldRepetition(int id, string value)
         {
             if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)

@@ -4,21 +4,44 @@ using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HL7V2FieldRepetition : HL7V2FieldBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public HL7V2FieldRepetition()
         {
             Components = new List<HL7V2Component>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override int Id { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string Delimiter { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override string Value { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IList<HL7V2Component> Components { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HL7V2Component this[int id]
         {
             get
@@ -27,6 +50,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Rebuild()
         {
             if (Components.Count > 0)
@@ -42,6 +68,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         #region Component Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HL7V2Component AddComponent(string value)
         {
             var result = new HL7V2Component
@@ -65,6 +96,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool RemoveComponent(int id)
         {
             var component = Components.FirstOrDefault(c => c.Id.Equals(id));
@@ -77,6 +113,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return Components.Remove(component);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HL7V2Component InsertComponent(int id, string value)
         {
             if (id >= Components.Max(fr => fr.Id) || id <= 0)
@@ -114,6 +156,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return component;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HL7V2Component UpdateComponent(int id, string value)
         {
             if (id >= Components.Max(fr => fr.Id) || id <= 0)
