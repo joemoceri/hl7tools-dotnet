@@ -3,32 +3,32 @@
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
 	/// <summary>
-	/// 
+	/// This abstract base class is what all other 'field' like classes inherit from.
 	/// </summary>
     public abstract class HL7V2FieldBase
     {
 		/// <summary>
-		/// 
+		/// The Id of the Field.
 		/// </summary>
         public abstract int Id { get; set; }
 
 		/// <summary>
-		/// 
+		/// The Delimiter of the Field.
 		/// </summary>
         public abstract string Delimiter { get; set; }
 
 		/// <summary>
-		/// 
+		/// The Value of the Field.
 		/// </summary>
         public abstract string Value { get; set; }
 
 		/// <summary>
-		/// 
+		/// All classes must implement some kind of rebuild mechanism (except subcomponents).
 		/// </summary>
 		public abstract void Rebuild();
 
 		/// <summary>
-		/// 
+		/// Called by a field in order to rebuild it's Value.
 		/// </summary>
 		/// <param name="fields"></param>
 		/// <returns></returns>

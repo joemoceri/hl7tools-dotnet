@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
     /// <summary>
-    /// 
+    /// This class refers to HL7V2 Field Repetitions defined in V2 specification. Field Repetitions exist within fields. You always have atleast one FieldRepetition if there's a Field, unless it's a special case, such as MSH.1.
     /// </summary>
     public class HL7V2FieldRepetition : HL7V2FieldBase
     {
         /// <summary>
-        /// 
+        /// Initializes the <see cref="Components"/>.
         /// </summary>
         public HL7V2FieldRepetition()
         {
@@ -18,29 +17,29 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// The Id of the Field Repetition.
         /// </summary>
         public override int Id { get; set; }
 
         /// <summary>
-        /// 
+        /// The Delimiter of the Field Repetition. This is the same as <see cref="HL7V2ExpressionConfiguration.fieldRepetitionDelimiter"/>.
         /// </summary>
         public override string Delimiter { get; set; }
 
         /// <summary>
-        /// 
+        /// The value of the Field Repetition.
         /// </summary>
         public override string Value { get; set; }
 
         /// <summary>
-        /// 
+        /// A list of <see cref="HL7V2Component"/> for this Field Repetition.
         /// </summary>
         public IList<HL7V2Component> Components { get; set; }
         
         /// <summary>
-        /// 
+        /// Get a <see cref="HL7V2Component"/> by it's <see cref="HL7V2Component.Id"/> via indexer.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <returns></returns>
         public HL7V2Component this[int id]
         {
@@ -51,7 +50,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Rebuild this Field Repetitions <see cref="Value"/> first by calling <see cref="HL7V2Component.Rebuild"/> on it's <see cref="Components"/>, then combine those and set it to this <see cref="Value"/>.
         /// </summary>
         public override void Rebuild()
         {
@@ -69,10 +68,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         #region Component Operations
         /// <summary>
-        /// 
+        /// Adds a <see cref="HL7V2Component"/> to this Field Repetitions <see cref="Components"/>.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component AddComponent(string value)
         {
             var result = new HL7V2Component
@@ -97,10 +96,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Removes a <see cref="HL7V2Component"/> from this Field Repetitions <see cref="Components"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
         public bool RemoveComponent(int id)
         {
             var component = Components.FirstOrDefault(c => c.Id.Equals(id));
@@ -114,11 +113,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Inserts a <see cref="HL7V2Component"/> into this Field Repetitions <see cref="Components"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value)
         {
             if (id >= Components.Max(fr => fr.Id) || id <= 0)
@@ -157,11 +156,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Updates a <see cref="HL7V2Component"/> in this Field Repetitions <see cref="Components"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component UpdateComponent(int id, string value)
         {
             if (id >= Components.Max(fr => fr.Id) || id <= 0)
