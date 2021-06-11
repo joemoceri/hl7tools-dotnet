@@ -12,6 +12,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>Joe Moceri</Authors>
     <Version>1.0.4</Version>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
