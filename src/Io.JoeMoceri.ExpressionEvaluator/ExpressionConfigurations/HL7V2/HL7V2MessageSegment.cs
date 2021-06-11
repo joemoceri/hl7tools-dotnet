@@ -4,12 +4,12 @@ using System.Linq;
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
     /// <summary>
-    /// 
+    /// This class refers to HL7V2 Message Segments defined in V2 specification. Message Segments make up an HL7V2Message.
     /// </summary>
 	public class HL7V2MessageSegment
     {
         /// <summary>
-        /// 
+        /// Initializes the <see cref="Fields"/>.
         /// </summary>
 		public HL7V2MessageSegment()
         {
@@ -17,17 +17,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// The name of this segment.
         /// </summary>
 		public string SegmentName { get; set; }
 
         /// <summary>
-        /// 
+        /// The fields of this segment.
         /// </summary>
         public IList<HL7V2Field> Fields { get; set; }
 
         /// <summary>
-        /// 
+        /// Converts this message segment to a string.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -63,7 +63,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		}
 
         /// <summary>
-        /// 
+        /// Rebuilds the message segment by rebuilding each of it's Fields <see cref="HL7V2FieldBase.Rebuild"/>.
         /// </summary>
 		public void Rebuild()
         {
@@ -74,10 +74,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Get a field by it's <see cref="HL7V2Field.Id"/> via indexer.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns><see cref="HL7V2Field"/> if found, otherwise <see cref="null"/>.</returns>
         public HL7V2Field this[int id]
         {
             get
@@ -87,10 +87,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Get a field by it's <see cref="HL7V2Field.Id"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2Field.Id"/>.</param>
+        /// <returns><see cref="HL7V2Field"/> if found, otherwise <see cref="null"/>.</returns>
 		public HL7V2Field GetField(int id)
 		{
 			return Fields.FirstOrDefault(f => f.Id.Equals(id));
@@ -98,11 +98,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         #region Field Operations
         /// <summary>
-        /// 
+        /// Add a <see cref="HL7V2Field"/> to this message segments <see cref="Fields"/>.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="includeFieldRepetition"></param>
-        /// <returns></returns>
+        /// <param name="value">The <see cref="HL7V2Field.Value"/>.</param>
+        /// <param name="includeFieldRepetition">Whether to include field repetition. Default is <see cref="true"/>.</param>
+        /// <returns><see cref="HL7V2Field"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Field AddField(string value, bool includeFieldRepetition = true)
         {
             var field = new HL7V2Field
@@ -134,10 +134,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Remove a <see cref="HL7V2Field"/> from this message segments <see cref="Fields"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2Field.Id"/>.</param>
+        /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
         public bool RemoveField(int id)
         {
             var fr = Fields.FirstOrDefault(f => f.Id.Equals(id));
@@ -151,11 +151,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Insert a <see cref="HL7V2Field"/> into this message segments <see cref="Fields"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2Field.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Field.Value"/>.</param>
+        /// <returns><see cref="HL7V2Field"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Field InsertField(int id, string value)
         {
             if (id >= Fields.Max(fr => fr.Id) || id <= 0)
@@ -193,11 +193,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Update a <see cref="HL7V2Field"/> from this message segments <see cref="Fields"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2Field.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Field.Value"/>.</param>
+        /// <returns><see cref="HL7V2Field"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Field UpdateField(int id, string value)
         {
             if (id >= Fields.Max(fr => fr.Id) || id <= 0)

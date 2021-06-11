@@ -5,27 +5,27 @@ using System.Linq;
 namespace Io.JoeMoceri.ExpressionEvaluator 
 {
     /// <summary>
-    /// 
+    /// This class refers to HL7V2 Messages defined in V2 specification.
     /// </summary>
     public class HL7V2Message
     {
         /// <summary>
-        /// 
+        /// A list of this messages <see cref="HL7V2MessageSegment"/>'s.
         /// </summary>
         private readonly IList<HL7V2MessageSegment> messageSegments;
 
         /// <summary>
-        /// 
+        /// A list of this messages <see cref="HL7V2MessageSegment"/>'s.
         /// </summary>
         public IList<HL7V2MessageSegment> MessageSegments => messageSegments;
 
         /// <summary>
-        /// 
+        /// The error if something failed, otherwise <see cref="null"/>.
         /// </summary>
         public Exception Error;
 
         /// <summary>
-        /// 
+        /// Initializes the <see cref="MessageSegments"/>.
         /// </summary>
         public HL7V2Message()
         {
@@ -33,7 +33,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Rebuild the HL7 Message after making modifications, this updates the Value of each HL7V2FieldBase in this message and the ToString method.
+        /// Rebuild the HL7 Message after making modifications, this updates the Value of each <see cref="HL7V2FieldBase"/> in this message and the <see cref="ToString"/> method. Calls each <see cref="MessageSegments"/> <see cref="HL7V2MessageSegment.Rebuild"/> method.
         /// </summary>
         public void Rebuild()
         {
@@ -44,10 +44,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Use this method to Get any kind of 'field' within the message.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">A string-based id such as MSH.1 to get that field.</param>
+        /// <returns><see cref="HL7V2FieldBase"/> if found, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldBase Get(string id)
         {
             int GetRepetitionIndex(string input)
@@ -176,11 +176,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Get a <see cref="HL7V2MessageSegment"/> by it's <see cref="HL7V2MessageSegment.SegmentName"/> and index, if multiple. Default index is 0.
         /// </summary>
-        /// <param name="segmentName"></param>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
+        /// <param name="index">The index. Default is 0.</param>
+        /// <returns><see cref="HL7V2MessageSegment"/> if found, otherwise <see cref="null"/>.</returns>
         public HL7V2MessageSegment this[string segmentName, int index = 0]
         {
             get
@@ -191,19 +191,19 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Gets this messages list of <see cref="HL7V2MessageSegment"/>'s.
         /// </summary>
-        /// <param name="segmentName"></param>
-        /// <returns></returns>
+        /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
+        /// <returns><see cref="IList{HL7V2MessageSegment}"/>.</returns>
         public IList<HL7V2MessageSegment> Segments(string segmentName)
         {
             return messageSegments.Where(s => s.SegmentName.Equals(segmentName)).ToList();
         }
 
         /// <summary>
-        /// 
+        /// Converts this message to a <see cref="IList{string}"/> with the segments in order.
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="IList{string}"/>.</returns>
         public IList<string> ToHL7V2MessageFile()
         {
             var result = new List<string>();
@@ -217,9 +217,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Converts this message to a string representation.
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="string"/>.</returns>
         public override string ToString()
         {
             return string.Join(Environment.NewLine, ToHL7V2MessageFile()).Trim();
@@ -227,10 +227,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         #region Message Segment Operations
         /// <summary>
-        /// 
+        /// Adds a <see cref="HL7V2MessageSegment"/> to <see cref="MessageSegments"/>.
         /// </summary>
-        /// <param name="segmentName"></param>
-        /// <returns></returns>
+        /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
+        /// <returns><see cref="HL7V2MessageSegment"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2MessageSegment AddMessageSegment(string segmentName)
         {
             var result = new HL7V2MessageSegment
@@ -244,11 +244,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Removes a <see cref="HL7V2MessageSegment"/> from <see cref="MessageSegments"/>.
         /// </summary>
-        /// <param name="segmentName"></param>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
+        /// <param name="index">The index. Default is 0.</param>
+        /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
         public bool RemoveMessageSegment(string segmentName, int index = 0)
         {
             var fr = messageSegments.Where(f => f.SegmentName.Equals(segmentName)).ToList();
@@ -262,11 +262,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Inserts a <see cref="HL7V2MessageSegment"/> into <see cref="MessageSegments"/>.
         /// </summary>
-        /// <param name="segmentName"></param>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
+        /// <param name="index">The index. Default is 0.</param>
+        /// <returns><see cref="HL7V2MessageSegment"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2MessageSegment InsertMessageSegment(string segmentName, int index = 0)
         {
             if (index > messageSegments.Count || index < 0)
@@ -286,23 +286,23 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         #endregion
 
         /// <summary>
-        /// 
+        /// Compare two <see cref="HL7V2Message"/>.
         /// </summary>
-        /// <param name="x"></param>
-        /// <returns></returns>
-        public override bool Equals(object x)
+        /// <param name="otherMessage">The other <see cref="HL7V2Message"/> to compare against.</param>
+        /// <returns><see cref="true"/> if equal, otherwise <see cref="false"/>.</returns>
+        public override bool Equals(object otherMessage)
         {
-            if (x == null)
+            if (otherMessage == null)
             {
                 return false;
             }
 
-            if (x.GetType() != this.GetType())
+            if (otherMessage.GetType() != this.GetType())
             {
                 return false;
             }
 
-            var compareTo = (HL7V2Message)x;
+            var compareTo = (HL7V2Message)otherMessage;
             return AreMessagesTheSame(this, compareTo);
 
             bool AreMessagesTheSame(HL7V2Message message1, HL7V2Message message2)
@@ -446,9 +446,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Gets the hash code using the string for uniqueness.
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="int"/>.</returns>
         public override int GetHashCode()
         {
             unchecked
