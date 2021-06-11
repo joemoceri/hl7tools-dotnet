@@ -62,14 +62,19 @@ Using the Package Manager Console:
 ```powershell
 Install-Package Io.JoeMoceri.ExpressionEvaluator
 ```
+[Back to top](#expression-evaluator-for-net)
 
 ### Requirements
  - .NET 5.0+
+
+[Back to top](#expression-evaluator-for-net)
 
 ## Overview
 This is a library written in C# .NET that will evaluate any math, string or boolean expression using built-in Expression Configurations. Expression Configurations are what the Evaluator uses when defining math, string, and boolean operators like '+', '-', '||', and so on. The operations are fully customizable. Using Expression Configurations you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic. The default expression configuration is C#. 
 
 You can also use this to evaluate segments of an hl7v2 pipe delimited message. Using an HL7V2ExpressionConfiguration the Evaluator can be configured to parse and return a structured HL7V2Message object layered with fields, field repetitions, components, and subcomponents. You can also perform CRUD operations on all of them, build a message from scratch, and more.
+
+[Back to top](#expression-evaluator-for-net)
 
 ### C# Expressions
 For the C# Expression Configuration, if you try to [Evaluate](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/Evaluator.cs#L101) '1 > 2', it will return 'false', with a type of Boolean. You can hook into operators with the following methods: [OnBeforeOperatorExpressionSolved](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L14) (before the expression is solved), [OnAfterOperatorExpressionSolved](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L15) (after the expression is solved), [SolveOperatorExpression](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L16) (override the default behavior and solve it yourself). You can also customize operators, such as changing '>' to 'greater-than' as an operator so that '1 greater-than 2' will return 'false' too. If any kind of error happens, the error is returned and the values are null. The result you get back after a call to Evaluate is a class called [ExpressionResult](https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/ExpressionResult.cs#L8) that contains the value, variable type, and error, if any.
@@ -91,6 +96,8 @@ public void SolveMathExample()
     // 1 = 1
 }
 ```
+
+[Back to top](#expression-evaluator-for-net)
 
 ### HL7V2 Message Segment Expressions
 
@@ -114,11 +121,14 @@ Console.WriteLine(msh4.Value);
 // "Ntierprise Clinic"
 ```
 
+[Back to top](#expression-evaluator-for-net)
 
 ### Expression Configurations
 Expression Configurations are customizable settings you use to change the behavior of the Evaluator.
 
 The default is [CSharpExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs) which inherits from [ExpressionConfigurationBase](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs). Using [HL7V2ExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/HL7V2/HL7V2ExpressionConfiguration.cs) allows HL7V2 message parsing. To create your own Expression Configuration, inherit from ExpressionConfigurationBase.
+
+[Back to top](#expression-evaluator-for-net)
 
 ## Reference
 
@@ -139,6 +149,8 @@ This exposes two virtual and two abstract properties:
   - [Operators](https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L25): A list of ExpressionConfigurationOperator.
 
   - [Options](https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L27): ExpressionConfigurationOptions.
+
+[Back to top](#expression-evaluator-for-net)
 
 ### CSharpExpressionConfiguration
 
@@ -187,6 +199,8 @@ operators = new List<ExpressionConfigurationOperator>
 
 Inside of the Evaluator, higher precedence operators are solved first, followed by lower precedence operators. Only the operators shown are supported.
 
+[Back to top](#expression-evaluator-for-net)
+
 ### ExpressionConfigurationOperator
 
 This is used inside of ExpressionConfigurations when defining the operators that should be used. A protected method on ExpressionConfigurationBase named CreateExpressionConfigurationOperator uses it to generate operators for ExpressionConfigurations. Please see inside each expression configuration for usage.
@@ -201,6 +215,8 @@ It exposes the following values
 - OnAfterOperatorExpressionSolved: An action you can hook into to invoke after an operator (inner) expression is solved.
 - SolveOperatorExpression: A Func you can hook into to invoke and override solving an operator (inner) expression.
 
+[Back to top](#expression-evaluator-for-net)
+
 ### ExpressionConfigurationOptions
 
 These are the options used to customize ExpressionConfigurations. 
@@ -213,6 +229,8 @@ It exposes three properties
 
 - IgnoreQuotesValidation: Whether quote validation inside the expression should be ignored.
 
+[Back to top](#expression-evaluator-for-net)
+
 ### ExpressionGroup
 
 This is passed inside SolveOperatorExpression. It exposes four properties:
@@ -221,6 +239,8 @@ This is passed inside SolveOperatorExpression. It exposes four properties:
 - RightOperand: The right operand of the expression (2 of 1+2)
 - ExpressionOperator: The Operator of the expression (Addition, Subtraction, and so forth)
 - ExpressionType: The ExpressionType of the expression (Math, String, or Boolean)
+
+[Back to top](#expression-evaluator-for-net)
 
 ### ExpressionResult
 
@@ -236,9 +256,13 @@ The following three methods are overridden
 - Equals: Compares two expression results using the Value and Type for equality
 - GetHashCode: Generates a unique hash code
 
+[Back to top](#expression-evaluator-for-net)
+
 ### ExpressionType
 
 An enumeration used internally for specifying the type of an expression (Math, String, or Boolean)
+
+[Back to top](#expression-evaluator-for-net)
 
 ### ExpressionOperandTypes
 
@@ -248,6 +272,8 @@ A class used internally for identifying types for an expression. Three propertie
 - RightOperandType: The ExpressionType of the right operand of the expression
 - ExpressionType: The ExpressionType of the expression
 
+[Back to top](#expression-evaluator-for-net)
+
 ### Operand
 
 A class used internally for describing an Operand's Value and Type of an expression. Two properties are exposed.
@@ -255,9 +281,13 @@ A class used internally for describing an Operand's Value and Type of an express
 - Value: A string representing the operand of the expression
 - Type: The VariableType of the operand of the expression
 
+[Back to top](#expression-evaluator-for-net)
+
 ### Operator
 
 An enumeration for the available operators used in the ExpressionConfigurations
+
+[Back to top](#expression-evaluator-for-net)
 
 ### OperatorLocation
 
@@ -266,17 +296,25 @@ A class used internally inside the Evaluator for keeping track of which inner ex
 - Value: The Value at the Index
 - Index: The index of the Operator. If null, there are no more expressions to evaluate
 
+[Back to top](#expression-evaluator-for-net)
+
 ### OperatorPrecedence
 
 An enumeration that defines the different levels of precedence for operations. Options are Higher and Lower.
+
+[Back to top](#expression-evaluator-for-net)
 
 ### OperatorType
 
 An enumeration for defining operator types. Options are MathString and Boolean.
 
+[Back to top](#expression-evaluator-for-net)
+
 ### VariableType
 
 An enumeration for variable types of results of expressions. Options are Boolean, Int, Float, and String.
+
+[Back to top](#expression-evaluator-for-net)
 
 ### HL7V2ExpressionConfiguration
 
@@ -316,6 +354,8 @@ The following method is exposed
 
 - GetHL7V2MessageSegment:
 
+[Back to top](#expression-evaluator-for-net)
+
 ### HL7V2Message
 
 The following two properties are exposed
@@ -338,6 +378,8 @@ The following ten methods are exposed
 
 An indexer is exposed, to access segments by segmentName and optionally, by index in case of multiple.
 
+[Back to top](#expression-evaluator-for-net)
+
 ### HL7V2MessageSegment
 
 The following two properties are exposed
@@ -357,6 +399,8 @@ The following seven methods are exposed
 
 An indexer is exposed to access fields by their Id
 
+[Back to top](#expression-evaluator-for-net)
+
 ### HL7V2FieldBase
 
 This is an abstract base class that all 'field' type objects inherit from. This includes the following: HL7V2Field, HL7V2FieldRepetition, HL7V2Component, and HL7V2SubComponent.
@@ -374,6 +418,8 @@ The following method must be implemented
 One protected method is exposed
 
 - CombineHL7Fields:
+
+[Back to top](#expression-evaluator-for-net)
 
 ### HL7V2Field
 
@@ -401,6 +447,8 @@ The following twelve methods are exposed
 
 An indexer is exposed to access this field's HL7V2Components by their Ids and repetition (default is 1)
 
+[Back to top](#expression-evaluator-for-net)
+
 ### HL7V2FieldRepetition
 
 The following four properties are exposed
@@ -419,6 +467,8 @@ The following five methods are exposed
 - UpdateComponent:
 
 An indexer is exposed to allow access to this field repetitions HL7V2Components
+
+[Back to top](#expression-evaluator-for-net)
 
 ### HL7V2Component
 
@@ -440,6 +490,8 @@ The following six methods are exposed
 
 An indexer is exposed to allow access to this components HL7V2SubComponents
 
+[Back to top](#expression-evaluator-for-net)
+
 ### HL7V2SubComponent
 
 The following three properties are exposed
@@ -452,7 +504,7 @@ The following method is exposed
 
 - Rebuild:
 
-## Examples
+[Back to top](#expression-evaluator-for-net)
 
 ## Roadmap
 * Version objects for HL7
@@ -465,6 +517,8 @@ The following method is exposed
 * FHIR support for HL7
 * Multiple languages. JavaScript, Java, Go, Elixir, Rust, Python, Swift.
 
+[Back to top](#expression-evaluator-for-net)
+
 ## Contributing
 Right now it's just me. If you could follow this flow, that would make it easier to keep track of changes. Contributions should be handled with the following git workflow.
 
@@ -474,5 +528,9 @@ Right now it's just me. If you could follow this flow, that would make it easier
 4) Push your work back up to your fork
 5) Submit a pull request so that your changes can be reviewed
 
+[Back to top](#expression-evaluator-for-net)
+
 ## License
 Expression Evaluator for .NET source code is released under [MIT License](https://en.wikipedia.org/wiki/MIT_License).
+
+[Back to top](#expression-evaluator-for-net)
