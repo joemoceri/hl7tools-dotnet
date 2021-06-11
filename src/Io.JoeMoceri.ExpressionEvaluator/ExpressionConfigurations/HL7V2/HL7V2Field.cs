@@ -4,12 +4,12 @@ using System.Linq;
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
     /// <summary>
-    /// 
+    /// This class refers to HL7V2 Fields defined in V2 specification. Fields are the highest level of 'fields' in an HL7V2 message segment.
     /// </summary>
     public class HL7V2Field : HL7V2FieldBase
     {
         /// <summary>
-        /// 
+        /// Initializes the <see cref="FieldRepetitions"/>.
         /// </summary>
         public HL7V2Field()
         {
@@ -17,58 +17,58 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// The Id of the field.
         /// </summary>
         public override int Id { get; set; }
 
         /// <summary>
-        /// 
+        /// The <see cref="Delimiter"/> of the field. This is the same as <see cref="HL7V2ExpressionConfiguration.fieldDelimiter"/>.
         /// </summary>
         public override string Delimiter { get; set; }
 
         /// <summary>
-        /// 
+        /// The value of the field.
         /// </summary>
         public override string Value { get; set; }
 
         /// <summary>
-        /// 
+        /// A list of the field's <see cref="HL7V2FieldRepetition"/>'s, if any.
         /// </summary>
         public IList<HL7V2FieldRepetition> FieldRepetitions { get; set; }
 
         /// <summary>
-        /// 
+        /// Get <see cref="HL7V2FieldRepetition"/> by <see cref="Id"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="Id"/>.</param>
+        /// <returns><see cref="HL7V2FieldRepetition"/>if found, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition GetFieldRepetition(int id)
         {
             return FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(id));
         }
 
         /// <summary>
-        /// 
+        /// Gets this Fields <see cref="HL7V2Component"/>. By default it references the first repetition.
         /// </summary>
-        /// <param name="repetition"></param>
-        /// <returns></returns>
-        public IList<HL7V2Component> Components(int repetition = 1)
+        /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
+        /// <returns><see cref="IList{HL7V2Component}"/>if found, otherwise <see cref="null"/>.</returns>
+        public IList<HL7V2Component> Components(int repetitionId = 1)
         {
-            return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetition))?.Components;
+            return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetitionId))?.Components;
         }
 
         /// <summary>
-        /// 
+        /// Gets a <see cref="HL7V2Component"/> on this field if it exists by <see cref="HL7V2Component.Id"/> and <see cref="HL7V2FieldRepetition.Id"/> (default 1).
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="repetition"></param>
-        /// <returns></returns>
-        public HL7V2Component GetComponent(int id, int repetition = 1)
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component GetComponent(int id, int repetitionId = 1)
         {
-            return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetition))?.Components?.FirstOrDefault(f => f.Id.Equals(id));
+            return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetitionId))?.Components?.FirstOrDefault(f => f.Id.Equals(id));
         }
 
         /// <summary>
-        /// 
+        /// Rebuild this Fields <see cref="Value"/> first by calling <see cref="HL7V2FieldRepetition.Rebuild"/> on it's <see cref="FieldRepetitions"/>, then combining those fields and setting it to <see cref="Value"/>.
         /// </summary>
         public override void Rebuild()
         {
@@ -85,29 +85,29 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Get a <see cref="HL7V2Component"/> by <see cref="HL7V2Component.Id"/> via indexer.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="repetition"></param>
-        /// <returns></returns>
-        public HL7V2Component this[int id, int repetition = 1]
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
+        /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component this[int id, int repetitionId = 1]
         {
             get
             {
-                return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetition))?.Components?.FirstOrDefault(f => f.Id.Equals(id));
+                return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetitionId))?.Components?.FirstOrDefault(f => f.Id.Equals(id));
             }
         }
 
         #region Component Operations
         /// <summary>
-        /// 
+        /// Add's a <see cref="HL7V2Component"/> to this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="repetition"></param>
+        /// <param name="value">The value to add to the <see cref="HL7V2Component"/>.</param>
+        /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns></returns>
-        public HL7V2Component AddComponent(string value, int repetition = 1)
+        public HL7V2Component AddComponent(string value, int repetitionId = 1)
         {
-            var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
+            var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetitionId));
 
             if (fieldRepetition == null)
             {
@@ -136,14 +136,14 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Remove's a <see cref="HL7V2Component"/> from this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="repetition"></param>
-        /// <returns></returns>
-        public bool RemoveComponent(int id, int repetition = 1)
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
+        /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
+        public bool RemoveComponent(int id, int repetitionId = 1)
         {
-            var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
+            var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetitionId));
 
             if (fieldRepetition == null)
             {
@@ -161,12 +161,12 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Insert's a <see cref="HL7V2Component"/> into this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <param name="repetition"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <param name="repetition">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
@@ -212,11 +212,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Update's a <see cref="HL7V2Component"/> from this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <param name="repetition"></param>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <param name="repetition">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns></returns>
         public HL7V2Component UpdateComponent(int id, string value, int repetition = 1)
         {
@@ -247,10 +247,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         #region Field Repetition Operations
         /// <summary>
-        /// 
+        /// Adds a <see cref="HL7V2FieldRepetition"/> to this Fields <see cref="FieldRepetitions"/>.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">The <see cref="HL7V2FieldRepetition.Value"/>.</param>
+        /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition AddFieldRepetition(string value)
         {
             var result = new HL7V2FieldRepetition
@@ -275,10 +275,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Removes a <see cref="HL7V2FieldRepetition"/> from this Fields <see cref="FieldRepetitions"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
+        /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
         public bool RemoveFieldRepetition(int id)
         {
             var fr = FieldRepetitions.FirstOrDefault(f => f.Id.Equals(id));
@@ -292,11 +292,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Inserts a <see cref="HL7V2FieldRepetition"/> into this Fields <see cref="FieldRepetitions"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2FieldRepetition.Value"/>.</param>
+        /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition InsertFieldRepetition(int id, string value)
         {
             if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
@@ -334,11 +334,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Updates a <see cref="HL7V2FieldRepetition"/> from this Fields <see cref="FieldRepetitions"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2FieldRepetition.Value"/>.</param>
+        /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>;</returns>
         public HL7V2FieldRepetition UpdateFieldRepetition(int id, string value)
         {
             if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
