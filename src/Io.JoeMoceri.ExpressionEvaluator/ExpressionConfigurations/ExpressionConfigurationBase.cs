@@ -5,12 +5,12 @@ using System.Linq;
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
     /// <summary>
-    /// 
+    /// This abstract base class is what all expression configurations must derive from.
     /// </summary>
     public abstract class ExpressionConfigurationBase
     {
         /// <summary>
-        /// 
+        /// Get all operators where the <see cref="ExpressionConfigurationOperator.ExpressionOperatorType"/> equals <see cref="OperatorType.MathString"/>.
         /// </summary>
         public virtual IList<ExpressionConfigurationOperator> MathStringOperators
         {
@@ -21,7 +21,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Get all operators where the <see cref="ExpressionConfigurationOperator.ExpressionOperatorType"/> equals <see cref="OperatorType.Boolean"/>.
         /// </summary>
         public virtual IList<ExpressionConfigurationOperator> BooleanOperators
         {
@@ -32,17 +32,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// 
+        /// Gets a list of <see cref="ExpressionConfigurationOperator"/>.
         /// </summary>
         public abstract IList<ExpressionConfigurationOperator> Operators { get; }
 
         /// <summary>
-        /// 
+        /// Gets the options for the expression configuration.
         /// </summary>
         public abstract ExpressionConfigurationOptions Options { get; }
 
         /// <summary>
-        /// 
+        /// The default expression result.
         /// </summary>
         public ExpressionResult DefaultExpressionResult => new ExpressionResult
         {
@@ -51,16 +51,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         };
 
         /// <summary>
-        /// 
+        /// Creates an <see cref="ExpressionConfigurationOperator"/> with the provided values.
         /// </summary>
-        /// <param name="expressionOperator"></param>
-        /// <param name="operatorPrecedence"></param>
-        /// <param name="expressionOperatorType"></param>
-        /// <param name="operatorName"></param>
-        /// <param name="solveOperatorExpression"></param>
-        /// <param name="onBeforeOperatorExpressionSolved"></param>
-        /// <param name="onAfterOperatorExpressionSolved"></param>
-        /// <returns></returns>
+        /// <param name="expressionOperator">The <see cref="Operator"/>.</param>
+        /// <param name="operatorPrecedence">The <see cref="OperatorPrecedence"/>.</param>
+        /// <param name="expressionOperatorType">The <see cref="OperatorType"/>.</param>
+        /// <param name="operatorName">The name value of the operator.</param>
+        /// <param name="solveOperatorExpression"><see cref="Func{ExpressionGroup, ExpressionResult}"/> callback.</param>
+        /// <param name="onBeforeOperatorExpressionSolved"><see cref="Action{ExpressionGroup}"/> callback.</param>
+        /// <param name="onAfterOperatorExpressionSolved"><see cref="Action{ExpressionResult}"/> callback.</param>
+        /// <returns><see cref="ExpressionConfigurationOperator"/>.</returns>
         protected ExpressionConfigurationOperator CreateExpressionConfigurationOperator(
     Operator expressionOperator,
     OperatorPrecedence operatorPrecedence,
