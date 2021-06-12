@@ -42,7 +42,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public abstract ExpressionConfigurationOptions Options { get; }
 
         /// <summary>
-        /// The default expression result.
+        /// The default <see cref="ExpressionResult"/>.
         /// </summary>
         public ExpressionResult DefaultExpressionResult => new ExpressionResult
         {

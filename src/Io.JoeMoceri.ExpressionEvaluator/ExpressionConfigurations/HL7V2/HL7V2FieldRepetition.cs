@@ -67,7 +67,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Gets a <see cref="HL7V2Component"/> on this field by <see cref="HL7V2Component.Id"/>.
+        /// Gets a <see cref="HL7V2Component"/> on this field repetition by <see cref="HL7V2Component.Id"/>.
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>

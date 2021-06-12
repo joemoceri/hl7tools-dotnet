@@ -87,7 +87,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Get a field by it's <see cref="HL7V2Field.Id"/>.
+        /// Get a field by it's <see cref="HL7V2Field.Id"/> from this message segments <see cref="Fields"/>.
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Field.Id"/>.</param>
         /// <returns><see cref="HL7V2Field"/> if found, otherwise <see cref="null"/>.</returns>

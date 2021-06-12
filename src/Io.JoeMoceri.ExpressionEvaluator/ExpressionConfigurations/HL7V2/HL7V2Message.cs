@@ -45,6 +45,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         /// <summary>
         /// Use this method to Get any kind of 'field' within the message.
+        /// Indexes on segments called via Get are 1-based.
+        /// Ids on fields are 1-based.
+        /// Get("PID.3.2.1") gets the 1st index PID's 3rd field's 2nd component's 1st subcomponent as <see cref="HL7V2FieldBase"/>.
+        /// Get("OBR(2).1") // gets the 2nd index OBR's 1st field.
+        /// Get("GT1.6(2)") // gets the 1st index GT1's 6th field's 2nd repetition.
         /// </summary>
         /// <param name="id">A string-based id such as MSH.1 to get that field.</param>
         /// <returns><see cref="HL7V2FieldBase"/> if found, otherwise <see cref="null"/>.</returns>
@@ -71,10 +76,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             {
                 return null;
             }
-
-            //Get("PID.3.2.1")
-            //Get("OBR(2).1") // gets the 2nd OBR repetition's 1st field
-	        //Get("GT1.6(2)") // gets the 1st GT1 repetition's 6th field's 2nd repetition
 
             var split = id.Split('.', StringSplitOptions.RemoveEmptyEntries);
 
@@ -180,7 +181,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// </summary>
         /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
         /// <param name="index">The index. Default is 0.</param>
-        /// <returns><see cref="HL7V2MessageSegment"/> if found, otherwise <see cref="null"/>.</returns>
+        /// <returns><see cref="HL7V2MessageSegment"/>.</returns>
         public HL7V2MessageSegment this[string segmentName, int index = 0]
         {
             get
@@ -203,7 +204,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <summary>
         /// Converts this message to a <see cref="IList{string}"/> with the segments in order.
         /// </summary>
-        /// <returns><see cref="IList{string}"/>.</returns>
+        /// <returns><see cref="IList{string}"/> as <see cref="HL7V2MessageSegment.ToString"/> using the order of the <see cref="MessageSegments"/>.</returns>
         public IList<string> ToHL7V2MessageFile()
         {
             var result = new List<string>();
@@ -217,7 +218,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Converts this message to a string representation.
+        /// Converts this message to a string representation, joined by <see cref="Environment.NewLine"/>.
         /// </summary>
         /// <returns><see cref="string"/>.</returns>
         public override string ToString()
@@ -296,7 +297,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         #endregion
 
         /// <summary>
-        /// Compare two <see cref="HL7V2Message"/>.
+        /// Compare two <see cref="HL7V2Message"/>'s.
         /// </summary>
         /// <param name="otherMessage">The other <see cref="HL7V2Message"/> to compare against.</param>
         /// <returns><see cref="true"/> if equal, otherwise <see cref="false"/>.</returns>
@@ -444,7 +445,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                                     {
                                         return false;
                                     }
-
                                 }
                             }
                         }

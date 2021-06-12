@@ -6,7 +6,7 @@
     public class HL7V2SubComponent : HL7V2FieldBase
     {
         /// <summary>
-        /// The Id of the Sub Component.
+        /// The Id of the Sub Component. 1-based.
         /// </summary>
         public override int Id { get; set; }
 
