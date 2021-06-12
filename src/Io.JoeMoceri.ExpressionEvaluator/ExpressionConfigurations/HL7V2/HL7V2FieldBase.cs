@@ -28,7 +28,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		public abstract void Rebuild();
 
 		/// <summary>
-		/// Called by a field in order to rebuild it's Value.
+		/// Called by a field in order to rebuild it's <see cref="Value"/>.
 		/// </summary>
 		/// <param name="fields">The <see cref="HL7V2FieldBase"/>'s to combine.</param>
 		/// <returns><see cref="string"/> of the combined fields.</returns>

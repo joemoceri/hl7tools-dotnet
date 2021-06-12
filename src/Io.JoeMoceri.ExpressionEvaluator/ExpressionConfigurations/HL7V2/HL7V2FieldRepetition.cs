@@ -32,7 +32,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public override string Value { get; set; }
 
         /// <summary>
-        /// A list of <see cref="HL7V2Component"/> for this Field Repetition.
+        /// A list of <see cref="HL7V2Component"/>'s for this Field Repetition.
         /// </summary>
         public IList<HL7V2Component> Components { get; set; }
         
