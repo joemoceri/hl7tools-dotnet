@@ -29,7 +29,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <summary>
         /// Converts this message segment to a string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="string"/> of all fields combined to form a valid hl7v2 message segment.</returns>
         public override string ToString()
         {
             return Combine(Fields);
@@ -76,7 +76,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <summary>
         /// Get a field by it's <see cref="HL7V2Field.Id"/> via indexer.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The <see cref="HL7V2Field.Id"/>.</param>
         /// <returns><see cref="HL7V2Field"/> if found, otherwise <see cref="null"/>.</returns>
         public HL7V2Field this[int id]
         {

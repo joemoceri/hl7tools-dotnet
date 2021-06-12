@@ -15,11 +15,11 @@
 		/// </summary>
 		public string RightOperand { get; set; }
 		/// <summary>
-		/// The operator for the inner expression.
+		/// The <see cref="Operator"/> for the inner expression.
 		/// </summary>
 		public Operator ExpressionOperator { get; set; }
 		/// <summary>
-		/// The type of the inner expression.
+		/// The <see cref="ExpressionType"/> of the inner expression.
 		/// </summary>
 		public ExpressionType ExpressionType { get; set; }
     }

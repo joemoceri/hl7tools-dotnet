@@ -48,7 +48,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// A list of operators used by the expression configuration.
+        /// A list of <see cref="ExpressionConfigurationOperator"/> used by the expression configuration.
         /// </summary>
         public override IList<ExpressionConfigurationOperator> Operators => operators;
 

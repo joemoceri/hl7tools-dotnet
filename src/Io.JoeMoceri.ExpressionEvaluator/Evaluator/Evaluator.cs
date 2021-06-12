@@ -34,7 +34,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		/// Accepts a path to an hl7v2 flat file message, parses it, and returns a structured <see cref="HL7V2Message"/> object.
 		/// </summary>
 		/// <param name="path">The path to the hl7v2 flat file message.</param>
-		/// <returns><see cref="HL7V2Message"/></returns>
+		/// <returns><see cref="HL7V2Message"/>. <see cref="HL7V2Message.Error"/> will be null if successful.</returns>
 		public HL7V2Message EvaluateHL7V2File(string path)
         {
 			var result = new HL7V2Message();
@@ -62,7 +62,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		/// Accepts an hl7v2 flat file message as an array of expressions and returns a structured <see cref="HL7V2Message"/> object.
 		/// </summary>
 		/// <param name="expressions">The hl7v2 message array of expressions.</param>
-		/// <returns><see cref="HL7V2Message"/></returns>
+		/// <returns><see cref="HL7V2Message"/>. <see cref="HL7V2Message.Error"/> will be null if successful.</returns>
 		public HL7V2Message EvaluateHL7V2File(string[] expressions)
         {
 			var result = new HL7V2Message();
@@ -114,7 +114,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		/// Accepts any kind of valid expression (csharp = math, boolean, string, hl7v2 = message segment) and returns a structured <see cref="ExpressionResult"/> object.
 		/// </summary>
 		/// <param name="expression">The expression to evaluate.</param>
-		/// <returns><see cref="ExpressionResult"/></returns>
+		/// <returns><see cref="ExpressionResult"/>. <see cref="ExpressionResult.Error"/> will be null if successful.</returns>
 		public ExpressionResult Evaluate(string expression)
         {
             if (expressionConfiguration is HL7V2ExpressionConfiguration)
@@ -146,7 +146,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		/// Used internally for evaluating expressions.
 		/// </summary>
 		/// <param name="expression">The expression to evaluate.</param>
-		/// <returns><see cref="ExpressionResult"/></returns>
+		/// <returns><see cref="ExpressionResult"/>. <see cref="ExpressionResult.Error"/> will be null if successful.</returns>
 		private ExpressionResult EvaluateInternal(string expression)
 		{
 			try

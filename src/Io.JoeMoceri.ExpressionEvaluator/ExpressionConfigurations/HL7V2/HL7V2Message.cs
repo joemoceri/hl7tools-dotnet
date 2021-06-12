@@ -225,6 +225,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
             return string.Join(Environment.NewLine, ToHL7V2MessageFile()).Trim();
         }
 
+        /// <summary>
+        /// Get's the <see cref="HL7V2MessageSegment"/> in this message.
+        /// </summary>
+        /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
+        /// <returns><see cref="HL7V2MessageSegment"/> if found otherwise <see cref="null"/>.</returns>
+        public HL7V2MessageSegment GetMessageSegment(string segmentName)
+        {
+            return MessageSegments.FirstOrDefault(ms => ms.SegmentName.Equals(segmentName));
+        }
+
         #region Message Segment Operations
         /// <summary>
         /// Adds a <see cref="HL7V2MessageSegment"/> to <see cref="MessageSegments"/>.

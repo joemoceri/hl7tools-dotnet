@@ -59,7 +59,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public static IDictionary<string, string> encodingConversions;
 
         /// <summary>
-        /// The end character is used internally to handle when theirs empty data for the Evaluator.
+        /// The end character is used internally to handle when there is a delimiter at the end of a message segment (expression) when evaluating expressions.
         /// </summary>
         internal string endCharacter;
 

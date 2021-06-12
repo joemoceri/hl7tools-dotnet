@@ -30,8 +30,8 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		/// <summary>
 		/// Called by a field in order to rebuild it's Value.
 		/// </summary>
-		/// <param name="fields"></param>
-		/// <returns></returns>
+		/// <param name="fields">The <see cref="HL7V2FieldBase"/>'s to combine.</param>
+		/// <returns><see cref="string"/> of the combined fields.</returns>
 		protected string CombineHL7Fields(IList<HL7V2FieldBase> fields)
 		{
 			if (fields == null || fields.Count == 0)

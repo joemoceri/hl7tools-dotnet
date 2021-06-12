@@ -11,7 +11,7 @@
 		public string Value { get; set; }
 
 		/// <summary>
-		/// The type of the operand.
+		/// The <see cref="VariableType"/> of the operand.
 		/// </summary>
 		public VariableType Type { get; set; }
 	}

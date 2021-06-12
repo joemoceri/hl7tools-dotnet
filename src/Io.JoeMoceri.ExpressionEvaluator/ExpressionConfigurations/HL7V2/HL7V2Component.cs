@@ -4,7 +4,7 @@ using System.Linq;
 namespace Io.JoeMoceri.ExpressionEvaluator
 {
     /// <summary>
-    /// This class refers to HL7V2 Components defined in V2 specification. Components exist inside fields and their repetitions.
+    /// This class refers to HL7V2 Components defined in V2 specification. Components exist inside <see cref="HL7V2Field"/>'s and their <see cref="HL7V2FieldRepetition"/>'s.
     /// </summary>
     public class HL7V2Component : HL7V2FieldBase
     {
@@ -17,7 +17,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// The <see cref="Id"/> of the component is the position. 1-based.
+        /// The Id of the component is the position. 1-based.
         /// </summary>
         public override int Id { get; set; }
 
@@ -27,20 +27,20 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public override string Delimiter { get; set; }
 
         /// <summary>
-        /// The <see cref="Value"/> of the component.
+        /// The value of the component.
         /// </summary>
         public override string Value { get; set; }
 
         /// <summary>
-        /// The <see cref="SubComponents"/> inside the component, if any.
+        /// The <see cref="HL7V2SubComponent"/>'s inside the component, if any.
         /// </summary>
         public IList<HL7V2SubComponent> SubComponents { get; set; }
 
         /// <summary>
-        /// Get a <see cref="HL7V2SubComponent"/> by <see cref="Id"/> via indexer.
+        /// Get a <see cref="HL7V2SubComponent"/> by <see cref="HL7V2SubComponent.Id"/> via indexer.
         /// </summary>
-        /// <param name="id">The <see cref="Id"/> of the component.</param>
-        /// <returns><see cref="HL7V2SubComponent"/></returns>
+        /// <param name="id">The <see cref="HL7V2SubComponent.Id"/>.</param>
+        /// <returns><see cref="HL7V2SubComponent"/> if found, otherwise <see cref="null"/>.</returns>
         public HL7V2SubComponent this[int id]
         {
             get
@@ -50,17 +50,17 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Get a <see cref="HL7V2SubComponent"/> by <see cref="Id"/>.
+        /// Get a <see cref="HL7V2SubComponent"/> by <see cref="HL7V2SubComponent.Id"/> from <see cref="SubComponents"/>.
         /// </summary>
-        /// <param name="id">The <see cref="Id"/> of the component.</param>
-        /// <returns><see cref="HL7V2SubComponent"/></returns>
+        /// <param name="id">The <see cref="HL7V2SubComponent.Id"/>.</param>
+        /// <returns><see cref="HL7V2SubComponent"/> if found, otherwise <see cref="null"/>.</returns>
         public HL7V2SubComponent GetSubComponent(int id)
         {
             return SubComponents.FirstOrDefault(sc => sc.Id.Equals(id));
         }
 
         /// <summary>
-        /// Rebuild's the <see cref="Value"/> by first calling <see cref="HL7V2SubComponent.Rebuild"/> on each <see cref="HL7V2SubComponent"/>, then combines those values, and set's it equal to this <see cref="Value"/>.
+        /// Rebuild's the <see cref="Value"/> by first calling <see cref="HL7V2SubComponent.Rebuild"/> on each <see cref="HL7V2SubComponent"/> in <see cref="SubComponents"/>, then combines those <see cref="HL7V2SubComponent.Value"/>'s, and set's it equal to this <see cref="Value"/>.
         /// </summary>
         public override void Rebuild()
         {
@@ -77,10 +77,10 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
         #region SubComponent Operations
         /// <summary>
-        /// Add's a <see cref="HL7V2SubComponent"/> to this <see cref="HL7V2Component"/> <see cref="SubComponents"/>. 
+        /// Add's a <see cref="HL7V2SubComponent"/> to <see cref="SubComponents"/>. 
         /// </summary>
-        /// <param name="value">The value that will be set to this <see cref="HL7V2Component"/> <see cref="Value"/>.</param>
-        /// <returns><see cref="HL7V2SubComponent"/> if successful, <see cref="null"/> otherwise.</returns>
+        /// <param name="value">The <see cref="HL7V2SubComponent.Value"/>.</param>
+        /// <returns><see cref="HL7V2SubComponent"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2SubComponent AddSubComponent(string value)
         {
             var result = new HL7V2SubComponent
@@ -96,9 +96,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Removes a <see cref="HL7V2SubComponent"/> by <see cref="Id"/>.
+        /// Removes a <see cref="HL7V2SubComponent"/> by <see cref="HL7V2SubComponent.Id"/> from <see cref="SubComponents"/>.
         /// </summary>
-        /// <param name="id">The <see cref="Id"/>.</param>
+        /// <param name="id">The <see cref="HL7V2SubComponent.Id"/>.</param>
         /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
         public bool RemoveSubComponent(int id)
         {
@@ -113,9 +113,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Inserts a <see cref="HL7V2SubComponent"/> by <see cref="HL7V2SubComponent.Id"/>.
+        /// Inserts a <see cref="HL7V2SubComponent"/> by <see cref="HL7V2SubComponent.Id"/> into <see cref="SubComponents"/>.
         /// </summary>
-        /// <param name="id">The <see cref="Id"/> you wish to insert at.</param>
+        /// <param name="id">The <see cref="HL7V2SubComponent.Id"/>.</param>
         /// <param name="value">The <see cref="HL7V2SubComponent.Value"/>.</param>
         /// <returns><see cref="HL7V2SubComponent"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2SubComponent InsertSubComponent(int id, string value)
@@ -156,7 +156,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Updates a <see cref="HL7V2SubComponent"/> by <see cref="HL7V2SubComponent.Id"/>.
+        /// Updates a <see cref="HL7V2SubComponent"/> by <see cref="HL7V2SubComponent.Id"/> in <see cref="SubComponents"/>.
         /// </summary>
         /// <param name="id">The <see cref="HL7V2SubComponent.Id"/>.</param>
         /// <param name="value">The <see cref="HL7V2SubComponent.Value"/>.</param>

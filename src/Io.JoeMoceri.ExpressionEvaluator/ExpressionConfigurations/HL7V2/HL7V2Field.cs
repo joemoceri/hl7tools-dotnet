@@ -17,7 +17,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// The Id of the field.
+        /// The Id of the field. 1-based.
         /// </summary>
         public override int Id { get; set; }
 
@@ -37,9 +37,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         public IList<HL7V2FieldRepetition> FieldRepetitions { get; set; }
 
         /// <summary>
-        /// Get <see cref="HL7V2FieldRepetition"/> by <see cref="Id"/>.
+        /// Get a <see cref="HL7V2FieldRepetition"/> by <see cref="HL7V2FieldRepetition.Id"/>.
         /// </summary>
-        /// <param name="id">The <see cref="Id"/>.</param>
+        /// <param name="id">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
         /// <returns><see cref="HL7V2FieldRepetition"/>if found, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition GetFieldRepetition(int id)
         {
@@ -47,7 +47,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Gets this Fields <see cref="HL7V2Component"/>. By default it references the first repetition.
+        /// Gets a list of this Fields <see cref="HL7V2Component"/>'s. By default it references the first repetition.
         /// </summary>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
         /// <returns><see cref="IList{HL7V2Component}"/>if found, otherwise <see cref="null"/>.</returns>
@@ -85,7 +85,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         }
 
         /// <summary>
-        /// Get a <see cref="HL7V2Component"/> by <see cref="HL7V2Component.Id"/> via indexer.
+        /// Get a <see cref="HL7V2Component"/> by <see cref="HL7V2Component.Id"/> and <see cref="HL7V2FieldRepetition.Id"/> (default 1) via indexer.
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
@@ -102,9 +102,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <summary>
         /// Add's a <see cref="HL7V2Component"/> to this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
         /// </summary>
-        /// <param name="value">The value to add to the <see cref="HL7V2Component"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
-        /// <returns></returns>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component AddComponent(string value, int repetitionId = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetitionId));
@@ -217,7 +217,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
         /// <param name="repetition">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
-        /// <returns></returns>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component UpdateComponent(int id, string value, int repetition = 1)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));

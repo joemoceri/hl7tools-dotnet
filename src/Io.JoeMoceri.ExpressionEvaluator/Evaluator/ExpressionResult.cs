@@ -12,7 +12,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 		/// </summary>
 		public string Value { get; set; }
 		/// <summary>
-		/// The type of the value.
+		/// The <see cref="VariableType"/> of the value.
 		/// </summary>
 		public VariableType? Type { get; set; }
 		/// <summary>

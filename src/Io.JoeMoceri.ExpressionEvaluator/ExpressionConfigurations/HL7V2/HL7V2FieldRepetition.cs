@@ -40,7 +40,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// Get a <see cref="HL7V2Component"/> by it's <see cref="HL7V2Component.Id"/> via indexer.
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
-        /// <returns></returns>
+        /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>
         public HL7V2Component this[int id]
         {
             get
@@ -64,6 +64,16 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
                 Value = CombineHL7Fields(Components.Cast<HL7V2FieldBase>().ToList());
             }
+        }
+
+        /// <summary>
+        /// Gets a <see cref="HL7V2Component"/> on this field by <see cref="HL7V2Component.Id"/>.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component GetComponent(int id)
+        {
+            return Components.FirstOrDefault(f => f.Id.Equals(id));
         }
 
         #region Component Operations

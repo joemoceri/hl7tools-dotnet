@@ -11,7 +11,7 @@
 		public string Value { get; set; }
 
 		/// <summary>
-		/// The index of the operator within the expression.
+		/// The index of the operator within the expression. If null, there are no more operators and therefore expressions to evaluate.
 		/// </summary>
 		public int? Index { get; set; }
 	}
