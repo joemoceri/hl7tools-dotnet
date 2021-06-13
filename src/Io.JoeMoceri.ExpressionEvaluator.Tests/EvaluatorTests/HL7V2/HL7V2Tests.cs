@@ -463,7 +463,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 
 			Assert.AreEqual(field.Value, value);
 
-			Assert.AreEqual(field.Id, msh.Fields.Count + 1);
+			Assert.AreEqual(field.Id, msh.Fields.Count);
 
 			// get field
 			field = msh.GetField(5);

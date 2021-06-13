@@ -70,6 +70,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 			for (var i = 0; i < Fields.Count; i++)
             {
 				Fields[i].Rebuild();
+                Fields[i].Id = i + 1;
             }
         }
 
@@ -147,7 +148,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return false;
             }
 
-            return Fields.Remove(fr);
+            var result = Fields.Remove(fr);
+
+            Rebuild();
+
+            return result;
         }
 
         /// <summary>
@@ -158,6 +163,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <returns><see cref="HL7V2Field"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Field InsertField(int id, string value)
         {
+            if (Fields.Count == 0)
+            {
+                return null;
+            }
+
             if (id >= Fields.Max(fr => fr.Id) || id <= 0)
             {
                 return null;
@@ -179,15 +189,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             var previousIndex = Fields.IndexOf(f);
 
-            foreach (var fi in Fields)
-            {
-                if (fi.Id > previousIndex)
-                {
-                    fi.Id++;
-                }
-            }
-
             Fields.Insert(previousIndex, field);
+
+            Rebuild();
 
             return field;
         }
@@ -200,6 +204,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <returns><see cref="HL7V2Field"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Field UpdateField(int id, string value)
         {
+            if (Fields.Count == 0)
+            {
+                return null;
+            }
+
             if (id >= Fields.Max(fr => fr.Id) || id <= 0)
             {
                 return null;

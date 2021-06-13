@@ -134,6 +134,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value)
         {
+            if (Components.Count == 0)
+            {
+                return null;
+            }
+
             if (id >= Components.Max(fr => fr.Id) || id <= 0)
             {
                 return null;
@@ -170,6 +175,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component UpdateComponent(int id, string value)
         {
+            if (Components.Count == 0)
+            {
+                return null;
+            }
+
             if (id >= Components.Max(fr => fr.Id) || id <= 0)
             {
                 return null;

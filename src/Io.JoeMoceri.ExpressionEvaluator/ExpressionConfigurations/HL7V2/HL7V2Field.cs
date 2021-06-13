@@ -173,9 +173,19 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value, int repetition = 1)
         {
+            if (FieldRepetitions.Count == 0)
+            {
+                return null;
+            }
+
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
 
             if (fieldRepetition == null)
+            {
+                return null;
+            }
+
+            if (fieldRepetition.Components.Count == 0)
             {
                 return null;
             }
@@ -217,9 +227,19 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component UpdateComponent(int id, string value, int repetition = 1)
         {
+            if (FieldRepetitions.Count == 0)
+            {
+                return null;
+            }
+
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetition));
 
             if (fieldRepetition == null)
+            {
+                return null;
+            }
+
+            if (fieldRepetition.Components.Count == 0)
             {
                 return null;
             }
@@ -300,6 +320,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition InsertFieldRepetition(int id, string value)
         {
+            if (FieldRepetitions.Count == 0)
+            {
+                return null;
+            }
+
             if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
             {
                 return null;
@@ -336,6 +361,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
         /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>;</returns>
         public HL7V2FieldRepetition UpdateFieldRepetition(int id, string value)
         {
+            if (FieldRepetitions.Count == 0)
+            {
+                return null;
+            }
+
             if (id >= FieldRepetitions.Max(fr => fr.Id) || id <= 0)
             {
                 return null;
