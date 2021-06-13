@@ -132,6 +132,8 @@ The default is [CSharpExpressionConfiguration](https://github.com/jmoceri34/expr
 
 ## Reference
 
+[Link to the docs](https://jmoceri34.github.io/expression-evaluator)
+
 ### ExpressionConfigurationBase
 
 [Link to the file](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs)
