@@ -508,6 +508,10 @@ The following method is exposed
 
 [Back to top](#expression-evaluator-for-net)
 
+## Examples
+
+[Back to top](#expression-evaluator-for-net)
+
 ## Roadmap
 * Version objects for HL7
 * MLLP for HL7
