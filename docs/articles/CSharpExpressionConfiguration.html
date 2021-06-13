@@ -67,8 +67,51 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="csharpexpressionconfiguration">CSharpExpressionConfiguration</h1>
+<h3 id="csharpexpressionconfiguration">CSharpExpressionConfiguration</h3>
 
+<p><a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs">Link to the file</a></p>
+<p>CSharpExpressionConfiguration exposes two properties:</p>
+<ul>
+<li><p><a href="https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L55">Operators</a>: Returns a list of ExpressionConfigurationOperator.</p>
+</li>
+<li><p><a href="https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L57">Options</a>: Returns ExpressionConfigurationOptions.</p>
+</li>
+</ul>
+<p>The default options are the following:</p>
+<pre><code class="lang-csharp">options = new ExpressionConfigurationOptions
+{
+    IgnoreWhitespaceOutsideQuotes = false,
+    IgnoreParentheses = false,
+    IgnoreQuotesValidation = false
+};
+</code></pre>
+<ul>
+<li><p>IgnoreWhitespaceOutsideQuotes: By default the CSharpExpressionConfiguration removes whitespace outside of quotes inside of the expression, so this is set to <strong>false</strong>.</p>
+</li>
+<li><p>IgnoreParentheses: By default the CSharpExpressionConfiguration breaks expressions down from the outer most parentheses set to the inner most, so this is set to <strong>false</strong>.</p>
+</li>
+<li><p>IgnoreQuotesValidation: By default the CSharpExpressionConfiguration validates if there are a balanced (1:1 ratio) set of quotes inside of the expression, so this is set to <strong>false</strong>.</p>
+</li>
+</ul>
+<p>The default operators are the following:</p>
+<pre><code class="lang-csharp">operators = new List&lt;ExpressionConfigurationOperator&gt;
+{
+    CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, &quot;+&quot;),
+    CreateExpressionConfigurationOperator(Operator.Subtraction, OperatorPrecedence.Lower, OperatorType.MathString, &quot;-&quot;),
+    CreateExpressionConfigurationOperator(Operator.Multiplication, OperatorPrecedence.Higher, OperatorType.MathString, &quot;*&quot;),
+    CreateExpressionConfigurationOperator(Operator.Division, OperatorPrecedence.Higher, OperatorType.MathString, &quot;/&quot;),
+    CreateExpressionConfigurationOperator(Operator.Modulus, OperatorPrecedence.Higher, OperatorType.MathString, &quot;%&quot;),
+    CreateExpressionConfigurationOperator(Operator.And, OperatorPrecedence.Lower, OperatorType.Boolean, &quot;&amp;&amp;&quot;),
+    CreateExpressionConfigurationOperator(Operator.Or, OperatorPrecedence.Lower, OperatorType.Boolean, &quot;||&quot;),
+    CreateExpressionConfigurationOperator(Operator.LessThanOrEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, &quot;&lt;=&quot;),
+    CreateExpressionConfigurationOperator(Operator.GreaterThanOrEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, &quot;&gt;=&quot;),
+    CreateExpressionConfigurationOperator(Operator.EqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, &quot;==&quot;),
+    CreateExpressionConfigurationOperator(Operator.NotEqualTo, OperatorPrecedence.Higher, OperatorType.Boolean, &quot;!=&quot;),
+    CreateExpressionConfigurationOperator(Operator.LessThan, OperatorPrecedence.Higher, OperatorType.Boolean, &quot;&lt;&quot;),
+    CreateExpressionConfigurationOperator(Operator.GreaterThan, OperatorPrecedence.Higher, OperatorType.Boolean, &quot;&gt;&quot;),
+};
+</code></pre>
+<p>Inside of the Evaluator, higher precedence operators are solved first, followed by lower precedence operators. Only the operators shown are supported.</p>
 </article>
           </div>
           

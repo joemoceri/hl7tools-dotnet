@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ExpressionGroup </title>
+    <title>HL7V2FieldBase </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ExpressionGroup ">
+    <meta name="title" content="HL7V2FieldBase ">
     <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../images/favicon.ico">
@@ -67,14 +67,22 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h3 id="expressiongroup">ExpressionGroup</h3>
+<h3 id="hl7v2fieldbase">HL7V2FieldBase</h3>
 
-<p>This is passed inside SolveOperatorExpression. It exposes four properties:</p>
+<p>This is an abstract base class that all 'field' type objects inherit from. This includes the following: HL7V2Field, HL7V2FieldRepetition, HL7V2Component, and HL7V2SubComponent.</p>
+<p>The following three abstract properties must be implemented</p>
 <ul>
-<li>LeftOperand: The left operand of the expression (1 of 1+2)</li>
-<li>RightOperand: The right operand of the expression (2 of 1+2)</li>
-<li>ExpressionOperator: The Operator of the expression (Addition, Subtraction, and so forth)</li>
-<li>ExpressionType: The ExpressionType of the expression (Math, String, or Boolean)</li>
+<li>Id:</li>
+<li>Delimiter:</li>
+<li>Value:</li>
+</ul>
+<p>The following method must be implemented</p>
+<ul>
+<li>Rebuild:</li>
+</ul>
+<p>One protected method is exposed</p>
+<ul>
+<li>CombineHL7Fields:</li>
 </ul>
 </article>
           </div>
@@ -84,7 +92,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/articles/ExpressionGroup.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/articles/HL7V2FieldBase.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

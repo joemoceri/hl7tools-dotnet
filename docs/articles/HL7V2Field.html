@@ -67,8 +67,31 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="hl7v2field">HL7V2Field</h1>
+<h3 id="hl7v2field">HL7V2Field</h3>
 
+<p>The following four properties are exposed</p>
+<ul>
+<li>Id:</li>
+<li>Delimiter:</li>
+<li>Value:</li>
+<li>FieldRepetitions:</li>
+</ul>
+<p>The following twelve methods are exposed</p>
+<ul>
+<li>GetFieldRepetition:</li>
+<li>Components:</li>
+<li>GetComponent:</li>
+<li>Rebuild:</li>
+<li>AddComponent:</li>
+<li>RemoveComponent:</li>
+<li>InsertComponent:</li>
+<li>UpdateComponent:</li>
+<li>AddFieldRepetition:</li>
+<li>RemoveFieldRepetition:</li>
+<li>InsertFieldRepetition:</li>
+<li>UpdateFieldRepetition:</li>
+</ul>
+<p>An indexer is exposed to access this field's HL7V2Components by their Ids and repetition (default is 1)</p>
 </article>
           </div>
           

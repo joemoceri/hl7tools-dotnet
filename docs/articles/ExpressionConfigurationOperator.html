@@ -67,8 +67,19 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="expressionconfigurationoperator">ExpressionConfigurationOperator</h1>
+<h3 id="expressionconfigurationoperator">ExpressionConfigurationOperator</h3>
 
+<p>This is used inside of ExpressionConfigurations when defining the operators that should be used. A protected method on ExpressionConfigurationBase named CreateExpressionConfigurationOperator uses it to generate operators for ExpressionConfigurations. Please see inside each expression configuration for usage.</p>
+<p>It exposes the following values</p>
+<ul>
+<li>ExpressionOperator: The Operator</li>
+<li>ExpressionOperatorPrecedence: The OperatorPrecedence</li>
+<li>ExpressionOperatorType: The OperatorType</li>
+<li>OperatorName: The name of the operator (+, -, %, /, so on)</li>
+<li>OnBeforeOperatorExpressionSolved: An action you can hook into to invoke before an operator (inner) expression is solved.</li>
+<li>OnAfterOperatorExpressionSolved: An action you can hook into to invoke after an operator (inner) expression is solved.</li>
+<li>SolveOperatorExpression: A Func you can hook into to invoke and override solving an operator (inner) expression.</li>
+</ul>
 </article>
           </div>
           

@@ -1,1 +1,2 @@
-# Requirements
+### Requirements
+ - .NET 5.0+

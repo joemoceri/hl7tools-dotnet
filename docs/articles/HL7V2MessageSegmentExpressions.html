@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HL7V2MessageSegmentExpressions </title>
+    <title>HL7V2 Message Segment Expressions </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="HL7V2MessageSegmentExpressions ">
+    <meta name="title" content="HL7V2 Message Segment Expressions ">
     <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../images/favicon.ico">
@@ -67,8 +67,25 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="hl7v2messagesegmentexpressions">HL7V2MessageSegmentExpressions</h1>
+<h3 id="hl7v2-message-segment-expressions">HL7V2 Message Segment Expressions</h3>
 
+<p>Expression Evaluator can parse hl7v2 message segments, such as the MSH segment below</p>
+<pre><code>MSH|^~\&amp;|Ntierprise|Ntierprise Clinic|Healthmatics EHR|Healthmatics Clinic|20190423113910||ADT^A08|8899-39|P|2.3|||NE|NE
+</code></pre>
+<p>So that you can write the following</p>
+<pre><code class="lang-csharp">var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File(new [] { @&quot;MSH|^~\&amp;|Ntierprise|Ntierprise Clinic|Healthmatics EHR|Healthmatics Clinic|20190423113910||ADT^A08|8899-39|P|2.3|||NE|NE&quot; });
+
+var msh4 = message.Get(&quot;MSH.4&quot;);
+
+Console.WriteLine(msh4.Value);
+
+// outputs 
+// &quot;Ntierprise Clinic&quot;
+</code></pre>
 </article>
           </div>
           

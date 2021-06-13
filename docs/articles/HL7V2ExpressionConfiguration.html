@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ExpressionGroup </title>
+    <title>HL7V2ExpressionConfiguration </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ExpressionGroup ">
+    <meta name="title" content="HL7V2ExpressionConfiguration ">
     <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../images/favicon.ico">
@@ -67,14 +67,39 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h3 id="expressiongroup">ExpressionGroup</h3>
+<h3 id="hl7v2expressionconfiguration">HL7V2ExpressionConfiguration</h3>
 
-<p>This is passed inside SolveOperatorExpression. It exposes four properties:</p>
+<p>Use this ExpressionConfiguration for the Evaluator when parsing HL7V2 files.</p>
+<p>There are eight static properties exposed</p>
 <ul>
-<li>LeftOperand: The left operand of the expression (1 of 1+2)</li>
-<li>RightOperand: The right operand of the expression (2 of 1+2)</li>
-<li>ExpressionOperator: The Operator of the expression (Addition, Subtraction, and so forth)</li>
-<li>ExpressionType: The ExpressionType of the expression (Math, String, or Boolean)</li>
+<li>fieldDelimiter:</li>
+<li>componentDelimiter:</li>
+<li>escapeDelimiter:</li>
+<li>subComponentDelimiter:</li>
+<li>fieldRepetitionDelimiter:</li>
+<li>presentButNull:</li>
+<li>specialSegmentHeaders:</li>
+<li>encodingConversions:</li>
+</ul>
+<p>When the static constructor is called, the encodingConversions are rebuilt using the current values of the static delimiters, and the specialSegmentHeaders are initialized. The default values are MSH, FHS, and BHS.</p>
+<p>Every time Evaluate is called internally on an expression, this expression configuration calls an internal method named Setup that re-initializes the message segment. So each line of the hl7v2 message is an expression that the Evaluator converts into an HL7V2MessageSegment.</p>
+<p>Three static methods are exposed</p>
+<ul>
+<li>RebuildEncodingConversions:</li>
+<li>EncodeString:</li>
+<li>DecodeString:</li>
+</ul>
+<p>Inside of the constructor the operators and options are initialized. The SolveOperatorExpression callback for the AdditionOperator is where the main hl7v2 parsing takes place. It extracts the data from the hl7, applies structure via an HL7V2Field added to an HL7V2MessageSegment. After, it returns a DefaultExpressionResult, which can be found in ExpressionConfigurationBase.</p>
+<p>The following four properties are exposed</p>
+<ul>
+<li>MathStringOperators:</li>
+<li>BooleanOperators:</li>
+<li>Operators:</li>
+<li>Options:</li>
+</ul>
+<p>The following method is exposed</p>
+<ul>
+<li>GetHL7V2MessageSegment:</li>
 </ul>
 </article>
           </div>
@@ -84,7 +109,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/articles/ExpressionGroup.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/articles/HL7V2ExpressionConfiguration.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

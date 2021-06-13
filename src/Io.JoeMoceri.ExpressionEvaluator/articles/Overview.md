@@ -1,1 +1,4 @@
-# Overview
+## Overview
+This is a library written in C# .NET that will evaluate any math, string or boolean expression using built-in Expression Configurations. Expression Configurations are what the Evaluator uses when defining math, string, and boolean operators like '+', '-', '||', and so on. The operations are fully customizable. Using Expression Configurations you can hook into operator events before and after they're evaluated or evaluate the expression yourself with custom logic. The default expression configuration is C#. 
+
+You can also use this to evaluate segments of an hl7v2 pipe delimited message. Using an HL7V2ExpressionConfiguration the Evaluator can be configured to parse and return a structured HL7V2Message object layered with fields, field repetitions, components, and subcomponents. You can also perform CRUD operations on all of them, build a message from scratch, and more.

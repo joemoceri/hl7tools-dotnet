@@ -1,1 +1,4 @@
-# ExpressionConfigurations
+### Expression Configurations
+Expression Configurations are customizable settings you use to change the behavior of the Evaluator.
+
+The default is [CSharpExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs) which inherits from [ExpressionConfigurationBase](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs). Using [HL7V2ExpressionConfiguration](https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/HL7V2/HL7V2ExpressionConfiguration.cs) allows HL7V2 message parsing. To create your own Expression Configuration, inherit from ExpressionConfigurationBase.

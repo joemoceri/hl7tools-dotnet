@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>CSharpExpressions </title>
+    <title>C# Expressions </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="CSharpExpressions ">
+    <meta name="title" content="C# Expressions ">
     <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../images/favicon.ico">
@@ -67,8 +67,24 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="csharpexpressions">CSharpExpressions</h1>
+<h3 id="c-expressions">C# Expressions</h3>
 
+<p>For the C# Expression Configuration, if you try to <a href="https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/Evaluator.cs#L101">Evaluate</a> '1 &gt; 2', it will return 'false', with a type of Boolean. You can hook into operators with the following methods: <a href="https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L14">OnBeforeOperatorExpressionSolved</a> (before the expression is solved), <a href="https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L15">OnAfterOperatorExpressionSolved</a> (after the expression is solved), <a href="https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationOperator.cs#L16">SolveOperatorExpression</a> (override the default behavior and solve it yourself). You can also customize operators, such as changing '&gt;' to 'greater-than' as an operator so that '1 greater-than 2' will return 'false' too. If any kind of error happens, the error is returned and the values are null. The result you get back after a call to Evaluate is a class called <a href="https://github.com/jmoceri34/expression-evaluator/blob/6acb88b3da1c96aaf12e14cd9ca56f4a10eb5c22/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/ExpressionResult.cs#L8">ExpressionResult</a> that contains the value, variable type, and error, if any.</p>
+<p>Here's an example</p>
+<pre><code class="lang-csharp">public void SolveMathExample()
+{
+    var evaluator = new Evaluator();
+
+    var r = 1 + 2 * (3 - 4) / 18;
+
+    var result = evaluator.Evaluate(&quot;1 + 2 * (3 - 4) / 18&quot;);
+
+    Console.WriteLine($&quot;{r} = {result}&quot;);
+
+    // outputs
+    // 1 = 1
+}
+</code></pre>
 </article>
           </div>
           

@@ -67,8 +67,29 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="expressionconfigurationbase">ExpressionConfigurationBase</h1>
+<h3 id="expressionconfigurationbase">ExpressionConfigurationBase</h3>
 
+<p><a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs">Link to the file</a></p>
+<p>Inherit from this class to create your own ExpressionConfiguration.</p>
+<p>This exposes two virtual and two abstract properties:</p>
+<ul>
+<li><p>Virtual</p>
+<ul>
+<li><p><a href="https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L9">MathStringOperators</a>: A list of ExpressionConfigurationOperator where their ExpressionOperatorType equals OperatorType.MathString.</p>
+</li>
+<li><p><a href="https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L17">BooleanOperators</a>: A list of ExpressionConfigurationOperator where their ExpressionOperatorType equals OperatorType.Boolean.</p>
+</li>
+</ul>
+</li>
+<li><p>Abstract</p>
+<ul>
+<li><p><a href="https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L25">Operators</a>: A list of ExpressionConfigurationOperator.</p>
+</li>
+<li><p><a href="https://github.com/jmoceri34/expression-evaluator/blob/2590c5a42411bf703fc8d36c10e991a4febba131/src/Io.JoeMoceri.ExpressionEvaluator/ExpressionConfigurations/ExpressionConfigurationBase.cs#L27">Options</a>: ExpressionConfigurationOptions.</p>
+</li>
+</ul>
+</li>
+</ul>
 </article>
           </div>
           

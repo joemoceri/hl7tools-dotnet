@@ -12,8 +12,6 @@
   href: HL7V2MessageSegmentExpressions.md
 - name: Expression Configurations
   href: ExpressionConfigurations.md
-- name: Reference
-  href: Reference.md
 - name: ExpressionConfigurationBase
   href: ExpressionConfigurationBase.md
 - name: CSharpExpressionConfiguration
@@ -42,6 +40,8 @@
   href: OperatorType.md
 - name: VariableType
   href: VariableType.md
+- name: HL7V2ExpressionConfiguration
+  href: HL7V2ExpressionConfiguration.md
 - name: HL7V2Message
   href: HL7V2Message.md
 - name: HL7V2MessageSegment
