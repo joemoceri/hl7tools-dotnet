@@ -10,7 +10,7 @@ namespace Io.JoeMoceri.ExpressionEvaluator
     {
         /// <summary>
         /// Initializes the <see cref="Fields"/>.
-        /// </summary>
+        /// </summary>s
 		public HL7V2MessageSegment()
         {
 			Fields = new List<HL7V2Field>();

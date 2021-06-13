@@ -109,7 +109,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return false;
             }
 
-            return SubComponents.Remove(subComponent);
+            var result = SubComponents.Remove(subComponent);
+
+            Rebuild();
+
+            return result;
         }
 
         /// <summary>
@@ -141,16 +145,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             var currentIndex = SubComponents.IndexOf(currentSubComponent);
 
-            // increment the Ids after
-            foreach (var sc in SubComponents)
-            {
-                if (sc.Id > currentIndex)
-                {
-                    sc.Id++;
-                }
-            }
-
             SubComponents.Insert(currentIndex, subComponent);
+
+            Rebuild();
 
             return subComponent;
         }

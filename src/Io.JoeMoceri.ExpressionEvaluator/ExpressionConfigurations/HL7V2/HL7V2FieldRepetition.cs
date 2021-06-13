@@ -119,7 +119,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return false;
             }
 
-            return Components.Remove(component);
+            var result = Components.Remove(component);
+
+            Rebuild();
+
+            return result;
         }
 
         /// <summary>
@@ -151,16 +155,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             var currentIndex = Components.IndexOf(currentComponent);
 
-            // increment the Ids of the components after
-            foreach (var c in Components)
-            {
-                if (c.Id > currentIndex)
-                {
-                    c.Id++;
-                }
-            }
-
             Components.Insert(currentIndex, component);
+
+            Rebuild();
 
             return component;
         }

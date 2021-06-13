@@ -974,10 +974,6 @@ namespace Io.JoeMoceri.ExpressionEvaluator.Tests
 			Assert.AreEqual(subComponent, null);
 
 			// update sub component
-			Assert.AreEqual(pv179.SubComponents[0].Id, 2);
-
-			message.Rebuild();
-
 			Assert.AreEqual(pv179.SubComponents[0].Id, 1);
 
 			Assert.AreNotEqual(pv179[1].Value, "_test");

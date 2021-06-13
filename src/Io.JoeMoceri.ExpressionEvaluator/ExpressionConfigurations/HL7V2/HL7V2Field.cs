@@ -157,7 +157,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return false;
             }
 
-            return fieldRepetition.Components.Remove(component);
+            var result = fieldRepetition.Components.Remove(component);
+
+            Rebuild();
+
+            return result;
         }
 
         /// <summary>
@@ -197,16 +201,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             var currentIndex = fieldRepetition.Components.IndexOf(currentComponent);
 
-            // increment the Ids of the components after
-            foreach (var c in fieldRepetition.Components)
-            {
-                if (c.Id > currentIndex)
-                {
-                    c.Id++;
-                }
-            }
-
             fieldRepetition.Components.Insert(currentIndex, component);
+
+            Rebuild();
 
             return component;
         }
@@ -288,7 +285,11 @@ namespace Io.JoeMoceri.ExpressionEvaluator
                 return false;
             }
 
-            return FieldRepetitions.Remove(fr);
+            var result = FieldRepetitions.Remove(fr);
+
+            Rebuild();
+
+            return result;
         }
 
         /// <summary>
@@ -320,15 +321,9 @@ namespace Io.JoeMoceri.ExpressionEvaluator
 
             var previousIndex = FieldRepetitions.IndexOf(pFr);
 
-            foreach (var f in FieldRepetitions)
-            {
-                if (f.Id > previousIndex)
-                {
-                    f.Id++;
-                }
-            }
-
             FieldRepetitions.Insert(previousIndex, fieldRepetition);
+
+            Rebuild();
 
             return fieldRepetition;
         }
