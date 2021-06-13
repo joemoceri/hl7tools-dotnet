@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "q+GV1JdMDULbcYD+fqWenmtuZywavjQJfCX4eOjTv80="
+          "hash": "0GS3ut8tRAvoNB+H4en52Zs1j4IcSsIT0M1IC1bqTNw="
         }
       },
       "is_incremental": false,
@@ -406,18 +406,6 @@
         ".html": {
           "relative_path": "articles/ExpressionConfigurations.html",
           "hash": "EQaF1YWBaN8fnz5ZpzWeAmFq3B74tDZ0gamHiQ1EAaY="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "articles/ExpressionEvaluatorforDotNet.md",
-      "output": {
-        ".html": {
-          "relative_path": "articles/ExpressionEvaluatorforDotNet.html",
-          "hash": "QRUBNQjwiUgh/pi5VkWmNCExVf63A+K+bj0hX0ab9Cw="
         }
       },
       "is_incremental": false,
@@ -717,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "vN1r17B9ZvD9PnJuuEHzRDwAPvABhMhERnLrOX5vNlg="
+          "hash": "aT2CDA/1fEVFHKpujQyXm94TrRW8dyUqBaslkPPCKno="
         }
       },
       "is_incremental": false,
@@ -746,12 +734,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "DhOjGb9Joa+tpGZ+LtD5ADKqAazNeVTjZN14XZKIwRc="
+          "hash": "So9ve+Zv//r4PuG/eK5F15JjorsyossEqyQPaCZ6tLc="
         }
       },
       "is_incremental": false,
@@ -763,7 +754,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "r+GBHuDosoWENDZNP4NVURZqq3oU5KRihAe6Zz+A8eo="
+          "hash": "bODxxlRUEALdF+zw4kGpeVtuQwB6Pi7HuoS5FareqKk="
         }
       },
       "is_incremental": false,
@@ -784,7 +775,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 35,
+          "total_file_count": 34,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
