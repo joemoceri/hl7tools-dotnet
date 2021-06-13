@@ -39,6 +39,6 @@ Expression Evaluator for .NET parses any C# math, boolean, or string expression.
   - [License](#license)
 
 **Quick Links**
-[Docs homepage](https://jmoceri34.github.io/expression-evaluator/index.html)
-[Articles](https://jmoceri34.github.io/expression-evaluator/articles/ExpressionEvaluatorforDotNet.html)
-[API Documentation](https://jmoceri34.github.io/expression-evaluator/api/index.html)
+- [Docs homepage](https://jmoceri34.github.io/expression-evaluator/index.html)
+- [Articles](https://jmoceri34.github.io/expression-evaluator/articles/ExpressionEvaluatorforDotNet.html)
+- [API Documentation](https://jmoceri34.github.io/expression-evaluator/api/index.html)
