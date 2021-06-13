@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Io.JoeMoceri.ExpressionEvaluator
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Io.JoeMoceri.ExpressionEvaluator
+   ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Io.JoeMoceri.ExpressionEvaluator">
+  
+  <h1 id="Io_JoeMoceri_ExpressionEvaluator" data-uid="Io.JoeMoceri.ExpressionEvaluator" class="text-break">Namespace Io.JoeMoceri.ExpressionEvaluator
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.CSharpExpressionConfiguration.html">CSharpExpressionConfiguration</a></h4>
+      <section><p>This is the default expression configuration used by the <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.Evaluator.html">Evaluator</a>. It has settings for evaluating math, string, and boolean expressions relative to C# syntax.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.Evaluator.html">Evaluator</a></h4>
+      <section><p>This is the main class used for evaluating expressions.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.html">ExpressionConfigurationBase</a></h4>
+      <section><p>This abstract base class is what all expression configurations must derive from.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOperator.html">ExpressionConfigurationOperator</a></h4>
+      <section><p>This class represents an operator to an <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.html#Io_JoeMoceri_ExpressionEvaluator_ExpressionConfigurationBase_Operators">Operators</a>.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOptions.html">ExpressionConfigurationOptions</a></h4>
+      <section><p>This class represents the options for configuring an <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.html">ExpressionConfigurationBase</a>.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionGroup.html">ExpressionGroup</a></h4>
+      <section><p>A class that represents an inner expression. Contains the Left and Right Operands, the Operator type, and the Expression type.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionOperandTypes.html">ExpressionOperandTypes</a></h4>
+      <section><p>This class groups operand types with the expression type and is used internally.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionResult.html">ExpressionResult</a></h4>
+      <section><p>This class is what's returned after evaluating expressions. It contains three properties which hold information about the result of the evaluated expression.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2Component.html">HL7V2Component</a></h4>
+      <section><p>This class refers to HL7V2 Components defined in V2 specification. Components exist inside <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2Field.html">HL7V2Field</a>'s and their <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldRepetition.html">HL7V2FieldRepetition</a>'s.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2ExpressionConfiguration.html">HL7V2ExpressionConfiguration</a></h4>
+      <section><p>Use this configuration when using the Evaluator to evaluate HL7V2 flat file messages.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2Field.html">HL7V2Field</a></h4>
+      <section><p>This class refers to HL7V2 Fields defined in V2 specification. Fields are the highest level of 'fields' in an HL7V2 message segment.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldBase.html">HL7V2FieldBase</a></h4>
+      <section><p>This abstract base class is what all other 'field' like classes inherit from.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldRepetition.html">HL7V2FieldRepetition</a></h4>
+      <section><p>This class refers to HL7V2 Field Repetitions defined in V2 specification. Field Repetitions exist within fields. You always have atleast one FieldRepetition if there's a Field, unless it's a special case, such as MSH.1.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2Message.html">HL7V2Message</a></h4>
+      <section><p>This class refers to HL7V2 Messages defined in V2 specification.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2MessageSegment.html">HL7V2MessageSegment</a></h4>
+      <section><p>This class refers to HL7V2 Message Segments defined in V2 specification. Message Segments make up an HL7V2Message.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.HL7V2SubComponent.html">HL7V2SubComponent</a></h4>
+      <section><p>This class refers to HL7V2 Sub Components defined in V2 specification. Sub Components are the lowest level of 'fields' in an hl7v2 message segment.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.Operand.html">Operand</a></h4>
+      <section><p>This class is used for encapsulating an operand as part of an expression.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.OperatorLocation.html">OperatorLocation</a></h4>
+      <section><p>This class is used internally to identify the next operators location when evaluating inner expressions.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionType.html">ExpressionType</a></h4>
+      <section><p>The expression type is used to identify either an operand or expression if it's <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionType.html#Io_JoeMoceri_ExpressionEvaluator_ExpressionType_Math">Math</a>, <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionType.html#Io_JoeMoceri_ExpressionEvaluator_ExpressionType_String">String</a>, or <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.ExpressionType.html#Io_JoeMoceri_ExpressionEvaluator_ExpressionType_Boolean">Boolean</a>.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.Operator.html">Operator</a></h4>
+      <section><p>This enumeration serves to identify operators used within math, string, or boolean expressions.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.OperatorPrecedence.html">OperatorPrecedence</a></h4>
+      <section><p>This enumeration describes the precedence for how expressions should be evaluated. Options are <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.OperatorPrecedence.html#Io_JoeMoceri_ExpressionEvaluator_OperatorPrecedence_Higher">Higher</a> and <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.OperatorPrecedence.html#Io_JoeMoceri_ExpressionEvaluator_OperatorPrecedence_Lower">Lower</a>. Higher precedence operator expressions are solved before Lower.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.OperatorType.html">OperatorType</a></h4>
+      <section><p>This enumeration is used for determining what type an operator is. Options are <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.OperatorType.html#Io_JoeMoceri_ExpressionEvaluator_OperatorType_MathString">MathString</a> and <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.OperatorType.html#Io_JoeMoceri_ExpressionEvaluator_OperatorType_Boolean">Boolean</a>.</p>
+</section>
+      <h4><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.VariableType.html">VariableType</a></h4>
+      <section><p>The variable types supported for the evaluator are <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.VariableType.html#Io_JoeMoceri_ExpressionEvaluator_VariableType_Boolean">Boolean</a>, <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.VariableType.html#Io_JoeMoceri_ExpressionEvaluator_VariableType_Int">Int</a>, <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.VariableType.html#Io_JoeMoceri_ExpressionEvaluator_VariableType_Float">Float</a> and <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.VariableType.html#Io_JoeMoceri_ExpressionEvaluator_VariableType_String">String</a>.</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

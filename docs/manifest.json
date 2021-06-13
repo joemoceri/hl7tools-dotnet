@@ -1,0 +1,414 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/jmoce/source/repos/expression-evaluator/src/Io.JoeMoceri.ExpressionEvaluator",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.CSharpExpressionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.CSharpExpressionConfiguration.html",
+          "hash": "EqtWUWVL99AWOGofazboVQ3C2SSIhXtZLJgenNp07Ks="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Evaluator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Evaluator.html",
+          "hash": "puwBOs8gqQHels7RoeH5Ke69IpRG2o+k6t26nSjAIL8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.html",
+          "hash": "tM2WC3J5ribrOSBpT+sTrRd3QYML3WzmKEx2ypz7ZvQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOperator.html",
+          "hash": "iFPw9qwr5/Vz19DJ6ICqBZn4GYQd+RqqxKR8JmOk0XA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOptions.html",
+          "hash": "Z5t5dzmAzUui0qkManPv6ey/CeJPz93VlnIgrr1zAjg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionGroup.html",
+          "hash": "Wq2qWNBtWUg+F6yfuPS+QWpHS2XOnUCJVCmmMDHR8VU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionOperandTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionOperandTypes.html",
+          "hash": "6E8EN+HABL55Ho1eWCKRGnlGIWjF9eVp1y2Wugg26No="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionResult.html",
+          "hash": "vxibETuppiBMlVUo9aByPs9p+WXPH1SPscWRSDSS1P8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionType.html",
+          "hash": "D19tdb0gvmmg1/IysYJwzzDnijY1MZ/3uwEDipgDNp8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Component.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Component.html",
+          "hash": "ptFAy+yWGb3coQUuPbsi2XP4kpean6CUinWnLn1j3/k="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2ExpressionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2ExpressionConfiguration.html",
+          "hash": "S655kboJwtlgj8MkJ1FKUPZSzldctFbmRgNlxQVPmFc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Field.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Field.html",
+          "hash": "HVUHT/t+p5dul2gE4/QFXCbgXKsektzlDD0UfDdbwG8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldBase.html",
+          "hash": "5140NzedQ7NTFqbSvWGif0XwX9P6Ec3Zbk/gbgGiwQU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldRepetition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldRepetition.html",
+          "hash": "xX+boTdziJncmhIkCl7bKL5MHNtmnsDaTAdFOxpiCpE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Message.html",
+          "hash": "kp4mZRJWwc5FekPXYUEUNWUoA3EkmVELYPNMh5Az5Ls="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2MessageSegment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2MessageSegment.html",
+          "hash": "/j+HR6Y+U34NPhBL0mopei0ANrTPfjYvSDerPusOljg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2SubComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2SubComponent.html",
+          "hash": "rIyGZtdOdUm5d1gdbXEhweOUNr28y1DToJRYG0YAK90="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operand.html",
+          "hash": "mplO/ViUKAgvJYD0Csb/0EiQJ0MkHObBO6Fj3BqmNAI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operator.html",
+          "hash": "Gg6iS+F/+5YTlgbSHhVjmSwlaWuASZkESi2KFJHZssg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorLocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorLocation.html",
+          "hash": "M12MzljYGSS6iThzQ5TxY4ngXeVmb+/fbydAWyEK9Mc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorPrecedence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorPrecedence.html",
+          "hash": "20HoVOWhxxvak3/XC1rwyfVgF2G7odf7pHkhncn+RRI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorType.html",
+          "hash": "Eiyx9TIZ1eYdVdfYsETvictGkwHPOwtvyP2naN6p9DU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.VariableType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.VariableType.html",
+          "hash": "It+ESUMmcY2YsOIAOk0zhUd3rYmCJp4dQpk3r+fAsIg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.html",
+          "hash": "OgnSqgVMCAT7j2sRYFrn1NcrMs4wQqxVegU7RccQV70="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "g5fSk0hMe+gF/0jeCAVF61IRsecpZnl1UjblDk+8rnE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "9JvCrbMhq9Pky/G/+u26f/kYWhzmN2/gtrLWSqp0w+w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "xHDHkaMggFqH1olIWh2Ne7Ry6wEWYsQNLN/VJbH4G8w="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "3FeV9XCd2J11UeYFE/E4LtFXogmKB/VG/+BWZvRFI5o="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "WSuRrYiGwKKMbtdG9z8W9fXmLoCyTnGg9AxbPKLXm2Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 24,
+          "skipped_file_count": 24
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
