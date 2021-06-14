@@ -21,8 +21,8 @@ jobs:
       run: dotnet restore
       working-directory: src
     - name: Build
-      run: dotnet build Io.JoeMoceri.ExpressionEvaluator --no-restore
+      run: dotnet build ExpressionEvaluatorForDotNet --no-restore
       working-directory: src      
     - name: Test
-      run: dotnet test Io.JoeMoceri.ExpressionEvaluator.Tests --verbosity normal
+      run: dotnet test ExpressionEvaluatorForDotNet.Tests --verbosity normal
       working-directory: src   
