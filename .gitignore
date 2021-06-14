@@ -338,4 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-/src/Io.JoeMoceri.ExpressionEvaluator/log.txt
+/src/ExpressionEvaluatorForDotNet/log.txt

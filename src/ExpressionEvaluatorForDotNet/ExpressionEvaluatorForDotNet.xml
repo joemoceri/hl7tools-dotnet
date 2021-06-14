@@ -1,0 +1,972 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExpressionEvaluatorForDotNet</name>
+    </assembly>
+    <members>
+        <member name="T:ExpressionEvaluatorForDotNet.Evaluator">
+            <summary>
+            This is the main class used for evaluating expressions.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.Evaluator.expressionConfiguration">
+            <summary>
+            The configuration to use when evaluating expressions.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.Evaluator.#ctor">
+            <summary>
+            The evaluator uses <see cref="T:ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration" /> as it's default expression configuration.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.Evaluator.#ctor(ExpressionEvaluatorForDotNet.ExpressionConfigurationBase)">
+            <summary>
+            You can override the default configuration by passing in your own.
+            </summary>
+            <param name="expressionConfiguration">The expression configuration the evaluator should use when evaluating expressions.</param>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.Evaluator.EvaluateHL7V2File(System.String)">
+            <summary>
+            Accepts a path to an hl7v2 flat file message, parses it, and returns a structured <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Message"/> object.
+            </summary>
+            <param name="path">The path to the hl7v2 flat file message.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Message"/>. <see cref="F:ExpressionEvaluatorForDotNet.HL7V2Message.Error"/> will be null if successful.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.Evaluator.EvaluateHL7V2File(System.String[])">
+            <summary>
+            Accepts an hl7v2 flat file message as an array of expressions and returns a structured <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Message"/> object.
+            </summary>
+            <param name="expressions">The hl7v2 message array of expressions.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Message"/>. <see cref="F:ExpressionEvaluatorForDotNet.HL7V2Message.Error"/> will be null if successful.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.Evaluator.Evaluate(System.String)">
+            <summary>
+            Accepts any kind of valid expression (csharp = math, boolean, string, hl7v2 = message segment) and returns a structured <see cref="T:ExpressionEvaluatorForDotNet.ExpressionResult"/> object.
+            </summary>
+            <param name="expression">The expression to evaluate.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.ExpressionResult"/>. <see cref="P:ExpressionEvaluatorForDotNet.ExpressionResult.Error"/> will be null if successful.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.Evaluator.EvaluateInternal(System.String)">
+            <summary>
+            Used internally for evaluating expressions.
+            </summary>
+            <param name="expression">The expression to evaluate.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.ExpressionResult"/>. <see cref="P:ExpressionEvaluatorForDotNet.ExpressionResult.Error"/> will be null if successful.</returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.ExpressionGroup">
+            <summary>
+            A class that represents an inner expression. Contains the Left and Right Operands, the Operator type, and the Expression type.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionGroup.LeftOperand">
+            <summary>
+            The left operand of the inner expression.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionGroup.RightOperand">
+            <summary>
+            The right operand of the inner expression.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionGroup.ExpressionOperator">
+            <summary>
+            The <see cref="T:ExpressionEvaluatorForDotNet.Operator"/> for the inner expression.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionGroup.ExpressionType">
+            <summary>
+            The <see cref="P:ExpressionEvaluatorForDotNet.ExpressionGroup.ExpressionType"/> of the inner expression.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.ExpressionOperandTypes">
+            <summary>
+            This class groups operand types with the expression type and is used internally.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionOperandTypes.LeftOperandType">
+            <summary>
+            The <see cref="P:ExpressionEvaluatorForDotNet.ExpressionOperandTypes.ExpressionType"/> of the left operand.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionOperandTypes.RightOperandType">
+            <summary>
+            The <see cref="P:ExpressionEvaluatorForDotNet.ExpressionOperandTypes.ExpressionType"/> of the right operand.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionOperandTypes.ExpressionType">
+            <summary>
+            The <see cref="P:ExpressionEvaluatorForDotNet.ExpressionOperandTypes.ExpressionType"/> of the expression.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.ExpressionResult">
+            <summary>
+            This class is what's returned after evaluating expressions. It contains three properties which hold information about the result of the evaluated expression.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionResult.Value">
+            <summary>
+            The evaluated value from the expression.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionResult.Type">
+            <summary>
+            The <see cref="T:ExpressionEvaluatorForDotNet.VariableType"/> of the value.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionResult.Error">
+            <summary>
+            The error if any. Will be null if completed successfully.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.ExpressionResult.ToString">
+            <summary>
+            Returns the <see cref="P:ExpressionEvaluatorForDotNet.ExpressionResult.Value"/>.
+            </summary>
+            <returns><see cref="P:ExpressionEvaluatorForDotNet.ExpressionResult.Value"/></returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.ExpressionResult.Equals(System.Object)">
+            <summary>
+            Compares two <see cref="T:ExpressionEvaluatorForDotNet.ExpressionResult"/> using the <see cref="P:ExpressionEvaluatorForDotNet.ExpressionResult.Value"/> and <see cref="T:ExpressionEvaluatorForDotNet.VariableType"/> for equality.
+            </summary>
+            <param name="expressionResult">The object to compare against.</param>
+            <returns><see cref="T:System.Boolean"/></returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.ExpressionResult.GetHashCode">
+            <summary>
+            Gets the hash code using the <see cref="P:ExpressionEvaluatorForDotNet.ExpressionResult.Value"/> and <see cref="T:ExpressionEvaluatorForDotNet.VariableType"/>.
+            </summary>
+            <returns><see cref="T:System.Int32"/></returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.ExpressionType">
+            <summary>
+            The expression type is used to identify either an operand or expression if it's <see cref="F:ExpressionEvaluatorForDotNet.ExpressionType.Math"/>, <see cref="F:ExpressionEvaluatorForDotNet.ExpressionType.String"/>, or <see cref="F:ExpressionEvaluatorForDotNet.ExpressionType.Boolean"/>.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.Operand">
+            <summary>
+            This class is used for encapsulating an operand as part of an expression.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.Operand.Value">
+            <summary>
+            The value of the operand.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.Operand.Type">
+            <summary>
+            The <see cref="T:ExpressionEvaluatorForDotNet.VariableType"/> of the operand.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.Operator">
+            <summary>
+            This enumeration serves to identify operators used within math, string, or boolean expressions.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.OperatorLocation">
+            <summary>
+            This class is used internally to identify the next operators location when evaluating inner expressions.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.OperatorLocation.Value">
+            <summary>
+            The value of the operator.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.OperatorLocation.Index">
+            <summary>
+            The index of the operator within the expression. If null, there are no more operators and therefore expressions to evaluate.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.OperatorPrecedence">
+            <summary>
+            This enumeration describes the precedence for how expressions should be evaluated. Options are <see cref="F:ExpressionEvaluatorForDotNet.OperatorPrecedence.Higher"/> and <see cref="F:ExpressionEvaluatorForDotNet.OperatorPrecedence.Lower"/>. Higher precedence operator expressions are solved before Lower.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.OperatorType">
+            <summary>
+            This enumeration is used for determining what type an operator is. Options are <see cref="F:ExpressionEvaluatorForDotNet.OperatorType.MathString"/> and <see cref="F:ExpressionEvaluatorForDotNet.OperatorType.Boolean"/>.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.VariableType">
+            <summary>
+            The variable types supported for the evaluator are <see cref="F:ExpressionEvaluatorForDotNet.VariableType.Boolean"/>, <see cref="F:ExpressionEvaluatorForDotNet.VariableType.Int"/>, <see cref="F:ExpressionEvaluatorForDotNet.VariableType.Float"/> and <see cref="F:ExpressionEvaluatorForDotNet.VariableType.String"/>.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration">
+            <summary>
+            This is the default expression configuration used by the <see cref="T:ExpressionEvaluatorForDotNet.Evaluator"/>. It has settings for evaluating math, string, and boolean expressions relative to C# syntax.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.operators">
+            <summary>
+            A list of <see cref="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator"/> used by the expression configuration.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.options">
+            <summary>
+            The options used by the expression configuration.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.#ctor">
+            <summary>
+            This constructor initializes the operators and options for the expression configuration.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.Operators">
+            <summary>
+            A list of <see cref="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator"/> used by the expression configuration.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.Options">
+            <summary>
+            The options used by the expression configuration.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase">
+            <summary>
+            This abstract base class is what all expression configurations must derive from.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.MathStringOperators">
+            <summary>
+            Get all operators where the <see cref="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.ExpressionOperatorType"/> equals <see cref="F:ExpressionEvaluatorForDotNet.OperatorType.MathString"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.BooleanOperators">
+            <summary>
+            Get all operators where the <see cref="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.ExpressionOperatorType"/> equals <see cref="F:ExpressionEvaluatorForDotNet.OperatorType.Boolean"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.Operators">
+            <summary>
+            Gets a list of <see cref="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.Options">
+            <summary>
+            Gets the options for the expression configuration.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.DefaultExpressionResult">
+            <summary>
+            The default <see cref="T:ExpressionEvaluatorForDotNet.ExpressionResult"/>.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.CreateExpressionConfigurationOperator(ExpressionEvaluatorForDotNet.Operator,ExpressionEvaluatorForDotNet.OperatorPrecedence,ExpressionEvaluatorForDotNet.OperatorType,System.String,System.Func{ExpressionEvaluatorForDotNet.ExpressionGroup,ExpressionEvaluatorForDotNet.ExpressionResult},System.Action{ExpressionEvaluatorForDotNet.ExpressionGroup},System.Action{ExpressionEvaluatorForDotNet.ExpressionResult})">
+            <summary>
+            Creates an <see cref="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator"/> with the provided values.
+            </summary>
+            <param name="expressionOperator">The <see cref="T:ExpressionEvaluatorForDotNet.Operator"/>.</param>
+            <param name="operatorPrecedence">The <see cref="T:ExpressionEvaluatorForDotNet.OperatorPrecedence"/>.</param>
+            <param name="expressionOperatorType">The <see cref="T:ExpressionEvaluatorForDotNet.OperatorType"/>.</param>
+            <param name="operatorName">The name value of the operator.</param>
+            <param name="solveOperatorExpression"><see cref="T:System.Func`2"/> callback.</param>
+            <param name="onBeforeOperatorExpressionSolved"><see cref="T:System.Action`1"/> callback.</param>
+            <param name="onAfterOperatorExpressionSolved"><see cref="T:System.Action`1"/> callback.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator"/>.</returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator">
+            <summary>
+            This class represents an operator to an <see cref="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.Operators"/>.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.ExpressionOperator">
+            <summary>
+            The <see cref="T:ExpressionEvaluatorForDotNet.Operator"/>.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.ExpressionOperatorPrecedence">
+            <summary>
+            The <see cref="T:ExpressionEvaluatorForDotNet.OperatorPrecedence"/>.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.ExpressionOperatorType">
+            <summary>
+            The <see cref="T:ExpressionEvaluatorForDotNet.OperatorType"/>.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.OperatorName">
+            <summary>
+            The name of the operator.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.OnBeforeOperatorExpressionSolved">
+            <summary>
+            Callback before the operator expression is solved.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.OnAfterOperatorExpressionSolved">
+            <summary>
+            Callback after the operator expression has been solved.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.SolveOperatorExpression">
+            <summary>
+            Callback for solving the operator expression yourself.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions">
+            <summary>
+            This class represents the options for configuring an <see cref="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationBase"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.IgnoreWhitespaceOutsideQuotes">
+            <summary>
+            Whether the evaluator should ignore whitespace outside quotes, or remove them.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.IgnoreParentheses">
+            <summary>
+            Whether the evaluator should ignore parentheses, or break them down.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.IgnoreQuotesValidation">
+            <summary>
+            Whether the evaluator should ignore validating quotes, or validate them.
+            </summary>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.HL7V2Component">
+            <summary>
+            This class refers to HL7V2 Components defined in V2 specification. Components exist inside <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/>'s and their <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/>'s.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Component.#ctor">
+            <summary>
+            Initializes the <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.SubComponents"/>
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id">
+            <summary>
+            The Id of the component is the position. 1-based.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Component.Delimiter">
+            <summary>
+            The delimiter is used to <see cref="M:ExpressionEvaluatorForDotNet.HL7V2Component.Rebuild"/> the component. It's the same as the <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.componentDelimiter"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value">
+            <summary>
+            The value of the component.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Component.SubComponents">
+            <summary>
+            The <see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/>'s inside the component, if any.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Component.Item(System.Int32)">
+            <summary>
+            Get a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/> via indexer.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Component.GetSubComponent(System.Int32)">
+            <summary>
+            Get a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/> from <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.SubComponents"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Component.Rebuild">
+            <summary>
+            Rebuild's the <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value"/> by first calling <see cref="M:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Rebuild"/> on each <see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> in <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.SubComponents"/>, then combines those <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Value"/>'s, and set's it equal to this <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value"/>.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Component.AddSubComponent(System.String)">
+            <summary>
+            Add's a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> to <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.SubComponents"/>. 
+            </summary>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Component.RemoveSubComponent(System.Int32)">
+            <summary>
+            Removes a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/> from <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.SubComponents"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/>.</param>
+            <returns><see cref="!:true"/> if successful, otherwise <see cref="!:false"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Component.InsertSubComponent(System.Int32,System.String)">
+            <summary>
+            Inserts a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/> into <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.SubComponents"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Component.UpdateSubComponent(System.Int32,System.String)">
+            <summary>
+            Updates a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/> in <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.SubComponents"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration">
+            <summary>
+            Use this configuration when using the Evaluator to evaluate HL7V2 flat file messages.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.operators">
+            <summary>
+            A list of <see cref="T:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator"/> used by the expression configuration.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.options">
+            <summary>
+            The options used by the expression configuration.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.fieldDelimiter">
+            <summary>
+            The field delimiter used by the expression configuration. By default is "|".
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.componentDelimiter">
+            <summary>
+            The component delimiter used by the expression configuration. By default is "^".
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.escapeCharacter">
+            <summary>
+            The escape character used by the expression configuration. By default is "\".
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.subComponentDelimiter" -->
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.fieldRepetitionDelimiter">
+            <summary>
+            The field repetition delimiter used by the expression configuration. By default is "~".
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.presentButNull">
+            <summary>
+            The present but null character used by the expression configuration. By default is """" (two double quotes).
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.specialSegmentHeaders">
+            <summary>
+            Special segment headers are special headers defined by the hl7 spec that should be treated uniquely. MSH, BSH, and FSH.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.encodingConversions">
+            <summary>
+            The encoding conversions define how <see cref="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.EncodeString(System.String)"/> behaves. It uses the escape character and delimiters to hl7 encode data.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.endCharacter">
+            <summary>
+            The end character is used internally to handle when there is a delimiter at the end of a message segment (expression) when evaluating expressions.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.messageSegment">
+            <summary>
+            The message segment for each line of the hl7v2 message.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.#cctor">
+            <summary>
+            On static constructor load, the encoding conversions are rebuilt, and the special segment headers are initialized.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.RebuildEncodingConversions">
+            <summary>
+            Rebuilds the <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.encodingConversions"/>, using the <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.escapeCharacter"/>, <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.fieldDelimiter"/>, <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.fieldRepetitionDelimiter"/>, <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.componentDelimiter"/>, <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.subComponentDelimiter"/>. Call this if you update any of those fields before calling <see cref="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.EncodeString(System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.EncodeString(System.String)">
+            <summary>
+            Encodes input data if any of the <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.encodingConversions"/> key's are found in the data.
+            </summary>
+            <param name="input">The data to encode.</param>
+            <returns>The newly encoded <see cref="T:System.String"/> data.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.DecodeString(System.String)">
+            <summary>
+            Decodes input data if any of the <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.encodingConversions"/> value's are found in the data.
+            </summary>
+            <param name="input">The data to decode.</param>
+            <returns>The newly decoded <see cref="T:System.String"/> data.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.#ctor">
+            <summary>
+            Initializes the operators with one Addition operator and it's <see cref="F:ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.SolveOperatorExpression"/> callback to grab the fields from the Evaluator, initializes the options, and initializes the <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.messageSegment"/>.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.Setup">
+            <summary>
+            Internal method to initialize the <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.messageSegment"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.Operators">
+            <summary>
+            A list of operators used by the expression configuration.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.Options">
+            <summary>
+            The options used by the expression configuration.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.GetHL7V2MessageSegment">
+            <summary>
+            Get's the message segment. 
+            </summary>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/></returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.HL7V2Field">
+            <summary>
+            This class refers to HL7V2 Fields defined in V2 specification. Fields are the highest level of 'fields' in an HL7V2 message segment.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.#ctor">
+            <summary>
+            Initializes the <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.FieldRepetitions"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Field.Id">
+            <summary>
+            The Id of the field. 1-based.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Field.Delimiter">
+            <summary>
+            The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Delimiter"/> of the field. This is the same as <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.fieldDelimiter"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Field.Value">
+            <summary>
+            The value of the field.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Field.FieldRepetitions">
+            <summary>
+            A list of the field's <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/>'s, if any.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.GetFieldRepetition(System.Int32)">
+            <summary>
+            Get a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/> by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/>if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.Components(System.Int32)">
+            <summary>
+            Gets a list of this Fields <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/>'s. By default it references the first repetition.
+            </summary>
+            <param name="repetitionId">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>.</param>
+            <returns><see cref="T:System.Collections.Generic.IList`1"/>if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.GetComponent(System.Int32,System.Int32)">
+            <summary>
+            Gets a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> on this field if it exists by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/> and <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/> (default 1).
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <param name="repetitionId">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.Rebuild">
+            <summary>
+            Rebuild this Fields <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Value"/> first by calling <see cref="M:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Rebuild"/> on it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.FieldRepetitions"/>, then combining those fields and setting it to <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Value"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Field.Item(System.Int32,System.Int32)">
+            <summary>
+            Get a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/> and <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/> (default 1) via indexer.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <param name="repetitionId">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default is 1.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.AddComponent(System.String,System.Int32)">
+            <summary>
+            Add's a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> to this Fields <see cref="M:ExpressionEvaluatorForDotNet.HL7V2Field.Components(System.Int32)"/> by it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+            </summary>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value"/>.</param>
+            <param name="repetitionId">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default is 1.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.RemoveComponent(System.Int32,System.Int32)">
+            <summary>
+            Remove's a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> from this Fields <see cref="M:ExpressionEvaluatorForDotNet.HL7V2Field.Components(System.Int32)"/> by it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <param name="repetitionId">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default is 1.</param>
+            <returns><see cref="!:true"/> if successful, otherwise <see cref="!:false"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.InsertComponent(System.Int32,System.String,System.Int32)">
+            <summary>
+            Insert's a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> into this Fields <see cref="M:ExpressionEvaluatorForDotNet.HL7V2Field.Components(System.Int32)"/> by it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value"/>.</param>
+            <param name="repetition">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default is 1.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.UpdateComponent(System.Int32,System.String,System.Int32)">
+            <summary>
+            Update's a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> from this Fields <see cref="M:ExpressionEvaluatorForDotNet.HL7V2Field.Components(System.Int32)"/> by it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value"/>.</param>
+            <param name="repetition">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>. Default is 1.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.AddFieldRepetition(System.String)">
+            <summary>
+            Adds a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/> to this Fields <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.FieldRepetitions"/>.
+            </summary>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.RemoveFieldRepetition(System.Int32)">
+            <summary>
+            Removes a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/> from this Fields <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.FieldRepetitions"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>.</param>
+            <returns><see cref="!:true"/> if successful, otherwise <see cref="!:false"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.InsertFieldRepetition(System.Int32,System.String)">
+            <summary>
+            Inserts a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/> into this Fields <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.FieldRepetitions"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Field.UpdateFieldRepetition(System.Int32,System.String)">
+            <summary>
+            Updates a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/> from this Fields <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.FieldRepetitions"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition"/> if successful, otherwise <see cref="!:null"/>;</returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.HL7V2FieldBase">
+            <summary>
+            This abstract base class is what all other 'field' like classes inherit from.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2FieldBase.Id">
+            <summary>
+            The Id of the Field.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2FieldBase.Delimiter">
+            <summary>
+            The Delimiter of the Field.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2FieldBase.Value">
+            <summary>
+            The Value of the Field.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldBase.Rebuild">
+            <summary>
+            All classes must implement some kind of rebuild mechanism (except subcomponents).
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldBase.CombineHL7Fields(System.Collections.Generic.IList{ExpressionEvaluatorForDotNet.HL7V2FieldBase})">
+            <summary>
+            Called by a field in order to rebuild it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldBase.Value"/>.
+            </summary>
+            <param name="fields">The <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldBase"/>'s to combine.</param>
+            <returns><see cref="T:System.String"/> of the combined fields.</returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition">
+            <summary>
+            This class refers to HL7V2 Field Repetitions defined in V2 specification. Field Repetitions exist within fields. You always have atleast one FieldRepetition if there's a Field, unless it's a special case, such as MSH.1.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.#ctor">
+            <summary>
+            Initializes the <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Components"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Id">
+            <summary>
+            The Id of the Field Repetition.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Delimiter">
+            <summary>
+            The Delimiter of the Field Repetition. This is the same as <see cref="F:ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.fieldRepetitionDelimiter"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Value">
+            <summary>
+            The value of the Field Repetition.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Components">
+            <summary>
+            A list of <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/>'s for this Field Repetition.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Item(System.Int32)">
+            <summary>
+            Get a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> by it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/> via indexer.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Rebuild">
+            <summary>
+            Rebuild this Field Repetitions <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Value"/> first by calling <see cref="M:ExpressionEvaluatorForDotNet.HL7V2Component.Rebuild"/> on it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Components"/>, then combine those and set it to this <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Value"/>.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.GetComponent(System.Int32)">
+            <summary>
+            Gets a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> on this field repetition by <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.AddComponent(System.String)">
+            <summary>
+            Adds a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> to this Field Repetitions <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Components"/>.
+            </summary>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.RemoveComponent(System.Int32)">
+            <summary>
+            Removes a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> from this Field Repetitions <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Components"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <returns><see cref="!:true"/> if successful, otherwise <see cref="!:false"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.InsertComponent(System.Int32,System.String)">
+            <summary>
+            Inserts a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> into this Field Repetitions <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Components"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.UpdateComponent(System.Int32,System.String)">
+            <summary>
+            Updates a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> in this Field Repetitions <see cref="P:ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.Components"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Component.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Component"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.HL7V2Message">
+            <summary>
+            This class refers to HL7V2 Messages defined in V2 specification.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2Message.messageSegments">
+            <summary>
+            A list of this messages <see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/>'s.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Message.MessageSegments">
+            <summary>
+            A list of this messages <see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/>'s.
+            </summary>
+        </member>
+        <member name="F:ExpressionEvaluatorForDotNet.HL7V2Message.Error">
+            <summary>
+            The error if something failed, otherwise <see cref="!:null"/>.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.#ctor">
+            <summary>
+            Initializes the <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Message.MessageSegments"/>.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.Rebuild">
+            <summary>
+            Rebuild the HL7 Message after making modifications, this updates the Value of each <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldBase"/> in this message and the <see cref="M:ExpressionEvaluatorForDotNet.HL7V2Message.ToString"/> method. Calls each <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Message.MessageSegments"/> <see cref="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Rebuild"/> method.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.Get(System.String)">
+            <summary>
+            Use this method to Get any kind of 'field' within the message.
+            Indexes on segments called via Get are 1-based.
+            Ids on fields are 1-based.
+            Get("PID.3.2.1") gets the 1st index PID's 3rd field's 2nd component's 1st subcomponent as <see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldBase"/>.
+            Get("OBR(2).1") // gets the 2nd index OBR's 1st field.
+            Get("GT1.6(2)") // gets the 1st index GT1's 6th field's 2nd repetition.
+            </summary>
+            <param name="id">A string-based id such as MSH.1 to get that field.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2FieldBase"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2Message.Item(System.String,System.Int32)">
+            <summary>
+            Get a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/> by it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.SegmentName"/> and index, if multiple. Default index is 0.
+            </summary>
+            <param name="segmentName">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.SegmentName"/>.</param>
+            <param name="index">The index. Default is 0.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.Segments(System.String)">
+            <summary>
+            Gets this messages list of <see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/>'s.
+            </summary>
+            <param name="segmentName">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.SegmentName"/>.</param>
+            <returns><see cref="T:System.Collections.Generic.IList`1"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.ToHL7V2MessageFile">
+            <summary>
+            Converts this message to a <see cref="!:IList&lt;string&gt;"/> with the segments in order.
+            </summary>
+            <returns><see cref="!:IList&lt;string&gt;"/> as <see cref="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.ToString"/> using the order of the <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Message.MessageSegments"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.ToString">
+            <summary>
+            Converts this message to a string representation, joined by <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <returns><see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.GetMessageSegment(System.String)">
+            <summary>
+            Get's the <see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/> in this message.
+            </summary>
+            <param name="segmentName">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.SegmentName"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/> if found otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.AddMessageSegment(System.String)">
+            <summary>
+            Adds a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/> to <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Message.MessageSegments"/>.
+            </summary>
+            <param name="segmentName">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.SegmentName"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.RemoveMessageSegment(System.String,System.Int32)">
+            <summary>
+            Removes a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/> from <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Message.MessageSegments"/>.
+            </summary>
+            <param name="segmentName">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.SegmentName"/>.</param>
+            <param name="index">The index. Default is 0.</param>
+            <returns><see cref="!:true"/> if successful, otherwise <see cref="!:false"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.InsertMessageSegment(System.String,System.Int32)">
+            <summary>
+            Inserts a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/> into <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Message.MessageSegments"/>.
+            </summary>
+            <param name="segmentName">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.SegmentName"/>.</param>
+            <param name="index">The index. Default is 0.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.Equals(System.Object)">
+            <summary>
+            Compare two <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Message"/>'s.
+            </summary>
+            <param name="otherMessage">The other <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Message"/> to compare against.</param>
+            <returns><see cref="!:true"/> if equal, otherwise <see cref="!:false"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2Message.GetHashCode">
+            <summary>
+            Gets the hash code using the string for uniqueness.
+            </summary>
+            <returns><see cref="T:System.Int32"/>.</returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.HL7V2MessageSegment">
+            <summary>
+            This class refers to HL7V2 Message Segments defined in V2 specification. Message Segments make up an HL7V2Message.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.#ctor">
+            <summary>
+            Initializes the <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Fields"/>.
+            </summary>s
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.SegmentName">
+            <summary>
+            The name of this segment.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Fields">
+            <summary>
+            The fields of this segment.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.ToString">
+            <summary>
+            Converts this message segment to a string.
+            </summary>
+            <returns><see cref="T:System.String"/> of all fields combined to form a valid hl7v2 message segment.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Rebuild">
+            <summary>
+            Rebuilds the message segment by rebuilding each of it's Fields <see cref="M:ExpressionEvaluatorForDotNet.HL7V2FieldBase.Rebuild"/>.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Item(System.Int32)">
+            <summary>
+            Get a field by it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Id"/> via indexer.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Id"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.GetField(System.Int32)">
+            <summary>
+            Get a field by it's <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Id"/> from this message segments <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Fields"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Id"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> if found, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.AddField(System.String,System.Boolean)">
+            <summary>
+            Add a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> to this message segments <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Fields"/>.
+            </summary>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Value"/>.</param>
+            <param name="includeFieldRepetition">Whether to include field repetition. Default is <see cref="!:true"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.RemoveField(System.Int32)">
+            <summary>
+            Remove a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> from this message segments <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Fields"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Id"/>.</param>
+            <returns><see cref="!:true"/> if successful, otherwise <see cref="!:false"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.InsertField(System.Int32,System.String)">
+            <summary>
+            Insert a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> into this message segments <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Fields"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.UpdateField(System.Int32,System.String)">
+            <summary>
+            Update a <see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> from this message segments <see cref="P:ExpressionEvaluatorForDotNet.HL7V2MessageSegment.Fields"/>.
+            </summary>
+            <param name="id">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Id"/>.</param>
+            <param name="value">The <see cref="P:ExpressionEvaluatorForDotNet.HL7V2Field.Value"/>.</param>
+            <returns><see cref="T:ExpressionEvaluatorForDotNet.HL7V2Field"/> if successful, otherwise <see cref="!:null"/>.</returns>
+        </member>
+        <member name="T:ExpressionEvaluatorForDotNet.HL7V2SubComponent">
+            <summary>
+            This class refers to HL7V2 Sub Components defined in V2 specification. Sub Components are the lowest level of 'fields' in an hl7v2 message segment.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Id">
+            <summary>
+            The Id of the Sub Component. 1-based.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Delimiter">
+            <summary>
+            The Delimiter of the Sub Component.
+            </summary>
+        </member>
+        <member name="P:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Value">
+            <summary>
+            The Value of the Sub Component.
+            </summary>
+        </member>
+        <member name="M:ExpressionEvaluatorForDotNet.HL7V2SubComponent.Rebuild">
+            <summary>
+            Required, but method does nothing.
+            </summary>
+        </member>
+    </members>
+</doc>
