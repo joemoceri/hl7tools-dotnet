@@ -1000,6 +1000,20 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			Assert.AreEqual(subComponent, null);
 
 			pv179[16].Id = 1;
+
+			subComponent = pv179.InsertSubComponent(50, "temp");
+
+			Assert.AreEqual(subComponent, null);
+
+			pv179.SubComponents.Clear();
+
+			subComponent = pv179.InsertSubComponent(1, "temp");
+
+			Assert.AreEqual(subComponent, null);
+
+			subComponent = pv179.UpdateSubComponent(1, "temp");
+
+			Assert.AreEqual(subComponent, null);
 		}
 
 		[TestMethod]
