@@ -54,7 +54,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			var guid = $"{Guid.NewGuid()}";
 
-			greaterThan.OnAfterOperatorExpressionSolved = (expResult) =>
+			greaterThan.OnBeforeOperatorExpressionSolved = (expResult) =>
 			{
 				count++;
 			};
@@ -63,7 +63,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(count, 3);
 
-			greaterThan.OnAfterOperatorExpressionSolved = null;
+			greaterThan.OnBeforeOperatorExpressionSolved = null;
 
 			result = evaluator.Evaluate("1>2");
 

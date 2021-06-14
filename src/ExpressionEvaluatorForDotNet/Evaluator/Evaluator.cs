@@ -1159,25 +1159,12 @@ namespace ExpressionEvaluatorForDotNet
 									char delimEnd = mathOperators[i].OperatorName.Last();
 									if (ch == delimEnd)
 									{
-										if (CheckForOperatorOnTheLeft(opIndex, mathOperators[i].OperatorName, expression))
-										{
-											result = true;
-											break;
-										}
+										result = true;
+										break;
 									}
 								}
 
 								return result;
-
-								bool CheckForOperatorOnTheLeft(int index, string mathOperator, string expression)
-								{
-									var start = index - (mathOperator.Length - 1);
-
-									string result = expression.Substring(start, mathOperator.Length);
-
-									return result == mathOperator;
-								}
-
 							}
 
 						}
