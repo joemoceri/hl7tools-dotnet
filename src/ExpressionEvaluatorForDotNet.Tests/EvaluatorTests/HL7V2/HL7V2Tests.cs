@@ -999,11 +999,11 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(subComponent, null);
 
-			pv179[16].Id = 1;
-
-			subComponent = pv179.InsertSubComponent(50, "temp");
+			subComponent = pv179.InsertSubComponent(1, "temp");
 
 			Assert.AreEqual(subComponent, null);
+
+			pv179[16].Id = 1;
 
 			pv179.SubComponents.Clear();
 
@@ -1050,6 +1050,18 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			// decode string
 			output = HL7V2ExpressionConfiguration.DecodeString(output);
+
+			var t = HL7V2ExpressionConfiguration.DecodeString(null);
+
+			Assert.AreEqual(t, null);
+
+			t = HL7V2ExpressionConfiguration.DecodeString("");
+
+			Assert.AreEqual(t, "");
+
+			t = HL7V2ExpressionConfiguration.DecodeString("    ");
+
+			Assert.AreEqual(t, "    ");
 
 			Assert.AreEqual(input, output);
 

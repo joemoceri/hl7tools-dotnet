@@ -516,7 +516,7 @@ namespace ExpressionEvaluatorForDotNet
 								}
 
 								// get the furthest away operator to get the correct left operand
-								if (startIndex == null || operatorIndex > startIndex)
+								if (startIndex == null)
 								{
 									startIndex = operatorIndex;
 									booleanOperatorIndex = i;
