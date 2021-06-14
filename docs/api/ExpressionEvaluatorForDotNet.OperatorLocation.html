@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Operand
+    <title>Class OperatorLocation
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Operand
+    <meta name="title" content="Class OperatorLocation
    ">
     <meta name="generator" content="docfx 2.58.0.0">
     
@@ -68,18 +68,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Io.JoeMoceri.ExpressionEvaluator.Operand">
+            <article class="content wrap" id="_content" data-uid="ExpressionEvaluatorForDotNet.OperatorLocation">
   
   
-  <h1 id="Io_JoeMoceri_ExpressionEvaluator_Operand" data-uid="Io.JoeMoceri.ExpressionEvaluator.Operand" class="text-break">Class Operand
+  <h1 id="ExpressionEvaluatorForDotNet_OperatorLocation" data-uid="ExpressionEvaluatorForDotNet.OperatorLocation" class="text-break">Class OperatorLocation
   </h1>
-  <div class="markdown level0 summary"><p>This class is used for encapsulating an operand as part of an expression.</p>
+  <div class="markdown level0 summary"><p>This class is used internally to identify the next operators location when evaluating inner expressions.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Operand</span></div>
+    <div class="level1"><span class="xref">OperatorLocation</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -105,29 +105,29 @@
       <span class="xref">System.Object.ToString()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.html">Io.JoeMoceri.ExpressionEvaluator</a></h6>
-  <h6><strong>Assembly</strong>: Io.JoeMoceri.ExpressionEvaluator.dll</h6>
-  <h5 id="Io_JoeMoceri_ExpressionEvaluator_Operand_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ExpressionEvaluatorForDotNet.html">ExpressionEvaluatorForDotNet</a></h6>
+  <h6><strong>Assembly</strong>: ExpressionEvaluatorForDotNet.dll</h6>
+  <h5 id="ExpressionEvaluatorForDotNet_OperatorLocation_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Operand</code></pre>
+    <pre><code class="lang-csharp hljs">public class OperatorLocation</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/jmoceri34/expression-evaluator/new/master/apiSpec/new?filename=Io_JoeMoceri_ExpressionEvaluator_Operand_Type.md&amp;value=---%0Auid%3A%20Io.JoeMoceri.ExpressionEvaluator.Operand.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/jmoceri34/expression-evaluator/new/master/apiSpec/new?filename=ExpressionEvaluatorForDotNet_OperatorLocation_Index.md&amp;value=---%0Auid%3A%20ExpressionEvaluatorForDotNet.OperatorLocation.Index%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/Operand.cs/#L16">View Source</a>
+    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/ExpressionEvaluatorForDotNet/Evaluator/OperatorLocation.cs/#L16">View Source</a>
   </span>
-  <a id="Io_JoeMoceri_ExpressionEvaluator_Operand_Type_" data-uid="Io.JoeMoceri.ExpressionEvaluator.Operand.Type*"></a>
-  <h4 id="Io_JoeMoceri_ExpressionEvaluator_Operand_Type" data-uid="Io.JoeMoceri.ExpressionEvaluator.Operand.Type">Type</h4>
-  <div class="markdown level1 summary"><p>The <a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.VariableType.html">VariableType</a> of the operand.</p>
+  <a id="ExpressionEvaluatorForDotNet_OperatorLocation_Index_" data-uid="ExpressionEvaluatorForDotNet.OperatorLocation.Index*"></a>
+  <h4 id="ExpressionEvaluatorForDotNet_OperatorLocation_Index" data-uid="ExpressionEvaluatorForDotNet.OperatorLocation.Index">Index</h4>
+  <div class="markdown level1 summary"><p>The index of the operator within the expression. If null, there are no more operators and therefore expressions to evaluate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VariableType Type { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int? Index { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -139,21 +139,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Io.JoeMoceri.ExpressionEvaluator.VariableType.html">VariableType</a></td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/jmoceri34/expression-evaluator/new/master/apiSpec/new?filename=Io_JoeMoceri_ExpressionEvaluator_Operand_Value.md&amp;value=---%0Auid%3A%20Io.JoeMoceri.ExpressionEvaluator.Operand.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/jmoceri34/expression-evaluator/new/master/apiSpec/new?filename=ExpressionEvaluatorForDotNet_OperatorLocation_Value.md&amp;value=---%0Auid%3A%20ExpressionEvaluatorForDotNet.OperatorLocation.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/Operand.cs/#L11">View Source</a>
+    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/ExpressionEvaluatorForDotNet/Evaluator/OperatorLocation.cs/#L11">View Source</a>
   </span>
-  <a id="Io_JoeMoceri_ExpressionEvaluator_Operand_Value_" data-uid="Io.JoeMoceri.ExpressionEvaluator.Operand.Value*"></a>
-  <h4 id="Io_JoeMoceri_ExpressionEvaluator_Operand_Value" data-uid="Io.JoeMoceri.ExpressionEvaluator.Operand.Value">Value</h4>
-  <div class="markdown level1 summary"><p>The value of the operand.</p>
+  <a id="ExpressionEvaluatorForDotNet_OperatorLocation_Value_" data-uid="ExpressionEvaluatorForDotNet.OperatorLocation.Value*"></a>
+  <h4 id="ExpressionEvaluatorForDotNet_OperatorLocation_Value" data-uid="ExpressionEvaluatorForDotNet.OperatorLocation.Value">Value</h4>
+  <div class="markdown level1 summary"><p>The value of the operator.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -183,10 +183,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/jmoceri34/expression-evaluator/new/master/apiSpec/new?filename=Io_JoeMoceri_ExpressionEvaluator_Operand.md&amp;value=---%0Auid%3A%20Io.JoeMoceri.ExpressionEvaluator.Operand%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/jmoceri34/expression-evaluator/new/master/apiSpec/new?filename=ExpressionEvaluatorForDotNet_OperatorLocation.md&amp;value=---%0Auid%3A%20ExpressionEvaluatorForDotNet.OperatorLocation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/Io.JoeMoceri.ExpressionEvaluator/Evaluator/Operand.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/ExpressionEvaluatorForDotNet/Evaluator/OperatorLocation.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

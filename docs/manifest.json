@@ -1,15 +1,348 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/jmoce/source/repos/expression-evaluator/src/Io.JoeMoceri.ExpressionEvaluator",
+  "source_base_path": "C:/Users/jmoce/source/repos/expression-evaluator/src/ExpressionEvaluatorForDotNet",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html",
+          "hash": "vJQKxPrEaZS1GYWwHbzkzE7teDlfkGxs6m/EaLHo22I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.Evaluator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.Evaluator.html",
+          "hash": "coEqsjVOPmwEhbRvogxbOpALdBmOif126tSAKuNVUNc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.html",
+          "hash": "HahGe7/Y9ClpGhEKMtawqqk4z7nv3/FOEa84/+/Nj/o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html",
+          "hash": "x2Ag6yjfEe20FxHzBSlbHvbLdBKMawVtJS7HKUY3Scg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.html",
+          "hash": "51hic19x9nhhG97gI8btd322g6pFsAcG4fTqgPc5tCw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionGroup.html",
+          "hash": "7WqTRaPidb+tL6c2PKYok+4d7q5NjBVAeGs55i/3dNY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.html",
+          "hash": "iCVe0vb0XxIxvGICR1VX64DlofdYrSB5JbXdHYfw4D4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionResult.html",
+          "hash": "w54yjuX1ad8g8x+KapXnR91cbkusdkrTkNEvDMu0CTA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionType.html",
+          "hash": "RB8a/n8QeZ74OLnDbd5oujhM1Utbj4YXUWp1HfRVjxM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Component.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Component.html",
+          "hash": "1d6gIJdgeKiKAkCmnY5yr616to/EG4afPqrlyYtR8gQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html",
+          "hash": "G8F3mbwzyfjHll66jiL/8BiLXwJqYJGIQO04U1U9Wxc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Field.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Field.html",
+          "hash": "Q5U+eBQgS3zIOCf+A8d2HxxCwLR/CcAw7zTKbOTiWMc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.html",
+          "hash": "OMiciOzs30vJHdKQ8qrHIhuAAUb6jLYUQke0dWDda5w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html",
+          "hash": "HTxl6AH5OcwGjCw1AlyxcTAA5bwXxkTUD0fYc0FIYCM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Message.html",
+          "hash": "UoBl11sxSbihwvPCJD1u3kdPRSxGa+M7bO3/5ASRp3k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html",
+          "hash": "AemNI/BV4U/D0H6efxKTa6aZuRX5LvAhELFJeXwkLr0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2SubComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2SubComponent.html",
+          "hash": "ZJyp5skF5V2R3iPLLgJKZnUHsfkjJq3VBAX4sRx3h3s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.Operand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.Operand.html",
+          "hash": "Yl3zquvOFuppKmfJeC2JxEeGc0DQB/ogRUsR5QX3WPE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.Operator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.Operator.html",
+          "hash": "pVv/PmjMVK9GGW9zW4QAAqY7nOmMn3TEYLTMnlSBDpA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.OperatorLocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.OperatorLocation.html",
+          "hash": "29V9dk3qUJOPeN+GvE57i2t//gx5h4r/2nekwEkfYXE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.OperatorPrecedence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html",
+          "hash": "LXNm1mw1lIvZKKdVUD9NUDpF1qgLHZkpcAhkesbKVUs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.OperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.OperatorType.html",
+          "hash": "A6fMh5eyZ45GFYUNrv3rcpFkXNWgQPC24tYqQywj9+I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.VariableType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.VariableType.html",
+          "hash": "qnX/AhtJUtPXuRldq1/t0wHyMAJ2qNXgnOBm64pCIDI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/ExpressionEvaluatorForDotNet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ExpressionEvaluatorForDotNet.html",
+          "hash": "8hHNonNDeH8h2d59aMts5nsL4rM07d5om2qND6JCcXk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.CSharpExpressionConfiguration.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.CSharpExpressionConfiguration.html",
-          "hash": "1jZ8IQdACMn6uFFUtJjMpbSjF0NAh8zT5thgv5LK6qs="
+          "hash": "nLDig5i7nMmUxVQ38N/BDTmoHvhnDOvaiqhi5/5dNf4="
         }
       },
       "is_incremental": false,
@@ -21,31 +354,37 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Evaluator.html",
-          "hash": "RlOVX85s2syPVwQSOFXC9N0LTPp0MeiaUPDxe6VgQIY="
+          "hash": "uVPgwFtlwxheZoy5tHve8TQvHVuyCOzFcDbBdjri/U4="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.html",
-          "hash": "h9eJwVu95S1QB9MTd5eDzIeX5o8iX2+VHYA5wpkSATQ="
+          "hash": "VZPFEtCYmUOScoc1T/LKoslKidmdn5IAnqv0t3mp58o="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOperator.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOperator.html",
-          "hash": "j1Hx5mc8w5vz8TvBIXGruKEtF+ivTb2mVWfGfjbfm0Q="
+          "hash": "+kDw85oUAdv5sRxVNcEoupXb2JHVl/vee9oeU1x++0I="
         }
       },
       "is_incremental": false,
@@ -57,19 +396,22 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOptions.html",
-          "hash": "qiZx9kooTlQTg73kpDQH0gxa4oPZGcKaoRJWKAxYsDU="
+          "hash": "Jh9a2Zy2IQ4dI8j5Z54tI9om7GTkmoviK3j+Njkrm6g="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionGroup.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionGroup.html",
-          "hash": "Poj6jFFr4X+pPeeWSCrlS5qgy/CJa3/ghtRjT7IGwzI="
+          "hash": "t2BOvXMSl0AArAoD2NfTCh55jJzPTGeJVE4tlFHYzL0="
         }
       },
       "is_incremental": false,
@@ -81,19 +423,22 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionOperandTypes.html",
-          "hash": "tNegOREnxAj4TyPFcI85nA/F0KhmkzyUI4YOOHvdyiE="
+          "hash": "jyEgYzOI10G1V/yx69sYjRLVNDaO0NZdVlfKMjxQdmE="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionResult.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionResult.html",
-          "hash": "pt01mmthMZsaU0UD20bOJRAFC2EW2KfrvtHCKMtPz4s="
+          "hash": "JyFOfK7AT9/UhNqVbCZpA0ol6h/6b3vLHfTmmVut9PA="
         }
       },
       "is_incremental": false,
@@ -105,7 +450,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionType.html",
-          "hash": "qb5OMM22/IPIFzvG/fTLCI5RNBTadofncWYGxRYsAyA="
+          "hash": "buJ3hmMZE92cEKyb7o1rhX6rLid/rfmnEU3/0gcagUQ="
         }
       },
       "is_incremental": false,
@@ -117,19 +462,22 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Component.html",
-          "hash": "tKLvPGesouEA3tYyPkpf63ZAfd5Y5OT+zO34G8TKvwQ="
+          "hash": "LgGRB7OPiIx3BlzTKCX9sCMDPLqNxS7nR7N2rV2OaWk="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2ExpressionConfiguration.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2ExpressionConfiguration.html",
-          "hash": "toOY33xczARCR8DZy7PoxY2wqb5nW9mYQ4tQ0ymYqfc="
+          "hash": "Aa2iF4FN6LE6RGBVHATyxAkn0Lkn2tZqn85RkKKvztA="
         }
       },
       "is_incremental": false,
@@ -141,19 +489,22 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Field.html",
-          "hash": "Cap5zOx1pjLdLkzTJ7SbyejAUH6kRjEjy75HgoB9A1E="
+          "hash": "Q6+mClwn6CdtR9+3QSRKK9TkZfr8HqUxL8FDmNzW6CA="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldBase.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldBase.html",
-          "hash": "5FLh2zvn0dITcCLtDV7CBZUa3P1KhX2/Xg8oZf5CSbQ="
+          "hash": "MLjFsm3TYqhxzFro1xsC2RiLekC/HUTbzS01PNTfaQ0="
         }
       },
       "is_incremental": false,
@@ -165,7 +516,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldRepetition.html",
-          "hash": "WegABjO5LHZWcYqnSRFMioJgIXVCak9nr0MTEhjzUPA="
+          "hash": "sAFS0UBvVJaDVGVXH5w1XHCHBOyUhM3i9QmQqQDRv9g="
         }
       },
       "is_incremental": false,
@@ -177,7 +528,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Message.html",
-          "hash": "eLB02J4T+KabSf/bJ6CGwK/nQ5pM3aXPvjlxtPO1FC8="
+          "hash": "uUAjJILW7ZF173aazXe3kkuNzqD4ZATXoEUIFWHYxps="
         }
       },
       "is_incremental": false,
@@ -189,7 +540,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2MessageSegment.html",
-          "hash": "6u1nHUkKfD4pGfZNkESLVN39En4jZXjUSNH9tC+D9D4="
+          "hash": "4MmKtbk8yP7Bh6bg6sJmQxmV7hwlWov8/h0kuINUY2U="
         }
       },
       "is_incremental": false,
@@ -201,7 +552,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2SubComponent.html",
-          "hash": "T1elCMBkvFQ369Ov/cBmf/I7pIePc+yeGfWBWynkzTs="
+          "hash": "bbliwVGm7Q/1KSxbTYyy8N6eftvy8hW0Hy3BlqHQwXQ="
         }
       },
       "is_incremental": false,
@@ -213,31 +564,37 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operand.html",
-          "hash": "XTeDA24DKFLebW5GBzWk9l1TWY4gOUYDSDhaXgnvFfo="
+          "hash": "WxDR0zvFPK9ZUXam6VykrolWE/siJeV3zfiMwFaEYog="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operator.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operator.html",
-          "hash": "1Ie433iKk7z3zDazPuvD06XinxOs6/NIVpYysfHdD3A="
+          "hash": "1KtRKyjhv2f0HLBgoHXQWL7bqqX0EsV2k09a6z2aZwY="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorLocation.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorLocation.html",
-          "hash": "KVY5/F9dmhx8mvmyAjM3SmVQ+nBtRZqExZZPmA8/JQQ="
+          "hash": "LQkovGcWqSa5HVzOUmiXQ1qcG9u2+3eqQbVdeZyAI68="
         }
       },
       "is_incremental": false,
@@ -249,19 +606,22 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorPrecedence.html",
-          "hash": "0KUiBKAfMKmg1W5wwsiWLmC1MZ2HBbmkkhd+eYUBXqk="
+          "hash": "leT3vmg8T1mtxT3ytOcxh55E6KRpQApbPv2UTnL1TMo="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorType.yml",
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorType.html",
-          "hash": "wyLjci+k4AQvRnVg2JNkZf9Oqv2LaG/zT3wvSdhRi34="
+          "hash": "/RJxZ96KNIH5Ne+ZVd0eGfOeO0GE2dlXm1cl1pgEMB4="
         }
       },
       "is_incremental": false,
@@ -273,7 +633,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.VariableType.html",
-          "hash": "Leck3II0jTvZw9mZDRms5/93y5b+Ic4gkQpdE5F0ugA="
+          "hash": "s6TlkpNsPJjnCHOdUV0IuyUcOfEnPFkYJhV+QHfC7ac="
         }
       },
       "is_incremental": false,
@@ -285,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.html",
-          "hash": "zpA4Pipz15UVVOl/SoioOOwDjallPTpKmxmt37Xt514="
+          "hash": "8hHNonNDeH8h2d59aMts5nsL4rM07d5om2qND6JCcXk="
         }
       },
       "is_incremental": false,
@@ -297,7 +657,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "0GS3ut8tRAvoNB+H4en52Zs1j4IcSsIT0M1IC1bqTNw="
+          "hash": "uvnYGg5uCq6WsQlGgUimsetj/XnO0Dn2xwzg7TQMxoM="
         }
       },
       "is_incremental": false,
@@ -309,7 +669,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "9JvCrbMhq9Pky/G/+u26f/kYWhzmN2/gtrLWSqp0w+w="
+          "hash": "kpmj/g3tmjgYULMrVcVD7VJXMjDwhKL8tVeZdVKxIvM="
         }
       },
       "is_incremental": false,
@@ -321,7 +681,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/CSharpExpressionConfiguration.html",
-          "hash": "XziOQa7d0QbbeNOC+JbDpd6OdC3Dec5h6E13WEyOS0A="
+          "hash": "RxedCl0ty09w3MOgdLOw8WIHdRaolqu0sZduntor9xc="
         }
       },
       "is_incremental": false,
@@ -333,7 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/CSharpExpressions.html",
-          "hash": "GOI8YLu2byPGwovMU4vImEYcbyG47GLYVN2mJenTmN4="
+          "hash": "+Jwp2QFvhDkFMtgEpEs3qd++zDoUT19AnV51cW8gv/w="
         }
       },
       "is_incremental": false,
@@ -345,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Contributing.html",
-          "hash": "YLZP9wFwRAx/DjrmHy9luqcW9vOqDP8/6TAI8eS9Ido="
+          "hash": "B+JCtfEXLZudLuHivqA4zaGw3bTThe2Q7nLqtlRBgIg="
         }
       },
       "is_incremental": false,
@@ -357,7 +717,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Examples.html",
-          "hash": "vlFukiGOk//o+BEDnmXwJVv9o1GGeAY1NDTM3Hkzcoc="
+          "hash": "LeEkmAdc+wlVjcv4PXfk1ZHvmnkr/QAanY0uPLN1S60="
         }
       },
       "is_incremental": false,
@@ -369,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationBase.html",
-          "hash": "qcPQsxIUQCTgAx+EzXGl1ThgZn5/YwQyIdes4xRgwYg="
+          "hash": "dp95LqVQXXbFfVth8lG88AVEb+teBzKGcjO9+Hqjmjs="
         }
       },
       "is_incremental": false,
@@ -381,7 +741,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationOperator.html",
-          "hash": "5Xz+FannDbsC3nFB8jvpTtkRu0G+PfejrTGOxbKuVT4="
+          "hash": "WZ6q+VA35QmurmQjk/779P0J8TdtVDjd2qFu/WPe3NA="
         }
       },
       "is_incremental": false,
@@ -393,7 +753,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationOptions.html",
-          "hash": "rLdqKnYebsd0OBMzOn/DwMeqj7yisWrssSIHJHo+tO8="
+          "hash": "Loq2iliu4VXZqvwRso6c30vTIH8L1G/v94AnVOfcDyU="
         }
       },
       "is_incremental": false,
@@ -405,7 +765,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurations.html",
-          "hash": "EQaF1YWBaN8fnz5ZpzWeAmFq3B74tDZ0gamHiQ1EAaY="
+          "hash": "XB0VBsUm5RUe0uMzDMAB7NA5a6LlvWeP5O/6a5fMghs="
         }
       },
       "is_incremental": false,
@@ -417,7 +777,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionGroup.html",
-          "hash": "RA33VQ23VONpJP05YxhXEeo8Z4I29Y0HKVSfTC2JPrY="
+          "hash": "Isehno2vgPFsk9d8VV9pc3Jj/Ua1Gr6/JAsfxJR1NPs="
         }
       },
       "is_incremental": false,
@@ -429,7 +789,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionOperandTypes.html",
-          "hash": "pN220JClgDW4bwAFO7WvDRn72fyqfv5EKGd4ScLtguw="
+          "hash": "CxoOm7jb+0hAq3uNl6K7xvqAZvbyAKInvbECqjanfaA="
         }
       },
       "is_incremental": false,
@@ -441,7 +801,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionResult.html",
-          "hash": "rLf6dwYcKoO7maxqPJPFmmGKbDGtLBGrOv65DXAmd5E="
+          "hash": "RK1dsJeKZsjybytAX9LRQN0O385SE5SMnqUf3umsMoY="
         }
       },
       "is_incremental": false,
@@ -453,7 +813,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionType.html",
-          "hash": "iukeZoVdDr8nmPYk9KObbHbF+Aeb6doC5Ca0yHUp/SU="
+          "hash": "6AGnv/RpSdbJI5AQVYRBrrAPMVT2Vhjb8rAHcRx+edM="
         }
       },
       "is_incremental": false,
@@ -465,7 +825,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Component.html",
-          "hash": "lmK9qkBVqKsyfGaeO7Llxmkir7hr6Vrep6kw3zRIZZ8="
+          "hash": "6yj2GcMijjhsCtUqVAOZdY00xm4ZLn5YCLjxgsv9iKo="
         }
       },
       "is_incremental": false,
@@ -477,7 +837,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2ExpressionConfiguration.html",
-          "hash": "qaIiqETEPSXMSFPKDEeJS1M7byBAY85DY4XtT7xYDBI="
+          "hash": "6yywXbkIdXeghgn03vy6YqnQ4KYm66x1XAvDuA8gPuA="
         }
       },
       "is_incremental": false,
@@ -489,7 +849,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Field.html",
-          "hash": "NQ7j2DdobcwAtMRr8/p3xSKE8dUVpJ/7TncY9klPk4w="
+          "hash": "c9yVP2xIvciv8L9TW+3/+T9caEAw7avwwy1VhBFGQR0="
         }
       },
       "is_incremental": false,
@@ -501,7 +861,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2FieldBase.html",
-          "hash": "1CdwUw21AROuVlbSzALpcgnjl3rMON60uWhiGbWUsRo="
+          "hash": "kRgzjEmo3VPSnL6cA12V8oP3bs1k+qTS72XPn76s+C0="
         }
       },
       "is_incremental": false,
@@ -513,7 +873,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2FieldRepetition.html",
-          "hash": "7FGdnLxldi/tKT2vm6HX4GdIiRe29y+RGBc+d2653Ng="
+          "hash": "thaOSe+9ODb/CRPl5RDBBJlNuhoj/pecnr6X4JWii94="
         }
       },
       "is_incremental": false,
@@ -525,7 +885,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Message.html",
-          "hash": "Lyl2d6tSzOHacRIiiLj/TCmQYigDdFUhWXEcjjWWDU4="
+          "hash": "mqK9EE2EzWPVcICz+K4F3ztwMAzIKR+ABy4gqRvcb74="
         }
       },
       "is_incremental": false,
@@ -537,7 +897,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2MessageSegment.html",
-          "hash": "lF+39lDhXvE4BLvavFO/tQqRUaxLIQpOXOm//t1nEtU="
+          "hash": "Ls4YDf0F4ipdMNR7JijaGfR/spDm4wsB6VmCm03Sz9Q="
         }
       },
       "is_incremental": false,
@@ -549,7 +909,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2MessageSegmentExpressions.html",
-          "hash": "PR1SrG34IzUWQDoSkWrU3aVrBiQyI6VXFXmUfnWuGy4="
+          "hash": "Ia0AG/o3kEHviCnlZpUBUtjEGcqAkVFjYxZreF4riTM="
         }
       },
       "is_incremental": false,
@@ -561,7 +921,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2SubComponent.html",
-          "hash": "CLyBHmcTaZS/k8qwspkuoLk0yc4doxQDmLaV4mCT8ys="
+          "hash": "4L2FCzdqtV//dkDy5LBX6r3Z+t6ujwrtWAApLdEUtyg="
         }
       },
       "is_incremental": false,
@@ -573,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Installation.html",
-          "hash": "yrJRJSmf3V5QZKSBCHWwGQfRa9E2j/etR1eDeCRF9y8="
+          "hash": "K3WOUzJTF9qBRvkTq26z8SVZnrXqaBEIBF+He0zrR9k="
         }
       },
       "is_incremental": false,
@@ -585,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/License.html",
-          "hash": "uodKk8fpqKPSCSj6lKVfGLAB63XwttoBoojnZ1fAEcE="
+          "hash": "Xgd7s6g0XjTbRB9ec21bDX8+NQBEKt1SyObE3KKRKRs="
         }
       },
       "is_incremental": false,
@@ -597,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Operand.html",
-          "hash": "5WbcPcTmBsKlyVAWEHNG7u/Ez7t0tsXDPhjWCypNQHE="
+          "hash": "KCAGB3HwfyglBk5fHhJosPASe06kzVnDTJwW6L4ttkI="
         }
       },
       "is_incremental": false,
@@ -609,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Operator.html",
-          "hash": "L+ydu5V6cGBUmnz7k8wScfBs39DO674HaAufVFdLKLg="
+          "hash": "wl7vdFw9xBvO268ZUV8xEVNRctJ4iUwW1Y9+kcij3Ec="
         }
       },
       "is_incremental": false,
@@ -621,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/OperatorLocation.html",
-          "hash": "JgPl+5Xgami6k3r1k3oNBtElZ0/m6QUDe9eQ3ze0UJc="
+          "hash": "UfG2aXKZrvvtUs+B3j0E/D6ISUXVlQIP5bPowSTllU8="
         }
       },
       "is_incremental": false,
@@ -633,7 +993,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/OperatorPrecedence.html",
-          "hash": "GWuVgoLpRoUuKECreC7y51GDg6y6a2tePkNdcXYEZNg="
+          "hash": "cvqPEe+t+nhppnJIxJUVFTU7+u7HNFnZj5FLCa2/+zA="
         }
       },
       "is_incremental": false,
@@ -645,7 +1005,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/OperatorType.html",
-          "hash": "Hxrhdp7YXDC4nXCI9HrJaY2KpNToQPgOIZaO6fRQaNI="
+          "hash": "uwBhxCPN3viHzKlBPf/nTHx+T+ZLfVlk8+EteIFbwHI="
         }
       },
       "is_incremental": false,
@@ -657,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Overview.html",
-          "hash": "mRhPKbz6FSghekjAqdY0/W2n3zEfFOJgcRpVzRfna8c="
+          "hash": "FNJkjxU8yBno1oRloOUjMYdGAwKRF0ofwluRWVD48JU="
         }
       },
       "is_incremental": false,
@@ -669,7 +1029,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Requirements.html",
-          "hash": "l7wtZ2KZEAFkMdejYvOhf7WIaAgkafBb8m2AZLZMJ0k="
+          "hash": "AQBItMmdv38yVTla9raz9Wp3vpdfnpXK+nCya6qfjM8="
         }
       },
       "is_incremental": false,
@@ -681,7 +1041,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Roadmap.html",
-          "hash": "2zmy0jZQs1uu4TvwQN2iDT5rw50Jormr9HeJn5M+hcs="
+          "hash": "0ySIkv2808C3vuBY8BF4zMArQGrk+4Ak185Al7TygBQ="
         }
       },
       "is_incremental": false,
@@ -693,7 +1053,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/VariableType.html",
-          "hash": "SwqIGR6V9gfU5fw4Su0Ivakdj9Q0Dw/4PeTPWz14XIg="
+          "hash": "SoBb6m47DfVyctcjDtccZgTWGNmslCTckxOcArgGOdw="
         }
       },
       "is_incremental": false,
@@ -742,7 +1102,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "r9WxMaazYpVhsEETmmCv0OdP51fEyzMygqzyjqHI+ro="
+          "hash": "JfxGdEh7aX/R9kWrUQSY371TiVjxSGXWKFD729YHkIo="
         }
       },
       "is_incremental": false,
@@ -781,7 +1141,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 24,
+          "total_file_count": 48,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
