@@ -121,7 +121,7 @@ namespace ExpressionEvaluatorForDotNet
                 Value = value
             };
 
-            if (value.Contains(HL7V2ExpressionConfiguration.subComponentDelimiter))
+            if (!string.IsNullOrWhiteSpace(result.Value) && result.Value.Contains(HL7V2ExpressionConfiguration.subComponentDelimiter))
             {
                 var subComponents = result.Value.Split(HL7V2ExpressionConfiguration.subComponentDelimiter);
                 for (var i = 0; i < subComponents.Length; i++)
