@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -48,6 +49,25 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			// shouldn't be incremented
 			Assert.AreEqual(count, 2);
+
+			var greaterThan = expressionConfiguration.BooleanOperators.First(o => o.ExpressionOperator == Operator.GreaterThan);
+
+			var guid = $"{Guid.NewGuid()}";
+
+			greaterThan.OnAfterOperatorExpressionSolved = (expResult) =>
+			{
+				count++;
+			};
+
+			result = evaluator.Evaluate("1>2");
+
+			Assert.AreEqual(count, 3);
+
+			greaterThan.OnAfterOperatorExpressionSolved = null;
+
+			result = evaluator.Evaluate("1>2");
+
+			Assert.AreEqual(count, 3);
 		}
 
 		[TestMethod]
@@ -88,6 +108,25 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			// shouldn't be called
 			Assert.AreEqual(count, 6);
+
+			var greaterThan = expressionConfiguration.BooleanOperators.First(o => o.ExpressionOperator == Operator.GreaterThan);
+
+			var guid = $"{Guid.NewGuid()}";
+
+			greaterThan.OnAfterOperatorExpressionSolved = (expResult) =>
+			{
+				count++;
+			};
+
+			result = evaluator.Evaluate("1>2");
+
+			Assert.AreEqual(count, 7);
+
+			greaterThan.OnAfterOperatorExpressionSolved = null;
+
+			result = evaluator.Evaluate("1>2");
+
+			Assert.AreEqual(count, 7);
 		}
 
 		[TestMethod]
@@ -122,6 +161,26 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			// Assert
 			Assert.AreEqual(answer, result);
+
+			additionOperator.SolveOperatorExpression = null;
+
+			var greaterThan = expressionConfiguration.BooleanOperators.First(o => o.ExpressionOperator == Operator.GreaterThan);
+
+			var guid = $"{Guid.NewGuid()}";
+
+			greaterThan.SolveOperatorExpression = (expGroup) =>
+			{
+				return new ExpressionResult
+				{
+					Value = guid,
+					Type = VariableType.Boolean
+				};
+			};
+
+			result = evaluator.Evaluate("1>2");
+
+			Assert.AreEqual(result.Value, guid);
+			Assert.AreEqual(result.Type, VariableType.Boolean);
 		}
 
         [TestMethod]
