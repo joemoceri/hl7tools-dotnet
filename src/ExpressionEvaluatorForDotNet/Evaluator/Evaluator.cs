@@ -114,7 +114,8 @@ namespace ExpressionEvaluatorForDotNet
         {
             if (expressionConfiguration is HL7V2ExpressionConfiguration)
             {
-                if (expression.EndsWith(HL7V2ExpressionConfiguration.fieldDelimiter) ||
+                if (
+				expression.EndsWith(HL7V2ExpressionConfiguration.fieldDelimiter) ||
                 expression.EndsWith(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter) ||
                 expression.EndsWith(HL7V2ExpressionConfiguration.componentDelimiter) ||
                 expression.EndsWith(HL7V2ExpressionConfiguration.subComponentDelimiter)

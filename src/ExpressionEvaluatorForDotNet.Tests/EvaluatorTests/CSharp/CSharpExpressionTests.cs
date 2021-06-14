@@ -145,6 +145,14 @@ namespace ExpressionEvaluatorForDotNet.Tests
         }
 
 		[TestMethod]
+		public void ExpressionTests_ExpressionResult_ShouldReturnFalseIfComparingToDifferentType()
+		{
+			var expResult = new ExpressionResult();
+
+			Assert.AreEqual(expResult.Equals(new string("")), false);
+		}
+
+		[TestMethod]
 		public void ExpressionTests_ShouldThrowArithmeticExceptionIfOddAmountOfDoubleQuotesFound()
         {
 			var expression = "\" \" \"";

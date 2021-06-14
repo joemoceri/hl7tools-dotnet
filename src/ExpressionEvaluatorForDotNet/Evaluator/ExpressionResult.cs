@@ -41,13 +41,13 @@ namespace ExpressionEvaluatorForDotNet
 				return false; 
 			}
 
-			if (expressionResult.GetType() != this.GetType())
+			if (expressionResult.GetType() != GetType())
 			{
 				return false;
 			}
 
 			var compareTo = (ExpressionResult)expressionResult;
-			return compareTo.Value == this.Value && compareTo.Type == this.Type;
+			return compareTo.Value == Value && compareTo.Type == Type && compareTo.GetHashCode() == GetHashCode();
 		}
 
 		/// <summary>
