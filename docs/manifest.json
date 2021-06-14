@@ -1,18 +1,15 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/jmoce/source/repos/expression-evaluator/src/ExpressionEvaluatorForDotNet",
+  "source_base_path": "C:/Users/jmoce/Source/Repos/expression-evaluator-dotnet/src/ExpressionEvaluatorForDotNet",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html",
-          "hash": "df4u6bGi6YlWsLiu3HVwydOSGCL2wylGNK2xX7SMZMA="
+          "hash": "wzcRMsSxqTCAF5uhtJN0SOzPBW7abBlf8/DPD6RbgNI="
         }
       },
       "is_incremental": false,
@@ -24,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.Evaluator.html",
-          "hash": "whGFJkRvtpCPP37JG/8tUQn+l43HyxmjNDIwicYsWXg="
+          "hash": "ZXx7D01gkpBRaUuJbBummkJgSDS+vv7uzmrImwLFIFw="
         }
       },
       "is_incremental": false,
@@ -36,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.html",
-          "hash": "HbQyoe3s7B9KPKLObH8uC1Bn8NpfLPcziqhU6T7OfHA="
+          "hash": "L8ioAVELNs2v4FW2QXIRa9zUnZD9S57zsAYdF1F3V2A="
         }
       },
       "is_incremental": false,
@@ -48,25 +45,22 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html",
-          "hash": "kOxH2lEQF0JxTWM+laN0qcfw6pVD8qFGTd/q97dc99w="
+          "hash": "DIH6Yvmi+KUNkx9MHPpVHtuiPXWROC3UhY/wZ/CExvo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.html",
-          "hash": "k1FXYceYydhxe42Jm9YBJ0OQqOawzstu5mpxMzA/sYU="
+          "hash": "Jo/VdVPGA2o+d0niNxqkSmZCZ+gsFVTYqQCOpByNcsg="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -75,40 +69,34 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionGroup.html",
-          "hash": "EQEgPZ0EqhDFBD/NLT7cNuR56t4pquc4MpRXIfE32Mc="
+          "hash": "mJzTaVep1ZyAQtx6ACTDPaGDoIAK5gC7dsOPP4MYeJU="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.html",
-          "hash": "cAwkfqFknkc4HjVsayvU2WYfnThptKNXpz2Mfvf8keA="
+          "hash": "h2tohG3nyC2d1irNLao5o9Dx/NZir0xsYTg72U54qQw="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionResult.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionResult.html",
-          "hash": "7w3Tz0j6jQ0BcUvF/8U2dX6IDjHaERwhtc6G1kyNdy0="
+          "hash": "ugFZpc91iB1SBsHqhRrLxNpA/AH31XMGWbyertTDNhg="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -117,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionType.html",
-          "hash": "quwn6yxX+cn+ibFVcQq3lrEqUn5e3CeUGEWFfu0VHIc="
+          "hash": "qs5gcXqxdIDyJ+mDFWa34fWhdc37Xg/qi23n8of8fYk="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -129,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Component.html",
-          "hash": "5OWZcr9SwUfsoA+J54vpbY2BUthXAY0KWr6B+9L1jPw="
+          "hash": "m3wmY6wXVnYYrfm3NkryDc7KDFpiEEY3O9/Q22BnlbM="
         }
       },
       "is_incremental": false,
@@ -141,97 +129,79 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html",
-          "hash": "pMBlHhK8tYsGcw9mYA19joRfXJbTqf4Xze8mGrW2xYA="
+          "hash": "EPvYuEk+7cuJSAIsh2u0ifF68TVJuRNZdxKakLGZ84U="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Field.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Field.html",
-          "hash": "FQwGsSyMeWYegBxMPaAEG2IDPVWH0XW0AdpuIqy1Y9k="
+          "hash": "tZtQroIlWgsCaKx+RpMEOmqq4nVAT89OJFvmwV8Z7wA="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.html",
-          "hash": "3tSvM6QHmXib/7KSFd/z4Cr6nkCuFa4p5Hs0lgripOU="
+          "hash": "mohcBy1V4AEbDNKlQ6zo0/GeX26cO/Qqqdc+qZD5lbs="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html",
-          "hash": "aYl73GatRp/x65cP54SDMYulAbK0slcJCBYegy3u3BM="
+          "hash": "big9YRN5IqtkeTZfcdi+rNPoPuwuu6GsR2KbX26rkD8="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Message.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Message.html",
-          "hash": "i9LvkX3/NOPUanhlsYoeid22TF7u9UsE6bG9MkSoAXE="
+          "hash": "O+Pd/N47A9mbHL40aMxBC5hPeE/6I+VCog8G+ojS9gk="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html",
-          "hash": "Bf9lFjLCPnV1FDNZ6bJEaj346KWhin8aUnWH62gBvOI="
+          "hash": "PufZx8uTJgBAS1783NdNpQkNKvUkxM+ccMm9+QFPvD8="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2SubComponent.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2SubComponent.html",
-          "hash": "9krhfU1fI2R7WCH8bn6CXgY4ai2gWqkLz0mWWGmbvzk="
+          "hash": "28PHy54iMqsmPacuuFghSdwfWgL1Jy+coW1bZwqBdrc="
         }
       },
       "is_incremental": false,
@@ -243,409 +213,79 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.Operand.html",
-          "hash": "TxA59uTpNeLpYozBemYGvy1T1FQjbojp7KbLy84gnyU="
+          "hash": "TYev+H3sbGC20rrfCbiHd1SgvQOjNYBqkoDBWIxVoks="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.Operator.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.Operator.html",
-          "hash": "/8SOjvU0hXN5K+VgDYg7iOc10Ywmd78jf6DYL7ukkuI="
+          "hash": "MxuCDH7wtqAKtAfTpfEoQvpBf9cf7NwmHd12XPl9KAQ="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.OperatorLocation.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.OperatorLocation.html",
-          "hash": "RzWwN34+OZuVrXUGe1VO1USdpM2weOprYjUq5pAcGMQ="
+          "hash": "jgpFCMktYFNtEbHfByU/r6CzsVRicFH3uxxFxfMimps="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.OperatorPrecedence.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html",
-          "hash": "wkFmAWAVF5kOPZZHhTAeexH47LzoIK1MQjvO1sXkEK0="
+          "hash": "g1zVqpWFsZ4jG1iKmcngisNHI9L+uPrrL23eVjIe6xw="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.OperatorType.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.OperatorType.html",
-          "hash": "+l5dWHDOmjIDSC/0h3TkCds/hp3923j0jSI4rTM9CVg="
+          "hash": "qjJZtxvuPOtX8aXOrPlAlAHyVBhlcvQOntH8HH/9DxQ="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.VariableType.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.VariableType.html",
-          "hash": "h8HFQc2i5fULhnfWHuLacGX3bL0NNWpI/+9mTAGkXpE="
+          "hash": "rCTXao7jKjHKSYYhshCHogKJfEr2JGHJPg2LrQc7/iA="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.yml",
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.html",
-          "hash": "2wme8TiXeE5xMBr4Sv1uPcdWriYd9gPNd8B0eemslZo="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.CSharpExpressionConfiguration.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.CSharpExpressionConfiguration.html",
-          "hash": "nLDig5i7nMmUxVQ38N/BDTmoHvhnDOvaiqhi5/5dNf4="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Evaluator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Evaluator.html",
-          "hash": "uVPgwFtlwxheZoy5tHve8TQvHVuyCOzFcDbBdjri/U4="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.html",
-          "hash": "VZPFEtCYmUOScoc1T/LKoslKidmdn5IAnqv0t3mp58o="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOperator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOperator.html",
-          "hash": "+kDw85oUAdv5sRxVNcEoupXb2JHVl/vee9oeU1x++0I="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationOptions.html",
-          "hash": "Jh9a2Zy2IQ4dI8j5Z54tI9om7GTkmoviK3j+Njkrm6g="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionGroup.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionGroup.html",
-          "hash": "t2BOvXMSl0AArAoD2NfTCh55jJzPTGeJVE4tlFHYzL0="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionOperandTypes.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionOperandTypes.html",
-          "hash": "jyEgYzOI10G1V/yx69sYjRLVNDaO0NZdVlfKMjxQdmE="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionResult.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionResult.html",
-          "hash": "JyFOfK7AT9/UhNqVbCZpA0ol6h/6b3vLHfTmmVut9PA="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionType.html",
-          "hash": "buJ3hmMZE92cEKyb7o1rhX6rLid/rfmnEU3/0gcagUQ="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Component.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Component.html",
-          "hash": "LgGRB7OPiIx3BlzTKCX9sCMDPLqNxS7nR7N2rV2OaWk="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2ExpressionConfiguration.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2ExpressionConfiguration.html",
-          "hash": "Aa2iF4FN6LE6RGBVHATyxAkn0Lkn2tZqn85RkKKvztA="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Field.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Field.html",
-          "hash": "Q6+mClwn6CdtR9+3QSRKK9TkZfr8HqUxL8FDmNzW6CA="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldBase.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldBase.html",
-          "hash": "MLjFsm3TYqhxzFro1xsC2RiLekC/HUTbzS01PNTfaQ0="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldRepetition.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldRepetition.html",
-          "hash": "sAFS0UBvVJaDVGVXH5w1XHCHBOyUhM3i9QmQqQDRv9g="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Message.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Message.html",
-          "hash": "uUAjJILW7ZF173aazXe3kkuNzqD4ZATXoEUIFWHYxps="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2MessageSegment.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2MessageSegment.html",
-          "hash": "4MmKtbk8yP7Bh6bg6sJmQxmV7hwlWov8/h0kuINUY2U="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2SubComponent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2SubComponent.html",
-          "hash": "bbliwVGm7Q/1KSxbTYyy8N6eftvy8hW0Hy3BlqHQwXQ="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "DuplicateUids"
-      ],
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operand.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operand.html",
-          "hash": "WxDR0zvFPK9ZUXam6VykrolWE/siJeV3zfiMwFaEYog="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operator.html",
-          "hash": "1KtRKyjhv2f0HLBgoHXQWL7bqqX0EsV2k09a6z2aZwY="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorLocation.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorLocation.html",
-          "hash": "LQkovGcWqSa5HVzOUmiXQ1qcG9u2+3eqQbVdeZyAI68="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorPrecedence.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorPrecedence.html",
-          "hash": "leT3vmg8T1mtxT3ytOcxh55E6KRpQApbPv2UTnL1TMo="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorType.html",
-          "hash": "/RJxZ96KNIH5Ne+ZVd0eGfOeO0GE2dlXm1cl1pgEMB4="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.VariableType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.VariableType.html",
-          "hash": "s6TlkpNsPJjnCHOdUV0IuyUcOfEnPFkYJhV+QHfC7ac="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.html",
-          "hash": "2wme8TiXeE5xMBr4Sv1uPcdWriYd9gPNd8B0eemslZo="
+          "hash": "zIEK6yds7xKTIJtNitWs15B5R2G4eYfFvH4HfAhzMgg="
         }
       },
       "is_incremental": false,
@@ -657,10 +297,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "8xY1MsAo0DAwF8y4v2SKjBMrEDYzlYCNhl9nH2EWP1w="
+          "hash": "Dt9HFf/ucywxafHHfb6mZvb3IrOgkCeyQNOeWT8CAeo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -681,10 +321,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/CSharpExpressionConfiguration.html",
-          "hash": "E1Vxd9K5lyhjgfd8iO6kppAelpoYPtavpZO6bMTgyO8="
+          "hash": "Y9rMTjn89P0id5ipqB/4lQoGuKFaS/iAf4GB2LC0pvA="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -693,10 +333,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/CSharpExpressions.html",
-          "hash": "3FBP0l68F6ezJtvL627aqfrCcfwuoTmJAHo/pMKRtOU="
+          "hash": "HvfHkIMPpdx0IMqp3iXf51ptAPoynP6sZcZx+9HLrJY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -705,10 +345,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/Contributing.html",
-          "hash": "YMqNwWeyzAG2DD2M/f8e4j72OXaZiAtnghjzLJj0URw="
+          "hash": "D47jnggnCrdbwh9uo3v6mibzOAbrem0pba4sCKW+aLg="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -717,10 +357,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/Examples.html",
-          "hash": "/cer4jg7tz7qNXs64uMzyBUD14MqnzqCKOOKPd55vAk="
+          "hash": "VI+AvFOhL7wN+ZQcb/h/AmDrzzC9np5R13A23Xq1r+Q="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -729,10 +369,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationBase.html",
-          "hash": "qK1I7pCD6Nf6ZLYsicMGQeVKLTMLHxGf3GAuJ2+esNo="
+          "hash": "UnbT/lsqYuOuJT22o3PP+QzzU2W3qOk9g4tRxojiHDY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -741,10 +381,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationOperator.html",
-          "hash": "5w93ciQ3bxT124okBOyEr1tKsnAUNTQUS1H6Na1eqSg="
+          "hash": "B6THGd3y5fk3q+o26A+MpLHMnNq/BL7DjusVihqPZgI="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -753,10 +393,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationOptions.html",
-          "hash": "VlVIAY9VfhpNN9UAbPoC94CcxG2Lin6r00jfCOu9F8I="
+          "hash": "HCXG6ILyaH1R/FaosTdo81CqBu3MV58FU5mWPll6zRM="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -765,10 +405,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurations.html",
-          "hash": "T7yjq3Bn6UYm3+TMO1MqYqd3DzAic5qfkXGM41t8YjQ="
+          "hash": "QtXqDDuFPV2LlURR6nlMjof4UcJYLjUS5NtjMdBDKV0="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -777,10 +417,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionGroup.html",
-          "hash": "19hdtBxSJHeY6zLqsnwzsv8MDsDaBYoJ69wmvwQwIw8="
+          "hash": "74W6tUJDBRO4kxxQYStfiUzVUWBUcdvOGyLBsClJdfA="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -789,10 +429,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionOperandTypes.html",
-          "hash": "m5eZMPsC0sqWmVmfazpxCaeiTWmaNf21tmluHS0aDbo="
+          "hash": "UUtTJb/vcxUlSoUF+c2Uobs1qfr2hgqSyi/fwf0nTzk="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -801,10 +441,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionResult.html",
-          "hash": "61NQLs8L6spfhqfvLpVfTbsZ8egXLeo54K74ShyrX/c="
+          "hash": "Tab3EkUWc31u37hvf7rvNMsooudZH675kmfM70Ne2+I="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -813,10 +453,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionType.html",
-          "hash": "pDll8XokI/GqanYgoowd3bRvXV+Dn6u5AWhO3cuZrLE="
+          "hash": "FpGQTQVgZ+mgEzg9gdajY4IqiAlFbEwJrc7n6NlvOIs="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -825,10 +465,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Component.html",
-          "hash": "jS45F5OseqnkRpmb6Cq2yIvN3G+QIen2SG/Y9n4w8ss="
+          "hash": "hE/knKHxRisUZBpMxSYxbioctRyu6tG3qfK5QTDvhOM="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -837,10 +477,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2ExpressionConfiguration.html",
-          "hash": "ohOJeeMokut8H+3EK7G6MvBoECJO1COTFKIAPllews8="
+          "hash": "DC1BQWDSbRRdAH89apnWJYqkR8A6Qt/NzbbIKwdaens="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -849,10 +489,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Field.html",
-          "hash": "afu6Sj9e+gTiDv1P8ue+mN2Dy3UbT4uE7AMVWyVBu8g="
+          "hash": "XTXxzcHLvIbMnTp9xOCmrbcNAgEZuzYLBv34SYSTLsY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -861,10 +501,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2FieldBase.html",
-          "hash": "mDGBrpeEu9XCuSs6loJTaOp2i6LMdy+CA2w9enVKwTk="
+          "hash": "7I/NGKXBnXZtN0GeuosGFn8/3puiojeP1Zm87z2/dRo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -873,10 +513,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2FieldRepetition.html",
-          "hash": "7TjujCMz8bW6hyQKyOg9R53puTLU5KFH3maFN7bBeDc="
+          "hash": "tOqrM+yfwLJbTrm/HEOHgTlWb25Evg7KOV+sErHdaHY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -885,10 +525,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Message.html",
-          "hash": "J8sf8TiK7xCFpKpl/B6hnrZZS9xixup8DdZSN908GLA="
+          "hash": "iXHNcq7hEt//exSi6F4z6GJALJNFWTbH/iDc5UMSPQQ="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -897,10 +537,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2MessageSegment.html",
-          "hash": "8sUv7d+YjpuV4zWwRTIEeugNPSMKlEcTWULwU1Yhu7s="
+          "hash": "oHQX6PZ7PeHMyauJ39+p1DOdIZpGNk0Uh9cCBfW8LTk="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -909,10 +549,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2MessageSegmentExpressions.html",
-          "hash": "spJlspCAl+50T0JWBoUxt81I53AW8fXQJ+YVwBnjMag="
+          "hash": "qZBB6GpnNpBqbU/TORX5Sze+O0jkFQ3iXtyHYRDxTuQ="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -921,10 +561,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2SubComponent.html",
-          "hash": "JCBi4w/xtZ5jP7VYpj2wWD/Wjs2F+YgBZ/3Mh9cTFVA="
+          "hash": "4YBnVfjMl0PaISiT91s1A+7pcHnu++pj4FgSY675ylo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -933,10 +573,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/Installation.html",
-          "hash": "9A72DScXHC1L2wbUXh4W5KQfVo/bxrzKJYQ3pVetb+8="
+          "hash": "1/D3k3Aaca1wA8sfpAprgre6uPwhDKUMJzzD9Ufyark="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -945,10 +585,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/License.html",
-          "hash": "z/ugDB6dRS+0Fz2ltDY31UifPCZMZwfPZ4IvxqX7B40="
+          "hash": "1TOvqQTwBMW2iwO/gRAcF+QrwT8l40qjx83DKunWv04="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -957,10 +597,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/Operand.html",
-          "hash": "oytDOY3DAd/IkBRayJJsrG5NB7PQohzY3ySwqygzFn0="
+          "hash": "5XDUazTBUV0AqjG9R+UVFnGFD2J36ncuzaP/MKenHJg="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -969,10 +609,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/Operator.html",
-          "hash": "AIJUMuWT+P6f8CSDJ7E+p5pehHIz/VdOOi4VR0gV3QQ="
+          "hash": "l8z923foiZQXGJqxazLmK0JQEhmnMLnWoMDFmaeVwaY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -981,10 +621,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/OperatorLocation.html",
-          "hash": "dNmWk2pUdmmRwrqJtKA+MqbelYvkmUU/UrswSVOrvLA="
+          "hash": "zoxhpjd5uR4pSqRJMDw5hd+/3Am0l3add6Ovrt12Zfo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -993,10 +633,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/OperatorPrecedence.html",
-          "hash": "/dmXUbIXAI1Y8BOdx4rKA6Ntb6LUf4xA74n7Atu3lfM="
+          "hash": "1YZVPZ/hhtJZGNT6BV+EwfZQLb0IuMDsbct+RMSriFc="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1005,10 +645,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/OperatorType.html",
-          "hash": "PXw14+yDi0ufVMuxA3evLGF/wY0+huJT525nnwFxReY="
+          "hash": "Qk2TIRDdAyxGMZ/2pXkJF9kE1D/l+CI8b30dlDhXlQk="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1017,10 +657,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/Overview.html",
-          "hash": "2OwUABjBaIAtPH66H22DER42dSeFg4ltNzwvXJZR2k4="
+          "hash": "BgMfSlDPjORXXrN43vO0s4yKm/g6on+TBbdG1ITprF8="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1029,10 +669,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/Requirements.html",
-          "hash": "f7Blkt/vn+E40Z9C9xC5G1xoeqNuUmAyIHNGtxtSIdE="
+          "hash": "XPVhNyYbm9fi2PFT71XrlSGfjfO0uDqvXyw2+U/+xm4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1041,10 +681,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/Roadmap.html",
-          "hash": "FttSmE55259mdzz5oEV+mupjrhrP92Xsd97DeFncfLQ="
+          "hash": "eRiOMmENjyXPmC84shafmQmkrjYTHcegzoAWDFoSCm0="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1053,10 +693,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/VariableType.html",
-          "hash": "nOxCfuZjANQt+eyUnlbpSjt/GtRUoGbc9ppYzDljYTg="
+          "hash": "H86Gfi+UWyg64wEEFPbhQ3n9foqQoWjy/rClM6pYRdU="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1102,10 +742,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "J9GGrFhJICl72dwAqoJcCCskVw1PXxKWzksvfWz+S8A="
+          "hash": "Jcx0KG3zDk/W+d2X5J046nbAHdAYfZRU1m3ax1MDgYY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1124,25 +764,23 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Disable incremental build by force rebuild option.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "ForceRebuild"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 34,
-          "skipped_file_count": 0
+          "skipped_file_count": 34
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 48,
-          "skipped_file_count": 0
+          "total_file_count": 24,
+          "skipped_file_count": 18
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
@@ -1162,8 +800,8 @@
     },
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0
