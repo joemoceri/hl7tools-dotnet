@@ -502,7 +502,7 @@ namespace ExpressionEvaluatorForDotNet
 						string GetLeftBooleanOperand(string expression, int operatorLocationIndex)
 						{
 							var leftHalf = expression.Substring(0, operatorLocationIndex);
-							int? startIndex = null;
+							int startIndex = 0;
 							int? booleanOperatorIndex = null;
 							var booleanOperators = expressionConfiguration.BooleanOperators;
 
@@ -515,24 +515,17 @@ namespace ExpressionEvaluatorForDotNet
 									continue;
 								}
 
-								// get the furthest away operator to get the correct left operand
-								if (startIndex == null)
-								{
-									startIndex = operatorIndex;
-									booleanOperatorIndex = i;
-								}
+								startIndex = operatorIndex;
+								booleanOperatorIndex = i;
+								break;
 							}
 
-							if (startIndex == null)
-							{
-								startIndex = 0;
-							}
-							else
+							if (startIndex != 0)
 							{
 								startIndex += booleanOperators.ElementAt(booleanOperatorIndex.Value).OperatorName.Length;
 							}
 
-							return leftHalf.Substring(startIndex.Value, operatorLocationIndex - startIndex.Value);
+							return leftHalf.Substring(startIndex, operatorLocationIndex - startIndex);
 						}
 
 						string GetRightBooleanOperand(string expression, int operatorLocationIndex, int operatorValueLength)
@@ -874,10 +867,11 @@ namespace ExpressionEvaluatorForDotNet
 						Left.Value = TrimOperand(Left.Value);
 						Right.Value = TrimOperand(Right.Value);
 						
-						if (expGroup.ExpressionOperator == Operator.Addition)
-						{
-							answer = Addition(Left.Value, Right.Value);
-						}
+						answer = Addition(Left.Value, Right.Value);
+						//if (expGroup.ExpressionOperator == Operator.Addition)
+						//{
+
+						//}
 						//else if (expGroup.ExpressionOperator == Operator.Multiplication)
 						//{
 						//	int number = int.MinValue;
@@ -943,7 +937,7 @@ namespace ExpressionEvaluatorForDotNet
 						{
 							leftOperand = GetLeftStringOperand(expression, operatorLocation.Index.Value);
 						}
-						else if (expressionTypesGroup.LeftOperandType == ExpressionType.Math)
+						else
 						{
 							leftOperand = GetLeftMathOperand(expression, operatorLocation.Index.Value);
 						}
@@ -953,7 +947,7 @@ namespace ExpressionEvaluatorForDotNet
 						{
 							rightOperand = GetRightStringOperand(expression, operatorLocation.Index.Value);
 						}
-						else if (expressionTypesGroup.RightOperandType == ExpressionType.Math)
+						else
 						{
 							rightOperand = GetRightMathOperand(expression, operatorLocation.Index.Value);
 						}
@@ -1140,7 +1134,7 @@ namespace ExpressionEvaluatorForDotNet
 										}
 									}
 									// if it's at the start or implicit negative, account for it
-									else if (i == 0 || expression[i] == '-')
+									else 
 									{
 										startSubstringIndex = i;
 										substringLength++;
@@ -1273,7 +1267,7 @@ namespace ExpressionEvaluatorForDotNet
 				char? previousCharacter = index - 1 >= 0 ? expression[index - 1] : null;
 
 				// is it prepended by an escape backslash?
-				if (previousCharacter != null && previousCharacter == '\\')
+				if (previousCharacter == '\\')
 				{
 					return false; // skip over escaped quotes
 				}
@@ -1284,7 +1278,7 @@ namespace ExpressionEvaluatorForDotNet
 				}
 
 				// otherwise check if the current character is equal to the current quote, single or double
-				return currentCharacter == currentQuote;
+				return currentCharacter == currentQuote.Value;
 			}
 
 			string ReplaceExpressionWithResult(string expression, string expressionSearchingFor, string expressionResultToReplace)

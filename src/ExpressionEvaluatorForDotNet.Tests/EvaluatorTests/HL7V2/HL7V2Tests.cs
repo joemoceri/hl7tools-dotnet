@@ -659,6 +659,8 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			gt16[16].Id = 1;
 
+
+
 			// insert component by repetition
 			id = gt16.Components(2).Count / 2;
 			previousCount = gt16.Components(2).Count;
@@ -771,6 +773,10 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(fieldRepetition, null);
 
+			fieldRepetition = gt16.UpdateFieldRepetition(1, "_test");
+
+			Assert.AreEqual(fieldRepetition, null);
+
 			gt16.GetFieldRepetition(16).Id = 1;
 
 			// update field repetition
@@ -793,6 +799,38 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			fieldRepetition = gt16.UpdateFieldRepetition(gt16.FieldRepetitions.Count, "_test");
 
 			Assert.AreEqual(fieldRepetition, null);
+
+			component = gt16.AddComponent("1&2&3");
+
+			Assert.AreEqual(component.SubComponents.Count, 3);
+
+			gt16.FieldRepetitions[0].Components.Clear();
+
+			component = gt16.InsertComponent(1, "test");
+
+			Assert.AreEqual(component, null);
+
+			component = gt16.UpdateComponent(1, "test");
+
+			Assert.AreEqual(component, null);
+
+			gt16.FieldRepetitions.Clear();
+
+			fieldRepetition = gt16.InsertFieldRepetition(1, "test");
+
+			Assert.AreEqual(fieldRepetition, null);
+
+			fieldRepetition = gt16.UpdateFieldRepetition(1, "test");
+
+			Assert.AreEqual(fieldRepetition, null);
+
+			component = gt16.InsertComponent(1, "test");
+
+			Assert.AreEqual(component, null);
+
+			component = gt16.UpdateComponent(1, "test");
+
+			Assert.AreEqual(component, null);
 		}
 
 		[TestMethod]
