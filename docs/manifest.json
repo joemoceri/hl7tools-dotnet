@@ -19,6 +19,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.Evaluator.yml",
       "output": {
@@ -31,9 +34,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.yml",
       "output": {
@@ -73,6 +73,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.ExpressionGroup.yml",
       "output": {
@@ -124,9 +127,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Component.yml",
       "output": {
@@ -166,9 +166,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.yml",
       "output": {
@@ -181,9 +178,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.yml",
       "output": {
@@ -196,6 +190,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2Message.yml",
       "output": {
@@ -223,9 +220,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.HL7V2SubComponent.yml",
       "output": {
@@ -238,9 +232,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.Operand.yml",
       "output": {
@@ -253,9 +244,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.Operator.yml",
       "output": {
@@ -268,6 +256,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.OperatorLocation.yml",
       "output": {
@@ -307,9 +298,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/ExpressionEvaluatorForDotNet.VariableType.yml",
       "output": {
@@ -327,7 +315,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ExpressionEvaluatorForDotNet.html",
-          "hash": "GSnur41CZZV4weUb64Z1GCPOD77XnE9ZwDvQ19KgMq4="
+          "hash": "IdJrenPLhzSvld2gOaiVYUWGDIFSXygmaJ9Um5RxBbc="
         }
       },
       "is_incremental": false,
@@ -346,9 +334,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Evaluator.yml",
       "output": {
@@ -361,6 +346,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionConfigurationBase.yml",
       "output": {
@@ -400,9 +388,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.ExpressionGroup.yml",
       "output": {
@@ -457,6 +442,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Component.yml",
       "output": {
@@ -496,6 +484,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldBase.yml",
       "output": {
@@ -508,6 +499,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2FieldRepetition.yml",
       "output": {
@@ -520,9 +514,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2Message.yml",
       "output": {
@@ -547,6 +538,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.HL7V2SubComponent.yml",
       "output": {
@@ -559,6 +553,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operand.yml",
       "output": {
@@ -571,6 +568,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.Operator.yml",
       "output": {
@@ -583,9 +583,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.OperatorLocation.yml",
       "output": {
@@ -625,6 +622,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.VariableType.yml",
       "output": {
@@ -645,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Io.JoeMoceri.ExpressionEvaluator.html",
-          "hash": "GSnur41CZZV4weUb64Z1GCPOD77XnE9ZwDvQ19KgMq4="
+          "hash": "IdJrenPLhzSvld2gOaiVYUWGDIFSXygmaJ9Um5RxBbc="
         }
       },
       "is_incremental": false,
@@ -945,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/License.html",
-          "hash": "Xgd7s6g0XjTbRB9ec21bDX8+NQBEKt1SyObE3KKRKRs="
+          "hash": "y5xigmvQQvp5tcvqLOzBqCDFH6+7Wji0AmmmZQ8PGpI="
         }
       },
       "is_incremental": false,
