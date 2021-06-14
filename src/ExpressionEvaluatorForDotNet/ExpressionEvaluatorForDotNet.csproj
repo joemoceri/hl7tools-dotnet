@@ -10,7 +10,7 @@
 You can also use this to evaluate segments of an hl7v2 pipe delimited message. Using an HL7V2ExpressionConfiguration the Evaluator can be configured to parse and return a structured HL7V2Message object layered with fields, field repetitions, components, and subcomponents. You can also perform CRUD operations on all of them, build a message from scratch, and more. Please visit the repository for more information.</Description>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/joemoceri/expression-evaluator</RepositoryUrl>
-    <PackageTags>interpreter, expressions, evaluator, csharp, languages, templates</PackageTags>
+    <PackageTags>interpreter, expressions, evaluator, csharp, languages, templates, hl7, medical, healthcare, health, it, hl7v2, hl7v2 messages</PackageTags>
     <PackageLicenseExpression></PackageLicenseExpression>
     <Authors>Joe Moceri</Authors>
     <Version>1.1.0</Version>
