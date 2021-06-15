@@ -34,11 +34,6 @@ namespace ExpressionEvaluatorForDotNet
 		/// <returns><see cref="string"/> of the combined fields.</returns>
 		protected string CombineHL7Fields(IList<HL7V2FieldBase> fields)
 		{
-			if (fields == null || fields.Count == 0)
-			{
-				return null;
-			}
-
 			var result = string.Empty;
 
 			for (var i = 0; i < fields.Count; i++)

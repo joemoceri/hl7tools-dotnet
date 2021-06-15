@@ -861,9 +861,15 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			Assert.AreEqual(gt161.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
 			Assert.AreEqual(gt161.Id, 1);
 
+			// get component
+			var component = gt161.GetComponent(1);
+
+			Assert.AreNotEqual(component, null);
+			Assert.AreEqual(component.Id, 1);
+
 			// add component
 			var previousCount = gt161.Components.Count;
-			var component = gt161.AddComponent("_test");
+			component = gt161.AddComponent("_test");
 
 			Assert.AreEqual(component.Value, "_test");
 			Assert.AreEqual(component.Id, gt161.Components.Count);
@@ -937,7 +943,21 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(component, null);
 
+			component = gt161.InsertComponent(1, "_test");
+
+			Assert.AreEqual(component, null);
+
 			gt161[16].Id = 1;
+
+			gt161.Components.Clear();
+
+			component = gt161.UpdateComponent(1, "_test");
+
+			Assert.AreEqual(component, null);
+
+			component = gt161.InsertComponent(1, "_test");
+
+			Assert.AreEqual(component, null);
 		}
 
 		[TestMethod]
