@@ -1456,6 +1456,16 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			Assert.AreEqual(messageToString, evaluatedMessageToString);
 
 			Assert.AreEqual(message, evaluatedMessage);
+
+			Assert.AreEqual(message.Equals(null), false);
+
+			Assert.AreEqual(message.Equals(new string("")), false);
+
+			var oldValue = message["MSH"][4].Value;
+
+			message["MSH"][4].Value = $"{Guid.NewGuid()}";
+
+			Assert.AreEqual(message.Equals(evaluatedMessage), false);
 		}
 
 		[TestMethod]
