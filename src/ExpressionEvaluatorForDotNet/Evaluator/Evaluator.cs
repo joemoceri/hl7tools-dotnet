@@ -798,24 +798,26 @@ namespace ExpressionEvaluatorForDotNet
 						string CalculateExpression<T>(T left, T right, Operator op)
 						{
 							var result = string.Empty;
-							switch (op)
-							{
-								case Operator.Addition:
-									result = Addition(left, right);
-									break;
-								case Operator.Division:
-									result = Divide(left, right);
-									break;
-								case Operator.Modulus:
-									result = Modulus(left, right);
-									break;
-								case Operator.Multiplication:
-									result = Multiply(left, right);
-									break;
-								case Operator.Subtraction:
-									result = Subtraction(left, right);
-									break;
-							}
+							if (op == Operator.Addition)
+                            {
+								result = Addition(left, right);
+                            }
+							else if (op == Operator.Division)
+                            {
+								result = Divide(left, right);
+                            }
+							else if (op == Operator.Modulus)
+                            {
+								result = Modulus(left, right);
+                            }
+							else if (op == Operator.Multiplication)
+                            {
+								result = Multiply(left, right);
+                            }
+							else if (op == Operator.Subtraction)
+                            {
+								result = Subtraction(left, right);
+                            }
 
 							return result;
 
