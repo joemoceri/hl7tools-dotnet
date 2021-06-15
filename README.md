@@ -6,5 +6,5 @@ Expression Evaluator for .NET parses any C# math, boolean, or string expression.
 
 **Quick Links**
 - [Docs homepage](https://joemoceri.github.io/expression-evaluator-dotnet/)
-- [Articles](https://joemoceri.github.io/expression-evaluator-dotnet/articles/ExpressionEvaluatorforDotNet.html)
+- [Articles](https://joemoceri.github.io/expression-evaluator-dotnet/articles/Installation.html)
 - [API Documentation](https://joemoceri.github.io/expression-evaluator-dotnet/api/index.html)
