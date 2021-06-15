@@ -818,6 +818,10 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreNotEqual(component, null);
 
+			component = gt16.AddComponent(null);
+
+			Assert.AreNotEqual(component, null);
+
 			gt16.FieldRepetitions.Clear();
 
 			fieldRepetition = gt16.InsertFieldRepetition(1, "test");
