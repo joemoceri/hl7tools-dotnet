@@ -318,12 +318,12 @@ namespace ExpressionEvaluatorForDotNet
 
             bool AreMessagesTheSame(HL7V2Message message1, HL7V2Message message2)
             {
-                if (message1.ToString() != message2.ToString())
+                if (message1.GetHashCode() != message2.GetHashCode())
                 {
                     return false;
                 }
 
-                if (message1.GetHashCode() != message2.GetHashCode())
+                if (message1.ToString() != message2.ToString())
                 {
                     return false;
                 }
