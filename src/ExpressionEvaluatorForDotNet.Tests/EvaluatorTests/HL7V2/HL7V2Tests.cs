@@ -385,6 +385,18 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			messageSegment = message.GetMessageSegment("SDFGHSD");
 
 			Assert.AreEqual(messageSegment, null);
+
+			messageSegment = message.GetMessageSegment("MSH");
+
+			messageSegment.Fields.Clear();
+
+			field = messageSegment.UpdateField(1, "_test");
+
+			Assert.AreEqual(field, null);
+
+			field = messageSegment.InsertField(1, "_test");
+
+			Assert.AreEqual(field, null);
 		}
 
 		[TestMethod]

@@ -34,7 +34,7 @@ namespace ExpressionEvaluatorForDotNet
         {
             return Combine(Fields);
 
-			string Combine(IList<HL7V2Field> fields, bool useSegmentName = true)
+			string Combine(IList<HL7V2Field> fields)
 			{
 				if (fields == null || fields.Count == 0)
 				{
@@ -43,19 +43,16 @@ namespace ExpressionEvaluatorForDotNet
 
 				var result = string.Empty;
 
-				if (useSegmentName)
-				{
-					result = SegmentName;
-				}
+				result = SegmentName;
 
 				for (var i = 0; i < fields.Count; i++)
 				{
-					if (HL7V2ExpressionConfiguration.specialSegmentHeaders.Any(a => a.Equals(SegmentName)) && i == 0 && useSegmentName)
+					if (HL7V2ExpressionConfiguration.specialSegmentHeaders.Any(a => a.Equals(SegmentName)) && i == 0)
 					{
 						continue;
 					}
 
-					result += $"{(i == 0 && !useSegmentName ? "" : fields[i].Delimiter)}{fields[i].Value}";
+					result += $"{(fields[i].Delimiter)}{fields[i].Value}";
 				}
 
 				return result;
