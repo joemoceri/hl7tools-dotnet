@@ -2,8 +2,10 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.html)
 
-A class used internally for identifying types for an expression. Three properties are exposed
+A class used internally for identifying types for an expression. 
 
-- LeftOperandType: The ExpressionType of the left operand of the expression
-- RightOperandType: The ExpressionType of the right operand of the expression
-- ExpressionType: The ExpressionType of the expression
+Properties
+
+- [LeftOperandType](/api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.html#ExpressionEvaluatorForDotNet_ExpressionOperandTypes_LeftOperandType): The [ExpressionType](/api/ExpressionEvaluatorForDotNet.ExpressionType.html) of the left operand of the expression.
+- [RightOperandType](/api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.html#ExpressionEvaluatorForDotNet_ExpressionOperandTypes_RightOperandType): The [ExpressionType](/api/ExpressionEvaluatorForDotNet.ExpressionType.html) of the right operand of the expression.
+- [ExpressionType](/api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.html#ExpressionEvaluatorForDotNet_ExpressionOperandTypes_ExpressionType): The [ExpressionType](/api/ExpressionEvaluatorForDotNet.ExpressionType.html) of the expression.

@@ -2,7 +2,9 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.OperatorLocation.html)
 
-A class used internally inside the Evaluator for keeping track of which inner expression to evaluate next. Two properties are exposed
+A class used internally inside the [Evaluator](/api/ExpressionEvaluatorForDotNet.Evaluator.html#ExpressionEvaluatorForDotNet_Evaluator) for keeping track of which inner expression to evaluate next.
 
-- Value: The Value at the Index
-- Index: The index of the Operator. If null, there are no more expressions to evaluate
+Properties
+
+- [Value](/api/ExpressionEvaluatorForDotNet.OperatorLocation.html#ExpressionEvaluatorForDotNet_OperatorLocation_Value): The value at the index.
+- [Index](/api/ExpressionEvaluatorForDotNet.OperatorLocation.html#ExpressionEvaluatorForDotNet_OperatorLocation_Index): The index of the operator. If null, there are no more expressions to evaluate.
