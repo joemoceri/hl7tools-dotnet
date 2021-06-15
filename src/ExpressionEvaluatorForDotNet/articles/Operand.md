@@ -1,5 +1,7 @@
 ### Operand
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.Operand.html)
+
 A class used internally for describing an Operand's Value and Type of an expression. Two properties are exposed.
 
 - Value: A string representing the operand of the expression

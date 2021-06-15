@@ -1,5 +1,7 @@
 ### ExpressionResult
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.ExpressionResult.html)
+
 This is the object you get back when you call Evaluate. It exposes the following three properties
 
 - Value: The resulting value after evaluating the expression, represented as a string.

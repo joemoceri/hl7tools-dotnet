@@ -1,5 +1,7 @@
 ### HL7V2Component
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2Component.html)
+
 The following four properties are exposed
 
 - Id:

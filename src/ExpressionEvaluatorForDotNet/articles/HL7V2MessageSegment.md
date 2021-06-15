@@ -1,5 +1,7 @@
 ### HL7V2MessageSegment
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html)
+
 The following two properties are exposed
 
 - SegmentName:

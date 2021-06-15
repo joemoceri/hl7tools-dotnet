@@ -1,12 +1,12 @@
 ### CSharpExpressionConfiguration
 
-[Link to the file](https://github.com/jmoceri34/expression-evaluator/blob/master/src/ExpressionEvaluatorForDotNet/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs)
+[Link to the file](/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html)
 
 CSharpExpressionConfiguration exposes two properties:
 
-- [Operators](https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/ExpressionEvaluatorForDotNet/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L55): Returns a list of ExpressionConfigurationOperator.
+- [Operators](/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html#ExpressionEvaluatorForDotNet_CSharpExpressionConfiguration_Operators): Returns a list of ExpressionConfigurationOperator.
 
-- [Options](https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/ExpressionEvaluatorForDotNet/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L57): Returns ExpressionConfigurationOptions.
+- [Options](/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html#ExpressionEvaluatorForDotNet_CSharpExpressionConfiguration_Options): Returns ExpressionConfigurationOptions.
 
 The default options are the following:
 ```csharp

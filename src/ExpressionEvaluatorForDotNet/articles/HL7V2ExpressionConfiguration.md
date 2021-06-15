@@ -1,5 +1,7 @@
 ### HL7V2ExpressionConfiguration
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html)
+
 Use this ExpressionConfiguration for the Evaluator when parsing HL7V2 files.
 
 There are eight static properties exposed

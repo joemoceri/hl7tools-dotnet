@@ -1,5 +1,7 @@
 ### ExpressionConfigurationOptions
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.html)
+
 These are the options used to customize ExpressionConfigurations. 
 
 It exposes three properties

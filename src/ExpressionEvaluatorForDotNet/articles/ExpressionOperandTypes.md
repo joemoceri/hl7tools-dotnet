@@ -1,5 +1,7 @@
 ### ExpressionOperandTypes
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.ExpressionOperandTypes.html)
+
 A class used internally for identifying types for an expression. Three properties are exposed
 
 - LeftOperandType: The ExpressionType of the left operand of the expression

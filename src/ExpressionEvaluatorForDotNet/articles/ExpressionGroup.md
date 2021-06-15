@@ -1,5 +1,7 @@
 ### ExpressionGroup
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.ExpressionGroup.html)
+
 This is passed inside SolveOperatorExpression. It exposes four properties:
 
 - LeftOperand: The left operand of the expression (1 of 1+2)

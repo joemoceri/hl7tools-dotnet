@@ -1,5 +1,7 @@
 ### ExpressionConfigurationOperator
 
+[Link to the file](/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html)
+
 This is used inside of ExpressionConfigurations when defining the operators that should be used. A protected method on ExpressionConfigurationBase named CreateExpressionConfigurationOperator uses it to generate operators for ExpressionConfigurations. Please see inside each expression configuration for usage.
 
 It exposes the following values
