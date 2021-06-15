@@ -47,7 +47,23 @@ namespace ExpressionEvaluatorForDotNet
 			}
 
 			var compareTo = (ExpressionResult)expressionResult;
-			return compareTo.GetHashCode() == GetHashCode();
+
+			if (compareTo.Value != Value)
+            {
+				return false;
+            }
+
+			if (compareTo.Type != Type)
+            {
+				return false;
+            }
+
+			if (compareTo.GetHashCode() != GetHashCode())
+            {
+				return false;
+            }
+
+			return true;
 		}
 
 		/// <summary>
