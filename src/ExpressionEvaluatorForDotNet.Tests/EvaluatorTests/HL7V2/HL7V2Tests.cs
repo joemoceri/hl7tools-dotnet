@@ -1070,6 +1070,9 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			subComponent = pv179.UpdateSubComponent(1, "_test");
 
+			// code coverage
+			subComponent.Rebuild();
+
 			Assert.AreEqual(subComponent.Value, "_test");
 			Assert.AreEqual(subComponent.Id, 1);
 			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
