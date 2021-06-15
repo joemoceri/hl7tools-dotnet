@@ -1466,6 +1466,12 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			message["MSH"][4].Value = $"{Guid.NewGuid()}";
 
 			Assert.AreEqual(message.Equals(evaluatedMessage), false);
+
+			var removed = message.RemoveMessageSegment("MSH");
+
+			Assert.AreEqual(removed, true);
+
+			Assert.AreEqual(message.Equals(evaluatedMessage), false);
 		}
 
 		[TestMethod]
