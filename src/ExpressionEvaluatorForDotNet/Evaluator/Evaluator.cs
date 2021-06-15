@@ -599,33 +599,39 @@ namespace ExpressionEvaluatorForDotNet
 						string CalculateExpression<T>(T leftOperand, T rightOperand, Operator expressionOperator) where T : IComparable<T>
 						{
 							var result = string.Empty;
-							switch (expressionOperator)
-							{
-								case Operator.LessThan:
-									result = LessThan(leftOperand, rightOperand);
-									break;
-								case Operator.LessThanOrEqualTo:
-									result = LessThanOrEqualTo(leftOperand, rightOperand);
-									break;
-								case Operator.GreaterThan:
-									result = GreaterThan(leftOperand, rightOperand);
-									break;
-								case Operator.GreaterThanOrEqualTo:
-									result = GreaterThanOrEqualTo(leftOperand, rightOperand);
-									break;
-								case Operator.NotEqualTo:
-									result = NotEqualTo(leftOperand, rightOperand);
-									break;
-								case Operator.EqualTo:
-									result = EqualTo(leftOperand, rightOperand);
-									break;
-								case Operator.And:
-									result = And(leftOperand, rightOperand);
-									break;
-								case Operator.Or:
-									result = Or(leftOperand, rightOperand);
-									break;
-							}
+
+							if (expressionOperator.Equals(Operator.LessThan))
+                            {
+								result = LessThan(leftOperand, rightOperand);
+                            }
+                            else if (expressionOperator.Equals(Operator.LessThanOrEqualTo))
+                            {
+                                result = LessThanOrEqualTo(leftOperand, rightOperand);
+                            }
+							else if (expressionOperator.Equals(Operator.GreaterThan))
+                            {
+								result = GreaterThan(leftOperand, rightOperand);
+                            }
+							else if (expressionOperator.Equals(Operator.GreaterThanOrEqualTo))
+                            {
+								result = GreaterThanOrEqualTo(leftOperand, rightOperand);
+                            }
+							else if (expressionOperator.Equals(Operator.NotEqualTo))
+                            {
+								result = NotEqualTo(leftOperand, rightOperand);
+                            }
+							else if (expressionOperator.Equals(Operator.EqualTo))
+                            {
+								result = EqualTo(leftOperand, rightOperand);
+                            }
+							else if (expressionOperator.Equals(Operator.And))
+                            {
+								result = And(leftOperand, rightOperand);
+                            }
+							else if (expressionOperator.Equals(Operator.Or))
+                            {
+								result = Or(leftOperand, rightOperand);
+                            }
 
 							return result;
 
