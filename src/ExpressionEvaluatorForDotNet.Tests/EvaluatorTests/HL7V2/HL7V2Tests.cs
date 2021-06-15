@@ -373,6 +373,18 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			messageToString = message.ToString();
 
 			Assert.AreEqual(messageToString, joinedMessageFile);
+
+			var field = message.Get("MSH.20");
+
+			Assert.AreEqual(field, null);
+
+			var messageSegment = message.GetMessageSegment("MSH");
+
+			Assert.AreEqual(messageSegment.SegmentName, "MSH");
+
+			messageSegment = message.GetMessageSegment("SDFGHSD");
+
+			Assert.AreEqual(messageSegment, null);
 		}
 
 		[TestMethod]
@@ -1205,7 +1217,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 		[TestMethod]
 		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
-		public void HLV2Tests_EvaluateHL7V2File_BuildFromScratch()
+		public void HL7V2Tests_EvaluateHL7V2File_BuildFromScratch()
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
@@ -1429,6 +1441,36 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			Assert.AreEqual(messageToString, evaluatedMessageToString);
 
 			Assert.AreEqual(message, evaluatedMessage);
+		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		[ExpectedException(typeof(ArgumentException))]
+		public void HL7V2Tests_EvaluateHL7V2File_InvalidSegmentIndexShouldThrowArgumentException()
+        {
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			var result = message.Get("MSH(A).A");
+		}
+
+		[TestMethod]
+		[DeploymentItem("EvaluatorTests/HL7V2/sample-messages/ADT-A08 Update Patient.txt")]
+		[ExpectedException(typeof(ArgumentException))]
+		public void HL7V2Tests_EvaluateHL7V2File_InvalidFieldRepetitionIndexShouldThrowArgumentException()
+		{
+			// Arrange
+			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+			var evaluator = new Evaluator(expressionConfiguration);
+
+			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+			var result = message.Get("MSH.1(A)");
 		}
 	}
 }

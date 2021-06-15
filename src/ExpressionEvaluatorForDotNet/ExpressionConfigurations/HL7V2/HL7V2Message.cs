@@ -323,6 +323,11 @@ namespace ExpressionEvaluatorForDotNet
                     return false;
                 }
 
+                if (message1.GetHashCode() != message2.GetHashCode())
+                {
+                    return false;
+                }
+
                 for (var i = 0; i < message1.MessageSegments.Count; i++)
                 {
                     var m1Segment = message1.MessageSegments[i];
