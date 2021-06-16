@@ -13,7 +13,7 @@ You can also use this to evaluate segments of an hl7v2 pipe delimited message. U
     <PackageTags>interpreter, expressions, evaluator, csharp, languages, templates, hl7, medical, healthcare, health, it, hl7v2, hl7v2 messages</PackageTags>
     <PackageLicenseExpression></PackageLicenseExpression>
     <Authors>Joe Moceri</Authors>
-    <Version>1.1.3</Version>
+    <Version>1.1.4</Version>
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
