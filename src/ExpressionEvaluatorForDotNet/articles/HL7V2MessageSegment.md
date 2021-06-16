@@ -4,17 +4,17 @@
 
 Properties
 
-- [SegmentName]():
-- [Fields]():
+- [SegmentName](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_SegmentName):
+- [Fields](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Fields):
 
 Methods
 
-- [ToString]():
-- [Rebuild]():
-- [GetField]():
-- [AddField]():
-- [RemoveField]():
-- [InsertField]():
-- [UpdateField]():
+- [ToString](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_ToString):
+- [Rebuild](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Rebuild):
+- [GetField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_GetField_System_Int32_):
+- [AddField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_AddField_System_String_System_Boolean_):
+- [RemoveField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_RemoveField_System_Int32_):
+- [InsertField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_InsertField_System_Int32_System_String_):
+- [UpdateField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_UpdateField_System_Int32_System_String_):
 
-An [indexer]() is exposed to access fields by their Id.
+An [indexer](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Item_System_Int32_) is exposed to access fields by their Id.

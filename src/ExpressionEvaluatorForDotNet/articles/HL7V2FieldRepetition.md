@@ -4,17 +4,17 @@
 
 Properties
 
-- [Id]():
-- [Delimiter]():
-- [Value]():
-- [Components]():
+- [Id](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_Id):
+- [Delimiter](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_Delimiter):
+- [Value](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_Value):
+- [Components](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_Components):
 
 Methods
 
-- [Rebuild]():
-- [AddComponent]():
-- [RemoveComponent]():
-- [InsertComponent]():
-- [UpdateComponent]():
+- [Rebuild](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_Rebuild):
+- [AddComponent](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_AddComponent_System_String_):
+- [RemoveComponent](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_RemoveComponent_System_Int32_):
+- [InsertComponent](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_InsertComponent_System_Int32_System_String_):
+- [UpdateComponent](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_UpdateComponent_System_Int32_System_String_):
 
-An [indexer]() is exposed to allow access to this field repetitions HL7V2Components.
+An [indexer](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html#ExpressionEvaluatorForDotNet_HL7V2FieldRepetition_Item_System_Int32_) is exposed to allow access to this field repetitions HL7V2Components.
