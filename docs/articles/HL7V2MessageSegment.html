@@ -69,22 +69,35 @@
             <article class="content wrap" id="_content" data-uid="">
 <h3 id="hl7v2messagesegment">HL7V2MessageSegment</h3>
 
-<p>The following two properties are exposed</p>
+<p><strong>Table of Contents</strong></p>
 <ul>
-<li>SegmentName:</li>
-<li>Fields:</li>
+<li><a href="#description">Description</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#links">Links</a></li>
 </ul>
-<p>The following seven methods are exposed</p>
+<h4 id="description">Description</h4>
+<p>Message segments are defined in hl7 v2 specification. They contain fields, and each field outside of special cases, contains 1 field repetition. The crud operations make sure to handle this. Special cases, such as MSH.1 and MSH.2, do not have a field repetition, while MSH.5 does.</p>
+<p>The structure of message segments is as follows</p>
+<p>Field -&gt; FieldRepetition -&gt; Components -&gt; Sub Components</p>
+<h4 id="properties">Properties</h4>
 <ul>
-<li>ToString:</li>
-<li>Rebuild:</li>
-<li>GetField:</li>
-<li>AddField:</li>
-<li>RemoveField:</li>
-<li>InsertField:</li>
-<li>UpdateField:</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_SegmentName">SegmentName</a>: The name of the segment.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Fields">Fields</a>: The fields within the segment.</li>
 </ul>
-<p>An indexer is exposed to access fields by their Id</p>
+<h4 id="methods">Methods</h4>
+<ul>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_ToString">ToString</a>: Converts the message segment to a string using the Values of it's fields.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Rebuild">Rebuild</a>: Rebuilds the values of each of the message segments fields.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_GetField_System_Int32_">GetField</a>: Gets a field by Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_AddField_System_String_System_Boolean_">AddField</a>: Adds a field to end of the message segment.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_RemoveField_System_Int32_">RemoveField</a>: Removes a field by Id from the message segment.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_InsertField_System_Int32_System_String_">InsertField</a>: Inserts a field by Id into the message segment.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_UpdateField_System_Int32_System_String_">UpdateField</a>: Updates a field by Id in the message segment.</li>
+</ul>
+<p>An <a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Item_System_Int32_">indexer</a> is exposed to access fields by their Id.</p>
+<h4 id="links">Links</h4>
+<p><a href="/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html">Link to the file</a></p>
 </article>
           </div>
           

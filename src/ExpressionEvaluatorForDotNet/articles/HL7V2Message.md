@@ -1,17 +1,21 @@
 ### HL7V2Message
 
-[Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2Message.html)
+**Table of Contents**
+- [Description](#description)
+- [Properties](#properties)
+- [Methods](#methods)
+- [Links](#links)
 
-Description
+#### Description
 
 Messages are defined in the v2 specification. They contain message segments, such as MSH, PV1, OBR, and more. You can perform CRUD operations on the message segments by Index. Rebuild the message after making changes to its message segments.
 
-Properties
+#### Properties
 
 - [MessageSegments](/api/ExpressionEvaluatorForDotNet.HL7V2Message.html#ExpressionEvaluatorForDotNet_HL7V2Message_MessageSegments): The message segments.
 - [Error](/api/ExpressionEvaluatorForDotNet.HL7V2Message.html#ExpressionEvaluatorForDotNet_HL7V2Message_Error): The error. This will be null if the resulting Message parsed by the Evalutor is successful.
 
-Methods
+#### Methods
 
 - [Rebuild](/api/ExpressionEvaluatorForDotNet.HL7V2Message.html#ExpressionEvaluatorForDotNet_HL7V2Message_Rebuild): Rebuilds the message by calling Rebuild on the message segments to update all values. Rebuild the message if you make many changes on it's fields at the end.
 - [Get](/api/ExpressionEvaluatorForDotNet.HL7V2Message.html#ExpressionEvaluatorForDotNet_HL7V2Message_Get_System_String_): Gets a field, field repetition, component, or sub component by a string-based id.
@@ -25,3 +29,8 @@ Methods
 - [GetHashCode](/api/ExpressionEvaluatorForDotNet.HL7V2Message.html#ExpressionEvaluatorForDotNet_HL7V2Message_GetHashCode): Generates a unique hash code off of the message.
 
 An [indexer](/api/ExpressionEvaluatorForDotNet.HL7V2Message.html#ExpressionEvaluatorForDotNet_HL7V2Message_Item_System_String_System_Int32_) is exposed, to access segments by segmentName and optionally, by index in case of multiple.
+
+
+#### Links
+
+[Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2Message.html)

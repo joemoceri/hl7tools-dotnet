@@ -69,29 +69,40 @@
             <article class="content wrap" id="_content" data-uid="">
 <h3 id="hl7v2field">HL7V2Field</h3>
 
-<p>The following four properties are exposed</p>
+<p><strong>Table of Contents</strong></p>
 <ul>
-<li>Id:</li>
-<li>Delimiter:</li>
-<li>Value:</li>
-<li>FieldRepetitions:</li>
+<li><a href="#description">Description</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#links">Links</a></li>
 </ul>
-<p>The following twelve methods are exposed</p>
+<h4 id="description">Description</h4>
+<p>Fields are defined in hl7 v2 specification. By default they contain a single field repetition to represent the field, outside of special cases, such as the first two fields of any special segment headers (MSH.1 and MSH.2). There are CRUD operations you can perform on components and field repetitions. Field repetitions and components are both by Id, with components defaulting to the first field repetition.</p>
+<h4 id="properties">Properties</h4>
 <ul>
-<li>GetFieldRepetition:</li>
-<li>Components:</li>
-<li>GetComponent:</li>
-<li>Rebuild:</li>
-<li>AddComponent:</li>
-<li>RemoveComponent:</li>
-<li>InsertComponent:</li>
-<li>UpdateComponent:</li>
-<li>AddFieldRepetition:</li>
-<li>RemoveFieldRepetition:</li>
-<li>InsertFieldRepetition:</li>
-<li>UpdateFieldRepetition:</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_Id">Id</a>: The position of the field.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_Delimiter">Delimiter</a>: The delimiter used when generating the value when calling Rebuild.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_Value">Value</a>: The value of the field.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_FieldRepetitions">FieldRepetitions</a>: The field repetitions, if any.</li>
 </ul>
-<p>An indexer is exposed to access this field's HL7V2Components by their Ids and repetition (default is 1)</p>
+<h4 id="methods">Methods</h4>
+<ul>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_GetFieldRepetition_System_Int32_">GetFieldRepetition</a>: Gets a field repetition by Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_Components_System_Int32_">Components</a>: Gets this fields components by field repetition Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_GetComponent_System_Int32_System_Int32_">GetComponent</a>: Gets this fields components by field repetition Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_Rebuild">Rebuild</a>: Rebuilds the Value on this field.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_AddComponent_System_String_System_Int32_">AddComponent</a>: Adds a component to the end of this field by field repetition Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_RemoveComponent_System_Int32_System_Int32_">RemoveComponent</a>: Removes a component from this field by Id and field repetition Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_InsertComponent_System_Int32_System_String_System_Int32_">InsertComponent</a>: Inserts a component into this field by Id and field repetition Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_UpdateComponent_System_Int32_System_String_System_Int32_">UpdateComponent</a>: Updates a component in this field by Id and field repetition Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_AddFieldRepetition_System_String_">AddFieldRepetition</a>: Adds a field repetition to the end of the field.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_RemoveFieldRepetition_System_Int32_">RemoveFieldRepetition</a>: Removes a field repetition from the field by Id.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_InsertFieldRepetition_System_Int32_System_String_">InsertFieldRepetition</a>: Inserts a field repetition by Id into the field.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_UpdateFieldRepetition_System_Int32_System_String_">UpdateFieldRepetition</a>: Updates a field repetition by Id in the field.</li>
+</ul>
+<p>An <a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html#ExpressionEvaluatorForDotNet_HL7V2Field_Item_System_Int32_System_Int32_">indexer</a> is exposed to access this field's HL7V2Components by their Ids and repetition (default is 1).</p>
+<h4 id="links">Links</h4>
+<p><a href="/api/ExpressionEvaluatorForDotNet.HL7V2Field.html">Link to the file</a></p>
 </article>
           </div>
           

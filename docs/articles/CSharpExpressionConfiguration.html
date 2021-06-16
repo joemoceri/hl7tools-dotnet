@@ -69,12 +69,20 @@
             <article class="content wrap" id="_content" data-uid="">
 <h3 id="csharpexpressionconfiguration">CSharpExpressionConfiguration</h3>
 
-<p><a href="https://github.com/jmoceri34/expression-evaluator/blob/master/src/ExpressionEvaluatorForDotNet/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs">Link to the file</a></p>
-<p>CSharpExpressionConfiguration exposes two properties:</p>
+<p><strong>Table of Contents</strong></p>
 <ul>
-<li><p><a href="https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/ExpressionEvaluatorForDotNet/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L55">Operators</a>: Returns a list of ExpressionConfigurationOperator.</p>
+<li><a href="#description">Description</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#links">Links</a></li>
+</ul>
+<h4 id="description">Description</h4>
+<p>Use this class to evaluate math (1+2), string (&quot;a&quot;+&quot;b&quot;), or boolean (1&gt;2) expressions.</p>
+<p>Inside of the <a href="/api/ExpressionEvaluatorForDotNet.Evaluator.html">Evaluator</a>, <a href="/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Higher">higher precedence operators</a> are solved first, followed by <a href="/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Lower">lower precedence operators</a>. Only the operators shown are supported.</p>
+<h4 id="properties">Properties</h4>
+<ul>
+<li><p><a href="/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html#ExpressionEvaluatorForDotNet_CSharpExpressionConfiguration_Operators">Operators</a>: Returns a list of <a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html">ExpressionConfigurationOperator</a>.</p>
 </li>
-<li><p><a href="https://github.com/jmoceri34/expression-evaluator/blob/1e77ad47edda02dbec338309e5c53a0125362e98/src/ExpressionEvaluatorForDotNet/ExpressionConfigurations/CSharp/CSharpExpressionConfiguration.cs#L57">Options</a>: Returns ExpressionConfigurationOptions.</p>
+<li><p><a href="/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html#ExpressionEvaluatorForDotNet_CSharpExpressionConfiguration_Options">Options</a>: Returns <a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.html">ExpressionConfigurationOptions</a>.</p>
 </li>
 </ul>
 <p>The default options are the following:</p>
@@ -86,11 +94,11 @@
 };
 </code></pre>
 <ul>
-<li><p>IgnoreWhitespaceOutsideQuotes: By default the CSharpExpressionConfiguration removes whitespace outside of quotes inside of the expression, so this is set to <strong>false</strong>.</p>
+<li><p><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOptions_IgnoreWhitespaceOutsideQuotes">IgnoreWhitespaceOutsideQuotes</a>: By default the CSharpExpressionConfiguration removes whitespace outside of quotes inside of the expression, so this is set to <strong>false</strong>.</p>
 </li>
-<li><p>IgnoreParentheses: By default the CSharpExpressionConfiguration breaks expressions down from the outer most parentheses set to the inner most, so this is set to <strong>false</strong>.</p>
+<li><p><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOptions_IgnoreParentheses">IgnoreParentheses</a>: By default the CSharpExpressionConfiguration breaks expressions down from the outer most parentheses set to the inner most, so this is set to <strong>false</strong>.</p>
 </li>
-<li><p>IgnoreQuotesValidation: By default the CSharpExpressionConfiguration validates if there are a balanced (1:1 ratio) set of quotes inside of the expression, so this is set to <strong>false</strong>.</p>
+<li><p><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOptions.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOptions_IgnoreQuotesValidation">IgnoreQuotesValidation</a>: By default the CSharpExpressionConfiguration validates if there are a balanced (1:1 ratio) set of quotes inside of the expression, so this is set to <strong>false</strong>.</p>
 </li>
 </ul>
 <p>The default operators are the following:</p>
@@ -111,7 +119,8 @@
     CreateExpressionConfigurationOperator(Operator.GreaterThan, OperatorPrecedence.Higher, OperatorType.Boolean, &quot;&gt;&quot;),
 };
 </code></pre>
-<p>Inside of the Evaluator, higher precedence operators are solved first, followed by lower precedence operators. Only the operators shown are supported.</p>
+<h4 id="links">Links</h4>
+<p><a href="/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html">Link to the file</a></p>
 </article>
           </div>
           

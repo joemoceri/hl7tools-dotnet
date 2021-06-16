@@ -69,38 +69,55 @@
             <article class="content wrap" id="_content" data-uid="">
 <h3 id="hl7v2expressionconfiguration">HL7V2ExpressionConfiguration</h3>
 
-<p>Use this ExpressionConfiguration for the Evaluator when parsing HL7V2 files.</p>
-<p>There are eight static properties exposed</p>
+<p><strong>Table of Contents</strong></p>
 <ul>
-<li>fieldDelimiter:</li>
-<li>componentDelimiter:</li>
-<li>escapeDelimiter:</li>
-<li>subComponentDelimiter:</li>
-<li>fieldRepetitionDelimiter:</li>
-<li>presentButNull:</li>
-<li>specialSegmentHeaders:</li>
-<li>encodingConversions:</li>
+<li><a href="#description">Description</a></li>
+<li><a href="#static-fields">Static Fields</a></li>
+<li><a href="#static-methods">Static Methods</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#description">Methods</a></li>
+<li><a href="#links">Links</a></li>
 </ul>
+<h4 id="description">Description</h4>
+<p>Use this expression configuration for the <a href="/api/ExpressionEvaluatorForDotNet.Evaluator.html">Evaluator</a> when parsing HL7V2 files.</p>
 <p>When the static constructor is called, the encodingConversions are rebuilt using the current values of the static delimiters, and the specialSegmentHeaders are initialized. The default values are MSH, FHS, and BHS.</p>
 <p>Every time Evaluate is called internally on an expression, this expression configuration calls an internal method named Setup that re-initializes the message segment. So each line of the hl7v2 message is an expression that the Evaluator converts into an HL7V2MessageSegment.</p>
-<p>Three static methods are exposed</p>
-<ul>
-<li>RebuildEncodingConversions:</li>
-<li>EncodeString:</li>
-<li>DecodeString:</li>
-</ul>
 <p>Inside of the constructor the operators and options are initialized. The SolveOperatorExpression callback for the AdditionOperator is where the main hl7v2 parsing takes place. It extracts the data from the hl7, applies structure via an HL7V2Field added to an HL7V2MessageSegment. After, it returns a DefaultExpressionResult, which can be found in ExpressionConfigurationBase.</p>
-<p>The following four properties are exposed</p>
+<h4 id="static-fields">Static Fields</h4>
 <ul>
-<li>MathStringOperators:</li>
-<li>BooleanOperators:</li>
-<li>Operators:</li>
-<li>Options:</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_fieldDelimiter">fieldDelimiter</a>: This separates fields in an hl7v2 message segment.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_componentDelimiter">componentDelimiter</a>: This separates components within a field repetition in an hl7v2 message segment. This is defined within special segments, such as MSH.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_escapeCharacter">escapeDelimiter</a>: This is used to encode / decode data within hl7v2 messages. This is defined within special segments, such as MSH.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_subComponentDelimiter">subComponentDelimiter</a>: This separates sub components within components in an hl7v2 message segment. This is defined within special segments, such as MSH.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_fieldRepetitionDelimiter">fieldRepetitionDelimiter</a>: This separates field repetitions within fields in an hl7v2 message segment. This is defined within special segments, such as MSH.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_presentButNull">presentButNull</a>: This string is used to define data that should be treated as null as specified in the hl7 v2 specification.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_specialSegmentHeaders">specialSegmentHeaders</a>: These segment headers should be treated separately from other segments because they expose the delimiters that the message should use when evaluating the segment.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_encodingConversions">encodingConversions</a>: Encoding conversions are used to encode / decode data for hl7 data using the delimiters wrapped around the escape character.</li>
 </ul>
-<p>The following method is exposed</p>
+<h4 id="static-methods">Static Methods</h4>
 <ul>
-<li>GetHL7V2MessageSegment:</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_RebuildEncodingConversions">RebuildEncodingConversions</a>: This rebuilds the encodingConversions so that when EncodeString or DecodeString is called it uses the latest values from the delimiters and escape character. Make sure to call this if you update any of the delimiters or escape characters before calling EncodeString or DecodeString.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_EncodeString_System_String_">EncodeString</a>: Encodes a string for use in an hl7 v2 message using the delimiters wrapped around the escape character.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_DecodeString_System_String_">DecodeString</a>: Decodes a string for use in an hl7 v2 message using the delimiters wrapped around the escape character.</li>
 </ul>
+<h4 id="properties">Properties</h4>
+<ul>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_Operators">Operators</a>: The operators. Only Addition as '|' is used.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_Options">Options</a>: The options.</li>
+</ul>
+<pre><code class="lang-csharp">            options = new ExpressionConfigurationOptions
+            {
+                IgnoreWhitespaceOutsideQuotes = true,
+                IgnoreParentheses = true,
+                IgnoreQuotesValidation = true
+            };
+</code></pre>
+<h4 id="methods">Methods</h4>
+<ul>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html#ExpressionEvaluatorForDotNet_HL7V2ExpressionConfiguration_GetHL7V2MessageSegment">GetHL7V2MessageSegment</a>: Returns the message segment. Called internally when evaluating an hl7v2 file to build the hl7v2 message.</li>
+</ul>
+<h4 id="links">Links</h4>
+<p><a href="/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html">Link to the file</a></p>
 </article>
           </div>
           

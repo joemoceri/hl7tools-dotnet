@@ -1,8 +1,12 @@
 ### HL7V2MessageSegment
 
-[Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html)
+**Table of Contents**
+- [Description](#description)
+- [Properties](#properties)
+- [Methods](#methods)
+- [Links](#links)
 
-Description
+#### Description
 
 Message segments are defined in hl7 v2 specification. They contain fields, and each field outside of special cases, contains 1 field repetition. The crud operations make sure to handle this. Special cases, such as MSH.1 and MSH.2, do not have a field repetition, while MSH.5 does.
 
@@ -10,12 +14,12 @@ The structure of message segments is as follows
 
 Field -> FieldRepetition -> Components -> Sub Components
 
-Properties
+#### Properties
 
 - [SegmentName](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_SegmentName): The name of the segment.
 - [Fields](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Fields): The fields within the segment. 
 
-Methods
+#### Methods
 
 - [ToString](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_ToString): Converts the message segment to a string using the Values of it's fields.
 - [Rebuild](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Rebuild): Rebuilds the values of each of the message segments fields.
@@ -26,3 +30,7 @@ Methods
 - [UpdateField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_UpdateField_System_Int32_System_String_): Updates a field by Id in the message segment.
 
 An [indexer](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Item_System_Int32_) is exposed to access fields by their Id.
+
+#### Links
+
+[Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html)

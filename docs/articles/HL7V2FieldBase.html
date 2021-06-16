@@ -69,21 +69,32 @@
             <article class="content wrap" id="_content" data-uid="">
 <h3 id="hl7v2fieldbase">HL7V2FieldBase</h3>
 
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#abstract-properties">Abstract Properties</a></li>
+<li><a href="#abstract-methods">Abstract Methods</a></li>
+<li><a href="#protected-methods">Protected Methods</a></li>
+<li><a href="#links">Links</a></li>
+</ul>
+<h4 id="description">Description</h4>
 <p>This is an abstract base class that all 'field' type objects inherit from. This includes the following: HL7V2Field, HL7V2FieldRepetition, HL7V2Component, and HL7V2SubComponent.</p>
-<p>The following three abstract properties must be implemented</p>
+<h4 id="abstract-properties">Abstract Properties</h4>
 <ul>
-<li>Id:</li>
-<li>Delimiter:</li>
-<li>Value:</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.html#ExpressionEvaluatorForDotNet_HL7V2FieldBase_Id">Id</a>: The position of the field.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.html#ExpressionEvaluatorForDotNet_HL7V2FieldBase_Delimiter">Delimiter</a>: The delimiter for the type of field.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.html#ExpressionEvaluatorForDotNet_HL7V2FieldBase_Value">Value</a>: The value of the field.</li>
 </ul>
-<p>The following method must be implemented</p>
+<h4 id="abstract-methods">Abstract Methods</h4>
 <ul>
-<li>Rebuild:</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.html#ExpressionEvaluatorForDotNet_HL7V2FieldBase_Rebuild">Rebuild</a>: Rebuild should update the Value of the field if necessary (sub components rebuild does nothing).</li>
 </ul>
-<p>One protected method is exposed</p>
+<h4 id="protected-methods">Protected Methods</h4>
 <ul>
-<li>CombineHL7Fields:</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.html#ExpressionEvaluatorForDotNet_HL7V2FieldBase_CombineHL7Fields_System_Collections_Generic_IList_ExpressionEvaluatorForDotNet_HL7V2FieldBase__">CombineHL7Fields</a>: Used within the Rebuild methods to update the Values.</li>
 </ul>
+<h4 id="links">Links</h4>
+<p><a href="/api/ExpressionEvaluatorForDotNet.HL7V2FieldBase.html">Link to the file</a></p>
 </article>
           </div>
           

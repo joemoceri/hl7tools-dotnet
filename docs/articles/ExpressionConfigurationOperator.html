@@ -69,17 +69,26 @@
             <article class="content wrap" id="_content" data-uid="">
 <h3 id="expressionconfigurationoperator">ExpressionConfigurationOperator</h3>
 
-<p>This is used inside of ExpressionConfigurations when defining the operators that should be used. A protected method on ExpressionConfigurationBase named CreateExpressionConfigurationOperator uses it to generate operators for ExpressionConfigurations. Please see inside each expression configuration for usage.</p>
-<p>It exposes the following values</p>
+<p><strong>Table of Contents</strong></p>
 <ul>
-<li>ExpressionOperator: The Operator</li>
-<li>ExpressionOperatorPrecedence: The OperatorPrecedence</li>
-<li>ExpressionOperatorType: The OperatorType</li>
-<li>OperatorName: The name of the operator (+, -, %, /, so on)</li>
-<li>OnBeforeOperatorExpressionSolved: An action you can hook into to invoke before an operator (inner) expression is solved.</li>
-<li>OnAfterOperatorExpressionSolved: An action you can hook into to invoke after an operator (inner) expression is solved.</li>
-<li>SolveOperatorExpression: A Func you can hook into to invoke and override solving an operator (inner) expression.</li>
+<li><a href="#description">Description</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#links">Links</a></li>
 </ul>
+<h4 id="description">Description</h4>
+<p>This is used inside of ExpressionConfigurations when defining the operators that should be used. A protected method on <a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.html">ExpressionConfigurationBase</a> named <a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationBase.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationBase_CreateExpressionConfigurationOperator_ExpressionEvaluatorForDotNet_Operator_ExpressionEvaluatorForDotNet_OperatorPrecedence_ExpressionEvaluatorForDotNet_OperatorType_System_String_System_Func_ExpressionEvaluatorForDotNet_ExpressionGroup_ExpressionEvaluatorForDotNet_ExpressionResult__System_Action_ExpressionEvaluatorForDotNet_ExpressionGroup__System_Action_ExpressionEvaluatorForDotNet_ExpressionResult__">CreateExpressionConfigurationOperator</a> uses it to generate operators for ExpressionConfigurations. Please see inside each expression configuration for usage.</p>
+<h4 id="properties">Properties</h4>
+<ul>
+<li><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOperator_ExpressionOperator">ExpressionOperator</a>: The <a href="/api/ExpressionEvaluatorForDotNet.Operator.html">Operator</a></li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOperator_ExpressionOperatorPrecedence">ExpressionOperatorPrecedence</a>: The <a href="/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html">OperatorPrecedence</a></li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOperator_ExpressionOperatorType">ExpressionOperatorType</a>: The <a href="/api/ExpressionEvaluatorForDotNet.OperatorType.html">OperatorType</a></li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOperator_OperatorName">OperatorName</a>: The name of the operator (+, -, %, /, so on)</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOperator_OnBeforeOperatorExpressionSolved">OnBeforeOperatorExpressionSolved</a>: An action you can hook into to invoke before an operator (inner) expression is solved.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOperator_OnAfterOperatorExpressionSolved">OnAfterOperatorExpressionSolved</a>: An action you can hook into to invoke after an operator (inner) expression is solved.</li>
+<li><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html#ExpressionEvaluatorForDotNet_ExpressionConfigurationOperator_SolveOperatorExpression">SolveOperatorExpression</a>: A Func you can hook into to invoke and override solving an operator (inner) expression.</li>
+</ul>
+<h4 id="links">Links</h4>
+<p><a href="/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html">Link to the file</a></p>
 </article>
           </div>
           
