@@ -2,6 +2,8 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2Field.html)
 
+Description
+
 Fields are defined in hl7 v2 specification. By default they contain a single field repetition to represent the field, outside of special cases, such as the first two fields of any special segment headers (MSH.1 and MSH.2). There are CRUD operations you can perform on components and field repetitions. Field repetitions and components are both by Id, with components defaulting to the first field repetition. 
 
 Properties

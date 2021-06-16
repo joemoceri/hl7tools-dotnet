@@ -2,6 +2,8 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html)
 
+Description
+
 Field repetitions are defined in hl7 v2 specification. They exist within fields, outside of special cases such as MSH.1 and MSH.2. Field repetitions contain components.
 
 Properties
