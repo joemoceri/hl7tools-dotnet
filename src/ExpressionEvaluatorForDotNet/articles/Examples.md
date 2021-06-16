@@ -236,6 +236,131 @@ msh.Rebuild();
 
 #### HL7V2Fields
 
+Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)
+
+```csharp
+var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+// get gt16 and cast as a HL7V2Field
+var gt16 = (HL7V2Field)message.Get("GT1.6");
+
+// this will be the field delimiter
+var delimiter = gt16.Delimiter;
+
+// get field repetition
+var frSplit = gt16.Value.Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+
+// get gt16s 1st field repetition
+var gt161 = gt16.GetFieldRepetition(1);
+
+// trying to get a nonexistent field repetition results in a null return value
+var fr = gt16.GetFieldRepetition(0);
+
+// Rebuild when performing CRUD operations
+var value = $"{Guid.NewGuid()}";
+
+var oldValue = gt16.Value;
+
+// add a field repetition
+gt16.AddFieldRepetition(value);
+
+// gt16.Value == oldValue
+
+gt16.Rebuild();
+
+// gt16.Value != oldValue
+
+// get a the first component on gt16 field
+var c = gt16.Components()[0];
+c = gt16[1];
+c = gt16.GetComponent(1);
+
+// will return null if nonexistent
+c = gt16.Components(0);
+c = gt16.GetComponent(0);
+
+// add component to the end of the components list on this field. By default chooses the 1st field repetition (every field outside of special cases always has at least 1 field repetition)
+var component = gt16.AddComponent("_test");
+
+// invalid id will result in null return value
+component = gt16.AddComponent("_test", 0);
+
+// add component by repetition
+component = gt16.AddComponent("_test", 2);
+
+// remove component by Id. Will return true if successful
+var removed = gt16.RemoveComponent(gt16.Components().Count);
+
+// invalid ids result in false
+removed = gt16.RemoveComponent(1, 0);
+removed = gt16.RemoveComponent(0, 1);
+
+// remove component by repetition
+previousCount = gt16.Components(2).Count;
+removed = gt16.RemoveComponent(gt16.Components(2).Count, 2);
+
+// insert component
+
+var id = gt16.Components().Count / 2;
+previousCount = gt16.Components().Count;
+component = gt16.InsertComponent(id, "_test");
+
+// invalid inserts result in null return value
+component = gt16.InsertComponent(0, "_test", 1);
+component = gt16.InsertComponent(1, "_test", 0);
+
+// insert component by repetition (2)
+id = gt16.Components(2).Count / 2;
+previousCount = gt16.Components(2).Count;
+component = gt16.InsertComponent(id, "_test", 2);
+
+// update component 
+component = gt16.UpdateComponent(1, "_test");
+
+// invalid updates result in null return
+component = gt16.UpdateComponent(0, "_test", 1);
+component = gt16.UpdateComponent(1, "_test", 0);
+
+// update component by repetition
+component = gt16.UpdateComponent(1, "_test", 2);
+
+// add field repetition
+previousCount = gt16.FieldRepetitions.Count;
+var fieldRepetition = gt16.AddFieldRepetition("_test");
+
+// remove field repetition
+removed = gt16.RemoveFieldRepetition(fieldRepetition.Id);
+
+// invalid removes result in false return
+removed = gt16.RemoveFieldRepetition(0);
+
+// insert field repetition
+id = gt16.FieldRepetitions.Count / 2;
+previousCount = gt16.FieldRepetitions.Count;
+fieldRepetition = gt16.InsertFieldRepetition(id, "_test");
+
+// invalid inserts result in null return values
+fieldRepetition = gt16.InsertFieldRepetition(0, null);
+fieldRepetition = gt16.InsertFieldRepetition(gt16.FieldRepetitions.Count + 1, "_test");
+
+// update field repetition
+fieldRepetition = gt16.UpdateFieldRepetition(2, "_test");
+
+// bad updates result in null return values
+fieldRepetition = gt16.UpdateFieldRepetition(0, "_test");
+fieldRepetition = gt16.UpdateFieldRepetition(gt16.FieldRepetitions.Count, "_test");
+
+// when you add components, it will add sub components for you if you include the delimiters
+component = gt16.AddComponent("1&2&3");
+
+// 3
+var count = component.SubComponents.Count;
+```
+
 #### HL7V2FieldRepetitions
 
 #### HL7V2Components
