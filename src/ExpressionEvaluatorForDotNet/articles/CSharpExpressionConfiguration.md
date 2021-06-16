@@ -1,10 +1,18 @@
 ### CSharpExpressionConfiguration
 
-[Link to the file](/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html)
+**Table of Contents**
+- [Description](#description)
+- [Properties](#properties)
+- [Links](#links)
+
+#### Description
 
 Use this class to evaluate math (1+2), string ("a"+"b"), or boolean (1>2) expressions.
 
-Properties
+Inside of the [Evaluator](/api/ExpressionEvaluatorForDotNet.Evaluator.html), [higher precedence operators](/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Higher) are solved first, followed by [lower precedence operators](/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Lower). Only the operators shown are supported.
+
+
+#### Properties
 
 - [Operators](/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html#ExpressionEvaluatorForDotNet_CSharpExpressionConfiguration_Operators): Returns a list of [ExpressionConfigurationOperator](/api/ExpressionEvaluatorForDotNet.ExpressionConfigurationOperator.html).
 
@@ -45,4 +53,6 @@ operators = new List<ExpressionConfigurationOperator>
 };
 ```
 
-Inside of the [Evaluator](/api/ExpressionEvaluatorForDotNet.Evaluator.html), [higher precedence operators](/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Higher) are solved first, followed by [lower precedence operators](/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Lower). Only the operators shown are supported.
+#### Links
+
+[Link to the file](/api/ExpressionEvaluatorForDotNet.CSharpExpressionConfiguration.html)
