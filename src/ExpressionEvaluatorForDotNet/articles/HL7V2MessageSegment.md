@@ -6,6 +6,10 @@ Description
 
 Message segments are defined in hl7 v2 specification. They contain fields, and each field outside of special cases, contains 1 field repetition. The crud operations make sure to handle this. Special cases, such as MSH.1 and MSH.2, do not have a field repetition, while MSH.5 does.
 
+The structure of message segments is as follows
+
+Field -> FieldRepetition -> Components -> Sub Components
+
 Properties
 
 - [SegmentName](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_SegmentName): The name of the segment.
