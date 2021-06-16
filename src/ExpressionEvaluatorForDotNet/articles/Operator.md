@@ -10,4 +10,4 @@ An enumeration for the available operators used in expression configurations.
 
 #### Links
 
-[Link to the file](/api/ExpressionEvaluatorForDotNet.Operator.html)
+[Link to the file](../api/ExpressionEvaluatorForDotNet.Operator.html)

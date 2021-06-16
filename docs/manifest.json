@@ -316,24 +316,30 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/CSharpExpressionConfiguration.md",
       "output": {
         ".html": {
           "relative_path": "articles/CSharpExpressionConfiguration.html",
-          "hash": "M5hMywY9mYxoPWiNSIJdLACT0yDz6dI+Akry4mIFxoA="
+          "hash": "0bfj9SaboIkEvN0yHAD00xPJNIG2TDUnRrdmDCtfNHU="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/CSharpExpressions.md",
       "output": {
         ".html": {
           "relative_path": "articles/CSharpExpressions.html",
-          "hash": "XPUP1NHL+VsdsU6eGLbmeK/eRIuhmyOBXkxkZIX2eDA="
+          "hash": "nCOuFip/nixmO0EhtH/6fKZVJBqaZ1S69k5m1aG8mXY="
         }
       },
       "is_incremental": false,
@@ -364,72 +370,90 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/ExpressionConfigurationBase.md",
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationBase.html",
-          "hash": "/Nlz1Mt7Pe9adQg4Fks8PTKoBZ61yGXUQg4k3vwEOhk="
+          "hash": "Pr3/dZWSXjeD/pbPDOMakY897F9MFl1c3QQ2+0SxUCQ="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/ExpressionConfigurationOperator.md",
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationOperator.html",
-          "hash": "Fg7b1vG85cKhB7GRL/+oUDYRgqVNrV8ri1w4AEwIYhc="
+          "hash": "edks+0281LKxGamajUZq1Sm1snAYc6BKzuvhPJQgedY="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/ExpressionConfigurationOptions.md",
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurationOptions.html",
-          "hash": "OplwdxPa5G+85GqpKYkKOq6C2W7pa5TCCFY8kDZ7F9U="
+          "hash": "+cFrhV4GncTc0nWjAvNIzjTwMO1pWuD1tUBpzBKTswE="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/ExpressionConfigurations.md",
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionConfigurations.html",
-          "hash": "zzAV6wVyXn980KvtntJGBtqvP69JE6NIoWCEyEKXM10="
+          "hash": "2Xr9hDhaIyOThXcONNa2Si9bCjOoH82oIFHHvhmxZN4="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/ExpressionGroup.md",
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionGroup.html",
-          "hash": "CCK/YEKaV/a3TvmNA0lUxNmtAmHSyYgNo8M6trHMOVI="
+          "hash": "c5qmlTK+8f2WYZ+pb22vmzmsHJrlQW8VbZ+f6LiS2EY="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/ExpressionOperandTypes.md",
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionOperandTypes.html",
-          "hash": "OuHSjyBGVyPT+zxMekbpoRJuh+Kj1SOps0swCLmEsO0="
+          "hash": "jPE1SGupVyPMy4AiQSG0qEGhn8fms9RAWUu78f8vhA4="
         }
       },
       "is_incremental": false,
@@ -444,103 +468,127 @@
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionResult.html",
-          "hash": "X57w8Jzx9LfCQtbySTcuOhKyEWq3RpI0IbyR6zReR5c="
+          "hash": "dEWlWSGQzEL3af3/NW4XRWC8ax8E2l3irvOqVlRhm7U="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/ExpressionType.md",
       "output": {
         ".html": {
           "relative_path": "articles/ExpressionType.html",
-          "hash": "OPgfIvYuFX20Ha5KkeAmYPGn1cDjF62+Qkl3wv2rSks="
+          "hash": "2Y3vicG1OcQvYovdl4kcc9pT5QsxDK+rXs29sv+EFDI="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/HL7V2Component.md",
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Component.html",
-          "hash": "R2wCm3B66kauDQN5M1VWVBIkkkGmkpid0+Uxcn+rKM8="
+          "hash": "Ar/RgCkhMjyB/SSaay8UycZZA1IE7JlsrwaLGz2FQvw="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/HL7V2ExpressionConfiguration.md",
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2ExpressionConfiguration.html",
-          "hash": "kTH1azRWsHlu3uP7AcdmfAPguwFBAV7A+voGfgnQO1w="
+          "hash": "H9nsQdN/5Iechgj2sDIhWKLYoLzHcrOWmUIawze2d04="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/HL7V2Field.md",
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Field.html",
-          "hash": "vpSOGaiPSaj55G0poYh4nn8H1sdwfRBVgHm6CQbDe6s="
+          "hash": "DcLlihzWJaedEqsG7ojZC0NcoNJ50rHmp4ZVllGOokU="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/HL7V2FieldBase.md",
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2FieldBase.html",
-          "hash": "N68S/7aOr2Zh/lx1M8jyzbIx1O4I82ZHhEuoPeC+Q+M="
+          "hash": "6U/HtvmW2mMjrZYFHgHvI8m9X/ZVcmMc+Tedz8eeQHA="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/HL7V2FieldRepetition.md",
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2FieldRepetition.html",
-          "hash": "T9MbzvRuHS3aJUgOBU5LkvBEEVw1Q1wExDr3gXcFeuM="
+          "hash": "JCjjUgHS2uxum33ylwVWUkImtarq7juiTAFqeVIAiP8="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/HL7V2Message.md",
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2Message.html",
-          "hash": "cHA9kL7IbZSmv4u7tbr/uN9WGurkxpQginvYy2CQBbM="
+          "hash": "9QYvbB/aWJxE6QH5rzskCgyFQ+pm+BpWcj4bcVfIUNc="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/HL7V2MessageSegment.md",
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2MessageSegment.html",
-          "hash": "Fm3iRWGYYA2HmcWGK7wtAj3nJuCpuJaScRlAeD8ESsc="
+          "hash": "EWY2DprBMsOyxnc4iQngitvAVbsXdYevVKW8AZtgreA="
         }
       },
       "is_incremental": false,
@@ -559,12 +607,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/HL7V2SubComponent.md",
       "output": {
         ".html": {
           "relative_path": "articles/HL7V2SubComponent.html",
-          "hash": "PQcgtta25k/TO4lFc/k0BwU9jKbRKr1G1P5Qqsi+HuA="
+          "hash": "b/iDgicK7w5TFQGOg1ENirb2uBLL1xGgAMbKadj4WZs="
         }
       },
       "is_incremental": false,
@@ -595,60 +646,75 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/Operand.md",
       "output": {
         ".html": {
           "relative_path": "articles/Operand.html",
-          "hash": "q2OxYYlF2gAfpgXYFv86FPTq4tBIDwjK9Xgc7W0uH7s="
+          "hash": "xhQphDF0cVDT5WAKyArKMEpEfr/DBQJDoR02RW+RKLc="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/Operator.md",
       "output": {
         ".html": {
           "relative_path": "articles/Operator.html",
-          "hash": "2iJ8IDBY4Ts+vhMNHs+mEWPU5SyeqcIE1BRSKFN3VWU="
+          "hash": "KKIkm49/M3UYf/ojtFKHw6LR/1wFa0xEv5UutgqM9g8="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/OperatorLocation.md",
       "output": {
         ".html": {
           "relative_path": "articles/OperatorLocation.html",
-          "hash": "9SBNRqyXJDmnVZugGFZYwOOa8Yi6bv7V+FzBLI9evks="
+          "hash": "klp4hAkP1YsxnlZwbU61tvl3DRSI9xhA7oeDv2K0DeA="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/OperatorPrecedence.md",
       "output": {
         ".html": {
           "relative_path": "articles/OperatorPrecedence.html",
-          "hash": "iTUbo7yezu5HiF6AxjANMtu/2zDT6FtXBfQg9OYr3ro="
+          "hash": "MTUntzHB4oJzL1RStbjA5+flmXNGfu1oFbu12iGC88U="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/OperatorType.md",
       "output": {
         ".html": {
           "relative_path": "articles/OperatorType.html",
-          "hash": "6i9RU5FKF40PA3rOczCPyjEMN5TLZN3HI2p9j5oA6Kg="
+          "hash": "q707Grg5pSS2BL+OkrwnHtJvJsmb7x1VXZbz0qaScNI="
         }
       },
       "is_incremental": false,
@@ -663,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Overview.html",
-          "hash": "tERzfdPVYMU+4IHmOx3bM2Qe6KFug/HeTe8gxPG5wIs="
+          "hash": "gvA74Qaam+ZBftINXbYT3m1s4kn4ojSnVHlYFt2VVtc="
         }
       },
       "is_incremental": false,
@@ -694,12 +760,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/VariableType.md",
       "output": {
         ".html": {
           "relative_path": "articles/VariableType.html",
-          "hash": "aZ7c2UGZiV6jAK1oW9Z87slsxrhRlqxBRg9Ct8MqzPo="
+          "hash": "oOu3tsrO1Ni8x2ynaJDHoW0lgJJOW+n//iv6weP+lXk="
         }
       },
       "is_incremental": false,

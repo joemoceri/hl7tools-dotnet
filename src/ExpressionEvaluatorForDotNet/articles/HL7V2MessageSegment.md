@@ -16,21 +16,21 @@ Field -> FieldRepetition -> Components -> Sub Components
 
 #### Properties
 
-- [SegmentName](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_SegmentName): The name of the segment.
-- [Fields](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Fields): The fields within the segment. 
+- [SegmentName](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_SegmentName): The name of the segment.
+- [Fields](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Fields): The fields within the segment. 
 
 #### Methods
 
-- [ToString](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_ToString): Converts the message segment to a string using the Values of it's fields.
-- [Rebuild](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Rebuild): Rebuilds the values of each of the message segments fields.
-- [GetField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_GetField_System_Int32_): Gets a field by Id.
-- [AddField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_AddField_System_String_System_Boolean_): Adds a field to end of the message segment.
-- [RemoveField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_RemoveField_System_Int32_): Removes a field by Id from the message segment.
-- [InsertField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_InsertField_System_Int32_System_String_): Inserts a field by Id into the message segment.
-- [UpdateField](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_UpdateField_System_Int32_System_String_): Updates a field by Id in the message segment.
+- [ToString](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_ToString): Converts the message segment to a string using the Values of it's fields.
+- [Rebuild](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Rebuild): Rebuilds the values of each of the message segments fields.
+- [GetField](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_GetField_System_Int32_): Gets a field by Id.
+- [AddField](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_AddField_System_String_System_Boolean_): Adds a field to end of the message segment.
+- [RemoveField](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_RemoveField_System_Int32_): Removes a field by Id from the message segment.
+- [InsertField](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_InsertField_System_Int32_System_String_): Inserts a field by Id into the message segment.
+- [UpdateField](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_UpdateField_System_Int32_System_String_): Updates a field by Id in the message segment.
 
-An [indexer](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Item_System_Int32_) is exposed to access fields by their Id.
+An [indexer](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html#ExpressionEvaluatorForDotNet_HL7V2MessageSegment_Item_System_Int32_) is exposed to access fields by their Id.
 
 #### Links
 
-[Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html)
+[Link to the file](../api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html)

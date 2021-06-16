@@ -11,9 +11,9 @@ A class used internally for describing an operand's Value and Type of an express
 
 #### Properties
 
-- [Value](/api/ExpressionEvaluatorForDotNet.Operand.html#ExpressionEvaluatorForDotNet_Operand_Value): A string representing the operand of the expression.
-- [Type](/api/ExpressionEvaluatorForDotNet.Operand.html#ExpressionEvaluatorForDotNet_Operand_Type): The [VariableType](/api/ExpressionEvaluatorForDotNet.VariableType.html) of the operand of the expression.
+- [Value](../api/ExpressionEvaluatorForDotNet.Operand.html#ExpressionEvaluatorForDotNet_Operand_Value): A string representing the operand of the expression.
+- [Type](../api/ExpressionEvaluatorForDotNet.Operand.html#ExpressionEvaluatorForDotNet_Operand_Type): The [VariableType](../api/ExpressionEvaluatorForDotNet.VariableType.html) of the operand of the expression.
 
 #### Links
 
-[Link to the file](/api/ExpressionEvaluatorForDotNet.Operand.html)
+[Link to the file](../api/ExpressionEvaluatorForDotNet.Operand.html)

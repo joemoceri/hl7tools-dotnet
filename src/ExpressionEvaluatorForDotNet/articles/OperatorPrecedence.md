@@ -6,8 +6,8 @@
 
 #### Description
 
-An enumeration that defines the different levels of precedence for operations. Options are [Higher](/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Higher) and [Lower](/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Lower).
+An enumeration that defines the different levels of precedence for operations. Options are [Higher](../api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Higher) and [Lower](../api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html#ExpressionEvaluatorForDotNet_OperatorPrecedence_Lower).
 
 #### Links
 
-[Link to the file](/api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html)
+[Link to the file](../api/ExpressionEvaluatorForDotNet.OperatorPrecedence.html)
