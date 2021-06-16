@@ -8,9 +8,11 @@ namespace ExpressionEvaluatorForDotNet.Sample
     {
         public void Run()
         {
+            //SolveStringExample();
+
             //ParseHL7FileExample();
 
-            SolveMathExample();
+            //SolveMathExample();
 
             //SolveBooleanExample();
 
@@ -24,6 +26,18 @@ namespace ExpressionEvaluatorForDotNet.Sample
             var r = 1 + 2 * (3 - 4) / 18;
 
             var result = evaluator.Evaluate("1 + 2 * (3 - 4) / 18");
+
+            Console.WriteLine($"{r} = {result}");
+        }
+
+        public void SolveStringExample()
+        {
+            var evaluator = new Evaluator();
+
+            var r = "\" ab + " + " cd \"";
+            var expression = " \" ab + \" + \" cd \"";
+
+            var result = evaluator.Evaluate(expression);
 
             Console.WriteLine($"{r} = {result}");
         }
