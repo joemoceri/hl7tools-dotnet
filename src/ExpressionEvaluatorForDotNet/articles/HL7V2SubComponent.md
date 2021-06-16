@@ -2,12 +2,12 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2SubComponent.html)
 
-The following three properties are exposed
+Properties
 
-- Id:
-- Delimiter:
-- Value:
+- [Id]():
+- [Delimiter]():
+- [Value]():
 
-The following method is exposed
+Methods
 
-- Rebuild:
+- [Rebuild]():

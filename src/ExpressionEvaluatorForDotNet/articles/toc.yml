@@ -54,6 +54,8 @@
   href: HL7V2SubComponent.md
 - name: Examples
   href: Examples.md
+- name: Tests
+  href: Tests.md
 - name: Roadmap
   href: Roadmap.md
 - name: Versioning

@@ -2,20 +2,20 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2Component.html)
 
-The following four properties are exposed
+Properties
 
-- Id:
-- Delimiter:
-- Value:
-- SubComponents:
+- [Id]():
+- [Delimiter]():
+- [Value]():
+- [SubComponents]():
 
-The following six methods are exposed
+Methods
 
-- GetSubComponent:
-- Rebuild:
-- AddSubComponent:
-- RemoveSubComponent:
-- InsertSubComponent:
-- UpdateSubComponent:
+- [GetSubComponent]():
+- [Rebuild]():
+- [AddSubComponent]():
+- [RemoveSubComponent]():
+- [InsertSubComponent]():
+- [UpdateSubComponent]():
 
-An indexer is exposed to allow access to this components HL7V2SubComponents
+An [indexer]() is exposed to allow access to this components HL7V2SubComponents.

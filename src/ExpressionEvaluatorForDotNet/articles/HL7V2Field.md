@@ -2,26 +2,26 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2Field.html)
 
-The following four properties are exposed
+Properties
 
-- Id:
-- Delimiter:
-- Value:
-- FieldRepetitions:
+- [Id]():
+- [Delimiter]():
+- [Value]():
+- [FieldRepetitions]():
 
-The following twelve methods are exposed
+Methods
 
-- GetFieldRepetition:
-- Components:
-- GetComponent:
-- Rebuild:
-- AddComponent:
-- RemoveComponent:
-- InsertComponent:
-- UpdateComponent:
-- AddFieldRepetition:
-- RemoveFieldRepetition:
-- InsertFieldRepetition:
-- UpdateFieldRepetition:
+- [GetFieldRepetition]():
+- [Components]():
+- [GetComponent]():
+- [Rebuild]():
+- [AddComponent]():
+- [RemoveComponent]():
+- [InsertComponent]():
+- [UpdateComponent]():
+- [AddFieldRepetition]():
+- [RemoveFieldRepetition]():
+- [InsertFieldRepetition]():
+- [UpdateFieldRepetition]():
 
-An indexer is exposed to access this field's HL7V2Components by their Ids and repetition (default is 1)
+An [indexer]() is exposed to access this field's HL7V2Components by their Ids and repetition (default is 1).

@@ -2,19 +2,19 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2MessageSegment.html)
 
-The following two properties are exposed
+Properties
 
-- SegmentName:
-- Fields:
+- [SegmentName]():
+- [Fields]():
 
-The following seven methods are exposed
+Methods
 
-- ToString:
-- Rebuild:
-- GetField:
-- AddField:
-- RemoveField:
-- InsertField:
-- UpdateField:
+- [ToString]():
+- [Rebuild]():
+- [GetField]():
+- [AddField]():
+- [RemoveField]():
+- [InsertField]():
+- [UpdateField]():
 
-An indexer is exposed to access fields by their Id
+An [indexer]() is exposed to access fields by their Id.
