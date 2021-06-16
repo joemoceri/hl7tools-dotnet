@@ -12,7 +12,7 @@ This is the object you get back when you call [Evaluate](/api/ExpressionEvaluato
 
 #### Properties
 
-- [Value](/api/ExpressionEvaluatorForDotNet.ExpressionResult.html#ExpressionEvaluatorForDotNet_ExpressionResult_Value): The resulting value after evaluating the expression, represented as a string.
+- [Value](./api/ExpressionEvaluatorForDotNet.ExpressionResult.html#ExpressionEvaluatorForDotNet_ExpressionResult_Value): The resulting value after evaluating the expression, represented as a string.
 - [Type](/api/ExpressionEvaluatorForDotNet.ExpressionResult.html#ExpressionEvaluatorForDotNet_ExpressionResult_Type): The VariableType of the Value.
 - [Error](/api/ExpressionEvaluatorForDotNet.ExpressionResult.html#ExpressionEvaluatorForDotNet_ExpressionResult_Error): An Exception containing the error. This is null if the result is successful.
 
