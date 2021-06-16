@@ -174,6 +174,66 @@ message.Rebuild();
 
 #### HL7V2MessageSegments
 
+Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)
+
+```csharp
+var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+// get the MSH segment
+var msh = message["MSH"];
+
+var value = $"{Guid.NewGuid()}";
+
+// You can update fields. It returns the field if successful
+var field = msh.UpdateField(2, value);
+
+// if the id doesn't exist (0 or msh.Fields.Count), field will be null
+field = msh.UpdateField(0, value);
+
+field = msh.UpdateField(msh.Fields.Count, value);
+
+// insert field
+var id = msh.Fields.Count / 2;
+field = msh.InsertField(id, "_test");
+
+field = msh.InsertField(msh.Fields.Count, "_test");
+
+// remove field
+var removed = msh.RemoveField(id);
+
+// returns false if it didn't remove the field
+removed = msh.RemoveField(0);
+
+// add field. Adds it to the end of the fields
+value = $"{Guid.NewGuid()}";
+
+field = msh.AddField(value);
+
+// get field
+field = msh.GetField(5);
+
+// returns null if it doesn't exist
+field = msh.GetField(0);
+
+field = msh[0];
+
+Assert.AreEqual(field, null);
+
+// to string
+var messageSegmentToString = msh.ToString();
+
+// make sure to rebuild when performing CRUD operations
+value = $"{Guid.NewGuid()}";
+
+msh[9].AddComponent(value);
+
+msh.Rebuild();
+```
+
 #### HL7V2Fields
 
 #### HL7V2FieldRepetitions
