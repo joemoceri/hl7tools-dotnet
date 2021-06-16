@@ -2,6 +2,8 @@
 
 [Link to the file](/api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html)
 
+Description
+
 Use this expression configuration for the [Evaluator](/api/ExpressionEvaluatorForDotNet.Evaluator.html) when parsing HL7V2 files.
 
 When the static constructor is called, the encodingConversions are rebuilt using the current values of the static delimiters, and the specialSegmentHeaders are initialized. The default values are MSH, FHS, and BHS.
