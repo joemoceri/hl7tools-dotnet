@@ -221,8 +221,6 @@ field = msh.GetField(0);
 
 field = msh[0];
 
-Assert.AreEqual(field, null);
-
 // to string
 var messageSegmentToString = msh.ToString();
 
@@ -363,6 +361,113 @@ var count = component.SubComponents.Count;
 
 #### HL7V2FieldRepetitions
 
+Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)
+
+```csharp
+var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+// get this field repetition
+var gt161 = (HL7V2FieldRepetition)message.Get("GT1.6(1)");
+
+// this is the field repetitions delimiter
+var delimiter = gt161.Delimiter;
+
+// get component by Id
+var component = gt161.GetComponent(1);
+
+// add component to the end of the field repetitions components
+component = gt161.AddComponent("_test");
+
+// remove component by Id
+var removed = gt161.RemoveComponent(component.Id);
+
+// will return false if not successful
+removed = gt161.RemoveComponent(0);
+
+// insert component
+var id = gt161.Components.Count / 2;
+component = gt161.InsertComponent(id, "_test");
+
+// invalid inserts result in null return values
+component = gt161.InsertComponent(0, "_test");
+component = gt161.InsertComponent(gt161.Components.Count + 1, "_test");
+
+// update component
+component = gt161.UpdateComponent(1, "_test");
+
+// invalid inserts result in null return value
+component = gt161.UpdateComponent(0, "_test");
+component = gt161.UpdateComponent(gt161.Components.Count + 1, "_test");
+
+```
+
 #### HL7V2Components
 
+Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)
+
+```csharp
+var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
+
+// get pv179 component
+var pv179 = (HL7V2Component)message.Get("PV1.7.9");
+
+var delimiter = pv179.Delimiter;
+
+// add sub component to the end of SubComponents
+var previousCount = pv179.SubComponents.Count;
+var subComponent = pv179.AddSubComponent("_test");
+
+// will return null if it can't get the sub component
+var testSubComponent = pv179.GetSubComponent(0);
+testSubComponent = pv179[0];
+
+// remove sub component by Id
+var removed = pv179.RemoveSubComponent(subComponent.Id);
+
+// invalid removes result in false
+removed = pv179.RemoveSubComponent(0);
+
+// insert sub component
+var id = pv179.SubComponents.Count / 2;
+subComponent = pv179.InsertSubComponent(id, "_test");
+
+// invalid inserts result in null return value
+subComponent = pv179.InsertSubComponent(0, "_test");
+subComponent = pv179.InsertSubComponent(pv179.SubComponents.Count + 1, "_test");
+
+// update sub component
+subComponent = pv179.UpdateSubComponent(1, "_test");
+
+// invalid updates result in null return value
+subComponent = pv179.UpdateSubComponent(0, "_test");
+subComponent = pv179.UpdateSubComponent(pv179.SubComponents.Count + 1, "_test");
+```
+
 #### HL7V2SubComponents
+
+Given an HL7V2Message like below (ADT_A05 from the hl7 confluence wiki)
+
+```csharp
+// you need this configuration to evaluate hl7v2 files
+var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+// pass it into the evaluator
+var evaluator = new Evaluator(expressionConfiguration);
+
+// evaluate a new message
+message = evaluator.EvaluateHL7V2File("ADT-A05 Pre-admit Patient.txt");
+
+// Get the first index PD1's 4th fields 9th components 2nd sub component
+// Sub components have Id, Value, Delimiter, and Rebuild. Rebuild does nothing.
+var pid1492 = message.Get("PD1.4.9.2");
+pid1492 = message["PD1"][4][9][2];
+
+```

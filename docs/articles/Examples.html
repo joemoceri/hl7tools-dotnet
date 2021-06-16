@@ -67,8 +67,444 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="examples">Examples</h1>
+<h3 id="examples">Examples</h3>
 
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#csharp-expressions">CSharp Expressions</a></li>
+<li><a href="#hl7v2messages">HL7V2Messages</a></li>
+<li><a href="#hl7v2messagesegments">HL7V2MessageSegments</a></li>
+<li><a href="#hl7v2fields">HL7V2Fields</a></li>
+<li><a href="#hl7v2fieldrepetitions">HL7V2FieldRepetitions</a></li>
+<li><a href="#hl7v2components">HL7V2Components</a></li>
+<li><a href="#hl7v2subcomponents">HL7V2SubComponents</a></li>
+</ul>
+<h4 id="description">Description</h4>
+<p>See examples below for how to work with each object.</p>
+<p>To see these in action, check out the <a href="https://github.com/joemoceri/expression-evaluator-dotnet/tree/main/src/ExpressionEvaluatorForDotNet.Tests">Tests Project</a> and <a href="https://github.com/joemoceri/expression-evaluator-dotnet/tree/main/src/ExpressionEvaluatorForDotNet.Sample">Sample Project</a>.</p>
+<h4 id="csharp-expressions">CSharp Expressions</h4>
+<p>Solve a math expression.</p>
+<pre><code class="lang-csharp">public void SolveMathExample()
+{
+    var evaluator = new Evaluator();
+
+    var r = 1 + 2 * (3 - 4) / 18;
+
+    var result = evaluator.Evaluate(&quot;1 + 2 * (3 - 4) / 18&quot;);
+
+    Console.WriteLine($&quot;{r} = {result}&quot;);
+}
+</code></pre>
+<p>Solve a string expression.</p>
+<pre><code class="lang-csharp">public void SolveStringExample()
+{
+    var evaluator = new Evaluator();
+
+    var r = &quot;\&quot; ab + &quot; + &quot; cd \&quot;&quot;;
+    var expression = &quot; \&quot; ab + \&quot; + \&quot; cd \&quot;&quot;;
+
+    var result = evaluator.Evaluate(expression);
+
+    Console.WriteLine($&quot;{r} = {result}&quot;);
+}
+</code></pre>
+<p>Solve a boolean expression.</p>
+<pre><code class="lang-csharp">public void SolveBooleanExample()
+{
+    var evaluator = new Evaluator();
+
+    var r = 1 &gt; 2 &amp;&amp; (3 + 4) / 2 == 5;
+
+    var result = evaluator.Evaluate(&quot;1 &gt; 2 &amp;&amp; (3 + 4) / 2 == 5&quot;);
+
+    Console.WriteLine($&quot;{r} = {result}&quot;);
+}
+</code></pre>
+<h4 id="hl7v2messages">HL7V2Messages</h4>
+<p>Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)</p>
+<pre><code class="lang-csharp">// you need this configuration to evaluate hl7v2 files
+var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+// pass it into the evaluator
+var evaluator = new Evaluator(expressionConfiguration);
+
+// call this method on a file path to get the HL7V2Message object
+var message = evaluator.EvaluateHL7V2File(&quot;ADT-A08 Update Patient.txt&quot;);
+
+// this will be null if the message was evaluated successfully
+var error = message.Error;
+
+// you can access message segments
+var messageSegments = message.MessageSegments;
+
+// get all of the message segments named MSH
+var mshMessageSegments = message.Segments(&quot;MSH&quot;);
+
+// get the MSH message segment by indexer
+var msh = message[&quot;MSH&quot;];
+
+// optionally you can pass in index in case of multiple (default is 0)
+msh = message[&quot;MSH&quot;, 0];
+
+// Get using various methods. This always returns HL7V2FieldBase, you can cast to HL7V2Field or others depending on what you need.
+// Get the first index MSH's' 1st field (MSH.1)
+var msh1 = message.Get(&quot;MSH.1&quot;);
+
+msh1 = message[&quot;MSH&quot;][1];
+
+// Get the first index PIDs 5th field 1st component
+var pid51 = message.Get(&quot;PID.5.1&quot;);
+pid51 = message[&quot;PID&quot;][5][1];
+
+// the first index of the segment (0) returns that message segment. Default is 0.
+pid51 = message.Get(&quot;PID(1).5.1&quot;);
+
+// Get the first index GT1's 6th fields 2nd repetitions 1st component
+var gt1621 = message.Get(&quot;GT1.6(2).1&quot;);
+.Value, message[&quot;GT1&quot;][6][1, 2].Value);
+
+// evaluate a new message
+message = evaluator.EvaluateHL7V2File(&quot;ADT-A05 Pre-admit Patient.txt&quot;);
+
+// Get the first index PD1's 4th fields 9th components 2nd sub component
+var pid1492 = message.Get(&quot;PD1.4.9.2&quot;);
+pid1492 = message[&quot;PD1&quot;][4][9][2];
+
+// The following calls will result in a null return value
+var bad = message.Get(&quot;INVALID&quot;);
+
+bad = message.Get(&quot;....&quot;);
+
+bad = message.Get(&quot;a.ba.c.d&quot;);
+
+bad = message.Get(&quot;.a.ba.c.d&quot;);
+
+bad = message.Get(&quot;a.ba.c.d.&quot;);
+
+bad = message.Get(null);
+
+bad = message.Get(string.Empty);
+
+// Add message segment. This will add it to the end of the message. The message segment is returned when added.
+var obr = message.AddMessageSegment(&quot;OBR&quot;);
+
+// Remove message segment. The return value will tell you if it was successful.
+var removed = message.RemoveMessageSegment(&quot;OBR&quot;);
+
+// If you try to remove a segment that doesn't exist, it will return false.
+removed = message.RemoveMessageSegment(&quot;NOPE&quot;);
+
+// Insert a message segment by Id. Returns the message segment inserted. By default inserts at the beginning (index 0).
+var frontObr = message.InsertMessageSegment(&quot;OBR&quot;);
+
+// can't do this, will return null
+frontObr = message.InsertMessageSegment(&quot;OBR&quot;, -1);
+
+// Insert message segment at index.
+var index = message.MessageSegments.Count / 2;
+
+obr = message.InsertMessageSegment(&quot;OBR&quot;, index);
+
+// You can convert it to a string array by calling ToHL7V2MessageFile
+var messageToFile = message.ToHL7V2MessageFile();
+
+// or to a string
+var messageToString = message.ToString();
+
+// When modifying a field (CRUD operation), make sure to call Rebuild after to update the Value
+var msh9 = ((HL7V2Field)message.Get(&quot;MSH.9&quot;));
+
+msh9.AddComponent(&quot;_test&quot;);
+
+// not equal before
+// message.ToString() != joinedMessageFile
+
+message.Rebuild();
+
+// after rebuilding, they're now equal
+// // message.ToString() == joinedMessageFile
+</code></pre>
+<h4 id="hl7v2messagesegments">HL7V2MessageSegments</h4>
+<p>Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)</p>
+<pre><code class="lang-csharp">var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File(&quot;ADT-A08 Update Patient.txt&quot;);
+
+// get the MSH segment
+var msh = message[&quot;MSH&quot;];
+
+var value = $&quot;{Guid.NewGuid()}&quot;;
+
+// You can update fields. It returns the field if successful
+var field = msh.UpdateField(2, value);
+
+// if the id doesn't exist (0 or msh.Fields.Count), field will be null
+field = msh.UpdateField(0, value);
+
+field = msh.UpdateField(msh.Fields.Count, value);
+
+// insert field
+var id = msh.Fields.Count / 2;
+field = msh.InsertField(id, &quot;_test&quot;);
+
+field = msh.InsertField(msh.Fields.Count, &quot;_test&quot;);
+
+// remove field
+var removed = msh.RemoveField(id);
+
+// returns false if it didn't remove the field
+removed = msh.RemoveField(0);
+
+// add field. Adds it to the end of the fields
+value = $&quot;{Guid.NewGuid()}&quot;;
+
+field = msh.AddField(value);
+
+// get field
+field = msh.GetField(5);
+
+// returns null if it doesn't exist
+field = msh.GetField(0);
+
+field = msh[0];
+
+// to string
+var messageSegmentToString = msh.ToString();
+
+// make sure to rebuild when performing CRUD operations
+value = $&quot;{Guid.NewGuid()}&quot;;
+
+msh[9].AddComponent(value);
+
+msh.Rebuild();
+</code></pre>
+<h4 id="hl7v2fields">HL7V2Fields</h4>
+<p>Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)</p>
+<pre><code class="lang-csharp">var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File(&quot;ADT-A08 Update Patient.txt&quot;);
+
+// get gt16 and cast as a HL7V2Field
+var gt16 = (HL7V2Field)message.Get(&quot;GT1.6&quot;);
+
+// this will be the field delimiter
+var delimiter = gt16.Delimiter;
+
+// get field repetition
+var frSplit = gt16.Value.Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+
+// get gt16s 1st field repetition
+var gt161 = gt16.GetFieldRepetition(1);
+
+// trying to get a nonexistent field repetition results in a null return value
+var fr = gt16.GetFieldRepetition(0);
+
+// Rebuild when performing CRUD operations
+var value = $&quot;{Guid.NewGuid()}&quot;;
+
+var oldValue = gt16.Value;
+
+// add a field repetition
+gt16.AddFieldRepetition(value);
+
+// gt16.Value == oldValue
+
+gt16.Rebuild();
+
+// gt16.Value != oldValue
+
+// get a the first component on gt16 field
+var c = gt16.Components()[0];
+c = gt16[1];
+c = gt16.GetComponent(1);
+
+// will return null if nonexistent
+c = gt16.Components(0);
+c = gt16.GetComponent(0);
+
+// add component to the end of the components list on this field. By default chooses the 1st field repetition (every field outside of special cases always has at least 1 field repetition)
+var component = gt16.AddComponent(&quot;_test&quot;);
+
+// invalid id will result in null return value
+component = gt16.AddComponent(&quot;_test&quot;, 0);
+
+// add component by repetition
+component = gt16.AddComponent(&quot;_test&quot;, 2);
+
+// remove component by Id. Will return true if successful
+var removed = gt16.RemoveComponent(gt16.Components().Count);
+
+// invalid ids result in false
+removed = gt16.RemoveComponent(1, 0);
+removed = gt16.RemoveComponent(0, 1);
+
+// remove component by repetition
+previousCount = gt16.Components(2).Count;
+removed = gt16.RemoveComponent(gt16.Components(2).Count, 2);
+
+// insert component
+
+var id = gt16.Components().Count / 2;
+previousCount = gt16.Components().Count;
+component = gt16.InsertComponent(id, &quot;_test&quot;);
+
+// invalid inserts result in null return value
+component = gt16.InsertComponent(0, &quot;_test&quot;, 1);
+component = gt16.InsertComponent(1, &quot;_test&quot;, 0);
+
+// insert component by repetition (2)
+id = gt16.Components(2).Count / 2;
+previousCount = gt16.Components(2).Count;
+component = gt16.InsertComponent(id, &quot;_test&quot;, 2);
+
+// update component 
+component = gt16.UpdateComponent(1, &quot;_test&quot;);
+
+// invalid updates result in null return
+component = gt16.UpdateComponent(0, &quot;_test&quot;, 1);
+component = gt16.UpdateComponent(1, &quot;_test&quot;, 0);
+
+// update component by repetition
+component = gt16.UpdateComponent(1, &quot;_test&quot;, 2);
+
+// add field repetition
+previousCount = gt16.FieldRepetitions.Count;
+var fieldRepetition = gt16.AddFieldRepetition(&quot;_test&quot;);
+
+// remove field repetition
+removed = gt16.RemoveFieldRepetition(fieldRepetition.Id);
+
+// invalid removes result in false return
+removed = gt16.RemoveFieldRepetition(0);
+
+// insert field repetition
+id = gt16.FieldRepetitions.Count / 2;
+previousCount = gt16.FieldRepetitions.Count;
+fieldRepetition = gt16.InsertFieldRepetition(id, &quot;_test&quot;);
+
+// invalid inserts result in null return values
+fieldRepetition = gt16.InsertFieldRepetition(0, null);
+fieldRepetition = gt16.InsertFieldRepetition(gt16.FieldRepetitions.Count + 1, &quot;_test&quot;);
+
+// update field repetition
+fieldRepetition = gt16.UpdateFieldRepetition(2, &quot;_test&quot;);
+
+// bad updates result in null return values
+fieldRepetition = gt16.UpdateFieldRepetition(0, &quot;_test&quot;);
+fieldRepetition = gt16.UpdateFieldRepetition(gt16.FieldRepetitions.Count, &quot;_test&quot;);
+
+// when you add components, it will add sub components for you if you include the delimiters
+component = gt16.AddComponent(&quot;1&amp;2&amp;3&quot;);
+
+// 3
+var count = component.SubComponents.Count;
+</code></pre>
+<h4 id="hl7v2fieldrepetitions">HL7V2FieldRepetitions</h4>
+<p>Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)</p>
+<pre><code class="lang-csharp">var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File(&quot;ADT-A08 Update Patient.txt&quot;);
+
+// get this field repetition
+var gt161 = (HL7V2FieldRepetition)message.Get(&quot;GT1.6(1)&quot;);
+
+// this is the field repetitions delimiter
+var delimiter = gt161.Delimiter;
+
+// get component by Id
+var component = gt161.GetComponent(1);
+
+// add component to the end of the field repetitions components
+component = gt161.AddComponent(&quot;_test&quot;);
+
+// remove component by Id
+var removed = gt161.RemoveComponent(component.Id);
+
+// will return false if not successful
+removed = gt161.RemoveComponent(0);
+
+// insert component
+var id = gt161.Components.Count / 2;
+component = gt161.InsertComponent(id, &quot;_test&quot;);
+
+// invalid inserts result in null return values
+component = gt161.InsertComponent(0, &quot;_test&quot;);
+component = gt161.InsertComponent(gt161.Components.Count + 1, &quot;_test&quot;);
+
+// update component
+component = gt161.UpdateComponent(1, &quot;_test&quot;);
+
+// invalid inserts result in null return value
+component = gt161.UpdateComponent(0, &quot;_test&quot;);
+component = gt161.UpdateComponent(gt161.Components.Count + 1, &quot;_test&quot;);
+
+</code></pre>
+<h4 id="hl7v2components">HL7V2Components</h4>
+<p>Given an HL7V2Message like below (ADT_A08 from the hl7 confluence wiki)</p>
+<pre><code class="lang-csharp">var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+var evaluator = new Evaluator(expressionConfiguration);
+
+var message = evaluator.EvaluateHL7V2File(&quot;ADT-A08 Update Patient.txt&quot;);
+
+// get pv179 component
+var pv179 = (HL7V2Component)message.Get(&quot;PV1.7.9&quot;);
+
+var delimiter = pv179.Delimiter;
+
+// add sub component to the end of SubComponents
+var previousCount = pv179.SubComponents.Count;
+var subComponent = pv179.AddSubComponent(&quot;_test&quot;);
+
+// will return null if it can't get the sub component
+var testSubComponent = pv179.GetSubComponent(0);
+testSubComponent = pv179[0];
+
+// remove sub component by Id
+var removed = pv179.RemoveSubComponent(subComponent.Id);
+
+// invalid removes result in false
+removed = pv179.RemoveSubComponent(0);
+
+// insert sub component
+var id = pv179.SubComponents.Count / 2;
+subComponent = pv179.InsertSubComponent(id, &quot;_test&quot;);
+
+// invalid inserts result in null return value
+subComponent = pv179.InsertSubComponent(0, &quot;_test&quot;);
+subComponent = pv179.InsertSubComponent(pv179.SubComponents.Count + 1, &quot;_test&quot;);
+
+// update sub component
+subComponent = pv179.UpdateSubComponent(1, &quot;_test&quot;);
+
+// invalid updates result in null return value
+subComponent = pv179.UpdateSubComponent(0, &quot;_test&quot;);
+subComponent = pv179.UpdateSubComponent(pv179.SubComponents.Count + 1, &quot;_test&quot;);
+</code></pre>
+<h4 id="hl7v2subcomponents">HL7V2SubComponents</h4>
+<p>Given an HL7V2Message like below (ADT_A05 from the hl7 confluence wiki)</p>
+<pre><code class="lang-csharp">// you need this configuration to evaluate hl7v2 files
+var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+// pass it into the evaluator
+var evaluator = new Evaluator(expressionConfiguration);
+
+// evaluate a new message
+message = evaluator.EvaluateHL7V2File(&quot;ADT-A05 Pre-admit Patient.txt&quot;);
+
+// Get the first index PD1's 4th fields 9th components 2nd sub component
+// Sub components have Id, Value, Delimiter, and Rebuild. Rebuild does nothing.
+var pid1492 = message.Get(&quot;PD1.4.9.2&quot;);
+pid1492 = message[&quot;PD1&quot;][4][9][2];
+
+</code></pre>
 </article>
           </div>
           
