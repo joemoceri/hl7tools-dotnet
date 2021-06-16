@@ -44,6 +44,8 @@
   href: HL7V2Message.md
 - name: HL7V2MessageSegment
   href: HL7V2MessageSegment.md
+- name: HL7V2FieldBase
+  href: HL7V2FieldBase.md
 - name: HL7V2Field
   href: HL7V2Field.md
 - name: HL7V2FieldRepetition
