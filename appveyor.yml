@@ -1,0 +1,11 @@
+before_build:
+ - nuget restore
+build_script:
+ - msbuild /verbosity:quiet "src\ExpressionEvaluatorForDotNet.sln"
+test_script:
+ - OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test -filter:"+[ExpressionEvaluatorForDotNet*]* -[ExpressionEvaluatorForDotNet.Tests*]*" -output:".\coverage.xml" -oldstyle
+after_test:
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "coverage.xml"
