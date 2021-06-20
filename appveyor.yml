@@ -1,5 +1,5 @@
 before_build:
- - nuget restore
+ - nuget restore src\ExpressionEvaluatorForDotNet.sln
 build_script:
  - msbuild /verbosity:quiet "src\ExpressionEvaluatorForDotNet.sln"
 test_script:
