@@ -58,6 +58,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		#endregion
 		#region Boolean test cases
 		[DataRow(1 > 1, "1 > 1", VariableType.Boolean)]
+		[DataRow(1 > 1 || 2 > 1, "1 > 1 || 2 > 1", VariableType.Boolean)]
 		[DataRow(1 > 2, "1 > 2", VariableType.Boolean)]
 		[DataRow(2 > 1, "2 > 1", VariableType.Boolean)]
 		[DataRow(1 < 1, "1 < 1", VariableType.Boolean)]
