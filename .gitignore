@@ -340,3 +340,5 @@ ASALocalRun/
 healthchecksdb
 /src/ExpressionEvaluatorForDotNet/log.txt
 /src/MyProject_coverage.xml
+/src/coverage.xml
+/coverage.xml
