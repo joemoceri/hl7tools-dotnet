@@ -1,16 +1,4 @@
-before_build:
- - nuget restore src\ExpressionEvaluatorForDotNet.sln
- - choco install opencover.portable
- - choco install codecov
-
+version: 1.0.{build}
 build:
   project: src/ExpressionEvaluatorForDotNet.sln
   verbosity: minimal
-
-build_script:
- - msbuild /verbosity:quiet "src\ExpressionEvaluatorForDotNet.sln"
-test_script:
- - OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test -filter:"+[ExpressionEvaluatorForDotNet*]* -[ExpressionEvaluatorForDotNet.Tests*]*" -output:".\coverage.xml" -oldstyle
-after_test:
-  - ps: |
-      codecov -f "coverage.xml"
