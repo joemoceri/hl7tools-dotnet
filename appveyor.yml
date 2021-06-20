@@ -7,7 +7,7 @@ build_script:
  - msbuild /verbosity:quiet "ExpressionEvaluatorForDotNet.sln"
 
 test_script:
- - OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test -filter:"+[ExpressionEvaluatorForDotNet*]* -[ExpressionEvaluatorForDotNet.Tests*]*" -output:".\coverage.xml" -oldstyle
+ - cmd: OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test --test-adapter-path:. --logger:Appveyor" -filter:"+[ExpressionEvaluatorForDotNet*]* -[ExpressionEvaluatorForDotNet.Tests*]*" -output:".\coverage.xml" -oldstyle
 after_test:
   - ps: |
       codecov -f "coverage.xml"
