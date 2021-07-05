@@ -108,7 +108,7 @@ pid51 = message.Get("PID(1).5.1");
 
 // Get the first index GT1's 6th fields 2nd repetitions 1st component
 var gt1621 = message.Get("GT1.6(2).1");
-.Value, message["GT1"][6][1, 2].Value);
+gt1621 = message["GT1"][6][1, 2].Value);
 
 // evaluate a new message
 message = evaluator.EvaluateHL7V2File("ADT-A05 Pre-admit Patient.txt");
