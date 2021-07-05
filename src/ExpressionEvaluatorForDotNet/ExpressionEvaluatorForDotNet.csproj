@@ -20,7 +20,7 @@ You can also use this to evaluate segments of an hl7v2 pipe delimited message. U
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\jmoce\source\repos\expression-evaluator\src\ExpressionEvaluatorForDotNet\ExpressionEvaluatorForDotNet.xml</DocumentationFile>
+    <DocumentationFile>$(MSBuildThisFileDirectory)\bin\$(Configuration)\$(TargetFramework)\ExpressionEvaluatorForDotNet.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
