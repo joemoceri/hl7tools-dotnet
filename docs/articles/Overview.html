@@ -73,12 +73,20 @@
 <ul>
 <li><a href="#csharp-expressions">C# Expressions</a></li>
 <li><a href="#hl7-expressions">HL7 Expressions</a></li>
+<li><a href="#not-supported">Not Supported</a></li>
 <li><a href="#links">Links</a></li>
 </ul>
 <h3 id="csharp-expressions">CSharp Expressions</h3>
 <p>C# .NET Library that will evaluate any math, string, or boolean expression using <a href="ExpressionConfigurations.html">Expression Configurations</a>. Expression Configurations are what the <a href="../api/ExpressionEvaluatorForDotNet.Evaluator.html">Evaluator</a> uses when evaluating math (1+2), string (&quot;a&quot;+&quot;b&quot;), and boolean (1&gt;2) expressions with operators like '+', '-', '||', and more. The expression configurations are fully customizable. Expressions support parentheses. Using Expression Configurations you can hook into when expressions are evaluated before and after or evaluate the expression yourself with custom logic. The default expression configuration is C#.</p>
 <h3 id="hl7-expressions">HL7 Expressions</h3>
 <p>You can also use this to evaluate segments of an <a href="https://en.wikipedia.org/wiki/Health_Level_7">hl7v2 pipe delimited message</a>. Using an <a href="../api/ExpressionEvaluatorForDotNet.HL7V2ExpressionConfiguration.html">HL7V2ExpressionConfiguration</a> the Evaluator can be configured to parse and return a structured <a href="../api/ExpressionEvaluatorForDotNet.HL7V2Message.html">HL7V2Message</a> object layered with <a href="../api/ExpressionEvaluatorForDotNet.HL7V2Field.html">fields</a>, <a href="../api/ExpressionEvaluatorForDotNet.HL7V2FieldRepetition.html">field repetitions</a>, <a href="../api/ExpressionEvaluatorForDotNet.HL7V2Component.html">components</a>, and <a href="../api/ExpressionEvaluatorForDotNet.HL7V2SubComponent.html">subcomponents</a>. You can also perform CRUD operations on all of them, build a message from scratch, and more.</p>
+<h3 id="not-supported">Not Supported</h3>
+<p>Math, string and boolean. Not Supported:</p>
+<ul>
+<li>Single quotes (') as strings. You must use double quotes (&quot;) for strings. You can still use single quotes inside strings, and escaped double quotes.</li>
+<li>Customizing what defines a quote and a parentheses (()).</li>
+<li>Bitwise operations and anything else not +,-,*,/,%,&amp;&amp;,||,&gt;,&lt;,&gt;=,&lt;=,==, !=, int, float, or boolean.</li>
+</ul>
 <h3 id="links">Links</h3>
 <p>Please see <a href="Examples.html">Examples</a> for how to use.</p>
 </article>
