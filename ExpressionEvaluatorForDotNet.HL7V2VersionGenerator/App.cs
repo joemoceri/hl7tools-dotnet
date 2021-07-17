@@ -20,7 +20,10 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             foreach (var version in versions)
             {
                 Directory.CreateDirectory(Path.Combine(versionsBasePath, version));
-                //var triggerEvents = caristixService.GetTriggerEvents(version);
+                var triggerEvents = caristixService.GetTriggerEvents(version);
+                var segments = caristixService.GetSegments(version);
+                var dataTypes = caristixService.GetDataTypes(version);
+                var tables = caristixService.GetTables(version);
             }
         }
     }

@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 {
@@ -39,6 +37,39 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
         public JArray GetTriggerEvents(string version)
         {
             var request = new RestRequest($"{baseUrl}{version}/TriggerEvents", Method.GET);
+
+            var response = restClient.Execute<string>(request);
+
+            var result = JsonConvert.DeserializeObject<JArray>(response.Data.Trim('"'));
+
+            return result;
+        }
+
+        public JArray GetSegments(string version)
+        {
+            var request = new RestRequest($"{baseUrl}{version}/Segments", Method.GET);
+
+            var response = restClient.Execute<string>(request);
+
+            var result = JsonConvert.DeserializeObject<JArray>(response.Data.Trim('"'));
+
+            return result;
+        }
+
+        public JArray GetDataTypes(string version)
+        {
+            var request = new RestRequest($"{baseUrl}{version}/DataTypes", Method.GET);
+
+            var response = restClient.Execute<string>(request);
+
+            var result = JsonConvert.DeserializeObject<JArray>(response.Data.Trim('"'));
+
+            return result;
+        }
+
+        public JArray GetTables(string version)
+        {
+            var request = new RestRequest($"{baseUrl}{version}/Tables", Method.GET);
 
             var response = restClient.Execute<string>(request);
 
