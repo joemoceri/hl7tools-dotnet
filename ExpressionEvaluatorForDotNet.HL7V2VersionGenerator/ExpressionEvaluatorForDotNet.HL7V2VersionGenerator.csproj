@@ -34,4 +34,18 @@
     <ProjectReference Include="..\src\ExpressionEvaluatorForDotNet\ExpressionEvaluatorForDotNet.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Versions\2.1\" />
+    <Folder Include="Versions\2.2\" />
+    <Folder Include="Versions\2.3.1\" />
+    <Folder Include="Versions\2.3\" />
+    <Folder Include="Versions\2.4\" />
+    <Folder Include="Versions\2.5.1\" />
+    <Folder Include="Versions\2.5\" />
+    <Folder Include="Versions\2.6\" />
+    <Folder Include="Versions\2.7.1\" />
+    <Folder Include="Versions\2.7\" />
+    <Folder Include="Versions\2.8\" />
+  </ItemGroup>
+
 </Project>
