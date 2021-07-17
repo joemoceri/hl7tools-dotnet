@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Templates\HL7V2Component.template.cs" />
+    <Compile Remove="Templates\HL7V2Field.template.cs" />
+    <Compile Remove="Templates\HL7V2FieldBase.template.cs" />
+    <Compile Remove="Templates\HL7V2FieldRepetition.template.cs" />
+    <Compile Remove="Templates\HL7V2Message.template.cs" />
+    <Compile Remove="Templates\HL7V2MessageSegment.template.cs" />
+    <Compile Remove="Templates\HL7V2SubComponent.template.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Templates\HL7V2Component.template.cs" />
+    <None Include="Templates\HL7V2Field.template.cs" />
+    <None Include="Templates\HL7V2FieldBase.template.cs" />
+    <None Include="Templates\HL7V2FieldRepetition.template.cs" />
+    <None Include="Templates\HL7V2Message.template.cs" />
+    <None Include="Templates\HL7V2MessageSegment.template.cs" />
+    <None Include="Templates\HL7V2SubComponent.template.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="106.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\ExpressionEvaluatorForDotNet\ExpressionEvaluatorForDotNet.csproj" />
+  </ItemGroup>
+
+</Project>

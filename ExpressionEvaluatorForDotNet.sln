@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEvaluatorForDotNet.Sample", "src\ExpressionEvaluatorForDotNet.Sample\ExpressionEvaluatorForDotNet.Sample.csproj", "{DD6D3639-D063-4ED5-B9E6-91AE0CAF17BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluatorForDotNet.HL7V2VersionGenerator", "ExpressionEvaluatorForDotNet.HL7V2VersionGenerator\ExpressionEvaluatorForDotNet.HL7V2VersionGenerator.csproj", "{9635EA12-28C6-44C5-8A7F-55F8920D3109}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{DD6D3639-D063-4ED5-B9E6-91AE0CAF17BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD6D3639-D063-4ED5-B9E6-91AE0CAF17BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD6D3639-D063-4ED5-B9E6-91AE0CAF17BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9635EA12-28C6-44C5-8A7F-55F8920D3109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9635EA12-28C6-44C5-8A7F-55F8920D3109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9635EA12-28C6-44C5-8A7F-55F8920D3109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9635EA12-28C6-44C5-8A7F-55F8920D3109}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
