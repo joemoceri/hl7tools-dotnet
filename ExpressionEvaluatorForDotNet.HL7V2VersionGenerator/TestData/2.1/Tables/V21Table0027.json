@@ -1,0 +1,1 @@
+{"id":"0027","tableId":"0027","tableType":"HL7","name":"PRIORITY (COMPONENT 6 QTY/TIMING[735])","chapters":[],"entries":[{"value":"A","description":"ASAP. Fill after STAT orders.","comment":null},{"value":"S","description":"Stat. Required immediately.","comment":null},{"value":"T","description":"Timed collection","comment":null}]}
