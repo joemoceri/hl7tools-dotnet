@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEvaluatorForDotNet.Sample", "src\ExpressionEvaluatorForDotNet.Sample\ExpressionEvaluatorForDotNet.Sample.csproj", "{DD6D3639-D063-4ED5-B9E6-91AE0CAF17BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluatorForDotNet.HL7V2VersionGenerator", "ExpressionEvaluatorForDotNet.HL7V2VersionGenerator\ExpressionEvaluatorForDotNet.HL7V2VersionGenerator.csproj", "{9635EA12-28C6-44C5-8A7F-55F8920D3109}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluatorForDotNet.HL7V2VersionGenerator", "src\ExpressionEvaluatorForDotNet.HL7V2VersionGenerator\ExpressionEvaluatorForDotNet.HL7V2VersionGenerator.csproj", "{9635EA12-28C6-44C5-8A7F-55F8920D3109}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
