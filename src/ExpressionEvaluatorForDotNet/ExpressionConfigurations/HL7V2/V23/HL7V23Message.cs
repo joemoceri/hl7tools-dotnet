@@ -15,6 +15,12 @@ namespace ExpressionEvaluatorForDotNet
             msh = new Msh(message);
         }
 
+        public ADT_A01 GetADT_A01()
+        {
+            // TODO: Fill this out, validate
+            return new ADT_A01();
+        }
+
         public class Msh
         {
             public readonly HL7V2Message message;
@@ -43,6 +49,11 @@ namespace ExpressionEvaluatorForDotNet
             public HL7V23Field CountryCode { get { return new HL7V23Field(message.Get("MSH.17")); } }
             public HL7V23Field CharacterSet { get { return new HL7V23Field(message.Get("MSH.18")); } }
             public HL7V23Field PrincipleLanguageOfMessage { get { return new HL7V23Field(message.Get("MSH.19")); } }
+        }
+
+        public class ADT_A01
+        {
+
         }
     }
 }

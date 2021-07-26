@@ -68,6 +68,8 @@ namespace ExpressionEvaluatorForDotNet.Sample
 
             Console.WriteLine(v23.msh.ApplicationAcknowledgementType.Value);
 
+            var adta01 = v23.GetADT_A01();
+
             var url = "https://test.com/test?id=1&test=2";
 
             var newUrl = HL7V2ExpressionConfiguration.EncodeString(url);
