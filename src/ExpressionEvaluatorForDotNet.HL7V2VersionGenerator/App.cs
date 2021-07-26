@@ -36,12 +36,13 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 // Tables
                 Directory.CreateDirectory(Path.Combine(versionsBasePath, version, "Tables"));
                 var tables = caristixService.GetTables(version);
+                var localDataPath = Path.Combine(basePath, "Caristix", "LocalData");
 
                 foreach (var table in tables)
                 {
-                    Directory.CreateDirectory(Path.Combine(basePath, "TestData", version, "Tables"));
+                    Directory.CreateDirectory(Path.Combine(localDataPath, version, "Tables"));
 
-                    var path = Path.Combine(basePath, "TestData", version, "Tables", $"V{version.Replace(".", string.Empty)}Table{table.Id}.json");
+                    var path = Path.Combine(localDataPath, version, "Tables", $"V{version.Replace(".", string.Empty)}Table{table.Id}.json");
 
                     File.WriteAllText(path, JsonConvert.SerializeObject(table));
                 }
@@ -52,9 +53,9 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 foreach (var dataType in dataTypes)
                 {
-                    Directory.CreateDirectory(Path.Combine(basePath, "TestData", version, "DataTypes"));
+                    Directory.CreateDirectory(Path.Combine(localDataPath, version, "DataTypes"));
 
-                    var path = Path.Combine(basePath, "TestData", version, "DataTypes", $"V{version.Replace(".", string.Empty)}DataType{dataType.Id}.json");
+                    var path = Path.Combine(localDataPath, version, "DataTypes", $"V{version.Replace(".", string.Empty)}DataType{dataType.Id}.json");
 
                     File.WriteAllText(path, JsonConvert.SerializeObject(dataType));
                 }
@@ -65,9 +66,9 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 foreach (var segment in segments)
                 {
-                    Directory.CreateDirectory(Path.Combine(basePath, "TestData", version, "Segments"));
+                    Directory.CreateDirectory(Path.Combine(localDataPath, version, "Segments"));
 
-                    var path = Path.Combine(basePath, "TestData", version, "Segments", $"V{version.Replace(".", string.Empty)}Segment{segment.Id}.json");
+                    var path = Path.Combine(localDataPath, version, "Segments", $"V{version.Replace(".", string.Empty)}Segment{segment.Id}.json");
 
                     File.WriteAllText(path, JsonConvert.SerializeObject(segment));
                 }
@@ -78,9 +79,9 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 foreach (var triggerEvent in triggerEvents)
                 {
-                    Directory.CreateDirectory(Path.Combine(basePath, "TestData", version, "TriggerEvents"));
+                    Directory.CreateDirectory(Path.Combine(localDataPath, version, "TriggerEvents"));
 
-                    var path = Path.Combine(basePath, "TestData", version, "TriggerEvents", $"V{version.Replace(".", string.Empty)}TriggerEvent{triggerEvent.Id}.json");
+                    var path = Path.Combine(localDataPath, version, "TriggerEvents", $"V{version.Replace(".", string.Empty)}TriggerEvent{triggerEvent.Id}.json");
 
                     File.WriteAllText(path, JsonConvert.SerializeObject(triggerEvent));
                 }

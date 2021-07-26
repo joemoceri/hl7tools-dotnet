@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator.ExampleTemplate
+namespace ExpressionEvaluatorForDotNet
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HL7V23Table
     {
         public string Value { get; set; }

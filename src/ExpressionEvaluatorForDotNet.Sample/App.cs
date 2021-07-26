@@ -10,7 +10,7 @@ namespace ExpressionEvaluatorForDotNet.Sample
         {
             //SolveStringExample();
 
-            //ParseHL7FileExample();
+            ParseHL7FileExample();
 
             //SolveMathExample();
 
@@ -64,6 +64,9 @@ namespace ExpressionEvaluatorForDotNet.Sample
 
             var message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
+            var v23 = message.AsV23();
+
+            Console.WriteLine(v23.msh.ApplicationAcknowledgementType.Value);
 
             var url = "https://test.com/test?id=1&test=2";
 

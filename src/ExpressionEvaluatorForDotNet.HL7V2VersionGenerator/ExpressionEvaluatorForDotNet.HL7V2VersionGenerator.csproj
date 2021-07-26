@@ -6,47 +6,60 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Templates\HL7V2Component.template.cs" />
-    <Compile Remove="Templates\HL7V2Field.template.cs" />
-    <Compile Remove="Templates\HL7V2FieldBase.template.cs" />
-    <Compile Remove="Templates\HL7V2FieldRepetition.template.cs" />
-    <Compile Remove="Templates\HL7V2Message.template.cs" />
-    <Compile Remove="Templates\HL7V2MessageSegment.template.cs" />
-    <Compile Remove="Templates\HL7V2SubComponent.template.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Templates\HL7V2Component.template.cs" />
-    <None Include="Templates\HL7V2Field.template.cs" />
-    <None Include="Templates\HL7V2FieldBase.template.cs" />
-    <None Include="Templates\HL7V2FieldRepetition.template.cs" />
-    <None Include="Templates\HL7V2Message.template.cs" />
-    <None Include="Templates\HL7V2MessageSegment.template.cs" />
-    <None Include="Templates\HL7V2SubComponent.template.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\ExpressionEvaluatorForDotNet\ExpressionEvaluatorForDotNet.csproj" />
+    <Folder Include="Caristix\LocalData\" />
+    <Folder Include="Versions\2.1\DataTypes\" />
+    <Folder Include="Versions\2.1\Segments\" />
+    <Folder Include="Versions\2.1\Tables\" />
+    <Folder Include="Versions\2.1\TriggerEvents\" />
+    <Folder Include="Versions\2.2\DataTypes\" />
+    <Folder Include="Versions\2.2\Segments\" />
+    <Folder Include="Versions\2.2\Tables\" />
+    <Folder Include="Versions\2.2\TriggerEvents\" />
+    <Folder Include="Versions\2.3.1\DataTypes\" />
+    <Folder Include="Versions\2.3.1\Segments\" />
+    <Folder Include="Versions\2.3.1\Tables\" />
+    <Folder Include="Versions\2.3.1\TriggerEvents\" />
+    <Folder Include="Versions\2.3\DataTypes\" />
+    <Folder Include="Versions\2.3\Segments\" />
+    <Folder Include="Versions\2.3\Tables\" />
+    <Folder Include="Versions\2.3\TriggerEvents\" />
+    <Folder Include="Versions\2.4\DataTypes\" />
+    <Folder Include="Versions\2.4\Segments\" />
+    <Folder Include="Versions\2.4\Tables\" />
+    <Folder Include="Versions\2.4\TriggerEvents\" />
+    <Folder Include="Versions\2.5.1\DataTypes\" />
+    <Folder Include="Versions\2.5.1\Segments\" />
+    <Folder Include="Versions\2.5.1\Tables\" />
+    <Folder Include="Versions\2.5.1\TriggerEvents\" />
+    <Folder Include="Versions\2.5\DataTypes\" />
+    <Folder Include="Versions\2.5\Segments\" />
+    <Folder Include="Versions\2.5\Tables\" />
+    <Folder Include="Versions\2.5\TriggerEvents\" />
+    <Folder Include="Versions\2.6\DataTypes\" />
+    <Folder Include="Versions\2.6\Segments\" />
+    <Folder Include="Versions\2.6\Tables\" />
+    <Folder Include="Versions\2.6\TriggerEvents\" />
+    <Folder Include="Versions\2.7.1\DataTypes\" />
+    <Folder Include="Versions\2.7.1\Segments\" />
+    <Folder Include="Versions\2.7.1\Tables\" />
+    <Folder Include="Versions\2.7.1\TriggerEvents\" />
+    <Folder Include="Versions\2.7\DataTypes\" />
+    <Folder Include="Versions\2.7\Segments\" />
+    <Folder Include="Versions\2.7\Tables\" />
+    <Folder Include="Versions\2.7\TriggerEvents\" />
+    <Folder Include="Versions\2.8\DataTypes\" />
+    <Folder Include="Versions\2.8\Segments\" />
+    <Folder Include="Versions\2.8\Tables\" />
+    <Folder Include="Versions\2.8\TriggerEvents\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestData\" />
-    <Folder Include="Versions\2.1\" />
-    <Folder Include="Versions\2.2\" />
-    <Folder Include="Versions\2.3.1\" />
-    <Folder Include="Versions\2.3\" />
-    <Folder Include="Versions\2.4\" />
-    <Folder Include="Versions\2.5.1\" />
-    <Folder Include="Versions\2.5\" />
-    <Folder Include="Versions\2.6\" />
-    <Folder Include="Versions\2.7.1\" />
-    <Folder Include="Versions\2.7\" />
-    <Folder Include="Versions\2.8\" />
+    <ProjectReference Include="..\ExpressionEvaluatorForDotNet\ExpressionEvaluatorForDotNet.csproj" />
   </ItemGroup>
 
 </Project>

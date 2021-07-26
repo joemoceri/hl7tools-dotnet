@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator.Templates
+namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V2Component
+    public class HL7V23DataType
     {
 
     }
