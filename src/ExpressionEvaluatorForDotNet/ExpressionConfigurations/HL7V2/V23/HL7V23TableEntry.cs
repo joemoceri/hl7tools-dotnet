@@ -9,7 +9,7 @@ namespace ExpressionEvaluatorForDotNet
     /// <summary>
     /// 
     /// </summary>
-    public class HL7V23Table
+    public class HL7V23TableEntry
     {
         public string Value { get; set; }
 
