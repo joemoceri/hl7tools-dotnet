@@ -12,7 +12,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             // TODO: Pull data from caristix api, create folders, create .cs files for everything
             var basePath = Directory.GetParent(Environment.NewLine).Parent.Parent.Parent.FullName;
-            var versionsBasePath = Path.Combine(basePath, "Versions");
+            var versionsBasePath = Path.Combine(basePath, "Output");
 
             Directory.CreateDirectory(versionsBasePath);
 
@@ -31,7 +31,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             void CreateTestData(string version)
             {
-                Directory.CreateDirectory(Path.Combine(versionsBasePath, version));
+                Directory.CreateDirectory(Path.Combine(versionsBasePath, $"V{version.Replace(".", string.Empty)}"));
 
                 // Tables
                 Directory.CreateDirectory(Path.Combine(versionsBasePath, version, "Tables"));
