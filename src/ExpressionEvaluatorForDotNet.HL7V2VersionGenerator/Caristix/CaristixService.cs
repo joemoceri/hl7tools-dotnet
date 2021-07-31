@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 {
@@ -41,6 +42,25 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             };
         }
 
+        private IRestResponse<T> Retry<T>(RestRequest request)
+        {
+            IRestResponse<T> result = null;
+
+            while (result == null)
+            {
+                result = restClient.Execute<T>(request);
+
+                if (result.StatusCode != 0)
+                {
+                    return result;
+                }
+
+                Thread.Sleep(1000);
+            }
+
+            return result;
+        }
+
         public IList<TriggerEventResponse> GetTriggerEvents(string version)
         {
             var result = new List<TriggerEventResponse>();
@@ -61,11 +81,26 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var response = restClient.Execute<string>(request);
 
-            var ids = JsonConvert.DeserializeObject<IList<TriggerEventResponse>>(response.Data.Trim('"')).Select(t => t.Id);
-
-            foreach (var id in ids)
+            if (response.StatusCode == 0)
             {
-                var triggerEvent = GetTriggerEvent(version, id);
+                response = Retry<string>(request);
+            }
+
+            var ids = JsonConvert.DeserializeObject<IList<TriggerEventResponse>>(response.Data.Trim('"')).Where(te => te.Id != null).Select(t => t.Id).ToList();
+
+            for (var i = 0; i < ids.Count(); i++)
+            {
+                var triggerEvent = GetTriggerEvent(version, ids[i]);
+
+                var segmentIds = triggerEvent.Segments.Where(s => s.Id != null).Select(s => s.Id).ToList();
+
+                triggerEvent.Segments.Clear();
+
+                for (var j = 0; j < segmentIds.Count(); j++)
+                {
+                    triggerEvent.Segments.Add(GetSegment(version, segmentIds[j]));
+                }
+
                 result.Add(triggerEvent);
             }
 
@@ -92,11 +127,16 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var response = restClient.Execute<string>(request);
 
-            var ids = JsonConvert.DeserializeObject<IList<SegmentResponse>>(response.Data.Trim('"')).Select(t => t.Id);
-
-            foreach (var id in ids)
+            if (response.StatusCode == 0)
             {
-                var segment = GetSegment(version, id);
+                response = Retry<string>(request);
+            }
+
+            var ids = JsonConvert.DeserializeObject<IList<SegmentResponse>>(response.Data.Trim('"')).Where(s => s.Id != null).Select(t => t.Id).ToList();
+
+            for (var i = 0; i < ids.Count(); i++)
+            {
+                var segment = GetSegment(version, ids[i]);
                 result.Add(segment);
             }
 
@@ -123,11 +163,16 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var response = restClient.Execute<string>(request);
 
-            var ids = JsonConvert.DeserializeObject<IList<DataTypeResponse>>(response.Data.Trim('"')).Select(t => t.Id);
-
-            foreach (var id in ids)
+            if (response.StatusCode == 0)
             {
-                var dataType = GetDataType(version, id);
+                response = Retry<string>(request);
+            }
+
+            var ids = JsonConvert.DeserializeObject<IList<DataTypeResponse>>(response.Data.Trim('"')).Where(dt => dt.Id != null).Select(t => t.Id).ToList();
+
+            for (var i = 0; i < ids.Count(); i++)
+            {
+                var dataType = GetDataType(version, ids[i]);
                 result.Add(dataType);
             }
 
@@ -154,11 +199,16 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var response = restClient.Execute<string>(request);
 
-            var ids = JsonConvert.DeserializeObject<IList<TableResponse>>(response.Data.Trim('"')).Select(t => t.Id);
-
-            foreach (var id in ids)
+            if (response.StatusCode == 0)
             {
-                var table = GetTable(version, id);
+                response = Retry<string>(request);
+            }
+
+            var ids = JsonConvert.DeserializeObject<IList<TableResponse>>(response.Data.Trim('"')).Where(t => t.Id != null).Select(t => t.Id).ToList();
+
+            for (var i = 0; i < ids.Count(); i++)
+            {
+                var table = GetTable(version, ids[i]);
                 result.Add(table);
             }
 
@@ -171,6 +221,11 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var response = restClient.Execute<string>(request);
 
+            if (response.StatusCode == 0)
+            {
+                response = Retry<string>(request);
+            }
+
             var result = JsonConvert.DeserializeObject<TriggerEventResponse>(response.Data.Trim('"'));
 
             return result;
@@ -182,7 +237,21 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var response = restClient.Execute<string>(request);
 
+            if (response.StatusCode == 0)
+            {
+                response = Retry<string>(request);
+            }
+
             var result = JsonConvert.DeserializeObject<SegmentResponse>(response.Data.Trim('"'));
+
+            var fieldIds = result.Fields.Where(f => f.Id != null).Select(f => f.Id).ToList();
+
+            result.Fields.Clear();
+
+            for (var i = 0; i < fieldIds.Count(); i++)
+            {
+                result.Fields.Add(GetField(version, fieldIds[i]));
+            }
 
             return result;
         }
@@ -192,6 +261,11 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             var request = new RestRequest($"{baseUrl}{version}/DataTypes/{dataTypeId}", Method.GET);
 
             var response = restClient.Execute<string>(request);
+
+            if (response.StatusCode == 0)
+            {
+                response = Retry<string>(request);
+            }
 
             var result = JsonConvert.DeserializeObject<DataTypeResponse>(response.Data.Trim('"'));
 
@@ -204,6 +278,11 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var response = restClient.Execute<string>(request);
 
+            if (response.StatusCode == 0)
+            {
+                response = Retry<string>(request);
+            }
+
             var result = JsonConvert.DeserializeObject<TableResponse>(response.Data.Trim('"'));
 
             return result;
@@ -215,7 +294,21 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var response = restClient.Execute<string>(request);
 
+            if (response.StatusCode == 0)
+            {
+                response = Retry<string>(request);
+            }
+
             var result = JsonConvert.DeserializeObject<FieldResponse>(response.Data.Trim('"'));
+
+            var fieldIds = result.Fields.Where(f => f.Id != null).Select(f => f.Id).ToList();
+
+            result.Fields.Clear();
+
+            for (var i = 0; i < fieldIds.Count(); i++)
+            {
+                result.Fields.Add(GetField(version, fieldIds[i]));
+            }
 
             return result;
         }

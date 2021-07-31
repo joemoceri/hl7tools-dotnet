@@ -1,4 +1,6 @@
-﻿namespace ExpressionEvaluatorForDotNet
+﻿using System.Collections.Generic;
+
+namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23DataTypeAD
     {
@@ -26,13 +28,13 @@
 
         public string Sample { get { return ""; } }
 
-        public HL7V23DataTypeField[] Fields 
+        public IList<HL7V23FieldData> Fields 
         { 
             get 
             {
                 return new []
                 {
-                    new HL7V23DataTypeField
+                    new HL7V23FieldData
                     {
                         Id = "AD.1",
                         Type = "DataTypeComponent",
@@ -47,9 +49,9 @@
                         TableName = null,
                         Description = "Street address ",
                         Sample = null,
-                        Fields = null
+                        FieldDatas = null
                     },
-                    new HL7V23DataTypeField
+                    new HL7V23FieldData
                     {
                         Id = "AD.2",
                         Type = "DataTypeComponent",
@@ -64,9 +66,9 @@
                         TableName = null,
                         Description = "Second line of address. In general, it qualifies address.  Examples:  Suite 555 or Fourth Floor",
                         Sample = null,
-                        Fields = null
+                        FieldDatas = null
                     },
-                    new HL7V23DataTypeField
+                    new HL7V23FieldData
                     {
                         Id = "AD.3",
                         Type = "DataTypeComponent",
@@ -81,9 +83,9 @@
                         TableName = null,
                         Description = null,
                         Sample = null,
-                        Fields = null
+                        FieldDatas = null
                     },
-                    new HL7V23DataTypeField
+                    new HL7V23FieldData
                     {
                         Id = "AD.4",
                         Type = "DataTypeComponent",
@@ -98,9 +100,9 @@
                         TableName = null,
                         Description = "State or province should be represented by the official postal service codes for that country",
                         Sample = null,
-                        Fields = null
+                        FieldDatas = null
                     },
-                    new HL7V23DataTypeField
+                    new HL7V23FieldData
                     {
                         Id = "AD.5",
                         Type = "DataTypeComponent",
@@ -115,9 +117,9 @@
                         TableName = null,
                         Description = "Zip or postal codes should be represented by the official codes for that country.  In the US, the zip code takes the form 99999[-9999], while the Canadian postal code takes the form A9A-9A9",
                         Sample = null,
-                        Fields = null
+                        FieldDatas = null
                     },
-                    new HL7V23DataTypeField
+                    new HL7V23FieldData
                     {
                         Id = "AD.6",
                         Type = "DataTypeComponent",
@@ -132,9 +134,9 @@
                         TableName = "Country Codes",
                         Description = "Defines  the country of the address.   ISO 3166 provides a list of country codes that may be used",
                         Sample = null,
-                        Fields = null
+                        FieldDatas = null
                     },
-                    new HL7V23DataTypeField
+                    new HL7V23FieldData
                     {
                         Id = "AD.7",
                         Type = "DataTypeComponent",
@@ -149,9 +151,9 @@
                         TableName = "Address type",
                         Description = "Type is optional and defined by HL7 table 0190 - Address type",
                         Sample = null,
-                        Fields = null
+                        FieldDatas = null
                     },
-                    new HL7V23DataTypeField
+                    new HL7V23FieldData
                     {
                         Id = "AD.8",
                         Type = "DataTypeComponent",
@@ -166,7 +168,7 @@
                         TableName = null,
                         Description = "Other geographic designation includes county, bioregion, SMSA, etc",
                         Sample = null,
-                        Fields = null
+                        FieldDatas = null
                     },
                 };
             }

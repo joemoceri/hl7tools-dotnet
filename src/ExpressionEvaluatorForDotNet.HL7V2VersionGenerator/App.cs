@@ -8,7 +8,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
     {
         public void Run()
         {
-            var caristixService = new CaristixService(true);
+            var caristixService = new CaristixService();
 
             // TODO: Pull data from caristix api, create folders, create .cs files for everything
             var basePath = Directory.GetParent(Environment.NewLine).Parent.Parent.Parent.FullName;
@@ -20,12 +20,12 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             var versions = caristixService.GetVersions();
             foreach (var version in versions)
             {
-                //CreateTestData(version);
+                CreateTestData(version);
 
-                var segments = caristixService.GetSegments(version);
-                var dataTypes = caristixService.GetDataTypes(version);
-                var tables = caristixService.GetTables(version);
-                var triggerEvents = caristixService.GetTriggerEvents(version);
+                //var segments = caristixService.GetSegments(version);
+                //var dataTypes = caristixService.GetDataTypes(version);
+                //var tables = caristixService.GetTables(version);
+                //var triggerEvents = caristixService.GetTriggerEvents(version);
 
             }
 

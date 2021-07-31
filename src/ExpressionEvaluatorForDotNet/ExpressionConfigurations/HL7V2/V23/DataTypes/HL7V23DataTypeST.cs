@@ -1,4 +1,6 @@
-﻿namespace ExpressionEvaluatorForDotNet
+﻿using System.Collections.Generic;
+
+namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23DataTypeST
     {
@@ -26,7 +28,7 @@
 
         public string Sample { get { return ""; } }
 
-        public HL7V23DataTypeField[] Fields 
+        public IList<HL7V23FieldData> Fields 
         { 
             get 
             {

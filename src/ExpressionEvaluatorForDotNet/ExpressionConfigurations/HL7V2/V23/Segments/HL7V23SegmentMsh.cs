@@ -2,11 +2,11 @@
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V23MshSegment
+    public class HL7V23SegmentMsh
     {
         public readonly HL7V2Message message;
 
-        public HL7V23MshSegment(HL7V2Message message)
+        public HL7V23SegmentMsh(HL7V2Message message)
         {
             this.message = message;
         }
@@ -15,7 +15,7 @@ namespace ExpressionEvaluatorForDotNet
         { 
             get 
             {
-                var dataField = new HL7V23DataTypeField
+                var dataField = new HL7V23FieldData
                 {
                     Id = "MSH.1",
                     Type = "Field",
@@ -30,7 +30,7 @@ namespace ExpressionEvaluatorForDotNet
                     TableName = null,
                     Description = "This field contains the separator between the segment ID and the first real field, MSH-2encoding characters.  As such it serves as the separator and defines the character to be used as a separator for the rest of the message.  Recommended value is |, (ASCII 124). ",
                     Sample = "",
-                    Fields = Enumerable.Empty<HL7V23DataTypeField>().ToArray()
+                    FieldDatas = Enumerable.Empty<HL7V23FieldData>().ToArray()
                 };
 
                 var result = new HL7V23Field(message.Get("MSH.1"), dataField);

@@ -1,4 +1,6 @@
-﻿namespace ExpressionEvaluatorForDotNet
+﻿using System.Collections.Generic;
+
+namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23Table0001
     {
@@ -10,7 +12,7 @@
 
         public string Name { get { return "Sex"; } }
 
-        public string[] Chapters 
+        public IList<string> Chapters 
         { 
             get 
             {
@@ -21,7 +23,7 @@
             } 
         }
 
-        public HL7V23TableEntry[] Entries 
+        public IList<HL7V23TableEntry> Entries 
         { 
             get 
             { 

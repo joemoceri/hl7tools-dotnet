@@ -3,12 +3,12 @@
     public class HL7V23Field
     {
         public readonly HL7V2FieldBase field;
-        public readonly HL7V23DataTypeField dataField;
+        public readonly HL7V23FieldData fieldData;
 
-        public HL7V23Field(HL7V2FieldBase field, HL7V23DataTypeField dataField)
+        public HL7V23Field(HL7V2FieldBase field, HL7V23FieldData fieldData)
         {
             this.field = field;
-            this.dataField = dataField;
+            this.fieldData = fieldData;
         }
 
         public string Value { get { return field.Value; } }
