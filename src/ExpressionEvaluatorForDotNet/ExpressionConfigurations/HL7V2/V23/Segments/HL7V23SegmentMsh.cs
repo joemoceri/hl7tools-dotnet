@@ -11,11 +11,11 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        public HL7V23Field FieldSeparator 
+        public HL7V23Field FieldSeparator
         { 
             get 
             {
-                var dataField = new HL7V23FieldData
+                var fieldData = new HL7V23FieldData
                 {
                     Id = "MSH.1",
                     Type = "Field",
@@ -33,7 +33,7 @@ namespace ExpressionEvaluatorForDotNet
                     FieldDatas = Enumerable.Empty<HL7V23FieldData>().ToArray()
                 };
 
-                var result = new HL7V23Field(message.Get("MSH.1"), dataField);
+                var result = new HL7V23Field(message.Get("MSH.1"), fieldData);
 
                 return result;
             } 
