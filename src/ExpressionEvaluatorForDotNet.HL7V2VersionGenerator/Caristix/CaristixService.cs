@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 {
@@ -45,17 +46,24 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
         private IRestResponse<T> Retry<T>(RestRequest request)
         {
             IRestResponse<T> result = null;
+            var current = 0;
+            var max = 5000;
 
             while (result == null)
             {
                 result = restClient.Execute<T>(request);
 
-                if (result.StatusCode != 0)
+                if (result.StatusCode == 0)
+                {
+                    current = Math.Min(current + 1000, max);
+                    Thread.Sleep(current);
+                    result = null;
+                }
+                else
                 {
                     return result;
                 }
 
-                Thread.Sleep(1000);
             }
 
             return result;
@@ -134,11 +142,11 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             var ids = JsonConvert.DeserializeObject<IList<SegmentResponse>>(response.Data.Trim('"')).Where(s => s.Id != null).Select(t => t.Id).ToList();
 
-            for (var i = 0; i < ids.Count(); i++)
+            Parallel.ForEach(ids, (id) =>
             {
-                var segment = GetSegment(version, ids[i]);
+                var segment = GetSegment(version, id);
                 result.Add(segment);
-            }
+            });
 
             return result;
         }
@@ -217,6 +225,8 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
         public TriggerEventResponse GetTriggerEvent(string version, string triggerEventId)
         {
+            Console.WriteLine($"({version})-Getting trigger event {triggerEventId}");
+
             var request = new RestRequest($"{baseUrl}{version}/TriggerEvents/{triggerEventId}", Method.GET);
 
             var response = restClient.Execute<string>(request);
@@ -231,8 +241,16 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             return result;
         }
 
-        public SegmentResponse GetSegment(string version, string segmentId)
+        public SegmentResponse GetSegment(string version, string segmentId, bool overrideTestMode = false)
         {
+            Console.WriteLine($"({version})-Getting segment {segmentId}");
+            
+            if (overrideTestMode)
+            {
+                var path = Path.Combine(basePath, "Caristix", "LocalData", version, "Segments", $"V{version.Replace(".", string.Empty)}Segment{segmentId}.json");
+                return JsonConvert.DeserializeObject<SegmentResponse>(File.ReadAllText(path));
+            }
+
             var request = new RestRequest($"{baseUrl}{version}/Segments/{segmentId}", Method.GET);
 
             var response = restClient.Execute<string>(request);
@@ -300,6 +318,12 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             }
 
             var result = JsonConvert.DeserializeObject<FieldResponse>(response.Data.Trim('"'));
+
+            // don't iterate over subcomponents
+            if (result.Type.Equals("SubComponent"))
+            {
+                return result;
+            }
 
             var fieldIds = result.Fields.Where(f => f.Id != null).Select(f => f.Id).ToList();
 

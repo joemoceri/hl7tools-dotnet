@@ -30,7 +30,7 @@ namespace ExpressionEvaluatorForDotNet
                     TableName = null,
                     Description = "This field contains the separator between the segment ID and the first real field, MSH-2encoding characters.  As such it serves as the separator and defines the character to be used as a separator for the rest of the message.  Recommended value is |, (ASCII 124). ",
                     Sample = "",
-                    FieldDatas = Enumerable.Empty<HL7V23FieldData>().ToArray()
+                    FieldDatas = Enumerable.Empty<HL7V23FieldData>().ToList()
                 };
 
                 var result = new HL7V23Field(message.Get("MSH.1"), fieldData);

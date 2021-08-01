@@ -33,10 +33,11 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             {
                 Directory.CreateDirectory(Path.Combine(versionsBasePath, $"V{version.Replace(".", string.Empty)}"));
 
+                var localDataPath = Path.Combine(basePath, "Caristix", "LocalData");
+
                 // Tables
                 Directory.CreateDirectory(Path.Combine(versionsBasePath, version, "Tables"));
                 var tables = caristixService.GetTables(version);
-                var localDataPath = Path.Combine(basePath, "Caristix", "LocalData");
 
                 foreach (var table in tables)
                 {
