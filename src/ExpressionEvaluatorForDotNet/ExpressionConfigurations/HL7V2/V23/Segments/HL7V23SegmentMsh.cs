@@ -33,29 +33,29 @@ namespace ExpressionEvaluatorForDotNet
                     FieldDatas = Enumerable.Empty<HL7V23FieldData>().ToList()
                 };
 
-                var result = new HL7V23Field(message.Get("MSH.1"), fieldData);
+                var result = new HL7V23Field(message.GetField("MSH.1"), fieldData);
 
                 return result;
             } 
         }
 
-        public HL7V23Field EncodingCharacters { get { return new HL7V23Field(message.Get("MSH.2"), null); } }
-        public HL7V23Field SendingApplication { get { return new HL7V23Field(message.Get("MSH.3"), null); } }
-        public HL7V23Field SendingFacility { get { return new HL7V23Field(message.Get("MSH.4"), null); } }
-        public HL7V23Field ReceivingApplication { get { return new HL7V23Field(message.Get("MSH.5"), null); } }
-        public HL7V23Field ReceivingFacility { get { return new HL7V23Field(message.Get("MSH.6"), null); } }
-        public HL7V23Field DateTimeOfMessage { get { return new HL7V23Field(message.Get("MSH.7"), null); } }
-        public HL7V23Field Security { get { return new HL7V23Field(message.Get("MSH.8"), null); } }
-        public HL7V23Field MessageType { get { return new HL7V23Field(message.Get("MSH.9"), null); } }
-        public HL7V23Field MessageControlId { get { return new HL7V23Field(message.Get("MSH.10"), null); } }
-        public HL7V23Field ProcessingId { get { return new HL7V23Field(message.Get("MSH.11"), null); } }
-        public HL7V23Field VersionId { get { return new HL7V23Field(message.Get("MSH.12"), null); } }
-        public HL7V23Field SequenceNumber { get { return new HL7V23Field(message.Get("MSH.13"), null); } }
-        public HL7V23Field ContinuationPointer { get { return new HL7V23Field(message.Get("MSH.14"), null); } }
-        public HL7V23Field AcceptAcknowledgementType { get { return new HL7V23Field(message.Get("MSH.15"), null); } }
-        public HL7V23Field ApplicationAcknowledgementType { get { return new HL7V23Field(message.Get("MSH.16"), null); } }
-        public HL7V23Field CountryCode { get { return new HL7V23Field(message.Get("MSH.17"), null); } }
-        public HL7V23Field CharacterSet { get { return new HL7V23Field(message.Get("MSH.18"), null); } }
-        public HL7V23Field PrincipleLanguageOfMessage { get { return new HL7V23Field(message.Get("MSH.19"), null); } }
+        public HL7V23Field EncodingCharacters { get { return new HL7V23Field(message.GetField("MSH.2"), null); } }
+        public HL7V23Field SendingApplication { get { return new HL7V23Field(message.GetField("MSH.3"), null); } }
+        public HL7V23Field SendingFacility { get { return new HL7V23Field(message.GetField("MSH.4"), null); } }
+        public HL7V23Field ReceivingApplication { get { return new HL7V23Field(message.GetField("MSH.5"), null); } }
+        public HL7V23Field ReceivingFacility { get { return new HL7V23Field(message.GetField("MSH.6"), null); } }
+        public HL7V23Field DateTimeOfMessage { get { return new HL7V23Field(message.GetField("MSH.7"), null); } }
+        public HL7V23Field Security { get { return new HL7V23Field(message.GetField("MSH.8"), null); } }
+        public HL7V23Field MessageType { get { return new HL7V23Field(message.GetField("MSH.9"), null); } }
+        public HL7V23Field MessageControlId { get { return new HL7V23Field(message.GetField("MSH.10"), null); } }
+        public HL7V23Field ProcessingId { get { return new HL7V23Field(message.GetField("MSH.11"), null); } }
+        public HL7V23Field VersionId { get { return new HL7V23Field(message.GetField("MSH.12"), null); } }
+        public HL7V23Field SequenceNumber { get { return new HL7V23Field(message.GetField("MSH.13"), null); } }
+        public HL7V23Field ContinuationPointer { get { return new HL7V23Field(message.GetField("MSH.14"), null); } }
+        public HL7V23Field AcceptAcknowledgementType { get { return new HL7V23Field(message.GetField("MSH.15"), null); } }
+        public HL7V23Field ApplicationAcknowledgementType { get { return new HL7V23Field(message.GetField("MSH.16"), null); } }
+        public HL7V23Field CountryCode { get { return new HL7V23Field(message.GetField("MSH.17"), null); } }
+        public HL7V23Field CharacterSet { get { return new HL7V23Field(message.GetField("MSH.18"), null); } }
+        public HL7V23Field PrincipleLanguageOfMessage { get { return new HL7V23Field(message.GetField("MSH.19"), null); } }
     }
 }

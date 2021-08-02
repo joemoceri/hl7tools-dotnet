@@ -1,0 +1,16 @@
+﻿namespace ExpressionEvaluatorForDotNet
+{
+    public class HL7V2[{-VERSION-}]FieldRepetition
+    {
+        public readonly HL7V2FieldRepetition fieldRepetition;
+        public readonly HL7V2FieldData fieldData;
+
+        public HL7V2[{-VERSION-}]FieldRepetition(HL7V2FieldRepetition fieldRepetition, HL7V2FieldData fieldData)
+        {
+            this.fieldRepetition = fieldRepetition;
+            this.fieldData = fieldData;
+        }
+
+        public string Value { get { return fieldRepetition.Value; } }
+    }
+}

@@ -1,0 +1,14 @@
+﻿namespace ExpressionEvaluatorForDotNet
+{
+    public class HL7V2[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_ID-}]
+    {
+        private readonly HL7V2[{-VERSION-}]Message message;
+        [{-SEGMENT_PROPERTIES-}]
+
+        public HL7V2[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_ID-}](HL7V2[{-VERSION-}]Message message)
+        {
+            this.message = message;
+            [{-SEGMENT_INITIALIZERS-}]
+        }
+    }
+}

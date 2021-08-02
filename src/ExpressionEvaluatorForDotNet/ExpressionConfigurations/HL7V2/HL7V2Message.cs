@@ -43,6 +43,30 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
+        public HL7V2Field GetField(string id)
+        {
+            // TODO: Fill out
+            return null;
+        }
+
+        public HL7V2FieldRepetition GetFieldRepetition(string id)
+        {
+            // TODO: Fill out
+            return null;
+        }
+
+        public HL7V2Component GetComponent(string id)
+        {
+            // TODO: Fill out
+            return null;
+        }
+
+        public HL7V2SubComponent GetSubComponent(string id)
+        {
+            // TODO: Fill out
+            return null;
+        }
+
         /// <summary>
         /// Use this method to Get any kind of 'field' within the message.
         /// Indexes on segments called via Get are 1-based.

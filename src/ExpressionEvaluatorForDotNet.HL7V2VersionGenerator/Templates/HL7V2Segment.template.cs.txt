@@ -1,0 +1,16 @@
+﻿using System.Linq;
+
+namespace ExpressionEvaluatorForDotNet
+{
+    public class HL7V2[{-VERSION-}]Segment[{-SEGMENT-}]
+    {
+        public readonly HL7V2Message message;
+
+        public HL7V2[{-VERSION-}]Segment[{-SEGMENT-}](HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        [{-FIELDS-}]
+    }
+}

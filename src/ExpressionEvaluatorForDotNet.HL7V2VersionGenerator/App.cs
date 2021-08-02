@@ -30,6 +30,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 foreach (var table in tables)
                 {
                     // TODO: Create table cs files from txt templates
+
                 }
 
             }

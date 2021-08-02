@@ -1,0 +1,16 @@
+﻿namespace ExpressionEvaluatorForDotNet
+{
+    public class HL7V2[{-VERSION-}]Component
+    {
+        public readonly HL7V2Component component;
+        public readonly HL7V2FieldData fieldData;
+
+        public HL7V2[{-VERSION-}]Component(HL7V2Component component, HL7V2FieldData fieldData)
+        {
+            this.component = component;
+            this.fieldData = fieldData;
+        }
+
+        public string Value { get { return component.Value; } }
+    }
+}

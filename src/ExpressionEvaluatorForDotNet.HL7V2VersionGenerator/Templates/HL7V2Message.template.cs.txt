@@ -1,20 +1,16 @@
 ﻿namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V23Message
+    public class HL7V2[{-VERSION-}]Message
     {
         public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMsh msh;
+        [{-SEGMENT_PROPERTIES-}]
 
-        public HL7V23Message(HL7V2Message message)
+        public HL7V2[{-VERSION-}]Message(HL7V2Message message)
         {
             this.message = message;
-            msh = new HL7V23SegmentMsh(message);
+            [{-SEGMENT_INITIALIZERS-}]
         }
 
-        public HL7V23TriggerEventADT_A01 GetADT_A01()
-        {
-            // TODO: Fill this out, validate
-            return new HL7V23TriggerEventADT_A01(this);
-        }
+        [{-GET_TRIGGER_EVENT_METHODS-}]
     }
 }
