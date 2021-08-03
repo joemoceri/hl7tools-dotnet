@@ -20,6 +20,10 @@
     <Folder Include="Caristix\LocalData\" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Include="Output\**\*.cs" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ExpressionEvaluatorForDotNet\ExpressionEvaluatorForDotNet.csproj" />
   </ItemGroup>
