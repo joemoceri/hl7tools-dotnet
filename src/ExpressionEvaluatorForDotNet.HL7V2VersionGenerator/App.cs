@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
@@ -14,10 +15,13 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             var basePath = Directory.GetParent(Environment.NewLine).Parent.Parent.Parent.FullName;
             var versionsBasePath = Path.Combine(basePath, "Output");
 
-            Directory.CreateDirectory(versionsBasePath);
-
             // versions
             var versions = caristixService.GetVersions();
+
+            CreateOutputDirectory(versionsBasePath, versions);
+
+            //return;
+
             foreach (var version in versions)
             {
                 //CreateTestData(version);
@@ -29,20 +33,86 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 foreach (var table in tables)
                 {
-                    // TODO: Create table cs files from txt templates
+                    var v = version.Replace(".", string.Empty);
+                    var tableTokens = GetTableTokens(v, table);
+                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Table.template.cs.txt"));
 
+                    foreach (var token in tableTokens)
+                    {
+                        template = template.Replace(token.Key, token.Value);
+                    }
+
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Tables", $"HL7V{v}Table{table.Id}.cs"), template);
                 }
 
             }
 
+            Dictionary<string, string> GetTableTokens(string version, TableResponse table)
+            {
+                var result = new Dictionary<string, string>();
+
+                result.Add("[{-VERSION-}]", version);
+                result.Add("[{-TABLE_ID-}]", WrapInQuotesOrNull(table.TableId));
+                result.Add("[{-TABLE_ID_CLASS_NAME-}]", table.TableId);
+                result.Add("[{-ID-}]", WrapInQuotesOrNull(table.Id));
+                result.Add("[{-TABLE_TYPE-}]", WrapInQuotesOrNull(table.TableType));
+                result.Add("[{-NAME-}]", WrapInQuotesOrNull(table.Name));
+
+                string chapters = null;
+                string entries = null;
+
+                if (table.Chapters != null && table.Chapters.Count > 0)
+                {
+                    var chaptersStrings = string.Empty;
+                    for (var i = 0; i < table.Chapters.Count; i++)
+                    {
+                        chaptersStrings += $"\"{table.Chapters[i]}\",{Environment.NewLine}";
+                    }
+
+                    chaptersStrings = chaptersStrings.Trim();
+
+                    chapters = @$"new[]
+                    {{
+                        {chaptersStrings}
+                    }}";
+                }
+
+                if (table.Entries != null && table.Entries.Count > 0)
+                {
+                    var entriesStrings = string.Empty;
+                    for (var i = 0; i < table.Entries.Count; i++)
+                    {
+                        var value = WrapInQuotesOrNull(table.Entries[i].Value);
+                        var description = WrapInQuotesOrNull(table.Entries[i].Description);
+                        var comment = WrapInQuotesOrNull(table.Entries[i].Comment);
+
+                        entriesStrings += @$"new HL7V2TableEntry
+                        {{
+                            Value = {value},
+                            Description = {description},
+                            Comment = {comment}
+                        }},{Environment.NewLine}                        ";
+                    }
+
+                    entriesStrings = entriesStrings.Trim();
+
+                    entries = @$"new[]
+                    {{
+                        {entriesStrings}
+                    }}";
+                }
+
+                result.Add("[{-CHAPTERS-}]", WrapInQuotesOrNull(chapters, true));
+                result.Add("[{-ENTRIES-}]", WrapInQuotesOrNull(entries, true));
+
+                return result;
+            }
+
             void CreateTestData(string version)
             {
-                Directory.CreateDirectory(Path.Combine(versionsBasePath, $"V{version.Replace(".", string.Empty)}"));
-
                 var localDataPath = Path.Combine(basePath, "Caristix", "LocalData");
 
                 // Tables
-                Directory.CreateDirectory(Path.Combine(versionsBasePath, version, "Tables"));
                 var tables = caristixService.GetTables(version);
 
                 foreach (var table in tables)
@@ -55,7 +125,6 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 }
 
                 // Data Types
-                Directory.CreateDirectory(Path.Combine(versionsBasePath, version, "DataTypes"));
                 var dataTypes = caristixService.GetDataTypes(version);
 
                 foreach (var dataType in dataTypes)
@@ -68,7 +137,6 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 }
 
                 // Segments
-                Directory.CreateDirectory(Path.Combine(versionsBasePath, version, "Segments"));
                 var segments = caristixService.GetSegments(version);
 
                 foreach (var segment in segments)
@@ -81,7 +149,6 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 }
 
                 // Trigger Events
-                Directory.CreateDirectory(Path.Combine(versionsBasePath, version, "TriggerEvents"));
                 var triggerEvents = caristixService.GetTriggerEvents(version);
 
                 foreach (var triggerEvent in triggerEvents)
@@ -92,6 +159,32 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                     File.WriteAllText(path, JsonConvert.SerializeObject(triggerEvent));
                 }
+            }
+
+            string WrapInQuotesOrNull(string input, bool notAString = false)
+            {
+                if (notAString)
+                {
+                    return input != null ? input : WrapInQuotesOrNull(null);
+                }
+
+                return input == null ? "null" : $@"@""{input.Replace("\"", "\"\"")}""";
+            }
+        }
+
+        private void CreateOutputDirectory(string versionsBasePath, IEnumerable<string> versions)
+        {
+            Directory.CreateDirectory(versionsBasePath);
+
+            foreach (var version in versions)
+            {
+                Directory.CreateDirectory(Path.Combine(versionsBasePath, $"V{version.Replace(".", string.Empty)}", "Tables"));
+
+                Directory.CreateDirectory(Path.Combine(versionsBasePath, $"V{version.Replace(".", string.Empty)}", "DataTypes"));
+
+                Directory.CreateDirectory(Path.Combine(versionsBasePath, $"V{version.Replace(".", string.Empty)}", "Segments"));
+
+                Directory.CreateDirectory(Path.Combine(versionsBasePath, $"V{version.Replace(".", string.Empty)}", "TriggerEvents"));
             }
         }
     }

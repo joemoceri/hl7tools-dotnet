@@ -23,31 +23,31 @@ namespace ExpressionEvaluatorForDotNet
             } 
         }
 
-        public IList<HL7V23TableEntry> Entries 
+        public IList<HL7V2TableEntry> Entries 
         { 
             get 
             { 
                 return new[] 
                 { 
-                    new HL7V23TableEntry
+                    new HL7V2TableEntry
                     {
                         Value = "F",
                         Description = "Female",
                         Comment = null
                     },
-                    new HL7V23TableEntry
+                    new HL7V2TableEntry
                     {
                         Value = "M",
                         Description = "Male",
                         Comment = null
                     },
-                    new HL7V23TableEntry
+                    new HL7V2TableEntry
                     {
                         Value = "O",
                         Description = "Other",
                         Comment = null
                     },
-                    new HL7V23TableEntry
+                    new HL7V2TableEntry
                     {
                         Value = "U",
                         Description = "Unknown",

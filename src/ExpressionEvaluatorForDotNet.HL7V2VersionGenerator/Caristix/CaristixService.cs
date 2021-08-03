@@ -193,7 +193,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             if (testMode)
             {
-                var path = Path.Combine(basePath, "TestData", version, "Tables");
+                var path = Path.Combine(basePath, "Caristix", "LocalData", version, "Tables");
                 foreach (var file in Directory.GetFiles(path))
                 {
                     var table = JsonConvert.DeserializeObject<TableResponse>(File.ReadAllText(file));
