@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V222Table0012
+    public class HL7V22Table0012
     {
         public string Id { get { return @"0012"; } }
 

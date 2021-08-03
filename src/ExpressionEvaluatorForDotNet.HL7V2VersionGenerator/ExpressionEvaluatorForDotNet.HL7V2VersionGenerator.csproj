@@ -6,56 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Output\**" />
+    <EmbeddedResource Remove="Output\**" />
+    <None Remove="Output\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Caristix\LocalData\" />
-	<Folder Include="Output\V21\DataTypes\" />
-	<Folder Include="Output\V21\Segments\" />
-	<Folder Include="Output\V21\Tables\" />
-	<Folder Include="Output\V21\TriggerEvents\" />
-	<Folder Include="Output\V22\DataTypes\" />
-	<Folder Include="Output\V22\Segments\" />
-	<Folder Include="Output\V22\Tables\" />
-	<Folder Include="Output\V22\TriggerEvents\" />
-	<Folder Include="Output\V231\DataTypes\" />
-	<Folder Include="Output\V231\Segments\" />
-	<Folder Include="Output\V231\Tables\" />
-	<Folder Include="Output\V231\TriggerEvents\" />
-	<Folder Include="Output\V23\DataTypes\" />
-	<Folder Include="Output\V23\Segments\" />
-	<Folder Include="Output\V23\Tables\" />
-	<Folder Include="Output\V23\TriggerEvents\" />
-	<Folder Include="Output\V24\DataTypes\" />
-	<Folder Include="Output\V24\Segments\" />
-	<Folder Include="Output\V24\Tables\" />
-	<Folder Include="Output\V24\TriggerEvents\" />
-	<Folder Include="Output\V251\DataTypes\" />
-	<Folder Include="Output\V251\Segments\" />
-	<Folder Include="Output\V251\Tables\" />
-	<Folder Include="Output\V251\TriggerEvents\" />
-	<Folder Include="Output\V25\DataTypes\" />
-	<Folder Include="Output\V25\Segments\" />
-	<Folder Include="Output\V25\Tables\" />
-	<Folder Include="Output\V25\TriggerEvents\" />
-	<Folder Include="Output\V26\DataTypes\" />
-	<Folder Include="Output\V26\Segments\" />
-	<Folder Include="Output\V26\Tables\" />
-	<Folder Include="Output\V26\TriggerEvents\" />
-	<Folder Include="Output\V271\DataTypes\" />
-	<Folder Include="Output\V271\Segments\" />
-	<Folder Include="Output\V271\Tables\" />
-	<Folder Include="Output\V271\TriggerEvents\" />
-	<Folder Include="Output\V27\DataTypes\" />
-	<Folder Include="Output\V27\Segments\" />
-	<Folder Include="Output\V27\Tables\" />
-	<Folder Include="Output\V27\TriggerEvents\" />
-	<Folder Include="Output\V28\DataTypes\" />
-	<Folder Include="Output\V28\Segments\" />
-	<Folder Include="Output\V28\Tables\" />
-	<Folder Include="Output\V28\TriggerEvents\" />
   </ItemGroup>
 
   <ItemGroup>

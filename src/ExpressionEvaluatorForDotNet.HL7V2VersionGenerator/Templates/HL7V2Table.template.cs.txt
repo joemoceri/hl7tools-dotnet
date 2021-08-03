@@ -2,7 +2,7 @@
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V2[{-VERSION-}]Table[{-TABLE_ID_CLASS_NAME-}]
+    public class HL7V[{-VERSION-}]Table[{-TABLE_ID_CLASS_NAME-}]
     {
         public string Id { get { return [{-ID-}]; } }
 
