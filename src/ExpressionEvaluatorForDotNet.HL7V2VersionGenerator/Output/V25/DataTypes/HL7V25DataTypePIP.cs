@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V25DataType
+    public class HL7V25DataTypePIP
     {
         public string Id { get { return @"PIP"; } }
 

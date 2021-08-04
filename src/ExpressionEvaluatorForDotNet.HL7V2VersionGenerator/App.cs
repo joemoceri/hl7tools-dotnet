@@ -70,7 +70,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 // tokens
                 result.Add("[{-VERSION-}]", version);
-                result.Add("[{-DATA_TYPE_ID_CLASS_NAME-}]", dataType.TableId);
+                result.Add("[{-DATA_TYPE_ID_CLASS_NAME-}]", dataType.Id);
                 result.Add("[{-ID-}]", WrapInQuotesOrNull(dataType.Id));
                 result.Add("[{-TYPE-}]", WrapInQuotesOrNull(dataType.Type));
                 result.Add("[{-NAME-}]", WrapInQuotesOrNull(dataType.Name));

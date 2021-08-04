@@ -33,7 +33,7 @@ namespace ExpressionEvaluatorForDotNet
                     FieldDatas = Enumerable.Empty<HL7V2FieldData>().ToList()
                 };
 
-                var result = new HL7V23Field(message.GetField("MSH.1"), fieldData);
+                var result = new HL7V23Field(message["MSH"][1], fieldData);
 
                 return result;
             } 
