@@ -2,7 +2,7 @@
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V23FieldData
+    public class HL7V2FieldData
     {
         public string Id { get; set; }
 
@@ -30,6 +30,6 @@ namespace ExpressionEvaluatorForDotNet
 
         public string Sample { get; set; }
 
-        public IList<HL7V23FieldData> FieldDatas { get; set; }
+        public IList<HL7V2FieldData> FieldDatas { get; set; }
     }
 }

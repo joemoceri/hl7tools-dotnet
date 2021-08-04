@@ -28,7 +28,7 @@ namespace ExpressionEvaluatorForDotNet
 
         public string Sample { get { return ""; } }
 
-        public IList<HL7V23FieldData> Fields 
+        public IList<HL7V2FieldData> Fields 
         { 
             get 
             {

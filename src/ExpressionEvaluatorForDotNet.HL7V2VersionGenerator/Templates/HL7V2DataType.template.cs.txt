@@ -2,7 +2,7 @@
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V2[{-VERSION-}]DataType[{-ID-}]
+    public class HL7V[{-VERSION-}]DataType[{-DATA_TYPE_ID_CLASS_NAME-}]
     {
         public string Id { get { return [{-ID-}]; } }
 
@@ -28,11 +28,11 @@ namespace ExpressionEvaluatorForDotNet
 
         public string Sample { get { return [{-SAMPLE-}]; } }
 
-        public IList<HL7V23FieldData> Fields 
+        public IList<HL7V2FieldData> Fields 
         { 
             get 
             {
-                return [{-FIELDS-}]
+                return [{-FIELDS-}];
             }
         }
     }

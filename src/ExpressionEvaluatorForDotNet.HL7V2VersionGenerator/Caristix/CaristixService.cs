@@ -1,5 +1,4 @@
-﻿using ExpressionEvaluatorForDotNet.HL7V2VersionGenerator.Caristix;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -157,7 +156,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             if (testMode)
             {
-                var path = Path.Combine(basePath, "TestData", version, "DataTypes");
+                var path = Path.Combine(basePath, "Caristix", "LocalData", version, "DataTypes");
                 foreach (var file in Directory.GetFiles(path))
                 {
                     var dataType = JsonConvert.DeserializeObject<DataTypeResponse>(File.ReadAllText(file));

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator.Caristix
+namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 {
     public class FieldResponse
     {

@@ -27,24 +27,125 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 //CreateTestData(version);
 
                 //var segments = caristixService.GetSegments(version);
-                //var dataTypes = caristixService.GetDataTypes(version);
                 //var triggerEvents = caristixService.GetTriggerEvents(version);
-                var tables = caristixService.GetTables(version);
 
-                foreach (var table in tables)
+                // tables
+                //var tables = caristixService.GetTables(version);
+
+                //foreach (var table in tables)
+                //{
+                //    var v = version.Replace(".", string.Empty);
+                //    var tableTokens = GetTableTokens(v, table);
+                //    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Table.template.cs.txt"));
+
+                //    foreach (var token in tableTokens)
+                //    {
+                //        template = template.Replace(token.Key, token.Value);
+                //    }
+
+                //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Tables", $"HL7V{v}Table{table.Id}.cs"), template);
+                //}
+
+                // data types
+                var dataTypes = caristixService.GetDataTypes(version);
+
+                foreach (var dataType in dataTypes)
                 {
                     var v = version.Replace(".", string.Empty);
-                    var tableTokens = GetTableTokens(v, table);
-                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Table.template.cs.txt"));
+                    var dataTypeTokens = GetDataTypeTokens(v, dataType);
+                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2DataType.template.cs.txt"));
 
-                    foreach (var token in tableTokens)
+                    foreach (var token in dataTypeTokens)
                     {
                         template = template.Replace(token.Key, token.Value);
                     }
 
-                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Tables", $"HL7V{v}Table{table.Id}.cs"), template);
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "DataTypes", $"HL7V{v}DataType{dataType.Id}.cs"), template);
+                }
+            }
+
+            Dictionary<string, string> GetDataTypeTokens(string version, DataTypeResponse dataType)
+            {
+                var result = new Dictionary<string, string>();
+
+                // tokens
+                result.Add("[{-VERSION-}]", version);
+                result.Add("[{-DATA_TYPE_ID_CLASS_NAME-}]", dataType.TableId);
+                result.Add("[{-ID-}]", WrapInQuotesOrNull(dataType.Id));
+                result.Add("[{-TYPE-}]", WrapInQuotesOrNull(dataType.Type));
+                result.Add("[{-NAME-}]", WrapInQuotesOrNull(dataType.Name));
+                result.Add("[{-DESCRIPTION-}]", WrapInQuotesOrNull(dataType.Description));
+                result.Add("[{-DATA_TYPE-}]", WrapInQuotesOrNull(dataType.DataType));
+                result.Add("[{-DATA_TYPE_NAME-}]", WrapInQuotesOrNull(dataType.DataTypeName));
+                result.Add("[{-LENGTH-}]", dataType.Length.ToString());
+                result.Add("[{-USAGE-}]", WrapInQuotesOrNull(dataType.Usage));
+                result.Add("[{-RPT-}]", WrapInQuotesOrNull(dataType.Rpt));
+                result.Add("[{-TABLE_ID-}]", WrapInQuotesOrNull(dataType.TableId));
+                result.Add("[{-TABLE_NAME-}]", WrapInQuotesOrNull(dataType.TableName));
+                result.Add("[{-SAMPLE-}]", WrapInQuotesOrNull(dataType.Sample));
+
+                // fields
+                string fieldsStrings = null;
+                if (dataType.Fields != null && dataType.Fields.Count > 0)
+                {
+                    for (var i = 0; i < dataType.Fields.Count; i++)
+                    {
+                        var field = dataType.Fields[i];
+
+                        fieldsStrings += CreateFieldData(field);
+                    }
+
+                    fieldsStrings = fieldsStrings.Trim();
                 }
 
+                if (fieldsStrings != null)
+                {
+                    fieldsStrings = @$"new[]
+                        {{
+                            {fieldsStrings}
+                        }}";
+                }
+
+                result.Add("[{-FIELDS-}]", WrapInQuotesOrNull(fieldsStrings, true));
+
+                return result;
+
+                string CreateFieldData(FieldResponse field)
+                {
+                    string fieldDatas = string.Empty;
+                    if (field.Fields != null && field.Fields.Count > 0)
+                    {
+                        for (var i = 0; i < field.Fields.Count; i++)
+                        {
+                            fieldDatas += CreateFieldData(field.Fields[i]);
+                        }
+                    }
+                    else
+                    {
+                        fieldDatas = null;
+                    }
+
+                    var result = @$"
+                        new HL7V2FieldData
+                        {{
+                            Id = {WrapInQuotesOrNull(field.Id)},
+                            Type = {WrapInQuotesOrNull(field.Type)},
+                            Position = {WrapInQuotesOrNull(field.Position)},
+                            Name = {WrapInQuotesOrNull(field.Name)},
+                            Length = {field.Length},
+                            Usage = {WrapInQuotesOrNull(field.Usage)},
+                            Rpt = {WrapInQuotesOrNull(field.Rpt)},
+                            DataType = {WrapInQuotesOrNull(field.DataType)},
+                            DataTypeName = {WrapInQuotesOrNull(field.DataTypeName)},
+                            TableId = {WrapInQuotesOrNull(field.TableId)},
+                            TableName = {WrapInQuotesOrNull(field.TableName)},
+                            Description = {WrapInQuotesOrNull(field.Description)},
+                            Sample = {WrapInQuotesOrNull(field.Sample)},
+                            FieldDatas = {WrapInQuotesOrNull(fieldDatas, true)}
+                        }},{Environment.NewLine}                        ";
+
+                    return result;
+                }
             }
 
             Dictionary<string, string> GetTableTokens(string version, TableResponse table)

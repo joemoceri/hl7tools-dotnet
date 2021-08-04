@@ -28,13 +28,13 @@ namespace ExpressionEvaluatorForDotNet
 
         public string Sample { get { return ""; } }
 
-        public IList<HL7V23FieldData> Fields 
+        public IList<HL7V2FieldData> Fields 
         { 
             get 
             {
                 return new []
                 {
-                    new HL7V23FieldData
+                    new HL7V2FieldData
                     {
                         Id = "AD.1",
                         Type = "DataTypeComponent",
@@ -51,7 +51,7 @@ namespace ExpressionEvaluatorForDotNet
                         Sample = null,
                         FieldDatas = null
                     },
-                    new HL7V23FieldData
+                    new HL7V2FieldData
                     {
                         Id = "AD.2",
                         Type = "DataTypeComponent",
@@ -68,7 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                         Sample = null,
                         FieldDatas = null
                     },
-                    new HL7V23FieldData
+                    new HL7V2FieldData
                     {
                         Id = "AD.3",
                         Type = "DataTypeComponent",
@@ -85,7 +85,7 @@ namespace ExpressionEvaluatorForDotNet
                         Sample = null,
                         FieldDatas = null
                     },
-                    new HL7V23FieldData
+                    new HL7V2FieldData
                     {
                         Id = "AD.4",
                         Type = "DataTypeComponent",
@@ -102,7 +102,7 @@ namespace ExpressionEvaluatorForDotNet
                         Sample = null,
                         FieldDatas = null
                     },
-                    new HL7V23FieldData
+                    new HL7V2FieldData
                     {
                         Id = "AD.5",
                         Type = "DataTypeComponent",
@@ -119,7 +119,7 @@ namespace ExpressionEvaluatorForDotNet
                         Sample = null,
                         FieldDatas = null
                     },
-                    new HL7V23FieldData
+                    new HL7V2FieldData
                     {
                         Id = "AD.6",
                         Type = "DataTypeComponent",
@@ -136,7 +136,7 @@ namespace ExpressionEvaluatorForDotNet
                         Sample = null,
                         FieldDatas = null
                     },
-                    new HL7V23FieldData
+                    new HL7V2FieldData
                     {
                         Id = "AD.7",
                         Type = "DataTypeComponent",
@@ -153,7 +153,7 @@ namespace ExpressionEvaluatorForDotNet
                         Sample = null,
                         FieldDatas = null
                     },
-                    new HL7V23FieldData
+                    new HL7V2FieldData
                     {
                         Id = "AD.8",
                         Type = "DataTypeComponent",
