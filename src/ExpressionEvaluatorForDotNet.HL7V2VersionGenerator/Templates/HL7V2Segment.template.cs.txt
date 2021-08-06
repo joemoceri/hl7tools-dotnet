@@ -2,9 +2,35 @@
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V2[{-VERSION-}]Segment[{-SEGMENT-}]
+    public class HL7V2[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}]
     {
         public readonly HL7V2Message message;
+
+        public string Id { get { return [{-ID-}]; } }
+
+        public string SegmentId { get { return [{-SEGMENT_ID-}]; } }
+        
+        public string LongName { get { return [{-LONG_NAME-}]; } }
+        
+        public string Description { get { return [{-DESCRIPTION-}]; } }
+        
+        public string Sample { get { return [{-SAMPLE-}]; } }
+
+        public IList<string> Chapters 
+        { 
+            get 
+            {
+                return [{-CHAPTERS-}];
+            }
+        }
+
+        public IList<HL7V2FieldData> Fields 
+        { 
+            get 
+            {
+                return [{-FIELD_DATAS-}];
+            }
+        }
 
         public HL7V2[{-VERSION-}]Segment[{-SEGMENT-}](HL7V2Message message)
         {

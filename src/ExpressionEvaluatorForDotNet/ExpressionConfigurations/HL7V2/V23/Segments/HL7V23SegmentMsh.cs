@@ -1,10 +1,25 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentMsh
     {
         public readonly HL7V2Message message;
+
+        public string Id { get; set; }
+
+        public string SegmentId { get; set; }
+
+        public string LongName { get; set; }
+
+        public string Description { get; set; }
+
+        public string Sample { get; set; }
+
+        public IList<string> Chapters { get; set; }
+
+        public IList<HL7V2FieldData> Fields { get; set; }
 
         public HL7V23SegmentMsh(HL7V2Message message)
         {
@@ -38,7 +53,6 @@ namespace ExpressionEvaluatorForDotNet
                 return result;
             } 
         }
-
         public HL7V23Field EncodingCharacters { get { return new HL7V23Field(message["MSH"][2], null); } }
         public HL7V23Field SendingApplication { get { return new HL7V23Field(message["MSH"][3], null); } }
         public HL7V23Field SendingFacility { get { return new HL7V23Field(message["MSH"][4], null); } }
