@@ -86,8 +86,56 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 var result = new Dictionary<string, string>();
 
                 result.Add("[{-VERSION-}]", version);
+                result.Add("[{-SEGMENT_ID_CLASS_NAME-}]", segment.Id);
                 result.Add("[{-LONG_NAME-}]", WrapInQuotesOrNull(segment.LongName));
-                // TODO: fill out
+                result.Add("[{-DESCRIPTION-}]", WrapInQuotesOrNull(segment.Description));
+                result.Add("[{-SAMPLE-}]", WrapInQuotesOrNull(segment.Sample));
+
+                // fieldDatas
+                string fieldDatasStrings = null;
+                if (segment.Fields != null && segment.Fields.Count > 0)
+                {
+                    for (var i = 0; i < segment.Fields.Count; i++)
+                    {
+                        var field = segment.Fields[i];
+
+                        fieldDatasStrings += CreateFieldData(field);
+                    }
+
+                    fieldDatasStrings = fieldDatasStrings.Trim();
+                }
+
+                if (fieldDatasStrings != null)
+                {
+                    fieldDatasStrings = @$"new[]
+                        {{
+                            {fieldDatasStrings}
+                        }}";
+                }
+
+                result.Add("[{-FIELD_DATAS-}]", WrapInQuotesOrNull(fieldDatasStrings, true));
+
+                // chapters
+                string chapters = null;
+                if (segment.Chapters != null && segment.Chapters.Count > 0)
+                {
+                    var chaptersStrings = string.Empty;
+                    for (var i = 0; i < segment.Chapters.Count; i++)
+                    {
+                        chaptersStrings += $"\"{segment.Chapters[i]}\",{Environment.NewLine}";
+                    }
+
+                    chaptersStrings = chaptersStrings.Trim();
+
+                    chapters = @$"new[]
+                    {{
+                        {chaptersStrings}
+                    }}";
+                }
+
+                result.Add("[{-CHAPTERS-}]", WrapInQuotesOrNull(chapters, true));
+
+                // TODO: fields
 
                 return result;
             }
@@ -137,43 +185,6 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 result.Add("[{-FIELDS-}]", WrapInQuotesOrNull(fieldsStrings, true));
 
                 return result;
-
-                string CreateFieldData(FieldResponse field)
-                {
-                    string fieldDatas = string.Empty;
-                    if (field.Fields != null && field.Fields.Count > 0)
-                    {
-                        for (var i = 0; i < field.Fields.Count; i++)
-                        {
-                            fieldDatas += CreateFieldData(field.Fields[i]);
-                        }
-                    }
-                    else
-                    {
-                        fieldDatas = null;
-                    }
-
-                    var result = @$"
-                        new HL7V2FieldData
-                        {{
-                            Id = {WrapInQuotesOrNull(field.Id)},
-                            Type = {WrapInQuotesOrNull(field.Type)},
-                            Position = {WrapInQuotesOrNull(field.Position)},
-                            Name = {WrapInQuotesOrNull(field.Name)},
-                            Length = {field.Length},
-                            Usage = {WrapInQuotesOrNull(field.Usage)},
-                            Rpt = {WrapInQuotesOrNull(field.Rpt)},
-                            DataType = {WrapInQuotesOrNull(field.DataType)},
-                            DataTypeName = {WrapInQuotesOrNull(field.DataTypeName)},
-                            TableId = {WrapInQuotesOrNull(field.TableId)},
-                            TableName = {WrapInQuotesOrNull(field.TableName)},
-                            Description = {WrapInQuotesOrNull(field.Description)},
-                            Sample = {WrapInQuotesOrNull(field.Sample)},
-                            FieldDatas = {WrapInQuotesOrNull(fieldDatas, true)}
-                        }},{Environment.NewLine}                        ";
-
-                    return result;
-                }
             }
 
             Dictionary<string, string> GetTableTokens(string version, TableResponse table)
@@ -206,6 +217,8 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     }}";
                 }
 
+                result.Add("[{-CHAPTERS-}]", WrapInQuotesOrNull(chapters, true));
+                
                 if (table.Entries != null && table.Entries.Count > 0)
                 {
                     var entriesStrings = string.Empty;
@@ -231,7 +244,6 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     }}";
                 }
 
-                result.Add("[{-CHAPTERS-}]", WrapInQuotesOrNull(chapters, true));
                 result.Add("[{-ENTRIES-}]", WrapInQuotesOrNull(entries, true));
 
                 return result;
@@ -298,6 +310,43 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 }
 
                 return input == null ? "null" : $@"@""{input.Replace("\"", "\"\"")}""";
+            }
+
+            string CreateFieldData(FieldResponse field)
+            {
+                string fieldDatas = string.Empty;
+                if (field.Fields != null && field.Fields.Count > 0)
+                {
+                    for (var i = 0; i < field.Fields.Count; i++)
+                    {
+                        fieldDatas += CreateFieldData(field.Fields[i]);
+                    }
+                }
+                else
+                {
+                    fieldDatas = null;
+                }
+
+                var result = @$"
+                        new HL7V2FieldData
+                        {{
+                            Id = {WrapInQuotesOrNull(field.Id)},
+                            Type = {WrapInQuotesOrNull(field.Type)},
+                            Position = {WrapInQuotesOrNull(field.Position)},
+                            Name = {WrapInQuotesOrNull(field.Name)},
+                            Length = {field.Length},
+                            Usage = {WrapInQuotesOrNull(field.Usage)},
+                            Rpt = {WrapInQuotesOrNull(field.Rpt)},
+                            DataType = {WrapInQuotesOrNull(field.DataType)},
+                            DataTypeName = {WrapInQuotesOrNull(field.DataTypeName)},
+                            TableId = {WrapInQuotesOrNull(field.TableId)},
+                            TableName = {WrapInQuotesOrNull(field.TableName)},
+                            Description = {WrapInQuotesOrNull(field.Description)},
+                            Sample = {WrapInQuotesOrNull(field.Sample)},
+                            FieldDatas = {WrapInQuotesOrNull(fieldDatas, true)}
+                        }},{Environment.NewLine}                        ";
+
+                return result;
             }
         }
 

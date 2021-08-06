@@ -32,7 +32,7 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public HL7V2[{-VERSION-}]Segment[{-SEGMENT-}](HL7V2Message message)
+        public HL7V2[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}](HL7V2Message message)
         {
             this.message = message;
         }
