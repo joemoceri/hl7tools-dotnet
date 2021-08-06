@@ -46,22 +46,50 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Tables", $"HL7V{v}Table{table.Id}.cs"), template);
                 //}
 
-                // data types
-                var dataTypes = caristixService.GetDataTypes(version);
+                //// data types
+                //var dataTypes = caristixService.GetDataTypes(version);
 
-                foreach (var dataType in dataTypes)
+                //foreach (var dataType in dataTypes)
+                //{
+                //    var v = version.Replace(".", string.Empty);
+                //    var dataTypeTokens = GetDataTypeTokens(v, dataType);
+                //    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2DataType.template.cs.txt"));
+
+                //    foreach (var token in dataTypeTokens)
+                //    {
+                //        template = template.Replace(token.Key, token.Value);
+                //    }
+
+                //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "DataTypes", $"HL7V{v}DataType{dataType.Id}.cs"), template);
+                //}
+
+                // segments
+                var segments = caristixService.GetSegments(version);
+
+                foreach (var segment in segments)
                 {
                     var v = version.Replace(".", string.Empty);
-                    var dataTypeTokens = GetDataTypeTokens(v, dataType);
-                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2DataType.template.cs.txt"));
+                    var segmentTokens = GetSegmentTokens(v, segment);
+                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Segment.template.cs.txt"));
 
-                    foreach (var token in dataTypeTokens)
+                    foreach (var token in segmentTokens)
                     {
                         template = template.Replace(token.Key, token.Value);
                     }
 
-                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "DataTypes", $"HL7V{v}DataType{dataType.Id}.cs"), template);
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Segments", $"HL7V{v}Segment{segment.Id}.cs"), template);
                 }
+            }
+
+            Dictionary<string, string> GetSegmentTokens(string version, SegmentResponse segment)
+            {
+                var result = new Dictionary<string, string>();
+
+                result.Add("[{-VERSION-}]", version);
+                result.Add("[{-LONG_NAME-}]", WrapInQuotesOrNull(segment.LongName));
+                // TODO: fill out
+
+                return result;
             }
 
             Dictionary<string, string> GetDataTypeTokens(string version, DataTypeResponse dataType)
