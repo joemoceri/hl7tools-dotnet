@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
@@ -66,7 +67,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the date/time that the operation represented by the action code was performed.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.2.1",
@@ -104,7 +105,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -122,7 +123,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field identifies the goal. This is the identifier from an institutions master list of goals.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.3.1",
@@ -230,7 +231,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -250,7 +251,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 
 Note:  It is required that the value in this field be unique over time.  This instance ID identifies a specific instance for a specific patient and is unique across all patients.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.4.1",
@@ -322,7 +323,7 @@ Note:  It is required that the value in this field be unique over time.  This in
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -340,7 +341,7 @@ Note:  It is required that the value in this field be unique over time.  This in
                             TableName = null,
                             Description = @"This field uniquely identifies the episode of care to which this goal applies.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.5.1",
@@ -412,7 +413,7 @@ Note:  It is required that the value in this field be unique over time.  This in
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -448,7 +449,7 @@ Note:  It is required that the value in this field be unique over time.  This in
                             TableName = null,
                             Description = @"This field identifies the date/time when the stated goal was initially created.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.7.1",
@@ -486,7 +487,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -504,7 +505,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the projected date/time for achieving the stated goal.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.8.1",
@@ -542,7 +543,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -562,7 +563,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 
 Note:  This field can be used to differentiate separate goal lists that may be managed independently within applications. ",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.9.1",
@@ -670,7 +671,7 @@ Note:  This field can be used to differentiate separate goal lists that may be m
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -688,7 +689,7 @@ Note:  This field can be used to differentiate separate goal lists that may be m
                             TableName = null,
                             Description = @"This field indicates the category of caregiver with responsibility for managing this specific goal (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.). This is a repeating field to allow identification of all disciplines that may have the responsibility for this goal.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.10.1",
@@ -796,7 +797,7 @@ Note:  This field can be used to differentiate separate goal lists that may be m
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -814,7 +815,7 @@ Note:  This field can be used to differentiate separate goal lists that may be m
                             TableName = null,
                             Description = @"This field contains the current point in the continuum of a goal review cycle (e.g., due, initiated, reviewed, overdue, verified, etc.).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.11.1",
@@ -922,7 +923,7 @@ Note:  This field can be used to differentiate separate goal lists that may be m
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -940,7 +941,7 @@ Note:  This field can be used to differentiate separate goal lists that may be m
                             TableName = null,
                             Description = @"This field contains the date/time of the current review of the goal.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.12.1",
@@ -978,7 +979,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -996,7 +997,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the date/time of the next scheduled goal review.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.13.1",
@@ -1034,7 +1035,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1052,7 +1053,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the date/time that the goal was reviewed prior to the current review.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.14.1",
@@ -1090,7 +1091,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1108,7 +1109,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the interval used to calculate the next goal review date.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.15.1",
@@ -1124,7 +1125,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component specifies the quantity of the service that should be provided at each service interval. For example, if two blood cultures are to be obtained every 4 hours, the quantity would be 2. If three units of blood are to be typed and cross-matched, the quantity would be 3. The default value is 1. When units are required, they can be added, specified by a subcomponent delimiter.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.15.1.1",
@@ -1158,7 +1159,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.15.1.1",
@@ -1266,9 +1267,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1286,7 +1287,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"Determines the interval between repeated services.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.15.2.1",
@@ -1322,7 +1323,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1358,7 +1359,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component may be specified by the orderer, in which case it indicates the earliest date/time at which the services should be started. In many cases, however, the start date/time will be implied or will be defined by other fields in the order record (e.g., urgency - STAT). In such a case, this field will be empty.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.15.4.1",
@@ -1396,7 +1397,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1414,7 +1415,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"When filled in by the requester of the service, this component should contain the latest date/time that the service should be performed. If it has not been performed by the specified time, it should not be performed at all. The requester may not always fill in this value, yet the filling service may fill it in on the basis of the instruction it receives and the actual start time.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.15.5.1",
@@ -1452,7 +1453,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1542,7 +1543,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.15.10.1",
@@ -1740,7 +1741,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1758,7 +1759,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component contains the duration for a single performance of a service, e.g., whirlpool twenty minutes three times per day for three days. It is optional within TQ and does not repeat.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.15.11.1",
@@ -1866,7 +1867,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1886,7 +1887,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1904,7 +1905,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field provides an indicator of progress towards achievement of the goal (e.g., achieved, ahead of schedule, delayed, failed to achieve, etc.).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.16.1",
@@ -2012,7 +2013,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2048,7 +2049,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains an indication of the state of the goal (e.g., Active, Canceled, Inactive, Suspended, etc.).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.18.1",
@@ -2156,7 +2157,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2174,7 +2175,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the effective date/time of the current goal life cycle status.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.19.1",
@@ -2212,7 +2213,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2230,7 +2231,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the individual/group for whom the goal has been established (e.g., family group, family member, patient, etc.).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.20.1",
@@ -2338,7 +2339,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2356,7 +2357,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the identification of the person(s) on whom the goal is focused. This is a repeating field which allows for the identification of a group of individuals.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.21.1",
@@ -2372,7 +2373,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, ""FN - family name"".",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.21.1.1",
@@ -2462,7 +2463,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2606,7 +2607,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.21.9.1",
@@ -2714,7 +2715,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2732,7 +2733,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to Effective Date and Expiration Date components.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.21.10.1",
@@ -2748,7 +2749,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.21.10.1",
@@ -2786,7 +2787,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2804,7 +2805,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range. Note that the TS (time stamp) data type allows the specification of precision.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.21.10.1",
@@ -2842,9 +2843,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2880,7 +2881,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first date, if known, on which the person name is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.21.12.1",
@@ -2918,7 +2919,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2936,7 +2937,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The last date, if known, on which the person name is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GOL.21.13.1",
@@ -2974,7 +2975,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2994,7 +2995,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         };
             }
@@ -3005,7 +3006,8 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
             this.message = message;
         }
 
-        internal HL7V25Field actionCode;
+        
+internal HL7V25Field actionCode;
 
 public HL7V25Field ActionCode
 {
@@ -3034,15 +3036,108 @@ public HL7V25Field ActionCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < actionCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = actionCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < actionCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = actionCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < actionCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = actionCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            actionCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return actionCode;
     } 
 }
+
 internal HL7V25Field actionDateTime;
 
 public HL7V25Field ActionDateTime
@@ -3072,15 +3167,108 @@ public HL7V25Field ActionDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (actionDateTime.field.FieldRepetitions != null && actionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(actionDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < actionDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = actionDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < actionDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = actionDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < actionDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = actionDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            actionDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return actionDateTime;
     } 
 }
+
 internal HL7V25Field goalID;
 
 public HL7V25Field GoalID
@@ -3110,15 +3298,108 @@ public HL7V25Field GoalID
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalID.field.FieldRepetitions != null && goalID.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalID.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalID.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalID.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalID.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalID.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalID.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalID;
     } 
 }
+
 internal HL7V25Field goalInstanceID;
 
 public HL7V25Field GoalInstanceID
@@ -3150,15 +3431,108 @@ Note:  It is required that the value in this field be unique over time.  This in
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalInstanceID.field.FieldRepetitions != null && goalInstanceID.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalInstanceID.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalInstanceID.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalInstanceID.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalInstanceID.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalInstanceID.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalInstanceID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalInstanceID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalInstanceID.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalInstanceID;
     } 
 }
+
 internal HL7V25Field episodeofCareID;
 
 public HL7V25Field EpisodeofCareID
@@ -3188,15 +3562,108 @@ public HL7V25Field EpisodeofCareID
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (episodeofCareID.field.FieldRepetitions != null && episodeofCareID.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(episodeofCareID.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < episodeofCareID.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = episodeofCareID.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < episodeofCareID.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = episodeofCareID.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < episodeofCareID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = episodeofCareID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            episodeofCareID.fieldRepetitions = fieldRepetitions;
+        }
 
         return episodeofCareID;
     } 
 }
+
 internal HL7V25Field goalListPriority;
 
 public HL7V25Field GoalListPriority
@@ -3226,15 +3693,108 @@ public HL7V25Field GoalListPriority
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalListPriority.field.FieldRepetitions != null && goalListPriority.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalListPriority.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalListPriority.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalListPriority.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalListPriority.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalListPriority.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalListPriority.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalListPriority.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalListPriority.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalListPriority;
     } 
 }
+
 internal HL7V25Field goalEstablishedDateTime;
 
 public HL7V25Field GoalEstablishedDateTime
@@ -3264,15 +3824,108 @@ public HL7V25Field GoalEstablishedDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalEstablishedDateTime.field.FieldRepetitions != null && goalEstablishedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalEstablishedDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalEstablishedDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalEstablishedDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalEstablishedDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalEstablishedDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalEstablishedDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalEstablishedDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalEstablishedDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalEstablishedDateTime;
     } 
 }
+
 internal HL7V25Field expectedGoalAchieveDateTime;
 
 public HL7V25Field ExpectedGoalAchieveDateTime
@@ -3302,15 +3955,108 @@ public HL7V25Field ExpectedGoalAchieveDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (expectedGoalAchieveDateTime.field.FieldRepetitions != null && expectedGoalAchieveDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(expectedGoalAchieveDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < expectedGoalAchieveDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = expectedGoalAchieveDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < expectedGoalAchieveDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = expectedGoalAchieveDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < expectedGoalAchieveDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = expectedGoalAchieveDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            expectedGoalAchieveDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return expectedGoalAchieveDateTime;
     } 
 }
+
 internal HL7V25Field goalClassification;
 
 public HL7V25Field GoalClassification
@@ -3342,15 +4088,108 @@ Note:  This field can be used to differentiate separate goal lists that may be m
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalClassification.field.FieldRepetitions != null && goalClassification.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalClassification.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalClassification.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalClassification.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalClassification.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalClassification.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalClassification.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalClassification.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalClassification.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalClassification;
     } 
 }
+
 internal HL7V25Field goalManagementDiscipline;
 
 public HL7V25Field GoalManagementDiscipline
@@ -3380,15 +4219,108 @@ public HL7V25Field GoalManagementDiscipline
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalManagementDiscipline.field.FieldRepetitions != null && goalManagementDiscipline.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalManagementDiscipline.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalManagementDiscipline.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalManagementDiscipline.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalManagementDiscipline.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalManagementDiscipline.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalManagementDiscipline.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalManagementDiscipline.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalManagementDiscipline.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalManagementDiscipline;
     } 
 }
+
 internal HL7V25Field currentGoalReviewStatus;
 
 public HL7V25Field CurrentGoalReviewStatus
@@ -3418,15 +4350,108 @@ public HL7V25Field CurrentGoalReviewStatus
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (currentGoalReviewStatus.field.FieldRepetitions != null && currentGoalReviewStatus.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(currentGoalReviewStatus.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < currentGoalReviewStatus.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = currentGoalReviewStatus.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < currentGoalReviewStatus.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = currentGoalReviewStatus.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < currentGoalReviewStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = currentGoalReviewStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            currentGoalReviewStatus.fieldRepetitions = fieldRepetitions;
+        }
 
         return currentGoalReviewStatus;
     } 
 }
+
 internal HL7V25Field currentGoalReviewDateTime;
 
 public HL7V25Field CurrentGoalReviewDateTime
@@ -3456,15 +4481,108 @@ public HL7V25Field CurrentGoalReviewDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (currentGoalReviewDateTime.field.FieldRepetitions != null && currentGoalReviewDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(currentGoalReviewDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < currentGoalReviewDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = currentGoalReviewDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < currentGoalReviewDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = currentGoalReviewDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < currentGoalReviewDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = currentGoalReviewDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            currentGoalReviewDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return currentGoalReviewDateTime;
     } 
 }
+
 internal HL7V25Field nextGoalReviewDateTime;
 
 public HL7V25Field NextGoalReviewDateTime
@@ -3494,15 +4612,108 @@ public HL7V25Field NextGoalReviewDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (nextGoalReviewDateTime.field.FieldRepetitions != null && nextGoalReviewDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(nextGoalReviewDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < nextGoalReviewDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = nextGoalReviewDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < nextGoalReviewDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = nextGoalReviewDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < nextGoalReviewDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = nextGoalReviewDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            nextGoalReviewDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return nextGoalReviewDateTime;
     } 
 }
+
 internal HL7V25Field previousGoalReviewDateTime;
 
 public HL7V25Field PreviousGoalReviewDateTime
@@ -3532,15 +4743,108 @@ public HL7V25Field PreviousGoalReviewDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (previousGoalReviewDateTime.field.FieldRepetitions != null && previousGoalReviewDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(previousGoalReviewDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < previousGoalReviewDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = previousGoalReviewDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < previousGoalReviewDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = previousGoalReviewDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < previousGoalReviewDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = previousGoalReviewDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            previousGoalReviewDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return previousGoalReviewDateTime;
     } 
 }
+
 internal HL7V25Field goalReviewInterval;
 
 public HL7V25Field GoalReviewInterval
@@ -3570,15 +4874,108 @@ public HL7V25Field GoalReviewInterval
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalReviewInterval.field.FieldRepetitions != null && goalReviewInterval.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalReviewInterval.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalReviewInterval.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalReviewInterval.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalReviewInterval.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalReviewInterval.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalReviewInterval.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalReviewInterval.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalReviewInterval.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalReviewInterval;
     } 
 }
+
 internal HL7V25Field goalEvaluation;
 
 public HL7V25Field GoalEvaluation
@@ -3608,15 +5005,108 @@ public HL7V25Field GoalEvaluation
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalEvaluation.field.FieldRepetitions != null && goalEvaluation.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalEvaluation.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalEvaluation.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalEvaluation.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalEvaluation.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalEvaluation.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalEvaluation.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalEvaluation.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalEvaluation.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalEvaluation;
     } 
 }
+
 internal HL7V25Field goalEvaluationComment;
 
 public HL7V25Field GoalEvaluationComment
@@ -3646,15 +5136,108 @@ public HL7V25Field GoalEvaluationComment
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalEvaluationComment.field.FieldRepetitions != null && goalEvaluationComment.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalEvaluationComment.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalEvaluationComment.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalEvaluationComment.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalEvaluationComment.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalEvaluationComment.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalEvaluationComment.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalEvaluationComment.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalEvaluationComment.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalEvaluationComment;
     } 
 }
+
 internal HL7V25Field goalLifeCycleStatus;
 
 public HL7V25Field GoalLifeCycleStatus
@@ -3684,15 +5267,108 @@ public HL7V25Field GoalLifeCycleStatus
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalLifeCycleStatus.field.FieldRepetitions != null && goalLifeCycleStatus.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalLifeCycleStatus.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalLifeCycleStatus.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalLifeCycleStatus.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalLifeCycleStatus.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalLifeCycleStatus.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalLifeCycleStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalLifeCycleStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalLifeCycleStatus.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalLifeCycleStatus;
     } 
 }
+
 internal HL7V25Field goalLifeCycleStatusDateTime;
 
 public HL7V25Field GoalLifeCycleStatusDateTime
@@ -3722,15 +5398,108 @@ public HL7V25Field GoalLifeCycleStatusDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalLifeCycleStatusDateTime.field.FieldRepetitions != null && goalLifeCycleStatusDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalLifeCycleStatusDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalLifeCycleStatusDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalLifeCycleStatusDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalLifeCycleStatusDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalLifeCycleStatusDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalLifeCycleStatusDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalLifeCycleStatusDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalLifeCycleStatusDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalLifeCycleStatusDateTime;
     } 
 }
+
 internal HL7V25Field goalTargetType;
 
 public HL7V25Field GoalTargetType
@@ -3760,15 +5529,108 @@ public HL7V25Field GoalTargetType
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalTargetType.field.FieldRepetitions != null && goalTargetType.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalTargetType.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalTargetType.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalTargetType.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalTargetType.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalTargetType.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalTargetType.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalTargetType.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalTargetType.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalTargetType;
     } 
 }
+
 internal HL7V25Field goalTargetName;
 
 public HL7V25Field GoalTargetName
@@ -3798,11 +5660,103 @@ public HL7V25Field GoalTargetName
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (goalTargetName.field.FieldRepetitions != null && goalTargetName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(goalTargetName.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < goalTargetName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = goalTargetName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < goalTargetName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = goalTargetName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < goalTargetName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = goalTargetName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            goalTargetName.fieldRepetitions = fieldRepetitions;
+        }
 
         return goalTargetName;
     } 

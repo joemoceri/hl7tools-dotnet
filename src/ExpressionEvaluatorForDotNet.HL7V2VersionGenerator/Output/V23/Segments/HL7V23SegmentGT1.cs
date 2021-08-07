@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
@@ -66,7 +67,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the primary identifier, or other identifiers,  assigned to the guarantor",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.2.1",
@@ -136,7 +137,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.2.4.1",
@@ -190,7 +191,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -226,7 +227,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.2.6.1",
@@ -280,9 +281,9 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -302,7 +303,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Beginning with Version 2.3, if the guarantor is an organization, send a null value ("" "") in GT1-3-guarantor  person name and put the organization name in GT1-21-guarantor organization name.  Either guarantor person name or guarantor organization name is required",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.3.1",
@@ -446,7 +447,7 @@ Beginning with Version 2.3, if the guarantor is an organization, send a null val
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -464,7 +465,7 @@ Beginning with Version 2.3, if the guarantor is an organization, send a null val
                             TableName = null,
                             Description = @"This field contains the name of the guarantor’s spouse.  Multiple names for the same guarantor spouse may be sent in this field.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.4.1",
@@ -608,7 +609,7 @@ Beginning with Version 2.3, if the guarantor is an organization, send a null val
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -626,7 +627,7 @@ Beginning with Version 2.3, if the guarantor is an organization, send a null val
                             TableName = null,
                             Description = @"This field contains the guarantor’s address.  Multiple addresses for the same person may be sent in this field.  The mailing address is assumed to be in the first repetition.  When the mailing address is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.5.1",
@@ -809,7 +810,7 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -827,7 +828,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the guarantor’s home phone number.  All personal phone numbers for the guarantor may be sent in this field.  The primary telephone number is assumed to be in the first repetition.  When the primary telephone number is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.6.1",
@@ -989,7 +990,7 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1007,7 +1008,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the guarantor’s business phone number.  All business phone numbers for the guarantor may be sent in this field.  The primary telephone number is assumed to be in the first repetition.  When the primary telephone number is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.7.1",
@@ -1169,7 +1170,7 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1187,7 +1188,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the guarantor’s date of birth.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.8.1",
@@ -1205,7 +1206,7 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1352,7 +1353,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the name of the guarantor’s employer, if the employer is a person.  When the guarantor’s employer is an organization, use GT1-51-guarantor employer’s organization name  Multiple names for the same person may be sent in this field, not multiple employers.  The legal name must be sent first in the repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.16.1",
@@ -1496,7 +1497,7 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1514,7 +1515,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the guarantor’s employer’s address.  Multiple addresses for the same employer may be sent in this field.  The mailing address must be sent first in the repetition.  When the mailing address is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.17.1",
@@ -1697,7 +1698,7 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1715,7 +1716,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the guarantor’s employer’s phone number.  Multiple phone numbers for the same employer.  The primary telephone number must be sent first in the sequence.  When the primary telephone number is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.18.1",
@@ -1877,7 +1878,7 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1895,7 +1896,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the guarantor’s employee number.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.19.1",
@@ -1965,7 +1966,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.19.4.1",
@@ -2019,7 +2020,7 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2055,7 +2056,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.19.6.1",
@@ -2109,9 +2110,9 @@ Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2149,7 +2150,7 @@ Allowable Values:  codes defined by government",
 
 Beginning with Version 2.3, if the guarantor is a person, send a null value ("""") in GT1-21-guarantor organization name and put the person name in GT1-3-guarantor person name.  Either guarantor person name or guarantor organization name is required.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.21.1",
@@ -2255,7 +2256,7 @@ Beginning with Version 2.3, if the guarantor is a person, send a null value ("""
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.21.6.1",
@@ -2309,7 +2310,7 @@ Beginning with Version 2.3, if the guarantor is a person, send a null value ("""
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2345,7 +2346,7 @@ Beginning with Version 2.3, if the guarantor is a person, send a null value ("""
                             TableName = null,
                             Description = @"The assigning facility is a unique identifier of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.21.8.1",
@@ -2399,9 +2400,9 @@ Beginning with Version 2.3, if the guarantor is a person, send a null value ("""
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2440,7 +2441,7 @@ N a system should not suppress printing of guarantor’s bills",
                             TableName = null,
                             Description = @"This field contains the guarantor’s credit rating.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.23.1",
@@ -2548,7 +2549,7 @@ N a system should not suppress printing of guarantor’s bills",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2566,7 +2567,7 @@ N a system should not suppress printing of guarantor’s bills",
                             TableName = null,
                             Description = @"This field is used to indicate the date and time at which the guarantor’s death occurred.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.24.1",
@@ -2584,7 +2585,7 @@ N a system should not suppress printing of guarantor’s bills",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2625,7 +2626,7 @@ N the guarantor is living ",
 
 Example:  This field would contain the value used for sliding-fee scale processingé",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.26.1",
@@ -2733,7 +2734,7 @@ Example:  This field would contain the value used for sliding-fee scale processi
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2751,7 +2752,7 @@ Example:  This field would contain the value used for sliding-fee scale processi
                             TableName = null,
                             Description = @"This field contains the combined annual income of all members of the guarantor’s household.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.27.1",
@@ -2767,7 +2768,7 @@ Example:  This field would contain the value used for sliding-fee scale processi
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. ",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.27.1.1",
@@ -2807,7 +2808,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2879,7 +2880,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             TableName = null,
                             Description = @"A coded value, data type CE, defined by the standard table of units for either time or quantity  (see for example, the tables in Section 7.1.4, “Coding schemes”).  This describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (e.g., count); it is required if <from value> and  <to value> are present",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.27.5.1",
@@ -2987,7 +2988,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3007,7 +3008,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3045,7 +3046,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
 
 When further breakdowns of employer information are needed, such as a division or plant, it is recommended that the coding scheme incorporate the relationships (e.g., define separate codes for each division).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.29.1",
@@ -3115,7 +3116,7 @@ When further breakdowns of employer information are needed, such as a division o
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.29.4.1",
@@ -3169,7 +3170,7 @@ When further breakdowns of employer information are needed, such as a division o
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3205,7 +3206,7 @@ When further breakdowns of employer information are needed, such as a division o
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.29.6.1",
@@ -3259,9 +3260,9 @@ When further breakdowns of employer information are needed, such as a division o
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3387,7 +3388,7 @@ When further breakdowns of employer information are needed, such as a division o
                             TableName = @"Primary language",
                             Description = @"This field identifies the guarantor’s primary speaking language.  HL7 recommends using ISO table 639 as the suggested values in user-defined table 0296 - Language.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.36.1",
@@ -3495,7 +3496,7 @@ When further breakdowns of employer information are needed, such as a division o
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3531,7 +3532,7 @@ When further breakdowns of employer information are needed, such as a division o
                             TableName = @"Publicity code",
                             Description = @"This field contains a user-defined code indicating what level of publicity is allowed (e.g., No Publicity, Family Only) for a guarantor.  Refer to user-defined table 0215 - Publicity indicator for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.38.1",
@@ -3639,7 +3640,7 @@ When further breakdowns of employer information are needed, such as a division o
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3714,7 +3715,7 @@ N do not restrict access",
                             TableName = null,
                             Description = @"This field indicates the guarantor’s mother’s maiden name.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.42.1",
@@ -3858,7 +3859,7 @@ N do not restrict access",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3876,7 +3877,7 @@ N do not restrict access",
                             TableName = @"Nationality",
                             Description = @"This field contains a code that identifies the nation or national grouping to which the person belongs.  This may be different from a person’s citizenship in countries in which multiple nationalities are recognized (for example, Spain: Basque, Catalan, etc.).  HL7 recommends using ISO table 3166 as suggested values in user-defined table 0212 - Nationality.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.43.1",
@@ -3984,7 +3985,7 @@ N do not restrict access",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4022,7 +4023,7 @@ N do not restrict access",
 
 This is a repeating field that allows for multiple names for the same person.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetitioné",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.45.1",
@@ -4166,7 +4167,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4184,7 +4185,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             TableName = null,
                             Description = @"This field contains the telephone number of the guarantor (person) to contact regarding guarantor bills, etc.  Multiple phone numbers for that person may be sent in this sequence.  The primary telephone number is assumed to be in the first repetition.  When the primary telephone number is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.46.1",
@@ -4346,7 +4347,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4364,7 +4365,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             TableName = @"Contact reason",
                             Description = @"This field contains a user-defined code that identifies the reason for contacting the guarantor, for example, to phone the guarantor if payments are late.  Refer to user-defined table 0222 - Contact reason for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.47.1",
@@ -4472,7 +4473,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4526,7 +4527,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             TableName = null,
                             Description = @"This field contains the guarantor’s job code and employee classification.  Refer to user-defined tables 0327 - Job code and 0328 - Job class for suggested values",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.50.1",
@@ -4562,7 +4563,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4580,7 +4581,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             TableName = null,
                             Description = @"This field contains the name of the guarantor’s employer when the guarantor’s employer is an organization.  When the guarantor’s employer is a person, use GT1-16 guarantor employer name.  Multiple names for the same guarantor may be sent in this field.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition. ",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.51.1",
@@ -4686,7 +4687,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.51.6.1",
@@ -4740,7 +4741,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4776,7 +4777,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             TableName = null,
                             Description = @"The assigning facility is a unique identifier of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.51.8.1",
@@ -4830,9 +4831,9 @@ This is a repeating field that allows for multiple names for the same person.  T
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4886,7 +4887,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             TableName = null,
                             Description = @"This field contains the financial class (FC) assigned to the guarantor for the purpose of identifying sources of reimbursement.  It can be different than that of the patient.  When the FC of the guarantor is different than the FC of the patient, and the guarantor’s coverage for that patient has been exhausted, the source of reimbursement falls back onto the FC of the patient.  Refer to user-defined table 0064 - Financial class for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.54.1",
@@ -4920,7 +4921,7 @@ This is a repeating field that allows for multiple names for the same person.  T
                             TableName = null,
                             Description = @"This component contains the effective date/time of the person’s assignment to the financial class specified in the first component",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GT1.54.2.1",
@@ -4938,9 +4939,9 @@ This is a repeating field that allows for multiple names for the same person.  T
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4969,7 +4970,8 @@ This is a repeating field that allows for multiple names for the same person.  T
             this.message = message;
         }
 
-        internal HL7V23Field setIDGuarantor;
+        
+internal HL7V23Field setIDGuarantor;
 
 public HL7V23Field SetIDGuarantor
 {
@@ -4998,15 +5000,108 @@ public HL7V23Field SetIDGuarantor
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (setIDGuarantor.field.FieldRepetitions != null && setIDGuarantor.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(setIDGuarantor.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < setIDGuarantor.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = setIDGuarantor.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < setIDGuarantor.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = setIDGuarantor.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < setIDGuarantor.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = setIDGuarantor.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            setIDGuarantor.fieldRepetitions = fieldRepetitions;
+        }
 
         return setIDGuarantor;
     } 
 }
+
 internal HL7V23Field guarantorNumber;
 
 public HL7V23Field GuarantorNumber
@@ -5036,15 +5131,108 @@ public HL7V23Field GuarantorNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorNumber.field.FieldRepetitions != null && guarantorNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorNumber.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorNumber;
     } 
 }
+
 internal HL7V23Field guarantorName;
 
 public HL7V23Field GuarantorName
@@ -5076,15 +5264,108 @@ Beginning with Version 2.3, if the guarantor is an organization, send a null val
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorName.field.FieldRepetitions != null && guarantorName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorName.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorName.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorName;
     } 
 }
+
 internal HL7V23Field guarantorSpouseName;
 
 public HL7V23Field GuarantorSpouseName
@@ -5114,15 +5395,108 @@ public HL7V23Field GuarantorSpouseName
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorSpouseName.field.FieldRepetitions != null && guarantorSpouseName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorSpouseName.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorSpouseName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorSpouseName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorSpouseName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorSpouseName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorSpouseName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorSpouseName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorSpouseName.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorSpouseName;
     } 
 }
+
 internal HL7V23Field guarantorAddress;
 
 public HL7V23Field GuarantorAddress
@@ -5152,15 +5526,108 @@ public HL7V23Field GuarantorAddress
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorAddress.field.FieldRepetitions != null && guarantorAddress.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorAddress.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorAddress.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorAddress.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorAddress.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorAddress.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorAddress.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorAddress;
     } 
 }
+
 internal HL7V23Field guarantorPhNumHome;
 
 public HL7V23Field GuarantorPhNumHome
@@ -5190,15 +5657,108 @@ public HL7V23Field GuarantorPhNumHome
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorPhNumHome.field.FieldRepetitions != null && guarantorPhNumHome.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorPhNumHome.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorPhNumHome.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorPhNumHome.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorPhNumHome.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorPhNumHome.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorPhNumHome.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorPhNumHome.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorPhNumHome.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorPhNumHome;
     } 
 }
+
 internal HL7V23Field guarantorPhNumBusiness;
 
 public HL7V23Field GuarantorPhNumBusiness
@@ -5228,15 +5788,108 @@ public HL7V23Field GuarantorPhNumBusiness
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorPhNumBusiness.field.FieldRepetitions != null && guarantorPhNumBusiness.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorPhNumBusiness.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorPhNumBusiness.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorPhNumBusiness.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorPhNumBusiness.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorPhNumBusiness.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorPhNumBusiness.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorPhNumBusiness.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorPhNumBusiness.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorPhNumBusiness;
     } 
 }
+
 internal HL7V23Field guarantorDateTimeofBirth;
 
 public HL7V23Field GuarantorDateTimeofBirth
@@ -5266,15 +5919,108 @@ public HL7V23Field GuarantorDateTimeofBirth
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorDateTimeofBirth.field.FieldRepetitions != null && guarantorDateTimeofBirth.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDateTimeofBirth.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorDateTimeofBirth.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorDateTimeofBirth.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorDateTimeofBirth.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorDateTimeofBirth.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorDateTimeofBirth.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorDateTimeofBirth.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorDateTimeofBirth.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorDateTimeofBirth;
     } 
 }
+
 internal HL7V23Field guarantorSex;
 
 public HL7V23Field GuarantorSex
@@ -5304,15 +6050,108 @@ public HL7V23Field GuarantorSex
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorSex.field.FieldRepetitions != null && guarantorSex.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorSex.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorSex.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorSex.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorSex.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorSex.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorSex.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorSex.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorSex.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorSex;
     } 
 }
+
 internal HL7V23Field guarantorType;
 
 public HL7V23Field GuarantorType
@@ -5342,15 +6181,108 @@ public HL7V23Field GuarantorType
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorType.field.FieldRepetitions != null && guarantorType.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorType.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorType.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorType.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorType.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorType.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorType.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorType.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorType.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorType;
     } 
 }
+
 internal HL7V23Field guarantorRelationship;
 
 public HL7V23Field GuarantorRelationship
@@ -5380,15 +6312,108 @@ public HL7V23Field GuarantorRelationship
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorRelationship.field.FieldRepetitions != null && guarantorRelationship.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorRelationship.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorRelationship.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorRelationship.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorRelationship.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorRelationship.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorRelationship.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorRelationship.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorRelationship.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorRelationship;
     } 
 }
+
 internal HL7V23Field guarantorSSN;
 
 public HL7V23Field GuarantorSSN
@@ -5418,15 +6443,108 @@ public HL7V23Field GuarantorSSN
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorSSN.field.FieldRepetitions != null && guarantorSSN.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorSSN.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorSSN.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorSSN.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorSSN.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorSSN.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorSSN.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorSSN.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorSSN.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorSSN;
     } 
 }
+
 internal HL7V23Field guarantorDateBegin;
 
 public HL7V23Field GuarantorDateBegin
@@ -5456,15 +6574,108 @@ public HL7V23Field GuarantorDateBegin
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorDateBegin.field.FieldRepetitions != null && guarantorDateBegin.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDateBegin.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorDateBegin.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorDateBegin.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorDateBegin.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorDateBegin.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorDateBegin.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorDateBegin.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorDateBegin.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorDateBegin;
     } 
 }
+
 internal HL7V23Field guarantorDateEnd;
 
 public HL7V23Field GuarantorDateEnd
@@ -5494,15 +6705,108 @@ public HL7V23Field GuarantorDateEnd
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorDateEnd.field.FieldRepetitions != null && guarantorDateEnd.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDateEnd.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorDateEnd.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorDateEnd.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorDateEnd.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorDateEnd.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorDateEnd.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorDateEnd.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorDateEnd.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorDateEnd;
     } 
 }
+
 internal HL7V23Field guarantorPriority;
 
 public HL7V23Field GuarantorPriority
@@ -5535,15 +6839,108 @@ public HL7V23Field GuarantorPriority
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorPriority.field.FieldRepetitions != null && guarantorPriority.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorPriority.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorPriority.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorPriority.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorPriority.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorPriority.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorPriority.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorPriority.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorPriority.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorPriority;
     } 
 }
+
 internal HL7V23Field guarantorEmployerName;
 
 public HL7V23Field GuarantorEmployerName
@@ -5573,15 +6970,108 @@ public HL7V23Field GuarantorEmployerName
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorEmployerName.field.FieldRepetitions != null && guarantorEmployerName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployerName.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorEmployerName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorEmployerName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorEmployerName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorEmployerName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorEmployerName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorEmployerName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorEmployerName.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorEmployerName;
     } 
 }
+
 internal HL7V23Field guarantorEmployerAddress;
 
 public HL7V23Field GuarantorEmployerAddress
@@ -5611,15 +7101,108 @@ public HL7V23Field GuarantorEmployerAddress
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorEmployerAddress.field.FieldRepetitions != null && guarantorEmployerAddress.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployerAddress.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorEmployerAddress.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorEmployerAddress.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorEmployerAddress.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorEmployerAddress.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorEmployerAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorEmployerAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorEmployerAddress.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorEmployerAddress;
     } 
 }
+
 internal HL7V23Field guarantorEmployPhoneNumber;
 
 public HL7V23Field GuarantorEmployPhoneNumber
@@ -5649,15 +7232,108 @@ public HL7V23Field GuarantorEmployPhoneNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorEmployPhoneNumber.field.FieldRepetitions != null && guarantorEmployPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployPhoneNumber.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorEmployPhoneNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorEmployPhoneNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorEmployPhoneNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorEmployPhoneNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorEmployPhoneNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorEmployPhoneNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorEmployPhoneNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorEmployPhoneNumber;
     } 
 }
+
 internal HL7V23Field guarantorEmployeeIDNumber;
 
 public HL7V23Field GuarantorEmployeeIDNumber
@@ -5687,15 +7363,108 @@ public HL7V23Field GuarantorEmployeeIDNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorEmployeeIDNumber.field.FieldRepetitions != null && guarantorEmployeeIDNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployeeIDNumber.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorEmployeeIDNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorEmployeeIDNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorEmployeeIDNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorEmployeeIDNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorEmployeeIDNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorEmployeeIDNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorEmployeeIDNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorEmployeeIDNumber;
     } 
 }
+
 internal HL7V23Field guarantorEmploymentStatus;
 
 public HL7V23Field GuarantorEmploymentStatus
@@ -5725,15 +7494,108 @@ public HL7V23Field GuarantorEmploymentStatus
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorEmploymentStatus.field.FieldRepetitions != null && guarantorEmploymentStatus.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmploymentStatus.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorEmploymentStatus.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorEmploymentStatus.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorEmploymentStatus.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorEmploymentStatus.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorEmploymentStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorEmploymentStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorEmploymentStatus.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorEmploymentStatus;
     } 
 }
+
 internal HL7V23Field guarantorOrganization;
 
 public HL7V23Field GuarantorOrganization
@@ -5765,15 +7627,108 @@ Beginning with Version 2.3, if the guarantor is a person, send a null value ("""
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorOrganization.field.FieldRepetitions != null && guarantorOrganization.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorOrganization.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorOrganization.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorOrganization.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorOrganization.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorOrganization.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorOrganization.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorOrganization.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorOrganization.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorOrganization;
     } 
 }
+
 internal HL7V23Field guarantorBillingHoldFlag;
 
 public HL7V23Field GuarantorBillingHoldFlag
@@ -5806,15 +7761,108 @@ N a system should not suppress printing of guarantor’s bills",
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorBillingHoldFlag.field.FieldRepetitions != null && guarantorBillingHoldFlag.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorBillingHoldFlag.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorBillingHoldFlag.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorBillingHoldFlag.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorBillingHoldFlag.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorBillingHoldFlag.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorBillingHoldFlag.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorBillingHoldFlag.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorBillingHoldFlag.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorBillingHoldFlag;
     } 
 }
+
 internal HL7V23Field guarantorCreditRatingCode;
 
 public HL7V23Field GuarantorCreditRatingCode
@@ -5844,15 +7892,108 @@ public HL7V23Field GuarantorCreditRatingCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorCreditRatingCode.field.FieldRepetitions != null && guarantorCreditRatingCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorCreditRatingCode.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorCreditRatingCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorCreditRatingCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorCreditRatingCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorCreditRatingCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorCreditRatingCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorCreditRatingCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorCreditRatingCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorCreditRatingCode;
     } 
 }
+
 internal HL7V23Field guarantorDeathDateAndTime;
 
 public HL7V23Field GuarantorDeathDateAndTime
@@ -5882,15 +8023,108 @@ public HL7V23Field GuarantorDeathDateAndTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorDeathDateAndTime.field.FieldRepetitions != null && guarantorDeathDateAndTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDeathDateAndTime.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorDeathDateAndTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorDeathDateAndTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorDeathDateAndTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorDeathDateAndTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorDeathDateAndTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorDeathDateAndTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorDeathDateAndTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorDeathDateAndTime;
     } 
 }
+
 internal HL7V23Field guarantorDeathFlag;
 
 public HL7V23Field GuarantorDeathFlag
@@ -5923,15 +8157,108 @@ N the guarantor is living ",
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorDeathFlag.field.FieldRepetitions != null && guarantorDeathFlag.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDeathFlag.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorDeathFlag.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorDeathFlag.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorDeathFlag.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorDeathFlag.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorDeathFlag.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorDeathFlag.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorDeathFlag.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorDeathFlag;
     } 
 }
+
 internal HL7V23Field guarantorChargeAdjustmentCode;
 
 public HL7V23Field GuarantorChargeAdjustmentCode
@@ -5963,15 +8290,108 @@ Example:  This field would contain the value used for sliding-fee scale processi
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorChargeAdjustmentCode.field.FieldRepetitions != null && guarantorChargeAdjustmentCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorChargeAdjustmentCode.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorChargeAdjustmentCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorChargeAdjustmentCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorChargeAdjustmentCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorChargeAdjustmentCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorChargeAdjustmentCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorChargeAdjustmentCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorChargeAdjustmentCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorChargeAdjustmentCode;
     } 
 }
+
 internal HL7V23Field guarantorHouseholdAnnualIncome;
 
 public HL7V23Field GuarantorHouseholdAnnualIncome
@@ -6001,15 +8421,108 @@ public HL7V23Field GuarantorHouseholdAnnualIncome
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorHouseholdAnnualIncome.field.FieldRepetitions != null && guarantorHouseholdAnnualIncome.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorHouseholdAnnualIncome.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorHouseholdAnnualIncome.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorHouseholdAnnualIncome.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorHouseholdAnnualIncome.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorHouseholdAnnualIncome.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorHouseholdAnnualIncome.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorHouseholdAnnualIncome.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorHouseholdAnnualIncome.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorHouseholdAnnualIncome;
     } 
 }
+
 internal HL7V23Field guarantorHouseholdSize;
 
 public HL7V23Field GuarantorHouseholdSize
@@ -6039,15 +8552,108 @@ public HL7V23Field GuarantorHouseholdSize
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorHouseholdSize.field.FieldRepetitions != null && guarantorHouseholdSize.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorHouseholdSize.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorHouseholdSize.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorHouseholdSize.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorHouseholdSize.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorHouseholdSize.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorHouseholdSize.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorHouseholdSize.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorHouseholdSize.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorHouseholdSize;
     } 
 }
+
 internal HL7V23Field guarantorEmployerIDNumber;
 
 public HL7V23Field GuarantorEmployerIDNumber
@@ -6079,15 +8685,108 @@ When further breakdowns of employer information are needed, such as a division o
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorEmployerIDNumber.field.FieldRepetitions != null && guarantorEmployerIDNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployerIDNumber.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorEmployerIDNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorEmployerIDNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorEmployerIDNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorEmployerIDNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorEmployerIDNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorEmployerIDNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorEmployerIDNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorEmployerIDNumber;
     } 
 }
+
 internal HL7V23Field guarantorMaritalStatusCode;
 
 public HL7V23Field GuarantorMaritalStatusCode
@@ -6117,15 +8816,108 @@ public HL7V23Field GuarantorMaritalStatusCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorMaritalStatusCode.field.FieldRepetitions != null && guarantorMaritalStatusCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorMaritalStatusCode.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorMaritalStatusCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorMaritalStatusCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorMaritalStatusCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorMaritalStatusCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorMaritalStatusCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorMaritalStatusCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorMaritalStatusCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorMaritalStatusCode;
     } 
 }
+
 internal HL7V23Field guarantorHireEffectiveDate;
 
 public HL7V23Field GuarantorHireEffectiveDate
@@ -6155,15 +8947,108 @@ public HL7V23Field GuarantorHireEffectiveDate
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorHireEffectiveDate.field.FieldRepetitions != null && guarantorHireEffectiveDate.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorHireEffectiveDate.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorHireEffectiveDate.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorHireEffectiveDate.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorHireEffectiveDate.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorHireEffectiveDate.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorHireEffectiveDate.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorHireEffectiveDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorHireEffectiveDate.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorHireEffectiveDate;
     } 
 }
+
 internal HL7V23Field employmentStopDate;
 
 public HL7V23Field EmploymentStopDate
@@ -6193,15 +9078,108 @@ public HL7V23Field EmploymentStopDate
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (employmentStopDate.field.FieldRepetitions != null && employmentStopDate.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(employmentStopDate.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < employmentStopDate.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = employmentStopDate.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < employmentStopDate.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = employmentStopDate.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < employmentStopDate.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = employmentStopDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            employmentStopDate.fieldRepetitions = fieldRepetitions;
+        }
 
         return employmentStopDate;
     } 
 }
+
 internal HL7V23Field livingDependency;
 
 public HL7V23Field LivingDependency
@@ -6231,15 +9209,108 @@ public HL7V23Field LivingDependency
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (livingDependency.field.FieldRepetitions != null && livingDependency.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(livingDependency.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < livingDependency.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = livingDependency.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < livingDependency.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = livingDependency.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < livingDependency.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = livingDependency.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            livingDependency.fieldRepetitions = fieldRepetitions;
+        }
 
         return livingDependency;
     } 
 }
+
 internal HL7V23Field ambulatoryStatusCode;
 
 public HL7V23Field AmbulatoryStatusCode
@@ -6269,15 +9340,108 @@ public HL7V23Field AmbulatoryStatusCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (ambulatoryStatusCode.field.FieldRepetitions != null && ambulatoryStatusCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(ambulatoryStatusCode.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < ambulatoryStatusCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = ambulatoryStatusCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < ambulatoryStatusCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = ambulatoryStatusCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < ambulatoryStatusCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = ambulatoryStatusCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            ambulatoryStatusCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return ambulatoryStatusCode;
     } 
 }
+
 internal HL7V23Field citizenship;
 
 public HL7V23Field Citizenship
@@ -6307,15 +9471,108 @@ public HL7V23Field Citizenship
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (citizenship.field.FieldRepetitions != null && citizenship.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(citizenship.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < citizenship.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = citizenship.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < citizenship.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = citizenship.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < citizenship.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = citizenship.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            citizenship.fieldRepetitions = fieldRepetitions;
+        }
 
         return citizenship;
     } 
 }
+
 internal HL7V23Field primaryLanguage;
 
 public HL7V23Field PrimaryLanguage
@@ -6345,15 +9602,108 @@ public HL7V23Field PrimaryLanguage
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (primaryLanguage.field.FieldRepetitions != null && primaryLanguage.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(primaryLanguage.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < primaryLanguage.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = primaryLanguage.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < primaryLanguage.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = primaryLanguage.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < primaryLanguage.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = primaryLanguage.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            primaryLanguage.fieldRepetitions = fieldRepetitions;
+        }
 
         return primaryLanguage;
     } 
 }
+
 internal HL7V23Field livingArrangement;
 
 public HL7V23Field LivingArrangement
@@ -6383,15 +9733,108 @@ public HL7V23Field LivingArrangement
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (livingArrangement.field.FieldRepetitions != null && livingArrangement.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(livingArrangement.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < livingArrangement.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = livingArrangement.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < livingArrangement.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = livingArrangement.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < livingArrangement.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = livingArrangement.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            livingArrangement.fieldRepetitions = fieldRepetitions;
+        }
 
         return livingArrangement;
     } 
 }
+
 internal HL7V23Field publicityIndicator;
 
 public HL7V23Field PublicityIndicator
@@ -6421,15 +9864,108 @@ public HL7V23Field PublicityIndicator
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (publicityIndicator.field.FieldRepetitions != null && publicityIndicator.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(publicityIndicator.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < publicityIndicator.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = publicityIndicator.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < publicityIndicator.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = publicityIndicator.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < publicityIndicator.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = publicityIndicator.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            publicityIndicator.fieldRepetitions = fieldRepetitions;
+        }
 
         return publicityIndicator;
     } 
 }
+
 internal HL7V23Field protectionIndicator;
 
 public HL7V23Field ProtectionIndicator
@@ -6462,15 +9998,108 @@ N do not restrict access",
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (protectionIndicator.field.FieldRepetitions != null && protectionIndicator.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(protectionIndicator.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < protectionIndicator.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = protectionIndicator.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < protectionIndicator.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = protectionIndicator.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < protectionIndicator.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = protectionIndicator.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            protectionIndicator.fieldRepetitions = fieldRepetitions;
+        }
 
         return protectionIndicator;
     } 
 }
+
 internal HL7V23Field studentIndicator;
 
 public HL7V23Field StudentIndicator
@@ -6500,15 +10129,108 @@ public HL7V23Field StudentIndicator
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (studentIndicator.field.FieldRepetitions != null && studentIndicator.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(studentIndicator.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < studentIndicator.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = studentIndicator.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < studentIndicator.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = studentIndicator.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < studentIndicator.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = studentIndicator.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            studentIndicator.fieldRepetitions = fieldRepetitions;
+        }
 
         return studentIndicator;
     } 
 }
+
 internal HL7V23Field religion;
 
 public HL7V23Field Religion
@@ -6538,15 +10260,108 @@ public HL7V23Field Religion
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (religion.field.FieldRepetitions != null && religion.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(religion.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < religion.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = religion.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < religion.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = religion.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < religion.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = religion.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            religion.fieldRepetitions = fieldRepetitions;
+        }
 
         return religion;
     } 
 }
+
 internal HL7V23Field mothersMaidenName;
 
 public HL7V23Field MothersMaidenName
@@ -6576,15 +10391,108 @@ public HL7V23Field MothersMaidenName
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < mothersMaidenName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = mothersMaidenName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < mothersMaidenName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = mothersMaidenName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < mothersMaidenName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = mothersMaidenName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            mothersMaidenName.fieldRepetitions = fieldRepetitions;
+        }
 
         return mothersMaidenName;
     } 
 }
+
 internal HL7V23Field nationalityCode;
 
 public HL7V23Field NationalityCode
@@ -6614,15 +10522,108 @@ public HL7V23Field NationalityCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (nationalityCode.field.FieldRepetitions != null && nationalityCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(nationalityCode.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < nationalityCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = nationalityCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < nationalityCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = nationalityCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < nationalityCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = nationalityCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            nationalityCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return nationalityCode;
     } 
 }
+
 internal HL7V23Field ethnicGroup;
 
 public HL7V23Field EthnicGroup
@@ -6652,15 +10653,108 @@ public HL7V23Field EthnicGroup
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < ethnicGroup.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = ethnicGroup.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < ethnicGroup.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = ethnicGroup.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < ethnicGroup.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = ethnicGroup.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            ethnicGroup.fieldRepetitions = fieldRepetitions;
+        }
 
         return ethnicGroup;
     } 
 }
+
 internal HL7V23Field contactPerson'sName;
 
 public HL7V23Field ContactPerson'sName
@@ -6692,15 +10786,108 @@ This is a repeating field that allows for multiple names for the same person.  T
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (contactPerson'sName.field.FieldRepetitions != null && contactPerson'sName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactPerson'sName.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < contactPerson'sName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = contactPerson'sName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < contactPerson'sName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = contactPerson'sName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < contactPerson'sName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = contactPerson'sName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            contactPerson'sName.fieldRepetitions = fieldRepetitions;
+        }
 
         return contactPerson'sName;
     } 
 }
+
 internal HL7V23Field contactPersonsTelephoneNumber;
 
 public HL7V23Field ContactPersonsTelephoneNumber
@@ -6730,15 +10917,108 @@ public HL7V23Field ContactPersonsTelephoneNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (contactPersonsTelephoneNumber.field.FieldRepetitions != null && contactPersonsTelephoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsTelephoneNumber.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < contactPersonsTelephoneNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = contactPersonsTelephoneNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < contactPersonsTelephoneNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = contactPersonsTelephoneNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < contactPersonsTelephoneNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = contactPersonsTelephoneNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            contactPersonsTelephoneNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return contactPersonsTelephoneNumber;
     } 
 }
+
 internal HL7V23Field contactReason;
 
 public HL7V23Field ContactReason
@@ -6768,15 +11048,108 @@ public HL7V23Field ContactReason
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (contactReason.field.FieldRepetitions != null && contactReason.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactReason.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < contactReason.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = contactReason.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < contactReason.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = contactReason.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < contactReason.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = contactReason.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            contactReason.fieldRepetitions = fieldRepetitions;
+        }
 
         return contactReason;
     } 
 }
+
 internal HL7V23Field contactRelationshipCode;
 
 public HL7V23Field ContactRelationshipCode
@@ -6806,15 +11179,108 @@ public HL7V23Field ContactRelationshipCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (contactRelationshipCode.field.FieldRepetitions != null && contactRelationshipCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactRelationshipCode.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < contactRelationshipCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = contactRelationshipCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < contactRelationshipCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = contactRelationshipCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < contactRelationshipCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = contactRelationshipCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            contactRelationshipCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return contactRelationshipCode;
     } 
 }
+
 internal HL7V23Field jobTitle;
 
 public HL7V23Field JobTitle
@@ -6844,15 +11310,108 @@ public HL7V23Field JobTitle
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (jobTitle.field.FieldRepetitions != null && jobTitle.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(jobTitle.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < jobTitle.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = jobTitle.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < jobTitle.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = jobTitle.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < jobTitle.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = jobTitle.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            jobTitle.fieldRepetitions = fieldRepetitions;
+        }
 
         return jobTitle;
     } 
 }
+
 internal HL7V23Field jobCodeClass;
 
 public HL7V23Field JobCodeClass
@@ -6882,15 +11441,108 @@ public HL7V23Field JobCodeClass
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (jobCodeClass.field.FieldRepetitions != null && jobCodeClass.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(jobCodeClass.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < jobCodeClass.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = jobCodeClass.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < jobCodeClass.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = jobCodeClass.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < jobCodeClass.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = jobCodeClass.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            jobCodeClass.fieldRepetitions = fieldRepetitions;
+        }
 
         return jobCodeClass;
     } 
 }
+
 internal HL7V23Field guarantorEmployer'sOrganizationName;
 
 public HL7V23Field GuarantorEmployer'sOrganizationName
@@ -6920,15 +11572,108 @@ public HL7V23Field GuarantorEmployer'sOrganizationName
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorEmployer'sOrganizationName.field.FieldRepetitions != null && guarantorEmployer'sOrganizationName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployer'sOrganizationName.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorEmployer'sOrganizationName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorEmployer'sOrganizationName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorEmployer'sOrganizationName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorEmployer'sOrganizationName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorEmployer'sOrganizationName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorEmployer'sOrganizationName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorEmployer'sOrganizationName.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorEmployer'sOrganizationName;
     } 
 }
+
 internal HL7V23Field handicap;
 
 public HL7V23Field Handicap
@@ -6958,15 +11703,108 @@ public HL7V23Field Handicap
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (handicap.field.FieldRepetitions != null && handicap.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(handicap.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < handicap.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = handicap.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < handicap.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = handicap.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < handicap.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = handicap.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            handicap.fieldRepetitions = fieldRepetitions;
+        }
 
         return handicap;
     } 
 }
+
 internal HL7V23Field jobStatus;
 
 public HL7V23Field JobStatus
@@ -6996,15 +11834,108 @@ public HL7V23Field JobStatus
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (jobStatus.field.FieldRepetitions != null && jobStatus.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(jobStatus.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < jobStatus.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = jobStatus.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < jobStatus.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = jobStatus.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < jobStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = jobStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            jobStatus.fieldRepetitions = fieldRepetitions;
+        }
 
         return jobStatus;
     } 
 }
+
 internal HL7V23Field guarantorFinancialClass;
 
 public HL7V23Field GuarantorFinancialClass
@@ -7034,15 +11965,108 @@ public HL7V23Field GuarantorFinancialClass
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorFinancialClass.field.FieldRepetitions != null && guarantorFinancialClass.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorFinancialClass.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorFinancialClass.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorFinancialClass.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorFinancialClass.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorFinancialClass.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorFinancialClass.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorFinancialClass.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorFinancialClass.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorFinancialClass;
     } 
 }
+
 internal HL7V23Field guarantorRace;
 
 public HL7V23Field GuarantorRace
@@ -7072,11 +12096,103 @@ public HL7V23Field GuarantorRace
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (guarantorRace.field.FieldRepetitions != null && guarantorRace.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorRace.Id));
+            var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-        
+            for (var i = 0; i < guarantorRace.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V23FieldRepetition
+                {
+                    fieldRepetition = guarantorRace.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V23Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < guarantorRace.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V23Component
+                        {
+                            component = guarantorRace.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V23SubComponent>();
+
+                            for (var k = 0; k < guarantorRace.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V23SubComponent
+                                {
+                                    subComponent = guarantorRace.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            guarantorRace.fieldRepetitions = fieldRepetitions;
+        }
 
         return guarantorRace;
     } 

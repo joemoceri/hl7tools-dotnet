@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
@@ -120,7 +121,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the amount that exceeds the outlier limitation as defined by APC regulations. This field is analogous to DRG-7 - Outlier Cost however the definition in this field note supersedes the DRG-7 definition.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GP1.5.1",
@@ -136,7 +137,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GP1.5.1.1",
@@ -172,7 +173,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -244,7 +245,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"A coded value, data type CE, defined by the standard table of units for either time or quantity (see for example, the tables in Section 7.1.4, ""Coding schemes""). This describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (i.e., count); it is required if <from value> and <to value> are present.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"GP1.5.5.1",
@@ -352,7 +353,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -372,7 +373,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         };
             }
@@ -383,7 +384,8 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        internal HL7V251Field typeofBillCode;
+        
+internal HL7V251Field typeofBillCode;
 
 public HL7V251Field TypeofBillCode
 {
@@ -412,15 +414,108 @@ public HL7V251Field TypeofBillCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (typeofBillCode.field.FieldRepetitions != null && typeofBillCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(typeofBillCode.Id));
+            var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-        
+            for (var i = 0; i < typeofBillCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V251FieldRepetition
+                {
+                    fieldRepetition = typeofBillCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V251Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < typeofBillCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V251Component
+                        {
+                            component = typeofBillCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V251SubComponent>();
+
+                            for (var k = 0; k < typeofBillCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V251SubComponent
+                                {
+                                    subComponent = typeofBillCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            typeofBillCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return typeofBillCode;
     } 
 }
+
 internal HL7V251Field revenueCode;
 
 public HL7V251Field RevenueCode
@@ -450,15 +545,108 @@ public HL7V251Field RevenueCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (revenueCode.field.FieldRepetitions != null && revenueCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(revenueCode.Id));
+            var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-        
+            for (var i = 0; i < revenueCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V251FieldRepetition
+                {
+                    fieldRepetition = revenueCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V251Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < revenueCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V251Component
+                        {
+                            component = revenueCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V251SubComponent>();
+
+                            for (var k = 0; k < revenueCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V251SubComponent
+                                {
+                                    subComponent = revenueCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            revenueCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return revenueCode;
     } 
 }
+
 internal HL7V251Field overallClaimDispositionCode;
 
 public HL7V251Field OverallClaimDispositionCode
@@ -488,15 +676,108 @@ public HL7V251Field OverallClaimDispositionCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (overallClaimDispositionCode.field.FieldRepetitions != null && overallClaimDispositionCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(overallClaimDispositionCode.Id));
+            var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-        
+            for (var i = 0; i < overallClaimDispositionCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V251FieldRepetition
+                {
+                    fieldRepetition = overallClaimDispositionCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V251Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < overallClaimDispositionCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V251Component
+                        {
+                            component = overallClaimDispositionCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V251SubComponent>();
+
+                            for (var k = 0; k < overallClaimDispositionCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V251SubComponent
+                                {
+                                    subComponent = overallClaimDispositionCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            overallClaimDispositionCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return overallClaimDispositionCode;
     } 
 }
+
 internal HL7V251Field oCEEditsperVisitCode;
 
 public HL7V251Field OCEEditsperVisitCode
@@ -526,15 +807,108 @@ public HL7V251Field OCEEditsperVisitCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (oCEEditsperVisitCode.field.FieldRepetitions != null && oCEEditsperVisitCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(oCEEditsperVisitCode.Id));
+            var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-        
+            for (var i = 0; i < oCEEditsperVisitCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V251FieldRepetition
+                {
+                    fieldRepetition = oCEEditsperVisitCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V251Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < oCEEditsperVisitCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V251Component
+                        {
+                            component = oCEEditsperVisitCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V251SubComponent>();
+
+                            for (var k = 0; k < oCEEditsperVisitCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V251SubComponent
+                                {
+                                    subComponent = oCEEditsperVisitCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            oCEEditsperVisitCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return oCEEditsperVisitCode;
     } 
 }
+
 internal HL7V251Field outlierCost;
 
 public HL7V251Field OutlierCost
@@ -564,11 +938,103 @@ public HL7V251Field OutlierCost
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (outlierCost.field.FieldRepetitions != null && outlierCost.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(outlierCost.Id));
+            var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-        
+            for (var i = 0; i < outlierCost.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V251FieldRepetition
+                {
+                    fieldRepetition = outlierCost.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V251Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < outlierCost.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V251Component
+                        {
+                            component = outlierCost.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V251SubComponent>();
+
+                            for (var k = 0; k < outlierCost.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V251SubComponent
+                                {
+                                    subComponent = outlierCost.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            outlierCost.fieldRepetitions = fieldRepetitions;
+        }
 
         return outlierCost;
     } 

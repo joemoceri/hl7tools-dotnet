@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
@@ -48,7 +49,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The content of this field must exactly match the content of its preceding MFE (MFE-4-primary key value-MFE), its preceding LOC (LOC-1-LOC primary key value), and its preceding LDP ( LDP-1-primary key value-LDP ).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"LCC.1.1",
@@ -118,7 +119,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.20, HD - hierarchic designator).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"LCC.1.4.1",
@@ -172,7 +173,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -264,7 +265,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -300,7 +301,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Accommodation code",
                             Description = @"This field contains the financial accommodation type of the bed or room which implies the rate to be used when occupied by a patient under specific medical conditions, which determines how it is billed. Not the same as specialty type. Used for general ledger categories. Specialty type is a physical accommodation type, whereas this field is a financial accommodation type. Repeating coded value. Site-defined codes. User-defined table 0129 - Accommodation code is used as the HL7 identifier for the user-defined table of values for this field .",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"LCC.3.1",
@@ -408,7 +409,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -426,7 +427,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Transaction code",
                             Description = @"This field contains the repeating coded entry for codes identifying how the use of this location is to be charged. For cross-referencing beds master files with the charge master files, or for generating charges when a patient is assigned to a bed. These should be the same set of values used in FT1-7-transaction code. Values are site negotiated. User-defined table 0132 - Transaction code is used as the HL7 identifier for the user-defined table of values for this field.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"LCC.4.1",
@@ -534,7 +535,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         };
             }
@@ -545,7 +546,8 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        internal HL7V231Field primaryKeyValueLCC;
+        
+internal HL7V231Field primaryKeyValueLCC;
 
 public HL7V231Field PrimaryKeyValueLCC
 {
@@ -574,15 +576,108 @@ public HL7V231Field PrimaryKeyValueLCC
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (primaryKeyValueLCC.field.FieldRepetitions != null && primaryKeyValueLCC.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueLCC.Id));
+            var fieldRepetitions = new List<HL7V231FieldRepetition>();
 
-        
+            for (var i = 0; i < primaryKeyValueLCC.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V231FieldRepetition
+                {
+                    fieldRepetition = primaryKeyValueLCC.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V231Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < primaryKeyValueLCC.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V231Component
+                        {
+                            component = primaryKeyValueLCC.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V231SubComponent>();
+
+                            for (var k = 0; k < primaryKeyValueLCC.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V231SubComponent
+                                {
+                                    subComponent = primaryKeyValueLCC.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            primaryKeyValueLCC.fieldRepetitions = fieldRepetitions;
+        }
 
         return primaryKeyValueLCC;
     } 
 }
+
 internal HL7V231Field locationDepartment;
 
 public HL7V231Field LocationDepartment
@@ -612,15 +707,108 @@ public HL7V231Field LocationDepartment
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (locationDepartment.field.FieldRepetitions != null && locationDepartment.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(locationDepartment.Id));
+            var fieldRepetitions = new List<HL7V231FieldRepetition>();
 
-        
+            for (var i = 0; i < locationDepartment.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V231FieldRepetition
+                {
+                    fieldRepetition = locationDepartment.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V231Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < locationDepartment.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V231Component
+                        {
+                            component = locationDepartment.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V231SubComponent>();
+
+                            for (var k = 0; k < locationDepartment.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V231SubComponent
+                                {
+                                    subComponent = locationDepartment.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            locationDepartment.fieldRepetitions = fieldRepetitions;
+        }
 
         return locationDepartment;
     } 
 }
+
 internal HL7V231Field accommodationType;
 
 public HL7V231Field AccommodationType
@@ -650,15 +838,108 @@ public HL7V231Field AccommodationType
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (accommodationType.field.FieldRepetitions != null && accommodationType.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(accommodationType.Id));
+            var fieldRepetitions = new List<HL7V231FieldRepetition>();
 
-        
+            for (var i = 0; i < accommodationType.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V231FieldRepetition
+                {
+                    fieldRepetition = accommodationType.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V231Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < accommodationType.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V231Component
+                        {
+                            component = accommodationType.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V231SubComponent>();
+
+                            for (var k = 0; k < accommodationType.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V231SubComponent
+                                {
+                                    subComponent = accommodationType.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            accommodationType.fieldRepetitions = fieldRepetitions;
+        }
 
         return accommodationType;
     } 
 }
+
 internal HL7V231Field chargeCode;
 
 public HL7V231Field ChargeCode
@@ -688,11 +969,103 @@ public HL7V231Field ChargeCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (chargeCode.field.FieldRepetitions != null && chargeCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(chargeCode.Id));
+            var fieldRepetitions = new List<HL7V231FieldRepetition>();
 
-        
+            for (var i = 0; i < chargeCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V231FieldRepetition
+                {
+                    fieldRepetition = chargeCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V231Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < chargeCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V231Component
+                        {
+                            component = chargeCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V231SubComponent>();
+
+                            for (var k = 0; k < chargeCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V231SubComponent
+                                {
+                                    subComponent = chargeCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            chargeCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return chargeCode;
     } 

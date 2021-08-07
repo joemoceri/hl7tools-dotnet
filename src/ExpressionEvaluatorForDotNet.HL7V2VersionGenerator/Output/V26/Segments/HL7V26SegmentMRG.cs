@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
@@ -48,7 +49,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the prior patient identifier list. This field contains a list of potential ""old"" numbers to match. Only one old number can be merged with one new number in a transaction. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.1.1",
@@ -118,7 +119,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique name of the system (or organization or agency or department) that creates the data. . Refer to User-defined Table 0363 - Assigning authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.1.4.1",
@@ -172,7 +173,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -208,7 +209,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.1.6.1",
@@ -262,7 +263,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -316,7 +317,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.1.9.1",
@@ -478,7 +479,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -496,7 +497,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.1.10.1",
@@ -658,9 +659,9 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -678,7 +679,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Retained for backward compatibility only as of V2.3.1. Refer to sections 3.4.9.1 instead. This field contains the prior alternate patient identifier. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.2.1",
@@ -748,7 +749,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique name of the system (or organization or agency or department) that creates the data. . Refer to User-defined Table 0363 - Assigning authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.2.4.1",
@@ -802,7 +803,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -838,7 +839,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.2.6.1",
@@ -892,7 +893,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -946,7 +947,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.2.9.1",
@@ -1108,7 +1109,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1126,7 +1127,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.2.10.1",
@@ -1288,9 +1289,9 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1308,7 +1309,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the prior patient account number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.3.1",
@@ -1378,7 +1379,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique name of the system (or organization or agency or department) that creates the data. . Refer to User-defined Table 0363 - Assigning authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.3.4.1",
@@ -1432,7 +1433,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1468,7 +1469,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.3.6.1",
@@ -1522,7 +1523,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1576,7 +1577,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.3.9.1",
@@ -1738,7 +1739,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1756,7 +1757,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.3.10.1",
@@ -1918,9 +1919,9 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1938,7 +1939,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Retained for backward compatibility onlyas of V2.3.1. Refer to sections 3.4.9.1 instead.  This field contains the prior patient identifier. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.4.1",
@@ -2008,7 +2009,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique name of the system (or organization or agency or department) that creates the data. . Refer to User-defined Table 0363 - Assigning authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.4.4.1",
@@ -2062,7 +2063,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2098,7 +2099,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.4.6.1",
@@ -2152,7 +2153,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2206,7 +2207,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.4.9.1",
@@ -2368,7 +2369,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2386,7 +2387,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.4.10.1",
@@ -2548,9 +2549,9 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2568,7 +2569,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the prior visit number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.5.1",
@@ -2638,7 +2639,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique name of the system (or organization or agency or department) that creates the data. . Refer to User-defined Table 0363 - Assigning authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.5.4.1",
@@ -2692,7 +2693,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2728,7 +2729,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.5.6.1",
@@ -2782,7 +2783,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2836,7 +2837,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.5.9.1",
@@ -2998,7 +2999,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3016,7 +3017,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.5.10.1",
@@ -3178,9 +3179,9 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3198,7 +3199,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the prior alternate visit number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.6.1",
@@ -3268,7 +3269,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique name of the system (or organization or agency or department) that creates the data. . Refer to User-defined Table 0363 - Assigning authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.6.4.1",
@@ -3322,7 +3323,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3358,7 +3359,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.6.6.1",
@@ -3412,7 +3413,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3466,7 +3467,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.6.9.1",
@@ -3628,7 +3629,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3646,7 +3647,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.6.10.1",
@@ -3808,9 +3809,9 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3828,7 +3829,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the prior name of the patient. This field is not used to change a patient name. Refer to HL7 Table 0200 - Name Type for valid values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.7.1",
@@ -3844,7 +3845,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, ""FN - family name"".",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.7.1.1",
@@ -3934,7 +3935,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4078,7 +4079,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.7.9.1",
@@ -4240,7 +4241,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4258,7 +4259,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to 2.A.88.12, ""Effective Date"" and 2.A.88.13, ""Expiration Date"" components.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"MRG.7.10.1",
@@ -4294,7 +4295,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4368,7 +4369,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         };
             }
@@ -4379,7 +4380,8 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        internal HL7V26Field priorPatientIdentifierList;
+        
+internal HL7V26Field priorPatientIdentifierList;
 
 public HL7V26Field PriorPatientIdentifierList
 {
@@ -4408,15 +4410,108 @@ public HL7V26Field PriorPatientIdentifierList
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (priorPatientIdentifierList.field.FieldRepetitions != null && priorPatientIdentifierList.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientIdentifierList.Id));
+            var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-        
+            for (var i = 0; i < priorPatientIdentifierList.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V26FieldRepetition
+                {
+                    fieldRepetition = priorPatientIdentifierList.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V26Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < priorPatientIdentifierList.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V26Component
+                        {
+                            component = priorPatientIdentifierList.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V26SubComponent>();
+
+                            for (var k = 0; k < priorPatientIdentifierList.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V26SubComponent
+                                {
+                                    subComponent = priorPatientIdentifierList.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            priorPatientIdentifierList.fieldRepetitions = fieldRepetitions;
+        }
 
         return priorPatientIdentifierList;
     } 
 }
+
 internal HL7V26Field priorAlternatePatientID;
 
 public HL7V26Field PriorAlternatePatientID
@@ -4446,15 +4541,108 @@ public HL7V26Field PriorAlternatePatientID
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (priorAlternatePatientID.field.FieldRepetitions != null && priorAlternatePatientID.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(priorAlternatePatientID.Id));
+            var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-        
+            for (var i = 0; i < priorAlternatePatientID.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V26FieldRepetition
+                {
+                    fieldRepetition = priorAlternatePatientID.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V26Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < priorAlternatePatientID.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V26Component
+                        {
+                            component = priorAlternatePatientID.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V26SubComponent>();
+
+                            for (var k = 0; k < priorAlternatePatientID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V26SubComponent
+                                {
+                                    subComponent = priorAlternatePatientID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            priorAlternatePatientID.fieldRepetitions = fieldRepetitions;
+        }
 
         return priorAlternatePatientID;
     } 
 }
+
 internal HL7V26Field priorPatientAccountNumber;
 
 public HL7V26Field PriorPatientAccountNumber
@@ -4484,15 +4672,108 @@ public HL7V26Field PriorPatientAccountNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (priorPatientAccountNumber.field.FieldRepetitions != null && priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientAccountNumber.Id));
+            var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-        
+            for (var i = 0; i < priorPatientAccountNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V26FieldRepetition
+                {
+                    fieldRepetition = priorPatientAccountNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V26Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < priorPatientAccountNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V26Component
+                        {
+                            component = priorPatientAccountNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V26SubComponent>();
+
+                            for (var k = 0; k < priorPatientAccountNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V26SubComponent
+                                {
+                                    subComponent = priorPatientAccountNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            priorPatientAccountNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return priorPatientAccountNumber;
     } 
 }
+
 internal HL7V26Field priorPatientID;
 
 public HL7V26Field PriorPatientID
@@ -4522,15 +4803,108 @@ public HL7V26Field PriorPatientID
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (priorPatientID.field.FieldRepetitions != null && priorPatientID.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientID.Id));
+            var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-        
+            for (var i = 0; i < priorPatientID.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V26FieldRepetition
+                {
+                    fieldRepetition = priorPatientID.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V26Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < priorPatientID.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V26Component
+                        {
+                            component = priorPatientID.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V26SubComponent>();
+
+                            for (var k = 0; k < priorPatientID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V26SubComponent
+                                {
+                                    subComponent = priorPatientID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            priorPatientID.fieldRepetitions = fieldRepetitions;
+        }
 
         return priorPatientID;
     } 
 }
+
 internal HL7V26Field priorVisitNumber;
 
 public HL7V26Field PriorVisitNumber
@@ -4560,15 +4934,108 @@ public HL7V26Field PriorVisitNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (priorVisitNumber.field.FieldRepetitions != null && priorVisitNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(priorVisitNumber.Id));
+            var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-        
+            for (var i = 0; i < priorVisitNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V26FieldRepetition
+                {
+                    fieldRepetition = priorVisitNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V26Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < priorVisitNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V26Component
+                        {
+                            component = priorVisitNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V26SubComponent>();
+
+                            for (var k = 0; k < priorVisitNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V26SubComponent
+                                {
+                                    subComponent = priorVisitNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            priorVisitNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return priorVisitNumber;
     } 
 }
+
 internal HL7V26Field priorAlternateVisitID;
 
 public HL7V26Field PriorAlternateVisitID
@@ -4598,15 +5065,108 @@ public HL7V26Field PriorAlternateVisitID
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (priorAlternateVisitID.field.FieldRepetitions != null && priorAlternateVisitID.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(priorAlternateVisitID.Id));
+            var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-        
+            for (var i = 0; i < priorAlternateVisitID.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V26FieldRepetition
+                {
+                    fieldRepetition = priorAlternateVisitID.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V26Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < priorAlternateVisitID.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V26Component
+                        {
+                            component = priorAlternateVisitID.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V26SubComponent>();
+
+                            for (var k = 0; k < priorAlternateVisitID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V26SubComponent
+                                {
+                                    subComponent = priorAlternateVisitID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            priorAlternateVisitID.fieldRepetitions = fieldRepetitions;
+        }
 
         return priorAlternateVisitID;
     } 
 }
+
 internal HL7V26Field priorPatientName;
 
 public HL7V26Field PriorPatientName
@@ -4636,11 +5196,103 @@ public HL7V26Field PriorPatientName
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (priorPatientName.field.FieldRepetitions != null && priorPatientName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientName.Id));
+            var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-        
+            for (var i = 0; i < priorPatientName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V26FieldRepetition
+                {
+                    fieldRepetition = priorPatientName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V26Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < priorPatientName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V26Component
+                        {
+                            component = priorPatientName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V26SubComponent>();
+
+                            for (var k = 0; k < priorPatientName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V26SubComponent
+                                {
+                                    subComponent = priorPatientName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            priorPatientName.fieldRepetitions = fieldRepetitions;
+        }
 
         return priorPatientName;
     } 

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
@@ -70,7 +71,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             TableName = null,
                             Description = @"This field is the placer application's order number.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.2.1",
@@ -142,7 +143,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -160,7 +161,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             TableName = null,
                             Description = @"This field is the order number associated with the filling application. It is a case of the Entity Identifier data type (Section 2.A.28). Its first component is a string that identifies an order detail segment (e.g., OBR). A limit of fifteen (15) characters is suggested but not required. An implementation is HL7 compliant when the number of characters for this field is increased to accommodate applications that require a greater number of characters for the Filler order number. It is assigned by the order filler (receiving) application. This string must uniquely identify the order (as specified in the order detail segment) from other orders in a particular filling application (e.g., clinical laboratory). This uniqueness must persist over time.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.3.1",
@@ -232,7 +233,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -250,7 +251,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             TableName = null,
                             Description = @"This field allows an order placing application to group sets of orders together and subsequently identify them. It is a case of an Entity Identifier data type (2.A.28).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.4.1",
@@ -322,7 +323,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -376,7 +377,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             TableName = null,
                             Description = @"This field is retained for backward compatibility only. The reader is referred to the TQ1 and TQ2 segments.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.7.1",
@@ -392,7 +393,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             TableName = null,
                             Description = @"This component specifies the quantity of the service that should be provided at each service interval. For example, if two blood cultures are to be obtained every 4 hours, the quantity would be 2. If three units of blood are to be typed and cross-matched, the quantity would be 3. The default value is 1. When units are required, they can be added, specified by a subcomponent delimiter.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.7.1.1",
@@ -426,7 +427,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.7.1.1",
@@ -534,9 +535,9 @@ If details are not needed for the order, the order detail segment may be omitted
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -554,7 +555,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             TableName = null,
                             Description = @"Determines the interval between repeated services.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.7.2.1",
@@ -590,7 +591,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -626,7 +627,7 @@ If details are not needed for the order, the order detail segment may be omitted
                             TableName = null,
                             Description = @"This component may be specified by the orderer, in which case it indicates the earliest date/time at which the services should be started. In many cases, however, the start date/time will be implied or will be defined by other fields in the order record (e.g., urgency - STAT). In such a case, this field will be empty.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.7.4.1",
@@ -664,7 +665,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -682,7 +683,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"When filled in by the requester of the service, this component should contain the latest date/time that the service should be performed. If it has not been performed by the specified time, it should not be performed at all. The requester may not always fill in this value, yet the filling service may fill it in on the basis of the instruction it receives and the actual start time.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.7.5.1",
@@ -720,7 +721,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -810,7 +811,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.7.10.1",
@@ -1008,7 +1009,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1026,7 +1027,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component contains the duration for a single performance of a service, e.g., whirlpool twenty minutes three times per day for three days. It is optional within TQ and does not repeat.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.7.11.1",
@@ -1134,7 +1135,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1154,7 +1155,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1172,7 +1173,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field relates a child to its parent when a parent-child relationship exists. The parent-child mechanism is described under ORC-1-order control notes.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.8.1",
@@ -1188,7 +1189,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"Specifies an identifier assigned to an entity by the placer system.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.8.1.1",
@@ -1260,7 +1261,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1278,7 +1279,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"Specifies an identifier assigned to an entity by the filler system.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.8.2.1",
@@ -1350,9 +1351,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1370,7 +1371,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the date and time of the event that initiated the current transaction as reflected in ORC-1 Order Control Code. This field is not equivalent to MSH-7 Date and Time of Message which reflects the date/time of the physical message.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.9.1",
@@ -1408,7 +1409,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1426,7 +1427,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the identity of the person who actually keyed the request into the application. Note that this refers to the current transaction as reflected in ORC-1 Order Control Code. It provides an audit trail in case the request is entered incorrectly and the ancillary department needs to clarify the request. By local agreement, either the ID number or name component may be omitted.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.1",
@@ -1460,7 +1461,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, "" FN - family name"".",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.2.1",
@@ -1550,7 +1551,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1676,7 +1677,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency of department) that creates the data. User-defined Table 0363 - Assigning authority is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.9.1",
@@ -1730,7 +1731,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1820,7 +1821,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.14.1",
@@ -1874,7 +1875,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -1910,7 +1911,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.16.1",
@@ -2018,7 +2019,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2038,7 +2039,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 
 This component contains the start and end date/times that define the period during which this name was valid. See section 2.A.20, "" DR - date/time range "" for description of subcomponents.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.17.1",
@@ -2054,7 +2055,7 @@ This component contains the start and end date/times that define the period duri
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.17.1",
@@ -2092,7 +2093,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2110,7 +2111,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range. Note that the TS (time stamp) data type allows the specification of precision.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.17.1",
@@ -2148,9 +2149,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2186,7 +2187,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.19.1",
@@ -2224,7 +2225,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2242,7 +2243,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The last date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.20.1",
@@ -2280,7 +2281,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2316,7 +2317,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.22.1",
@@ -2478,7 +2479,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2496,7 +2497,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.10.23.1",
@@ -2658,9 +2659,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2678,7 +2679,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the identity of the person who verified the accuracy of the entered request. Note that this refers to the current transaction as reflected in ORC-1 Order Control Code . It is used in cases where the request is entered by a technician and needs to be verified by a higher authority (e.g., a nurse). By local agreement, either the ID number or name component may be omitted.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.1",
@@ -2712,7 +2713,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, "" FN - family name"".",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.2.1",
@@ -2802,7 +2803,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -2928,7 +2929,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency of department) that creates the data. User-defined Table 0363 - Assigning authority is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.9.1",
@@ -2982,7 +2983,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3072,7 +3073,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.14.1",
@@ -3126,7 +3127,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3162,7 +3163,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.16.1",
@@ -3270,7 +3271,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3290,7 +3291,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 
 This component contains the start and end date/times that define the period during which this name was valid. See section 2.A.20, "" DR - date/time range "" for description of subcomponents.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.17.1",
@@ -3306,7 +3307,7 @@ This component contains the start and end date/times that define the period duri
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.17.1",
@@ -3344,7 +3345,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3362,7 +3363,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range. Note that the TS (time stamp) data type allows the specification of precision.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.17.1",
@@ -3400,9 +3401,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3438,7 +3439,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.19.1",
@@ -3476,7 +3477,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3494,7 +3495,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The last date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.20.1",
@@ -3532,7 +3533,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3568,7 +3569,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.22.1",
@@ -3730,7 +3731,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3748,7 +3749,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.11.23.1",
@@ -3910,9 +3911,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -3930,7 +3931,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the identity of the person who is responsible for creating the request (i.e., ordering physician).",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.1",
@@ -3964,7 +3965,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, "" FN - family name"".",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.2.1",
@@ -4054,7 +4055,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4180,7 +4181,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency of department) that creates the data. User-defined Table 0363 - Assigning authority is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.9.1",
@@ -4234,7 +4235,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4324,7 +4325,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.14.1",
@@ -4378,7 +4379,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4414,7 +4415,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.16.1",
@@ -4522,7 +4523,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4542,7 +4543,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 
 This component contains the start and end date/times that define the period during which this name was valid. See section 2.A.20, "" DR - date/time range "" for description of subcomponents.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.17.1",
@@ -4558,7 +4559,7 @@ This component contains the start and end date/times that define the period duri
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.17.1",
@@ -4596,7 +4597,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4614,7 +4615,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range. Note that the TS (time stamp) data type allows the specification of precision.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.17.1",
@@ -4652,9 +4653,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4690,7 +4691,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.19.1",
@@ -4728,7 +4729,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4746,7 +4747,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The last date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.20.1",
@@ -4784,7 +4785,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -4820,7 +4821,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.22.1",
@@ -4982,7 +4983,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -5000,7 +5001,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.12.23.1",
@@ -5162,9 +5163,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -5182,7 +5183,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field specifies the location (e.g., nurse station, ancillary service location, clinic, floor) where the person who entered the request was physically located when the order was entered. Note that this refers to the current transaction as reflected in ORC-1 Order Control Code. Only those subcomponents relevant to enterer's location should be valued (commonly nursing unit; facility; building; floor). The person who entered the request is defined in ORC-10-entered by.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.13.1",
@@ -5252,7 +5253,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component is subject to site interpretation but generally describes the highest level physical designation of an institution, medical center or enterprise. It is the most general person location designation.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.13.4.1",
@@ -5306,7 +5307,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -5414,7 +5415,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The unique identifier that represents the physical location as a whole without regard for the individual components. This accommodates sites that may have a different method of defining physical units or who may code at a less granular level. For example, point of care, room, and bed may be 1 indivisible code.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.13.10.1",
@@ -5486,7 +5487,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -5504,7 +5505,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The entity that creates the data for the individual physical location components. If populated, it should be the authority for all components populated. Refer to User-defined Table 0363 - Assigning authority for suggested values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.13.11.1",
@@ -5558,9 +5559,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -5578,7 +5579,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the telephone number to call for clarification of a request or other information regarding the order. ORC-14-call back phone number is the same as OBR-17-order callback phone number.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.14.1",
@@ -5798,7 +5799,7 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -5816,7 +5817,7 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             TableName = null,
                             Description = @"This field contains the date/time that the changes to the request took effect or are supposed to take effect.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.15.1",
@@ -5854,7 +5855,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -5872,7 +5873,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the explanation (either in coded or text form) of the reason for the order event described by the order control code (HL7 Table 0119). Whereas an NTE after the order-specific segment (e.g., RXO, ORO, OBR) would provide a comment for that specific segment, the purpose of the order control code reason is only to expand on the reason for the order event.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.16.1",
@@ -5980,7 +5981,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -5998,7 +5999,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field identifies the organization that the enterer belonged to at the time he/she enters/maintains the order, such as medical group or department. The person who entered the request is defined in ORC-10 -entered by.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.17.1",
@@ -6106,7 +6107,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -6124,7 +6125,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field identifies the physical device (terminal, PC) used to enter the order.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.18.1",
@@ -6232,7 +6233,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -6250,7 +6251,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the identity of the person who initiated the event represented by the corresponding order control code. For example, if the order control code is CA (cancel order request), this field represents the person who requested the order cancellation. This person is typically a care provider but may not always be the same as ORC-12 ordering provider.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.1",
@@ -6284,7 +6285,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, "" FN - family name"".",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.2.1",
@@ -6374,7 +6375,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -6500,7 +6501,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency of department) that creates the data. User-defined Table 0363 - Assigning authority is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.9.1",
@@ -6554,7 +6555,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -6644,7 +6645,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.14.1",
@@ -6698,7 +6699,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -6734,7 +6735,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.16.1",
@@ -6842,7 +6843,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -6862,7 +6863,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 
 This component contains the start and end date/times that define the period during which this name was valid. See section 2.A.20, "" DR - date/time range "" for description of subcomponents.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.17.1",
@@ -6878,7 +6879,7 @@ This component contains the start and end date/times that define the period duri
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.17.1",
@@ -6916,7 +6917,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -6934,7 +6935,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range. Note that the TS (time stamp) data type allows the specification of precision.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.17.1",
@@ -6972,9 +6973,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7010,7 +7011,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.19.1",
@@ -7048,7 +7049,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7066,7 +7067,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The last date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.20.1",
@@ -7104,7 +7105,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7140,7 +7141,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.22.1",
@@ -7302,7 +7303,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7320,7 +7321,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.19.23.1",
@@ -7482,9 +7483,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7502,7 +7503,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Advanced Beneficiary Notice Code",
                             Description = @"This field indicates the status of the patient's or the patient's representative's consent for responsibility to pay for potentially uninsured services. This element is introduced to satisfy CMS Medical Necessity requirements for outpatient services. This element indicates (a) whether the associated diagnosis codes for the service are subject to medical necessity procedures, (b) whether, for this type of service, the patient has been informed that they may be responsible for payment for the service, and (c) whether the patient agrees to be billed for this service. The values for this field are drawn from User-Defined Table 0339 - Advanced Beneficiary Notice Code .",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.20.1",
@@ -7610,7 +7611,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7628,7 +7629,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the name of the facility placing the order.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.21.1",
@@ -7734,7 +7735,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency or department) that creates the data. Assigning authorities are unique across a given HL7 implementation. Refer to User-defined Table 0363 - Assigning Authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.21.6.1",
@@ -7788,7 +7789,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7824,7 +7825,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.21.8.1",
@@ -7878,7 +7879,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7916,7 +7917,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -7934,7 +7935,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the address of the facility placing the order.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.22.1",
@@ -7950,7 +7951,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Street",
                             Description = null,
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.22.1.1",
@@ -8004,7 +8005,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -8202,7 +8203,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to Effective Date and Expiration Date components.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.22.12.1",
@@ -8218,7 +8219,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.22.12.1",
@@ -8256,7 +8257,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -8274,7 +8275,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range. Note that the TS (time stamp) data type allows the specification of precision.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.22.12.1",
@@ -8312,9 +8313,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -8332,7 +8333,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.22.13.1",
@@ -8370,7 +8371,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -8388,7 +8389,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The last date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.22.14.1",
@@ -8426,9 +8427,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -8446,7 +8447,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the telephone number of the facility placing the order.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.23.1",
@@ -8666,7 +8667,7 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -8684,7 +8685,7 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             TableName = null,
                             Description = @"This field contains the address of the care provider requesting the order.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.24.1",
@@ -8700,7 +8701,7 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             TableName = @"Street",
                             Description = null,
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.24.1.1",
@@ -8754,7 +8755,7 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -8952,7 +8953,7 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to Effective Date and Expiration Date components.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.24.12.1",
@@ -8968,7 +8969,7 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.24.12.1",
@@ -9006,7 +9007,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9024,7 +9025,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range. Note that the TS (time stamp) data type allows the specification of precision.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.24.12.1",
@@ -9062,9 +9063,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9082,7 +9083,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The first date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.24.13.1",
@@ -9120,7 +9121,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9138,7 +9139,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"The last date, if known, on which the address is valid and active.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.24.14.1",
@@ -9176,9 +9177,9 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9196,7 +9197,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field is a modifier or refiner of the ORC-5-Order status field. This field may be used to provide additional levels of specificity or additional information for the defined order status codes. Unlike the Order Status field, which is controlled by an HL7 defined table, this field is a CE data type allowing applications to support an unlimited library of Order Status Modifier codes.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.25.1",
@@ -9358,7 +9359,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9376,7 +9377,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Advanced beneficiary notice override reason",
                             Description = @"This field contains the reason why the patient did not sign an Advanced Beneficiary Notice. The reason may be coded or it may be a free text entry. Refer to HL7 Table 0552 - Advanced beneficiary notice override reason .",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.26.1",
@@ -9538,7 +9539,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9556,7 +9557,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field specifies the date/time the filler expects the services to be available. For example when a prescription is ready for pickup or when a supply will be sent or picked up, or for when a laboratory result is expected to be available.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.27.1",
@@ -9594,7 +9595,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9612,7 +9613,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Confidentiality code",
                             Description = @"This field contains information about the level of security and/or sensitivity surrounding the order (e.g., highly sensitive, not sensitive, sensitive, etc.). Refer to HL7 Table 0177 - Confidentiality Code for allowed values. The specific treatment of data with a particular confidentiality level is subject to site-specific negotiation.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.28.1",
@@ -9774,7 +9775,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9792,7 +9793,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Order Type",
                             Description = @"This field indicates whether the order is to be executed in an inpatient setting or an outpatient setting. If this field is not valued, the system default is assumed. Refer to HL7 Table 0482 - Order Type for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.29.1",
@@ -9954,7 +9955,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         
                         new HL7V2FieldData
@@ -9972,7 +9973,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Authorization Mode",
                             Description = @"This field indicates the form of authorization a recorder had from the responsible practitioner to create or change an order. Refer to HL7 Table 0483 Authorization Mode for suggested values.",
                             Sample = @"",
-                            FieldDatas = 
+                            FieldDatas = new []{
                         new HL7V2FieldData
                         {
                             Id = @"ORC.30.1",
@@ -10134,7 +10135,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+                        }
                         },
                         };
             }
@@ -10145,7 +10146,8 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
             this.message = message;
         }
 
-        internal HL7V25Field orderControl;
+        
+internal HL7V25Field orderControl;
 
 public HL7V25Field OrderControl
 {
@@ -10174,15 +10176,108 @@ public HL7V25Field OrderControl
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderControl.field.FieldRepetitions != null && orderControl.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderControl.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderControl.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderControl.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderControl.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderControl.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderControl.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderControl.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderControl.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderControl;
     } 
 }
+
 internal HL7V25Field placerOrderNumber;
 
 public HL7V25Field PlacerOrderNumber
@@ -10212,15 +10307,108 @@ public HL7V25Field PlacerOrderNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (placerOrderNumber.field.FieldRepetitions != null && placerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(placerOrderNumber.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < placerOrderNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = placerOrderNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < placerOrderNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = placerOrderNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < placerOrderNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = placerOrderNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            placerOrderNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return placerOrderNumber;
     } 
 }
+
 internal HL7V25Field fillerOrderNumber;
 
 public HL7V25Field FillerOrderNumber
@@ -10250,15 +10438,108 @@ public HL7V25Field FillerOrderNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (fillerOrderNumber.field.FieldRepetitions != null && fillerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOrderNumber.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < fillerOrderNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = fillerOrderNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < fillerOrderNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = fillerOrderNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < fillerOrderNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = fillerOrderNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            fillerOrderNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return fillerOrderNumber;
     } 
 }
+
 internal HL7V25Field placerGroupNumber;
 
 public HL7V25Field PlacerGroupNumber
@@ -10288,15 +10569,108 @@ public HL7V25Field PlacerGroupNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (placerGroupNumber.field.FieldRepetitions != null && placerGroupNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(placerGroupNumber.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < placerGroupNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = placerGroupNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < placerGroupNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = placerGroupNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < placerGroupNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = placerGroupNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            placerGroupNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return placerGroupNumber;
     } 
 }
+
 internal HL7V25Field orderStatus;
 
 public HL7V25Field OrderStatus
@@ -10326,15 +10700,108 @@ public HL7V25Field OrderStatus
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderStatus.field.FieldRepetitions != null && orderStatus.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderStatus.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderStatus.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderStatus.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderStatus.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderStatus.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderStatus.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderStatus;
     } 
 }
+
 internal HL7V25Field responseFlag;
 
 public HL7V25Field ResponseFlag
@@ -10364,15 +10831,108 @@ public HL7V25Field ResponseFlag
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (responseFlag.field.FieldRepetitions != null && responseFlag.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(responseFlag.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < responseFlag.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = responseFlag.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < responseFlag.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = responseFlag.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < responseFlag.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = responseFlag.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            responseFlag.fieldRepetitions = fieldRepetitions;
+        }
 
         return responseFlag;
     } 
 }
+
 internal HL7V25Field quantityTiming;
 
 public HL7V25Field QuantityTiming
@@ -10402,15 +10962,108 @@ public HL7V25Field QuantityTiming
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (quantityTiming.field.FieldRepetitions != null && quantityTiming.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(quantityTiming.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < quantityTiming.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = quantityTiming.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < quantityTiming.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = quantityTiming.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < quantityTiming.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = quantityTiming.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            quantityTiming.fieldRepetitions = fieldRepetitions;
+        }
 
         return quantityTiming;
     } 
 }
+
 internal HL7V25Field parentOrder;
 
 public HL7V25Field ParentOrder
@@ -10440,15 +11093,108 @@ public HL7V25Field ParentOrder
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (parentOrder.field.FieldRepetitions != null && parentOrder.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(parentOrder.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < parentOrder.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = parentOrder.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < parentOrder.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = parentOrder.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < parentOrder.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = parentOrder.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            parentOrder.fieldRepetitions = fieldRepetitions;
+        }
 
         return parentOrder;
     } 
 }
+
 internal HL7V25Field dateTimeofTransaction;
 
 public HL7V25Field DateTimeofTransaction
@@ -10478,15 +11224,108 @@ public HL7V25Field DateTimeofTransaction
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (dateTimeofTransaction.field.FieldRepetitions != null && dateTimeofTransaction.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeofTransaction.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < dateTimeofTransaction.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = dateTimeofTransaction.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < dateTimeofTransaction.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = dateTimeofTransaction.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < dateTimeofTransaction.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = dateTimeofTransaction.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            dateTimeofTransaction.fieldRepetitions = fieldRepetitions;
+        }
 
         return dateTimeofTransaction;
     } 
 }
+
 internal HL7V25Field enteredBy;
 
 public HL7V25Field EnteredBy
@@ -10516,15 +11355,108 @@ public HL7V25Field EnteredBy
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (enteredBy.field.FieldRepetitions != null && enteredBy.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(enteredBy.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < enteredBy.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = enteredBy.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < enteredBy.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = enteredBy.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < enteredBy.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = enteredBy.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            enteredBy.fieldRepetitions = fieldRepetitions;
+        }
 
         return enteredBy;
     } 
 }
+
 internal HL7V25Field verifiedBy;
 
 public HL7V25Field VerifiedBy
@@ -10554,15 +11486,108 @@ public HL7V25Field VerifiedBy
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (verifiedBy.field.FieldRepetitions != null && verifiedBy.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(verifiedBy.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < verifiedBy.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = verifiedBy.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < verifiedBy.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = verifiedBy.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < verifiedBy.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = verifiedBy.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            verifiedBy.fieldRepetitions = fieldRepetitions;
+        }
 
         return verifiedBy;
     } 
 }
+
 internal HL7V25Field orderingProvider;
 
 public HL7V25Field OrderingProvider
@@ -10592,15 +11617,108 @@ public HL7V25Field OrderingProvider
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderingProvider.field.FieldRepetitions != null && orderingProvider.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderingProvider.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderingProvider.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderingProvider.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderingProvider.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderingProvider.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderingProvider.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderingProvider.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderingProvider.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderingProvider;
     } 
 }
+
 internal HL7V25Field enterer'sLocation;
 
 public HL7V25Field Enterer'sLocation
@@ -10630,15 +11748,108 @@ public HL7V25Field Enterer'sLocation
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (enterer'sLocation.field.FieldRepetitions != null && enterer'sLocation.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(enterer'sLocation.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < enterer'sLocation.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = enterer'sLocation.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < enterer'sLocation.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = enterer'sLocation.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < enterer'sLocation.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = enterer'sLocation.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            enterer'sLocation.fieldRepetitions = fieldRepetitions;
+        }
 
         return enterer'sLocation;
     } 
 }
+
 internal HL7V25Field callBackPhoneNumber;
 
 public HL7V25Field CallBackPhoneNumber
@@ -10668,15 +11879,108 @@ public HL7V25Field CallBackPhoneNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (callBackPhoneNumber.field.FieldRepetitions != null && callBackPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(callBackPhoneNumber.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < callBackPhoneNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = callBackPhoneNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < callBackPhoneNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = callBackPhoneNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < callBackPhoneNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = callBackPhoneNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            callBackPhoneNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return callBackPhoneNumber;
     } 
 }
+
 internal HL7V25Field orderEffectiveDateTime;
 
 public HL7V25Field OrderEffectiveDateTime
@@ -10706,15 +12010,108 @@ public HL7V25Field OrderEffectiveDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderEffectiveDateTime.field.FieldRepetitions != null && orderEffectiveDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderEffectiveDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderEffectiveDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderEffectiveDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderEffectiveDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderEffectiveDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderEffectiveDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderEffectiveDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderEffectiveDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderEffectiveDateTime;
     } 
 }
+
 internal HL7V25Field orderControlCodeReason;
 
 public HL7V25Field OrderControlCodeReason
@@ -10744,15 +12141,108 @@ public HL7V25Field OrderControlCodeReason
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderControlCodeReason.field.FieldRepetitions != null && orderControlCodeReason.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderControlCodeReason.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderControlCodeReason.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderControlCodeReason.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderControlCodeReason.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderControlCodeReason.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderControlCodeReason.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderControlCodeReason.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderControlCodeReason.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderControlCodeReason;
     } 
 }
+
 internal HL7V25Field enteringOrganization;
 
 public HL7V25Field EnteringOrganization
@@ -10782,15 +12272,108 @@ public HL7V25Field EnteringOrganization
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (enteringOrganization.field.FieldRepetitions != null && enteringOrganization.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(enteringOrganization.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < enteringOrganization.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = enteringOrganization.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < enteringOrganization.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = enteringOrganization.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < enteringOrganization.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = enteringOrganization.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            enteringOrganization.fieldRepetitions = fieldRepetitions;
+        }
 
         return enteringOrganization;
     } 
 }
+
 internal HL7V25Field enteringDevice;
 
 public HL7V25Field EnteringDevice
@@ -10820,15 +12403,108 @@ public HL7V25Field EnteringDevice
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (enteringDevice.field.FieldRepetitions != null && enteringDevice.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(enteringDevice.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < enteringDevice.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = enteringDevice.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < enteringDevice.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = enteringDevice.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < enteringDevice.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = enteringDevice.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            enteringDevice.fieldRepetitions = fieldRepetitions;
+        }
 
         return enteringDevice;
     } 
 }
+
 internal HL7V25Field actionBy;
 
 public HL7V25Field ActionBy
@@ -10858,15 +12534,108 @@ public HL7V25Field ActionBy
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (actionBy.field.FieldRepetitions != null && actionBy.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(actionBy.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < actionBy.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = actionBy.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < actionBy.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = actionBy.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < actionBy.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = actionBy.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            actionBy.fieldRepetitions = fieldRepetitions;
+        }
 
         return actionBy;
     } 
 }
+
 internal HL7V25Field advancedBeneficiaryNoticeCode;
 
 public HL7V25Field AdvancedBeneficiaryNoticeCode
@@ -10896,15 +12665,108 @@ public HL7V25Field AdvancedBeneficiaryNoticeCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (advancedBeneficiaryNoticeCode.field.FieldRepetitions != null && advancedBeneficiaryNoticeCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(advancedBeneficiaryNoticeCode.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < advancedBeneficiaryNoticeCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = advancedBeneficiaryNoticeCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < advancedBeneficiaryNoticeCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = advancedBeneficiaryNoticeCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < advancedBeneficiaryNoticeCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = advancedBeneficiaryNoticeCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            advancedBeneficiaryNoticeCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return advancedBeneficiaryNoticeCode;
     } 
 }
+
 internal HL7V25Field orderingFacilityName;
 
 public HL7V25Field OrderingFacilityName
@@ -10934,15 +12796,108 @@ public HL7V25Field OrderingFacilityName
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderingFacilityName.field.FieldRepetitions != null && orderingFacilityName.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderingFacilityName.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderingFacilityName.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderingFacilityName.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderingFacilityName.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderingFacilityName.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderingFacilityName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderingFacilityName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderingFacilityName.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderingFacilityName;
     } 
 }
+
 internal HL7V25Field orderingFacilityAddress;
 
 public HL7V25Field OrderingFacilityAddress
@@ -10972,15 +12927,108 @@ public HL7V25Field OrderingFacilityAddress
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderingFacilityAddress.field.FieldRepetitions != null && orderingFacilityAddress.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderingFacilityAddress.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderingFacilityAddress.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderingFacilityAddress.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderingFacilityAddress.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderingFacilityAddress.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderingFacilityAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderingFacilityAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderingFacilityAddress.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderingFacilityAddress;
     } 
 }
+
 internal HL7V25Field orderingFacilityPhoneNumber;
 
 public HL7V25Field OrderingFacilityPhoneNumber
@@ -11010,15 +13058,108 @@ public HL7V25Field OrderingFacilityPhoneNumber
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderingFacilityPhoneNumber.field.FieldRepetitions != null && orderingFacilityPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderingFacilityPhoneNumber.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderingFacilityPhoneNumber.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderingFacilityPhoneNumber.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderingFacilityPhoneNumber.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderingFacilityPhoneNumber.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderingFacilityPhoneNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderingFacilityPhoneNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderingFacilityPhoneNumber.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderingFacilityPhoneNumber;
     } 
 }
+
 internal HL7V25Field orderingProviderAddress;
 
 public HL7V25Field OrderingProviderAddress
@@ -11048,15 +13189,108 @@ public HL7V25Field OrderingProviderAddress
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderingProviderAddress.field.FieldRepetitions != null && orderingProviderAddress.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderingProviderAddress.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderingProviderAddress.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderingProviderAddress.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderingProviderAddress.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderingProviderAddress.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderingProviderAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderingProviderAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderingProviderAddress.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderingProviderAddress;
     } 
 }
+
 internal HL7V25Field orderStatusModifier;
 
 public HL7V25Field OrderStatusModifier
@@ -11086,15 +13320,108 @@ public HL7V25Field OrderStatusModifier
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderStatusModifier.field.FieldRepetitions != null && orderStatusModifier.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderStatusModifier.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderStatusModifier.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderStatusModifier.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderStatusModifier.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderStatusModifier.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderStatusModifier.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderStatusModifier.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderStatusModifier.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderStatusModifier;
     } 
 }
+
 internal HL7V25Field advancedBeneficiaryNoticeOverrideReason;
 
 public HL7V25Field AdvancedBeneficiaryNoticeOverrideReason
@@ -11124,15 +13451,108 @@ public HL7V25Field AdvancedBeneficiaryNoticeOverrideReason
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (advancedBeneficiaryNoticeOverrideReason.field.FieldRepetitions != null && advancedBeneficiaryNoticeOverrideReason.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(advancedBeneficiaryNoticeOverrideReason.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < advancedBeneficiaryNoticeOverrideReason.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = advancedBeneficiaryNoticeOverrideReason.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < advancedBeneficiaryNoticeOverrideReason.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = advancedBeneficiaryNoticeOverrideReason.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < advancedBeneficiaryNoticeOverrideReason.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = advancedBeneficiaryNoticeOverrideReason.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            advancedBeneficiaryNoticeOverrideReason.fieldRepetitions = fieldRepetitions;
+        }
 
         return advancedBeneficiaryNoticeOverrideReason;
     } 
 }
+
 internal HL7V25Field filler'sExpectedAvailabilityDateTime;
 
 public HL7V25Field Filler'sExpectedAvailabilityDateTime
@@ -11162,15 +13582,108 @@ public HL7V25Field Filler'sExpectedAvailabilityDateTime
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (filler'sExpectedAvailabilityDateTime.field.FieldRepetitions != null && filler'sExpectedAvailabilityDateTime.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(filler'sExpectedAvailabilityDateTime.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < filler'sExpectedAvailabilityDateTime.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = filler'sExpectedAvailabilityDateTime.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < filler'sExpectedAvailabilityDateTime.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = filler'sExpectedAvailabilityDateTime.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < filler'sExpectedAvailabilityDateTime.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = filler'sExpectedAvailabilityDateTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            filler'sExpectedAvailabilityDateTime.fieldRepetitions = fieldRepetitions;
+        }
 
         return filler'sExpectedAvailabilityDateTime;
     } 
 }
+
 internal HL7V25Field confidentialityCode;
 
 public HL7V25Field ConfidentialityCode
@@ -11200,15 +13713,108 @@ public HL7V25Field ConfidentialityCode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (confidentialityCode.field.FieldRepetitions != null && confidentialityCode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(confidentialityCode.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < confidentialityCode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = confidentialityCode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < confidentialityCode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = confidentialityCode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < confidentialityCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = confidentialityCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            confidentialityCode.fieldRepetitions = fieldRepetitions;
+        }
 
         return confidentialityCode;
     } 
 }
+
 internal HL7V25Field orderType;
 
 public HL7V25Field OrderType
@@ -11238,15 +13844,108 @@ public HL7V25Field OrderType
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (orderType.field.FieldRepetitions != null && orderType.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderType.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < orderType.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = orderType.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < orderType.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = orderType.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < orderType.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = orderType.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            orderType.fieldRepetitions = fieldRepetitions;
+        }
 
         return orderType;
     } 
 }
+
 internal HL7V25Field entererAuthorizationMode;
 
 public HL7V25Field EntererAuthorizationMode
@@ -11276,11 +13975,103 @@ public HL7V25Field EntererAuthorizationMode
             Sample = @"",
         };
 
-        
+        // check for repetitions
+        if (entererAuthorizationMode.field.FieldRepetitions != null && entererAuthorizationMode.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(entererAuthorizationMode.Id));
+            var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-        
+            for (var i = 0; i < entererAuthorizationMode.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V25FieldRepetition
+                {
+                    fieldRepetition = entererAuthorizationMode.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V25Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < entererAuthorizationMode.field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V25Component
+                        {
+                            component = entererAuthorizationMode.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V25SubComponent>();
+
+                            for (var k = 0; k < entererAuthorizationMode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V25SubComponent
+                                {
+                                    subComponent = entererAuthorizationMode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            entererAuthorizationMode.fieldRepetitions = fieldRepetitions;
+        }
 
         return entererAuthorizationMode;
     } 

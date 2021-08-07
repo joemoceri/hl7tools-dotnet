@@ -1,4 +1,5 @@
-﻿internal HL7V[{-VERSION-}]Field [{-FIELD_NAME_PROPERTY_NAME_LOWER-}];
+﻿
+internal HL7V[{-VERSION-}]Field [{-FIELD_NAME_PROPERTY_NAME_LOWER-}];
 
 public HL7V[{-VERSION-}]Field [{-FIELD_NAME_PROPERTY_NAME-}]
 {
@@ -27,11 +28,103 @@ public HL7V[{-VERSION-}]Field [{-FIELD_NAME_PROPERTY_NAME-}]
             Sample = [{-SAMPLE-}],
         };
 
-        [{-FIELD_REPETITIONS-}]
+        // check for repetitions
+        if ([{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.FieldRepetitions != null && [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals([{-FIELD_NAME_PROPERTY_NAME_LOWER-}].Id));
+            var fieldRepetitions = new List<HL7V[{-VERSION-}]FieldRepetition>();
 
-        [{-COMPONENTS-}]
+            for (var i = 0; i < [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V[{-VERSION-}]FieldRepetition
+                {
+                    fieldRepetition = [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
+                };
 
-        [{-SUB_COMPONENTS-}]
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                {
+                    var components = new List<HL7V[{-VERSION-}]Component>();
+
+                    // there should be components per repetition
+                    for (var j = 0; j < [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.Components(i + 1).Count; j++)
+                    {
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V[{-VERSION-}]Component
+                        {
+                            component = [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
+                        };
+
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        {
+                            var subComponents = new List<HL7V[{-VERSION-}]SubComponent>();
+
+                            for (var k = 0; k < [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.Components(i + 1)[j].SubComponents.Count; k++)
+                            {
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V[{-VERSION-}]SubComponent
+                                {
+                                    subComponent = [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    Id = componentFieldData.Id,
+                                    Type = componentFieldData.Type,
+                                    Position = componentFieldData.Position,
+                                    Name = componentFieldData.Name,
+                                    Length = componentFieldData.Length,
+                                    Usage = componentFieldData.Usage,
+                                    Rpt = componentFieldData.Rpt,
+                                    DataType = componentFieldData.DataType,
+                                    DataTypeName = componentFieldData.DataTypeName,
+                                    TableId = componentFieldData.TableId,
+                                    TableName = componentFieldData.TableName,
+                                    Description = componentFieldData.Description,
+                                    Sample = componentFieldData.Sample
+                                };
+
+                                subComponents.Add(subComponent);
+                            }
+
+                            component.subComponents = subComponents;
+                        }
+
+                        components.Add(component);
+                    }
+
+                    fieldRepetition.components = components;
+                }
+
+                fieldRepetitions.Add(fieldRepetition);
+            }
+                     
+            [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].fieldRepetitions = fieldRepetitions;
+        }
 
         return [{-FIELD_NAME_PROPERTY_NAME_LOWER-}];
     } 

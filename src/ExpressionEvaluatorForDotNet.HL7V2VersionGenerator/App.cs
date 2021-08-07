@@ -63,12 +63,41 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "DataTypes", $"HL7V{v}DataType{dataType.Id}.cs"), template);
                 //}
 
+                var v = version.Replace(".", string.Empty);
+
+                // fields
+                var fieldTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Field.template.cs.txt"));
+
+                fieldTemplate = fieldTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Field.cs"), fieldTemplate);
+
+                // field repetitions
+                var fieldRepetitionTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2FieldRepetition.template.cs.txt"));
+
+                fieldRepetitionTemplate = fieldRepetitionTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}FieldRepetition.cs"), fieldRepetitionTemplate);
+
+                // components
+                var componentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Component.template.cs.txt"));
+
+                componentTemplate = componentTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Component.cs"), componentTemplate);
+
+                // sub components
+                var subComponentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2SubComponent.template.cs.txt"));
+
+                subComponentTemplate = subComponentTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}SubComponent.cs"), subComponentTemplate);
+
                 // segments
                 var segments = caristixService.GetSegments(version);
 
                 foreach (var segment in segments)
                 {
-                    var v = version.Replace(".", string.Empty);
                     var segmentTokens = GetSegmentTokens(v, segment);
                     var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Segment.template.cs.txt"));
 
@@ -364,12 +393,6 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     result.Add("[{-TABLE_NAME-}]", WrapInQuotesOrNull(field.TableName));
                     result.Add("[{-DESCRIPTION-}]", WrapInQuotesOrNull(field.Description));
                     result.Add("[{-SAMPLE-}]", WrapInQuotesOrNull(field.Sample));
-                    
-                    // TODO: field repetitions, components, and sub components
-                    
-                    result.Add("[{-FIELD_REPETITIONS-}]", null);
-                    result.Add("[{-COMPONENTS-}]", null);
-                    result.Add("[{-SUB_COMPONENTS-}]", null);
 
                     return result;
                 }
@@ -377,17 +400,14 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             string CreateFieldData(FieldResponse field)
             {
-                string fieldDatas = string.Empty;
+                string fieldDatas = null;
                 if (field.Fields != null && field.Fields.Count > 0)
                 {
+                    fieldDatas = string.Empty;
                     for (var i = 0; i < field.Fields.Count; i++)
                     {
                         fieldDatas += CreateFieldData(field.Fields[i]);
                     }
-                }
-                else
-                {
-                    fieldDatas = null;
                 }
 
                 var result = @$"
@@ -406,7 +426,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                             TableName = {WrapInQuotesOrNull(field.TableName)},
                             Description = {WrapInQuotesOrNull(field.Description)},
                             Sample = {WrapInQuotesOrNull(field.Sample)},
-                            FieldDatas = {WrapInQuotesOrNull(fieldDatas, true)}
+                            FieldDatas = {(fieldDatas != null ? $"new []{{" : null)}{WrapInQuotesOrNull(fieldDatas, true)}{(fieldDatas != null ? $"}}" : null)}
                         }},{Environment.NewLine}                        ";
 
                 return result;
@@ -414,7 +434,14 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             string ConvertToPropertyString(string input)
             {
-                return input.Replace(" ", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty);
+                var chars = new[] { " ", "-", "/", "&", "." };
+
+                foreach (var ch in chars)
+                {
+                    input = input.Replace(ch, ch.Equals("&") ? "And" : string.Empty);
+                }
+
+                return input;
             }
         }
 
