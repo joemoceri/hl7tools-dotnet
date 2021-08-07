@@ -2,7 +2,7 @@
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V2[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}]
+    public class HL7V[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}]
     {
         public readonly HL7V2Message message;
 
@@ -32,7 +32,7 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public HL7V2[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}](HL7V2Message message)
+        public HL7V[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}](HL7V2Message message)
         {
             this.message = message;
         }

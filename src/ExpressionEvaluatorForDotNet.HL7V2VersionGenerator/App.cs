@@ -87,6 +87,8 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 result.Add("[{-VERSION-}]", version);
                 result.Add("[{-SEGMENT_ID_CLASS_NAME-}]", segment.Id);
+                result.Add("[{-ID-}]", WrapInQuotesOrNull(segment.Id));
+                result.Add("[{-SEGMENT_ID-}]", WrapInQuotesOrNull(segment.SegmentId));
                 result.Add("[{-LONG_NAME-}]", WrapInQuotesOrNull(segment.LongName));
                 result.Add("[{-DESCRIPTION-}]", WrapInQuotesOrNull(segment.Description));
                 result.Add("[{-SAMPLE-}]", WrapInQuotesOrNull(segment.Sample));
@@ -135,7 +137,19 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 result.Add("[{-CHAPTERS-}]", WrapInQuotesOrNull(chapters, true));
 
-                // TODO: fields
+                string fields = null;
+
+                if (segment.Fields != null && segment.Fields.Count > 0)
+                {
+                    for (var i = 0; i < segment.Fields.Count; i++)
+                    {
+                        var field = segment.Fields[i];
+
+                        fields += CreateSegmentField(version, segment.Id, field);
+                    }
+                }
+
+                result.Add("[{-FIELDS-}]", WrapInQuotesOrNull(fields, true));
 
                 return result;
             }
@@ -312,6 +326,55 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 return input == null ? "null" : $@"@""{input.Replace("\"", "\"\"")}""";
             }
 
+            string CreateSegmentField(string version, string segmentId, FieldResponse field)
+            {
+                var v = version.Replace(".", string.Empty);
+                var segmentFieldTokens = GetSegmentFieldTokens(v, segmentId, field);
+                var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2FieldProperty.template.cs.txt"));
+
+                foreach (var token in segmentFieldTokens)
+                {
+                    template = template.Replace(token.Key, token.Value);
+                }
+
+                return $"{template}{Environment.NewLine}";
+
+                Dictionary<string, string> GetSegmentFieldTokens(string version, string segmentId, FieldResponse field)
+                {
+                    var result = new Dictionary<string, string>();
+
+                    result.Add("[{-VERSION-}]", version);
+
+                    var lower = char.ToLower(field.Name[0]) + field.Name.Substring(1);
+
+                    result.Add("[{-FIELD_NAME_PROPERTY_NAME_LOWER-}]", ConvertToPropertyString(lower));
+                    result.Add("[{-FIELD_NAME_PROPERTY_NAME-}]", ConvertToPropertyString(field.Name));
+                    result.Add("[{-SEGMENT_ID-}]", WrapInQuotesOrNull(segmentId));
+                    result.Add("[{-FIELD_PROPERTY_ID-}]", WrapInQuotesOrNull(field.Id.Split(".")[1], true));
+                    result.Add("[{-ID-}]", WrapInQuotesOrNull(field.Id));
+                    result.Add("[{-TYPE-}]", WrapInQuotesOrNull(field.Type));
+                    result.Add("[{-POSITION-}]", WrapInQuotesOrNull(field.Position));
+                    result.Add("[{-NAME-}]", WrapInQuotesOrNull(field.Name));
+                    result.Add("[{-LENGTH-}]", WrapInQuotesOrNull(field.Length.ToString(), true));
+                    result.Add("[{-USAGE-}]", WrapInQuotesOrNull(field.Usage));
+                    result.Add("[{-RPT-}]", WrapInQuotesOrNull(field.Rpt));
+                    result.Add("[{-DATA_TYPE-}]", WrapInQuotesOrNull(field.DataType));
+                    result.Add("[{-DATA_TYPE_NAME-}]", WrapInQuotesOrNull(field.DataTypeName));
+                    result.Add("[{-TABLE_ID-}]", WrapInQuotesOrNull(field.TableId));
+                    result.Add("[{-TABLE_NAME-}]", WrapInQuotesOrNull(field.TableName));
+                    result.Add("[{-DESCRIPTION-}]", WrapInQuotesOrNull(field.Description));
+                    result.Add("[{-SAMPLE-}]", WrapInQuotesOrNull(field.Sample));
+                    
+                    // TODO: field repetitions, components, and sub components
+                    
+                    result.Add("[{-FIELD_REPETITIONS-}]", null);
+                    result.Add("[{-COMPONENTS-}]", null);
+                    result.Add("[{-SUB_COMPONENTS-}]", null);
+
+                    return result;
+                }
+            }
+
             string CreateFieldData(FieldResponse field)
             {
                 string fieldDatas = string.Empty;
@@ -347,6 +410,11 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                         }},{Environment.NewLine}                        ";
 
                 return result;
+            }
+
+            string ConvertToPropertyString(string input)
+            {
+                return input.Replace(" ", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty);
             }
         }
 

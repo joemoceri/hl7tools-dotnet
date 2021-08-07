@@ -1,0 +1,3008 @@
+using System.Linq;
+
+namespace ExpressionEvaluatorForDotNet
+{
+    public class HL7V23SegmentPRB
+    {
+        public readonly HL7V2Message message;
+
+        public string Id { get { return @"PRB"; } }
+
+        public string SegmentId { get { return @"PRB"; } }
+        
+        public string LongName { get { return @"Problem Detail"; } }
+        
+        public string Description { get { return @"The problem detail segment contains the data necessary to add, update, correct, and delete the problems of a given individual.
+
+The business and/or application must assume the responsibility for maintaining knowledge about data ownership, versioning, and/or audit trail control (for purposes of data integrity).  It is also their responsibility to represent the appropriate version of that data."; } }
+        
+        public string Sample { get { return @""; } }
+
+        public IList<string> Chapters 
+        { 
+            get 
+            {
+                return new[]
+                    {
+                        "CH_07",
+                    };
+            }
+        }
+
+        public IList<HL7V2FieldData> Fields 
+        { 
+            get 
+            {
+                return new[]
+                        {
+                            new HL7V2FieldData
+                        {
+                            Id = @"PRB.1",
+                            Type = @"Field",
+                            Position = @"PRB.1",
+                            Name = @"Action Code",
+                            Length = 2,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0287",
+                            TableName = @"Problem/goal action code",
+                            Description = @"This field contains the intent of the message.  Refer to HL7 table 0287 - Action code for valid values",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.2",
+                            Type = @"Field",
+                            Position = @"PRB.2",
+                            Name = @"Action Date/Time",
+                            Length = 26,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"TS",
+                            DataTypeName = @"Time Stamp",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the date/time that the operation represented by the action code was performed",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.2.1",
+                            Type = @"Component",
+                            Position = @"PRB.2.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.3",
+                            Type = @"Field",
+                            Position = @"PRB.3",
+                            Name = @"Problem ID",
+                            Length = 80,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field identifies the problem. This is the identifier from an institution’s master list of problems. ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.3.1",
+                            Type = @"Component",
+                            Position = @"PRB.3.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.3.2",
+                            Type = @"Component",
+                            Position = @"PRB.3.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.3.3",
+                            Type = @"Component",
+                            Position = @"PRB.3.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.3.4",
+                            Type = @"Component",
+                            Position = @"PRB.3.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.3.5",
+                            Type = @"Component",
+                            Position = @"PRB.3.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.3.6",
+                            Type = @"Component",
+                            Position = @"PRB.3.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.4",
+                            Type = @"Field",
+                            Position = @"PRB.4",
+                            Name = @"Problem Instance ID",
+                            Length = 60,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"EI",
+                            DataTypeName = @"Entity Identifier",
+                            TableId = null,
+                            TableName = null,
+                            Description = @" This field contains the identifier assigned by an initiating system to an instance of a problem
+
+Note: It is required that this value remain unique over time .  This instance ID identifies a specific instance for a specific patient and is unique across all patients.  See entity ID data type description in Chapter 2. ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.4.1",
+                            Type = @"Component",
+                            Position = @"PRB.4.1",
+                            Name = @"Entity Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The first component, entity identifier, is usually defined to be unique within the series of identifiers created by the assigning authority, defined by a hierarchic designator, represented by components 2 through 4.  (See Section 2.8.18, “HD - hierarchic designator”.) ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.4.2",
+                            Type = @"Component",
+                            Position = @"PRB.4.2",
+                            Name = @"Namespace ID",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0300",
+                            TableName = @"Namespace ID",
+                            Description = @"Refer to user-defined table 0300 - Namespace ID for suggested values",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.4.3",
+                            Type = @"Component",
+                            Position = @"PRB.4.3",
+                            Name = @"Universal ID",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The HD’s second component, universal ID (UID), is a string formatted according to the scheme defined by the third component, universal ID type (UID type).  The UID is intended to be unique over time within the UID type.  It is rigorously defined.  Each UID must belong to one of the specifically enumerated schemes for constructing UID’s (defined by the UID type).  The UID (second component) must follow the syntactic rules of the particular universal identifier scheme (defined by the third component). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.4.4",
+                            Type = @"Component",
+                            Position = @"PRB.4.4",
+                            Name = @"Universal ID Type",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0301",
+                            TableName = @"Universal ID type",
+                            Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.5",
+                            Type = @"Field",
+                            Position = @"PRB.5",
+                            Name = @"Episode of Care ID",
+                            Length = 60,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"EI",
+                            DataTypeName = @"Entity Identifier",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field uniquely identifies the episode of care to which this problem applies.  (See note under “Ongoing issues.”) 
+
+Note: It is required that this field be unique over time",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.5.1",
+                            Type = @"Component",
+                            Position = @"PRB.5.1",
+                            Name = @"Entity Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The first component, entity identifier, is usually defined to be unique within the series of identifiers created by the assigning authority, defined by a hierarchic designator, represented by components 2 through 4.  (See Section 2.8.18, “HD - hierarchic designator”.) ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.5.2",
+                            Type = @"Component",
+                            Position = @"PRB.5.2",
+                            Name = @"Namespace ID",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0300",
+                            TableName = @"Namespace ID",
+                            Description = @"Refer to user-defined table 0300 - Namespace ID for suggested values",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.5.3",
+                            Type = @"Component",
+                            Position = @"PRB.5.3",
+                            Name = @"Universal ID",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The HD’s second component, universal ID (UID), is a string formatted according to the scheme defined by the third component, universal ID type (UID type).  The UID is intended to be unique over time within the UID type.  It is rigorously defined.  Each UID must belong to one of the specifically enumerated schemes for constructing UID’s (defined by the UID type).  The UID (second component) must follow the syntactic rules of the particular universal identifier scheme (defined by the third component). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.5.4",
+                            Type = @"Component",
+                            Position = @"PRB.5.4",
+                            Name = @"Universal ID Type",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0301",
+                            TableName = @"Universal ID type",
+                            Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.6",
+                            Type = @"Field",
+                            Position = @"PRB.6",
+                            Name = @"Problem List Priority",
+                            Length = 60,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"NM",
+                            DataTypeName = @"Numeric",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field prioritizes this problem on a list that is maintained for the individual",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.7",
+                            Type = @"Field",
+                            Position = @"PRB.7",
+                            Name = @"Problem Established Date/Time",
+                            Length = 26,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"TS",
+                            DataTypeName = @"Time Stamp",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the date/time when the corresponding problem was initially identified by the care giver",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.7.1",
+                            Type = @"Component",
+                            Position = @"PRB.7.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.8",
+                            Type = @"Field",
+                            Position = @"PRB.8",
+                            Name = @"Anticipated Problem Resolution Date/Time",
+                            Length = 26,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"TS",
+                            DataTypeName = @"Time Stamp",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the estimated date/time for resolving the stated problem",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.8.1",
+                            Type = @"Component",
+                            Position = @"PRB.8.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.9",
+                            Type = @"Field",
+                            Position = @"PRB.9",
+                            Name = @"Actual Problem Resolution Date/Time",
+                            Length = 26,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"TS",
+                            DataTypeName = @"Time Stamp",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the date/time that the problem was actually resolved",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.9.1",
+                            Type = @"Component",
+                            Position = @"PRB.9.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.10",
+                            Type = @"Field",
+                            Position = @"PRB.10",
+                            Name = @"Problem Classification",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field indicates the kind of problem.  This field can be used to categorize problems so that they may be managed and viewed independently within different applications (e.g., admission, final, postoperative, pre-operative, outpatient, discharge, etc.). ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.10.1",
+                            Type = @"Component",
+                            Position = @"PRB.10.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.10.2",
+                            Type = @"Component",
+                            Position = @"PRB.10.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.10.3",
+                            Type = @"Component",
+                            Position = @"PRB.10.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.10.4",
+                            Type = @"Component",
+                            Position = @"PRB.10.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.10.5",
+                            Type = @"Component",
+                            Position = @"PRB.10.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.10.6",
+                            Type = @"Component",
+                            Position = @"PRB.10.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.11",
+                            Type = @"Field",
+                            Position = @"PRB.11",
+                            Name = @"Problem Management Discipline",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"*",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field indicates the category of caregiver with responsibility for managing this specific problem (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.).  This is a repeating field to allow identification of all disciplines who may have the responsibility for this problem",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.11.1",
+                            Type = @"Component",
+                            Position = @"PRB.11.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.11.2",
+                            Type = @"Component",
+                            Position = @"PRB.11.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.11.3",
+                            Type = @"Component",
+                            Position = @"PRB.11.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.11.4",
+                            Type = @"Component",
+                            Position = @"PRB.11.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.11.5",
+                            Type = @"Component",
+                            Position = @"PRB.11.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.11.6",
+                            Type = @"Component",
+                            Position = @"PRB.11.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.12",
+                            Type = @"Field",
+                            Position = @"PRB.12",
+                            Name = @"Problem Persistence",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the perseverance of a problem (e.g., acute, chronic, etc.). ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.12.1",
+                            Type = @"Component",
+                            Position = @"PRB.12.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.12.2",
+                            Type = @"Component",
+                            Position = @"PRB.12.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.12.3",
+                            Type = @"Component",
+                            Position = @"PRB.12.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.12.4",
+                            Type = @"Component",
+                            Position = @"PRB.12.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.12.5",
+                            Type = @"Component",
+                            Position = @"PRB.12.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.12.6",
+                            Type = @"Component",
+                            Position = @"PRB.12.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.13",
+                            Type = @"Field",
+                            Position = @"PRB.13",
+                            Name = @"Problem Confirmation Status",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the verification status of a problem (e.g., confirmed, differential, provisional, rule-out, etc.). ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.13.1",
+                            Type = @"Component",
+                            Position = @"PRB.13.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.13.2",
+                            Type = @"Component",
+                            Position = @"PRB.13.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.13.3",
+                            Type = @"Component",
+                            Position = @"PRB.13.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.13.4",
+                            Type = @"Component",
+                            Position = @"PRB.13.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.13.5",
+                            Type = @"Component",
+                            Position = @"PRB.13.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.13.6",
+                            Type = @"Component",
+                            Position = @"PRB.13.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.14",
+                            Type = @"Field",
+                            Position = @"PRB.14",
+                            Name = @"Problem Life Cycle Status",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the current status of the problem at this particular date/time (e.g., active, active-improving, active-stable, active-worsening, inactive, resolved, etc.). ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.14.1",
+                            Type = @"Component",
+                            Position = @"PRB.14.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.14.2",
+                            Type = @"Component",
+                            Position = @"PRB.14.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.14.3",
+                            Type = @"Component",
+                            Position = @"PRB.14.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.14.4",
+                            Type = @"Component",
+                            Position = @"PRB.14.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.14.5",
+                            Type = @"Component",
+                            Position = @"PRB.14.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.14.6",
+                            Type = @"Component",
+                            Position = @"PRB.14.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.15",
+                            Type = @"Field",
+                            Position = @"PRB.15",
+                            Name = @"Problem Life Cycle Status Date/Time",
+                            Length = 26,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"TS",
+                            DataTypeName = @"Time Stamp",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field indicates the effective date/time of the current problem life cycle status",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.15.1",
+                            Type = @"Component",
+                            Position = @"PRB.15.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.16",
+                            Type = @"Field",
+                            Position = @"PRB.16",
+                            Name = @"Problem Date of Onset",
+                            Length = 26,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"TS",
+                            DataTypeName = @"Time Stamp",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the date/time when the problem began",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.16.1",
+                            Type = @"Component",
+                            Position = @"PRB.16.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.17",
+                            Type = @"Field",
+                            Position = @"PRB.17",
+                            Name = @"Problem Onset Text",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field allows for a textual representation of the time when the problem began",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.18",
+                            Type = @"Field",
+                            Position = @"PRB.18",
+                            Name = @"Problem Ranking",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains a user-defined prioritization of a problem (e.g., numeric ranking, or the use of words such as “primary,” “secondary,” etc.). ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.18.1",
+                            Type = @"Component",
+                            Position = @"PRB.18.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.18.2",
+                            Type = @"Component",
+                            Position = @"PRB.18.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.18.3",
+                            Type = @"Component",
+                            Position = @"PRB.18.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.18.4",
+                            Type = @"Component",
+                            Position = @"PRB.18.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.18.5",
+                            Type = @"Component",
+                            Position = @"PRB.18.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.18.6",
+                            Type = @"Component",
+                            Position = @"PRB.18.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.19",
+                            Type = @"Field",
+                            Position = @"PRB.19",
+                            Name = @"Certainty of Problem",
+                            Length = 60,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains a qualitative representation of the certainty of a problem (e.g., HI - high, LO - low, ME - medium, etc.). ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.19.1",
+                            Type = @"Component",
+                            Position = @"PRB.19.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.19.2",
+                            Type = @"Component",
+                            Position = @"PRB.19.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.19.3",
+                            Type = @"Component",
+                            Position = @"PRB.19.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.19.4",
+                            Type = @"Component",
+                            Position = @"PRB.19.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.19.5",
+                            Type = @"Component",
+                            Position = @"PRB.19.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.19.6",
+                            Type = @"Component",
+                            Position = @"PRB.19.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.20",
+                            Type = @"Field",
+                            Position = @"PRB.20",
+                            Name = @"Probability of Problem",
+                            Length = 5,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"NM",
+                            DataTypeName = @"Numeric",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains a quantitative or numeric representation of the certainty that the problem exists for this patient.  This field has a valid range of 0 to 1.  For example, a healthcare provider may be 75% (.75) sure that the problem has been correctly identified.
+
+Note: We have provided for two different representations of the certainty of the problem due to varying representations in applications",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.21",
+                            Type = @"Field",
+                            Position = @"PRB.21",
+                            Name = @"Individual Awareness of Problem",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the individual’s comprehension of the problem (e.g., full, marginal, partial, etc.)",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.21.1",
+                            Type = @"Component",
+                            Position = @"PRB.21.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.21.2",
+                            Type = @"Component",
+                            Position = @"PRB.21.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.21.3",
+                            Type = @"Component",
+                            Position = @"PRB.21.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.21.4",
+                            Type = @"Component",
+                            Position = @"PRB.21.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.21.5",
+                            Type = @"Component",
+                            Position = @"PRB.21.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.21.6",
+                            Type = @"Component",
+                            Position = @"PRB.21.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.22",
+                            Type = @"Field",
+                            Position = @"PRB.22",
+                            Name = @"Problem Prognosis",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the prognosis for the individual’s problem (e.g., good, poor, etc.).",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.22.1",
+                            Type = @"Component",
+                            Position = @"PRB.22.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.22.2",
+                            Type = @"Component",
+                            Position = @"PRB.22.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.22.3",
+                            Type = @"Component",
+                            Position = @"PRB.22.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.22.4",
+                            Type = @"Component",
+                            Position = @"PRB.22.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.22.5",
+                            Type = @"Component",
+                            Position = @"PRB.22.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.22.6",
+                            Type = @"Component",
+                            Position = @"PRB.22.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.23",
+                            Type = @"Field",
+                            Position = @"PRB.23",
+                            Name = @"Individual Awareness of Prognosis",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the individual’s comprehension of the prognosis for the problem  (e.g., full, marginal, partial, etc.). ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.23.1",
+                            Type = @"Component",
+                            Position = @"PRB.23.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.23.2",
+                            Type = @"Component",
+                            Position = @"PRB.23.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.23.3",
+                            Type = @"Component",
+                            Position = @"PRB.23.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.23.4",
+                            Type = @"Component",
+                            Position = @"PRB.23.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.23.5",
+                            Type = @"Component",
+                            Position = @"PRB.23.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.23.6",
+                            Type = @"Component",
+                            Position = @"PRB.23.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.24",
+                            Type = @"Field",
+                            Position = @"PRB.24",
+                            Name = @"Family/Significant Other Awareness of Problem/Prognosis",
+                            Length = 200,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field indicates the individual’s family or significant other’s comprehension of the actual problem/prognosis. ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.25",
+                            Type = @"Field",
+                            Position = @"PRB.25",
+                            Name = @"Security/Sensitivity",
+                            Length = 80,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains information about the level of security and/or sensitivity surrounding the problem (e.g., highly sensitive, not sensitive, sensitive, etc.). ",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.25.1",
+                            Type = @"Component",
+                            Position = @"PRB.25.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>.  Different coding schemes will have different elements here",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.25.2",
+                            Type = @"Component",
+                            Position = @"PRB.25.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question.  E.g., myocardial infarction or X-ray impression.  Its data type is string (ST). ",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.25.3",
+                            Type = @"Component",
+                            Position = @"PRB.25.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier.  This component will serve to identify the coding scheme being used in the identifier component.  The combination of the identifier and name of coding system components will be a unique code for a data item  Each system has a unique identifier. ASTM E123894, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, “Coding schemes.”  Others may be added as needed.  When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.25.4",
+                            Type = @"Component",
+                            Position = @"PRB.25.4",
+                            Name = @"Alternate Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.25.5",
+                            Type = @"Component",
+                            Position = @"PRB.25.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"PRB.25.6",
+                            Type = @"Component",
+                            Position = @"PRB.25.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        };
+            }
+        }
+
+        public HL7V23SegmentPRB(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field actionCode;
+
+public HL7V23Field ActionCode
+{
+    get
+    {
+        if (actionCode != null)
+        {
+            return actionCode;
+        }
+
+        actionCode = new HL7V23Field
+        {
+            field = message[@"PRB"][1],
+            Id = @"PRB.1",
+            Type = @"Field",
+            Position = @"PRB.1",
+            Name = @"Action Code",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0287",
+            TableName = @"Problem/goal action code",
+            Description = @"This field contains the intent of the message.  Refer to HL7 table 0287 - Action code for valid values",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return actionCode;
+    } 
+}
+internal HL7V23Field actionDateTime;
+
+public HL7V23Field ActionDateTime
+{
+    get
+    {
+        if (actionDateTime != null)
+        {
+            return actionDateTime;
+        }
+
+        actionDateTime = new HL7V23Field
+        {
+            field = message[@"PRB"][2],
+            Id = @"PRB.2",
+            Type = @"Field",
+            Position = @"PRB.2",
+            Name = @"Action Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the operation represented by the action code was performed",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return actionDateTime;
+    } 
+}
+internal HL7V23Field problemID;
+
+public HL7V23Field ProblemID
+{
+    get
+    {
+        if (problemID != null)
+        {
+            return problemID;
+        }
+
+        problemID = new HL7V23Field
+        {
+            field = message[@"PRB"][3],
+            Id = @"PRB.3",
+            Type = @"Field",
+            Position = @"PRB.3",
+            Name = @"Problem ID",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the problem. This is the identifier from an institution’s master list of problems. ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemID;
+    } 
+}
+internal HL7V23Field problemInstanceID;
+
+public HL7V23Field ProblemInstanceID
+{
+    get
+    {
+        if (problemInstanceID != null)
+        {
+            return problemInstanceID;
+        }
+
+        problemInstanceID = new HL7V23Field
+        {
+            field = message[@"PRB"][4],
+            Id = @"PRB.4",
+            Type = @"Field",
+            Position = @"PRB.4",
+            Name = @"Problem Instance ID",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @" This field contains the identifier assigned by an initiating system to an instance of a problem
+
+Note: It is required that this value remain unique over time .  This instance ID identifies a specific instance for a specific patient and is unique across all patients.  See entity ID data type description in Chapter 2. ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemInstanceID;
+    } 
+}
+internal HL7V23Field episodeofCareID;
+
+public HL7V23Field EpisodeofCareID
+{
+    get
+    {
+        if (episodeofCareID != null)
+        {
+            return episodeofCareID;
+        }
+
+        episodeofCareID = new HL7V23Field
+        {
+            field = message[@"PRB"][5],
+            Id = @"PRB.5",
+            Type = @"Field",
+            Position = @"PRB.5",
+            Name = @"Episode of Care ID",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field uniquely identifies the episode of care to which this problem applies.  (See note under “Ongoing issues.”) 
+
+Note: It is required that this field be unique over time",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return episodeofCareID;
+    } 
+}
+internal HL7V23Field problemListPriority;
+
+public HL7V23Field ProblemListPriority
+{
+    get
+    {
+        if (problemListPriority != null)
+        {
+            return problemListPriority;
+        }
+
+        problemListPriority = new HL7V23Field
+        {
+            field = message[@"PRB"][6],
+            Id = @"PRB.6",
+            Type = @"Field",
+            Position = @"PRB.6",
+            Name = @"Problem List Priority",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field prioritizes this problem on a list that is maintained for the individual",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemListPriority;
+    } 
+}
+internal HL7V23Field problemEstablishedDateTime;
+
+public HL7V23Field ProblemEstablishedDateTime
+{
+    get
+    {
+        if (problemEstablishedDateTime != null)
+        {
+            return problemEstablishedDateTime;
+        }
+
+        problemEstablishedDateTime = new HL7V23Field
+        {
+            field = message[@"PRB"][7],
+            Id = @"PRB.7",
+            Type = @"Field",
+            Position = @"PRB.7",
+            Name = @"Problem Established Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the corresponding problem was initially identified by the care giver",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemEstablishedDateTime;
+    } 
+}
+internal HL7V23Field anticipatedProblemResolutionDateTime;
+
+public HL7V23Field AnticipatedProblemResolutionDateTime
+{
+    get
+    {
+        if (anticipatedProblemResolutionDateTime != null)
+        {
+            return anticipatedProblemResolutionDateTime;
+        }
+
+        anticipatedProblemResolutionDateTime = new HL7V23Field
+        {
+            field = message[@"PRB"][8],
+            Id = @"PRB.8",
+            Type = @"Field",
+            Position = @"PRB.8",
+            Name = @"Anticipated Problem Resolution Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the estimated date/time for resolving the stated problem",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return anticipatedProblemResolutionDateTime;
+    } 
+}
+internal HL7V23Field actualProblemResolutionDateTime;
+
+public HL7V23Field ActualProblemResolutionDateTime
+{
+    get
+    {
+        if (actualProblemResolutionDateTime != null)
+        {
+            return actualProblemResolutionDateTime;
+        }
+
+        actualProblemResolutionDateTime = new HL7V23Field
+        {
+            field = message[@"PRB"][9],
+            Id = @"PRB.9",
+            Type = @"Field",
+            Position = @"PRB.9",
+            Name = @"Actual Problem Resolution Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the problem was actually resolved",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return actualProblemResolutionDateTime;
+    } 
+}
+internal HL7V23Field problemClassification;
+
+public HL7V23Field ProblemClassification
+{
+    get
+    {
+        if (problemClassification != null)
+        {
+            return problemClassification;
+        }
+
+        problemClassification = new HL7V23Field
+        {
+            field = message[@"PRB"][10],
+            Id = @"PRB.10",
+            Type = @"Field",
+            Position = @"PRB.10",
+            Name = @"Problem Classification",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the kind of problem.  This field can be used to categorize problems so that they may be managed and viewed independently within different applications (e.g., admission, final, postoperative, pre-operative, outpatient, discharge, etc.). ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemClassification;
+    } 
+}
+internal HL7V23Field problemManagementDiscipline;
+
+public HL7V23Field ProblemManagementDiscipline
+{
+    get
+    {
+        if (problemManagementDiscipline != null)
+        {
+            return problemManagementDiscipline;
+        }
+
+        problemManagementDiscipline = new HL7V23Field
+        {
+            field = message[@"PRB"][11],
+            Id = @"PRB.11",
+            Type = @"Field",
+            Position = @"PRB.11",
+            Name = @"Problem Management Discipline",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the category of caregiver with responsibility for managing this specific problem (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.).  This is a repeating field to allow identification of all disciplines who may have the responsibility for this problem",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemManagementDiscipline;
+    } 
+}
+internal HL7V23Field problemPersistence;
+
+public HL7V23Field ProblemPersistence
+{
+    get
+    {
+        if (problemPersistence != null)
+        {
+            return problemPersistence;
+        }
+
+        problemPersistence = new HL7V23Field
+        {
+            field = message[@"PRB"][12],
+            Id = @"PRB.12",
+            Type = @"Field",
+            Position = @"PRB.12",
+            Name = @"Problem Persistence",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the perseverance of a problem (e.g., acute, chronic, etc.). ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemPersistence;
+    } 
+}
+internal HL7V23Field problemConfirmationStatus;
+
+public HL7V23Field ProblemConfirmationStatus
+{
+    get
+    {
+        if (problemConfirmationStatus != null)
+        {
+            return problemConfirmationStatus;
+        }
+
+        problemConfirmationStatus = new HL7V23Field
+        {
+            field = message[@"PRB"][13],
+            Id = @"PRB.13",
+            Type = @"Field",
+            Position = @"PRB.13",
+            Name = @"Problem Confirmation Status",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the verification status of a problem (e.g., confirmed, differential, provisional, rule-out, etc.). ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemConfirmationStatus;
+    } 
+}
+internal HL7V23Field problemLifeCycleStatus;
+
+public HL7V23Field ProblemLifeCycleStatus
+{
+    get
+    {
+        if (problemLifeCycleStatus != null)
+        {
+            return problemLifeCycleStatus;
+        }
+
+        problemLifeCycleStatus = new HL7V23Field
+        {
+            field = message[@"PRB"][14],
+            Id = @"PRB.14",
+            Type = @"Field",
+            Position = @"PRB.14",
+            Name = @"Problem Life Cycle Status",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the current status of the problem at this particular date/time (e.g., active, active-improving, active-stable, active-worsening, inactive, resolved, etc.). ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemLifeCycleStatus;
+    } 
+}
+internal HL7V23Field problemLifeCycleStatusDateTime;
+
+public HL7V23Field ProblemLifeCycleStatusDateTime
+{
+    get
+    {
+        if (problemLifeCycleStatusDateTime != null)
+        {
+            return problemLifeCycleStatusDateTime;
+        }
+
+        problemLifeCycleStatusDateTime = new HL7V23Field
+        {
+            field = message[@"PRB"][15],
+            Id = @"PRB.15",
+            Type = @"Field",
+            Position = @"PRB.15",
+            Name = @"Problem Life Cycle Status Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the effective date/time of the current problem life cycle status",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemLifeCycleStatusDateTime;
+    } 
+}
+internal HL7V23Field problemDateofOnset;
+
+public HL7V23Field ProblemDateofOnset
+{
+    get
+    {
+        if (problemDateofOnset != null)
+        {
+            return problemDateofOnset;
+        }
+
+        problemDateofOnset = new HL7V23Field
+        {
+            field = message[@"PRB"][16],
+            Id = @"PRB.16",
+            Type = @"Field",
+            Position = @"PRB.16",
+            Name = @"Problem Date of Onset",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the problem began",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemDateofOnset;
+    } 
+}
+internal HL7V23Field problemOnsetText;
+
+public HL7V23Field ProblemOnsetText
+{
+    get
+    {
+        if (problemOnsetText != null)
+        {
+            return problemOnsetText;
+        }
+
+        problemOnsetText = new HL7V23Field
+        {
+            field = message[@"PRB"][17],
+            Id = @"PRB.17",
+            Type = @"Field",
+            Position = @"PRB.17",
+            Name = @"Problem Onset Text",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field allows for a textual representation of the time when the problem began",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemOnsetText;
+    } 
+}
+internal HL7V23Field problemRanking;
+
+public HL7V23Field ProblemRanking
+{
+    get
+    {
+        if (problemRanking != null)
+        {
+            return problemRanking;
+        }
+
+        problemRanking = new HL7V23Field
+        {
+            field = message[@"PRB"][18],
+            Id = @"PRB.18",
+            Type = @"Field",
+            Position = @"PRB.18",
+            Name = @"Problem Ranking",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a user-defined prioritization of a problem (e.g., numeric ranking, or the use of words such as “primary,” “secondary,” etc.). ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemRanking;
+    } 
+}
+internal HL7V23Field certaintyofProblem;
+
+public HL7V23Field CertaintyofProblem
+{
+    get
+    {
+        if (certaintyofProblem != null)
+        {
+            return certaintyofProblem;
+        }
+
+        certaintyofProblem = new HL7V23Field
+        {
+            field = message[@"PRB"][19],
+            Id = @"PRB.19",
+            Type = @"Field",
+            Position = @"PRB.19",
+            Name = @"Certainty of Problem",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a qualitative representation of the certainty of a problem (e.g., HI - high, LO - low, ME - medium, etc.). ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return certaintyofProblem;
+    } 
+}
+internal HL7V23Field probabilityofProblem;
+
+public HL7V23Field ProbabilityofProblem
+{
+    get
+    {
+        if (probabilityofProblem != null)
+        {
+            return probabilityofProblem;
+        }
+
+        probabilityofProblem = new HL7V23Field
+        {
+            field = message[@"PRB"][20],
+            Id = @"PRB.20",
+            Type = @"Field",
+            Position = @"PRB.20",
+            Name = @"Probability of Problem",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a quantitative or numeric representation of the certainty that the problem exists for this patient.  This field has a valid range of 0 to 1.  For example, a healthcare provider may be 75% (.75) sure that the problem has been correctly identified.
+
+Note: We have provided for two different representations of the certainty of the problem due to varying representations in applications",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return probabilityofProblem;
+    } 
+}
+internal HL7V23Field individualAwarenessofProblem;
+
+public HL7V23Field IndividualAwarenessofProblem
+{
+    get
+    {
+        if (individualAwarenessofProblem != null)
+        {
+            return individualAwarenessofProblem;
+        }
+
+        individualAwarenessofProblem = new HL7V23Field
+        {
+            field = message[@"PRB"][21],
+            Id = @"PRB.21",
+            Type = @"Field",
+            Position = @"PRB.21",
+            Name = @"Individual Awareness of Problem",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the individual’s comprehension of the problem (e.g., full, marginal, partial, etc.)",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return individualAwarenessofProblem;
+    } 
+}
+internal HL7V23Field problemPrognosis;
+
+public HL7V23Field ProblemPrognosis
+{
+    get
+    {
+        if (problemPrognosis != null)
+        {
+            return problemPrognosis;
+        }
+
+        problemPrognosis = new HL7V23Field
+        {
+            field = message[@"PRB"][22],
+            Id = @"PRB.22",
+            Type = @"Field",
+            Position = @"PRB.22",
+            Name = @"Problem Prognosis",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prognosis for the individual’s problem (e.g., good, poor, etc.).",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return problemPrognosis;
+    } 
+}
+internal HL7V23Field individualAwarenessofPrognosis;
+
+public HL7V23Field IndividualAwarenessofPrognosis
+{
+    get
+    {
+        if (individualAwarenessofPrognosis != null)
+        {
+            return individualAwarenessofPrognosis;
+        }
+
+        individualAwarenessofPrognosis = new HL7V23Field
+        {
+            field = message[@"PRB"][23],
+            Id = @"PRB.23",
+            Type = @"Field",
+            Position = @"PRB.23",
+            Name = @"Individual Awareness of Prognosis",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the individual’s comprehension of the prognosis for the problem  (e.g., full, marginal, partial, etc.). ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return individualAwarenessofPrognosis;
+    } 
+}
+internal HL7V23Field familySignificantOtherAwarenessofProblemPrognosis;
+
+public HL7V23Field FamilySignificantOtherAwarenessofProblemPrognosis
+{
+    get
+    {
+        if (familySignificantOtherAwarenessofProblemPrognosis != null)
+        {
+            return familySignificantOtherAwarenessofProblemPrognosis;
+        }
+
+        familySignificantOtherAwarenessofProblemPrognosis = new HL7V23Field
+        {
+            field = message[@"PRB"][24],
+            Id = @"PRB.24",
+            Type = @"Field",
+            Position = @"PRB.24",
+            Name = @"Family/Significant Other Awareness of Problem/Prognosis",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the individual’s family or significant other’s comprehension of the actual problem/prognosis. ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return familySignificantOtherAwarenessofProblemPrognosis;
+    } 
+}
+internal HL7V23Field securitySensitivity;
+
+public HL7V23Field SecuritySensitivity
+{
+    get
+    {
+        if (securitySensitivity != null)
+        {
+            return securitySensitivity;
+        }
+
+        securitySensitivity = new HL7V23Field
+        {
+            field = message[@"PRB"][25],
+            Id = @"PRB.25",
+            Type = @"Field",
+            Position = @"PRB.25",
+            Name = @"Security/Sensitivity",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains information about the level of security and/or sensitivity surrounding the problem (e.g., highly sensitive, not sensitive, sensitive, etc.). ",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return securitySensitivity;
+    } 
+}
+
+    }
+}

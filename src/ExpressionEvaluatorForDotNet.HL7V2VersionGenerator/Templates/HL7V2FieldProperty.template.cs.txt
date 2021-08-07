@@ -1,0 +1,38 @@
+﻿internal HL7V[{-VERSION-}]Field [{-FIELD_NAME_PROPERTY_NAME_LOWER-}];
+
+public HL7V[{-VERSION-}]Field [{-FIELD_NAME_PROPERTY_NAME-}]
+{
+    get
+    {
+        if ([{-FIELD_NAME_PROPERTY_NAME_LOWER-}] != null)
+        {
+            return [{-FIELD_NAME_PROPERTY_NAME_LOWER-}];
+        }
+
+        [{-FIELD_NAME_PROPERTY_NAME_LOWER-}] = new HL7V[{-VERSION-}]Field
+        {
+            field = message[[{-SEGMENT_ID-}]][[{-FIELD_PROPERTY_ID-}]],
+            Id = [{-ID-}],
+            Type = [{-TYPE-}],
+            Position = [{-POSITION-}],
+            Name = [{-NAME-}],
+            Length = [{-LENGTH-}],
+            Usage = [{-USAGE-}],
+            Rpt = [{-RPT-}],
+            DataType = [{-DATA_TYPE-}],
+            DataTypeName = [{-DATA_TYPE_NAME-}],
+            TableId = [{-TABLE_ID-}],
+            TableName = [{-TABLE_NAME-}],
+            Description = [{-DESCRIPTION-}],
+            Sample = [{-SAMPLE-}],
+        };
+
+        [{-FIELD_REPETITIONS-}]
+
+        [{-COMPONENTS-}]
+
+        [{-SUB_COMPONENTS-}]
+
+        return [{-FIELD_NAME_PROPERTY_NAME_LOWER-}];
+    } 
+}

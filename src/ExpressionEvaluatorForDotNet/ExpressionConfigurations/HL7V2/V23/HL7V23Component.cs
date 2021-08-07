@@ -4,16 +4,35 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23Component
     {
-        public readonly HL7V2Component component;
-        public readonly IList<HL7V23SubComponent> subComponents;
-        public readonly HL7V2FieldData fieldData;
+        public HL7V2Component component { get; init; }
 
-        public HL7V23Component(HL7V2Component component, HL7V2FieldData fieldData, IList<HL7V23SubComponent> subComponents)
-        {
-            this.component = component;
-            this.fieldData = fieldData;
-            this.subComponents = subComponents;
-        }
+        public IList<HL7V23SubComponent> subComponents { get; internal set; }
+
+        public string Id { get; init; }
+
+        public string Type { get; init; }
+
+        public string Position { get; init; }
+
+        public string Name { get; init; }
+
+        public int Length { get; init; }
+
+        public string Usage { get; init; }
+
+        public string Rpt { get; init; }
+
+        public string DataType { get; init; }
+
+        public string DataTypeName { get; init; }
+
+        public string TableId { get; init; }
+
+        public string TableName { get; init; }
+
+        public string Description { get; init; }
+
+        public string Sample { get; init; }
 
         public string Value { get { return component.Value; } }
     }

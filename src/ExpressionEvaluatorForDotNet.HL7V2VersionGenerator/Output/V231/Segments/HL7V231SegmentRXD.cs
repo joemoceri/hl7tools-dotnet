@@ -1,0 +1,3082 @@
+using System.Linq;
+
+namespace ExpressionEvaluatorForDotNet
+{
+    public class HL7V231SegmentRXD
+    {
+        public readonly HL7V2Message message;
+
+        public string Id { get { return @"RXD"; } }
+
+        public string SegmentId { get { return @"RXD"; } }
+        
+        public string LongName { get { return @"Pharmacy/treatment dispense segment"; } }
+        
+        public string Description { get { return @"Figure 4-17. RXD attributes"; } }
+        
+        public string Sample { get { return @""; } }
+
+        public IList<string> Chapters 
+        { 
+            get 
+            {
+                return new[]
+                    {
+                        "CH_04",
+                    };
+            }
+        }
+
+        public IList<HL7V2FieldData> Fields 
+        { 
+            get 
+            {
+                return new[]
+                        {
+                            new HL7V2FieldData
+                        {
+                            Id = @"RXD.1",
+                            Type = @"Field",
+                            Position = @"RXD.1",
+                            Name = @"Dispense Sub-ID Counter",
+                            Length = 4,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"NM",
+                            DataTypeName = @"Numeric",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field starts with 1 the first time that medication is dispensed for this order. Increments by one with each additional issuance of medication.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.2",
+                            Type = @"Field",
+                            Position = @"RXD.2",
+                            Name = @"Dispense/Give Code",
+                            Length = 100,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = @"0292",
+                            TableName = @"Vaccines administered",
+                            Description = @"This field identifies the medical substance ordered to be given to the patient; it is equivalent to OBR-4-universal service ID . See the RXE segment for a complete definition of the RXE-2-give code . If the substance dispensed is a vaccine, CVX codes may be used to code this field (see HL7 table 0292 - Vaccines administered).",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.2.1",
+                            Type = @"Component",
+                            Position = @"RXD.2.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>. Different coding schemes will have different elements here.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.2.2",
+                            Type = @"Component",
+                            Position = @"RXD.2.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question. E.g., myocardial infarction or X-ray impression. Its data type is string (ST).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.2.3",
+                            Type = @"Component",
+                            Position = @"RXD.2.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier. This component will serve to identify the coding scheme being used in the identifier component. The combination of the identifier and name of coding system components will be a unique code for a data item. Each system has a unique identifier. ASTM E1238-94, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, Coding schemes. Others may be added as needed. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.2.4",
+                            Type = @"Component",
+                            Position = @"RXD.2.4",
+                            Name = @"Alternate Components",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system. If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component. If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.2.5",
+                            Type = @"Component",
+                            Position = @"RXD.2.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.2.6",
+                            Type = @"Component",
+                            Position = @"RXD.2.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.3",
+                            Type = @"Field",
+                            Position = @"RXD.3",
+                            Name = @"Date/Time Dispensed",
+                            Length = 26,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"TS",
+                            DataTypeName = @"Time Stamp",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field indicates when the pharmaceutical is dispensed from the pharmacy or treatment supplier. Use the time stamp format.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.3.1",
+                            Type = @"Component",
+                            Position = @"RXD.3.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.4",
+                            Type = @"Field",
+                            Position = @"RXD.4",
+                            Name = @"Actual Dispense Amount",
+                            Length = 20,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"NM",
+                            DataTypeName = @"Numeric",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field indicates the amount dispensed.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.5",
+                            Type = @"Field",
+                            Position = @"RXD.5",
+                            Name = @"Actual Dispense Units",
+                            Length = 60,
+                            Usage = @"C",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field indicates the units dispensed. Site-defined table. This field is required if the units are not implied by the actual dispense code. If present, it overrides units implied by the actual dispense code. This must be in simple units that reflect the actual quantity of the substance dispensed. It does not include compound units.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.5.1",
+                            Type = @"Component",
+                            Position = @"RXD.5.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>. Different coding schemes will have different elements here.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.5.2",
+                            Type = @"Component",
+                            Position = @"RXD.5.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question. E.g., myocardial infarction or X-ray impression. Its data type is string (ST).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.5.3",
+                            Type = @"Component",
+                            Position = @"RXD.5.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier. This component will serve to identify the coding scheme being used in the identifier component. The combination of the identifier and name of coding system components will be a unique code for a data item. Each system has a unique identifier. ASTM E1238-94, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, Coding schemes. Others may be added as needed. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.5.4",
+                            Type = @"Component",
+                            Position = @"RXD.5.4",
+                            Name = @"Alternate Components",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system. If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component. If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.5.5",
+                            Type = @"Component",
+                            Position = @"RXD.5.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.5.6",
+                            Type = @"Component",
+                            Position = @"RXD.5.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.6",
+                            Type = @"Field",
+                            Position = @"RXD.6",
+                            Name = @"Actual Dosage Form",
+                            Length = 60,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The dosage form indicates the manner in which the medication is aggregated for dispensing, e.g., tablets, capsules, suppositories. In some cases, this information is implied by the dispense/give code in RXD-2-dispense/give code. Use this field when the give code and the dispense code do not specify the dosage form.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.6.1",
+                            Type = @"Component",
+                            Position = @"RXD.6.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>. Different coding schemes will have different elements here.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.6.2",
+                            Type = @"Component",
+                            Position = @"RXD.6.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question. E.g., myocardial infarction or X-ray impression. Its data type is string (ST).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.6.3",
+                            Type = @"Component",
+                            Position = @"RXD.6.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier. This component will serve to identify the coding scheme being used in the identifier component. The combination of the identifier and name of coding system components will be a unique code for a data item. Each system has a unique identifier. ASTM E1238-94, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, Coding schemes. Others may be added as needed. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.6.4",
+                            Type = @"Component",
+                            Position = @"RXD.6.4",
+                            Name = @"Alternate Components",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system. If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component. If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.6.5",
+                            Type = @"Component",
+                            Position = @"RXD.6.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.6.6",
+                            Type = @"Component",
+                            Position = @"RXD.6.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.7",
+                            Type = @"Field",
+                            Position = @"RXD.7",
+                            Name = @"Prescription Number",
+                            Length = 20,
+                            Usage = @"R",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field is equivalent in uniqueness to the pharmacy/treatment supplier filler order number. At some sites, this may be the pharmacy/treatment supplier (internal) sequential form. At other sites, this may be an external number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.8",
+                            Type = @"Field",
+                            Position = @"RXD.8",
+                            Name = @"Number of Refills Remaining",
+                            Length = 20,
+                            Usage = @"C",
+                            Rpt = @"1",
+                            DataType = @"NM",
+                            DataTypeName = @"Numeric",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field is conditional because it is required when a prescription is dispensed to an outpatient. It is not relevant to inpatient treatment orders.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.9",
+                            Type = @"Field",
+                            Position = @"RXD.9",
+                            Name = @"Dispense Notes",
+                            Length = 200,
+                            Usage = @"O",
+                            Rpt = @"*",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains free text notes to the person dispensing the medication (may include the ordering provider's original notes, as well as any notes from the formulary or the pharmacy or treatment supplier). This may contain free text describing a custom IV, mixture, or salve.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10",
+                            Type = @"Field",
+                            Position = @"RXD.10",
+                            Name = @"Dispensing Provider",
+                            Length = 200,
+                            Usage = @"O",
+                            Rpt = @"*",
+                            DataType = @"XCN",
+                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the provider ID of the person dispensing the pharmaceutical.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.1",
+                            Type = @"Component",
+                            Position = @"RXD.10.1",
+                            Name = @"Id Number",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This string refers to the coded ID according to a user-defined table, defined by the 9th component. If the first component is present, either the source table or the assigning authority must be valued.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.2",
+                            Type = @"Component",
+                            Position = @"RXD.10.2",
+                            Name = @"Family Name & Last Name Prefix",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"FN",
+                            DataTypeName = @"Family + Last Name Prefix",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.2.1",
+                            Type = @"SubComponent",
+                            Position = @"RXD.10.2.1",
+                            Name = @"Family Name",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = @"LastName",
+                            TableName = @"LastName",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.2.2",
+                            Type = @"SubComponent",
+                            Position = @"RXD.10.2.2",
+                            Name = @"Last Name Prefix",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.3",
+                            Type = @"Component",
+                            Position = @"RXD.10.3",
+                            Name = @"Given Name",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = @"FirstName",
+                            TableName = @"First Name",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.4",
+                            Type = @"Component",
+                            Position = @"RXD.10.4",
+                            Name = @"Middle Initial Or Name",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.5",
+                            Type = @"Component",
+                            Position = @"RXD.10.5",
+                            Name = @"Suffix",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Used to specify a name suffix (e.g., Jr. or III).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.6",
+                            Type = @"Component",
+                            Position = @"RXD.10.6",
+                            Name = @"Prefix",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Used to specify a name prefix (e.g., Dr.).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.7",
+                            Type = @"Component",
+                            Position = @"RXD.10.7",
+                            Name = @"Degree",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0360",
+                            TableName = @"Degree",
+                            Description = @"Used to specify an educational degree (e.g., MD). Refer to user-defined table 0360 Degree for suggested values.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.8",
+                            Type = @"Component",
+                            Position = @"RXD.10.8",
+                            Name = @"Source Table",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0297",
+                            TableName = @"CN ID source",
+                            Description = @"User-defined table 0297 - CN ID source is used as the HL7 identifier for the user-defined table of values for this component. Used to delineate the first component.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.9",
+                            Type = @"Component",
+                            Position = @"RXD.10.9",
+                            Name = @"Assigning Authority",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"HD",
+                            DataTypeName = @"Hierarchic Designator",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The assigning authority is a unique identifier of the system (or organization or agency or department) that creates the data. It is a HD data type. Assigning authorities are unique across a given HL7 implementation. User-defined table 0363 Assigning authority is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.9.1",
+                            Type = @"SubComponent",
+                            Position = @"RXD.10.9.1",
+                            Name = @"Namespace Id",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0300",
+                            TableName = @"Namespace ID",
+                            Description = @"User-defined table 0300 - Namespace ID is used as the HL7 identifier for the user-defined table of values for this component.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.9.2",
+                            Type = @"SubComponent",
+                            Position = @"RXD.10.9.2",
+                            Name = @"Universal Id",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The HDs second component, <universal ID (UID), is a string formatted according to the scheme defined by the third component, <universal ID type> (UID type). The UID is intended to be unique over time within the UID type. It is rigorously defined. Each UID must belong to one of the specifically enumerated schemes for constructing UIDs (defined by the UID type). The UID (second component) must follow the syntactic rules of the particular universal identifier scheme (defined by the third component). Note that these syntactic rules are not defined within HL7 but are defined by the rules of the particular universal identifier scheme (defined by the third component).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.9.3",
+                            Type = @"SubComponent",
+                            Position = @"RXD.10.9.3",
+                            Name = @"Universal Id Type",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0301",
+                            TableName = @"Universal ID type",
+                            Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.10",
+                            Type = @"Component",
+                            Position = @"RXD.10.10",
+                            Name = @"Name Type Code",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0200",
+                            TableName = @"Name type",
+                            Description = @"A code that represents the type of name. Refer to HL7 table 0200 - Name type for valid values (see Section 2.8.51, XPN - extended person name).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.11",
+                            Type = @"Component",
+                            Position = @"RXD.10.11",
+                            Name = @"Identifier Check Digit",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The check digit in this data type is not an add-on produced by the message processor. It is the check digit that is part of the identifying number used in the sending application. If the sending application does not include a self-generated check digit in the identifying number, this component should be valued null.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.12",
+                            Type = @"Component",
+                            Position = @"RXD.10.12",
+                            Name = @"Code Identifying The Check Digit Scheme Employed",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0061",
+                            TableName = @"Check digit scheme",
+                            Description = @"Refer to HL7 table 0061 - Check digit scheme for valid values.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.13",
+                            Type = @"Component",
+                            Position = @"RXD.10.13",
+                            Name = @"Identifier Type Code",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0203",
+                            TableName = @"Identifier type",
+                            Description = @"A code corresponding to the type of identifier. In some cases, this code may be used as a qualifier to the <assigning authority> component. Refer to user-defined table 0203 - Identifier type for suggested values.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.14",
+                            Type = @"Component",
+                            Position = @"RXD.10.14",
+                            Name = @"Assigning Facility",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"HD",
+                            DataTypeName = @"Hierarchic Designator",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.14.1",
+                            Type = @"SubComponent",
+                            Position = @"RXD.10.14.1",
+                            Name = @"Namespace Id",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0300",
+                            TableName = @"Namespace ID",
+                            Description = @"User-defined table 0300 - Namespace ID is used as the HL7 identifier for the user-defined table of values for this component.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.14.2",
+                            Type = @"SubComponent",
+                            Position = @"RXD.10.14.2",
+                            Name = @"Universal Id",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The HDs second component, <universal ID (UID), is a string formatted according to the scheme defined by the third component, <universal ID type> (UID type). The UID is intended to be unique over time within the UID type. It is rigorously defined. Each UID must belong to one of the specifically enumerated schemes for constructing UIDs (defined by the UID type). The UID (second component) must follow the syntactic rules of the particular universal identifier scheme (defined by the third component). Note that these syntactic rules are not defined within HL7 but are defined by the rules of the particular universal identifier scheme (defined by the third component).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.14.3",
+                            Type = @"SubComponent",
+                            Position = @"RXD.10.14.3",
+                            Name = @"Universal Id Type",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0301",
+                            TableName = @"Universal ID type",
+                            Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.10.15",
+                            Type = @"Component",
+                            Position = @"RXD.10.15",
+                            Name = @"Name Representation Code",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"4000",
+                            TableName = @"Name/address representation",
+                            Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.11",
+                            Type = @"Field",
+                            Position = @"RXD.11",
+                            Name = @"Substitution Status",
+                            Length = 1,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0167",
+                            TableName = @"Substitution status",
+                            Description = @"Refer to HL7 table 0167 - Substitution status for suggested values.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.12",
+                            Type = @"Field",
+                            Position = @"RXD.12",
+                            Name = @"Total Daily Dose",
+                            Length = 10,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CQ",
+                            DataTypeName = @"Composite Quantity With Units",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the total daily dose being dispensed as expressed in terms of the actual dispense units.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.12.1",
+                            Type = @"Component",
+                            Position = @"RXD.12.1",
+                            Name = @"Quantity",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"NM",
+                            DataTypeName = @"Numeric",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.12.2",
+                            Type = @"Component",
+                            Position = @"RXD.12.2",
+                            Name = @"Units",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the observation is measured in the default units, the units need not be transmitted. If the measure is recorded in units different from the default, the measurement units must be transmitted as the second component. If the units are ISO+ units, then units should be recorded as lowercase abbreviations as specified in Chapter 7. If the units are ANSI or local, the units and the source table must be recorded as specified in Chapter 7. But in these cases the component separator should be replaced by the subcomponent delimiter",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13",
+                            Type = @"Field",
+                            Position = @"RXD.13",
+                            Name = @"Dispense-To Location",
+                            Length = 200,
+                            Usage = @"C",
+                            Rpt = @"1",
+                            DataType = @"LA2",
+                            DataTypeName = @"Location With Address Information (variant 2)",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The first component (which is of PL data type with the component delimiters demoted to subcomponents) contains the inpatient or outpatient location where the drug or treatment was dispensed (if applicable). The default (null) value is the current census location for the patient. Site-specific table. The first eight components have the same form as the first eight components of PV1-3-assigned patient location. The final eight components replace the ninth component of PV1-3-assigned patient location and represent the full address specification.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.1",
+                            Type = @"Component",
+                            Position = @"RXD.13.1",
+                            Name = @"Point Of Care",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0302",
+                            TableName = @"Point of care",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.2",
+                            Type = @"Component",
+                            Position = @"RXD.13.2",
+                            Name = @"Room",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0303",
+                            TableName = @"Room",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.3",
+                            Type = @"Component",
+                            Position = @"RXD.13.3",
+                            Name = @"Bed",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0304",
+                            TableName = @"Bed",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.4",
+                            Type = @"Component",
+                            Position = @"RXD.13.4",
+                            Name = @"Facility",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"HD",
+                            DataTypeName = @"Hierarchic Designator",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.4.1",
+                            Type = @"SubComponent",
+                            Position = @"RXD.13.4.1",
+                            Name = @"Namespace Id",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0300",
+                            TableName = @"Namespace ID",
+                            Description = @"User-defined table 0300 - Namespace ID is used as the HL7 identifier for the user-defined table of values for this component.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.4.2",
+                            Type = @"SubComponent",
+                            Position = @"RXD.13.4.2",
+                            Name = @"Universal Id",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"The HDs second component, <universal ID (UID), is a string formatted according to the scheme defined by the third component, <universal ID type> (UID type). The UID is intended to be unique over time within the UID type. It is rigorously defined. Each UID must belong to one of the specifically enumerated schemes for constructing UIDs (defined by the UID type). The UID (second component) must follow the syntactic rules of the particular universal identifier scheme (defined by the third component). Note that these syntactic rules are not defined within HL7 but are defined by the rules of the particular universal identifier scheme (defined by the third component).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.4.3",
+                            Type = @"SubComponent",
+                            Position = @"RXD.13.4.3",
+                            Name = @"Universal Id Type",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0301",
+                            TableName = @"Universal ID type",
+                            Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.5",
+                            Type = @"Component",
+                            Position = @"RXD.13.5",
+                            Name = @"Location Status",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0306",
+                            TableName = @"Location status",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.6",
+                            Type = @"Component",
+                            Position = @"RXD.13.6",
+                            Name = @"Person Location Type",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0305",
+                            TableName = @"Person location type",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.7",
+                            Type = @"Component",
+                            Position = @"RXD.13.7",
+                            Name = @"Building",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0307",
+                            TableName = @"Building",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.8",
+                            Type = @"Component",
+                            Position = @"RXD.13.8",
+                            Name = @"Floor",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"IS",
+                            DataTypeName = @"Coded value for user-defined tables",
+                            TableId = @"0308",
+                            TableName = @"Floor",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.9",
+                            Type = @"Component",
+                            Position = @"RXD.13.9",
+                            Name = @"Street Address",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.10",
+                            Type = @"Component",
+                            Position = @"RXD.13.10",
+                            Name = @"Other Designation",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.11",
+                            Type = @"Component",
+                            Position = @"RXD.13.11",
+                            Name = @"City",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.12",
+                            Type = @"Component",
+                            Position = @"RXD.13.12",
+                            Name = @"State Or Province",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.13",
+                            Type = @"Component",
+                            Position = @"RXD.13.13",
+                            Name = @"Zip Or Postal Code",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.14",
+                            Type = @"Component",
+                            Position = @"RXD.13.14",
+                            Name = @"Country",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"ISO3166",
+                            TableName = @"Country Codes",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.15",
+                            Type = @"Component",
+                            Position = @"RXD.13.15",
+                            Name = @"Address Type",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0190",
+                            TableName = @"Address type",
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.13.16",
+                            Type = @"Component",
+                            Position = @"RXD.13.16",
+                            Name = @"Other Geographic Designation",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.14",
+                            Type = @"Field",
+                            Position = @"RXD.14",
+                            Name = @"Needs Human Review",
+                            Length = 1,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0136",
+                            TableName = @"Yes/no indicator",
+                            Description = @"Refer to HL7 table 0136 - Yes/no indicator for valid values. The values have the following meaning for this field:",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.15",
+                            Type = @"Field",
+                            Position = @"RXD.15",
+                            Name = @"Pharmacy/Treatment Supplier s Special Dispensing Instructions",
+                            Length = 200,
+                            Usage = @"O",
+                            Rpt = @"*",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains pharmacy or treatment supplier-generated special instructions to the provider dispensing/administering the order.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.15.1",
+                            Type = @"Component",
+                            Position = @"RXD.15.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>. Different coding schemes will have different elements here.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.15.2",
+                            Type = @"Component",
+                            Position = @"RXD.15.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question. E.g., myocardial infarction or X-ray impression. Its data type is string (ST).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.15.3",
+                            Type = @"Component",
+                            Position = @"RXD.15.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier. This component will serve to identify the coding scheme being used in the identifier component. The combination of the identifier and name of coding system components will be a unique code for a data item. Each system has a unique identifier. ASTM E1238-94, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, Coding schemes. Others may be added as needed. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.15.4",
+                            Type = @"Component",
+                            Position = @"RXD.15.4",
+                            Name = @"Alternate Components",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system. If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component. If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.15.5",
+                            Type = @"Component",
+                            Position = @"RXD.15.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.15.6",
+                            Type = @"Component",
+                            Position = @"RXD.15.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.16",
+                            Type = @"Field",
+                            Position = @"RXD.16",
+                            Name = @"Actual Strength",
+                            Length = 20,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"NM",
+                            DataTypeName = @"Numeric",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Use when RXD-2-dispense/give code does not specify the strength. This is the numeric part of the strength, used in combination with RXD-17-actual strength unit.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.17",
+                            Type = @"Field",
+                            Position = @"RXD.17",
+                            Name = @"Actual Strength Unit",
+                            Length = 60,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Use when RXD-2-dispense/give code does not specify the strength. This is the unit of the strength, used in combination with RXD-16-actual strength.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.17.1",
+                            Type = @"Component",
+                            Position = @"RXD.17.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>. Different coding schemes will have different elements here.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.17.2",
+                            Type = @"Component",
+                            Position = @"RXD.17.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question. E.g., myocardial infarction or X-ray impression. Its data type is string (ST).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.17.3",
+                            Type = @"Component",
+                            Position = @"RXD.17.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier. This component will serve to identify the coding scheme being used in the identifier component. The combination of the identifier and name of coding system components will be a unique code for a data item. Each system has a unique identifier. ASTM E1238-94, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, Coding schemes. Others may be added as needed. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.17.4",
+                            Type = @"Component",
+                            Position = @"RXD.17.4",
+                            Name = @"Alternate Components",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system. If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component. If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.17.5",
+                            Type = @"Component",
+                            Position = @"RXD.17.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.17.6",
+                            Type = @"Component",
+                            Position = @"RXD.17.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.18",
+                            Type = @"Field",
+                            Position = @"RXD.18",
+                            Name = @"Substance Lot Number",
+                            Length = 20,
+                            Usage = @"O",
+                            Rpt = @"*",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the lot number of the medical substance administered.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.19",
+                            Type = @"Field",
+                            Position = @"RXD.19",
+                            Name = @"Substance Expiration Date",
+                            Length = 26,
+                            Usage = @"O",
+                            Rpt = @"*",
+                            DataType = @"TS",
+                            DataTypeName = @"Time Stamp",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the expiration date of the medical substance administered.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.19.1",
+                            Type = @"Component",
+                            Position = @"RXD.19.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.20",
+                            Type = @"Field",
+                            Position = @"RXD.20",
+                            Name = @"Substance Manufacturer Name",
+                            Length = 60,
+                            Usage = @"O",
+                            Rpt = @"*",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = @"0227",
+                            TableName = @"Manufacturers of vaccines",
+                            Description = @"This field contains the manufacturer of the medical substance administered.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.20.1",
+                            Type = @"Component",
+                            Position = @"RXD.20.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>. Different coding schemes will have different elements here.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.20.2",
+                            Type = @"Component",
+                            Position = @"RXD.20.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question. E.g., myocardial infarction or X-ray impression. Its data type is string (ST).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.20.3",
+                            Type = @"Component",
+                            Position = @"RXD.20.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier. This component will serve to identify the coding scheme being used in the identifier component. The combination of the identifier and name of coding system components will be a unique code for a data item. Each system has a unique identifier. ASTM E1238-94, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, Coding schemes. Others may be added as needed. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.20.4",
+                            Type = @"Component",
+                            Position = @"RXD.20.4",
+                            Name = @"Alternate Components",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system. If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component. If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.20.5",
+                            Type = @"Component",
+                            Position = @"RXD.20.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.20.6",
+                            Type = @"Component",
+                            Position = @"RXD.20.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.21",
+                            Type = @"Field",
+                            Position = @"RXD.21",
+                            Name = @"Indication",
+                            Length = 200,
+                            Usage = @"O",
+                            Rpt = @"*",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the identifier of the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.21.1",
+                            Type = @"Component",
+                            Position = @"RXD.21.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>. Different coding schemes will have different elements here.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.21.2",
+                            Type = @"Component",
+                            Position = @"RXD.21.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question. E.g., myocardial infarction or X-ray impression. Its data type is string (ST).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.21.3",
+                            Type = @"Component",
+                            Position = @"RXD.21.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier. This component will serve to identify the coding scheme being used in the identifier component. The combination of the identifier and name of coding system components will be a unique code for a data item. Each system has a unique identifier. ASTM E1238-94, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, Coding schemes. Others may be added as needed. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.21.4",
+                            Type = @"Component",
+                            Position = @"RXD.21.4",
+                            Name = @"Alternate Components",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system. If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component. If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.21.5",
+                            Type = @"Component",
+                            Position = @"RXD.21.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.21.6",
+                            Type = @"Component",
+                            Position = @"RXD.21.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.22",
+                            Type = @"Field",
+                            Position = @"RXD.22",
+                            Name = @"Dispense Package Size",
+                            Length = 20,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"NM",
+                            DataTypeName = @"Numeric",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the size of package to be dispensed. Units are transmitted in RXE-29-dispense package size unit.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.23",
+                            Type = @"Field",
+                            Position = @"RXD.23",
+                            Name = @"Dispense Package Size Unit",
+                            Length = 60,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"CE",
+                            DataTypeName = @"Coded Element",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"This field contains the units in which RXE-28-dispense package size is denominated.",
+                            Sample = @"",
+                            FieldDatas = 
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.23.1",
+                            Type = @"Component",
+                            Position = @"RXD.23.1",
+                            Name = @"Identifier",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Sequence of characters (the code) that uniquely identifies the item being referenced by the <text>. Different coding schemes will have different elements here.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.23.2",
+                            Type = @"Component",
+                            Position = @"RXD.23.2",
+                            Name = @"Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Name or description of the item in question. E.g., myocardial infarction or X-ray impression. Its data type is string (ST).",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.23.3",
+                            Type = @"Component",
+                            Position = @"RXD.23.3",
+                            Name = @"Name Of Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"Each coding system is assigned a unique identifier. This component will serve to identify the coding scheme being used in the identifier component. The combination of the identifier and name of coding system components will be a unique code for a data item. Each system has a unique identifier. ASTM E1238-94, Diagnostic, procedure, observation, drug ID, and health outcomes coding systems are identified in the tables in Section 7.1.4, Coding schemes. Others may be added as needed. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.23.4",
+                            Type = @"Component",
+                            Position = @"RXD.23.4",
+                            Name = @"Alternate Components",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = @"These three components are defined analogously to the above for the alternate or local coding system. If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component. If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.23.5",
+                            Type = @"Component",
+                            Position = @"RXD.23.5",
+                            Name = @"Alternate Text",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.23.6",
+                            Type = @"Component",
+                            Position = @"RXD.23.6",
+                            Name = @"Name Of Alternate Coding System",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        
+                        },
+                        
+                        new HL7V2FieldData
+                        {
+                            Id = @"RXD.24",
+                            Type = @"Field",
+                            Position = @"RXD.24",
+                            Name = @"Dispense Package Method",
+                            Length = 2,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ID",
+                            DataTypeName = @"Coded values for HL7 tables",
+                            TableId = @"0321",
+                            TableName = @"Dispense method",
+                            Description = @"This field contains the method by which treatment is dispensed. Refer to HL7 table 0321 - Dispense method for valid values.",
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        };
+            }
+        }
+
+        public HL7V231SegmentRXD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field dispenseSubIDCounter;
+
+public HL7V231Field DispenseSubIDCounter
+{
+    get
+    {
+        if (dispenseSubIDCounter != null)
+        {
+            return dispenseSubIDCounter;
+        }
+
+        dispenseSubIDCounter = new HL7V231Field
+        {
+            field = message[@"RXD"][1],
+            Id = @"RXD.1",
+            Type = @"Field",
+            Position = @"RXD.1",
+            Name = @"Dispense Sub-ID Counter",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field starts with 1 the first time that medication is dispensed for this order. Increments by one with each additional issuance of medication.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dispenseSubIDCounter;
+    } 
+}
+internal HL7V231Field dispenseGiveCode;
+
+public HL7V231Field DispenseGiveCode
+{
+    get
+    {
+        if (dispenseGiveCode != null)
+        {
+            return dispenseGiveCode;
+        }
+
+        dispenseGiveCode = new HL7V231Field
+        {
+            field = message[@"RXD"][2],
+            Id = @"RXD.2",
+            Type = @"Field",
+            Position = @"RXD.2",
+            Name = @"Dispense/Give Code",
+            Length = 100,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0292",
+            TableName = @"Vaccines administered",
+            Description = @"This field identifies the medical substance ordered to be given to the patient; it is equivalent to OBR-4-universal service ID . See the RXE segment for a complete definition of the RXE-2-give code . If the substance dispensed is a vaccine, CVX codes may be used to code this field (see HL7 table 0292 - Vaccines administered).",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dispenseGiveCode;
+    } 
+}
+internal HL7V231Field dateTimeDispensed;
+
+public HL7V231Field DateTimeDispensed
+{
+    get
+    {
+        if (dateTimeDispensed != null)
+        {
+            return dateTimeDispensed;
+        }
+
+        dateTimeDispensed = new HL7V231Field
+        {
+            field = message[@"RXD"][3],
+            Id = @"RXD.3",
+            Type = @"Field",
+            Position = @"RXD.3",
+            Name = @"Date/Time Dispensed",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates when the pharmaceutical is dispensed from the pharmacy or treatment supplier. Use the time stamp format.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dateTimeDispensed;
+    } 
+}
+internal HL7V231Field actualDispenseAmount;
+
+public HL7V231Field ActualDispenseAmount
+{
+    get
+    {
+        if (actualDispenseAmount != null)
+        {
+            return actualDispenseAmount;
+        }
+
+        actualDispenseAmount = new HL7V231Field
+        {
+            field = message[@"RXD"][4],
+            Id = @"RXD.4",
+            Type = @"Field",
+            Position = @"RXD.4",
+            Name = @"Actual Dispense Amount",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the amount dispensed.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return actualDispenseAmount;
+    } 
+}
+internal HL7V231Field actualDispenseUnits;
+
+public HL7V231Field ActualDispenseUnits
+{
+    get
+    {
+        if (actualDispenseUnits != null)
+        {
+            return actualDispenseUnits;
+        }
+
+        actualDispenseUnits = new HL7V231Field
+        {
+            field = message[@"RXD"][5],
+            Id = @"RXD.5",
+            Type = @"Field",
+            Position = @"RXD.5",
+            Name = @"Actual Dispense Units",
+            Length = 60,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the units dispensed. Site-defined table. This field is required if the units are not implied by the actual dispense code. If present, it overrides units implied by the actual dispense code. This must be in simple units that reflect the actual quantity of the substance dispensed. It does not include compound units.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return actualDispenseUnits;
+    } 
+}
+internal HL7V231Field actualDosageForm;
+
+public HL7V231Field ActualDosageForm
+{
+    get
+    {
+        if (actualDosageForm != null)
+        {
+            return actualDosageForm;
+        }
+
+        actualDosageForm = new HL7V231Field
+        {
+            field = message[@"RXD"][6],
+            Id = @"RXD.6",
+            Type = @"Field",
+            Position = @"RXD.6",
+            Name = @"Actual Dosage Form",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"The dosage form indicates the manner in which the medication is aggregated for dispensing, e.g., tablets, capsules, suppositories. In some cases, this information is implied by the dispense/give code in RXD-2-dispense/give code. Use this field when the give code and the dispense code do not specify the dosage form.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return actualDosageForm;
+    } 
+}
+internal HL7V231Field prescriptionNumber;
+
+public HL7V231Field PrescriptionNumber
+{
+    get
+    {
+        if (prescriptionNumber != null)
+        {
+            return prescriptionNumber;
+        }
+
+        prescriptionNumber = new HL7V231Field
+        {
+            field = message[@"RXD"][7],
+            Id = @"RXD.7",
+            Type = @"Field",
+            Position = @"RXD.7",
+            Name = @"Prescription Number",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is equivalent in uniqueness to the pharmacy/treatment supplier filler order number. At some sites, this may be the pharmacy/treatment supplier (internal) sequential form. At other sites, this may be an external number.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return prescriptionNumber;
+    } 
+}
+internal HL7V231Field numberofRefillsRemaining;
+
+public HL7V231Field NumberofRefillsRemaining
+{
+    get
+    {
+        if (numberofRefillsRemaining != null)
+        {
+            return numberofRefillsRemaining;
+        }
+
+        numberofRefillsRemaining = new HL7V231Field
+        {
+            field = message[@"RXD"][8],
+            Id = @"RXD.8",
+            Type = @"Field",
+            Position = @"RXD.8",
+            Name = @"Number of Refills Remaining",
+            Length = 20,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is conditional because it is required when a prescription is dispensed to an outpatient. It is not relevant to inpatient treatment orders.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return numberofRefillsRemaining;
+    } 
+}
+internal HL7V231Field dispenseNotes;
+
+public HL7V231Field DispenseNotes
+{
+    get
+    {
+        if (dispenseNotes != null)
+        {
+            return dispenseNotes;
+        }
+
+        dispenseNotes = new HL7V231Field
+        {
+            field = message[@"RXD"][9],
+            Id = @"RXD.9",
+            Type = @"Field",
+            Position = @"RXD.9",
+            Name = @"Dispense Notes",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains free text notes to the person dispensing the medication (may include the ordering provider's original notes, as well as any notes from the formulary or the pharmacy or treatment supplier). This may contain free text describing a custom IV, mixture, or salve.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dispenseNotes;
+    } 
+}
+internal HL7V231Field dispensingProvider;
+
+public HL7V231Field DispensingProvider
+{
+    get
+    {
+        if (dispensingProvider != null)
+        {
+            return dispensingProvider;
+        }
+
+        dispensingProvider = new HL7V231Field
+        {
+            field = message[@"RXD"][10],
+            Id = @"RXD.10",
+            Type = @"Field",
+            Position = @"RXD.10",
+            Name = @"Dispensing Provider",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the provider ID of the person dispensing the pharmaceutical.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dispensingProvider;
+    } 
+}
+internal HL7V231Field substitutionStatus;
+
+public HL7V231Field SubstitutionStatus
+{
+    get
+    {
+        if (substitutionStatus != null)
+        {
+            return substitutionStatus;
+        }
+
+        substitutionStatus = new HL7V231Field
+        {
+            field = message[@"RXD"][11],
+            Id = @"RXD.11",
+            Type = @"Field",
+            Position = @"RXD.11",
+            Name = @"Substitution Status",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0167",
+            TableName = @"Substitution status",
+            Description = @"Refer to HL7 table 0167 - Substitution status for suggested values.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return substitutionStatus;
+    } 
+}
+internal HL7V231Field totalDailyDose;
+
+public HL7V231Field TotalDailyDose
+{
+    get
+    {
+        if (totalDailyDose != null)
+        {
+            return totalDailyDose;
+        }
+
+        totalDailyDose = new HL7V231Field
+        {
+            field = message[@"RXD"][12],
+            Id = @"RXD.12",
+            Type = @"Field",
+            Position = @"RXD.12",
+            Name = @"Total Daily Dose",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the total daily dose being dispensed as expressed in terms of the actual dispense units.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return totalDailyDose;
+    } 
+}
+internal HL7V231Field dispenseToLocation;
+
+public HL7V231Field DispenseToLocation
+{
+    get
+    {
+        if (dispenseToLocation != null)
+        {
+            return dispenseToLocation;
+        }
+
+        dispenseToLocation = new HL7V231Field
+        {
+            field = message[@"RXD"][13],
+            Id = @"RXD.13",
+            Type = @"Field",
+            Position = @"RXD.13",
+            Name = @"Dispense-To Location",
+            Length = 200,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"LA2",
+            DataTypeName = @"Location With Address Information (variant 2)",
+            TableId = null,
+            TableName = null,
+            Description = @"The first component (which is of PL data type with the component delimiters demoted to subcomponents) contains the inpatient or outpatient location where the drug or treatment was dispensed (if applicable). The default (null) value is the current census location for the patient. Site-specific table. The first eight components have the same form as the first eight components of PV1-3-assigned patient location. The final eight components replace the ninth component of PV1-3-assigned patient location and represent the full address specification.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dispenseToLocation;
+    } 
+}
+internal HL7V231Field needsHumanReview;
+
+public HL7V231Field NeedsHumanReview
+{
+    get
+    {
+        if (needsHumanReview != null)
+        {
+            return needsHumanReview;
+        }
+
+        needsHumanReview = new HL7V231Field
+        {
+            field = message[@"RXD"][14],
+            Id = @"RXD.14",
+            Type = @"Field",
+            Position = @"RXD.14",
+            Name = @"Needs Human Review",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"Refer to HL7 table 0136 - Yes/no indicator for valid values. The values have the following meaning for this field:",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return needsHumanReview;
+    } 
+}
+internal HL7V231Field pharmacyTreatmentSuppliersSpecialDispensingInstructions;
+
+public HL7V231Field PharmacyTreatmentSuppliersSpecialDispensingInstructions
+{
+    get
+    {
+        if (pharmacyTreatmentSuppliersSpecialDispensingInstructions != null)
+        {
+            return pharmacyTreatmentSuppliersSpecialDispensingInstructions;
+        }
+
+        pharmacyTreatmentSuppliersSpecialDispensingInstructions = new HL7V231Field
+        {
+            field = message[@"RXD"][15],
+            Id = @"RXD.15",
+            Type = @"Field",
+            Position = @"RXD.15",
+            Name = @"Pharmacy/Treatment Supplier s Special Dispensing Instructions",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains pharmacy or treatment supplier-generated special instructions to the provider dispensing/administering the order.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return pharmacyTreatmentSuppliersSpecialDispensingInstructions;
+    } 
+}
+internal HL7V231Field actualStrength;
+
+public HL7V231Field ActualStrength
+{
+    get
+    {
+        if (actualStrength != null)
+        {
+            return actualStrength;
+        }
+
+        actualStrength = new HL7V231Field
+        {
+            field = message[@"RXD"][16],
+            Id = @"RXD.16",
+            Type = @"Field",
+            Position = @"RXD.16",
+            Name = @"Actual Strength",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Use when RXD-2-dispense/give code does not specify the strength. This is the numeric part of the strength, used in combination with RXD-17-actual strength unit.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return actualStrength;
+    } 
+}
+internal HL7V231Field actualStrengthUnit;
+
+public HL7V231Field ActualStrengthUnit
+{
+    get
+    {
+        if (actualStrengthUnit != null)
+        {
+            return actualStrengthUnit;
+        }
+
+        actualStrengthUnit = new HL7V231Field
+        {
+            field = message[@"RXD"][17],
+            Id = @"RXD.17",
+            Type = @"Field",
+            Position = @"RXD.17",
+            Name = @"Actual Strength Unit",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"Use when RXD-2-dispense/give code does not specify the strength. This is the unit of the strength, used in combination with RXD-16-actual strength.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return actualStrengthUnit;
+    } 
+}
+internal HL7V231Field substanceLotNumber;
+
+public HL7V231Field SubstanceLotNumber
+{
+    get
+    {
+        if (substanceLotNumber != null)
+        {
+            return substanceLotNumber;
+        }
+
+        substanceLotNumber = new HL7V231Field
+        {
+            field = message[@"RXD"][18],
+            Id = @"RXD.18",
+            Type = @"Field",
+            Position = @"RXD.18",
+            Name = @"Substance Lot Number",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the lot number of the medical substance administered.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return substanceLotNumber;
+    } 
+}
+internal HL7V231Field substanceExpirationDate;
+
+public HL7V231Field SubstanceExpirationDate
+{
+    get
+    {
+        if (substanceExpirationDate != null)
+        {
+            return substanceExpirationDate;
+        }
+
+        substanceExpirationDate = new HL7V231Field
+        {
+            field = message[@"RXD"][19],
+            Id = @"RXD.19",
+            Type = @"Field",
+            Position = @"RXD.19",
+            Name = @"Substance Expiration Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the expiration date of the medical substance administered.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return substanceExpirationDate;
+    } 
+}
+internal HL7V231Field substanceManufacturerName;
+
+public HL7V231Field SubstanceManufacturerName
+{
+    get
+    {
+        if (substanceManufacturerName != null)
+        {
+            return substanceManufacturerName;
+        }
+
+        substanceManufacturerName = new HL7V231Field
+        {
+            field = message[@"RXD"][20],
+            Id = @"RXD.20",
+            Type = @"Field",
+            Position = @"RXD.20",
+            Name = @"Substance Manufacturer Name",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0227",
+            TableName = @"Manufacturers of vaccines",
+            Description = @"This field contains the manufacturer of the medical substance administered.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return substanceManufacturerName;
+    } 
+}
+internal HL7V231Field indication;
+
+public HL7V231Field Indication
+{
+    get
+    {
+        if (indication != null)
+        {
+            return indication;
+        }
+
+        indication = new HL7V231Field
+        {
+            field = message[@"RXD"][21],
+            Id = @"RXD.21",
+            Type = @"Field",
+            Position = @"RXD.21",
+            Name = @"Indication",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identifier of the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return indication;
+    } 
+}
+internal HL7V231Field dispensePackageSize;
+
+public HL7V231Field DispensePackageSize
+{
+    get
+    {
+        if (dispensePackageSize != null)
+        {
+            return dispensePackageSize;
+        }
+
+        dispensePackageSize = new HL7V231Field
+        {
+            field = message[@"RXD"][22],
+            Id = @"RXD.22",
+            Type = @"Field",
+            Position = @"RXD.22",
+            Name = @"Dispense Package Size",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the size of package to be dispensed. Units are transmitted in RXE-29-dispense package size unit.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dispensePackageSize;
+    } 
+}
+internal HL7V231Field dispensePackageSizeUnit;
+
+public HL7V231Field DispensePackageSizeUnit
+{
+    get
+    {
+        if (dispensePackageSizeUnit != null)
+        {
+            return dispensePackageSizeUnit;
+        }
+
+        dispensePackageSizeUnit = new HL7V231Field
+        {
+            field = message[@"RXD"][23],
+            Id = @"RXD.23",
+            Type = @"Field",
+            Position = @"RXD.23",
+            Name = @"Dispense Package Size Unit",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the units in which RXE-28-dispense package size is denominated.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dispensePackageSizeUnit;
+    } 
+}
+internal HL7V231Field dispensePackageMethod;
+
+public HL7V231Field DispensePackageMethod
+{
+    get
+    {
+        if (dispensePackageMethod != null)
+        {
+            return dispensePackageMethod;
+        }
+
+        dispensePackageMethod = new HL7V231Field
+        {
+            field = message[@"RXD"][24],
+            Id = @"RXD.24",
+            Type = @"Field",
+            Position = @"RXD.24",
+            Name = @"Dispense Package Method",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0321",
+            TableName = @"Dispense method",
+            Description = @"This field contains the method by which treatment is dispensed. Refer to HL7 table 0321 - Dispense method for valid values.",
+            Sample = @"",
+        };
+
+        
+
+        
+
+        
+
+        return dispensePackageMethod;
+    } 
+}
+
+    }
+}

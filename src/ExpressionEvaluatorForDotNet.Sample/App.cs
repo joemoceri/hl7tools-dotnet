@@ -66,7 +66,7 @@ namespace ExpressionEvaluatorForDotNet.Sample
 
             var v23 = message.AsV23();
 
-            Console.WriteLine(v23.msh.ApplicationAcknowledgementType.Value);
+            //Console.WriteLine(v23.msh.ApplicationAcknowledgementType.Value);
 
             var adta01 = v23.GetADT_A01();
 

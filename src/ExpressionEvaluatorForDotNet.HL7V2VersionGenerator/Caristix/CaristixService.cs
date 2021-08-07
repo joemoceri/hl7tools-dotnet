@@ -120,7 +120,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             if (testMode)
             {
-                var path = Path.Combine(basePath, "TestData", version, "Segments");
+                var path = Path.Combine(basePath, "Caristix", "LocalData", version, "Segments");
                 foreach (var file in Directory.GetFiles(path))
                 {
                     var segment = JsonConvert.DeserializeObject<SegmentResponse>(File.ReadAllText(file));

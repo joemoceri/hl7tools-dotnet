@@ -4,17 +4,36 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23Field
     {
-        public readonly HL7V2Field field;
-        public readonly IList<HL7V23FieldRepetition> fieldRepetitions;
-        public readonly HL7V2FieldData fieldData;
+        public HL7V2Field field { get; init; }
 
-        public HL7V23Field(HL7V2Field field, HL7V2FieldData fieldData, IList<HL7V23FieldRepetition> fieldRepetitions = null)
-        {
-            this.field = field;
-            this.fieldData = fieldData;
-            this.fieldRepetitions = fieldRepetitions;
-        }
+        public IList<HL7V23FieldRepetition> fieldRepetitions { get; internal set; }
 
-        public string Value { get { return field.Value; } }
+        public string Id { get; init; }
+
+        public string Type { get; init; }
+
+        public string Position { get; init; }
+
+        public string Name { get; init; }
+
+        public int Length { get; init; }
+
+        public string Usage { get; init; }
+
+        public string Rpt { get; init; }
+
+        public string DataType { get; init; }
+
+        public string DataTypeName { get; init; }
+
+        public string TableId { get; init; }
+
+        public string TableName { get; init; }
+
+        public string Description { get; init; }
+
+        public string Sample { get; init; }
+
+        public string Value { get { return field?.Value; } }
     }
 }

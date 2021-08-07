@@ -1,6 +1,6 @@
 ﻿namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V2[{-VERSION-}]Field
+    public class HL7V[{-VERSION-}]Field
     {
         public readonly HL7V2Field field;
         public readonly HL7V2FieldData fieldData;
