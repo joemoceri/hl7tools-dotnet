@@ -29,6 +29,13 @@
 	  <Content Remove="Output\V21\HL7V21Field.cs" />
 	  <Content Remove="Output\V21\HL7V21FieldRepetition.cs" />
 	  <Content Remove="Output\V21\HL7V21SubComponent.cs" />
+	  <Content Remove="Output\V21\Segments\HL7V21SegmentDG1.cs" />
+	  <Content Remove="Output\V21\Segments\HL7V21SegmentEVN.cs" />
+	  <Content Remove="Output\V21\Segments\HL7V21SegmentMSH.cs" />
+	  <Content Remove="Output\V21\Segments\HL7V21SegmentNK1.cs" />
+	  <Content Remove="Output\V21\Segments\HL7V21SegmentPID.cs" />
+	  <Content Remove="Output\V21\Segments\HL7V21SegmentPV1.cs" />
+	  <Content Remove="Output\V21\TriggerEvents\HL7V21TriggerEventADT_A01.cs" />
 	  <Content Remove="Output\V22\HL7V22Component.cs" />
 	  <Content Remove="Output\V22\HL7V22Field.cs" />
 	  <Content Remove="Output\V22\HL7V22FieldRepetition.cs" />
@@ -82,6 +89,13 @@
 	  <Compile Include="Output\V21\HL7V21Field.cs" />
 	  <Compile Include="Output\V21\HL7V21FieldRepetition.cs" />
 	  <Compile Include="Output\V21\HL7V21SubComponent.cs" />
+	  <Compile Include="Output\V21\Segments\HL7V21SegmentDG1.cs" />
+	  <Compile Include="Output\V21\Segments\HL7V21SegmentEVN.cs" />
+	  <Compile Include="Output\V21\Segments\HL7V21SegmentMSH.cs" />
+	  <Compile Include="Output\V21\Segments\HL7V21SegmentNK1.cs" />
+	  <Compile Include="Output\V21\Segments\HL7V21SegmentPID.cs" />
+	  <Compile Include="Output\V21\Segments\HL7V21SegmentPV1.cs" />
+	  <Compile Include="Output\V21\TriggerEvents\HL7V21TriggerEventADT_A01.cs" />
 	  <Compile Include="Output\V22\HL7V22Component.cs" />
 	  <Compile Include="Output\V22\HL7V22Field.cs" />
 	  <Compile Include="Output\V22\HL7V22FieldRepetition.cs" />

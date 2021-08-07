@@ -112,15 +112,15 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 foreach (var triggerEvent in triggerEvents)
                 {
-                    var segmentTokens = GetTriggerEventTokens(v, triggerEvent);
-                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Segment.template.cs.txt"));
+                    var triggerEventTokens = GetTriggerEventTokens(v, triggerEvent);
+                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2TriggerEvent.template.cs.txt"));
 
-                    foreach (var token in segmentTokens)
+                    foreach (var token in triggerEventTokens)
                     {
                         template = template.Replace(token.Key, token.Value);
                     }
 
-                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Segments", $"HL7V{v}Segment{triggerEvent.Id}.cs"), template);
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "TriggerEvents", $"HL7V{v}TriggerEvent{triggerEvent.Id}.cs"), template);
                 }
             }
 
@@ -161,12 +161,30 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 string GetSegmentProperties()
                 {
-                    return null;
+                    var result = string.Empty;
+
+                    for (var i = 0; i < triggerEvent.Segments.Count; i++)
+                    {
+                        var id = triggerEvent.Segments[i].Id;
+                        var template = $"public readonly HL7V{version}Segment{id} {id.ToLower()};{Environment.NewLine}";
+                        result += template;
+                    }
+
+                    return result;
                 }
 
                 string GetSegmentInitializers()
                 {
-                    return null;
+                    var result = string.Empty;
+
+                    for (var i = 0; i < triggerEvent.Segments.Count; i++)
+                    {
+                        var id = triggerEvent.Segments[i].Id;
+                        var template = $"this.{id.ToLower()} = new HL7V{version}Segment{id}(this.message);{Environment.NewLine}";
+                        result += template;
+                    }
+
+                    return result;
                 }
             }
 

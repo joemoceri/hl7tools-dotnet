@@ -1,8 +1,10 @@
-﻿namespace ExpressionEvaluatorForDotNet
+﻿using System.Collections.Generic;
+
+namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_CLASS_NAME-}]
     {
-        public readonly HL7V[{-VERSION-}]Message message;
+        public readonly HL7V2Message message;
         [{-SEGMENT_PROPERTIES-}]
 
         public string Id { get { return [{-ID-}]; } }
@@ -19,7 +21,7 @@
             }
         }
 
-        public HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_CLASS_NAME-}](HL7V[{-VERSION-}]Message message)
+        public HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_CLASS_NAME-}](HL7V2Message message)
         {
             this.message = message;
             [{-SEGMENT_INITIALIZERS-}]
