@@ -14,7 +14,7 @@
         public HL7V23TriggerEventADT_A01 GetADT_A01()
         {
             // TODO: Fill this out, validate
-            return new HL7V23TriggerEventADT_A01(this);
+            return new HL7V23TriggerEventADT_A01(message);
         }
     }
 }

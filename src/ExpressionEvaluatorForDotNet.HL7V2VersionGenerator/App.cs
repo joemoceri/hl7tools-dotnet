@@ -24,10 +24,9 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             foreach (var version in versions)
             {
-                //CreateTestData(version);
+                var v = version.Replace(".", string.Empty);
 
-                //var segments = caristixService.GetSegments(version);
-                //var triggerEvents = caristixService.GetTriggerEvents(version);
+                //CreateTestData(version);
 
                 // tables
                 //var tables = caristixService.GetTables(version);
@@ -63,42 +62,57 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "DataTypes", $"HL7V{v}DataType{dataType.Id}.cs"), template);
                 //}
 
-                var v = version.Replace(".", string.Empty);
 
-                // fields
-                var fieldTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Field.template.cs.txt"));
+                //// fields
+                //var fieldTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Field.template.cs.txt"));
 
-                fieldTemplate = fieldTemplate.Replace("[{-VERSION-}]", v);
+                //fieldTemplate = fieldTemplate.Replace("[{-VERSION-}]", v);
 
-                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Field.cs"), fieldTemplate);
+                //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Field.cs"), fieldTemplate);
 
-                // field repetitions
-                var fieldRepetitionTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2FieldRepetition.template.cs.txt"));
+                //// field repetitions
+                //var fieldRepetitionTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2FieldRepetition.template.cs.txt"));
 
-                fieldRepetitionTemplate = fieldRepetitionTemplate.Replace("[{-VERSION-}]", v);
+                //fieldRepetitionTemplate = fieldRepetitionTemplate.Replace("[{-VERSION-}]", v);
 
-                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}FieldRepetition.cs"), fieldRepetitionTemplate);
+                //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}FieldRepetition.cs"), fieldRepetitionTemplate);
 
-                // components
-                var componentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Component.template.cs.txt"));
+                //// components
+                //var componentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Component.template.cs.txt"));
 
-                componentTemplate = componentTemplate.Replace("[{-VERSION-}]", v);
+                //componentTemplate = componentTemplate.Replace("[{-VERSION-}]", v);
 
-                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Component.cs"), componentTemplate);
+                //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Component.cs"), componentTemplate);
 
-                // sub components
-                var subComponentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2SubComponent.template.cs.txt"));
+                //// sub components
+                //var subComponentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2SubComponent.template.cs.txt"));
 
-                subComponentTemplate = subComponentTemplate.Replace("[{-VERSION-}]", v);
+                //subComponentTemplate = subComponentTemplate.Replace("[{-VERSION-}]", v);
 
-                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}SubComponent.cs"), subComponentTemplate);
+                //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}SubComponent.cs"), subComponentTemplate);
 
-                // segments
-                var segments = caristixService.GetSegments(version);
+                //// segments
+                //var segments = caristixService.GetSegments(version);
 
-                foreach (var segment in segments)
+                //foreach (var segment in segments)
+                //{
+                //    var segmentTokens = GetSegmentTokens(v, segment);
+                //    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Segment.template.cs.txt"));
+
+                //    foreach (var token in segmentTokens)
+                //    {
+                //        template = template.Replace(token.Key, token.Value);
+                //    }
+
+                //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Segments", $"HL7V{v}Segment{segment.Id}.cs"), template);
+                //}
+
+                // trigger events
+                var triggerEvents = caristixService.GetTriggerEvents(version);
+
+                foreach (var triggerEvent in triggerEvents)
                 {
-                    var segmentTokens = GetSegmentTokens(v, segment);
+                    var segmentTokens = GetTriggerEventTokens(v, triggerEvent);
                     var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Segment.template.cs.txt"));
 
                     foreach (var token in segmentTokens)
@@ -106,7 +120,53 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                         template = template.Replace(token.Key, token.Value);
                     }
 
-                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Segments", $"HL7V{v}Segment{segment.Id}.cs"), template);
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Segments", $"HL7V{v}Segment{triggerEvent.Id}.cs"), template);
+                }
+            }
+
+            Dictionary<string, string> GetTriggerEventTokens(string version, TriggerEventResponse triggerEvent)
+            {
+                var result = new Dictionary<string, string>();
+
+                result.Add("[{-VERSION-}]", version);
+                result.Add("[{-TRIGGER_EVENT_CLASS_NAME-}]", triggerEvent.Id);
+                result.Add("[{-ID-}]", WrapInQuotesOrNull(triggerEvent.Id));
+                result.Add("[{-MESSAGE_STRUCTURE_ID-}]", WrapInQuotesOrNull(triggerEvent.MessageStructureId));
+                result.Add("[{-EVENT_DESCRIPTION-}]", WrapInQuotesOrNull(triggerEvent.EventDescription));
+                result.Add("[{-SAMPLE-}]", WrapInQuotesOrNull(triggerEvent.Sample));
+                result.Add("[{-SEGMENT_PROPERTIES-}]", GetSegmentProperties());
+                result.Add("[{-SEGMENT_INITIALIZERS-}]", GetSegmentInitializers());
+
+                string chapters = null;
+
+                if (triggerEvent.Chapters != null && triggerEvent.Chapters.Count > 0)
+                {
+                    var chaptersStrings = string.Empty;
+                    for (var i = 0; i < triggerEvent.Chapters.Count; i++)
+                    {
+                        chaptersStrings += $"\"{triggerEvent.Chapters[i]}\",{Environment.NewLine}";
+                    }
+
+                    chaptersStrings = chaptersStrings.Trim();
+
+                    chapters = @$"new[]
+                    {{
+                        {chaptersStrings}
+                    }}";
+                }
+
+                result.Add("[{-CHAPTERS-}]", WrapInQuotesOrNull(chapters, true));
+
+                return result;
+
+                string GetSegmentProperties()
+                {
+                    return null;
+                }
+
+                string GetSegmentInitializers()
+                {
+                    return null;
                 }
             }
 

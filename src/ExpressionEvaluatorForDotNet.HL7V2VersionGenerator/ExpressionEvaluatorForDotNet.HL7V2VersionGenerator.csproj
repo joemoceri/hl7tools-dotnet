@@ -74,6 +74,7 @@
 	  <Content Remove="Output\V28\HL7V28FieldRepetition.cs" />
 	  <Content Remove="Output\V28\HL7V28SubComponent.cs" />
 	  <Content Remove="Output\V28\Segments\HL7V28SegmentACC.cs" />
+	  <Content Remove="Output\V28\Segments\HL7V28SegmentSTZ.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -126,6 +127,7 @@
 	  <Compile Include="Output\V28\HL7V28FieldRepetition.cs" />
 	  <Compile Include="Output\V28\HL7V28SubComponent.cs" />
 	  <Compile Include="Output\V28\Segments\HL7V28SegmentACC.cs" />
+	  <Compile Include="Output\V28\Segments\HL7V28SegmentSTZ.cs" />
 	</ItemGroup>
 
   <ItemGroup>

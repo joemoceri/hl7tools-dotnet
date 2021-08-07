@@ -1,11 +1,25 @@
 ﻿namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V2[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_ID-}]
+    public class HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_CLASS_NAME-}]
     {
-        private readonly HL7V2[{-VERSION-}]Message message;
+        public readonly HL7V[{-VERSION-}]Message message;
         [{-SEGMENT_PROPERTIES-}]
 
-        public HL7V2[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_ID-}](HL7V2[{-VERSION-}]Message message)
+        public string Id { get { return [{-ID-}]; } }
+        public string MessageStructureId { get { return [{-MESSAGE_STRUCTURE_ID-}]; } }
+        public string EventDescription { get { return [{-EVENT_DESCRIPTION-}]; } }
+
+        public string Sample { get { return [{-SAMPLE-}]; } }
+
+        public IList<string> Chapters 
+        { 
+            get 
+            {
+                return [{-CHAPTERS-}];
+            }
+        }
+
+        public HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_CLASS_NAME-}](HL7V[{-VERSION-}]Message message)
         {
             this.message = message;
             [{-SEGMENT_INITIALIZERS-}]

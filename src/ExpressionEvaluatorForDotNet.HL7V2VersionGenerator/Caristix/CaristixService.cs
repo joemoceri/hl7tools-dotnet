@@ -74,7 +74,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             if (testMode)
             {
-                var path = Path.Combine(basePath, "TestData", version, "TriggerEvents");
+                var path = Path.Combine(basePath, "Caristix", "LocalData", version, "TriggerEvents");
                 foreach (var file in Directory.GetFiles(path))
                 {
                     var triggerEvent = JsonConvert.DeserializeObject<TriggerEventResponse>(File.ReadAllText(file));
