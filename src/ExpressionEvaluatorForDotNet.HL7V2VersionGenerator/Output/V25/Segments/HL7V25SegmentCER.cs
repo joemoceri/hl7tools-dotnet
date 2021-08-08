@@ -4679,19 +4679,19 @@ public HL7V25Field SetIDCER
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = setIDCER.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -4810,19 +4810,19 @@ public HL7V25Field SerialNumber
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = serialNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -4941,19 +4941,19 @@ public HL7V25Field Version
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = version.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -5072,19 +5072,19 @@ public HL7V25Field GrantingAuthority
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = grantingAuthority.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -5203,19 +5203,19 @@ public HL7V25Field IssuingAuthority
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = issuingAuthority.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -5334,19 +5334,19 @@ public HL7V25Field SignatureofIssuingAuthority
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = signatureofIssuingAuthority.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -5465,19 +5465,19 @@ public HL7V25Field GrantingCountry
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = grantingCountry.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -5596,19 +5596,19 @@ public HL7V25Field GrantingStateProvince
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = grantingStateProvince.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -5727,19 +5727,19 @@ public HL7V25Field GrantingCountyParish
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = grantingCountyParish.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -5858,19 +5858,19 @@ public HL7V25Field CertificateType
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = certificateType.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -5989,19 +5989,19 @@ public HL7V25Field CertificateDomain
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = certificateDomain.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -6120,19 +6120,19 @@ public HL7V25Field SubjectID
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = subjectID.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -6251,19 +6251,19 @@ public HL7V25Field SubjectName
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = subjectName.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -6382,19 +6382,19 @@ public HL7V25Field SubjectDirectoryAttributeExtensionHealthProfessionalData
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = subjectDirectoryAttributeExtensionHealthProfessionalData.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -6513,19 +6513,19 @@ public HL7V25Field SubjectPublicKeyInfo
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = subjectPublicKeyInfo.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -6644,19 +6644,19 @@ public HL7V25Field AuthorityKeyIdentifier
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = authorityKeyIdentifier.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -6775,19 +6775,19 @@ public HL7V25Field BasicConstraint
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = basicConstraint.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -6906,19 +6906,19 @@ public HL7V25Field CRLDistributionPoint
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = cRLDistributionPoint.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -7037,19 +7037,19 @@ public HL7V25Field JurisdictionCountry
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = jurisdictionCountry.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -7168,19 +7168,19 @@ public HL7V25Field JurisdictionStateProvince
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = jurisdictionStateProvince.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -7299,19 +7299,19 @@ public HL7V25Field JurisdictionCountyParish
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = jurisdictionCountyParish.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -7430,19 +7430,19 @@ public HL7V25Field JurisdictionBreadth
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = jurisdictionBreadth.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -7561,19 +7561,19 @@ public HL7V25Field GrantingDate
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = grantingDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -7692,19 +7692,19 @@ public HL7V25Field IssuingDate
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = issuingDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -7823,19 +7823,19 @@ public HL7V25Field ActivationDate
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = activationDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -7954,19 +7954,19 @@ public HL7V25Field InactivationDate
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = inactivationDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -8085,19 +8085,19 @@ public HL7V25Field ExpirationDate
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = expirationDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -8216,19 +8216,19 @@ public HL7V25Field RenewalDate
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = renewalDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -8347,19 +8347,19 @@ public HL7V25Field RevocationDate
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = revocationDate.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -8478,19 +8478,19 @@ public HL7V25Field RevocationReasonCode
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = revocationReasonCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
@@ -8609,19 +8609,19 @@ public HL7V25Field CertificateStatus
                                 var subComponent = new HL7V25SubComponent
                                 {
                                     subComponent = certificateStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                    Id = componentFieldData.Id,
-                                    Type = componentFieldData.Type,
-                                    Position = componentFieldData.Position,
-                                    Name = componentFieldData.Name,
-                                    Length = componentFieldData.Length,
-                                    Usage = componentFieldData.Usage,
-                                    Rpt = componentFieldData.Rpt,
-                                    DataType = componentFieldData.DataType,
-                                    DataTypeName = componentFieldData.DataTypeName,
-                                    TableId = componentFieldData.TableId,
-                                    TableName = componentFieldData.TableName,
-                                    Description = componentFieldData.Description,
-                                    Sample = componentFieldData.Sample
+                                    Id = subComponentFieldData.Id,
+                                    Type = subComponentFieldData.Type,
+                                    Position = subComponentFieldData.Position,
+                                    Name = subComponentFieldData.Name,
+                                    Length = subComponentFieldData.Length,
+                                    Usage = subComponentFieldData.Usage,
+                                    Rpt = subComponentFieldData.Rpt,
+                                    DataType = subComponentFieldData.DataType,
+                                    DataTypeName = subComponentFieldData.DataTypeName,
+                                    TableId = subComponentFieldData.TableId,
+                                    TableName = subComponentFieldData.TableName,
+                                    Description = subComponentFieldData.Description,
+                                    Sample = subComponentFieldData.Sample
                                 };
 
                                 subComponents.Add(subComponent);
