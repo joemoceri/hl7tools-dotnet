@@ -100,9 +100,19 @@ namespace ExpressionEvaluatorForDotNet
         /// Add a <see cref="HL7V2Field"/> to this message segments <see cref="Fields"/>.
         /// </summary>
         /// <param name="value">The <see cref="HL7V2Field.Value"/>.</param>
+        /// <returns><see cref="HL7V2Field"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2Field AddField(string value)
+        {
+            return AddField(value, true);
+        }
+
+        /// <summary>
+        /// Add a <see cref="HL7V2Field"/> to this message segments <see cref="Fields"/>.
+        /// </summary>
+        /// <param name="value">The <see cref="HL7V2Field.Value"/>.</param>
         /// <param name="includeFieldRepetition">Whether to include field repetition. Default is <see cref="true"/>.</param>
         /// <returns><see cref="HL7V2Field"/> if successful, otherwise <see cref="null"/>.</returns>
-        public HL7V2Field AddField(string value, bool includeFieldRepetition = true)
+        public HL7V2Field AddField(string value, bool includeFieldRepetition)
         {
             var field = new HL7V2Field
             {

@@ -258,9 +258,19 @@ namespace ExpressionEvaluatorForDotNet
         /// Removes a <see cref="HL7V2MessageSegment"/> from <see cref="MessageSegments"/>.
         /// </summary>
         /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
+        /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
+        public bool RemoveMessageSegment(string segmentName)
+        {
+            return RemoveMessageSegment(segmentName, 0);
+        }
+
+        /// <summary>
+        /// Removes a <see cref="HL7V2MessageSegment"/> from <see cref="MessageSegments"/>.
+        /// </summary>
+        /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
         /// <param name="index">The index. Default is 0.</param>
         /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
-        public bool RemoveMessageSegment(string segmentName, int index = 0)
+        public bool RemoveMessageSegment(string segmentName, int index)
         {
             var fr = messageSegments.Where(f => f.SegmentName.Equals(segmentName)).ToList();
 
@@ -278,7 +288,18 @@ namespace ExpressionEvaluatorForDotNet
         /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
         /// <param name="index">The index. Default is 0.</param>
         /// <returns><see cref="HL7V2MessageSegment"/> if successful, otherwise <see cref="null"/>.</returns>
-        public HL7V2MessageSegment InsertMessageSegment(string segmentName, int index = 0)
+        public HL7V2MessageSegment InsertMessageSegment(string segmentName)
+        {
+            return InsertMessageSegment(segmentName, 0);
+        }
+
+        /// <summary>
+        /// Inserts a <see cref="HL7V2MessageSegment"/> into <see cref="MessageSegments"/>.
+        /// </summary>
+        /// <param name="segmentName">The <see cref="HL7V2MessageSegment.SegmentName"/>.</param>
+        /// <param name="index">The index. Default is 0.</param>
+        /// <returns><see cref="HL7V2MessageSegment"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2MessageSegment InsertMessageSegment(string segmentName, int index)
         {
             if (index > messageSegments.Count || index < 0)
             {

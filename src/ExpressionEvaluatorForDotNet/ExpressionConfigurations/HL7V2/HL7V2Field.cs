@@ -49,9 +49,18 @@ namespace ExpressionEvaluatorForDotNet
         /// <summary>
         /// Gets a list of this Fields <see cref="HL7V2Component"/>'s. By default it references the first repetition.
         /// </summary>
+        /// <returns><see cref="IList{HL7V2Component}"/>if found, otherwise <see cref="null"/>.</returns>
+        public IList<HL7V2Component> Components()
+        {
+            return Components(1);
+        }
+
+        /// <summary>
+        /// Gets a list of this Fields <see cref="HL7V2Component"/>'s. By default it references the first repetition.
+        /// </summary>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
         /// <returns><see cref="IList{HL7V2Component}"/>if found, otherwise <see cref="null"/>.</returns>
-        public IList<HL7V2Component> Components(int repetitionId = 1)
+        public IList<HL7V2Component> Components(int repetitionId)
         {
             return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetitionId))?.Components;
         }
@@ -60,9 +69,19 @@ namespace ExpressionEvaluatorForDotNet
         /// Gets a <see cref="HL7V2Component"/> on this field if it exists by <see cref="HL7V2Component.Id"/> and <see cref="HL7V2FieldRepetition.Id"/> (default 1).
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component GetComponent(int id)
+        {
+            return GetComponent(id, 1);
+        }
+
+        /// <summary>
+        /// Gets a <see cref="HL7V2Component"/> on this field if it exists by <see cref="HL7V2Component.Id"/> and <see cref="HL7V2FieldRepetition.Id"/> (default 1).
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
         /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>
-        public HL7V2Component GetComponent(int id, int repetitionId = 1)
+        public HL7V2Component GetComponent(int id, int repetitionId)
         {
             return FieldRepetitions?.FirstOrDefault(fr => fr.Id.Equals(repetitionId))?.Components?.FirstOrDefault(f => f.Id.Equals(id));
         }
@@ -88,9 +107,22 @@ namespace ExpressionEvaluatorForDotNet
         /// Get a <see cref="HL7V2Component"/> by <see cref="HL7V2Component.Id"/> and <see cref="HL7V2FieldRepetition.Id"/> (default 1) via indexer.
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component this[int id]
+        {
+            get
+            {
+                return this[id, 1];
+            }
+        }
+
+        /// <summary>
+        /// Get a <see cref="HL7V2Component"/> by <see cref="HL7V2Component.Id"/> and <see cref="HL7V2FieldRepetition.Id"/> (default 1) via indexer.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns><see cref="HL7V2Component"/> if found, otherwise <see cref="null"/>.</returns>
-        public HL7V2Component this[int id, int repetitionId = 1]
+        public HL7V2Component this[int id, int repetitionId]
         {
             get
             {
@@ -103,9 +135,19 @@ namespace ExpressionEvaluatorForDotNet
         /// Add's a <see cref="HL7V2Component"/> to this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
         /// </summary>
         /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component AddComponent(string value)
+        {
+            return AddComponent(value, 1);
+        }
+
+        /// <summary>
+        /// Add's a <see cref="HL7V2Component"/> to this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+        /// </summary>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
-        public HL7V2Component AddComponent(string value, int repetitionId = 1)
+        public HL7V2Component AddComponent(string value, int repetitionId)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetitionId));
 
@@ -139,9 +181,19 @@ namespace ExpressionEvaluatorForDotNet
         /// Remove's a <see cref="HL7V2Component"/> from this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
+        public bool RemoveComponent(int id)
+        {
+            return RemoveComponent(id, 1);
+        }
+
+        /// <summary>
+        /// Remove's a <see cref="HL7V2Component"/> from this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns><see cref="true"/> if successful, otherwise <see cref="false"/>.</returns>
-        public bool RemoveComponent(int id, int repetitionId = 1)
+        public bool RemoveComponent(int id, int repetitionId)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetitionId));
 
@@ -169,9 +221,20 @@ namespace ExpressionEvaluatorForDotNet
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component InsertComponent(int id, string value)
+        {
+            return InsertComponent(id, value, 1);
+        }
+
+        /// <summary>
+        /// Insert's a <see cref="HL7V2Component"/> into this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
         /// <param name="repetition">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
-        public HL7V2Component InsertComponent(int id, string value, int repetition = 1)
+        public HL7V2Component InsertComponent(int id, string value, int repetition)
         {
             if (FieldRepetitions.Count == 0)
             {
@@ -223,9 +286,20 @@ namespace ExpressionEvaluatorForDotNet
         /// </summary>
         /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
         /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component UpdateComponent(int id, string value)
+        {
+            return UpdateComponent(id, value, 1);
+        }
+
+        /// <summary>
+        /// Update's a <see cref="HL7V2Component"/> from this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
         /// <param name="repetition">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
-        public HL7V2Component UpdateComponent(int id, string value, int repetition = 1)
+        public HL7V2Component UpdateComponent(int id, string value, int repetition)
         {
             if (FieldRepetitions.Count == 0)
             {

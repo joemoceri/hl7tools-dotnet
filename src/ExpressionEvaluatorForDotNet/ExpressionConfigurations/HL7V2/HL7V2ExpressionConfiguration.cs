@@ -76,7 +76,7 @@ namespace ExpressionEvaluatorForDotNet
             RebuildEncodingConversions();
 
             // TODO: I think this should update the delimiters. I need more concrete examples to test against. But this will work for single FHS / BHS segments, I'm not sure for more. I need a test message to see.
-            specialSegmentHeaders = new List<string>()
+            specialSegmentHeaders = new List<string>
             {
                 "MSH",
                 "FHS",
@@ -139,7 +139,7 @@ namespace ExpressionEvaluatorForDotNet
         {
             operators = new List<ExpressionConfigurationOperator>
             {
-                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, fieldDelimiter)
+                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, fieldDelimiter, null, null, null)
             };
 
             options = new ExpressionConfigurationOptions

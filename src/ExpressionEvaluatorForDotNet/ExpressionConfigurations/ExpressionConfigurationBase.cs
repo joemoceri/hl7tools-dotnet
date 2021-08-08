@@ -66,9 +66,9 @@ namespace ExpressionEvaluatorForDotNet
     OperatorPrecedence operatorPrecedence,
     OperatorType expressionOperatorType,
     string operatorName,
-    Func<ExpressionGroup, ExpressionResult> solveOperatorExpression = null,
-    Action<ExpressionGroup> onBeforeOperatorExpressionSolved = null,
-    Action<ExpressionResult> onAfterOperatorExpressionSolved = null)
+    Func<ExpressionGroup, ExpressionResult> solveOperatorExpression,
+    Action<ExpressionGroup> onBeforeOperatorExpressionSolved,
+    Action<ExpressionResult> onAfterOperatorExpressionSolved)
         {
             return new ExpressionConfigurationOperator
             {

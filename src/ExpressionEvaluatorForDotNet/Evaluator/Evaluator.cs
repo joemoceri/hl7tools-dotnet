@@ -1134,7 +1134,7 @@ namespace ExpressionEvaluatorForDotNet
 									if (i != 0)
 									{
 										// if the one after the negative is an operator
-										if (CheckNextCharacterForOperator(expression[i - 1], mathOperators, expression, i - 1))
+										if (CheckNextCharacterForOperator(expression[i - 1], mathOperators, i - 1))
 										{
 											startSubstringIndex = i; // then include the negative, otherwise default to normal i + 1
 											substringLength++;
@@ -1153,7 +1153,7 @@ namespace ExpressionEvaluatorForDotNet
 
 							return expression.Substring(0, operatorLocationIndex);
 
-							bool CheckNextCharacterForOperator(char ch, IList<ExpressionConfigurationOperator> mathOperators, string expression, int opIndex)
+							bool CheckNextCharacterForOperator(char ch, IList<ExpressionConfigurationOperator> mathOperators, int opIndex)
 							{
 								bool result = false;
 								for (int i = 0; i < mathOperators.Count(); i++)
