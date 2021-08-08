@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentUB1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -211,8 +212,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The pair in this field can repeat up to eight times (46A, 47A, 48A, 49A, 46B, 47B, 48B, and 49B).  Refer to user-defined table 0153 - Value code for suggested values. This field is defined by HCFA or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.1",
                             Type = @"Component",
@@ -246,8 +246,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -283,8 +282,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the special program indicator.  UB82 Field 44.  This field is defined by HCFA or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.12.1",
                             Type = @"Component",
@@ -390,8 +388,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -409,8 +406,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the PSRO/UR approval indicator.  UB82 field 87. This field is defined by HCFA or other regulatory agencies",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.13.1",
                             Type = @"Component",
@@ -516,8 +512,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -571,8 +566,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The set of values in this field can repeat up to five times.  UB82 Fields 28-32. This field is defined by HCFA or other regulatory agencies",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.16.1",
                             Type = @"Component",
@@ -587,8 +581,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.16.1.1",
                             Type = @"SubComponent",
@@ -694,8 +687,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -714,8 +706,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -733,8 +724,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"UB82 Field 33. This field is defined by HCFA or other regulatory agencies",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.17.1",
                             Type = @"Component",
@@ -840,8 +830,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -960,8 +949,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V23Field setIDUB1;
+        internal HL7V23Field setIDUB1;
 
 public HL7V23Field SetIDUB1
 {
@@ -3973,6 +3961,5 @@ public HL7V23Field UB82Locator45
         return uB82Locator45;
     } 
 }
-
     }
 }

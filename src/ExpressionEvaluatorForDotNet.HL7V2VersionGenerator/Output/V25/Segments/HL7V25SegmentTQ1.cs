@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentTQ1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"TQ1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field specifies the numeric quantity of the service that should be provided at each service interval. For example, if two blood cultures are to be obtained every 4 hours, the quantity would be 2 or if three units of blood are to be typed and cross-matched, the quantity would be 3. The default value for this field is 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.2.1",
                             Type = @"Component",
@@ -101,8 +101,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.2.2.1",
                             Type = @"SubComponent",
@@ -208,10 +207,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -229,8 +226,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The repeating frequency with which the treatment is to be administered. It is similar to the frequency and SIG code tables used in order entry systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.3.1",
                             Type = @"Component",
@@ -245,8 +241,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Repeat pattern",
                             Description = @"A code representing the repeat pattern defined by the other components of this data type. Refer to User-defined Table 335 - Repeat Pattern for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.3.1.1",
                             Type = @"SubComponent",
@@ -406,8 +401,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -588,8 +582,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The General Timing Specification as defined by the Version 3 Data Types document.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -625,8 +618,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field is used to define the interval between schedules for service request or bottle records. If this field contains a value, it overrides any value in the explicit time interval field. The units component of the CQ data type is constrained to units of time.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.5.1",
                             Type = @"Component",
@@ -659,8 +651,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.5.2.1",
                             Type = @"SubComponent",
@@ -766,10 +757,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -787,8 +776,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the duration for which the service is requested.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.6.1",
                             Type = @"Component",
@@ -821,8 +809,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.6.2.1",
                             Type = @"SubComponent",
@@ -928,10 +915,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -949,8 +934,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field may be specified by the requester, in which case it indicates the earliest date/time at which the services should be started. In many cases, however, the start date/time will be implied or will be defined by other fields in the service request record (e.g., urgency - STAT). In such a case, this field will be empty.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.7.1",
                             Type = @"Component",
@@ -986,8 +970,7 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1005,8 +988,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"When filled in by the requester of the service, this field should contain the latest date/time that the service should be performed. If it has not been performed by the specified time, it should not be performed at all. The requester may not always fill in this value, yet the filling service may fill it in on the basis of the instruction it receives and the actual start time.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.8.1",
                             Type = @"Component",
@@ -1042,8 +1024,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1061,8 +1042,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"Extended Priority Codes",
                             Description = @"This field describes the urgency of the request. If this field is blank, the default is R. Refer to User-Defined Table 0485 - Extended Priority Codes for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.9.1",
                             Type = @"Component",
@@ -1222,8 +1202,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1295,8 +1274,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the duration for which a single performance of a service is requested. The quantity component of this field must be a positive, non-zero number when populated. The units component is constrained to be units of time.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.13.1",
                             Type = @"Component",
@@ -1329,8 +1307,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.13.2.1",
                             Type = @"SubComponent",
@@ -1436,10 +1413,8 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1468,8 +1443,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
             this.message = message;
         }
 
-        
-internal HL7V25Field setIDTQ1;
+        internal HL7V25Field setIDTQ1;
 
 public HL7V25Field SetIDTQ1
 {
@@ -3302,6 +3276,5 @@ public HL7V25Field Totaloccurrences
         return totaloccurrences;
     } 
 }
-
     }
 }

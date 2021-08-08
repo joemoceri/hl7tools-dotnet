@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentGOL
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"GOL"; } }
 
@@ -26,6 +26,7 @@ The business and/or application must assume responsibility for maintaining knowl
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }
@@ -89,8 +90,7 @@ The business and/or application must assume responsibility for maintaining knowl
                             TableName = null,
                             Description = @"This field identifies the goal.  This is the identifier from an institution's master list of goals.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.3.1",
                             Type = @"Component",
@@ -516,8 +516,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -537,8 +536,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 Note:  It is required that the value in this field be unique over time.  This instance ID identifies a specific instance for a specific patient and is unique across all patients.  See entity ID data type description in Chapter 2.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.4.1",
                             Type = @"Component",
@@ -616,8 +614,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -637,8 +634,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
 
 Note:  Based on application use, this field is required to be unique over time.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.5.1",
                             Type = @"Component",
@@ -716,8 +712,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -791,8 +786,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
 
 Note:  This field can be used to differentiate separate goal lists that may be managed independently within applications.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.9.1",
                             Type = @"Component",
@@ -1218,8 +1212,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1237,8 +1230,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field indicates the category of caregiver with responsibility for managing this specific goal (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.).  This is a repeating field to allow identification of all disciplines that may have the responsibility for this goal.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.10.1",
                             Type = @"Component",
@@ -1664,8 +1656,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1683,8 +1674,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the current point in the continuum of a goal review cycle (e.g., due, initiated, reviewed, overdue, verified, etc.).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.11.1",
                             Type = @"Component",
@@ -2110,8 +2100,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2201,8 +2190,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field provides an indicator of progress towards achievement of the goal (e.g., achieved, ahead of schedule, delayed, failed to achieve, etc.).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.16.1",
                             Type = @"Component",
@@ -2628,8 +2616,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2665,8 +2652,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains an indication of the state of the goal (e.g., Active, Canceled, Inactive, Suspended, etc.).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.18.1",
                             Type = @"Component",
@@ -3092,8 +3078,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3131,8 +3116,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 Note:  This field is focused on a specific person/group that is directly patient-related.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.20.1",
                             Type = @"Component",
@@ -3558,8 +3542,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3577,8 +3560,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the identification of the person(s) on whom the goal is focused.  This is a repeating field which allows for the identification of a group of individuals.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.21.1",
                             Type = @"Component",
@@ -3597,8 +3579,7 @@ XPN.1 will be empty when XPN.7 is MSK. It MAY be empty when XPN.7 is NAV.
 
 Usage Note: If a person’s name has only one component, that name will be sent in XPN.1 Family Name. This is common practice in some countries such as Indonesia. This note does not cover the case where only one part of a person's multi-part name is known (e.g., only know ""John"" of ""John Doe"").",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.21.1.1",
                             Type = @"SubComponent",
@@ -3697,8 +3678,7 @@ Also, for clarity, the <last name prefix> has been renamed to <own surname prefi
 If no portion of the person's surname is derived from the surname of the person's partner or spouse, this component is not valued. Otherwise, if the surname of the partner or spouse has legally changed to become (or incorporate) the person's surname, this is the surname of the partner or spouse immediately prior to such change.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3849,8 +3829,7 @@ In general this component provides an indication of the representation provided 
                             TableName = @"Name Context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 – Name Context for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.21.9.1",
                             Type = @"SubComponent",
@@ -4276,8 +4255,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4392,8 +4370,7 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4415,8 +4392,7 @@ Note: As Mood Code changes the meaning of the segment it must only be used in ne
 
 Refer to HL7 Table 0725 – Mood Codes  in Chapter 2C, Code Tables, for allowed values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.22.1",
                             Type = @"Component",
@@ -4853,8 +4829,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -4865,8 +4840,7 @@ Value set version ID is required if CNE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field actionCode;
+        internal HL7V271Field actionCode;
 
 public HL7V271Field ActionCode
 {
@@ -7761,6 +7735,5 @@ Refer to HL7 Table 0725 – Mood Codes  in Chapter 2C, Code Tables, for allowed 
         return moodCode;
     } 
 }
-
     }
 }

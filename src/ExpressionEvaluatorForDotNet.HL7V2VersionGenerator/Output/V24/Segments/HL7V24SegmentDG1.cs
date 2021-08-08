@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentDG1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"DG1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Diagnosis code",
                             Description = @" Use this field instead of DG1-2 - diagnosis coding method and DG1-4 - diagnosis description. (Those two fields have been retained for backward compatibility only.)  DG1-3 - diagnosis code DG1 contains the diagnosis code assigned to this diagnosis.  Refer to User-defined Table 0051 - Diagnosis code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.3.1",
                             Type = @"Component",
@@ -196,8 +196,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -233,8 +232,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"This field contains the date/time that the diagnosis was determined.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.5.1",
                             Type = @"Component",
@@ -268,8 +266,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -305,8 +302,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = @"Major diagnostic category",
                             Description = @"This field has been retained for backward compatibility only.  This field should only be used in a master file transaction.  Refer to User-defined Table 0118 - Major diagnostic category for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.7.1",
                             Type = @"Component",
@@ -416,8 +412,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -435,8 +430,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = @"Diagnosis related group",
                             Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  It contains the DRG for the transaction.  Interim DRGs could be determined for an encounter.  Refer to User-defined Table 0055 - Diagnosis Related Group for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.8.1",
                             Type = @"Component",
@@ -546,8 +540,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -601,8 +594,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = @"Outlier type",
                             Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the type of outlier (i.e. period of care beyond DRG-standard stay in facility) that has been paid.  Refer to User-defined Table 0083 - Outlier type for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.11.1",
                             Type = @"Component",
@@ -712,8 +704,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -749,8 +740,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the amount of money that has been approved for an outlier payment.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.13.1",
                             Type = @"Component",
@@ -765,8 +755,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.9.26, MO - money) is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.13.1.1",
                             Type = @"SubComponent",
@@ -805,8 +794,7 @@ Example:
 where USD is the ISO 4217 code for the U.S. American dollar.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -880,8 +868,7 @@ where USD is the ISO 4217 code for the U.S. American dollar.",
 
 Subcomponents of range units: <identifier (ST)> & <text (ST)> & <name of coding system (IS)> & <alternate identifier (ST)> & <alternate text (ST)> & <name of alternate coding system (IS)>",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.13.5.1",
                             Type = @"SubComponent",
@@ -991,8 +978,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1011,8 +997,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Refers to HL7 Table 0298 - CP range type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1066,8 +1051,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"This field contains the individual responsible for generating the diagnosis information. Multiple names and identifiers for the same person may be sent in this field, not multiple diagnosing clinicians. The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.16.1",
                             Type = @"Component",
@@ -1100,8 +1084,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.9.19,  FN - family name.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.16.2.1",
                             Type = @"SubComponent",
@@ -1189,8 +1172,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"The portion of the person's surname (in most Western usage, the last name) that is derived from the surname of the person's partner or spouse, as distinguished from the part derived from the person's own surname. This component is optional.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1316,8 +1298,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency of department) that creates the data. User-defined Table 0363 - Assigning authority is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.16.9.1",
                             Type = @"SubComponent",
@@ -1369,8 +1350,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1460,8 +1440,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.16.14.1",
                             Type = @"SubComponent",
@@ -1513,8 +1492,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1550,8 +1528,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.16.16.1",
                             Type = @"SubComponent",
@@ -1661,8 +1638,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1680,8 +1656,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"This component contains the start and end date/times that define the period during which this name was valid. See section 2.9.14, DR - date/time range for description of subcomponents.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.16.17.1",
                             Type = @"SubComponent",
@@ -1696,8 +1671,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.16.17.1",
                             Type = @"SubComponent",
@@ -1731,8 +1705,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = null,
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1750,8 +1723,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range. Note that the TS (time stamp) data type allows the specification of precision.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.16.17.1",
                             Type = @"SubComponent",
@@ -1785,10 +1757,8 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = null,
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1807,8 +1777,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1865,8 +1834,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"This field contains the time stamp that indicates the date and time that the attestation was signed.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.19.1",
                             Type = @"Component",
@@ -1900,8 +1868,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1912,8 +1879,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
             this.message = message;
         }
 
-        
-internal HL7V24Field setIDDG1;
+        internal HL7V24Field setIDDG1;
 
 public HL7V24Field SetIDDG1
 {
@@ -4404,6 +4370,5 @@ public HL7V24Field AttestationDateTime
         return attestationDateTime;
     } 
 }
-
     }
 }

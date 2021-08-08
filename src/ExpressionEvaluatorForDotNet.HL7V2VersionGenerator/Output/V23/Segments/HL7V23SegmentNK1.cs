@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentNK1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NK1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the name of the next of kin or associated party.  Multiple names for the same person are allowed, but the legal name must be sent in the first sequence.  If the legal name is not sent, then the repeat delimiter must be sent in the first sequence.  Refer to Chapter 2 for the name type code table",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.2.1",
                             Type = @"Component",
@@ -210,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -229,8 +228,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Relationship",
                             Description = @"This field contains the actual personal relationship that the next of kin/associated parties has to the patient.  Refer to user-defined table 0063 - Relationship for suggested values.  Examples might include: brother, sister, mother, father, friend, spouse, emergency contact, employer, etc.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.3.1",
                             Type = @"Component",
@@ -336,8 +334,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -355,8 +352,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the address of the next of kin/associated party.  Multiple addresses are allowed for the same person.  The mailing address must be sent in the first sequence.  If the mailing address is not sent, then the repeat delimiter must be sent in the first sequence",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.4.1",
                             Type = @"Component",
@@ -537,8 +533,7 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -556,8 +551,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the telephone number of the next of kin/associated party.  Multiple phone numbers are allowed for the same person.  The primary telephone number must be sent in the first sequence.  If the primary telephone number is not sent, then the repeat delimiter must be sent in the first sequence.  Refer to Chapter 2 for suggested telecommunication use and equipment type codes",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.5.1",
                             Type = @"Component",
@@ -717,8 +711,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -736,8 +729,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the business telephone number of the next of kin/associated party.  Multiple phone numbers are allowed for the same person.  The primary business telephone number must be sent in the first sequence.  If the primary business telephone number is not sent, then the repeat delimiter must be sent in the first sequence.  Refer to Chapter 2 for suggested telecommunication use and equipment type codes",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.6.1",
                             Type = @"Component",
@@ -897,8 +889,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -916,8 +907,7 @@ Allowable Values:  codes defined by government",
                             TableName = @"Contact role",
                             Description = @"This field indicates the specific relationship role (next of kin, employer, emergency contact, etc.).  Refer to user-defined table 0131 - Contact role for suggested values.  This field specifies the role that the next of kin/associated parties plays with regard to the patient.  Examples might include an employer, emergency contact, next of kin, insurance company, state agency, federal agency, etc",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.7.1",
                             Type = @"Component",
@@ -1023,8 +1013,7 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1096,8 +1085,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the employer’s job code and the employee classification used for the next of kin/associated parties at their place of employment. However, if the contact role is the patient’s employer, this field contains the job code/class of the patient at their place of employment.  Refer to user-defined tables 0327 - Job code and 0328 - Employee classification for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.11.1",
                             Type = @"Component",
@@ -1131,8 +1119,7 @@ Allowable Values:  codes defined by government",
                             Description = @"This component contains the person’s employee classification.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1150,8 +1137,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"For backward compatibility, the ST data type can be sent; however HL7 recommends that the CX data type be used for new implementations.  This field contains the number that the employer assigns to the employee that is acting as next of kin/associated parties. However, if the contact role is the patient’s employer, this field contains the employee number of the patient at their place of employment",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.12.1",
                             Type = @"Component",
@@ -1220,8 +1206,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.12.4.1",
                             Type = @"SubComponent",
@@ -1273,8 +1258,7 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1310,8 +1294,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.12.6.1",
                             Type = @"SubComponent",
@@ -1363,10 +1346,8 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1384,8 +1365,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the name of the organization that serves as a next of kin/associated party or as the next of kin of the patient.  This field may also be used to communicate the name of the organization at which the associated party works.  Multiple names for the same organization may be sent.  If multiple names are sent, the legal name must be sent in the first sequence.  If the legal name is not sent, then a repeat delimiter must be sent in the first sequence",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.13.1",
                             Type = @"Component",
@@ -1490,8 +1470,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.13.6.1",
                             Type = @"SubComponent",
@@ -1543,8 +1522,7 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1580,8 +1558,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The assigning facility is a unique identifier of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.13.8.1",
                             Type = @"SubComponent",
@@ -1633,10 +1610,8 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1690,8 +1665,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the next of kin/associated party’s birth date and time",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.16.1",
                             Type = @"Component",
@@ -1707,8 +1681,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1780,8 +1753,7 @@ Allowable Values:  codes defined by government",
                             TableName = @"Primary language",
                             Description = @"This field identifies the next of kin/associated party’s primary speaking language.  HL7 recommends using ISO 639 as the suggested values in user-defined table 0296 - Language",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.20.1",
                             Type = @"Component",
@@ -1887,8 +1859,7 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1924,8 +1895,7 @@ Allowable Values:  codes defined by government",
                             TableName = @"Publicity code",
                             Description = @"This field indicates what level of publicity is allowed (e.g., No Publicity, Family Only) for the next of kin/associated party.  Refer to user-defined table 0215 - Publicity code for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.22.1",
                             Type = @"Component",
@@ -2031,8 +2001,7 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2104,8 +2073,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field indicates the maiden name of the next of kin/associated party’s mother",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.26.1",
                             Type = @"Component",
@@ -2247,8 +2215,7 @@ Allowable Values:  codes defined by government",
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2266,8 +2233,7 @@ Allowable Values:  codes defined by government",
                             TableName = @"Nationality",
                             Description = @"This field identifies the nation or national group to which the next of kin/associated party belongs.  This information may be different than the person’s citizenship in countries in which multiple nationalities are recognized (e.g., Spain: Basque, Catalan, etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.27.1",
                             Type = @"Component",
@@ -2373,8 +2339,7 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2410,8 +2375,7 @@ Allowable Values:  codes defined by government",
                             TableName = @"Contact reason",
                             Description = @"This field identifies how the contact should be used (e.g., contact my employer if patient is unable to work). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.29.1",
                             Type = @"Component",
@@ -2517,8 +2481,7 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2536,8 +2499,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the names of the people to contact, depending on the value of the relationship defined in NK1-3-relationship.  This field is typically needed when the NK1 is an organization.  The legal name should be sent first in the sequence.  Refer to HL7 table 0200 - Name type for valid values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.30.1",
                             Type = @"Component",
@@ -2679,8 +2641,7 @@ Allowable Values:  codes defined by government",
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2698,8 +2659,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the telephone numbers of the contact person depending on the value of the relationship defined in NK1-3-relationship.  This field is typically needed when the NK1 is an organization.  The primary telephone number must be sent in the first sequence.  If the primary telephone number is not sent, then a repeat delimiter must be sent in the first sequence.  Refer to HL7 tables 0201 Telecommunication use code and 0202 - Telecommunication equipment type for valid values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.31.1",
                             Type = @"Component",
@@ -2859,8 +2819,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2878,8 +2837,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the addresses of the contact person depending on the value of the relationship defined in NK1-3-relationship.  This field is typically used when the NK1 is an organization.  When multiple addresses are sent, the mailing address must be sent first in the sequence",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.32.1",
                             Type = @"Component",
@@ -3060,8 +3018,7 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3079,8 +3036,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the identifiers for the next of kin/associated party, for example, Social Security Number, driver’s license, etc",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.33.1",
                             Type = @"Component",
@@ -3149,8 +3105,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.33.4.1",
                             Type = @"SubComponent",
@@ -3202,8 +3157,7 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3239,8 +3193,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.33.6.1",
                             Type = @"SubComponent",
@@ -3292,10 +3245,8 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3378,8 +3329,7 @@ Allowable Values:  codes defined by government",
             this.message = message;
         }
 
-        
-internal HL7V23Field setIDNextofKin;
+        internal HL7V23Field setIDNextofKin;
 
 public HL7V23Field SetIDNextofKin
 {
@@ -8225,6 +8175,5 @@ public HL7V23Field ContactPersonSocialSecurityNumber
         return contactPersonSocialSecurityNumber;
     } 
 }
-
     }
 }

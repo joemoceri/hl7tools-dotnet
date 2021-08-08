@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentRXR
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RXR"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Some current “route codes,” such as some of the NDC-derived codes include the site already.  In such cases, the entire code can be included in this field as a “locally-defined code” for the CE data type.  Refer to HL7 table 0162 - Route of administration for valid values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXR.1.1",
                             Type = @"Component",
@@ -158,8 +158,7 @@ Some current “route codes,” such as some of the NDC-derived codes include th
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -179,8 +178,7 @@ Some current “route codes,” such as some of the NDC-derived codes include th
 
 As a CE data type, this field may be extended to cover a wide variety of body site codes (e.g., when SNOMED is used as the table source)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXR.2.1",
                             Type = @"Component",
@@ -286,8 +284,7 @@ As a CE data type, this field may be extended to cover a wide variety of body si
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -305,8 +302,7 @@ As a CE data type, this field may be extended to cover a wide variety of body si
                             TableName = @"Administration device",
                             Description = @"This field contains the mechanical device used to aid in the administration of the drug or other treatment.  Common examples are IV-sets of different types.  Refer to HL7 table 0164 - Administration device for valid entries",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXR.3.1",
                             Type = @"Component",
@@ -412,8 +408,7 @@ As a CE data type, this field may be extended to cover a wide variety of body si
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -431,8 +426,7 @@ As a CE data type, this field may be extended to cover a wide variety of body si
                             TableName = @"Administration method",
                             Description = @"Administration method identifies the specific method requested for the administration of the drug or treatment to the patient.  Refer to HL7 table 0165 - Administration method for valid values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXR.4.1",
                             Type = @"Component",
@@ -538,8 +532,7 @@ As a CE data type, this field may be extended to cover a wide variety of body si
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -550,8 +543,7 @@ As a CE data type, this field may be extended to cover a wide variety of body si
             this.message = message;
         }
 
-        
-internal HL7V23Field route;
+        internal HL7V23Field route;
 
 public HL7V23Field Route
 {
@@ -1078,6 +1070,5 @@ public HL7V23Field AdministrationMethod
         return administrationMethod;
     } 
 }
-
     }
 }

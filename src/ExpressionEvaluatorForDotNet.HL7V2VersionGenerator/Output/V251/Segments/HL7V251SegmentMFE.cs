@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentMFE
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MFE"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -89,8 +90,7 @@ Note:  Note that this segment does not contain a Set ID field. The MFE-2 - MFN C
                             TableName = null,
                             Description = @"An optional effective date/time can be included for the record-level action specified. It is the date/time the originating system expects that the event is to have been completed on the receiving system. If this field is not present, the effective date/time should default to the current date/time (when the message is received).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFE.3.1",
                             Type = @"Component",
@@ -126,8 +126,7 @@ Note:  Note that this segment does not contain a Set ID field. The MFE-2 - MFN C
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -176,8 +175,7 @@ The following exception to the use of the CE data type is deprecated in v 2.3.1,
             this.message = message;
         }
 
-        
-internal HL7V251Field recordLevelEventCode;
+        internal HL7V251Field recordLevelEventCode;
 
 public HL7V251Field RecordLevelEventCode
 {
@@ -837,6 +835,5 @@ public HL7V251Field PrimaryKeyValueType
         return primaryKeyValueType;
     } 
 }
-
     }
 }

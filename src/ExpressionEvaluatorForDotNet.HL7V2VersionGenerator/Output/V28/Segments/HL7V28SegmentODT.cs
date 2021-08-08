@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentODT
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ODT"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Tray specifications are useful for early and late tray delivery in cases where a patient undergoes a procedure during normal feeding times. Tray specifications can also be used for guest trays, no trays, and messages. The value MSG means the ODT segment does not specify the type of tray but provides additional information about an existing tray. This information is found in ODT-3-text instruction.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ODT.1.1",
                             Type = @"Component",
@@ -480,8 +480,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -499,8 +498,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"When blank, the modifier applies to all service periods. This field allows you to designate one or more of the feeding periods during a day by combining the codes as needed. It can also combine with quantity/timing to give such information as which service period the order belongs with. This field is identical in meaning with ODS-2-service period. See section 4.8.1.2, ""ODS-2 Service Period (CWE) 00270"" for further details.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ODT.2.1",
                             Type = @"Component",
@@ -928,8 +926,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -961,8 +958,7 @@ Example:
             this.message = message;
         }
 
-        
-internal HL7V28Field trayType;
+        internal HL7V28Field trayType;
 
 public HL7V28Field TrayType
 {
@@ -1359,6 +1355,5 @@ Example:
         return textInstruction;
     } 
 }
-
     }
 }

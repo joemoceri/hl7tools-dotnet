@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentAUT
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"AUT"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Insurance plan ID",
                             Description = @"This field contains the ID of the coverage plan authorizing treatment.  Values should be entries in a locally-defined table of plan codes.  Refer to user-defined table 0072 - Insurance company plans for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.1.1",
                             Type = @"Component",
@@ -156,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -175,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Insurance company ID codes",
                             Description = @"This field contains the ID of the insurance company or other entity that administers the authorizing coverage plan.  Values may be entries in a locally-defined table of payor codes.  Refer to userdefined table 0285 - Insurance company ID codes for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.2.1",
                             Type = @"Component",
@@ -282,8 +280,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -319,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the effective date of the authorization",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.4.1",
                             Type = @"Component",
@@ -336,8 +332,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -355,8 +350,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the expiration date after which the authorization to treat will no longer be in effect from the perspective of the coverage plan",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.5.1",
                             Type = @"Component",
@@ -372,8 +366,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -397,8 +390,7 @@ The second component is optional because this field, itself, is already defined 
 
 The third component is optional.  If used it should contain the application identifier for the coverage application. The application identifier is a string of up to six characters that is uniquely associated with an application.  A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications.  This list of application identifiers becomes one of the healthcare provider facility’s master dictionary lists.  Since applications fulfilling different application roles can send and receive referral messages containing authorizations, the coverage application identifier may not identify the application sending or receiving a particular message.  Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.6.1",
                             Type = @"Component",
@@ -468,8 +460,7 @@ The third component is optional.  If used it should contain the application iden
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -487,8 +478,7 @@ The third component is optional.  If used it should contain the application iden
                             TableName = null,
                             Description = @"This field contains the dollar limit for reimbursement specified by the coverage plan for the authorized treatment",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.7.1",
                             Type = @"Component",
@@ -503,8 +493,7 @@ The third component is optional.  If used it should contain the application iden
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.7.1.1",
                             Type = @"SubComponent",
@@ -542,8 +531,7 @@ Example:
 where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -615,8 +603,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             TableName = null,
                             Description = @"A coded value, data type CE, defined by the standard table of units for either time or quantity  (see for example, the tables in Section 7.1.4, “Coding schemes”).  This describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (e.g., count); it is required if <from value> and  <to value> are present",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.7.5.1",
                             Type = @"SubComponent",
@@ -722,8 +709,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -742,8 +728,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"Refers to HL7 table 0298 - CP range type for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -797,8 +782,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             TableName = null,
                             Description = @"This field contains the date that the authorization originated with the authorizing party",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.10.1",
                             Type = @"Component",
@@ -814,8 +798,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -826,8 +809,7 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
             this.message = message;
         }
 
-        
-internal HL7V23Field authorizingPayorPlanCode;
+        internal HL7V23Field authorizingPayorPlanCode;
 
 public HL7V23Field AuthorizingPayorPlanCode
 {
@@ -2142,6 +2124,5 @@ public HL7V23Field ProcessDate
         return processDate;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentPR1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PR1"; } }
 
@@ -273,8 +273,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field setIdProcedure;
+        internal HL7V21Field setIdProcedure;
 
 public HL7V21Field SetIdProcedure
 {
@@ -1976,6 +1975,5 @@ public HL7V21Field ConsentCode
         return consentCode;
     } 
 }
-
     }
 }

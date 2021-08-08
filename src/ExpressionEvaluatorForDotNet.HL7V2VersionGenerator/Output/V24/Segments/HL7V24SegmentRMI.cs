@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentRMI
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RMI"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Risk management incident code",
                             Description = @"A code depicting the incident that occurred during a patients stay. Refer to User-defined Table 0427 - Risk management incident code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RMI.1.1",
                             Type = @"Component",
@@ -160,8 +160,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -179,8 +178,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"This field contains the date and time the Risk Management Incident identified in RMI-1 - Risk management incident code occurred.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RMI.2.1",
                             Type = @"Component",
@@ -214,8 +212,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -233,8 +230,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = @"Incident type code",
                             Description = @"A code depicting a classification of the incident type. Refer to User-defined Table 0428 - Incident type code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RMI.3.1",
                             Type = @"Component",
@@ -344,8 +340,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -356,8 +351,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
             this.message = message;
         }
 
-        
-internal HL7V24Field riskManagementIncidentCode;
+        internal HL7V24Field riskManagementIncidentCode;
 
 public HL7V24Field RiskManagementIncidentCode
 {
@@ -749,6 +743,5 @@ public HL7V24Field IncidentTypeCode
         return incidentTypeCode;
     } 
 }
-
     }
 }

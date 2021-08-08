@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentUB1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB1"; } }
 
@@ -453,8 +453,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field setIdUb82;
+        internal HL7V21Field setIdUb82;
 
 public HL7V21Field SetIdUb82
 {
@@ -3466,6 +3465,5 @@ public HL7V21Field Ub82Locator45
         return ub82Locator45;
     } 
 }
-
     }
 }

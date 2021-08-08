@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentSPR
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SPR"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the name of the stored procedure that is to be executed. Values for this field are defined in the function-specific chapters of this specification; site-specific stored procedure names begin with the letter 'Z.'",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPR.3.1",
                             Type = @"Component",
@@ -192,8 +192,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -211,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the list of parameter names and values to be passed to the stored procedure, in the form '<segment field name> ^ <value1& value2 & value3 ...>.' A single valued parameter contains only a single subcomponent in the second component: thus no subcomponent delimiters are needed (e.g., <segment field name> ^ <value>). A simple list of values (i.e., a one-dimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: ' <segment field name> ^ <value1& value2 &...> .' Refer to Section 2.24.16.4, 'EQL query statement (ST) 00710 for segment field naming conventions.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPR.4.1",
                             Type = @"Component",
@@ -246,8 +244,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component contains the field value or values in the form value1& value2 & value3",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -258,8 +255,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V231Field queryTag;
+        internal HL7V231Field queryTag;
 
 public HL7V231Field QueryTag
 {
@@ -782,6 +778,5 @@ public HL7V231Field InputParameterList
         return inputParameterList;
     } 
 }
-
     }
 }

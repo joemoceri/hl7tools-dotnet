@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentPID
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PID"; } }
 
@@ -399,8 +399,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field setIdPatientId;
+        internal HL7V21Field setIdPatientId;
 
 public HL7V21Field SetIdPatientId
 {
@@ -3019,6 +3018,5 @@ public HL7V21Field DriversLicNumPatient
         return driversLicNumPatient;
     } 
 }
-
     }
 }

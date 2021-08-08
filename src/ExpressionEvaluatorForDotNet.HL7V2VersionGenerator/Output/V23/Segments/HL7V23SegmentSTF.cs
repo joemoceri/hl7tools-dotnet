@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentSTF
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"STF"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field must match MFE-4-primary key value to identify which entry is being referenced",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.1.1",
                             Type = @"Component",
@@ -156,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -175,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains a personnel identification code or institution user number, used by the institution to identify this person.  Repeating field allows multiple ID codes per person, with the type of ID code indicated in the third component of the coded entry data type",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.2.1",
                             Type = @"Component",
@@ -245,8 +243,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.2.4.1",
                             Type = @"SubComponent",
@@ -298,8 +295,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -335,8 +331,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.2.6.1",
                             Type = @"SubComponent",
@@ -388,10 +383,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -409,8 +402,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the staff person’s name",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.3.1",
                             Type = @"Component",
@@ -552,8 +544,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -607,8 +598,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains a staff member’s date and time of birth",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.6.1",
                             Type = @"Component",
@@ -624,8 +614,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -661,8 +650,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Department",
                             Description = @"This field contains the institution department to which this person reports or belongs.  Refer to user-defined table 0184 - Department for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.8.1",
                             Type = @"Component",
@@ -768,8 +756,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -787,8 +774,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Hospital service",
                             Description = @"This field contains the hospital or ancillary service with which this staff person is associated.  Refer to user-defined table 0069 - Hospital service for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.9.1",
                             Type = @"Component",
@@ -894,8 +880,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -913,8 +898,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the staff person’s phone number.  This is a repeating field with a component for indicating which phone number is which. It is recommended that the last part of the XTN, [C any text], start with a code from the table associated below with STF-16-preferred method of contact, in order to indicate the type of each phone number in this repeating field",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.10.1",
                             Type = @"Component",
@@ -1074,8 +1058,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1093,8 +1076,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the office address and home address of the staff person.  This is a repeating field",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.11.1",
                             Type = @"Component",
@@ -1275,8 +1257,7 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1294,8 +1275,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the date when staff became active for an institution.  Repeats",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.12.1",
                             Type = @"Component",
@@ -1310,8 +1290,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.12.1.1",
                             Type = @"SubComponent",
@@ -1327,8 +1306,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1346,8 +1324,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.12.2.1",
                             Type = @"SubComponent",
@@ -1453,10 +1430,8 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1474,8 +1449,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @" This field contains the date when staff became active for an institution.  Repeats",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.13.1",
                             Type = @"Component",
@@ -1490,8 +1464,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.13.1.1",
                             Type = @"SubComponent",
@@ -1507,8 +1480,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1526,8 +1498,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.13.2.1",
                             Type = @"SubComponent",
@@ -1633,10 +1604,8 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1654,8 +1623,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the  MFE-4-primary key value of the master file entry which corresponds to the designated backup person for this staff person",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.14.1",
                             Type = @"Component",
@@ -1761,8 +1729,7 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1852,8 +1819,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the staff member’s  job code and employee classification.  Refer to userdefined table 0327 - Job code and user-defined table 0329 - Job class",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.19.1",
                             Type = @"Component",
@@ -1887,8 +1853,7 @@ Allowable Values:  codes defined by government",
                             Description = @"This component contains the person’s employee classification.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1945,8 +1910,7 @@ N indicates that the institution is not named as an additional insured ",
                             TableName = null,
                             Description = @"This field contains the driver’s license information of staff, especially for use when staff is a driver for the institution.  For state or province refer to official postal codes for that country; for country refer to ISO 3166 for codes",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.22.1",
                             Type = @"Component",
@@ -1998,8 +1962,7 @@ N indicates that the institution is not named as an additional insured ",
                             Description = @"Expiration date (DT) for driver’s license",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2085,8 +2048,7 @@ N indicates that the institution does not have a copy on file ",
             this.message = message;
         }
 
-        
-internal HL7V23Field sTFPrimaryKeyValue;
+        internal HL7V23Field sTFPrimaryKeyValue;
 
 public HL7V23Field STFPrimaryKeyValue
 {
@@ -5497,6 +5459,5 @@ public HL7V23Field DateNextDMVReview
         return dateNextDMVReview;
     } 
 }
-
     }
 }

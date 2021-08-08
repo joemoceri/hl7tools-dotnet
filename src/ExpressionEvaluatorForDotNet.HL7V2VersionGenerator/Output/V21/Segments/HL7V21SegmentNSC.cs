@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentNSC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NSC"; } }
 
@@ -201,8 +201,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field networkChangeType;
+        internal HL7V21Field networkChangeType;
 
 public HL7V21Field NetworkChangeType
 {
@@ -1380,6 +1379,5 @@ public HL7V21Field NewFacility
         return newFacility;
     } 
 }
-
     }
 }

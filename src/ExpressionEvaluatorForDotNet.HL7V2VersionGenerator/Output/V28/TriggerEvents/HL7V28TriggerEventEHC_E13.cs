@@ -4,19 +4,19 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventEHC_E13
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V28SegmentMSH msh;
-public readonly HL7V28SegmentSFT sft;
-public readonly HL7V28SegmentUAC uac;
-public readonly HL7V28SegmentMSA msa;
-public readonly HL7V28SegmentERR err;
-public readonly HL7V28SegmentRFI rfi;
-public readonly HL7V28SegmentCTD ctd;
-public readonly HL7V28SegmentIVC ivc;
-public readonly HL7V28SegmentPSS pss;
-public readonly HL7V28SegmentPSG psg;
-public readonly HL7V28SegmentPID pid;
-public readonly HL7V28SegmentPSL psl;
+        private readonly HL7V2Message message;
+        private readonly HL7V28SegmentMSH msh;
+private readonly HL7V28SegmentSFT sft;
+private readonly HL7V28SegmentUAC uac;
+private readonly HL7V28SegmentMSA msa;
+private readonly HL7V28SegmentERR err;
+private readonly HL7V28SegmentRFI rfi;
+private readonly HL7V28SegmentCTD ctd;
+private readonly HL7V28SegmentIVC ivc;
+private readonly HL7V28SegmentPSS pss;
+private readonly HL7V28SegmentPSG psg;
+private readonly HL7V28SegmentPID pid;
+private readonly HL7V28SegmentPSL psl;
 
 
         public string Id { get { return @"EHC_E13"; } }
@@ -32,6 +32,7 @@ public readonly HL7V28SegmentPSL psl;
                 return new[]
                     {
                         "CH_16",
+
                     };
             }
         }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentBLC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"BLC"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Blood Product Code",
                             Description = @"This field reports the blood product code. Refer to User-defined Table 0426 - Blood Product Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"BLC.1.1",
                             Type = @"Component",
@@ -156,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -175,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field indicates the quantity and units administered for the blood code identified in field 1, for example, 2^pt. Standard ISO or ANSI units are recommended.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"BLC.2.1",
                             Type = @"Component",
@@ -209,8 +207,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"BLC.2.2.1",
                             Type = @"SubComponent",
@@ -316,10 +313,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         };
             }
@@ -330,8 +325,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V25Field bloodProductCode;
+        internal HL7V25Field bloodProductCode;
 
 public HL7V25Field BloodProductCode
 {
@@ -592,6 +586,5 @@ public HL7V25Field BloodAmount
         return bloodAmount;
     } 
 }
-
     }
 }

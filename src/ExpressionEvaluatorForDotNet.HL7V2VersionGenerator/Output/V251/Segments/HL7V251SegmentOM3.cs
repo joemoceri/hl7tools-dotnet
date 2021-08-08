@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentOM3
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM3"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the observations whose categorical responses are taken from a specified table of codes (e.g., CE data types). Record the preferred coding system for this observation (e.g., ICD9, SNOMED III). Take the codes from ASTM Table 3 or 5, or specify a local code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM3.2.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -193,8 +192,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains a list of valid coded answers. In the case that the list of coded answers is easily enumerated, list the valid coded answers for this observation here using the preferred coding system given in OM3-2 - Preferred Coding System. If, for example, the given observation was VDRL, the valid answers might be non-reactive, 86^ intermediate, and 87^ reactive.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM3.3.1",
                             Type = @"Component",
@@ -300,8 +298,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -319,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Certain observations/tests with a nature code of A or C (see OM1-18 - Nature of Service/Test/Observation) have text (alpha) results (e.g., reactive, nonreactive). Alpha normals for those tests should be entered in this field (e.g., ""nonreactive"").",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM3.4.1",
                             Type = @"Component",
@@ -426,8 +422,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -447,8 +442,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Note:  Backward compatibility note - As of v2.5 this field is allowed to repeat.  When used for versions prior to v2.5, extra repetitions sent will be lost.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM3.5.1",
                             Type = @"Component",
@@ -554,8 +548,7 @@ Note:  Backward compatibility note - As of v2.5 this field is allowed to repeat.
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -575,8 +568,7 @@ Note:  Backward compatibility note - As of v2.5 this field is allowed to repeat.
 
 Note:  Backward compatibility note - As of v2.5 this field is allowed to repeat.  When used for versions prior to v2.5, extra repetitions sent will be lost.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM3.6.1",
                             Type = @"Component",
@@ -682,8 +674,7 @@ Note:  Backward compatibility note - As of v2.5 this field is allowed to repeat.
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -712,8 +703,7 @@ Note:  Backward compatibility note - As of v2.5 this field is allowed to repeat.
             this.message = message;
         }
 
-        
-internal HL7V251Field sequenceNumberTestObservationMasterFile;
+        internal HL7V251Field sequenceNumberTestObservationMasterFile;
 
 public HL7V251Field SequenceNumberTestObservationMasterFile
 {
@@ -1633,6 +1623,5 @@ public HL7V251Field ValueType
         return valueType;
     } 
 }
-
     }
 }

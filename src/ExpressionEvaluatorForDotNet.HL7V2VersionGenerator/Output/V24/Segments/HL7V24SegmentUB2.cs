@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentUB2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB2"; } }
 
@@ -26,6 +26,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -141,8 +142,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = null,
                             Description = @"The pair in this field can repeat up to twelve times.  UB92 fields 39a, 39b, 39c, 39d, 40a, 40b, 40c, 40d, 41a, 41b, 41c, and 41d.  Refer to User-defined Table 0153 - Value code for suggested values.  The UB codes listed as examples are not an exhaustive or current list; refer to a UB specification for additional information.  This field is defined by HCFA or other regulatory agencies",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.6.1",
                             Type = @"Component",
@@ -176,8 +176,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -195,8 +194,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = null,
                             Description = @"The set of values in this field can repeat up to eight times.  UB92 fields 32a, 32b, 33a, 33b, 34a, 34b, 35a, and 35b.  This field is defined by HCFA or other regulatory agencies.  Refer to User-defined Table 0350 - Occurrence code for suggested values.  The UB codes listed as examples are not an exhaustive or current list; refer to a UB specification for additional information",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.7.1",
                             Type = @"Component",
@@ -230,8 +228,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -249,8 +246,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = null,
                             Description = @"This field can repeat up to two times.  UB92 field 36a, 36b.  This field is defined by HCFA or other regulatory agencies.  Refer to User-defined Table 0351 - Occurrence span for suggested values.  The UB codes listed as examples are not an exhaustive or current list; refer to a UB specification for additional information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.8.1",
                             Type = @"Component",
@@ -265,8 +261,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = @"Occurrence span",
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.8.1.1",
                             Type = @"SubComponent",
@@ -376,8 +371,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -414,8 +408,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -588,8 +581,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
             this.message = message;
         }
 
-        
-internal HL7V24Field setIDUB2;
+        internal HL7V24Field setIDUB2;
 
 public HL7V24Field SetIDUB2
 {
@@ -2815,6 +2807,5 @@ public HL7V24Field SpecialVisitCount
         return specialVisitCount;
     } 
 }
-
     }
 }

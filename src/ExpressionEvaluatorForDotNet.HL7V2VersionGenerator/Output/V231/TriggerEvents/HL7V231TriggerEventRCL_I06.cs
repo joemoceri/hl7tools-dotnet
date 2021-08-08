@@ -4,18 +4,18 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventRCL_I06
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V231SegmentMSH msh;
-public readonly HL7V231SegmentMSA msa;
-public readonly HL7V231SegmentQRD qrd;
-public readonly HL7V231SegmentQRF qrf;
-public readonly HL7V231SegmentPID pid;
-public readonly HL7V231SegmentDG1 dg1;
-public readonly HL7V231SegmentDRG drg;
-public readonly HL7V231SegmentAL1 al1;
-public readonly HL7V231SegmentNTE nte;
-public readonly HL7V231SegmentDSP dsp;
-public readonly HL7V231SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V231SegmentMSH msh;
+private readonly HL7V231SegmentMSA msa;
+private readonly HL7V231SegmentQRD qrd;
+private readonly HL7V231SegmentQRF qrf;
+private readonly HL7V231SegmentPID pid;
+private readonly HL7V231SegmentDG1 dg1;
+private readonly HL7V231SegmentDRG drg;
+private readonly HL7V231SegmentAL1 al1;
+private readonly HL7V231SegmentNTE nte;
+private readonly HL7V231SegmentDSP dsp;
+private readonly HL7V231SegmentDSC dsc;
 
 
         public string Id { get { return @"RCL_I06"; } }
@@ -31,6 +31,7 @@ public readonly HL7V231SegmentDSC dsc;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

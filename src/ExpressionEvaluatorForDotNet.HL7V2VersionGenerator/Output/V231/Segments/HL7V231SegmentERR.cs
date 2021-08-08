@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentERR
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ERR"; } }
 
@@ -25,6 +25,7 @@ It contains one field only storing the code and the location."; } }
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -50,8 +51,7 @@ It contains one field only storing the code and the location."; } }
                             TableName = null,
                             Description = @"This field identifies an erroneous segment in another message. The second component is an index if there is more than one segment of type <segment ID>. For systems that do not use the HL7 Encoding Rules, the data item number may be used for the third component. The fourth component (which references HL7 Table 0357 - Message error condition codes, (as a CE data type)) is restricted from having any subcomponents as the subcomponent separator is now the CE's component separator.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.1.1",
                             Type = @"Component",
@@ -120,8 +120,7 @@ It contains one field only storing the code and the location."; } }
                             TableName = @"Message error condition codes",
                             Description = @"The fourth component (which references HL7 Table 0357 - Message error condition codes,  (as a CE data type)) is restricted from having any subcomponents as the subcomponent separator is now the CE’s component separator",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.1.4.1",
                             Type = @"SubComponent",
@@ -227,10 +226,8 @@ It contains one field only storing the code and the location."; } }
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         };
             }
@@ -241,8 +238,7 @@ It contains one field only storing the code and the location."; } }
             this.message = message;
         }
 
-        
-internal HL7V231Field errorCodeandLocation;
+        internal HL7V231Field errorCodeandLocation;
 
 public HL7V231Field ErrorCodeandLocation
 {
@@ -372,6 +368,5 @@ public HL7V231Field ErrorCodeandLocation
         return errorCodeandLocation;
     } 
 }
-
     }
 }

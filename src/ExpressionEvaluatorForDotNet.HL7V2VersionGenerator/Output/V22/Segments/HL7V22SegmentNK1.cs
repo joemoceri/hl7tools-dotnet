@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentNK1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NK1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"name of the next of kin",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.2.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -193,8 +192,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"RELATIONSHIP",
                             Description = @"defines the actual personal relationship that the next of kin has to the patient.  Refer to user-defined table 0063 - relationship.  Examples might include: brother, sister, mother, father, friend, spouse, emergency contact, employer, etc",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.3.1",
                             Type = @"Component",
@@ -300,8 +298,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -319,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"defines the address of the associated party",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.4.1",
                             Type = @"Component",
@@ -462,8 +458,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -517,8 +512,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"CONTRACT ROLE",
                             Description = @"indicates the specific relationship role (next of kin, employer, emergency contact, etc.).  Refer to userdefined table 0131 - contact role.  This field specifies the role that the next of kin plays with regards to the patient.  For example, an employer, emergency contact, next of kin, insurance company, state agency, federal agency etc.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.7.1",
                             Type = @"Component",
@@ -624,8 +618,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -697,8 +690,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"the employers Job Code or Employee Classification used for the next of kin at their place of employment",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.11.1",
                             Type = @"Component",
@@ -732,8 +724,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -780,8 +771,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V22Field setIdNextOfKin;
+        internal HL7V22Field setIdNextOfKin;
 
 public HL7V22Field SetIdNextOfKin
 {
@@ -2483,6 +2473,5 @@ public HL7V22Field OrganizationName
         return organizationName;
     } 
 }
-
     }
 }

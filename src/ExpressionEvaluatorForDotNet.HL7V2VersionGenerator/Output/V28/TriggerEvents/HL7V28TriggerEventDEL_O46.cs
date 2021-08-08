@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventDEL_O46
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V28SegmentMSH msh;
-public readonly HL7V28SegmentSTF stf;
-public readonly HL7V28SegmentUAC uac;
-public readonly HL7V28SegmentDON don;
-public readonly HL7V28SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V28SegmentMSH msh;
+private readonly HL7V28SegmentSTF stf;
+private readonly HL7V28SegmentUAC uac;
+private readonly HL7V28SegmentDON don;
+private readonly HL7V28SegmentNTE nte;
 
 
         public string Id { get { return @"DEL_O46"; } }
@@ -25,6 +25,7 @@ public readonly HL7V28SegmentNTE nte;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentRXD
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RXD"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Note:The contents of RXD-2-dispense/give code should be identical to the comparable field in the RXE (RXE-2-give code).  The RDS message refers ONLY to the dispensing of the drug by the Pharmacy. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.2.1",
                             Type = @"Component",
@@ -176,8 +176,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -195,8 +194,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             TableName = null,
                             Description = @"when the pharmaceutical is dispensed from the Pharmacy.  Use the time-stamp format",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.3.1",
                             Type = @"Component",
@@ -230,8 +228,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -267,8 +264,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             TableName = null,
                             Description = @"units dispensed.  Site-defined table.  As with Give units, if the units are part of the actual dispense code this field is optional, but if present, it overrides units implied by the actual dispense code.  This must be in simple units that reflect the actual quantity of the substance dispensed.  It does not include compound units",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.5.1",
                             Type = @"Component",
@@ -374,8 +370,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -393,8 +388,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             TableName = null,
                             Description = @"use this field when the give code and the dispense code do not specify the dosage form",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.6.1",
                             Type = @"Component",
@@ -500,8 +494,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -573,8 +566,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             TableName = null,
                             Description = @"provider ID of the person dispensing the pharmaceutical",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.10.1",
                             Type = @"Component",
@@ -716,8 +708,7 @@ Note:The contents of RXD-2-dispense/give code should be identical to the compara
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -773,8 +764,7 @@ Note:The next two fields are equivalent to the corresponding fields of the RXE s
                             TableName = null,
                             Description = @"the first component contains the inpatient or outpatient location where the drug was dispensed (if applicable).  The default (null) value is the current census location for the patient.  Site specific table.  This component has the same form as PV1-3-assigned patient location",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.13.1",
                             Type = @"Component",
@@ -789,8 +779,7 @@ Note:The next two fields are equivalent to the corresponding fields of the RXE s
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.13.1.1",
                             Type = @"SubComponent",
@@ -878,8 +867,7 @@ Note:The next two fields are equivalent to the corresponding fields of the RXE s
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -897,8 +885,7 @@ Note:The next two fields are equivalent to the corresponding fields of the RXE s
                             TableName = null,
                             Description = @"The second component can be used to specify an address.  This could be used to fill mail orders to a patient or provider, or to account for home health care. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.13.2.1",
                             Type = @"SubComponent",
@@ -1040,10 +1027,8 @@ Note:The next two fields are equivalent to the corresponding fields of the RXE s
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1079,8 +1064,7 @@ Note:The next two fields are equivalent to the corresponding fields of the RXE s
                             TableName = null,
                             Description = @"pharmacy-generated special instructions to the provider dispensing/administering the order",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXD.15.1",
                             Type = @"Component",
@@ -1186,8 +1170,7 @@ Note:The next two fields are equivalent to the corresponding fields of the RXE s
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1198,8 +1181,7 @@ Note:The next two fields are equivalent to the corresponding fields of the RXE s
             this.message = message;
         }
 
-        
-internal HL7V22Field dispenseSubidCounter;
+        internal HL7V22Field dispenseSubidCounter;
 
 public HL7V22Field DispenseSubidCounter
 {
@@ -3167,6 +3149,5 @@ public HL7V22Field PharmacySpecialDispensingInstructions
         return pharmacySpecialDispensingInstructions;
     } 
 }
-
     }
 }

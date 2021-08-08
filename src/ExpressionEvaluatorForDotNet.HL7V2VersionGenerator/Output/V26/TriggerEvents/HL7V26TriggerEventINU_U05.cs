@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventINU_U05
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V26SegmentMSH msh;
-public readonly HL7V26SegmentSFT sft;
-public readonly HL7V26SegmentUAC uac;
-public readonly HL7V26SegmentEQU equ;
-public readonly HL7V26SegmentINV inv;
-public readonly HL7V26SegmentROL rol;
+        private readonly HL7V2Message message;
+        private readonly HL7V26SegmentMSH msh;
+private readonly HL7V26SegmentSFT sft;
+private readonly HL7V26SegmentUAC uac;
+private readonly HL7V26SegmentEQU equ;
+private readonly HL7V26SegmentINV inv;
+private readonly HL7V26SegmentROL rol;
 
 
         public string Id { get { return @"INU_U05"; } }
@@ -26,6 +26,7 @@ public readonly HL7V26SegmentROL rol;
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }

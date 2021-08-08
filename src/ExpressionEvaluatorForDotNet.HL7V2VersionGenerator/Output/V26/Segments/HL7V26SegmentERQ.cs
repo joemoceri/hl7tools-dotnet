@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentERQ
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ERQ"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the HL7 event identifier corresponding to the original trigger event.  Its contents dictate the format of the response message.  Hence, a value of “A04” in this field indicates a request for the data associated with the “register a patient” trigger event.  The ERP response message returns the contents of the “register a patient” message defined in Chapter 3.  If more than one match is found, the ERP returns repeating groups of the segments defined by the “A04” message",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERQ.2.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -193,8 +192,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the list of parameter names and values to be passed to the responding system, in the form “<segment field name> ^ <value1 & value2 & value3 ...>.”  A single valued parameter contains only a single subcomponent in the second component: thus no subcomponent delimiters are needed (e.g., <segment field name> ^ <value>).  A simple list of values (i.e., a onedimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: “<segment field name> ^ <value1&value2 &...>.”  Refer to Section 5.10.5.1.5, “EQL-4   EQL Query Statement   (ST)   00710,” for segment field name definition conventions. For example, a value of “@PID.19^123-45-6789” could be combined with the A04 event identifier to request patient registration data for the patient with the social security number 123-45-6789.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERQ.3.1",
                             Type = @"Component",
@@ -228,8 +226,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component contains the field value or values in the form ""value1& value2 & value3...""",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -240,8 +237,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V26Field queryTag;
+        internal HL7V26Field queryTag;
 
 public HL7V26Field QueryTag
 {
@@ -633,6 +629,5 @@ public HL7V26Field InputParameterList
         return inputParameterList;
     } 
 }
-
     }
 }

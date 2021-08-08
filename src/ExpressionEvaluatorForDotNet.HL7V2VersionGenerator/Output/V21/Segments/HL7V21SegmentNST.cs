@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentNST
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NST"; } }
 
@@ -309,8 +309,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field statisticsAvailable;
+        internal HL7V21Field statisticsAvailable;
 
 public HL7V21Field StatisticsAvailable
 {
@@ -2274,6 +2273,5 @@ public HL7V21Field NetworkErrors
         return networkErrors;
     } 
 }
-
     }
 }

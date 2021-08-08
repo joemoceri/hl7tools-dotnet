@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentOM5
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM5"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the codes and names of all tests/observations included within a single battery (nature code P, as described in OM1-18 - Nature of Service/Test/Observation ), a single functional procedure (nature code F), or a given superset (nature code S). When a segment includes a list of component elements, the sending system should be sure that the segments defining all of the components are sent before the segment that references them. An entry in this list can itself be a battery.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM5.2.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -204,8 +203,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V251Field sequenceNumberTestObservationMasterFile;
+        internal HL7V251Field sequenceNumberTestObservationMasterFile;
 
 public HL7V251Field SequenceNumberTestObservationMasterFile
 {
@@ -597,6 +595,5 @@ public HL7V251Field ObservationIDSuffixes
         return observationIDSuffixes;
     } 
 }
-
     }
 }

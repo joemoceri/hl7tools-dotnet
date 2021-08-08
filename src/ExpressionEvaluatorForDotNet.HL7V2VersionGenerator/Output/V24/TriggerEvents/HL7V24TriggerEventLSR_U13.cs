@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventLSR_U13
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentEQU equ;
-public readonly HL7V24SegmentEQP eqp;
-public readonly HL7V24SegmentROL rol;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentEQU equ;
+private readonly HL7V24SegmentEQP eqp;
+private readonly HL7V24SegmentROL rol;
 
 
         public string Id { get { return @"LSR_U13"; } }
@@ -24,6 +24,7 @@ public readonly HL7V24SegmentROL rol;
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }

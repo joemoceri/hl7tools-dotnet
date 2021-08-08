@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentIIM
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"IIM"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying an inventoried item.  It is the identifying key value, and must match MFE-4 Primary Key Value - MFE.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.1.1",
                             Type = @"Component",
@@ -476,8 +476,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -495,8 +494,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the identifier of the service item.  It relates the inventory item of this message to an entry in an Other Observation/Service Item master file.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.2.1",
                             Type = @"Component",
@@ -922,8 +920,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -981,8 +978,7 @@ Note:  Expiration date does not always have a ""day"" component; therefore, such
                             TableName = null,
                             Description = @"This field contains the manufacturer of the service item in inventory.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.5.1",
                             Type = @"Component",
@@ -1408,8 +1404,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1427,8 +1422,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the location of the inventory.  As an implementation consideration, this location can have a range of specificity.  The location can be very general, e.g., a facility where the inventory is warehoused, or very specific, e.g., a shelf location.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.6.1",
                             Type = @"Component",
@@ -1854,8 +1848,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1909,8 +1902,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Package",
                             Description = @"This field specifies the unit for IIM-8 Inventory Received Quantity and IIM-10 Inventory Received Item Cost.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.9.1",
                             Type = @"Component",
@@ -2336,8 +2328,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2355,8 +2346,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the per-unit cost of the inventory item at the time of receipt.  IIM-9 Inventory Received Quantity Unit specifies the per-unit basis of this field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.10.1",
                             Type = @"Component",
@@ -2395,8 +2385,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2450,8 +2439,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
                             TableName = @"Package",
                             Description = @"This field specifies the unit for IIM-12 Inventory on Hand Quantity.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.13.1",
                             Type = @"Component",
@@ -2877,8 +2865,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2898,8 +2885,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.14.1",
                             Type = @"Component",
@@ -3336,8 +3322,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3357,8 +3342,7 @@ Value set version ID is required if CNE.21 is populated.",
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.15.1",
                             Type = @"Component",
@@ -3795,8 +3779,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -3807,8 +3790,7 @@ Value set version ID is required if CNE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field primaryKeyValueIim;
+        internal HL7V271Field primaryKeyValueIim;
 
 public HL7V271Field PrimaryKeyValueIim
 {
@@ -5780,6 +5762,5 @@ As of v2.6, the known applicable external coding systems include those in the ta
         return procedureCodeModifier;
     } 
 }
-
     }
 }

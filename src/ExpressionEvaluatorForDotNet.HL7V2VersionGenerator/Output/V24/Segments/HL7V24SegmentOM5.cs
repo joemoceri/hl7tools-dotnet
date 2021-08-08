@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentOM5
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM5"; } }
 
@@ -26,6 +26,7 @@ The Technical Steward for the OM5 segment is ORDERS."; } }
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ The Technical Steward for the OM5 segment is ORDERS."; } }
                             TableName = null,
                             Description = @"This field contains the codes and names of all tests/observations included within a single battery (nature code P, as described in OM1-18 - Nature of service/test/observation ), a single functional procedure (nature code F), or a given superset (nature code S). When a segment includes a list of component elements, the sending system should be sure that the segments defining all of the components are sent before the segment that references them. An entry in this list can itself be a battery.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM5.2.1",
                             Type = @"Component",
@@ -180,8 +180,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -210,8 +209,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
             this.message = message;
         }
 
-        
-internal HL7V24Field sequenceNumberTestObservationMasterFile;
+        internal HL7V24Field sequenceNumberTestObservationMasterFile;
 
 public HL7V24Field SequenceNumberTestObservationMasterFile
 {
@@ -603,6 +601,5 @@ public HL7V24Field ObservationIDSuffixes
         return observationIDSuffixes;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentMSA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MSA"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -139,8 +140,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"CE field allowing the acknowledging system to use a user-defined error code to further specify AR or AE type acknowledgements.  This field is a generalized replacement for MSA-3-text message",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSA.6.1",
                             Type = @"Component",
@@ -246,8 +246,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -258,8 +257,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V22Field acknowledgementCode;
+        internal HL7V22Field acknowledgementCode;
 
 public HL7V22Field AcknowledgementCode
 {
@@ -1044,6 +1042,5 @@ public HL7V22Field ErrorCondition
         return errorCondition;
     } 
 }
-
     }
 }

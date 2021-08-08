@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentUAC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UAC"; } }
 
@@ -43,6 +43,7 @@ The processing rules for the ERR segment are outside of HL7's scope."; } }
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -68,8 +69,7 @@ The processing rules for the ERR segment are outside of HL7's scope."; } }
                             TableName = @"User Authentication Credential Type Code",
                             Description = @"This an identifier code for the type of user authentication credential. Refer to HL7 Table 0615 – User Authentication Credential Type Code for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UAC.1.1",
                             Type = @"Component",
@@ -495,8 +495,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -514,8 +513,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This is user credential data as supplied by the sender's operating platform. The content and structure of this is defined by other standards and contain no HL7-relevant data.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UAC.2.1",
                             Type = @"Component",
@@ -530,8 +528,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"A unique name that identifies the system which was the source of the data. Identical format and restrictions as in reference pointer (see Section 2.A.65.2, ""Application ID (HD)"").",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UAC.2.1.1",
                             Type = @"SubComponent",
@@ -587,8 +584,7 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -669,8 +665,7 @@ If the encoding component (see Section 2.A.24.4, ""Encoding (ID)"") = ""A"" (non
 If the encoding component ED.4 does not equal ""A"", then, after encoding, the (encoded) data must be scanned for HL7 delimiter characters, and any found must be escaped by using the HL7 escape sequences. Only then can the component be added to the HL7 segment/message. On the receiving application, the data field must be de-escaped after being parsed out of the message before being decoded. This can be expressed as ""encode"", ""escape"", ""parse"", ""de-escape"" or ""decode"".",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -681,8 +676,7 @@ If the encoding component ED.4 does not equal ""A"", then, after encoding, the (
             this.message = message;
         }
 
-        
-internal HL7V27Field userAuthenticationCredentialTypeCode;
+        internal HL7V27Field userAuthenticationCredentialTypeCode;
 
 public HL7V27Field UserAuthenticationCredentialTypeCode
 {
@@ -943,6 +937,5 @@ public HL7V27Field UserAuthenticationCredential
         return userAuthenticationCredential;
     } 
 }
-
     }
 }

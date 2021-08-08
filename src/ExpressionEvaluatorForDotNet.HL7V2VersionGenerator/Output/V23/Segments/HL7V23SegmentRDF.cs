@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentRDF
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RDF"; } }
 
@@ -27,6 +27,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -74,8 +75,7 @@ namespace ExpressionEvaluatorForDotNet
 - The 2 or 3 character HL7 data type, as defined in Section 2.8, “Data types.” 
 - The maximum width of the column, as dictated by the responding system.  (This may vary from the HL7defined maximum field length.) ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RDF.2.1",
                             Type = @"Component",
@@ -127,8 +127,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The maximum width of the column, as dictated by the responding system.  (This may vary from the HL7defined maximum field length.) ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -139,8 +138,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V23Field numberofColumnsperRow;
+        internal HL7V23Field numberofColumnsperRow;
 
 public HL7V23Field NumberofColumnsperRow
 {
@@ -405,6 +403,5 @@ public HL7V23Field ColumnDescription
         return columnDescription;
     } 
 }
-
     }
 }

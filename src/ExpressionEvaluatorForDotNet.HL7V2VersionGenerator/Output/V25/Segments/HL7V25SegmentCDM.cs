@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentCDM
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"CDM"; } }
 
@@ -26,6 +26,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = @"Transaction Code",
                             Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged. The key field of the entry. For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes. Probably the same set of values as used in FT1-7- Transaction Code in financial messages. Must match MFE-4 - Primary Key Value - MFE. Refer to User-defined Table 0132 - Transaction for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.1.1",
                             Type = @"Component",
@@ -158,8 +158,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -177,8 +176,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"This field contains an alternative charge code. For example, points to another charge description master entry in cases where one code supersedes or overrides another code. Repeating field allows for different codes used by different systems which should be handled as if they were the same; for example, the general ledger code may differ from the billing code. Or, in a multi-facility environment which does facility-specific pricing, there may be more than one of these master file entries for one charge description, each with a different facility.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.2.1",
                             Type = @"Component",
@@ -284,8 +282,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -357,8 +354,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"This field contains the repeating occurrences for a list of other CDM entry charge codes identifying the other charges which should be generated from this CDM entry. If non-null, posting a charge to this CDM entry should result in posting the charges identified here. These are sometimes called ""linked items.""",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.6.1",
                             Type = @"Component",
@@ -464,8 +460,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -483,8 +478,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = @"Procedure Code",
                             Description = @"This field contains the procedure code for procedure, if any, associated with this charge description. Repeating field allows for different procedure coding systems such as CPT4, ASTM, ICD9. Coded entry made up of code plus coding schema. Refer to User defined Table 0088 - Procedure code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.7.1",
                             Type = @"Component",
@@ -590,8 +584,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -627,8 +620,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = @"Inventory Number",
                             Description = @"This optional field contains an identifying stock number, if any, which might be used, for example, as a cross reference for materials management. Refer to User-defined Table 0463 - Inventory number for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.9.1",
                             Type = @"Component",
@@ -734,8 +726,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -771,8 +762,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"This field contains any contract number pertaining to this chargeable item. For example, supplier contract or service contract.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.11.1",
                             Type = @"Component",
@@ -841,8 +831,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique name of the system (or organization or agency or department) that creates the data. . Refer to User-defined Table 0363 - Assigning authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.11.4.1",
                             Type = @"SubComponent",
@@ -894,8 +883,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -931,8 +919,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.11.6.1",
                             Type = @"SubComponent",
@@ -984,8 +971,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1039,8 +1025,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.11.9.1",
                             Type = @"SubComponent",
@@ -1200,8 +1185,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1219,8 +1203,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.11.10.1",
                             Type = @"SubComponent",
@@ -1380,10 +1363,8 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1401,8 +1382,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"This field contains the organization with which there is a contractual arrangement for providing the service or material used for this chargeable item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.12.1",
                             Type = @"Component",
@@ -1507,8 +1487,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency or department) that creates the data. Assigning authorities are unique across a given HL7 implementation. Refer to User-defined Table 0363 - Assigning Authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.12.6.1",
                             Type = @"SubComponent",
@@ -1560,8 +1539,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1597,8 +1575,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.12.8.1",
                             Type = @"SubComponent",
@@ -1650,8 +1627,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1688,8 +1664,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1718,8 +1693,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
             this.message = message;
         }
 
-        
-internal HL7V25Field primaryKeyValueCDM;
+        internal HL7V25Field primaryKeyValueCDM;
 
 public HL7V25Field PrimaryKeyValueCDM
 {
@@ -3421,6 +3395,5 @@ public HL7V25Field RoomFeeIndicator
         return roomFeeIndicator;
     } 
 }
-
     }
 }

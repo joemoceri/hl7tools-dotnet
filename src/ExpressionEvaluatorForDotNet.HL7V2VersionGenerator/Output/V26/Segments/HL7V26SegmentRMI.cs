@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentRMI
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RMI"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Risk Management Incident Code",
                             Description = @"A code depicting the incident that occurred during a patients stay. Refer to User-defined Table 0427 - Risk Management Incident Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RMI.1.1",
                             Type = @"Component",
@@ -210,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -247,8 +246,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Incident Type Code",
                             Description = @"A code depicting a classification of the incident type. Refer to User-defined Table 0428 - Incident Type Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RMI.3.1",
                             Type = @"Component",
@@ -408,8 +406,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -420,8 +417,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V26Field riskManagementIncidentCode;
+        internal HL7V26Field riskManagementIncidentCode;
 
 public HL7V26Field RiskManagementIncidentCode
 {
@@ -813,6 +809,5 @@ public HL7V26Field IncidentTypeCode
         return incidentTypeCode;
     } 
 }
-
     }
 }

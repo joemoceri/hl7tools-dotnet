@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventMDM_T10
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V25SegmentMSH msh;
-public readonly HL7V25SegmentSFT sft;
-public readonly HL7V25SegmentEVN evn;
-public readonly HL7V25SegmentPID pid;
-public readonly HL7V25SegmentPV1 pv1;
-public readonly HL7V25SegmentTXA txa;
+        private readonly HL7V2Message message;
+        private readonly HL7V25SegmentMSH msh;
+private readonly HL7V25SegmentSFT sft;
+private readonly HL7V25SegmentEVN evn;
+private readonly HL7V25SegmentPID pid;
+private readonly HL7V25SegmentPV1 pv1;
+private readonly HL7V25SegmentTXA txa;
 
 
         public string Id { get { return @"MDM_T10"; } }
@@ -26,6 +26,7 @@ public readonly HL7V25SegmentTXA txa;
                 return new[]
                     {
                         "CH_09",
+
                     };
             }
         }

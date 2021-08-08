@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentQRD
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"QRD"; } }
 
@@ -255,8 +255,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field queryDateTime;
+        internal HL7V21Field queryDateTime;
 
 public HL7V21Field QueryDateTime
 {
@@ -1827,6 +1826,5 @@ public HL7V21Field QueryResultsLevel
         return queryResultsLevel;
     } 
 }
-
     }
 }

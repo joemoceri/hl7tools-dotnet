@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentACC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ACC"; } }
 
@@ -93,8 +93,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field accidentDateTime;
+        internal HL7V21Field accidentDateTime;
 
 public HL7V21Field AccidentDateTime
 {
@@ -486,6 +485,5 @@ public HL7V21Field AccidentLocation
         return accidentLocation;
     } 
 }
-
     }
 }

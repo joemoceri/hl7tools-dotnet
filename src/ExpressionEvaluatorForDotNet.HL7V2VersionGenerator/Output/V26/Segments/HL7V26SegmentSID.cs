@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentSID
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SID"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field identifies the application/method used for the analysis.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SID.1.1",
                             Type = @"Component",
@@ -210,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -265,8 +264,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Manufacturer identifier",
                             Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0385 - Manufacturer identifier for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SID.4.1",
                             Type = @"Component",
@@ -426,8 +424,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -438,8 +435,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V26Field applicationMethodIdentifier;
+        internal HL7V26Field applicationMethodIdentifier;
 
 public HL7V26Field ApplicationMethodIdentifier
 {
@@ -962,6 +958,5 @@ public HL7V26Field SubstanceManufacturerIdentifier
         return substanceManufacturerIdentifier;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentOM6
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM6"; } }
 
@@ -26,6 +26,7 @@ The Technical Steward for the OM6 segment is ORDERS."; } }
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -80,8 +81,7 @@ The Technical Steward for the OM6 segment is ORDERS."; } }
             this.message = message;
         }
 
-        
-internal HL7V24Field sequenceNumberTestObservationMasterFile;
+        internal HL7V24Field sequenceNumberTestObservationMasterFile;
 
 public HL7V24Field SequenceNumberTestObservationMasterFile
 {
@@ -342,6 +342,5 @@ public HL7V24Field DerivationRule
         return derivationRule;
     } 
 }
-
     }
 }

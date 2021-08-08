@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventADT_A39
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentEVN evn;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentEVN evn;
 
 
         public string Id { get { return @"ADT_A39"; } }
@@ -22,6 +22,7 @@ public readonly HL7V23SegmentEVN evn;
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }

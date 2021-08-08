@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentSID
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SID"; } }
 
@@ -26,6 +26,7 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
                             TableName = null,
                             Description = @"This field identifies the application / method used for the analysis.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SID.1.1",
                             Type = @"Component",
@@ -158,8 +158,7 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -213,8 +212,7 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
                             TableName = @"Manufacturer identifier",
                             Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0451 - Manufacturer identifier for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SID.4.1",
                             Type = @"Component",
@@ -320,8 +318,7 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -332,8 +329,7 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
             this.message = message;
         }
 
-        
-internal HL7V25Field applicationMethodIdentifier;
+        internal HL7V25Field applicationMethodIdentifier;
 
 public HL7V25Field ApplicationMethodIdentifier
 {
@@ -856,6 +852,5 @@ public HL7V25Field SubstanceManufacturerIdentifier
         return substanceManufacturerIdentifier;
     } 
 }
-
     }
 }

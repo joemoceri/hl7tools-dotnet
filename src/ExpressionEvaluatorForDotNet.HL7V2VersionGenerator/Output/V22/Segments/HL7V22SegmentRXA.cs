@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentRXA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RXA"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             TableName = null,
                             Description = @"if the order is for a continuous administration (such as an IV), and the rate is changed at a certain time after the start, an RAS message can be issued to record the change.  For such an RAS message, this field records the time the rate was changed to the new value recorded in the  Administered Per (Time Unit) field of the same message",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.3.1",
                             Type = @"Component",
@@ -122,8 +122,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -141,8 +140,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             TableName = null,
                             Description = @"If null, the date/time of RXA-3-date/time start of administration is assumed",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.4.1",
                             Type = @"Component",
@@ -176,8 +174,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -195,8 +192,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             TableName = null,
                             Description = @"identifier of the medical substance administered.  It is equivalent to OBR-4-universal service ID code in function",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.5.1",
                             Type = @"Component",
@@ -302,8 +298,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -339,8 +334,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             TableName = null,
                             Description = @"must be in simple units that reflect the actual quantity of the substance administered.  It does not include compound units",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.7.1",
                             Type = @"Component",
@@ -446,8 +440,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -465,8 +458,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             TableName = null,
                             Description = @"use this field when the administered code does not specify the dosage form",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.8.1",
                             Type = @"Component",
@@ -572,8 +564,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -609,8 +600,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             TableName = null,
                             Description = @"provider ID of the person administering the pharmaceutical",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.10.1",
                             Type = @"Component",
@@ -752,8 +742,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -772,8 +761,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = @"he first component contains the inpatient or outpatient location at which the drug was administered (if applicable).  The default (null) value is the current census location for the patient.  Site specific table.  This component has the same form as PV1-3-assigned patient location. 
  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.11.1",
                             Type = @"Component",
@@ -788,8 +776,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.11.1.1",
                             Type = @"SubComponent",
@@ -877,8 +864,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -896,8 +882,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             TableName = null,
                             Description = @"The second component can be used to specify an address.  This could be used to fill mail orders to a patient or provider, or to account for home health care. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXA.11.2.1",
                             Type = @"SubComponent",
@@ -1039,10 +1024,8 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1071,8 +1054,7 @@ Note:More than one RXA segment can be ""matched"" to a single RXG segment, as is
             this.message = message;
         }
 
-        
-internal HL7V22Field giveSubidCounter;
+        internal HL7V22Field giveSubidCounter;
 
 public HL7V22Field GiveSubidCounter
 {
@@ -2646,6 +2628,5 @@ public HL7V22Field AdministeredPertimeUnit
         return administeredPertimeUnit;
     } 
 }
-
     }
 }

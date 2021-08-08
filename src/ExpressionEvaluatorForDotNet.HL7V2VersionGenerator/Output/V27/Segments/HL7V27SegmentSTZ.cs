@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentSTZ
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"STZ"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Sterilization Type",
                             Description = @"This field contains the type of sterilization used for sterilizing the inventory supply item in the ITM segment.  Refer to User-defined Table 0806 – Sterilization Type for suggested values. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STZ.1.1",
                             Type = @"Component",
@@ -476,8 +476,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -495,8 +494,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Cycle Type-",
                             Description = @"This field contains the sterilization cycle used for sterilization of the inventory supply item.  The AAMI Standard defines steam sterilization cycles – cycle names: pressure, temperature, dry time.  Refer to User-defined Table 0702 – Cycle Type in SCD-28 Cycle Type.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STZ.2.1",
                             Type = @"Component",
@@ -922,8 +920,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -941,8 +938,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Maintenance Cycle",
                             Description = @"This field contains the maintenance cycle used for the inventory supply item, such as the number of times to sharpen after five uses. Refer to User-defined Table 0809 – Maintenance Cycle for suggested values. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STZ.3.1",
                             Type = @"Component",
@@ -1368,8 +1364,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1387,8 +1382,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Maintenance Type",
                             Description = @"This field contains the type of maintenance performed on the inventory supply item.  This is different than the maintenance cycle in the sense that it can describe the number of maintenance cycles that can be performed before disposing of the inventory supply item.  Refer to User-defined Table 0811 – Maintenance Type for suggested values. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STZ.4.1",
                             Type = @"Component",
@@ -1814,8 +1808,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1826,8 +1819,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V27Field sterilizationType;
+        internal HL7V27Field sterilizationType;
 
 public HL7V27Field SterilizationType
 {
@@ -2350,6 +2342,5 @@ public HL7V27Field MaintenanceType
         return maintenanceType;
     } 
 }
-
     }
 }

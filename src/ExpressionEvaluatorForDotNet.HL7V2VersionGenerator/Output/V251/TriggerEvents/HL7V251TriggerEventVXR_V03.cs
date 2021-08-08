@@ -4,16 +4,16 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventVXR_V03
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V251SegmentMSH msh;
-public readonly HL7V251SegmentMSA msa;
-public readonly HL7V251SegmentSFT sft;
-public readonly HL7V251SegmentQRD qrd;
-public readonly HL7V251SegmentQRF qrf;
-public readonly HL7V251SegmentPID pid;
-public readonly HL7V251SegmentPD1 pd1;
-public readonly HL7V251SegmentNK1 nk1;
-public readonly HL7V251SegmentGT1 gt1;
+        private readonly HL7V2Message message;
+        private readonly HL7V251SegmentMSH msh;
+private readonly HL7V251SegmentMSA msa;
+private readonly HL7V251SegmentSFT sft;
+private readonly HL7V251SegmentQRD qrd;
+private readonly HL7V251SegmentQRF qrf;
+private readonly HL7V251SegmentPID pid;
+private readonly HL7V251SegmentPD1 pd1;
+private readonly HL7V251SegmentNK1 nk1;
+private readonly HL7V251SegmentGT1 gt1;
 
 
         public string Id { get { return @"VXR_V03"; } }
@@ -29,6 +29,7 @@ public readonly HL7V251SegmentGT1 gt1;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

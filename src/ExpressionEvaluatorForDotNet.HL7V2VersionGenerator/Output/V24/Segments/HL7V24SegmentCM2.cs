@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentCM2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"CM2"; } }
 
@@ -26,6 +26,7 @@ The Technical Steward for the CM2 segment is ORDERS."; } }
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ The Technical Steward for the CM2 segment is ORDERS."; } }
                             TableName = null,
                             Description = @"This field should correspond to the scheduled time point coding system in Section 7.7.3.1, ""Study scheduled time point.""",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CM2.2.1",
                             Type = @"Component",
@@ -180,8 +180,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -217,8 +216,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             TableName = null,
                             Description = @"This field contains a study-specific event. Coding systems may be developed for this field or applications may use facility-wide or standardized orders and procedures coding systems. This enables integration of procedures or events ordered for clinical trials with medical order entry systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CM2.4.1",
                             Type = @"Component",
@@ -328,8 +326,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -340,8 +337,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
             this.message = message;
         }
 
-        
-internal HL7V24Field setIDCM2;
+        internal HL7V24Field setIDCM2;
 
 public HL7V24Field SetIDCM2
 {
@@ -864,6 +860,5 @@ public HL7V24Field EventsScheduledThisTimePoint
         return eventsScheduledThisTimePoint;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentIN1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"IN1"; } }
 
@@ -831,8 +831,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field setIdInsurance;
+        internal HL7V21Field setIdInsurance;
 
 public HL7V21Field SetIdInsurance
 {
@@ -6595,6 +6594,5 @@ public HL7V21Field InsuredsEmployerAddress
         return insuredsEmployerAddress;
     } 
 }
-
     }
 }

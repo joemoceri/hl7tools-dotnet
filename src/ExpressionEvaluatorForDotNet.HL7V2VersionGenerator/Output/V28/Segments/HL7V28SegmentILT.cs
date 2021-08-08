@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentILT
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ILT"; } }
 
@@ -26,6 +26,7 @@ Note that on-hand quantities do NOT refer to a continuously updated quantity.  T
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }
@@ -144,8 +145,7 @@ Note:  Expiration date does not always have a ""day"" component; therefore, such
                             TableName = @"Package",
                             Description = @"This field specifies the unit for the Inventory Received Quantity. See User-defined Table 0818 – Package as described in PKG-2 Packaging Units and as presented in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ILT.6.1",
                             Type = @"Component",
@@ -573,8 +573,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -592,8 +591,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the per-unit cost of the inventory item at the time of receipt.  ILT-6 Inventory Received Quantity Unit field specifies the per-unit basis of this field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ILT.7.1",
                             Type = @"Component",
@@ -632,8 +630,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -687,8 +684,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
                             TableName = @"Package",
                             Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in ILT-8 Inventory on Hand Date field.  No adjustment has been made for subsequent use.  See User-defined Table 0818 – Package as described in PKG-2 Packaging Units and as presented in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ILT.10.1",
                             Type = @"Component",
@@ -1116,8 +1112,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1128,8 +1123,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field setIdIlt;
+        internal HL7V28Field setIdIlt;
 
 public HL7V28Field SetIdIlt
 {
@@ -2441,6 +2435,5 @@ public HL7V28Field InventoryOnHandQuantityUnit
         return inventoryOnHandQuantityUnit;
     } 
 }
-
     }
 }

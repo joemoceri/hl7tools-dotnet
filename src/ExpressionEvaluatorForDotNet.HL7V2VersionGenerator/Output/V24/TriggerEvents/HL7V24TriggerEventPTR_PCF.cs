@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventPTR_PCF
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentMSA msa;
-public readonly HL7V24SegmentERR err;
-public readonly HL7V24SegmentQAK qak;
-public readonly HL7V24SegmentQRD qrd;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentMSA msa;
+private readonly HL7V24SegmentERR err;
+private readonly HL7V24SegmentQAK qak;
+private readonly HL7V24SegmentQRD qrd;
 
 
         public string Id { get { return @"PTR_PCF"; } }
@@ -25,6 +25,7 @@ public readonly HL7V24SegmentQRD qrd;
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }

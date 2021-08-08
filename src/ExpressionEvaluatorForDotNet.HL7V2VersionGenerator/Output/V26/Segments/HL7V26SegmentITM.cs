@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentITM
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ITM"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The Item Identifier is a unique code assigned to the material item by the Item Inventory Master catalog software application to identify the item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.1.1",
                             Type = @"Component",
@@ -120,8 +120,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -157,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Item Status",
                             Description = @"The status (useful for reporting and item usage purposes) that applies to an item. Refer to User-defined Table 0776 - Item Status for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.3.1",
                             Type = @"Component",
@@ -318,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -337,8 +334,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Item Type",
                             Description = @"The Item Type is a classification of material items into like groups as defined and utilized within an Operating Room setting for charting procedures. An Item Type is a higher level of classification than an Item Category as described in ITM-4.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.4.1",
                             Type = @"Component",
@@ -498,8 +494,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -517,8 +512,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The Item Category is a classification of material items into like groups for the purpose of categorizing purchases and reporting within a materials management setting. The Item Category classification is a lower level grouping of material items than what is described in ITM-3 as Item Type. UNSPSC is the recommended coding system.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.5.1",
                             Type = @"Component",
@@ -678,8 +672,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -697,8 +690,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Expanded yes/no indicator",
                             Description = @"This field contains an indicator used as a reference to specify whether the item is subject to containing an expiration date. Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.6.1",
                             Type = @"Component",
@@ -858,8 +850,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -877,8 +868,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field identifies the identifying code of the manufacturer of the item.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.7.1",
                             Type = @"Component",
@@ -948,8 +938,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1003,8 +992,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the Labeler Identification Code (LIC) number assigned to the manufacturer that represents the manufacturer of the item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.10.1",
                             Type = @"Component",
@@ -1164,8 +1152,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1183,8 +1170,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Expanded yes/no indicator",
                             Description = @"This field indicates whether the item is patient chargeable.  Refer to HL7 Table 0532 – Expanded Yes/no Indicator table in Chapter 2 for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.11.1",
                             Type = @"Component",
@@ -1344,8 +1330,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1365,8 +1350,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Refer to User-defined Table 0132 - Transaction Code for suggested values.  See Chapter 7 for a discussion of the universal service ID for charges.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.12.1",
                             Type = @"Component",
@@ -1526,8 +1510,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1545,8 +1528,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             TableName = null,
                             Description = @"Unit price of transaction. Price of a single item. This field contains the dollar amount charged to patients for this item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.13.1",
                             Type = @"Component",
@@ -1561,8 +1543,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.13.1.1",
                             Type = @"SubComponent",
@@ -1596,8 +1577,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1669,8 +1649,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             TableName = null,
                             Description = @"A coded value, data type CWE, defined by the standard table of units for either time or quantity (see for example, the tables in Section 7.1.4, ""Coding schemes""). This describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (i.e., count); it is required if <from value> and <to value> are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.13.5.1",
                             Type = @"SubComponent",
@@ -1830,8 +1809,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1850,8 +1828,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1869,8 +1846,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             TableName = @"Expanded yes/no indicator",
                             Description = @"This field contains an indicator signifying whether the item is stocked in any inventory location in the healthcare organization. Refer to HL7 Table 0532 – Expanded Yes/no Indicator table in Chapter 2 for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.14.1",
                             Type = @"Component",
@@ -2030,8 +2006,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2049,8 +2024,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             TableName = @"Supply Risk Codes",
                             Description = @"This field contains a code that identifies any known or suspected hazard associated with this material item.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.15.1",
                             Type = @"Component",
@@ -2210,8 +2184,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2231,8 +2204,7 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
 
 Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested values.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.16.1",
                             Type = @"Component",
@@ -2337,8 +2309,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency or department) that creates the data. Assigning authorities are unique across a given HL7 implementation. Refer to User-defined Table 0363 - Assigning Authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.16.6.1",
                             Type = @"SubComponent",
@@ -2390,8 +2361,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2427,8 +2397,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.16.8.1",
                             Type = @"SubComponent",
@@ -2480,8 +2449,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2518,8 +2486,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2537,8 +2504,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = @"Expanded yes/no indicator",
                             Description = @"This field contains an indicator signifying whether the item is made of or contains latex.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.17.1",
                             Type = @"Component",
@@ -2698,8 +2664,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2717,8 +2682,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = @"Ruling Act",
                             Description = @"This field contains a code indicating an act containing a rule that the item is legally required to be included in notification reporting.  This code is often used for reporting or tracking.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.18.1",
                             Type = @"Component",
@@ -2878,8 +2842,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2933,8 +2896,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = null,
                             Description = @"This field contains the dollar limit of this item that you can purchase within a user-defined time frame (e.g., one year).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.21.1",
                             Type = @"Component",
@@ -2968,8 +2930,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2987,8 +2948,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = @"Expanded yes/no indicator",
                             Description = @"This field contains an indicator signifying whether the item is taxable when purchasing the item or issuing the item to patients.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.22.1",
                             Type = @"Component",
@@ -3148,8 +3108,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3167,8 +3126,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = @"Expanded yes/no indicator",
                             Description = @"This field contains an indicator signifying whether freight is an allowable charge to be allocated to the line of an invoice containing the item.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.23.1",
                             Type = @"Component",
@@ -3328,8 +3286,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3347,8 +3304,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = @"Expanded yes/no indicator",
                             Description = @"This field contains an indicator signifying whether the item is an 'item set' rather than an individual item.  An item set is a set of surgical supplies.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.24.1",
                             Type = @"Component",
@@ -3508,8 +3464,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3527,8 +3482,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = null,
                             Description = @"The Item Identifier is a unique code assigned to the material item by the Item Inventory Master catalog software application to identify the item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.25.1",
                             Type = @"Component",
@@ -3598,8 +3552,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3617,8 +3570,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = @"Expanded yes/no indicator",
                             Description = @"This field contains an indicator signifying whether the usage figures are tracked for this item by department.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.26.1",
                             Type = @"Component",
@@ -3778,8 +3730,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3797,8 +3748,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             TableName = @"Procedure Code",
                             Description = @"This field contains a unique identifier assigned to the service item, if any, associated with the charge.  In the United States this is often the HCPCS code.  Refer to Externally defined Table 0088 - Procedure code for suggested values.  This field is a CNE data type for compatibility with clinical and ancillary systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.27.1",
                             Type = @"Component",
@@ -3958,8 +3908,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3979,8 +3928,7 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.28.1",
                             Type = @"Component",
@@ -4140,8 +4088,7 @@ As of v2.6, the known applicable external coding systems include those in the ta
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4159,8 +4106,7 @@ As of v2.6, the known applicable external coding systems include those in the ta
                             TableName = @"Special Handling Code",
                             Description = @"This field contains a special handling code to describe special handling considerations for this item.  Refer to User-defined Table 0376 – Special Handling Code in Chapter 7 for suggested values.  The value set can be extended with user specific values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.29.1",
                             Type = @"Component",
@@ -4320,8 +4266,7 @@ As of v2.6, the known applicable external coding systems include those in the ta
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -4332,8 +4277,7 @@ As of v2.6, the known applicable external coding systems include those in the ta
             this.message = message;
         }
 
-        
-internal HL7V26Field itemIdentifier;
+        internal HL7V26Field itemIdentifier;
 
 public HL7V26Field ItemIdentifier
 {
@@ -8137,6 +8081,5 @@ public HL7V26Field SpecialHandlingCode
         return specialHandlingCode;
     } 
 }
-
     }
 }

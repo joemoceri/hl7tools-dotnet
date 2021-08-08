@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentGP1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"GP1"; } }
 
@@ -26,6 +26,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -125,8 +126,7 @@ There can also be a revenue code linked to a HCPCS/CPT code.  These are found in
                             TableName = null,
                             Description = @"This field contains the amount that exceeds the outlier limitation as defined by APC regulations.  This field is analogous to DRG-7 - Outlier cost however the definition in this field note supersedes the DRG-7 definition",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.1",
                             Type = @"Component",
@@ -141,8 +141,7 @@ There can also be a revenue code linked to a HCPCS/CPT code.  These are found in
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.9.26, MO - money) is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.1.1",
                             Type = @"SubComponent",
@@ -181,8 +180,7 @@ Example:
 where USD is the ISO 4217 code for the U.S. American dollar.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -256,8 +254,7 @@ where USD is the ISO 4217 code for the U.S. American dollar.",
 
 Subcomponents of range units: <identifier (ST)> & <text (ST)> & <name of coding system (IS)> & <alternate identifier (ST)> & <alternate text (ST)> & <name of alternate coding system (IS)>",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.5.1",
                             Type = @"SubComponent",
@@ -367,8 +364,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -387,8 +383,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Refers to HL7 Table 0298 - CP range type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -399,8 +394,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
             this.message = message;
         }
 
-        
-internal HL7V24Field typeofBillCode;
+        internal HL7V24Field typeofBillCode;
 
 public HL7V24Field TypeofBillCode
 {
@@ -1056,6 +1050,5 @@ public HL7V24Field OutlierCost
         return outlierCost;
     } 
 }
-
     }
 }

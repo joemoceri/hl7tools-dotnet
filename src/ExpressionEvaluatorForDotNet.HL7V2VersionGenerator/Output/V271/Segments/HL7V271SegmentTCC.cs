@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentTCC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"TCC"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field identifies the test code that information is being transmitted about.  The alternate elements represent the test code identifier that has been assigned by the manufacturer to this particular test code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.1.1",
                             Type = @"Component",
@@ -476,8 +476,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -495,8 +494,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field identifies the test application code assigned by the manufacturer of the equipment or reagents and associated with performing of the particular test specified by the Universal Test Identifier.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.2.1",
                             Type = @"Component",
@@ -574,8 +572,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -611,8 +608,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = null,
                             Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen in case of rerun for this particular test code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.4.1",
                             Type = @"Component",
@@ -694,8 +690,7 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -713,8 +708,7 @@ Categorical response, e.g., occult blood positivity
                             TableName = null,
                             Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen in case of rerun for this particular test code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.5.1",
                             Type = @"Component",
@@ -796,8 +790,7 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -815,8 +808,7 @@ Categorical response, e.g., occult blood positivity
                             TableName = null,
                             Description = @"This field is the value that is to be used as the default factor for a specimen that is delivered to the laboratory automation system as pre-diluted for this particular test code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.6.1",
                             Type = @"Component",
@@ -898,8 +890,7 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -917,8 +908,7 @@ Categorical response, e.g., occult blood positivity
                             TableName = null,
                             Description = @"This field represents a baseline value for the measured test that is inherently contained in the diluent.  In the calculation of the actual result for the measured test, this baseline value is normally considered.  	",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.7.1",
                             Type = @"Component",
@@ -1000,8 +990,7 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1091,8 +1080,7 @@ Categorical response, e.g., occult blood positivity
                             TableName = null,
                             Description = @"This is the range over which the equipment can produce results. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.12.1",
                             Type = @"Component",
@@ -1174,8 +1162,7 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1195,8 +1182,7 @@ Categorical response, e.g., occult blood positivity
 
 These units apply to fields ""Endogenous content of pre-dilution diluent"" and ""Equipment dynamic range"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.13.1",
                             Type = @"Component",
@@ -1622,8 +1608,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1641,8 +1626,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Processing Type",
                             Description = @"This field identifies the processing type that applies to this test code. If this attribute is omitted, then regular production is the default.  Refer to HL7 Table 0388 – Processing Type for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.14.1",
                             Type = @"Component",
@@ -2068,8 +2052,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -2080,8 +2063,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field universalServiceIdentifier;
+        internal HL7V271Field universalServiceIdentifier;
 
 public HL7V271Field UniversalServiceIdentifier
 {
@@ -3916,6 +3898,5 @@ public HL7V271Field ProcessingType
         return processingType;
     } 
 }
-
     }
 }

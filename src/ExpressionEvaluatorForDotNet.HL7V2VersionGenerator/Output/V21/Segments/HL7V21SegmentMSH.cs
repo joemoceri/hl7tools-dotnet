@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentMSH
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MSH"; } }
 
@@ -291,8 +291,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field fieldSeparator;
+        internal HL7V21Field fieldSeparator;
 
 public HL7V21Field FieldSeparator
 {
@@ -2125,6 +2124,5 @@ public HL7V21Field ContinuationPointer
         return continuationPointer;
     } 
 }
-
     }
 }

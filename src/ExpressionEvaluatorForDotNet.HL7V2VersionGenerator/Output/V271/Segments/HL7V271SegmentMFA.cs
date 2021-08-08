@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentMFA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MFA"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -107,8 +108,7 @@ Note: If the MFI-3 - File-level event code is ""REP"" (replace file), then each 
 
 Refer to User-defined Table 0181 - MFN Record-level Error Return for suggested values.  All such tables will have at least the following two return code values: ""S"" for successful and ""U"" for unsuccessful.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFA.4.1",
                             Type = @"Component",
@@ -534,8 +534,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -584,8 +583,7 @@ The repetition of the primary key permits the identification of an individual co
             this.message = message;
         }
 
-        
-internal HL7V271Field recordlevelEventCode;
+        internal HL7V271Field recordlevelEventCode;
 
 public HL7V271Field RecordlevelEventCode
 {
@@ -1376,6 +1374,5 @@ public HL7V271Field PrimaryKeyValueTypeMfa
         return primaryKeyValueTypeMfa;
     } 
 }
-
     }
 }

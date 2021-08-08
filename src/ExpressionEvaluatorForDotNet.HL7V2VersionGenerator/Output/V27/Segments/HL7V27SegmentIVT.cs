@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentIVT
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"IVT"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the code identifying an inventory supply location that stocks or purchases this item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.2.1",
                             Type = @"Component",
@@ -146,8 +146,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -183,8 +182,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = null,
                             Description = @"This field contains the code identifying the source location that purchases and stocks items in addition to filling supply requests for the location specified in IVT-2.  For example, IVT-2 may be considered Central Supply, an inventory location that issues to departments.  IVT-3 may be considered General Stores, a supply location that most items are received into when delivered to the healthcare facility.  General Stores would then replenish the Central Supply inventory.  Central Supply would then issue supplies to departments based on requests for supplies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.4.1",
                             Type = @"Component",
@@ -262,8 +260,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -299,8 +296,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = @"Item Status Codes",
                             Description = @"This field contains the status that applies to the inventory supply item for the inventory location specified in IVT-2.  Refer to User-defined Table 0625 – Item Status Codes for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.6.1",
                             Type = @"Component",
@@ -726,8 +722,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -745,8 +740,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"A unique code assigned to a bin location located within the inventory location in IVT-2, where the inventory supply item may be stored.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.7.1",
                             Type = @"Component",
@@ -824,8 +818,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -843,8 +836,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = @"Package",
                             Description = @"This field contains the primary packaging unit by which the item can be requisitioned or ordered to replenish the inventory supply item for the corresponding inventory location specified in IVT-2.  See User-defined Table 0818 – Package in PKG-2 Packaging Units for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.8.1",
                             Type = @"Component",
@@ -1270,8 +1262,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1289,8 +1280,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the primary issue packaging unit by which the inventory supply item can be issued to departments or other locations by the corresponding inventory location specified in IVT-2.  See User-defined Table 0818 – Package in PKG-2 Packaging Units for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.9.1",
                             Type = @"Component",
@@ -1716,8 +1706,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1735,8 +1724,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the general ledger number for the default inventory asset account used in journal transactions associated with items stored in this inventory location.  The account includes all elements of a general ledger account (a fully qualified general ledger account number).  All elements may include a corporation, department/cost center account, and expense account.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.10.1",
                             Type = @"Component",
@@ -1814,8 +1802,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1833,8 +1820,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = @"Expanded Yes/no Indicator",
                             Description = @"This field indicates whether the item is patient chargeable at this inventory location.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.11.1",
                             Type = @"Component",
@@ -2271,8 +2257,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2290,8 +2275,7 @@ Value set version ID is required if CNE.21 is populated.",
                             TableName = @"Transaction Code",
                             Description = @"This field contains a code that is used by a billing system to charge for the inventory supply item, the descriptive name of the patient charge for that system (as it may appear on a patient's bill or charge labels) and the name of the coding system that assigned the charge code.  Refer to User-defined Table 0132 – Transaction Codes in Chapter 6, Financial Management, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.12.1",
                             Type = @"Component",
@@ -2717,8 +2701,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2736,8 +2719,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the dollar amount charged to patients for this single inventory supply item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.13.1",
                             Type = @"Component",
@@ -2752,8 +2734,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.13.1.1",
                             Type = @"SubComponent",
@@ -2792,8 +2773,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2869,8 +2849,7 @@ Note that, if the CP.2 Price Type component is TP, both CP.3 and CP.4 may be nul
 
 This component is required if CP.3 From Value and/or CP.4 To Value are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.13.5.1",
                             Type = @"SubComponent",
@@ -3296,8 +3275,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3316,8 +3294,7 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3335,8 +3312,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Item Importance Codes",
                             Description = @"This field contains an indicator of the level of importance of an item considered for this inventory location, such as an indicator signifying whether the item is considered critical for this inventory location.  Refer to User-defined Table 0634 – Item Importance Codes for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.14.1",
                             Type = @"Component",
@@ -3762,8 +3738,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3781,8 +3756,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Expanded Yes/no Indicator",
                             Description = @"This field contains an indicator that identifies whether the item is regularly stocked in this inventory location.  Stock items are ordered regularly as part of the healthcare organization's inventory replenishment cycle.  If the item is not regularly stocked in this inventory location (non-stock item), the item is available to be ordered from this inventory location if requested by a department.   Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.15.1",
                             Type = @"Component",
@@ -4219,8 +4193,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4238,8 +4211,7 @@ Value set version ID is required if CNE.21 is populated.",
                             TableName = @"Expanded Yes/no Indicator",
                             Description = @"This field contains an indicator signifying whether the inventory supply item is purchased on consignment. If the item is purchased on consignment, the healthcare organization does not pay for the inventory supply item until it is used.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.16.1",
                             Type = @"Component",
@@ -4676,8 +4648,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4695,8 +4666,7 @@ Value set version ID is required if CNE.21 is populated.",
                             TableName = @"Expanded Yes/no Indicator",
                             Description = @"This field contains an indicator signifying that the inventory supply item is reusable, for example, after sterilization.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.17.1",
                             Type = @"Component",
@@ -5133,8 +5103,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5152,8 +5121,7 @@ Value set version ID is required if CNE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the issue cost charged to a department or patient for a reusable item.  This cost is calculated based on the cost of reprocessing the item.  Examples of reusable items are linens, restraints, and procedure packs (custom for specific procedures).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.18.1",
                             Type = @"Component",
@@ -5168,8 +5136,7 @@ Value set version ID is required if CNE.21 is populated.",
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.18.1.1",
                             Type = @"SubComponent",
@@ -5208,8 +5175,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5285,8 +5251,7 @@ Note that, if the CP.2 Price Type component is TP, both CP.3 and CP.4 may be nul
 
 This component is required if CP.3 From Value and/or CP.4 To Value are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.18.5.1",
                             Type = @"SubComponent",
@@ -5712,8 +5677,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5732,8 +5696,7 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5751,8 +5714,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"The substitute item is an item that is recommended as a substitute for the corresponding item in ITM-1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.19.1",
                             Type = @"Component",
@@ -5830,8 +5792,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5849,8 +5810,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = null,
                             Description = @"The latex-free substitute item is an item that is latex-free, recommended as a substitute for the corresponding item in the ITM-1 segment when a latex-free item is needed.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.20.1",
                             Type = @"Component",
@@ -5928,8 +5888,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5947,8 +5906,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = @"Reorder Theory Codes",
                             Description = @"This field contains the method used to calculate a recommendation for when and how much of an inventory supply item to reorder.  Refer to User-defined Table 0642 – Reorder Theory Codes for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.21.1",
                             Type = @"Component",
@@ -6374,8 +6332,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -6467,8 +6424,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 If valued with a 'Y', this indicates to the system that the item to be issued is contained in an OR Par Level area (in an actual Operating Room) and not an Operating Room inventory area; therefore, on-hands of the Operation Room inventory area will not be decremented. If valued with a 'N', the item is contained in an Operating Room inventory location and on-hands will be decremented when performing Preference List Issues.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.26.1",
                             Type = @"Component",
@@ -6905,8 +6861,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -6917,8 +6872,7 @@ Value set version ID is required if CNE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V27Field setIdIvt;
+        internal HL7V27Field setIdIvt;
 
 public HL7V27Field SetIdIvt
 {
@@ -10325,6 +10279,5 @@ If valued with a 'Y', this indicates to the system that the item to be issued is
         return operatingRoomParLevelIndicator;
     } 
 }
-
     }
 }

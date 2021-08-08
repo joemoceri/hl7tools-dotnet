@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentMFE
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MFE"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ Note:  Note that this segment does not contain a Set ID field. The MFE-2-MFN con
                             TableName = null,
                             Description = @"An optional effective date/time can be included for the record-level action specified.  It is the date/time the originating system expects that the event is to have been completed on the receiving system.  If this field is not present, the effective date/time should default to the current date/time (when the message is received).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFE.3.1",
                             Type = @"Component",
@@ -104,8 +104,7 @@ Note:  Note that this segment does not contain a Set ID field. The MFE-2-MFN con
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -136,8 +135,7 @@ The repetition of the primary key permits the identification of an individual co
             this.message = message;
         }
 
-        
-internal HL7V23Field recordLevelEventCode;
+        internal HL7V23Field recordLevelEventCode;
 
 public HL7V23Field RecordLevelEventCode
 {
@@ -664,6 +662,5 @@ The repetition of the primary key permits the identification of an individual co
         return primaryKeyValue;
     } 
 }
-
     }
 }

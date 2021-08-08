@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentTQ2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"TQ2"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ namespace ExpressionEvaluatorForDotNet
 
 At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.3.1",
                             Type = @"Component",
@@ -158,8 +158,7 @@ At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -179,8 +178,7 @@ At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
 
 At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.4.1",
                             Type = @"Component",
@@ -250,8 +248,7 @@ At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -271,8 +268,7 @@ At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
 
 At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.5.1",
                             Type = @"Component",
@@ -342,8 +338,7 @@ At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -401,8 +396,7 @@ Should not be populated when TQ2-2 (Sequence/Results Flag) is not equal to a 'C'
                             TableName = null,
                             Description = @"Defines the interval of time between the start/end of the related service request(s) and the start/end of the current service request. The unit's component is constrained to units of time. If this field is not populated, then there should be no interruption between start/ending the current service request, and the related service request(s).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.8.1",
                             Type = @"Component",
@@ -435,8 +429,7 @@ Should not be populated when TQ2-2 (Sequence/Results Flag) is not equal to a 'C'
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.8.2.1",
                             Type = @"SubComponent",
@@ -596,10 +589,8 @@ Should not be populated when TQ2-2 (Sequence/Results Flag) is not equal to a 'C'
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -648,8 +639,7 @@ Either this field or TQ2-6 must be present.",
             this.message = message;
         }
 
-        
-internal HL7V26Field setIDTQ2;
+        internal HL7V26Field setIDTQ2;
 
 public HL7V26Field SetIDTQ2
 {
@@ -1970,6 +1960,5 @@ Either this field or TQ2-6 must be present.",
         return specialServiceRequestRelationship;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentPRC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PRC"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Transaction Code",
                             Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged.  The key field of the entry.  For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes.  Probably the same set of values as used in FT1-7 - Transaction Code in financial messages.  Must match MFE-4 - Primary Key - MFE and CDM-1 - Primary Key - CDM.  Refer to User-defined Table 0132 - Transaction code in Chapter 6, Financial Management, for suggested values.  See Chapter 7 for discussion of the universal service ID.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.1.1",
                             Type = @"Component",
@@ -476,8 +476,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -497,8 +496,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 When two PRC segments are sent with the same key values but different facility identifiers, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC-1 - Primary Key Value - PRC) plus the facility ID (PRC-2 - Facility ID).  Multiple facility identifiers can be sent in the same segment to indicate that those facilities use the same pricing. Refer to User-defined Table 0464 - Facility ID for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.2.1",
                             Type = @"Component",
@@ -924,8 +922,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -945,8 +942,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 When two PRC segments are sent the same key values but with different departments, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC-1 - Primary Key - PRC) plus the facility ID (PRC-2 - Facility ID) plus the department (PRC-3 - Department).  Multiple departments can be sent in the same segment to indicate that those departments use the same pricing. Refer to User-defined Table 0184 - Department in Chapter 15, Personnel Management, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.3.1",
                             Type = @"Component",
@@ -1372,8 +1368,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1393,8 +1388,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 When two PRC segments are sent the same key values but with different valid patient classes, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC-1 - PRC Primary Key) plus the facility ID (PRC-2 - Facility ID) plus the department (PRC-3 - Department) plus the patient class (PRC-4 - Valid Patient Classes).  Multiple patient classes can be sent in the same segment to indicate that those patient classes use the same pricing.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.4.1",
                             Type = @"Component",
@@ -1820,8 +1814,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1839,8 +1832,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the price to be charged for service, item, or procedure.  If CDM price will always be overridden when charges are posted, then this field is optional.  Otherwise, price would be a required field.  The formula or calculation that is to be used to get total price from these price components is left to implementation negotiations agreed upon by the participating institutions.  See Chapter 2, section 2.8.8, ""CP - composite price,"" for a description of the use of the composite price (CP) data type.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.5.1",
                             Type = @"Component",
@@ -1855,8 +1847,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.5.1.1",
                             Type = @"SubComponent",
@@ -1895,8 +1886,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1972,8 +1962,7 @@ Note that, if the CP.2 Price Type component is TP, both CP.3 and CP.4 may be nul
 
 This component is required if CP.3 From Value and/or CP.4 To Value are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.5.5.1",
                             Type = @"SubComponent",
@@ -2399,8 +2388,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2419,8 +2407,7 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2492,8 +2479,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the minimum total price (after computation of components of price) that can be charged for this item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.9.1",
                             Type = @"Component",
@@ -2532,8 +2518,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2551,8 +2536,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
                             TableName = null,
                             Description = @"This field contains the maximum total price (after computation of components of price) that can be charged for this item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.10.1",
                             Type = @"Component",
@@ -2591,8 +2575,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2646,8 +2629,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
                             TableName = @"Override",
                             Description = @"This field indicates whether this CDM entry's price can be overridden.  Refer to User-defined Table 0268 - Override for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.13.1",
                             Type = @"Component",
@@ -3073,8 +3055,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3092,8 +3073,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Billing Category",
                             Description = @"This field contains the billing category codes for any classification systems needed, for example, general ledger codes and UB92 categories.  Repeating field with coded entry made up of category code plus category system.  Refer to User-defined Table 0293 - Billing category for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.14.1",
                             Type = @"Component",
@@ -3519,8 +3499,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3576,8 +3555,7 @@ Y - item is billable (this is also the default when NULL)",
                             TableName = null,
                             Description = @"This field contains the institution's calculation of how much it costs to provide this item, that is, what the institution had to pay for the material plus any specified payment expenditure, effort or loss due to performing or providing the chargeable item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.17.1",
                             Type = @"Component",
@@ -3616,8 +3594,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3635,8 +3612,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
                             TableName = @"Charge On Indicator",
                             Description = @"This field contains the user-defined table of values which indicates when a charge for services or procedures should be accrued.  Refer to User-defined Table 0269 - Charge On Indicator for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.18.1",
                             Type = @"Component",
@@ -4062,8 +4038,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -4074,8 +4049,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field primaryKeyValuePrc;
+        internal HL7V271Field primaryKeyValuePrc;
 
 public HL7V271Field PrimaryKeyValuePrc
 {
@@ -6440,6 +6414,5 @@ public HL7V271Field ChargeOnIndicator
         return chargeOnIndicator;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentOBX
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OBX"; } }
 
@@ -26,6 +26,7 @@ Its principal mission is to carry information about observations in report messa
                 return new[]
                     {
                         "CH_07",
+
                     };
             }
         }
@@ -99,8 +100,7 @@ In most systems the identifier will point to a master observation table that wil
 
 When local codes are used as the first identifier in this field we strongly encourage sending a universal identifier as well to permit receivers to equivalence results from different providers of the same service (e.g., a hospital lab and commercial lab that provides serum potassium to a nursing home).  One possible universal identifier is LOINC codes for laboratory and clinical measurements (see Figure 7-3 and the HL7 www list server); see Section 7.15, “WAVEFORM RESULT DATA TYPES,” and Appendix X2 of ASTM E1467 for neurophysiology tests. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.3.1",
                             Type = @"Component",
@@ -206,8 +206,7 @@ When local codes are used as the first identifier in this field we strongly enco
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -266,8 +265,7 @@ This field contains the value of OBX-3-observation identifier of the same segmen
                             TableName = null,
                             Description = @"This field contains the units that have a data type of CE.  The default coding system for the units codes consists of the ISO+ abbreviation for a single case unit (ISO 2955-83) plus extensions, that do not collide with ISO abbreviations (see introductory section to this chapter).  We designate this coding system as ISO+.  Both the ISO unit’s abbreviations and the extensions are defined in Section 7.3.2.6.1.2, “ISO and ANSI customary units abbreviations,” and listed in Figure 7-13.  The ISO+ abbreviations are the codes for the default coding system.  Consequently, when ISO+ units are being used, only ISO+ abbreviations need be sent, and the contents of the units field will be backward compatible to HL7 Version. 2.1",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.6.1",
                             Type = @"Component",
@@ -373,8 +371,7 @@ This field contains the value of OBX-3-observation identifier of the same segmen
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -488,8 +485,7 @@ It is a required field.  Previous versions of HL7 stated this implicitly by defi
 
 Null if there are no normals or units.  If present, a change in this date compared to date-time recorded, the receiving system’s test dictionary should trigger a manual review of the results to determine whether the new observation ID should be assigned a new ID in the local system to distinguish the new results from the old.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.12.1",
                             Type = @"Component",
@@ -505,8 +501,7 @@ Null if there are no normals or units.  If present, a change in this date compar
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -548,8 +543,7 @@ It is also needed in the case of OBX segments that are being sent by the placer 
 
 In all cases, the observation date-time is the physiologically relevant date-time or the closest approximation to that date-time.  In the case of tests performed on specimens, the relevant date-time is the specimen’s collection date-time.  In the case of observations taken directly on the patient (e.g., X-ray images, history and physical), the observation date-time is the date-time that the observation was performed",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.14.1",
                             Type = @"Component",
@@ -565,8 +559,7 @@ In all cases, the observation date-time is the physiologically relevant date-tim
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -584,8 +577,7 @@ In all cases, the observation date-time is the physiologically relevant date-tim
                             TableName = null,
                             Description = @"This field contains a unique identifier of the responsible producing service.  It should be reported explicitly when the test results are produced at outside laboratories, for example.  When this field is null, the receiving system assumes that the observations were produced by the sending organization.  This information supports CLIA regulations in the US.  The code for producer ID is recorded as a CE data type.  In the US, the Medicare number of the producing service is suggested as the identifier",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.15.1",
                             Type = @"Component",
@@ -691,8 +683,7 @@ In all cases, the observation date-time is the physiologically relevant date-tim
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -710,8 +701,7 @@ In all cases, the observation date-time is the physiologically relevant date-tim
                             TableName = null,
                             Description = @"When required, this field contains the identifier of the individual directly responsible for the observation (i.e., the person who either performed or verified it).  In a nursing service, the observer is usually the professional who performed the observation (e.g., took the blood pressure).  In a laboratory, the observer is the technician who performed or verified the analysis.  The code for the observer is recorded as a CE data type.  If the code is sent as a local code, it should be unique and unambiguous when combined with OBX-15-producer ID. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.16.1",
                             Type = @"Component",
@@ -870,8 +860,7 @@ In all cases, the observation date-time is the physiologically relevant date-tim
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.16.9.1",
                             Type = @"SubComponent",
@@ -923,8 +912,7 @@ In all cases, the observation date-time is the physiologically relevant date-tim
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1014,8 +1002,7 @@ In all cases, the observation date-time is the physiologically relevant date-tim
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.16.14.1",
                             Type = @"SubComponent",
@@ -1067,10 +1054,8 @@ In all cases, the observation date-time is the physiologically relevant date-tim
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1090,8 +1075,7 @@ In all cases, the observation date-time is the physiologically relevant date-tim
 
 The Centers for Disease Control and Prevention (CDC) Method Code (CDCM) is one candidate code system for reporting methods/instruments.  EUCLIDES method codes are another. Userdefined tables are an alternative.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.17.1",
                             Type = @"Component",
@@ -1197,8 +1181,7 @@ The Centers for Disease Control and Prevention (CDC) Method Code (CDCM) is one c
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1209,8 +1192,7 @@ The Centers for Disease Control and Prevention (CDC) Method Code (CDCM) is one c
             this.message = message;
         }
 
-        
-internal HL7V23Field setIDOBX;
+        internal HL7V23Field setIDOBX;
 
 public HL7V23Field SetIDOBX
 {
@@ -3467,6 +3449,5 @@ The Centers for Disease Control and Prevention (CDC) Method Code (CDCM) is one c
         return observationMethod;
     } 
 }
-
     }
 }

@@ -4,29 +4,29 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventADT_A31
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V28SegmentMSH msh;
-public readonly HL7V28SegmentSFT sft;
-public readonly HL7V28SegmentUAC uac;
-public readonly HL7V28SegmentEVN evn;
-public readonly HL7V28SegmentPID pid;
-public readonly HL7V28SegmentPD1 pd1;
-public readonly HL7V28SegmentARV arv;
-public readonly HL7V28SegmentROL rol;
-public readonly HL7V28SegmentNK1 nk1;
-public readonly HL7V28SegmentPV1 pv1;
-public readonly HL7V28SegmentPV2 pv2;
-public readonly HL7V28SegmentARV arv;
-public readonly HL7V28SegmentROL rol;
-public readonly HL7V28SegmentDB1 db1;
-public readonly HL7V28SegmentOBX obx;
-public readonly HL7V28SegmentAL1 al1;
-public readonly HL7V28SegmentDG1 dg1;
-public readonly HL7V28SegmentDRG drg;
-public readonly HL7V28SegmentGT1 gt1;
-public readonly HL7V28SegmentACC acc;
-public readonly HL7V28SegmentUB1 ub1;
-public readonly HL7V28SegmentUB2 ub2;
+        private readonly HL7V2Message message;
+        private readonly HL7V28SegmentMSH msh;
+private readonly HL7V28SegmentSFT sft;
+private readonly HL7V28SegmentUAC uac;
+private readonly HL7V28SegmentEVN evn;
+private readonly HL7V28SegmentPID pid;
+private readonly HL7V28SegmentPD1 pd1;
+private readonly HL7V28SegmentARV arv;
+private readonly HL7V28SegmentROL rol;
+private readonly HL7V28SegmentNK1 nk1;
+private readonly HL7V28SegmentPV1 pv1;
+private readonly HL7V28SegmentPV2 pv2;
+private readonly HL7V28SegmentARV arv;
+private readonly HL7V28SegmentROL rol;
+private readonly HL7V28SegmentDB1 db1;
+private readonly HL7V28SegmentOBX obx;
+private readonly HL7V28SegmentAL1 al1;
+private readonly HL7V28SegmentDG1 dg1;
+private readonly HL7V28SegmentDRG drg;
+private readonly HL7V28SegmentGT1 gt1;
+private readonly HL7V28SegmentACC acc;
+private readonly HL7V28SegmentUB1 ub1;
+private readonly HL7V28SegmentUB2 ub2;
 
 
         public string Id { get { return @"ADT_A31"; } }
@@ -42,6 +42,7 @@ public readonly HL7V28SegmentUB2 ub2;
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }

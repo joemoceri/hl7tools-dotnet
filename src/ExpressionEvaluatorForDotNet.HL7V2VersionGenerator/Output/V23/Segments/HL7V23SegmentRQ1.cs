@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentRQ1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RQ1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Codes may be selected from HIBCC Manufacturers Labeler ID Code (LIC), the UPC or the NDC.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RQ1.2.1",
                             Type = @"Component",
@@ -176,8 +176,7 @@ Codes may be selected from HIBCC Manufacturers Labeler ID Code (LIC), the UPC or
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -215,8 +214,7 @@ Codes may be selected from HIBCC Manufacturers Labeler ID Code (LIC), the UPC or
 
 Because of this, it is recommended that each nonstock item have RQ1-2-manufacturers ID and RQ1-3manufacturer’s catalog, or RQ1-4-vendor ID and RQ1-5-vendor catalog.  It is also possible that the requisitioning application will not know the identifier, as listed in the Manufacturer’s or Vendor’s catalog.  In this case, it is important to include the name portion of this coded element field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RQ1.4.1",
                             Type = @"Component",
@@ -322,8 +320,7 @@ Because of this, it is recommended that each nonstock item have RQ1-2-manufactur
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -390,8 +387,7 @@ In general, nonstock requisitioned items will be printed by the receiving applic
             this.message = message;
         }
 
-        
-internal HL7V23Field anticipatedPrice;
+        internal HL7V23Field anticipatedPrice;
 
 public HL7V23Field AnticipatedPrice
 {
@@ -1313,6 +1309,5 @@ public HL7V23Field SubstituteAllowed
         return substituteAllowed;
     } 
 }
-
     }
 }

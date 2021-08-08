@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentURD
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"URD"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -60,8 +61,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V27Field uRD1;
+        internal HL7V27Field uRD1;
 
 public HL7V27Field URD1
 {
@@ -191,6 +191,5 @@ public HL7V27Field URD1
         return uRD1;
     } 
 }
-
     }
 }

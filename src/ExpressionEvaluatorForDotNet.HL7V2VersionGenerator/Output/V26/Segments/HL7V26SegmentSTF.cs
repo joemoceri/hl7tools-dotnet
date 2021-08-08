@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentSTF
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"STF"; } }
 
@@ -26,6 +26,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                 return new[]
                     {
                         "CH_15",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"For MFN Master File Notification, this field is required and must match MFE-4-primary key value to identify which entry is being referenced. For all other messages, this field should not be used.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.1.1",
                             Type = @"Component",
@@ -212,8 +212,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -231,8 +230,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the list of identifiers (one or more) used by the institution to identify this person. Refer to HL7 Table 0061 - Check digit scheme (component 2), User-defined Table 0203 - Identifier type (component 5) and User-defined Table 0363 - Assigning authority (component 4) for valid values (see Chapter 2A). If a Staff Member has institution identifiers that are valid only in specific organization units, that Staff identifier should be recorded in the ORG-Practitioner Organization Unit segment.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.2.1",
                             Type = @"Component",
@@ -301,8 +299,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique name of the system (or organization or agency or department) that creates the data. . Refer to User-defined Table 0363 - Assigning authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.2.4.1",
                             Type = @"SubComponent",
@@ -354,8 +351,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -391,8 +387,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.2.6.1",
                             Type = @"SubComponent",
@@ -444,8 +439,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -499,8 +493,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.2.9.1",
                             Type = @"SubComponent",
@@ -660,8 +653,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -679,8 +671,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.2.10.1",
                             Type = @"SubComponent",
@@ -840,10 +831,8 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -861,8 +850,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the staff person's name. This field may repeat to transmit multiple names for the same person.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.3.1",
                             Type = @"Component",
@@ -877,8 +865,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, ""FN - family name"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.3.1.1",
                             Type = @"SubComponent",
@@ -966,8 +953,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The portion of the person's surname (in most Western usage, the last name) that is derived from the surname of the person's partner or spouse, as distinguished from the part derived from the person's own surname. This component is optional.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1111,8 +1097,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.3.9.1",
                             Type = @"SubComponent",
@@ -1272,8 +1257,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1291,8 +1275,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to 2.A.88.12, ""Effective Date"" and 2.A.88.13, ""Expiration Date"" components.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.3.10.1",
                             Type = @"SubComponent",
@@ -1326,8 +1309,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1400,8 +1382,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"Used to specify an abbreviation, or a string of abbreviations denoting qualifications that support the persons profession, (e.g., licenses, certificates, degrees, affiliations with professional societies, etc.). The Professional Suffix normally follows the Family Name when the Person Name is used for display purposes. Please note that this component is an unformatted string and is used for display purposes only. Detailed information regarding the contents of Professional Suffix is obtained using appropriate segments in Chapter 15, Personnel Management.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1491,8 +1472,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Department",
                             Description = @"This field contains the institution department to which this person reports or belongs. Refer to User-defined Table 0184 - Department for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.8.1",
                             Type = @"Component",
@@ -1652,8 +1632,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1671,8 +1650,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Hospital Service",
                             Description = @"This field contains the hospital or ancillary service with which this staff person is associated. Refer to User-defined Table 0069 - Hospital service for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.9.1",
                             Type = @"Component",
@@ -1832,8 +1810,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1851,8 +1828,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the staff person's phone number. This is a repeating field with a component for indicating which phone number is which.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.10.1",
                             Type = @"Component",
@@ -2119,8 +2095,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Telecommunication expiration reason",
                             Description = @"Indicates why this contact number/e-mail was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.10.15.1",
                             Type = @"SubComponent",
@@ -2280,8 +2255,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2299,8 +2273,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Protection Code",
                             Description = @"Indicates whether this information is considered sensitive or should be protected in some way. Refer to User-defined table 0618 - Protection Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.10.16.1",
                             Type = @"SubComponent",
@@ -2460,8 +2433,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2479,8 +2451,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"A unique identifier for the phone number or e-mail address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.10.17.1",
                             Type = @"SubComponent",
@@ -2550,8 +2521,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2570,8 +2540,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2589,8 +2558,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the office, and home address and/or place of birth of the staff person. This is a repeating field. The address type identifies the usage.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.11.1",
                             Type = @"Component",
@@ -2605,8 +2573,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Street",
                             Description = @"This component contains the house number, apartment number, street name, street direction, P.O. Box number, and similar address information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.11.1.1",
                             Type = @"SubComponent",
@@ -2658,8 +2625,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2857,8 +2823,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to 2.A.85.13, Effective Date and 2.A.85.14, Expiration Date components.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.11.12.1",
                             Type = @"SubComponent",
@@ -2892,8 +2857,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2947,8 +2911,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Address Expiration Reason",
                             Description = @"This identifies why this address was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.11.15.1",
                             Type = @"SubComponent",
@@ -3108,8 +3071,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3235,8 +3197,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Protection Code",
                             Description = @"Identifies that an address needs to be treated with special care or sensitivity.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.11.22.1",
                             Type = @"SubComponent",
@@ -3396,8 +3357,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3415,8 +3375,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"A unique identifier for the address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.11.23.1",
                             Type = @"SubComponent",
@@ -3486,10 +3445,8 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3507,8 +3464,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the date when staff became active for an institution. This is a repeating field. Refer to User-defined Table 0537 - Institution for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.12.1",
                             Type = @"Component",
@@ -3541,8 +3497,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Institution",
                             Description = @"Specifies the institution where a staff member is or was active. Refer to User-Defined Table 0531 - Institutions for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.12.2.1",
                             Type = @"SubComponent",
@@ -3702,10 +3657,8 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3723,8 +3676,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the date when staff became inactive for an institution. This is a repeating field. Refer to HL7 Table 0537 - Institution for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.13.1",
                             Type = @"Component",
@@ -3757,8 +3709,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Institution",
                             Description = @"Specifies the institution where a staff member is or was active. Refer to User-Defined Table 0531 - Institutions for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.13.2.1",
                             Type = @"SubComponent",
@@ -3918,10 +3869,8 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3939,8 +3888,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the MFE-4-primary key value of the master file entry that corresponds to the designated backup person for this staff person.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.14.1",
                             Type = @"Component",
@@ -4100,8 +4048,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4137,8 +4084,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Preferred method of contact",
                             Description = @"This field indicates which of a group of multiple phone numbers is the preferred method of contact for this person. Note that all values of this code refer to this segment's phone field, except for the value ""E,"" which refers to the E-mail address field. If more than one phone number of the preferred type exists in STF-10-phone, this field refers to the first such instance. Refer toHL7 Table 0185 - Preferred method of contact for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.16.1",
                             Type = @"Component",
@@ -4298,8 +4244,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4317,8 +4262,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Marital Status",
                             Description = @"This field contains the staff member's marital status. Refer to User-defined Table 0002 - Marital status for suggested values. Same values as those for PID-16-marital status.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.17.1",
                             Type = @"Component",
@@ -4478,8 +4422,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4515,8 +4458,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the staff member's job code and employee classification. Refer to User-defined Table 0327 - Job code and User-defined Table 0328 - Employee classification for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.19.1",
                             Type = @"Component",
@@ -4568,8 +4510,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"This component contains the text of the job description. This will accommodate systems where job descriptions are not codified.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4587,8 +4528,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Employment Status",
                             Description = @"This field contains the code that indicates the staff member's employment status, e.g., full-time, part-time, self-employed, etc. Refer to User-defined Table 0066 - Employment status for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.20.1",
                             Type = @"Component",
@@ -4748,8 +4688,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4785,8 +4724,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the driver's license information of staff, especially for use when staff is a driver for the institution. For state or province refer to official postal codes for that country; for country refer to ISO 3166 for codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.22.1",
                             Type = @"Component",
@@ -4838,8 +4776,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"Expiration date (DT) for drivers license.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4929,8 +4866,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Race",
                             Description = @"This field refers to the person's race. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CWE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.27.1",
                             Type = @"Component",
@@ -5090,8 +5026,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5109,8 +5044,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Ethnic Group",
                             Description = @"This field further defines the person's ancestry. Refer to User-defined Table 0189 - Ethnic group for suggested values. The second couplet of the CWE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the United States, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.28.1",
                             Type = @"Component",
@@ -5270,8 +5204,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5307,8 +5240,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Citizenship",
                             Description = @"This field contains the staff person's current country of citizenship. HL7 recommends using ISO table 3166 as the suggested values in User-defined Table 0171 - Citizenship .",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.30.1",
                             Type = @"Component",
@@ -5468,8 +5400,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5523,8 +5454,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Institution Relationship Type",
                             Description = @"This field specifies the relationship the staff person has with the institution for whom he/she provides services. Refer to User-defined Table 0538 - Institution Relationship Type for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.33.1",
                             Type = @"Component",
@@ -5684,8 +5614,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5703,8 +5632,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = null,
                             Description = @"This field contains the period during which the staff person started and ended the relationship specified in STF-33 - Institution Relationship Type Code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.34.1",
                             Type = @"Component",
@@ -5738,8 +5666,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5775,8 +5702,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Cost Center Code",
                             Description = @"This field describes the organization unit in the General Ledger to which the staff member is currently assigned. It is sometimes referred to as the ""home"" cost center because it is the organization unit to which the staff member's regular costs are accrued. Refer to HL7 User-defined Table 0539 - Cost center code for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.36.1",
                             Type = @"Component",
@@ -5936,8 +5862,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5973,8 +5898,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Inactive Reason Code",
                             Description = @"This field contains the reason that the staff member is inactive. Refer to User-defined Table 0540 - Inactive Reason Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.38.1",
                             Type = @"Component",
@@ -6134,8 +6058,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -6153,8 +6076,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             TableName = @"Resource Type or Category",
                             Description = @"This field transmits a code that represents a high level categorization of resources. This is a companion field for the STF-4 - Staff Type and allows an institution or enterprise to impose a one or more super category levels. Refer to User-defined Table 0771 - Resource Type or Category for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.39.1",
                             Type = @"Component",
@@ -6314,8 +6236,7 @@ The STF segment can identify any personnel referenced by information systems.  T
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -6326,8 +6247,7 @@ The STF segment can identify any personnel referenced by information systems.  T
             this.message = message;
         }
 
-        
-internal HL7V26Field primaryKeyValueSTF;
+        internal HL7V26Field primaryKeyValueSTF;
 
 public HL7V26Field PrimaryKeyValueSTF
 {
@@ -11435,6 +11355,5 @@ public HL7V26Field Genericresourcetypeorcategory
         return genericresourcetypeorcategory;
     } 
 }
-
     }
 }

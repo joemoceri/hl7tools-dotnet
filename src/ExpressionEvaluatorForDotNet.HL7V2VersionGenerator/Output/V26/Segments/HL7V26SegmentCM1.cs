@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentCM1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"CM1"; } }
 
@@ -26,6 +26,7 @@ Each Clinical Study Phase Master (CM1) segment contains the information about on
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ Each Clinical Study Phase Master (CM1) segment contains the information about on
                             TableName = null,
                             Description = @"This field should correspond to the study phase ID coding system in Chapter 7, section 7.7.2.1, ""Study phase ID.""",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CM1.2.1",
                             Type = @"Component",
@@ -230,8 +230,7 @@ Each Clinical Study Phase Master (CM1) segment contains the information about on
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -260,8 +259,7 @@ Each Clinical Study Phase Master (CM1) segment contains the information about on
             this.message = message;
         }
 
-        
-internal HL7V26Field setIDCM1;
+        internal HL7V26Field setIDCM1;
 
 public HL7V26Field SetIDCM1
 {
@@ -653,6 +651,5 @@ public HL7V26Field DescriptionofStudyPhase
         return descriptionofStudyPhase;
     } 
 }
-
     }
 }

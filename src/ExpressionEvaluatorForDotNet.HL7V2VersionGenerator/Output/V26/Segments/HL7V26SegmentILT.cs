@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentILT
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ILT"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }
@@ -139,8 +140,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field specifies the unit for the Inventory Received Quantity. See User-defined Table 0818 - Package in PKG-2 - Packaging Units for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ILT.6.1",
                             Type = @"Component",
@@ -300,8 +300,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -319,8 +318,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the per-unit cost of the inventory item at the time of receipt. ILT-6 - Inventory Received Quantity Unit field specifies the per-unit basis of this field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ILT.7.1",
                             Type = @"Component",
@@ -354,8 +352,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -409,8 +406,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in ILT-8 - Inventory on Hand Date field. No adjustment has been made for subsequent use. See User-defined Table 0818 - Package in PKG-2 - Packaging Units for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ILT.10.1",
                             Type = @"Component",
@@ -570,8 +566,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -582,8 +577,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V26Field setIdILT;
+        internal HL7V26Field setIdILT;
 
 public HL7V26Field SetIdILT
 {
@@ -1892,6 +1886,5 @@ public HL7V26Field InventoryOnHandQuantityUnit
         return inventoryOnHandQuantityUnit;
     } 
 }
-
     }
 }

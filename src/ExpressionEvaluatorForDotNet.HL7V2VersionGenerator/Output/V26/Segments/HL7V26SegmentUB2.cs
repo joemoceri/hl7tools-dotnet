@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentUB2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB2"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -139,8 +140,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains a monetary amount and an associated billing code. The pair in this field can repeat up to twelve times to represent/contain UB92 form locators 39a, 39b, 39c, 39d, 40a, 40b, 40c, 40d, 41a, 41b, 41c, and 41d. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.6.1",
                             Type = @"Component",
@@ -155,8 +155,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Value code",
                             Description = @"Specifies the National Uniform Billing Committee (NUBC) code itself.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.6.1.1",
                             Type = @"SubComponent",
@@ -316,8 +315,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -335,8 +333,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Specifies the numeric amount when needed to pair with the value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.6.2.1",
                             Type = @"SubComponent",
@@ -370,10 +367,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -391,8 +386,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The set of values in this field can repeat up to eight times. UB92 fields 32a, 32b, 33a, 33b, 34a, 34b, 35a, and 35b. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.7.1",
                             Type = @"Component",
@@ -407,8 +401,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Occurrence code",
                             Description = @"The NUBC code for the event or occurrence relating to a bill that may affect payer processing.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.7.1.1",
                             Type = @"SubComponent",
@@ -568,8 +561,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -588,8 +580,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The date the event, relating to a bill that may affect payer processing, occurred.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -607,8 +598,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.8.1",
                             Type = @"Component",
@@ -623,8 +613,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Occurrence span",
                             Description = @"The NUBC code itself that identifies an event that relates to the payment of a claim.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.8.1.1",
                             Type = @"SubComponent",
@@ -784,8 +773,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -826,8 +814,7 @@ Either start or stop date or both must be present.",
 Either start or stop date or both must be present.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1000,8 +987,7 @@ Either start or stop date or both must be present.",
             this.message = message;
         }
 
-        
-internal HL7V26Field setIDUB2;
+        internal HL7V26Field setIDUB2;
 
 public HL7V26Field SetIDUB2
 {
@@ -3227,6 +3213,5 @@ public HL7V26Field SpecialVisitCount
         return specialVisitCount;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentPRB
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PRB"; } }
 
@@ -26,6 +26,7 @@ The business and/or application must assume the responsibility for maintaining k
                 return new[]
                     {
                         "CH_07",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ The business and/or application must assume the responsibility for maintaining k
                             TableName = null,
                             Description = @"This field contains the date/time that the operation represented by the action code was performed",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.2.1",
                             Type = @"Component",
@@ -86,8 +86,7 @@ The business and/or application must assume the responsibility for maintaining k
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -105,8 +104,7 @@ The business and/or application must assume the responsibility for maintaining k
                             TableName = null,
                             Description = @"This field identifies the problem. This is the identifier from an institution’s master list of problems. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.3.1",
                             Type = @"Component",
@@ -212,8 +210,7 @@ The business and/or application must assume the responsibility for maintaining k
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -233,8 +230,7 @@ The business and/or application must assume the responsibility for maintaining k
 
 Note: It is required that this value remain unique over time .  This instance ID identifies a specific instance for a specific patient and is unique across all patients.  See entity ID data type description in Chapter 2. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.4.1",
                             Type = @"Component",
@@ -304,8 +300,7 @@ Note: It is required that this value remain unique over time .  This instance ID
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -325,8 +320,7 @@ Note: It is required that this value remain unique over time .  This instance ID
 
 Note: It is required that this field be unique over time",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.5.1",
                             Type = @"Component",
@@ -396,8 +390,7 @@ Note: It is required that this field be unique over time",
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -433,8 +426,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains the date/time when the corresponding problem was initially identified by the care giver",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.7.1",
                             Type = @"Component",
@@ -450,8 +442,7 @@ Note: It is required that this field be unique over time",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -469,8 +460,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains the estimated date/time for resolving the stated problem",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.8.1",
                             Type = @"Component",
@@ -486,8 +476,7 @@ Note: It is required that this field be unique over time",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -505,8 +494,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains the date/time that the problem was actually resolved",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.9.1",
                             Type = @"Component",
@@ -522,8 +510,7 @@ Note: It is required that this field be unique over time",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -541,8 +528,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field indicates the kind of problem.  This field can be used to categorize problems so that they may be managed and viewed independently within different applications (e.g., admission, final, postoperative, pre-operative, outpatient, discharge, etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.10.1",
                             Type = @"Component",
@@ -648,8 +634,7 @@ Note: It is required that this field be unique over time",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -667,8 +652,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field indicates the category of caregiver with responsibility for managing this specific problem (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.).  This is a repeating field to allow identification of all disciplines who may have the responsibility for this problem",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.11.1",
                             Type = @"Component",
@@ -774,8 +758,7 @@ Note: It is required that this field be unique over time",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -793,8 +776,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains the perseverance of a problem (e.g., acute, chronic, etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.12.1",
                             Type = @"Component",
@@ -900,8 +882,7 @@ Note: It is required that this field be unique over time",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -919,8 +900,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains the verification status of a problem (e.g., confirmed, differential, provisional, rule-out, etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.13.1",
                             Type = @"Component",
@@ -1026,8 +1006,7 @@ Note: It is required that this field be unique over time",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1045,8 +1024,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains the current status of the problem at this particular date/time (e.g., active, active-improving, active-stable, active-worsening, inactive, resolved, etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.14.1",
                             Type = @"Component",
@@ -1152,8 +1130,7 @@ Note: It is required that this field be unique over time",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1171,8 +1148,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field indicates the effective date/time of the current problem life cycle status",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.15.1",
                             Type = @"Component",
@@ -1188,8 +1164,7 @@ Note: It is required that this field be unique over time",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1207,8 +1182,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains the date/time when the problem began",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.16.1",
                             Type = @"Component",
@@ -1224,8 +1198,7 @@ Note: It is required that this field be unique over time",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1261,8 +1234,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains a user-defined prioritization of a problem (e.g., numeric ranking, or the use of words such as “primary,” “secondary,” etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.18.1",
                             Type = @"Component",
@@ -1368,8 +1340,7 @@ Note: It is required that this field be unique over time",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1387,8 +1358,7 @@ Note: It is required that this field be unique over time",
                             TableName = null,
                             Description = @"This field contains a qualitative representation of the certainty of a problem (e.g., HI - high, LO - low, ME - medium, etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.19.1",
                             Type = @"Component",
@@ -1494,8 +1464,7 @@ Note: It is required that this field be unique over time",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1533,8 +1502,7 @@ Note: We have provided for two different representations of the certainty of the
                             TableName = null,
                             Description = @"This field contains the individual’s comprehension of the problem (e.g., full, marginal, partial, etc.)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.21.1",
                             Type = @"Component",
@@ -1640,8 +1608,7 @@ Note: We have provided for two different representations of the certainty of the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1659,8 +1626,7 @@ Note: We have provided for two different representations of the certainty of the
                             TableName = null,
                             Description = @"This field contains the prognosis for the individual’s problem (e.g., good, poor, etc.).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.22.1",
                             Type = @"Component",
@@ -1766,8 +1732,7 @@ Note: We have provided for two different representations of the certainty of the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1785,8 +1750,7 @@ Note: We have provided for two different representations of the certainty of the
                             TableName = null,
                             Description = @"This field contains the individual’s comprehension of the prognosis for the problem  (e.g., full, marginal, partial, etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.23.1",
                             Type = @"Component",
@@ -1892,8 +1856,7 @@ Note: We have provided for two different representations of the certainty of the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1929,8 +1892,7 @@ Note: We have provided for two different representations of the certainty of the
                             TableName = null,
                             Description = @"This field contains information about the level of security and/or sensitivity surrounding the problem (e.g., highly sensitive, not sensitive, sensitive, etc.). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.25.1",
                             Type = @"Component",
@@ -2036,8 +1998,7 @@ Note: We have provided for two different representations of the certainty of the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -2048,8 +2009,7 @@ Note: We have provided for two different representations of the certainty of the
             this.message = message;
         }
 
-        
-internal HL7V23Field actionCode;
+        internal HL7V23Field actionCode;
 
 public HL7V23Field ActionCode
 {
@@ -5329,6 +5289,5 @@ public HL7V23Field SecuritySensitivity
         return securitySensitivity;
     } 
 }
-
     }
 }

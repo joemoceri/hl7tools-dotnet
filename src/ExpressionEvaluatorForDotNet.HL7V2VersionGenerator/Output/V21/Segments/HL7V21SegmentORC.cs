@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentORC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ORC"; } }
 
@@ -291,8 +291,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field orderControl;
+        internal HL7V21Field orderControl;
 
 public HL7V21Field OrderControl
 {
@@ -2125,6 +2124,5 @@ public HL7V21Field CallBackPhoneNumber
         return callBackPhoneNumber;
     } 
 }
-
     }
 }

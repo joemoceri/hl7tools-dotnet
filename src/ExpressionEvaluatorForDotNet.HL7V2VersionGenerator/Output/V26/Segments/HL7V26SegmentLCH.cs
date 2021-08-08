@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentLCH
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"LCH"; } }
 
@@ -26,6 +26,7 @@ The LCH segment is used to identify location characteristics which determine whi
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             TableName = null,
                             Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The contents of this field must exactly match the content of its preceding MFE ( MFE-4 - Primary Key Value - MFE ), its preceding LOC ( LOC-1 - Primary Key Value - LOC ), and its preceding LDP (LDP-1 - Primary Key Value - LDP).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.1.1",
                             Type = @"Component",
@@ -121,8 +121,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             TableName = null,
                             Description = @"This component is subject to site interpretation but generally describes the highest level physical designation of an institution, medical center or enterprise. It is the most general person location designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.1.4.1",
                             Type = @"SubComponent",
@@ -174,8 +173,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -283,8 +281,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             TableName = null,
                             Description = @"The unique identifier that represents the physical location as a whole without regard for the individual components. This accommodates sites that may have a different method of defining physical units or who may code at a less granular level. For example, point of care, room, and bed may be 1 indivisible code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.1.10.1",
                             Type = @"SubComponent",
@@ -354,8 +351,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -373,8 +369,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             TableName = null,
                             Description = @"The entity that creates the data for the individual physical location components. If populated, it should be the authority for all components populated. Refer to User-defined Table 0363 - Assigning authority for suggested values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.1.11.1",
                             Type = @"SubComponent",
@@ -426,10 +421,8 @@ The LCH segment is used to identify location characteristics which determine whi
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -465,8 +458,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             TableName = null,
                             Description = @"This field contains a unique identifier for one of the multiple repetitions of this segment, to be used in conjunction with the preceding field. Each of the repetitions of the segment will be uniquely identified by this unique key field for the purposes of updates.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.3.1",
                             Type = @"Component",
@@ -536,8 +528,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -555,8 +546,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             TableName = @"Location characteristic ID",
                             Description = @"This field contains an identifier code to show WHICH characteristic is being communicated with this segment. Refer to User-defined Table 0324 - Location characteristic ID for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.4.1",
                             Type = @"Component",
@@ -716,8 +706,7 @@ The LCH segment is used to identify location characteristics which determine whi
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -741,8 +730,7 @@ When LCH-4 - Location Characteristic ID contains ""PRL""- Privacy level (CWE), t
 
 When LCH-4 - Location Characteristic ID contains ""LCR""- Level of care, then LRL-5 - Organizational Location Relationship Value contains the code which indicates what severity of the patient's medical condition which this location is designed to handle.  This indicates how the room is set up and intended to be used, disregarding different uses under special circumstances.  Refer to User-defined Table 0263 - Level of care for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.5.1",
                             Type = @"Component",
@@ -902,8 +890,7 @@ When LCH-4 - Location Characteristic ID contains ""LCR""- Level of care, then LR
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -914,8 +901,7 @@ When LCH-4 - Location Characteristic ID contains ""LCR""- Level of care, then LR
             this.message = message;
         }
 
-        
-internal HL7V26Field primaryKeyValueLCH;
+        internal HL7V26Field primaryKeyValueLCH;
 
 public HL7V26Field PrimaryKeyValueLCH
 {
@@ -1575,6 +1561,5 @@ When LCH-4 - Location Characteristic ID contains ""LCR""- Level of care, then LR
         return locationCharacteristicValueLCH;
     } 
 }
-
     }
 }

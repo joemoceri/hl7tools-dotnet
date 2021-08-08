@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentURS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"URS"; } }
 
@@ -129,8 +129,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field rUWhereSubjectDefinition;
+        internal HL7V21Field rUWhereSubjectDefinition;
 
 public HL7V21Field RUWhereSubjectDefinition
 {
@@ -784,6 +783,5 @@ public HL7V21Field RUOtherResultsSubjectDefini
         return rUOtherResultsSubjectDefini;
     } 
 }
-
     }
 }

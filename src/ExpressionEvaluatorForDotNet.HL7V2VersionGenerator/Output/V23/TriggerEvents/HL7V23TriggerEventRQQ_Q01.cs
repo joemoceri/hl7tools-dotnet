@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventRQQ_Q01
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentERQ erq;
-public readonly HL7V23SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentERQ erq;
+private readonly HL7V23SegmentDSC dsc;
 
 
         public string Id { get { return @"RQQ_Q01"; } }
@@ -23,6 +23,7 @@ public readonly HL7V23SegmentDSC dsc;
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }

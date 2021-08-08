@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentRMI
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RMI"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Risk Management Incident Code",
                             Description = @"A code depicting the incident that occurred during a patient’s stay. Refer to User-defined Table 0427 - Risk Management Incident Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RMI.1.1",
                             Type = @"Component",
@@ -476,8 +476,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -513,8 +512,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Incident Type Code",
                             Description = @"A code depicting a classification of the incident type. Refer to User-defined Table 0428 - Incident Type Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RMI.3.1",
                             Type = @"Component",
@@ -940,8 +938,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -952,8 +949,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field riskManagementIncidentCode;
+        internal HL7V271Field riskManagementIncidentCode;
 
 public HL7V271Field RiskManagementIncidentCode
 {
@@ -1345,6 +1341,5 @@ public HL7V271Field IncidentTypeCode
         return incidentTypeCode;
     } 
 }
-
     }
 }

@@ -4,16 +4,16 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventCCI_I22
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V28SegmentMSH msh;
-public readonly HL7V28SegmentSFT sft;
-public readonly HL7V28SegmentUAC uac;
-public readonly HL7V28SegmentMSA msa;
-public readonly HL7V28SegmentERR err;
-public readonly HL7V28SegmentPID pid;
-public readonly HL7V28SegmentPD1 pd1;
-public readonly HL7V28SegmentNK1 nk1;
-public readonly HL7V28SegmentREL rel;
+        private readonly HL7V2Message message;
+        private readonly HL7V28SegmentMSH msh;
+private readonly HL7V28SegmentSFT sft;
+private readonly HL7V28SegmentUAC uac;
+private readonly HL7V28SegmentMSA msa;
+private readonly HL7V28SegmentERR err;
+private readonly HL7V28SegmentPID pid;
+private readonly HL7V28SegmentPD1 pd1;
+private readonly HL7V28SegmentNK1 nk1;
+private readonly HL7V28SegmentREL rel;
 
 
         public string Id { get { return @"CCI_I22"; } }
@@ -29,6 +29,7 @@ public readonly HL7V28SegmentREL rel;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

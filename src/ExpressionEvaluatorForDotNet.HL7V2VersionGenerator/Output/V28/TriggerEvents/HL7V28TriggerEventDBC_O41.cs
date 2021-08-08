@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventDBC_O41
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V28SegmentMSH msh;
-public readonly HL7V28SegmentSTF stf;
-public readonly HL7V28SegmentUAC uac;
+        private readonly HL7V2Message message;
+        private readonly HL7V28SegmentMSH msh;
+private readonly HL7V28SegmentSTF stf;
+private readonly HL7V28SegmentUAC uac;
 
 
         public string Id { get { return @"DBC_O41"; } }
@@ -23,6 +23,7 @@ public readonly HL7V28SegmentUAC uac;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

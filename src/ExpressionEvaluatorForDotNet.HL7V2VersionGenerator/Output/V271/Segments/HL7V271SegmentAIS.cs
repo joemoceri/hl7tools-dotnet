@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentAIS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"AIS"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ This field is conditionally required.  It is required for all updating or modify
                             TableName = null,
                             Description = @"This field contains an identifier code for a service to be scheduled.  This field may contain a universal service identifier describing the observation/test/battery/procedure or other activity that is to be performed during the requested appointment, similar to the universal service identifier defined for the OBR segment in the Order Entry chapter (Chapter 4).  This code can be based on local and/or universal codes.  The use of universal codes is recommended.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.3.1",
                             Type = @"Component",
@@ -514,8 +514,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -579,8 +578,7 @@ This field is conditionally required.  If a value for AIS-5-Start Date/Time Offs
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.6.1",
                             Type = @"Component",
@@ -1017,8 +1015,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1058,8 +1055,7 @@ This field must be a positive, non-zero number.  A negative number or zero (0) i
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.8.1",
                             Type = @"Component",
@@ -1496,8 +1492,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1517,8 +1512,7 @@ Value set version ID is required if CNE.21 is populated.",
 
 This field is conditionally required.  It is required for all request messages.  It is optional for all unsolicited transactions, and for all query messages.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.9.1",
                             Type = @"Component",
@@ -1944,8 +1938,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1965,8 +1958,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 This is a conditionally required field.  Because the information contained in this field is only appropriate in transactions originating from a filler application, it is required for those messages.  This includes all unsolicited transactions originating from a filler application, as well as all response messages originating from a filler application.  This field is optional for all transactions originating from placer, querying and auxiliary applications.  It is recommended that this field be left unvalued in transactions originating from applications other than the filler application.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.10.1",
                             Type = @"Component",
@@ -2392,8 +2384,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2411,8 +2402,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Supplemental Service Information Values",
                             Description = @"This field contains supplemental service and/or logistical information sent from the placer system to the filler system for the universal procedure code reported in field AIS-3.  This field will be used to provide scheduling information detail that is not available in other, specific fields in the AIS segment.  Multiple supplemental service information elements may be reported.  Refer to User-defined Table 0411 – Supplemental Service Information Values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.11.1",
                             Type = @"Component",
@@ -2838,8 +2828,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2857,8 +2846,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Supplemental Service Information Values",
                             Description = @"This field contains supplemental service and/or logistical information sent from the filler system to the placer system for the procedure code reported in field AIS-3.  This field will be used to report scheduling information details that is not available in other, specific fields in the AIS segment.  Typically it will reflect the same information as was sent to the filler system in AIS-11-Placer Supplemental information unless the scheduling was modified in which case the filler system will report what was actually performed using this field.  Multiple supplemental service information elements may be reported.  Refer to User-defined Table 0411 - Supplemental service information values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.12.1",
                             Type = @"Component",
@@ -3284,8 +3272,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -3296,8 +3283,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field setIdAis;
+        internal HL7V271Field setIdAis;
 
 public HL7V271Field SetIdAis
 {
@@ -4888,6 +4874,5 @@ public HL7V271Field FillerSupplementalServiceInformation
         return fillerSupplementalServiceInformation;
     } 
 }
-
     }
 }

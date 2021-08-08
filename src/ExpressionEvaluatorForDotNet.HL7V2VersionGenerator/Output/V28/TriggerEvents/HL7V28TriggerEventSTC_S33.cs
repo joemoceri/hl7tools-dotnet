@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventSTC_S33
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V28SegmentMSH msh;
-public readonly HL7V28SegmentSFT sft;
-public readonly HL7V28SegmentUAC uac;
-public readonly HL7V28SegmentSCP scp;
+        private readonly HL7V2Message message;
+        private readonly HL7V28SegmentMSH msh;
+private readonly HL7V28SegmentSFT sft;
+private readonly HL7V28SegmentUAC uac;
+private readonly HL7V28SegmentSCP scp;
 
 
         public string Id { get { return @"STC_S33"; } }
@@ -24,6 +24,7 @@ public readonly HL7V28SegmentSCP scp;
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }

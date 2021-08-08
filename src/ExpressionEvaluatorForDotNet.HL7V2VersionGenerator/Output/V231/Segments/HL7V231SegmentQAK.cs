@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentQAK
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"QAK"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -78,8 +79,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V231Field queryTag;
+        internal HL7V231Field queryTag;
 
 public HL7V231Field QueryTag
 {
@@ -340,6 +340,5 @@ public HL7V231Field QueryResponseStatus
         return queryResponseStatus;
     } 
 }
-
     }
 }

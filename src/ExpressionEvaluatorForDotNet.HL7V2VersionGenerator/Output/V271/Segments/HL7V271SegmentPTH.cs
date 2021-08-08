@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentPTH
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PTH"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the pathway master data identifier associated with the referenced problem or goal.  Examples: open heart pathway, new diabetic, total hip replace. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.2.1",
                             Type = @"Component",
@@ -496,8 +496,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -517,8 +516,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 Note:  It is required that this value remain unique over time.  This instance ID identifies a specific instance for a specific patient and is unique across all patients.  See entity ID data type description in Chapter 2.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.3.1",
                             Type = @"Component",
@@ -596,8 +594,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -633,8 +630,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = null,
                             Description = @"This field contains an application-specific set of state identifiers (e.g., Active, Suspended, Complete, Canceled, Delayed, Scheduled).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.5.1",
                             Type = @"Component",
@@ -1060,8 +1056,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1101,8 +1096,7 @@ Note:  As Mood Code changes the meaning of the segment it must only be used in n
 
 Refer to HL7 Table 0725 - Mood Codes in Chapter 2C, Code Tables, for allowed values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.7.1",
                             Type = @"Component",
@@ -1539,8 +1533,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1551,8 +1544,7 @@ Value set version ID is required if CNE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field actionCode;
+        internal HL7V271Field actionCode;
 
 public HL7V271Field ActionCode
 {
@@ -2476,6 +2468,5 @@ Refer to HL7 Table 0725 - Mood Codes in Chapter 2C, Code Tables, for allowed val
         return moodCode;
     } 
 }
-
     }
 }

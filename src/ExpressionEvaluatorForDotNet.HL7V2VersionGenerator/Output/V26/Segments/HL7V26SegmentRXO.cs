@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentRXO
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RXO"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ namespace ExpressionEvaluatorForDotNet
 
 The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is transmitted as free text using RXO-6, then RXO-1, RXO-2, and RXO-4 may be blank and the first subcomponent of RXO-6 must be blank. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.1.1",
                             Type = @"Component",
@@ -212,8 +212,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -275,8 +274,7 @@ Another way to say this is that, for pharmacy/treatment orders, the quantity com
 
 The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is transmitted as free text using RXO-6, then RXO-1, RXO-2, and RXO-4 may be blank and the first subcomponent of RXO-6 must be blank. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.4.1",
                             Type = @"Component",
@@ -436,8 +434,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -455,8 +452,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             TableName = null,
                             Description = @"This field indicates the manner in which the treatment is aggregated for dispensing, e.g., tablets, capsules suppositories. In some cases, this information is implied by the dispense/give code in RXO-1-requested give code or RXO-10-Requested dispense code. Required when both RXO-1-Requested give code and RXO-10-Requested dispense code do not specify the drug/treatment form; optionally included otherwise.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.5.1",
                             Type = @"Component",
@@ -616,8 +612,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -635,8 +630,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             TableName = null,
                             Description = @"This field identifies the ordering provider's instructions to the pharmacy or the non-pharmacy treatment provider (e.g., respiratory therapy). If coded, a user-defined table must be used. If transmitted as a free text field, place a null in the first component and the text in the second, e.g., |^this is a free text treatment instruction|.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.6.1",
                             Type = @"Component",
@@ -796,8 +790,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -815,8 +808,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             TableName = null,
                             Description = @"This field identifies the ordering provider's instructions to the patient or to the provider administering the drug or treatment. If coded, a user-defined table must be used. If transmitted as free text, place a null in the first component and the text in the second, e.g., |^this is a free text administration instruction|.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.7.1",
                             Type = @"Component",
@@ -976,8 +968,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -995,8 +986,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             TableName = null,
                             Description = @"This field is retained for backward compatibility only as of v 2.6 . The reader is referred to RXO-32, RXO-33, RXO-34 and RXO-35. The first components contain the inpatient or outpatient location to which the pharmacy provider or treatment supplier is to deliver the drug or treatment device (if applicable). The default (null) value is the current census location for the patient. The last component can be used to specify an address. This could be used to fill mail orders to a patient or provider, or to account for home health care.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.8.1",
                             Type = @"Component",
@@ -1065,8 +1055,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             TableName = null,
                             Description = @"This component is subject to site interpretation but generally describes the highest level physical designation of an institution, medical center or enterprise. It is the most general person location designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.8.4.1",
                             Type = @"SubComponent",
@@ -1118,8 +1107,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1209,8 +1197,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             TableName = null,
                             Description = @"This component specifies the address of a location.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.8.9.1",
                             Type = @"SubComponent",
@@ -1352,10 +1339,8 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
                             Description = @"This component specifies any other geographic designation that may be necessary. It includes county, bioregion, SMSA, etc.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1393,8 +1378,7 @@ The RXO-1, RXO-2 and RXO-4 are mandatory unless the prescription/treatment is tr
 
 Note: Sometimes an order will be written in which the total amount of the drug or treatment requested to be dispensed has no direct relationship with the give amounts and schedule.  For example, an outpatient pharmacy/treatment order might be take four tablets a day of <drug name, value>, Q6H (every 6 hours) -- dispense 30 tablets.  An inpatient order might be NS/D5W (normal saline with 5% dextrose) at 1000cc/hour—dispense 3 1-liter bottles of NSD5W solution.  The request-to-dispense fields support this common style of ordering.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.10.1",
                             Type = @"Component",
@@ -1554,8 +1538,7 @@ Note: Sometimes an order will be written in which the total amount of the drug o
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1595,8 +1578,7 @@ Note: Sometimes an order will be written in which the total amount of the drug o
 
 Note: Sometimes an order will be written in which the total amount of the drug or treatment requested to be dispensed has no direct relationship with the give amounts and schedule.  For example, an outpatient pharmacy/treatment order might be take four tablets a day of <drug name, value>, Q6H (every 6 hours) -- dispense 30 tablets.  An inpatient order might be NS/D5W (normal saline with 5% dextrose) at 1000cc/hour—dispense 3 1-liter bottles of NSD5W solution.  The request-to-dispense fields support this common style of ordering.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.12.1",
                             Type = @"Component",
@@ -1756,8 +1738,7 @@ Note: Sometimes an order will be written in which the total amount of the drug o
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1793,8 +1774,7 @@ Note: Sometimes an order will be written in which the total amount of the drug o
                             TableName = null,
                             Description = @"This field identifies the provider's controlled substance number, if required, by site. It is defined as conditional because it is required when the substance being requested is a controlled substance (e.g., a narcotic).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.1",
                             Type = @"Component",
@@ -1827,8 +1807,7 @@ Note: Sometimes an order will be written in which the total amount of the drug o
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, ""FN - family name"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.2.1",
                             Type = @"SubComponent",
@@ -1916,8 +1895,7 @@ Note: Sometimes an order will be written in which the total amount of the drug o
                             Description = @"The portion of the person's surname (in most Western usage, the last name) that is derived from the surname of the person's partner or spouse, as distinguished from the part derived from the person's own surname. This component is optional.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2045,8 +2023,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency of department) that creates the data. User-defined Table 0363 - Assigning authority is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.9.1",
                             Type = @"SubComponent",
@@ -2098,8 +2075,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2189,8 +2165,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.14.1",
                             Type = @"SubComponent",
@@ -2242,8 +2217,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2279,8 +2253,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.16.1",
                             Type = @"SubComponent",
@@ -2440,8 +2413,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2459,8 +2431,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"Retained for backward compatibility only as of v 2.5. Refer to XCN.19 Effective Date and XCN.20 Expiration Date instead. This component cannot be fully expressed and has been identified as v 2.4 erratum.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.17.1",
                             Type = @"SubComponent",
@@ -2494,8 +2465,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2585,8 +2555,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.22.1",
                             Type = @"SubComponent",
@@ -2746,8 +2715,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2765,8 +2733,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.23.1",
                             Type = @"SubComponent",
@@ -2926,10 +2893,8 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2947,8 +2912,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"This field is the provider ID of the pharmacist/treatment supplier verifier. Use if required by the pharmacy or treatment application or site on orders (or some subgroup of orders), in addition to ORC-11-verified by.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.1",
                             Type = @"Component",
@@ -2981,8 +2945,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"This component allows full specification of the surname of a person. Where appropriate, it differentiates the person's own surname from that of the person's partner or spouse, in cases where the person's name may contain elements from either name. It also permits messages to distinguish the surname prefix (such as ""van"" or ""de"") from the surname root. See section 2.A.30, ""FN - family name"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.2.1",
                             Type = @"SubComponent",
@@ -3070,8 +3033,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The portion of the person's surname (in most Western usage, the last name) that is derived from the surname of the person's partner or spouse, as distinguished from the part derived from the person's own surname. This component is optional.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3199,8 +3161,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency of department) that creates the data. User-defined Table 0363 - Assigning authority is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.9.1",
                             Type = @"SubComponent",
@@ -3252,8 +3213,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3343,8 +3303,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.14.1",
                             Type = @"SubComponent",
@@ -3396,8 +3355,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3433,8 +3391,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = @"Name context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 - Name context for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.16.1",
                             Type = @"SubComponent",
@@ -3594,8 +3551,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3613,8 +3569,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"Retained for backward compatibility only as of v 2.5. Refer to XCN.19 Effective Date and XCN.20 Expiration Date instead. This component cannot be fully expressed and has been identified as v 2.4 erratum.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.17.1",
                             Type = @"SubComponent",
@@ -3648,8 +3603,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3739,8 +3693,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"The geo-political body that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.22.1",
                             Type = @"SubComponent",
@@ -3900,8 +3853,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3919,8 +3871,7 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             TableName = null,
                             Description = @"The agency or department that assigned the identifier in component 1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.23.1",
                             Type = @"SubComponent",
@@ -4080,10 +4031,8 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4162,8 +4111,7 @@ This field is defined as conditional because it is required when the ordered sub
 
 Note: These units can be a ""compound quantity;"" i.e., the units may express a quantity per unit of time.  For example, micrograms per hour (micg/h) is an acceptable value.  These compound units are contained in the ISO+ table. See Chapter 7 for full definition of ISO+ units.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.19.1",
                             Type = @"Component",
@@ -4323,8 +4271,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4342,8 +4289,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             TableName = null,
                             Description = @"This field identifies the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.20.1",
                             Type = @"Component",
@@ -4503,8 +4449,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4540,8 +4485,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             TableName = null,
                             Description = @"This field contains the units in which RXO-21-requested give rate amount is denominated.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.22.1",
                             Type = @"Component",
@@ -4701,8 +4645,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4720,8 +4663,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             TableName = null,
                             Description = @"This field contains the total daily dose for this particular pharmaceutical as expressed in terms of actual dispense units.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.23.1",
                             Type = @"Component",
@@ -4754,8 +4696,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.23.2.1",
                             Type = @"SubComponent",
@@ -4915,10 +4856,8 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4936,8 +4875,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             TableName = null,
                             Description = @"This field accommodates the identification of any codes that might be associated with the pharmaceutical substance. Common codes include: the Generic Product Identifier (GPI), Generic Code Number_Sequence Number (GCN_SEQNO), National Drug Code (NDC).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.24.1",
                             Type = @"Component",
@@ -5097,8 +5035,7 @@ Note: These units can be a ""compound quantity;"" i.e., the units may express a 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5135,8 +5072,7 @@ RXO| | | | | | | | | | | | | | | | | |120|mg^^ISO| | | | | |5|ml^^ISO ...<cr> ",
                             TableName = null,
                             Description = @"This field indicates the volumetric unit associated with RXO-25 Requested Drug Strength Volume.  See example in RXO-25.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.26.1",
                             Type = @"Component",
@@ -5296,8 +5232,7 @@ RXO| | | | | | | | | | | | | | | | | |120|mg^^ISO| | | | | |5|ml^^ISO ...<cr> ",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5353,8 +5288,7 @@ RXO| | | | | | | | | | | | | | | | | |120|mg^^ISO| | | | | |5|ml^^ISO ...<cr> ",
 
 Note: RXO-39 Medication Instance Identifier was introduced in v2.6 to support Patient Care messaging concepts and constructs.  At this time, there are no documented use cases for this field in the context of a pharmacy/treatment orders as described in this chapter.  This statement does not preclude the use of RXO-29 in pharmacy messages, but implementers should exercise caution in using this field outside of the Patient Care context until the pharmacy/treatment use cases are established. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.29.1",
                             Type = @"Component",
@@ -5424,8 +5358,7 @@ Note: RXO-39 Medication Instance Identifier was introduced in v2.6 to support Pa
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5445,8 +5378,7 @@ Note: RXO-39 Medication Instance Identifier was introduced in v2.6 to support Pa
 
 Note: RXO-30 Segment Instance Identifier was introduced in v2.6 to support Patient Care messaging concepts and constructs.  At this time, there are no documented use cases for this field in the context of a pharmacy/treatment orders as described in this chapter.  This statement does not preclude the use of RXO-30 in pharmacy messages, but implementers should exercise caution in using this field outside of the Patient Care context until the pharmacy/treatment use cases are established. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.30.1",
                             Type = @"Component",
@@ -5516,8 +5448,7 @@ Note: RXO-30 Segment Instance Identifier was introduced in v2.6 to support Patie
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5537,8 +5468,7 @@ Note: RXO-30 Segment Instance Identifier was introduced in v2.6 to support Patie
 
 Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging concepts and constructs.  At this time, there are no documented use cases for this field in the context of a pharmacy/treatment orders as described in this chapter.  This statement does not preclude the use of RXO-31 in pharmacy messages, but implementers should exercise caution in using this field outside of the Patient Care context until the pharmacy/treatment use cases are established.  While a similar note exists for RXO-29 Medication Instance Identifier and RXO-30 Segment Instance Identifier, particular care should be taken with RXO-31 as this could modify the intent of the segment/message and create backward compatibility problems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.31.1",
                             Type = @"Component",
@@ -5698,8 +5628,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5717,8 +5646,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"This field specifies the pharmacy that will dispense or has dispensed the prescription. In the context of an order/request (i.e., in an RXO segment) this field represents the requested dispensing pharmacy. In the context of a registered order (i.e., in an RXE segment) this field represents the intended dispensing pharmacy, the pharmacy that is expected to dispense the prescription.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.32.1",
                             Type = @"Component",
@@ -5878,8 +5806,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5897,8 +5824,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"This field specifies the address of the dispensing facility.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.33.1",
                             Type = @"Component",
@@ -5913,8 +5839,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = @"Street",
                             Description = @"This component contains the house number, apartment number, street name, street direction, P.O. Box number, and similar address information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.33.1.1",
                             Type = @"SubComponent",
@@ -5966,8 +5891,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -6165,8 +6089,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to 2.A.85.13, Effective Date and 2.A.85.14, Expiration Date components.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.33.12.1",
                             Type = @"SubComponent",
@@ -6200,8 +6123,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -6255,8 +6177,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = @"Address Expiration Reason",
                             Description = @"This identifies why this address was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.33.15.1",
                             Type = @"SubComponent",
@@ -6416,8 +6337,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -6543,8 +6463,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = @"Protection Code",
                             Description = @"Identifies that an address needs to be treated with special care or sensitivity.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.33.22.1",
                             Type = @"SubComponent",
@@ -6704,8 +6623,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -6723,8 +6641,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"A unique identifier for the address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.33.23.1",
                             Type = @"SubComponent",
@@ -6794,10 +6711,8 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -6815,8 +6730,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"This field specifies the location of the patient to whom the pharmaceutical substance is to be delivered.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.34.1",
                             Type = @"Component",
@@ -6885,8 +6799,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"This component is subject to site interpretation but generally describes the highest level physical designation of an institution, medical center or enterprise. It is the most general person location designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.34.4.1",
                             Type = @"SubComponent",
@@ -6938,8 +6851,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -7047,8 +6959,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"The unique identifier that represents the physical location as a whole without regard for the individual components. This accommodates sites that may have a different method of defining physical units or who may code at a less granular level. For example, point of care, room, and bed may be 1 indivisible code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.34.10.1",
                             Type = @"SubComponent",
@@ -7118,8 +7029,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -7137,8 +7047,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"The entity that creates the data for the individual physical location components. If populated, it should be the authority for all components populated. Refer to User-defined Table 0363 - Assigning authority for suggested values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.34.11.1",
                             Type = @"SubComponent",
@@ -7190,10 +7099,8 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -7211,8 +7118,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"This field specifies the address, either mailing or physical, to which the prescription should be mailed or delivered.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.35.1",
                             Type = @"Component",
@@ -7227,8 +7133,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = @"Street",
                             Description = @"This component contains the house number, apartment number, street name, street direction, P.O. Box number, and similar address information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.35.1.1",
                             Type = @"SubComponent",
@@ -7280,8 +7185,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -7479,8 +7383,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to 2.A.85.13, Effective Date and 2.A.85.14, Expiration Date components.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.35.12.1",
                             Type = @"SubComponent",
@@ -7514,8 +7417,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -7569,8 +7471,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = @"Address Expiration Reason",
                             Description = @"This identifies why this address was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.35.15.1",
                             Type = @"SubComponent",
@@ -7730,8 +7631,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -7857,8 +7757,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = @"Protection Code",
                             Description = @"Identifies that an address needs to be treated with special care or sensitivity.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.35.22.1",
                             Type = @"SubComponent",
@@ -8018,8 +7917,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -8037,8 +7935,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             TableName = null,
                             Description = @"A unique identifier for the address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.35.23.1",
                             Type = @"SubComponent",
@@ -8108,10 +8005,8 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         };
             }
@@ -8122,8 +8017,7 @@ Note:  RXO-31 Mood Code was introduced in v2.6 to support Patient Care messaging
             this.message = message;
         }
 
-        
-internal HL7V26Field requestedGiveCode;
+        internal HL7V26Field requestedGiveCode;
 
 public HL7V26Field RequestedGiveCode
 {
@@ -12737,6 +12631,5 @@ public HL7V26Field DelivertoAddress
         return delivertoAddress;
     } 
 }
-
     }
 }

@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventVXX_V02
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V251SegmentMSH msh;
-public readonly HL7V251SegmentMSA msa;
-public readonly HL7V251SegmentSFT sft;
-public readonly HL7V251SegmentQRD qrd;
-public readonly HL7V251SegmentQRF qrf;
+        private readonly HL7V2Message message;
+        private readonly HL7V251SegmentMSH msh;
+private readonly HL7V251SegmentMSA msa;
+private readonly HL7V251SegmentSFT sft;
+private readonly HL7V251SegmentQRD qrd;
+private readonly HL7V251SegmentQRF qrf;
 
 
         public string Id { get { return @"VXX_V02"; } }
@@ -25,6 +25,7 @@ public readonly HL7V251SegmentQRF qrf;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

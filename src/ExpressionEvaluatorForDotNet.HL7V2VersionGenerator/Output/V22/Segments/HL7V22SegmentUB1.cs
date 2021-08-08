@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentUB1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -211,8 +212,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"pair can repeat up to eight times.  (46A, 47A, 48A, 49A, 46B, 47B, 48B, and 49B).  Refer to userdefined table 0153 - value code for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.1",
                             Type = @"Component",
@@ -246,8 +246,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -355,8 +354,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"set of values can repeat up to five times.  UB82 Data Elements 28-32",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.16.1",
                             Type = @"Component",
@@ -390,8 +388,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -528,8 +525,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V22Field setIdUb82;
+        internal HL7V22Field setIdUb82;
 
 public HL7V22Field SetIdUb82
 {
@@ -3541,6 +3537,5 @@ public HL7V22Field Ub82Locator45
         return ub82Locator45;
     } 
 }
-
     }
 }

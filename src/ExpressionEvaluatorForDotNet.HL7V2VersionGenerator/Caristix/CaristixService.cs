@@ -16,7 +16,12 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
         private readonly bool testMode;
         private readonly string basePath;
 
-        public CaristixService(bool testMode = false)
+        public CaristixService() : this(false)
+        {
+
+        }
+
+        public CaristixService(bool testMode)
         {
             basePath = Directory.GetParent(Environment.NewLine).Parent.Parent.Parent.FullName;
             this.testMode = testMode;
@@ -93,34 +98,19 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 response = Retry<string>(request);
             }
 
-            var ids = JsonConvert.DeserializeObject<IList<TriggerEventResponse>>(response.Data.Trim('"')).Select(t => t.Id).ToList();
+            var ids = JsonConvert.DeserializeObject<IList<TriggerEventResponse>>(response.Data.Trim('"')).Where(te => te.Id != null).Select(t => t.Id).ToList();
 
             for (var i = 0; i < ids.Count(); i++)
             {
                 var triggerEvent = GetTriggerEvent(version, ids[i]);
 
-                var segmentIds = triggerEvent.TriggerEventSegments.Select(s => s.Id).ToList();
+                var segmentIds = triggerEvent.Segments.Where(s => s.Id != null).Select(s => s.Id).ToList();
+
+                triggerEvent.Segments.Clear();
 
                 for (var j = 0; j < segmentIds.Count(); j++)
                 {
-                    // not a group
-                    if (segmentIds[j] != null)
-                    {
-                        triggerEvent.Segments.Add(GetSegment(version, segmentIds[j]));
-                    }
-                    // is a group, need to get their groups
-                    else
-                    {
-                        //TriggerEventSegmentResponse segment = null;
-
-                        //var k = 0;
-                        //segment = triggerEvent.TriggerEventSegments[j].Segments[k];
-                        
-                        //while (segment != null)
-                        //{
-                        //    triggerEvent.Segments.Add(GetSegment(version, segment.Id));
-                        //}
-                    }
+                    triggerEvent.Segments.Add(GetSegment(version, segmentIds[j]));
                 }
 
                 result.Add(triggerEvent);
@@ -255,7 +245,12 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             return result;
         }
 
-        public SegmentResponse GetSegment(string version, string segmentId, bool overrideTestMode = false)
+        public SegmentResponse GetSegment(string version, string segmentId)
+        {
+            return GetSegment(version, segmentId, false);
+        }
+
+        public SegmentResponse GetSegment(string version, string segmentId, bool overrideTestMode)
         {
             Console.WriteLine($"({version})-Getting segment {segmentId}");
             

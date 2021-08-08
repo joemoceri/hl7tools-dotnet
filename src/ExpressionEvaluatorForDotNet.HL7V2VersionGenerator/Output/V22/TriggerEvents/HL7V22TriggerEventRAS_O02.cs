@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22TriggerEventRAS_O02
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V22SegmentMSH msh;
-public readonly HL7V22SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V22SegmentMSH msh;
+private readonly HL7V22SegmentNTE nte;
 
 
         public string Id { get { return @"RAS_O02"; } }
@@ -22,6 +22,7 @@ public readonly HL7V22SegmentNTE nte;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

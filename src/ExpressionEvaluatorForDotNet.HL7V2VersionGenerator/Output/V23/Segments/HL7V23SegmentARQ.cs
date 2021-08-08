@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentARQ
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ARQ"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -53,8 +54,7 @@ The first component is a string that identifies an individual appointment reques
 
 The second through fourth components contain the assigning authority identifying information.  Section 2.8.15, “EI - entity identifier,” in Chapter 2 describes the structure and content of these components with respect to the EI data type",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.1.1",
                             Type = @"Component",
@@ -124,8 +124,7 @@ The second through fourth components contain the assigning authority identifying
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -149,8 +148,7 @@ The second through fourth components contain the assigning authority identifying
 
 This is a conditionally required field.  On initial request messages and other messages where a filler has not yet assigned a filler appointment ID, this field should not contain a value.  In all other subsequent messages, where a filler application has assigned a filler appointment ID and communicated it to other applications, this field is required",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.2.1",
                             Type = @"Component",
@@ -220,8 +218,7 @@ This is a conditionally required field.  On initial request messages and other m
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -263,8 +260,7 @@ The first component is a string that identifies a group of appointment requests.
 
 The second through fourth components contain the assigning authority identifying information.  Section 2.8.15, “EI - entity identifier,” in Chapter 2 describes the structure and content of these components with respect to the EI data type.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.4.1",
                             Type = @"Component",
@@ -334,8 +330,7 @@ The second through fourth components contain the assigning authority identifying
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -355,8 +350,7 @@ The second through fourth components contain the assigning authority identifying
 
 If a new appointment must be booked, it may be necessary to provide a schedule ID to uniquely identify the intended slot(s) being requested in the transaction.  After the request has been assigned to one or more slots, however, the filler application should assign a unique filler appointment ID (see Sections 10.5.1.1, “Placer appointment ID  (EI)   00860,” and 10.5.1.2, “Filler appointment ID  (EI)   00861 ).”  This filler appointment ID, as its definition indicates, should uniquely identify the appointment among all such requests and appointments within the filler application.  This means that, once assigned, the filler appointment ID should uniquely identify the appointment (either as a request or as a booked appointment) without a need to provide the schedule ID too.  As a cautionary note regarding implementation, if the filler appointment ID would not otherwise be unique, it may be necessary to include the schedule ID as part of the filler appointment ID.  This can be done either by prefixing the appointment ID with the schedule ID, or by appending the schedule ID to the appointment ID. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.5.1",
                             Type = @"Component",
@@ -462,8 +456,7 @@ If a new appointment must be booked, it may be necessary to provide a schedule I
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -481,8 +474,7 @@ If a new appointment must be booked, it may be necessary to provide a schedule I
                             TableName = null,
                             Description = @"This field contains the identifier code for the reason that the request event is being triggered.  This field may contain a code describing the cancel reason, the delete reason, the discontinue reason, the add reason, or any other code describing the reason that a specific event is occurring",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.6.1",
                             Type = @"Component",
@@ -588,8 +580,7 @@ If a new appointment must be booked, it may be necessary to provide a schedule I
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -607,8 +598,7 @@ If a new appointment must be booked, it may be necessary to provide a schedule I
                             TableName = @"Appointment reason codes",
                             Description = @"This field contains the identifier code for the reason that the appointment is to take place.  This field may contain a Universal Service Identifier describing the observation/test/battery/procedure or other activity that is to be performed during the requested appointment, similar to the Universal Service Identifier defined for the OBR segment in Chapter 4 on Order Entry.  It may also contain a site-specific code describing a pre-defined set of reasons that an appointment may be set to occur.  This code can be based on local and/or universal codes.  The use of universal codes is recommended.  Refer to user-defined table 0276 - Appointment reason codes, below, for suggested codes",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.7.1",
                             Type = @"Component",
@@ -714,8 +704,7 @@ If a new appointment must be booked, it may be necessary to provide a schedule I
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -733,8 +722,7 @@ If a new appointment must be booked, it may be necessary to provide a schedule I
                             TableName = @"Appointment type codes",
                             Description = @"This field contains an identifier code for the type of appointment being requested.  Refer to userdefined table 0277 - Appointment type codes for suggested codes",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.8.1",
                             Type = @"Component",
@@ -840,8 +828,7 @@ If a new appointment must be booked, it may be necessary to provide a schedule I
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -879,8 +866,7 @@ The appointment duration field must contain a positive, non-zero number.  A nega
                             TableName = null,
                             Description = @"This field contains a code describing the units of time used in expressing the ARP-9appointment duration field.  This field should be valued according to the recommendations in Chapters 2 and 7.  If this component is not valued, the ISO base unit of seconds (code s) will be assumed.  Refer to Chapter 7, Figures 7-10 through 7-13, for a list of ISO and ANSI+ unit codes",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.10.1",
                             Type = @"Component",
@@ -986,8 +972,7 @@ The appointment duration field must contain a positive, non-zero number.  A nega
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1011,8 +996,7 @@ If only the range start date/time has been provided, then the range end date/tim
 
 This field may repeat.  Repetitions of this field are used to construct a list of acceptable ranges.  Repetitions of this field are connected with a logical OR to construct this list.  This procedure allows applications to provide multiple preferences for the scheduling of appointments.  Applications should take steps to ensure that nonsensical ranges are not indicated in this field (for example, redundant ranges). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.11.1",
                             Type = @"Component",
@@ -1027,8 +1011,7 @@ This field may repeat.  Repetitions of this field are used to construct a list o
                             TableName = null,
                             Description = @"The first component contains the earliest date/time (time stamp) in the specified range",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.11.1.1",
                             Type = @"SubComponent",
@@ -1044,8 +1027,7 @@ This field may repeat.  Repetitions of this field are used to construct a list o
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1063,8 +1045,7 @@ This field may repeat.  Repetitions of this field are used to construct a list o
                             TableName = null,
                             Description = @"The second component contains the latest date/time in the specified range.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.11.2.1",
                             Type = @"SubComponent",
@@ -1080,10 +1061,8 @@ This field may repeat.  Repetitions of this field are used to construct a list o
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1123,8 +1102,7 @@ If an explicit time interval is specified for the repeat pattern, then it specif
 
 Note: The subcomponent delimiter defined for the Interval component of the Quantity/Timing field definition has been replaced by a component delimiter for this field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.13.1",
                             Type = @"Component",
@@ -1158,8 +1136,7 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             Description = @"The second component explicitly lists the actual times referenced by the code in the first subcomponent, in the following format: HHMM,HHMM,HHMM,.…  This second subcomponent will be used to clarify the first subcomponent in cases where the actual administration times vary within an institution. See Section 4.4.2.2, “Explicit time interval subcomponent,” for further details.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1195,8 +1172,7 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             TableName = null,
                             Description = @"This field identifies the person responsible for requesting the scheduling of a requested appointment.  This person could be the same person responsible for executing the actual appointment, or it could be the provider requesting that an appointment be made on behalf of the patient, with another provider. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.15.1",
                             Type = @"Component",
@@ -1355,8 +1331,7 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.15.9.1",
                             Type = @"SubComponent",
@@ -1408,8 +1383,7 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1499,8 +1473,7 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.15.14.1",
                             Type = @"SubComponent",
@@ -1552,10 +1525,8 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1573,8 +1544,7 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             TableName = null,
                             Description = @"This field contains the phone number used to contact the placer contact person",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.16.1",
                             Type = @"Component",
@@ -1734,8 +1704,7 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1753,8 +1722,7 @@ Note: The subcomponent delimiter defined for the Interval component of the Quant
                             TableName = null,
                             Description = @"This field contains the address used to contact the placer contact person",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.17.1",
                             Type = @"Component",
@@ -1935,8 +1903,7 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1954,8 +1921,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains a code that identifies the location of the placer contact person",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.18.1",
                             Type = @"Component",
@@ -2024,8 +1990,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.18.4.1",
                             Type = @"SubComponent",
@@ -2077,8 +2042,7 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2169,8 +2133,7 @@ Allowable Values:  codes defined by government",
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2188,8 +2151,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field identifies the person responsible for entering the request for the scheduling of an appointment.  It is included to provide an audit trail of persons responsible for the request.  This person may be someone other than the placer contact person, who is responsible for entering orders and requests",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.19.1",
                             Type = @"Component",
@@ -2348,8 +2310,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.19.9.1",
                             Type = @"SubComponent",
@@ -2401,8 +2362,7 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2492,8 +2452,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.19.14.1",
                             Type = @"SubComponent",
@@ -2545,10 +2504,8 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2566,8 +2523,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the phone number used to contact the ARQ-19-entered by person",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.20.1",
                             Type = @"Component",
@@ -2727,8 +2683,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2746,8 +2701,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains a code that identifies the location of the entered by person",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.21.1",
                             Type = @"Component",
@@ -2816,8 +2770,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.21.4.1",
                             Type = @"SubComponent",
@@ -2869,8 +2822,7 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2961,8 +2913,7 @@ Allowable Values:  codes defined by government",
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2984,8 +2935,7 @@ The first component is a string that identifies the parent appointment request. 
 
 The second through fourth components contain the assigning authority identifying information.  Section 2.8.15, “EI - entity identifier in Chapter 2 describes the structure and content of these components with respect to the EI data type",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.22.1",
                             Type = @"Component",
@@ -3055,8 +3005,7 @@ The second through fourth components contain the assigning authority identifying
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3078,8 +3027,7 @@ The first component is a string that identifies the parent appointment request. 
 
 The second through fourth components contain the assigning authority identifying information.  Section 2.8.15, “EI - entity identifier,” in Chapter 2 describes the structure and content of these components with respect to the EI data type.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARQ.23.1",
                             Type = @"Component",
@@ -3149,8 +3097,7 @@ The second through fourth components contain the assigning authority identifying
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -3161,8 +3108,7 @@ The second through fourth components contain the assigning authority identifying
             this.message = message;
         }
 
-        
-internal HL7V23Field placerAppointmentID;
+        internal HL7V23Field placerAppointmentID;
 
 public HL7V23Field PlacerAppointmentID
 {
@@ -6212,6 +6158,5 @@ The second through fourth components contain the assigning authority identifying
         return parentFillerAppointmentID;
     } 
 }
-
     }
 }

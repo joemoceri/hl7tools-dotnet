@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentTCC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"TCC"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field identifies the test code that information is being transmitted about. The alternate elements represent the test code identifier that has been assigned by the manufacturer to this particular test code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.1.1",
                             Type = @"Component",
@@ -156,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -175,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field identifies the test application code assigned by the manufacturer of the equipment or reagents and associated with performing of the particular test specified by the Universal Test Identifier.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.2.1",
                             Type = @"Component",
@@ -246,8 +244,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -267,8 +264,7 @@ namespace ExpressionEvaluatorForDotNet
 
 As of version 2.5 this field is deprecated and retained for backward compatibility.  This field is conditional, meaning that, in case where the SPM segment is used in a message together with the SAC, this field should be ignored. The reader is referred to the SPM Specimen segment.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.3.1",
                             Type = @"Component",
@@ -283,8 +279,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = null,
                             Description = @"contains the specimen source name or code (as a CWE data type component). (Even in the case of observations whose name implies the source, a source may be required, e.g., blood culture-heart blood.)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.3.1.1",
                             Type = @"SubComponent",
@@ -444,8 +439,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -463,8 +457,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = @"Additive/Preservative",
                             Description = @"identifies an additive introduced to the specimen before or at the time of collection. Refer to HL7 Table0371 - Additive in chapter 7 for valid values. The tables values are taken from NCCLS AUTO4. The value set can be extended with user specific values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.3.2.1",
                             Type = @"SubComponent",
@@ -624,8 +617,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -661,8 +653,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = @"Body site",
                             Description = @"This component specifies the body site from which the specimen was obtained. A nationally recognized coding system is to be used for this field. Valid coding sources for this field include:",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.3.4.1",
                             Type = @"SubComponent",
@@ -822,8 +813,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -841,8 +831,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = @"Body Site Modifier",
                             Description = @"modifies body site. For example, the site could be antecubital fossa, and the site modifier right. Refer to HL7 Table 0495 Body Site Modifier for allowed values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.3.5.1",
                             Type = @"SubComponent",
@@ -1002,8 +991,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1021,8 +1009,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = null,
                             Description = @"I ndicates whether the specimen is frozen as part of the collection method. Suggested values are F (Frozen); R (Refrigerated). If the component is blank, the specimen is assumed to be at room temperature.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.3.6.1",
                             Type = @"SubComponent",
@@ -1182,8 +1169,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1201,8 +1187,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = @"Specimen Role",
                             Description = @"indicates the role of the sample. Refer to User-defined Table 0369 - Specimen role for suggested values. Each of these values is normally identifiable by the systems and its components and can influence processing and data management related to the specimen.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.3.7.1",
                             Type = @"SubComponent",
@@ -1362,10 +1347,8 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1383,8 +1366,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = null,
                             Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen by an instrument for this particular test code. (See examples in definition of ""Dilution factor"" (SAC-29) in the ""Specimen Container Detail Segment"".).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.4.1",
                             Type = @"Component",
@@ -1454,8 +1436,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1473,8 +1454,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = null,
                             Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen in case of rerun for this particular test code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.5.1",
                             Type = @"Component",
@@ -1544,8 +1524,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1563,8 +1542,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = null,
                             Description = @"This field is the value that is to be used as the default factor for a specimen that is delivered to the laboratory automation system as pre-diluted for this particular test code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.6.1",
                             Type = @"Component",
@@ -1634,8 +1612,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1653,8 +1630,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = null,
                             Description = @"This field represents a baseline value for the measured test that is inherently contained in the diluent. In the calculation of the actual result for the measured test, this baseline value is normally considered.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.7.1",
                             Type = @"Component",
@@ -1724,8 +1700,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1815,8 +1790,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = null,
                             Description = @"This is the range over which the equipment can produce results.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.12.1",
                             Type = @"Component",
@@ -1886,8 +1860,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1905,8 +1878,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = null,
                             Description = @"This field is the units that have a data type of CE. The default coding system for the units codes consists of the ISO+ abbreviation for a single case unit (ISO 2955-83) plus extensions, that do not collide with ISO abbreviations. We designate this coding system as ISO+. The ISO+ abbreviations are the codes for the default coding system. Consequently, when ISO+ units are being used, only ISO+ abbreviations need be sent, and the contents of the units field will be backward compatible to HL7 Version 2.1.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.13.1",
                             Type = @"Component",
@@ -2012,8 +1984,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2031,8 +2002,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             TableName = @"Processing type",
                             Description = @"This field identifies the processing type that applies to this test code. If this attribute is omitted, then regular production is the default. Refer to HL7 Table 0388 - Processing type for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.14.1",
                             Type = @"Component",
@@ -2138,8 +2108,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -2150,8 +2119,7 @@ As of version 2.5 this field is deprecated and retained for backward compatibili
             this.message = message;
         }
 
-        
-internal HL7V251Field universalServiceIdentifier;
+        internal HL7V251Field universalServiceIdentifier;
 
 public HL7V251Field UniversalServiceIdentifier
 {
@@ -3986,6 +3954,5 @@ public HL7V251Field ProcessingType
         return processingType;
     } 
 }
-
     }
 }

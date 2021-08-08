@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentBLG
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"BLG"; } }
 
@@ -93,8 +93,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field whenToCharge;
+        internal HL7V21Field whenToCharge;
 
 public HL7V21Field WhenToCharge
 {
@@ -486,6 +485,5 @@ public HL7V21Field AccountId
         return accountId;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentUAC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UAC"; } }
 
@@ -26,6 +26,7 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                             TableName = @"User Authentication Credential Type Code",
                             Description = @"This an identifier code for the type of user authentication credential.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UAC.1.1",
                             Type = @"Component",
@@ -212,8 +212,7 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -231,8 +230,7 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                             TableName = null,
                             Description = @"This is user credential data as supplied by the sender's operating platform. The content and structure of this is defined by other standards and contain no HL7-relevant data.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UAC.2.1",
                             Type = @"Component",
@@ -247,8 +245,7 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                             TableName = null,
                             Description = @"A unique name that identifies the system which was the source of the data. Identical format and restrictions as in reference pointer (see Section 2.A.65.2, ""Application ID (HD)"").",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UAC.2.1.1",
                             Type = @"SubComponent",
@@ -300,8 +297,7 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -374,8 +370,7 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                             Description = @"Displayable ASCII characters which constitute the data to be sent from source application to destination application. The characters are limited to the legal characters of the ST data type, as defined in Section 2.A.74, "" ST - string data ,"" and, if encoded binary, are encoded according to the method of Section 2.A.24.2, ""Type of Data (ID)"".",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -386,8 +381,7 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
             this.message = message;
         }
 
-        
-internal HL7V26Field userAuthenticationCredentialTypeCode;
+        internal HL7V26Field userAuthenticationCredentialTypeCode;
 
 public HL7V26Field UserAuthenticationCredentialTypeCode
 {
@@ -648,6 +642,5 @@ public HL7V26Field UserAuthenticationCredential
         return userAuthenticationCredential;
     } 
 }
-
     }
 }

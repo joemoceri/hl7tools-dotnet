@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentUB1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB1"; } }
 
@@ -26,6 +26,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -213,8 +214,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             TableName = null,
                             Description = @"As of Version 2.6, t his field has been retained for backward compatibility only.  Use UB2-6 Value Amount & Code instead of this field. This field contains a monetary amount and an associated billing code. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.1",
                             Type = @"Component",
@@ -229,8 +229,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             TableName = @"Value code",
                             Description = @"Specifies the National Uniform Billing Committee (NUBC) code itself.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.1.1",
                             Type = @"SubComponent",
@@ -390,8 +389,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -409,8 +407,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             TableName = null,
                             Description = @"Specifies the numeric amount when needed to pair with the value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.2.1",
                             Type = @"SubComponent",
@@ -444,10 +441,8 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -483,8 +478,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             TableName = @"Special Program Indicator",
                             Description = @"This field contains an indicator for special funding programs, such as physically handicapped childrens program, family planning, and disability. This field is defined by CMS or other regulatory agencies. Refer to User-defined Table 0348 - Special Program Indicator for suggested values. Refer to a UB specification for additional information",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.12.1",
                             Type = @"Component",
@@ -644,8 +638,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -663,8 +656,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             TableName = @"PSRO/UR Approval Indicator",
                             Description = @"This field contains a code for the provider service review organization/utilization review (PSRO/UR) approval indicator. This field is defined by CMS or other regulatory agencies. Refer toUser-defined Table 0349 - PSRO/UR Approval Indicator for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.13.1",
                             Type = @"Component",
@@ -824,8 +816,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -879,8 +870,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             TableName = null,
                             Description = @"As of Version 2.6, t his field has been retained for backward compatibility only.  Use UB2-7 Occurrence Code & Date instead of this field. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.16.1",
                             Type = @"Component",
@@ -895,8 +885,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             TableName = @"Occurrence code",
                             Description = @"The NUBC code for the event or occurrence relating to a bill that may affect payer processing.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.16.1.1",
                             Type = @"SubComponent",
@@ -1056,8 +1045,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1076,8 +1064,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             Description = @"The date the event, relating to a bill that may affect payer processing, occurred.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1095,8 +1082,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             TableName = @"Occurrence span",
                             Description = @"As of Version 2.6, t his field has been retained for backward compatibility only.  Use UB2-8 Occurrence Span Code/Date instead of this field. This field is defined by CMS or other regulatory agencies. Refer to User-defined Table 0351 - Occurrence Span in Chapter 2 for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.17.1",
                             Type = @"Component",
@@ -1256,8 +1242,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1376,8 +1361,7 @@ Prior to V2.6, this segment was published as a UB-82 specific segment, but has b
             this.message = message;
         }
 
-        
-internal HL7V26Field setIDUB1;
+        internal HL7V26Field setIDUB1;
 
 public HL7V26Field SetIDUB1
 {
@@ -4389,6 +4373,5 @@ public HL7V26Field UB82Locator45
         return uB82Locator45;
     } 
 }
-
     }
 }

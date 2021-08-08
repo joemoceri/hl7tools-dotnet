@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentNCK
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NCK"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_14",
+
                     };
             }
         }
@@ -60,8 +61,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V26Field systemDateTime;
+        internal HL7V26Field systemDateTime;
 
 public HL7V26Field SystemDateTime
 {
@@ -191,6 +191,5 @@ public HL7V26Field SystemDateTime
         return systemDateTime;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentPID
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PID"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"if the patient is from another institution, outside office, etc., the identifier used by that institution can be shown here.  This may be a number which multiple disparate corporations or facilities share.  Refer to table 0061 - check digit scheme in Chapter 2",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.2.1",
                             Type = @"Component",
@@ -138,8 +138,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The assigning facility ID is a unique name (up to six characters in length) of the system that stores the data.  It is an ST data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning facility ID's are unique across a given HL7 implementation.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -157,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @" primary ID used by the facility to uniquely identify a patient at the time of admit, (e.g., medical record number, billing number, etc).  Refer to table 0061-check digit scheme",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.3.1",
                             Type = @"Component",
@@ -246,8 +244,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -283,8 +280,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"name is standard format described in Chapter 2. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.5.1",
                             Type = @"Component",
@@ -390,8 +386,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -427,8 +422,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"patient's date of birth",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.7.1",
                             Type = @"Component",
@@ -462,8 +456,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -499,8 +492,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"name(s) by which the patient has been known at some time",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.9.1",
                             Type = @"Component",
@@ -606,8 +598,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -643,8 +634,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"mailing address of the patient",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.11.1",
                             Type = @"Component",
@@ -786,8 +776,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -913,8 +902,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"number assigned by accounting to which all charges, payments, etc. are recorded.  It is used to identify the patient's account.  Refer to table 0061 - check digit scheme in Chapter 2. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.18.1",
                             Type = @"Component",
@@ -984,8 +972,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The assigning facility ID is a unique name (up to six characters in length) of the system that stores the data.  It is an ST data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning facility ID's are unique across a given HL7 implementation.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1021,8 +1008,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"patient's drivers license number.  Some sites may use this as a unique number that identifies the patient.  Default of the second component is the state in which the patient is being registered",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.20.1",
                             Type = @"Component",
@@ -1056,8 +1042,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1075,8 +1060,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @" used as a link field for newborns, for example.  Typically a patient ID or account number may be used.  Refer to HL7 table 0061 - check digit scheme as defined in Chapter 2. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.21.1",
                             Type = @"Component",
@@ -1146,8 +1130,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The assigning facility ID is a unique name (up to six characters in length) of the system that stores the data.  It is an ST data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning facility ID's are unique across a given HL7 implementation.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1255,8 +1238,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"VETERANS MILITARY STATUS",
                             Description = @"indicates the military status assigned to a veteran.  Refer to user-defined table 0172 - veterans military status for suggested codes",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.27.1",
                             Type = @"Component",
@@ -1362,8 +1344,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1374,8 +1355,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V22Field setIdPatientId;
+        internal HL7V22Field setIdPatientId;
 
 public HL7V22Field SetIdPatientId
 {
@@ -4911,6 +4891,5 @@ public HL7V22Field VeteransMilitaryStatus
         return veteransMilitaryStatus;
     } 
 }
-
     }
 }

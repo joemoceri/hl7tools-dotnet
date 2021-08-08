@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentDG1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"DG1"; } }
 
@@ -291,8 +291,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field setIdDiagnosis;
+        internal HL7V21Field setIdDiagnosis;
 
 public HL7V21Field SetIdDiagnosis
 {
@@ -2125,6 +2124,5 @@ public HL7V21Field GrouperVersionAndType
         return grouperVersionAndType;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentDSP
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"DSP"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -132,8 +133,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V231Field setIDDSP;
+        internal HL7V231Field setIDDSP;
 
 public HL7V231Field SetIDDSP
 {
@@ -787,6 +787,5 @@ public HL7V231Field ResultID
         return resultID;
     } 
 }
-
     }
 }

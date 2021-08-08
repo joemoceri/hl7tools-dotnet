@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentVTQ
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"VTQ"; } }
 
@@ -26,6 +26,7 @@ As with the other query methods, the functional chapters define specific queries
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ As with the other query methods, the functional chapters define specific queries
                             TableName = null,
                             Description = @"This field contains the name of the virtual table query.  These names are assigned by the function-specific chapters of this specification.  Site-specific VT query names begin with the letter “Z.” ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.3.1",
                             Type = @"Component",
@@ -194,8 +194,7 @@ As with the other query methods, the functional chapters define specific queries
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -213,8 +212,7 @@ As with the other query methods, the functional chapters define specific queries
                             TableName = null,
                             Description = @"This field contains the name of the virtual table being referenced.  This table name may refer to an HL7-defined segment, an HL7 virtual table (refer to the functional chapters), or a site-specific “Z table",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.4.1",
                             Type = @"Component",
@@ -320,8 +318,7 @@ As with the other query methods, the functional chapters define specific queries
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -340,8 +337,7 @@ As with the other query methods, the functional chapters define specific queries
                             Description = @"Each repetition of this field defines a column in the RDT segment:  the first repetition defines the first column of the RDT segment; the second repetition defines the second column of the RDT segments, etc.   
 This field indicates the conditions that qualify the rows to be returned in the query response.  (This field conveys the same information as the “WHERE” clause in the corresponding SQL expression of the query, but is formatted differently.) ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.5.1",
                             Type = @"Component",
@@ -419,8 +415,7 @@ This field indicates the conditions that qualify the rows to be returned in the 
 - AND takes precedence over OR.  More sophisticated precedence rules require that the query be expressed as an embedded query language message or a stored procedure query message (see Section 2.19, “ENHANCED MODE QUERY MESSAGES,” and also Sections 2.24.16, “EQL - embedded query language segment,” and 2.24.20, “SPR - stored procedure request definition segment.”",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -431,8 +426,7 @@ This field indicates the conditions that qualify the rows to be returned in the 
             this.message = message;
         }
 
-        
-internal HL7V23Field querytag;
+        internal HL7V23Field querytag;
 
 public HL7V23Field Querytag
 {
@@ -1087,6 +1081,5 @@ This field indicates the conditions that qualify the rows to be returned in the 
         return selectionCriteria;
     } 
 }
-
     }
 }

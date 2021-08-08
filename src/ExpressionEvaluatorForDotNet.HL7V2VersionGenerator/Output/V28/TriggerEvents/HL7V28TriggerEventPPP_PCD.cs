@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventPPP_PCD
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V28SegmentMSH msh;
-public readonly HL7V28SegmentSFT sft;
-public readonly HL7V28SegmentUAC uac;
-public readonly HL7V28SegmentPID pid;
+        private readonly HL7V2Message message;
+        private readonly HL7V28SegmentMSH msh;
+private readonly HL7V28SegmentSFT sft;
+private readonly HL7V28SegmentUAC uac;
+private readonly HL7V28SegmentPID pid;
 
 
         public string Id { get { return @"PPP_PCD"; } }
@@ -24,6 +24,7 @@ public readonly HL7V28SegmentPID pid;
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }

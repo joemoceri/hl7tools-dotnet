@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22TriggerEventUDM_Q05
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V22SegmentMSH msh;
-public readonly HL7V22SegmentURD urd;
-public readonly HL7V22SegmentURS urs;
-public readonly HL7V22SegmentDSP dsp;
-public readonly HL7V22SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V22SegmentMSH msh;
+private readonly HL7V22SegmentURD urd;
+private readonly HL7V22SegmentURS urs;
+private readonly HL7V22SegmentDSP dsp;
+private readonly HL7V22SegmentDSC dsc;
 
 
         public string Id { get { return @"UDM_Q05"; } }
@@ -25,6 +25,7 @@ public readonly HL7V22SegmentDSC dsc;
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }

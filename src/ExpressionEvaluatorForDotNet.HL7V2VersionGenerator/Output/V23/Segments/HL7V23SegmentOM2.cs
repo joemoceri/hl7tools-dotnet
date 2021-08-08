@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentOM2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM2"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the single tests/observations (those with a nature code of A or C, as described in OM1-18-nature of test/observation) that have numeric values.  This field contains their customary units of measure",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.2.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -211,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the single tests/observations - the corresponding SI units of measure in the format, when these differ from the customary units of measure given in the previous field",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.4.1",
                             Type = @"Component",
@@ -318,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -366,8 +363,7 @@ The general format is
 
 The components are defined in the following sections",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.6.1",
                             Type = @"Component",
@@ -382,8 +378,7 @@ The components are defined in the following sections",
                             TableName = null,
                             Description = @"This subcomponent contains the reference (:normal) range.  The format of this field is where the range is taken to be inclusive (i.e., the range includes the end points).  In this specification, the units are assumed to be identical to the reporting units given in OM2-3-units of measure)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.6.1.1",
                             Type = @"SubComponent",
@@ -417,8 +412,7 @@ The components are defined in the following sections",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -454,8 +448,7 @@ The components are defined in the following sections",
                             TableName = null,
                             Description = @"This component contains the age range (in years or fractions thereof) specified as two values separated by a subcomponent delimiter (in order to allow a simple and consistent machine interpretation of this component).  Ages of less than one year should be specified as a fraction (e.g., 1 month = 0.0830, 1 week = 0.01920, 1 day = 0.0027300).  However, for most purposes involving infants, the gestational age (measured in weeks) is preferred.  The lower end of the range is not indicated; the upper end is, assuring that series of ranges do not overlap",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.6.3.1",
                             Type = @"SubComponent",
@@ -489,8 +482,7 @@ The components are defined in the following sections",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -508,8 +500,7 @@ The components are defined in the following sections",
                             TableName = null,
                             Description = @"This component contains the gestational age and is relevant only when the reference range is influenced by the stage of pregnancy.  A range of values is required.  The gestational age is measured in weeks from conception.  For example, <1&10> implies that the normals apply to gestational ages from 1 week to 4 weeks inclusive (1&4).  The lower end of the range is not included; the upper end is, assuring  that series of age ranges do not overlap",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.6.4.1",
                             Type = @"SubComponent",
@@ -543,8 +534,7 @@ The components are defined in the following sections",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -599,8 +589,7 @@ The components are defined in the following sections",
                             Description = @"This component contains the condition as simply free text.  This component allows for definition of normal ranges based on any arbitrary condition, e.g., phase of menstrual cycle or dose of a particular drug.  It is provided as a way to communicate the normal ranges for special conditions.  It does not allow automatic checking of these text conditions",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -618,8 +607,7 @@ The components are defined in the following sections",
                             TableName = null,
                             Description = @"This field applies only to single tests/observations (i.e., a nature code of A or C, as described in OM1-19-nature of test/observations) with numeric results.  When a critical range is defined for such observations, it should be recorded here in the same format as the normal range (see OM2-7-reference (normal) range-ordinal and continuous obs). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.7.1",
                             Type = @"Component",
@@ -653,8 +641,7 @@ The components are defined in the following sections",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -672,8 +659,7 @@ The components are defined in the following sections",
                             TableName = null,
                             Description = @"This field applies only to single tests/observations with a nature code of A or C (see OM1-19nature of test/observation).  It defines the range of possible results.  Results outside this range are not possible.  The field should be recorded in the same format as the normal and critical ranges.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.8.1",
                             Type = @"Component",
@@ -688,8 +674,7 @@ The components are defined in the following sections",
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.8.1.1",
                             Type = @"SubComponent",
@@ -723,8 +708,7 @@ The components are defined in the following sections",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -779,8 +763,7 @@ The components are defined in the following sections",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -800,8 +783,7 @@ The components are defined in the following sections",
 
 More than one delta check rule can apply.  13&16^10^%^100~16.1&20^2^a^100 implies that the delta check will trigger on a 10% change when the value of the observation is between 13 and 16.  The check will trigger on an absolute change of 2 when the value is between 16.1 and 20.  In both cases, the system will keep the last result for 100 days.  In this example, beyond 100 days, the computer will not compute a delta check because it will not have a comparison value",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.9.1",
                             Type = @"Component",
@@ -817,8 +799,7 @@ More than one delta check rule can apply.  13&16^10^%^100~16.1&20^2^a^100 implie
                             Description = @"The range to which the following applies: <low & high>. 
 All the ranges are defined in terms of the customary reporting units given in OM2-3-units of measure.  If no value range is given, the check applies to all values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.9.1.1",
                             Type = @"SubComponent",
@@ -852,8 +833,7 @@ All the ranges are defined in terms of the customary reporting units given in OM
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -910,8 +890,7 @@ All the ranges are defined in terms of the customary reporting units given in OM
                             Description = @"The length of time that the service retains a value for computing delta checks.  This is recorded in number of days",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -940,8 +919,7 @@ All the ranges are defined in terms of the customary reporting units given in OM
             this.message = message;
         }
 
-        
-internal HL7V23Field sequenceNumber;
+        internal HL7V23Field sequenceNumber;
 
 public HL7V23Field SequenceNumber
 {
@@ -2263,6 +2241,5 @@ public HL7V23Field MinimumMeaningfulIncrements
         return minimumMeaningfulIncrements;
     } 
 }
-
     }
 }

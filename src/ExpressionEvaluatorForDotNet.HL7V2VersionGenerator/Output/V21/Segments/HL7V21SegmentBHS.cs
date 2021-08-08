@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentBHS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"BHS"; } }
 
@@ -255,8 +255,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field batchFieldSeparator;
+        internal HL7V21Field batchFieldSeparator;
 
 public HL7V21Field BatchFieldSeparator
 {
@@ -1827,6 +1826,5 @@ public HL7V21Field ReferenceBatchControlId
         return referenceBatchControlId;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentNDS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NDS"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Alert Level",
                             Description = @"The severity of the specific notification.  Refer to HL7 Table 0367 – Alert Level in Chapter 2C, Code Tables, for valid entries.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NDS.3.1",
                             Type = @"Component",
@@ -514,8 +514,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -533,8 +532,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"no table for CE",
                             Description = @"This field contains information about the type of notification being sent.  These are manufacturer and equipment specific error or status codes, e.g., AQN0123 – aliquoting error – clot detected.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NDS.4.1",
                             Type = @"Component",
@@ -962,8 +960,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -974,8 +971,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field notificationReferenceNumber;
+        internal HL7V28Field notificationReferenceNumber;
 
 public HL7V28Field NotificationReferenceNumber
 {
@@ -1498,6 +1494,5 @@ public HL7V28Field NotificationCode
         return notificationCode;
     } 
 }
-
     }
 }

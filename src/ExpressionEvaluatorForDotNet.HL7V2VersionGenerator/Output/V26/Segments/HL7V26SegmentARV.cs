@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentARV
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ARV"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Segment action code",
                             Description = @"This field contains a code defining the action to be taken for this segment. It allows access restriction information to be sent to delete or update previously sent access restrictions. Refer to HL7 Table 0206 - Segment Action Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARV.2.1",
                             Type = @"Component",
@@ -228,8 +228,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -247,8 +246,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Access Restriction Value",
                             Description = @"This field specifies the information to which access is restricted. This access may be restricted at a field level by employing the specific HL7 field identifiers or may be otherwise determined by user-defined coded values. Refer to User-defined Table 0717 - Access Restriction Value for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARV.3.1",
                             Type = @"Component",
@@ -408,8 +406,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -427,8 +424,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Access Restriction Reason Code",
                             Description = @"This field is used to convey the reason for the restricted access. Repeat of the Access Restriction Reason is allowed to accommodate communication of multiple reasons for an access restriction. Refer to User-defined Table 0719 - Access Restriction Reason Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARV.4.1",
                             Type = @"Component",
@@ -588,8 +584,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -625,8 +620,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This element defines the date from which an access restriction commences until the date it is specifically rescinded.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARV.6.1",
                             Type = @"Component",
@@ -660,8 +654,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -672,8 +665,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V26Field setID;
+        internal HL7V26Field setID;
 
 public HL7V26Field SetID
 {
@@ -1458,6 +1450,5 @@ public HL7V26Field AccessRestrictionDateRange
         return accessRestrictionDateRange;
     } 
 }
-
     }
 }

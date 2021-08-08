@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentPEO
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PEO"; } }
 
@@ -26,6 +26,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                 return new[]
                     {
                         "CH_07",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             TableName = null,
                             Description = @"This field may be used to transmit the event identifier used by other entities for this event.   The entry would typically contain a unique alphanumeric identifier assigned by an entity with the text component null or repeating the unique alphanumeric identifier followed by the organization’s identifier.  An event identifier might be GB1234^GB1234^PharmaGiant for example",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.1.1",
                             Type = @"Component",
@@ -158,8 +158,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -177,8 +176,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             TableName = null,
                             Description = @"This field is the coded diagnosis or problem description which  best describes the event.  A text representation of the coded item should routinely be included.  MEDDRA and WHO-ART are examples of appropriate coding schemes, as are the patient and device codes included in the FDA Center for Devices and Radiologic Health’s coding manual for Form 3500A",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.2.1",
                             Type = @"Component",
@@ -284,8 +282,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -303,8 +300,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             TableName = null,
                             Description = @"This field contains a report or best estimate of the date/time of onset of the event  The date/time can be recorded to any level of precision it is known (hour, day, month, year).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.3.1",
                             Type = @"Component",
@@ -320,8 +316,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -339,8 +334,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             TableName = null,
                             Description = @"This field identifies the best estimate of the date/time the event was exacerbated",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.4.1",
                             Type = @"Component",
@@ -356,8 +350,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -375,8 +368,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             TableName = null,
                             Description = @"This field identifies the best estimate of the date/time the event improved",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.5.1",
                             Type = @"Component",
@@ -392,8 +384,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -411,8 +402,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             TableName = null,
                             Description = @"This field identifies the best estimate of the date/time the event resolved",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.6.1",
                             Type = @"Component",
@@ -428,8 +418,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -447,8 +436,7 @@ A PEX message can contain multiple PEO segments if the patient experienced more 
                             TableName = null,
                             Description = @"This field identifies the location at which the event started. Often this will specify only the country in which the event started",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.7.1",
                             Type = @"Component",
@@ -629,8 +617,7 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -828,8 +815,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field identifies the coded cause of death.  May be repeated as necessary to list multiple contributing causes.  A text description can be included by including text but no code or coding system.  For example, if the cause of death is to be determined at autopsy but results are not yet available, the cause of death element could be ^Pending autopsy^.  The date/time of death can be sent in the PID and the autopsy results sent in the event description from autopsy element of the PEO segment",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.18.1",
                             Type = @"Component",
@@ -935,8 +921,7 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -954,8 +939,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field identifies the name of the person who initially described the event",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.19.1",
                             Type = @"Component",
@@ -1097,8 +1081,7 @@ Allowable Values:  codes defined by government",
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1116,8 +1099,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field identifies the address of the person who initially described the event",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.20.1",
                             Type = @"Component",
@@ -1298,8 +1280,7 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1317,8 +1298,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field identifies the telephone number of the person who initially described the event",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.21.1",
                             Type = @"Component",
@@ -1478,8 +1458,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1533,8 +1512,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field identifies the date/time the primary observer became aware of event",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.24.1",
                             Type = @"Component",
@@ -1550,8 +1528,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1580,8 +1557,7 @@ Allowable Values:  codes defined by government",
             this.message = message;
         }
 
-        
-internal HL7V23Field eventIdentifiersUsed;
+        internal HL7V23Field eventIdentifiersUsed;
 
 public HL7V23Field EventIdentifiersUsed
 {
@@ -4855,6 +4831,5 @@ public HL7V23Field PrimaryObserversIdentityMayBeDivulged
         return primaryObserversIdentityMayBeDivulged;
     } 
 }
-
     }
 }

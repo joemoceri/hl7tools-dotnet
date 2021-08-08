@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentSDD
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SDD"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SDD.1.1",
                             Type = @"Component",
@@ -126,8 +126,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -145,8 +144,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             TableName = null,
                             Description = @"The number of the device (e.g., 01 VAC).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SDD.2.1",
                             Type = @"Component",
@@ -222,8 +220,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -259,8 +256,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             TableName = @"Device Data State -",
                             Description = @"The state of data being sent, i.e., historic data of the cycle or a real-time snapshot of the current value of the cycle data.  During a sterilization process, data is consistently being output to record the value of the data at each point in time within the instance of a cycle.  For example, the temperature is recorded at every point in time during the cycle.  Refer to User-defined Table 0667 – Device Data State in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SDD.4.1",
                             Type = @"Component",
@@ -688,8 +684,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -707,8 +702,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Load Status",
                             Description = @"The status of the load.  Refer to User-defined Table 0669 – Load Status in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SDD.5.1",
                             Type = @"Component",
@@ -1136,8 +1130,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1184,8 +1177,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field lotNumber;
+        internal HL7V28Field lotNumber;
 
 public HL7V28Field LotNumber
 {
@@ -2101,6 +2093,5 @@ public HL7V28Field OperatorName
         return operatorName;
     } 
 }
-
     }
 }

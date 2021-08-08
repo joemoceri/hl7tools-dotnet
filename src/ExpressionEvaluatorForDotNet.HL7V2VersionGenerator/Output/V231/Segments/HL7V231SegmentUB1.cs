@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentUB1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -211,8 +212,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The pair in this field can repeat up to eight times (46A, 47A, 48A, 49A, 46B, 47B, 48B, and 49B). Refer to user-definedtable 0153 - Value code in UB2-6 for suggested values. The UB codes listed as examples are not an exhaustive or current list; refer to a UB specification for additional information. This field is defined by HCFA or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.1",
                             Type = @"Component",
@@ -246,8 +246,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -283,8 +282,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Special program indicator",
                             Description = @"This field contains the special program indicator. UB82 Field 44. This field is defined by HCFA or other regulatory agencies. Refer to user-defined table 0348 - Special program indicator for suggested values. The UB codes listed as examples are not an exhaustive or current list; refer to a UB specification for additional information",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.12.1",
                             Type = @"Component",
@@ -390,8 +388,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -409,8 +406,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"PSRO/UR approval indicator",
                             Description = @"This field contains the PSRO/UR approval indicator. UB82 field 87. This field is defined by HCFA or other regulatory agencies. Refer to user-defined table 0349 - PSRO/UR approval indicator for suggested values. The UB codes listed as examples are not an exhaustive or current list; refer to a UB specification for additional information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.13.1",
                             Type = @"Component",
@@ -516,8 +512,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -571,8 +566,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"The set of values in this field can repeat up to five times. UB82 Fields 28-32. This field is defined by HCFA or other regulatory agencies. User-defined table 0350 - Occurrencecode (see UB2-7) is used as the HL7 identifier for the user-defined table of values for this field. Refer to a UB specification for additional information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.16.1",
                             Type = @"Component",
@@ -606,8 +600,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -625,8 +618,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Occurrence span",
                             Description = @"UB82 Field 33. This field is defined by HCFA or other regulatory agencies. Refer to user-defined table 0351- Occurrence span in UB2-8 for suggested values. The UB codes listed as examples are not an exhaustive or current list; refer to a UB specification for additional information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.17.1",
                             Type = @"Component",
@@ -732,8 +724,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -852,8 +843,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V231Field setIDUB1;
+        internal HL7V231Field setIDUB1;
 
 public HL7V231Field SetIDUB1
 {
@@ -3865,6 +3855,5 @@ public HL7V231Field UB82Locator45
         return uB82Locator45;
     } 
 }
-
     }
 }

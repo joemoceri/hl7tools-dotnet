@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentVTQ
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"VTQ"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the name of the virtual table query. These names are assigned by the function-specific chapters of this specification. Site-specific VT query names begin with the letter 'Z.'",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.3.1",
                             Type = @"Component",
@@ -192,8 +192,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -211,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the name of the virtual table being referenced. This table name may refer to an HL7-defined segment, an HL7 virtual table (refer to the functional chapters), or a site-specific 'Z table.'",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.4.1",
                             Type = @"Component",
@@ -318,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -337,8 +334,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Each repetition of this field defines a column in the RDT segment: the first repetition defines the first column of the RDT segment; the second repetition defines the second column of the RDT segments, etc.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.5.1",
                             Type = @"Component",
@@ -408,8 +404,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Refer to HL7 table 0210 - Relational conjunction for valid values. The relational conjunction is defined as follows: If more than one comparison is to be made to select qualifying rows, a conjunction relates this repetition of the field to the next.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -420,8 +415,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V231Field queryTag;
+        internal HL7V231Field queryTag;
 
 public HL7V231Field QueryTag
 {
@@ -1075,6 +1069,5 @@ public HL7V231Field SelectionCriteria
         return selectionCriteria;
     } 
 }
-
     }
 }

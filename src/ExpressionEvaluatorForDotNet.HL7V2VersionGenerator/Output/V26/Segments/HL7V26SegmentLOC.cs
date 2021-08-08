@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentLOC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"LOC"; } }
 
@@ -26,6 +26,7 @@ The LOC segment can identify any patient location referenced by information syst
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"This field contains the institution's identification code for the location. The identifying key value. Must match MFE-4 -Primary Key Value - MFE. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.1.1",
                             Type = @"Component",
@@ -121,8 +121,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"This component is subject to site interpretation but generally describes the highest level physical designation of an institution, medical center or enterprise. It is the most general person location designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.1.4.1",
                             Type = @"SubComponent",
@@ -174,8 +173,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -283,8 +281,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"The unique identifier that represents the physical location as a whole without regard for the individual components. This accommodates sites that may have a different method of defining physical units or who may code at a less granular level. For example, point of care, room, and bed may be 1 indivisible code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.1.10.1",
                             Type = @"SubComponent",
@@ -354,8 +351,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -373,8 +369,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"The entity that creates the data for the individual physical location components. If populated, it should be the authority for all components populated. Refer to User-defined Table 0363 - Assigning authority for suggested values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.1.11.1",
                             Type = @"SubComponent",
@@ -426,10 +421,8 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -483,8 +476,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"This field contains the organization(s) of which this location is a part. For inpatient locations, this can be the hospital or institution name. For outpatient locations, this can be the clinic or office name.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.4.1",
                             Type = @"Component",
@@ -589,8 +581,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency or department) that creates the data. Assigning authorities are unique across a given HL7 implementation. Refer to User-defined Table 0363 - Assigning Authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.4.6.1",
                             Type = @"SubComponent",
@@ -642,8 +633,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -679,8 +669,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.4.8.1",
                             Type = @"SubComponent",
@@ -732,8 +721,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -770,8 +758,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -789,8 +776,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"This field contains the address of the patient location, especially for use for outpatient clinic or office locations.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.5.1",
                             Type = @"Component",
@@ -805,8 +791,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = @"Street",
                             Description = @"This component contains the house number, apartment number, street name, street direction, P.O. Box number, and similar address information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.5.1.1",
                             Type = @"SubComponent",
@@ -858,8 +843,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1057,8 +1041,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to 2.A.85.13, Effective Date and 2.A.85.14, Expiration Date components.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.5.12.1",
                             Type = @"SubComponent",
@@ -1092,8 +1075,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1147,8 +1129,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = @"Address Expiration Reason",
                             Description = @"This identifies why this address was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.5.15.1",
                             Type = @"SubComponent",
@@ -1308,8 +1289,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1435,8 +1415,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = @"Protection Code",
                             Description = @"Identifies that an address needs to be treated with special care or sensitivity.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.5.22.1",
                             Type = @"SubComponent",
@@ -1596,8 +1575,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1615,8 +1593,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"A unique identifier for the address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.5.23.1",
                             Type = @"SubComponent",
@@ -1686,10 +1663,8 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1707,8 +1682,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"This field contains the phone number within the patient location, if any. For example, the room or bed phone for use by the patient.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.6.1",
                             Type = @"Component",
@@ -1975,8 +1949,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = @"Telecommunication expiration reason",
                             Description = @"Indicates why this contact number/e-mail was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.6.15.1",
                             Type = @"SubComponent",
@@ -2136,8 +2109,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2155,8 +2127,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = @"Protection Code",
                             Description = @"Indicates whether this information is considered sensitive or should be protected in some way. Refer to User-defined table 0618 - Protection Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.6.16.1",
                             Type = @"SubComponent",
@@ -2316,8 +2287,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2335,8 +2305,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = null,
                             Description = @"A unique identifier for the phone number or e-mail address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.6.17.1",
                             Type = @"SubComponent",
@@ -2406,8 +2375,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2426,8 +2394,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2445,8 +2412,7 @@ The LOC segment can identify any patient location referenced by information syst
                             TableName = @"License Number",
                             Description = @"This field contains the multiple license numbers for the facility. Refer to User-defined Table 0461 - License number for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.7.1",
                             Type = @"Component",
@@ -2606,8 +2572,7 @@ The LOC segment can identify any patient location referenced by information syst
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2654,8 +2619,7 @@ The LOC segment can identify any patient location referenced by information syst
             this.message = message;
         }
 
-        
-internal HL7V26Field primaryKeyValueLOC;
+        internal HL7V26Field primaryKeyValueLOC;
 
 public HL7V26Field PrimaryKeyValueLOC
 {
@@ -3833,6 +3797,5 @@ public HL7V26Field LocationServiceCode
         return locationServiceCode;
     } 
 }
-
     }
 }

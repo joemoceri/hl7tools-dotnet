@@ -4,15 +4,15 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventADT_A21
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentEVN evn;
-public readonly HL7V23SegmentPID pid;
-public readonly HL7V23SegmentPD1 pd1;
-public readonly HL7V23SegmentPV1 pv1;
-public readonly HL7V23SegmentPV2 pv2;
-public readonly HL7V23SegmentDB1 db1;
-public readonly HL7V23SegmentOBX obx;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentEVN evn;
+private readonly HL7V23SegmentPID pid;
+private readonly HL7V23SegmentPD1 pd1;
+private readonly HL7V23SegmentPV1 pv1;
+private readonly HL7V23SegmentPV2 pv2;
+private readonly HL7V23SegmentDB1 db1;
+private readonly HL7V23SegmentOBX obx;
 
 
         public string Id { get { return @"ADT_A21"; } }
@@ -28,6 +28,7 @@ public readonly HL7V23SegmentOBX obx;
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }

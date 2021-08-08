@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventRSP_K11
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentMSA msa;
-public readonly HL7V24SegmentERR err;
-public readonly HL7V24SegmentQAK qak;
-public readonly HL7V24SegmentQPD qpd;
-public readonly HL7V24SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentMSA msa;
+private readonly HL7V24SegmentERR err;
+private readonly HL7V24SegmentQAK qak;
+private readonly HL7V24SegmentQPD qpd;
+private readonly HL7V24SegmentDSC dsc;
 
 
         public string Id { get { return @"RSP_K11"; } }
@@ -26,6 +26,7 @@ public readonly HL7V24SegmentDSC dsc;
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }

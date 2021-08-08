@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22TriggerEventADR_A19
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V22SegmentMSH msh;
-public readonly HL7V22SegmentMSA msa;
-public readonly HL7V22SegmentERR err;
-public readonly HL7V22SegmentQRD qrd;
-public readonly HL7V22SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V22SegmentMSH msh;
+private readonly HL7V22SegmentMSA msa;
+private readonly HL7V22SegmentERR err;
+private readonly HL7V22SegmentQRD qrd;
+private readonly HL7V22SegmentDSC dsc;
 
 
         public string Id { get { return @"ADR_A19"; } }
@@ -25,6 +25,7 @@ public readonly HL7V22SegmentDSC dsc;
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }

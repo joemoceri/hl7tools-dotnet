@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventBRT_O32
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V271SegmentMSH msh;
-public readonly HL7V271SegmentMSA msa;
-public readonly HL7V271SegmentERR err;
-public readonly HL7V271SegmentSFT sft;
-public readonly HL7V271SegmentUAC uac;
-public readonly HL7V271SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V271SegmentMSH msh;
+private readonly HL7V271SegmentMSA msa;
+private readonly HL7V271SegmentERR err;
+private readonly HL7V271SegmentSFT sft;
+private readonly HL7V271SegmentUAC uac;
+private readonly HL7V271SegmentNTE nte;
 
 
         public string Id { get { return @"BRT_O32"; } }
@@ -26,6 +26,7 @@ public readonly HL7V271SegmentNTE nte;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

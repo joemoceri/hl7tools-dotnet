@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentVTQ
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"VTQ"; } }
 
@@ -26,6 +26,7 @@ As with the other query methods, the functional chapters define specific queries
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ As with the other query methods, the functional chapters define specific queries
                             TableName = null,
                             Description = @"This field contains the name of the Virtual Table query.  These names are assigned by the function-specific chapters of this specification.  Site-specific VT query names begin with the letter “Z.” ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.3.1",
                             Type = @"Component",
@@ -194,8 +194,7 @@ As with the other query methods, the functional chapters define specific queries
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -213,8 +212,7 @@ As with the other query methods, the functional chapters define specific queries
                             TableName = null,
                             Description = @"This field contains the name of the Virtual Table being referenced.  This table name may refer to an HL7-defined segment, an HL7 Virtual Table (refer to the functional chapters), or a site-specific “Z table.” ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.4.1",
                             Type = @"Component",
@@ -320,8 +318,7 @@ As with the other query methods, the functional chapters define specific queries
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -339,8 +336,7 @@ As with the other query methods, the functional chapters define specific queries
                             TableName = null,
                             Description = @"Each repetition of this field defines a column in the RDT segment: the first repetition defines the first column of the RDT segment; the second repetition defines the second column of the RDT segments, etc.   ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.5.1",
                             Type = @"Component",
@@ -410,8 +406,7 @@ As with the other query methods, the functional chapters define specific queries
                             Description = @"Refer to HL7 Table 0210 - Relational conjunction for valid values. The relational conjunction is defined as follows: If more than one comparison is to be made to select qualifying rows, a conjunction relates this repetition of the field to the next.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -422,8 +417,7 @@ As with the other query methods, the functional chapters define specific queries
             this.message = message;
         }
 
-        
-internal HL7V26Field queryTag;
+        internal HL7V26Field queryTag;
 
 public HL7V26Field QueryTag
 {
@@ -1077,6 +1071,5 @@ public HL7V26Field SelectionCriteria
         return selectionCriteria;
     } 
 }
-
     }
 }

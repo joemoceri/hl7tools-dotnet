@@ -27,9 +27,9 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
         [JsonProperty("chapters")]
         public IList<string> Chapters { get; set; }
 
-        [JsonProperty("segments")]
         public IList<TriggerEventSegmentResponse> TriggerEventSegments { get; set; }
 
+        [JsonProperty("segments")]
         public IList<SegmentResponse> Segments { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentSCP
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SCP"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Labor Calculation Type",
                             Description = @"The method at which labor is calculated for use in tracking employee productivity. Refer to User-defined Table 0651 –Labor Calculation Type in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SCP.2.1",
                             Type = @"Component",
@@ -496,8 +496,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -515,8 +514,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Date Format",
                             Description = @"The format of the date that is used to record date parameters of a decontamination/sterilization instance.  Refer to User-defined Table 0653 – Date Format in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SCP.3.1",
                             Type = @"Component",
@@ -944,8 +942,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -963,8 +960,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"The number of the device (e.g., 01).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SCP.4.1",
                             Type = @"Component",
@@ -1040,8 +1036,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1095,8 +1090,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             TableName = @"Device Type",
                             Description = @"The type of device, such as a steam sterilizer or gas sterilizer.   Refer to User-defined Table 0657 – Device Type in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SCP.7.1",
                             Type = @"Component",
@@ -1524,8 +1518,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1543,8 +1536,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Lot Control",
                             Description = @"A code assigned to a device to indicate if the sterilization load is built in the sub-sterile area adjacent to an Operating Room or the Central Processing Department (Central Supply).  Refer to User-defined Table 0659 – Lot Control in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SCP.8.1",
                             Type = @"Component",
@@ -1972,8 +1964,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1984,8 +1975,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field numberOfDecontaminationSterilizationDevices;
+        internal HL7V28Field numberOfDecontaminationSterilizationDevices;
 
 public HL7V28Field NumberOfDecontaminationSterilizationDevices
 {
@@ -3032,6 +3022,5 @@ public HL7V28Field LotControl
         return lotControl;
     } 
 }
-
     }
 }

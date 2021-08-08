@@ -4,17 +4,17 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventEHC_E12
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V27SegmentMSH msh;
-public readonly HL7V27SegmentSFT sft;
-public readonly HL7V27SegmentUAC uac;
-public readonly HL7V27SegmentRFI rfi;
-public readonly HL7V27SegmentCTD ctd;
-public readonly HL7V27SegmentIVC ivc;
-public readonly HL7V27SegmentPSS pss;
-public readonly HL7V27SegmentPSG psg;
-public readonly HL7V27SegmentPID pid;
-public readonly HL7V27SegmentPSL psl;
+        private readonly HL7V2Message message;
+        private readonly HL7V27SegmentMSH msh;
+private readonly HL7V27SegmentSFT sft;
+private readonly HL7V27SegmentUAC uac;
+private readonly HL7V27SegmentRFI rfi;
+private readonly HL7V27SegmentCTD ctd;
+private readonly HL7V27SegmentIVC ivc;
+private readonly HL7V27SegmentPSS pss;
+private readonly HL7V27SegmentPSG psg;
+private readonly HL7V27SegmentPID pid;
+private readonly HL7V27SegmentPSL psl;
 
 
         public string Id { get { return @"EHC_E12"; } }
@@ -30,6 +30,7 @@ public readonly HL7V27SegmentPSL psl;
                 return new[]
                     {
                         "CH_16",
+
                     };
             }
         }

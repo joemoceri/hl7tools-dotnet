@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentRGS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RGS"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ This field is conditionally required.  It is required for all updating or modify
                             TableName = null,
                             Description = @"This field contains an identifier code describing the group of resources following this RGS segment.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RGS.3.1",
                             Type = @"Component",
@@ -248,8 +248,7 @@ This field is conditionally required.  It is required for all updating or modify
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -260,8 +259,7 @@ This field is conditionally required.  It is required for all updating or modify
             this.message = message;
         }
 
-        
-internal HL7V26Field setIDRGS;
+        internal HL7V26Field setIDRGS;
 
 public HL7V26Field SetIDRGS
 {
@@ -655,6 +653,5 @@ public HL7V26Field ResourceGroupID
         return resourceGroupID;
     } 
 }
-
     }
 }

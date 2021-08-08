@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentRGS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RGS"; } }
 
@@ -25,6 +25,7 @@ If a message does not require any grouping of resources, then specify a single R
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -86,8 +87,7 @@ If a message does not require any grouping of resources, then specify a single R
                             TableName = null,
                             Description = @"This field contains an identifier code describing the group of resources following this RGS segment. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RGS.3.1",
                             Type = @"Component",
@@ -193,8 +193,7 @@ If a message does not require any grouping of resources, then specify a single R
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -205,8 +204,7 @@ If a message does not require any grouping of resources, then specify a single R
             this.message = message;
         }
 
-        
-internal HL7V23Field setIDRGS;
+        internal HL7V23Field setIDRGS;
 
 public HL7V23Field SetIDRGS
 {
@@ -598,6 +596,5 @@ public HL7V23Field ResourceGroupID
         return resourceGroupID;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentRGS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RGS"; } }
 
@@ -26,6 +26,7 @@ If a message does not require any grouping of resources, then specify a single R
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -89,8 +90,7 @@ This field is conditionally required.  It is required for all updating or modify
                             TableName = null,
                             Description = @"This field contains an identifier code describing the group of resources following this RGS segment.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RGS.3.1",
                             Type = @"Component",
@@ -518,8 +518,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -530,8 +529,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field setIdRgs;
+        internal HL7V28Field setIdRgs;
 
 public HL7V28Field SetIdRgs
 {
@@ -925,6 +923,5 @@ public HL7V28Field ResourceGroupId
         return resourceGroupId;
     } 
 }
-
     }
 }

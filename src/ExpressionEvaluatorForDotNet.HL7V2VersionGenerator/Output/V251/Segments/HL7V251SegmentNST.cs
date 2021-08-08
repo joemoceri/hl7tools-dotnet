@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentNST
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NST"; } }
 
@@ -26,6 +26,7 @@ Usage Notes: Fields 2-15.  These are all marked optional since the statistics ke
                 return new[]
                     {
                         "CH_14",
+
                     };
             }
         }
@@ -105,8 +106,7 @@ Usage Notes: Fields 2-15.  These are all marked optional since the statistics ke
                             TableName = null,
                             Description = @"This field contains the date/time stamp of the start of the collection of the statistics reported in fields 6-15 of this segment. It is strongly recommended that this value include seconds.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NST.4.1",
                             Type = @"Component",
@@ -142,8 +142,7 @@ Usage Notes: Fields 2-15.  These are all marked optional since the statistics ke
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -161,8 +160,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = null,
                             Description = @"This field contains the date/time stamp of the end of the statistics collection period reported in fields 6-15 of this segment. It is strongly recommended that this value include seconds.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NST.5.1",
                             Type = @"Component",
@@ -198,8 +196,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -390,8 +387,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
             this.message = message;
         }
 
-        
-internal HL7V251Field statisticsAvailable;
+        internal HL7V251Field statisticsAvailable;
 
 public HL7V251Field StatisticsAvailable
 {
@@ -2355,6 +2351,5 @@ public HL7V251Field ApplicationcontrollevelErrors
         return applicationcontrollevelErrors;
     } 
 }
-
     }
 }

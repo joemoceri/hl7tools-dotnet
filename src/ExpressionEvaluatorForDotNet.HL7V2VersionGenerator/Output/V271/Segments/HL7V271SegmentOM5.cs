@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentOM5
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM5"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -78,8 +79,7 @@ If the definition segment defined serum electrolytes, this field might look like
 For S (superset) parameters, this field contains the batteries that are included within the ""super"" battery.  For example, ROUTINES might be defined as:
 402^Electrolytes~352^Urinalysis~432^CBC~520^SMA12",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM5.2.1",
                             Type = @"Component",
@@ -505,8 +505,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -535,8 +534,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field sequenceNumberTestObservationMasterFile;
+        internal HL7V271Field sequenceNumberTestObservationMasterFile;
 
 public HL7V271Field SequenceNumberTestObservationMasterFile
 {
@@ -939,6 +937,5 @@ public HL7V271Field ObservationIdSuffixes
         return observationIdSuffixes;
     } 
 }
-
     }
 }

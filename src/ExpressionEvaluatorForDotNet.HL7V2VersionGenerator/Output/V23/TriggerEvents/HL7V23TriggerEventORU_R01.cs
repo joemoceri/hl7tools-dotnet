@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventORU_R01
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentDSC dsc;
 
 
         public string Id { get { return @"ORU_R01"; } }
@@ -22,6 +22,7 @@ public readonly HL7V23SegmentDSC dsc;
                 return new[]
                     {
                         "CH_07",
+
                     };
             }
         }

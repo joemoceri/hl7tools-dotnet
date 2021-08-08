@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentMFA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MFA"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field may be required or optional depending on the site specifications for the given master file, master file event, and receiving facility.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFA.3.1",
                             Type = @"Component",
@@ -102,8 +102,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -121,8 +120,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"MFN record-level error return",
                             Description = @"This field contains the status of the requested update. Site-defined table, specific to each master file being updated via this transaction.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFA.4.1",
                             Type = @"Component",
@@ -228,8 +226,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -247,8 +244,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field uniquely identifies the record of the master file (identified in the MFI segment) to be change status is being acknowledged (as defined by the field MFN-4-record level error return). The data type of this field is defined by the value of MFA-6-value type-MFA, and may take on the format of any of the HL7 data types defined in HL7 table 0355 - Primary key value type . The PL data type is used only on location master transactions.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFA.5.1",
                             Type = @"Component",
@@ -354,8 +350,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -384,8 +379,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V231Field recordLevelEventCode;
+        internal HL7V231Field recordLevelEventCode;
 
 public HL7V231Field RecordLevelEventCode
 {
@@ -1170,6 +1164,5 @@ public HL7V231Field PrimaryKeyValueTypeMFA
         return primaryKeyValueTypeMFA;
     } 
 }
-
     }
 }

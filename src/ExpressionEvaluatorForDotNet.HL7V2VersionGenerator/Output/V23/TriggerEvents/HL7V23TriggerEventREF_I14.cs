@@ -4,17 +4,17 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventREF_I14
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentRF1 rf1;
-public readonly HL7V23SegmentPID pid;
-public readonly HL7V23SegmentNK1 nk1;
-public readonly HL7V23SegmentGT1 gt1;
-public readonly HL7V23SegmentACC acc;
-public readonly HL7V23SegmentDG1 dg1;
-public readonly HL7V23SegmentDRG drg;
-public readonly HL7V23SegmentAL1 al1;
-public readonly HL7V23SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentRF1 rf1;
+private readonly HL7V23SegmentPID pid;
+private readonly HL7V23SegmentNK1 nk1;
+private readonly HL7V23SegmentGT1 gt1;
+private readonly HL7V23SegmentACC acc;
+private readonly HL7V23SegmentDG1 dg1;
+private readonly HL7V23SegmentDRG drg;
+private readonly HL7V23SegmentAL1 al1;
+private readonly HL7V23SegmentNTE nte;
 
 
         public string Id { get { return @"REF_I14"; } }
@@ -30,6 +30,7 @@ public readonly HL7V23SegmentNTE nte;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

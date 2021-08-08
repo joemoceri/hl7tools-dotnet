@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentNPU
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NPU"; } }
 
@@ -75,8 +75,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field bedLocation;
+        internal HL7V21Field bedLocation;
 
 public HL7V21Field BedLocation
 {
@@ -337,6 +336,5 @@ public HL7V21Field BedStatus
         return bedStatus;
     } 
 }
-
     }
 }

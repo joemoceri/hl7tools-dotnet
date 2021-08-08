@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentRX1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RX1"; } }
 
@@ -579,8 +579,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field unused;
+        internal HL7V21Field unused;
 
 public HL7V21Field Unused
 {
@@ -4509,6 +4508,5 @@ public HL7V21Field Instructionssig
         return instructionssig;
     } 
 }
-
     }
 }

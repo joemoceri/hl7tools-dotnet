@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentLCH
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"LCH"; } }
 
@@ -26,6 +26,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                             TableName = null,
                             Description = @"This field contains the institution’s identification code for the location.  The identifying key value.  This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).  At least the first component of this field is required.  The contents of this field must exactly match the content of its preceding MFE ( MFE-4-primary key value), its preceding LOC (LOC1-LOC primary key value), and its preceding LDP (LDP-1-LDP primary key value). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.1.1",
                             Type = @"Component",
@@ -121,8 +121,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.1.4.1",
                             Type = @"SubComponent",
@@ -174,8 +173,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -266,8 +264,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -303,8 +300,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                             TableName = null,
                             Description = @"This field contains a unique identifier for one of the multiple repetitions of this segment, to be used in conjunction with the preceding field.  Each of the repetitions of the segment will be uniquely identified by this unique key field for the purposes of updates",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.3.1",
                             Type = @"Component",
@@ -374,8 +370,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -393,8 +388,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                             TableName = @"Location characteristic ID",
                             Description = @" This field contains an identifier code to show WHICH characteristic is being communicated with this segment.  Refer to user-defined table 0324 - Location characteristic ID  for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.4.1",
                             Type = @"Component",
@@ -500,8 +494,7 @@ When the LCH segment appears immediately following the LOC segment, it communica
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -543,8 +536,7 @@ When LCH-4-Location Characteristic ID contains “LIC”- Licensed, refer to HL7
 - Y this location is licensed
 - N this location is not licensed ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.5.1",
                             Type = @"Component",
@@ -650,8 +642,7 @@ When LCH-4-Location Characteristic ID contains “LIC”- Licensed, refer to HL7
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -662,8 +653,7 @@ When LCH-4-Location Characteristic ID contains “LIC”- Licensed, refer to HL7
             this.message = message;
         }
 
-        
-internal HL7V23Field primaryKeyValue;
+        internal HL7V23Field primaryKeyValue;
 
 public HL7V23Field PrimaryKeyValue
 {
@@ -1341,6 +1331,5 @@ When LCH-4-Location Characteristic ID contains “LIC”- Licensed, refer to HL7
         return locationCharacteristicValue;
     } 
 }
-
     }
 }

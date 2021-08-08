@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentRFI
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RFI"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_16",
+
                     };
             }
         }
@@ -114,8 +115,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V271Field requestDate;
+        internal HL7V271Field requestDate;
 
 public HL7V271Field RequestDate
 {
@@ -638,6 +638,5 @@ public HL7V271Field DateAdditionalInformationWasSubmitted
         return dateAdditionalInformationWasSubmitted;
     } 
 }
-
     }
 }

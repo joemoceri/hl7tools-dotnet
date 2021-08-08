@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentOM6
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM6"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -78,8 +79,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V251Field sequenceNumberTestObservationMasterFile;
+        internal HL7V251Field sequenceNumberTestObservationMasterFile;
 
 public HL7V251Field SequenceNumberTestObservationMasterFile
 {
@@ -340,6 +340,5 @@ public HL7V251Field DerivationRule
         return derivationRule;
     } 
 }
-
     }
 }

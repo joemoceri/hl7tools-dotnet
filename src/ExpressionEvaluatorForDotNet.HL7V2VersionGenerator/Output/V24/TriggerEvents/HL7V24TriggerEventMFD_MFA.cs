@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventMFD_MFA
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentMSA msa;
-public readonly HL7V24SegmentMFA mfa;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentMSA msa;
+private readonly HL7V24SegmentMFA mfa;
 
 
         public string Id { get { return @"MFD_MFA"; } }
@@ -23,6 +23,7 @@ public readonly HL7V24SegmentMFA mfa;
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }

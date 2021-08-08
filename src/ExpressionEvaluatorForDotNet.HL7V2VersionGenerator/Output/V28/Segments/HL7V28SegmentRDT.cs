@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentRDT
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RDT"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -60,8 +61,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V28Field columnValue;
+        internal HL7V28Field columnValue;
 
 public HL7V28Field ColumnValue
 {
@@ -191,6 +191,5 @@ public HL7V28Field ColumnValue
         return columnValue;
     } 
 }
-
     }
 }

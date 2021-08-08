@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentRXO
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RXO"; } }
 
@@ -28,6 +28,7 @@ In addition to the pharmaceutical information, this segment contains additional 
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -53,8 +54,7 @@ In addition to the pharmaceutical information, this segment contains additional 
                             TableName = null,
                             Description = @"identifier of the medical substance ordered to be given to the patient; it is equivalent to OBR-4-universal service ID code in function.  The request-to-dispense fields, which define the type and amount of what is to be issued to the patient (see RXO-10 requested dispense code, RXO-11-requested dispense amount, and RXO-12-requested dispense units) do not necessarily correlate with the instructions of what amount is to be ""given"" or administered with each dose, and may or may not be specified with the order.  For example, the ""give"" part of the order may convey the field-representation of give 15 mg of librium every 6 hours, while the request to dispense part of the order may convey issue 30 tablets of 10 MG generic equivalent for this outpatient prescription.  When the give code does not include the dosage form, use RXO-5-requested dosage form.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.1.1",
                             Type = @"Component",
@@ -160,8 +160,7 @@ In addition to the pharmaceutical information, this segment contains additional 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -221,8 +220,7 @@ Another way to say this is that, for pharmacy orders, the quantity component of 
  
 Note:These units can be a ""compound quantity""; i.e., the units may contain the word ""per.""  For example, micrograms per KG (micg/kg) is an acceptable value, which means that the units are micrograms per KG (of body weight).  See Chapter 7 for full definition of ISO+ units. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.4.1",
                             Type = @"Component",
@@ -328,8 +326,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -347,8 +344,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"use when both RXO-1-requested give code and RXO-10-requested dispense code do not specify the drug form",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.5.1",
                             Type = @"Component",
@@ -454,8 +450,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -473,8 +468,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"ordering provider's instructions to the pharmacy as a free text field",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.6.1",
                             Type = @"Component",
@@ -580,8 +574,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -599,8 +592,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"ordering provider's instructions to the patient or to the provider administering the drug as a free text field",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.7.1",
                             Type = @"Component",
@@ -706,8 +698,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -725,8 +716,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"the first component contains the inpatient or outpatient location to which the pharmacy is to deliver the drug (if applicable).  The default (null) value is the current census location for the patient.  Site specific table.  This component has the same form as PV1-3-assigned patient location.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.8.1",
                             Type = @"Component",
@@ -741,8 +731,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.8.1.1",
                             Type = @"SubComponent",
@@ -830,8 +819,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -849,8 +837,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"The second component can be used to specify an address.  This could be used to fill mail orders to a patient or provider, or to account for home health care. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.8.2.1",
                             Type = @"SubComponent",
@@ -992,10 +979,8 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1031,8 +1016,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"what is to be/was dispensed; it is equivalent to OBR-4-universal service ID in function.  It may be present in the order or not, depending on the application.  If not present, and values are given for RXO-11requested dispense amount and RXO-12-requested dispense units, the RXO-1-requested give code is assumed.  If the requested dispense code does not include the dosage form, use RXO-5-requested dosage form. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.10.1",
                             Type = @"Component",
@@ -1138,8 +1122,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1175,8 +1158,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"units for the dispense amount.  This must be in simple units that reflect the actual quantity of the substance to be dispensed.  It does not include compound units",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.12.1",
                             Type = @"Component",
@@ -1282,8 +1264,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1319,8 +1300,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"if required by site.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.14.1",
                             Type = @"Component",
@@ -1462,8 +1442,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1481,8 +1460,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"provider ID of pharmacist verifier.  Use if required by the Pharmacy application or site on orders (or some subgroup of orders), in addition to ORC-11-verified by",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.15.1",
                             Type = @"Component",
@@ -1624,8 +1602,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1674,8 +1651,7 @@ A smart Order Entry application knows of a possible drug interaction on a certai
             this.message = message;
         }
 
-        
-internal HL7V22Field requestedGiveCode;
+        internal HL7V22Field requestedGiveCode;
 
 public HL7V22Field RequestedGiveCode
 {
@@ -3909,6 +3885,5 @@ public HL7V22Field RequestedGivePertimeUnit
         return requestedGivePertimeUnit;
     } 
 }
-
     }
 }

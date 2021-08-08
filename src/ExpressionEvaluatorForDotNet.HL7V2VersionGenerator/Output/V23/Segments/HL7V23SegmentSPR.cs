@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentSPR
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SPR"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the name of the stored procedure that is to be executed.  Values for this field are defined in the function-specific chapters of this specification; site-specific stored procedure names begin with the letter “Z.” ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPR.3.1",
                             Type = @"Component",
@@ -192,8 +192,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -211,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the list of parameter names and values to be passed to the stored procedure, in the form “<field name> ^ <value1& value2 & value3 ...>.”  A single valued parameter contains only a single subcomponent in the second component: thus no subcomponent delimiters are needed (e.g., <field name> ^ <value> ).  A simple list of values (i.e., a one-dimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: “<field name> ^ <value1& value2 &...>”  Refer to Section 2.24.16.4, “EQL query statement  (ST)   00710 for field naming conventions",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPR.4.1",
                             Type = @"Component",
@@ -255,8 +253,7 @@ Values for this field are defined in the function-specific chapters of this spec
 A single valued parameter contains only a single subcomponent in the second component:  thus no subcomponent delimiters are needed (e.g., <field name> ^ <value>).  A simple list of values (i.e., a one-dimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: ,”<field name> ^ <value1 & value2 &…>” ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -267,8 +264,7 @@ A single valued parameter contains only a single subcomponent in the second comp
             this.message = message;
         }
 
-        
-internal HL7V23Field querytag;
+        internal HL7V23Field querytag;
 
 public HL7V23Field Querytag
 {
@@ -791,6 +787,5 @@ public HL7V23Field Inputparameterlist
         return inputparameterlist;
     } 
 }
-
     }
 }

@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventADT_A20
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V27SegmentMSH msh;
-public readonly HL7V27SegmentSFT sft;
-public readonly HL7V27SegmentUAC uac;
-public readonly HL7V27SegmentEVN evn;
-public readonly HL7V27SegmentNPU npu;
+        private readonly HL7V2Message message;
+        private readonly HL7V27SegmentMSH msh;
+private readonly HL7V27SegmentSFT sft;
+private readonly HL7V27SegmentUAC uac;
+private readonly HL7V27SegmentEVN evn;
+private readonly HL7V27SegmentNPU npu;
 
 
         public string Id { get { return @"ADT_A20"; } }
@@ -25,6 +25,7 @@ public readonly HL7V27SegmentNPU npu;
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }

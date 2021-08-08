@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentRXC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RXC"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -73,8 +74,7 @@ If any ""base"" components are present then these should be transmitted first.  
                             TableName = null,
                             Description = @"This field is equivalent to OBR-4-universal service ID. It defines the base or component in the same manner as the give and dispense codes. As with the give and dispense codes, it may contain text only, code only, text + code, or text + code + units (implied or explicit). As with the give and dispense codes, if RXC-4-component units is present, this overrides the units implied by the code. If only text is present, the pharmacy or treatment application must include a manual review or reentering of the component drug or treatment.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXC.2.1",
                             Type = @"Component",
@@ -234,8 +234,7 @@ If any ""base"" components are present then these should be transmitted first.  
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -271,8 +270,7 @@ If any ""base"" components are present then these should be transmitted first.  
                             TableName = null,
                             Description = @"This field identifies the units for the component amount. If present, this overrides the units implied by RXC-2-component code. This must be in simple units that reflect the actual quantity of the component being added. It does not include compound units.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXC.4.1",
                             Type = @"Component",
@@ -432,8 +430,7 @@ If any ""base"" components are present then these should be transmitted first.  
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -469,8 +466,7 @@ If any ""base"" components are present then these should be transmitted first.  
                             TableName = null,
                             Description = @"Use when RXC-2-component code does not specify the strength. This is the unit of the strength, used in combination with RXC-5-component strength ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXC.6.1",
                             Type = @"Component",
@@ -630,8 +626,7 @@ If any ""base"" components are present then these should be transmitted first.  
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -649,8 +644,7 @@ If any ""base"" components are present then these should be transmitted first.  
                             TableName = null,
                             Description = @"This field accommodates the identification of any codes that might be associated with the pharmaceutical or other treatment substance. Common codes include: the Generic Product Identifier (GPI), Generic Code Number_Sequence Number (GCN_SEQNO), National Drug Code (NDC).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXC.7.1",
                             Type = @"Component",
@@ -810,8 +804,7 @@ If any ""base"" components are present then these should be transmitted first.  
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -848,8 +841,7 @@ RXC| | | | |120|mg^^ISO| |5|ml^^ISO ...<cr> ",
                             TableName = null,
                             Description = @"Description: This field indicates the volumetric unit associated with RXC-8 Component Drug Strength Volume.  See example in RXC-8.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXC.9.1",
                             Type = @"Component",
@@ -1009,8 +1001,7 @@ RXC| | | | |120|mg^^ISO| |5|ml^^ISO ...<cr> ",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1021,8 +1012,7 @@ RXC| | | | |120|mg^^ISO| |5|ml^^ISO ...<cr> ",
             this.message = message;
         }
 
-        
-internal HL7V26Field rXComponentType;
+        internal HL7V26Field rXComponentType;
 
 public HL7V26Field RXComponentType
 {
@@ -2207,6 +2197,5 @@ public HL7V26Field ComponentDrugStrengthVolumeUnits
         return componentDrugStrengthVolumeUnits;
     } 
 }
-
     }
 }

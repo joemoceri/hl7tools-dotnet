@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentCTD
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"CTD"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Contact role",
                             Description = @"This field contains the contact role that defines the relationship of the person described in this segment to the patient being referred.  When a referral is inter-enterprise in nature, there are some important relationships that must be identified.  For example, it may be necessary to identify the contact representative at the clinic that sent the referral.  Refer to user-defined table 0131 - Contact role for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.1.1",
                             Type = @"Component",
@@ -156,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -175,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the name of the contact person identified in this segment.  Generally, this field will describe a person or provider associated with the referral.  If this contact name is a physician, you may refer to the CTD-7-contact identifiers (Section 11.5.4.7) for the physician identifier",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.2.1",
                             Type = @"Component",
@@ -318,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -337,8 +334,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the mailing address of the contact person identified in this segment. One of the key components for completing the “circle of care” and provider/institution bonding is the issuance of follow-up correspondence to the referring provider",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.3.1",
                             Type = @"Component",
@@ -519,8 +515,7 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -538,8 +533,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the location of the contact, which is required when a contact that may be external to a given enterprise must be referenced.  For example, if this contact represents the office manager of the referred-to physician, then the contact location should identify the clinic of the physician or provider to whom this referral has been sent.  The identification of the contact’s location is specified by an application and facility identifier carried in the facility field.  The application identifier and the facility identifier would be used in the same manner as their corresponding fields in the MSH segment (MSH-3sending application, MSH-5-receiving application, MSH-4-sending facility, MSH-6-receiving facility).  That is, the facility field will contain an application identifier and facility identifier which describe the location of this contact.  However, it should be noted that they may describe a different location because the contact location being referenced in this field may not be the location from which the message originated, which is being described by the MSH",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.4.1",
                             Type = @"Component",
@@ -608,8 +602,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.4.4.1",
                             Type = @"SubComponent",
@@ -661,8 +654,7 @@ Allowable Values:  codes defined by government",
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -753,8 +745,7 @@ Allowable Values:  codes defined by government",
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -772,8 +763,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This field contains the information, such as the phone number or electronic mail address, used to communicate with the contact person or organization",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.5.1",
                             Type = @"Component",
@@ -933,8 +923,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -952,8 +941,7 @@ Allowable Values:  codes defined by government",
                             TableName = @"Preferred method of contact",
                             Description = @"This field contains the preferred method to use when communicating with the contact person.  Refer to user-defined table 0185 - Preferred method of contact for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.6.1",
                             Type = @"Component",
@@ -1059,8 +1047,7 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1078,8 +1065,7 @@ Allowable Values:  codes defined by government",
                             TableName = null,
                             Description = @"This repeating field contains the contact’s unique identifiers such as UPIN, Medicare and Medicaid numbers.  Refer to Chapter 8 (Section 8.6.3.6, “Practitioner ID numbers”) for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.7.1",
                             Type = @"Component",
@@ -1131,8 +1117,7 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1143,8 +1128,7 @@ Allowable Values:  codes defined by government",
             this.message = message;
         }
 
-        
-internal HL7V23Field contactRole;
+        internal HL7V23Field contactRole;
 
 public HL7V23Field ContactRole
 {
@@ -2060,6 +2044,5 @@ public HL7V23Field ContactIdentifiers
         return contactIdentifiers;
     } 
 }
-
     }
 }

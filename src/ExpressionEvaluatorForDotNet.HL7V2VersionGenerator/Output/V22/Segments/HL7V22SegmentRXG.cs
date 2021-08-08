@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentRXG
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RXG"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -89,8 +90,7 @@ If the RXG segment carries information about multiple adminstrations, this field
  
 Note:The contents of fields 3-8 should be identical to the comparable fields in the RXE (RXE-2 thru 5). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.3.1",
                             Type = @"Component",
@@ -105,8 +105,7 @@ Note:The contents of fields 3-8 should be identical to the comparable fields in 
                             TableName = null,
                             Description = @"quantity of the service that should be provided at each service interval.  E.g, if two blood cultures to be obtained every 4 hours, the quantity would be 2.  If three units of blood are to be typed and cross-matched, the quantity would be 3.  The default value is 1.  When units are required, they can be added, specified by a subcomponent delimiter",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.3.1.1",
                             Type = @"SubComponent",
@@ -140,8 +139,7 @@ Note:The contents of fields 3-8 should be identical to the comparable fields in 
                             Description = @"The units in which the quantity is expressed.  Field-by-field, default units may be defined within the specifications.  When the observation is measured in the default units, the units need not be transmitted.  If the measure is recorded in units different from the default, the measurement units must be transmitted as the second component.  If the units are ISO+ units, then units should be recorded as lowercase abbreviations as specified in Chapter 7.  If the units are ANSI or local, the units and the source table must be recorded as specified in Chapter 7.  But in these cases the component separator should be replaced by the subcomponent delimiter ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -159,8 +157,7 @@ Note:The contents of fields 3-8 should be identical to the comparable fields in 
                             TableName = null,
                             Description = @"determines the interval between repeated services.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.3.2.1",
                             Type = @"SubComponent",
@@ -194,8 +191,7 @@ Note:The contents of fields 3-8 should be identical to the comparable fields in 
                             Description = @"explicitly lists the actual times referenced by the code in the first subcomponent, in the following format: HHMM,HHMM,HHMM,...  This second subcomponent will be used to clarify the first subcomponent in cases where the actual administration times vary within an institution.  If the time of the order spans more than a single day, this new subcomponent is only practical if the same times of administration occur for each day of the order.  If the actual start time of the order (as given by the fourth subcomponent of the quantity/timing field) is after the first explicit time, the first administration is taken to be the first explicit time after the start time.  In the case where the patient moves to a location having a different set of explicit times, the existing order may be updated with a new quantity/timing field showing the changed explicit times",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -231,8 +227,7 @@ Note:The contents of fields 3-8 should be identical to the comparable fields in 
                             TableName = null,
                             Description = @"May be specified by the orderer, in which case it indicates the earliest date/time at which the services should be started.  In many cases, however, the start date time will be implied or will be defined by other fields in the order record (e.g., urgency - STAT).  In such a case, this field will be empty",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.3.4.1",
                             Type = @"SubComponent",
@@ -266,8 +261,7 @@ Note:The contents of fields 3-8 should be identical to the comparable fields in 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -285,8 +279,7 @@ Note:The contents of fields 3-8 should be identical to the comparable fields in 
                             TableName = null,
                             Description = @"when filled in by the requester of the service, this field should be the latest date-time that the service should be performed.  If it has not been performed by the specified time, it should not be performed at all.  The requester may not always fill in this value, yet the filling service may fill it in on the basis of the instruction it receives and the actual start time.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.3.5.1",
                             Type = @"SubComponent",
@@ -320,8 +313,7 @@ Note:The contents of fields 3-8 should be identical to the comparable fields in 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -415,8 +407,7 @@ C =  This is an actuation time ",
                             TableName = null,
                             Description = @"there are many situations, such as the creation of an order for a group of intervenous (IV) solutions, where the sequence of the individual intervenous solutions (each an order in itself) needs to be specified.  There are other situations, where part of the order's instructions contains a results condition of some type, such as ""PRN pain.""  There is currently a free text ""condition"" component of ORC-4-quantity/timing which allows any condition to be specified.  However, to support a fully encoded version of order sequencing, or results condition, we have defined in the following paragraphs a 10th component of ORC-4quantity/timing",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.3.10.1",
                             Type = @"SubComponent",
@@ -548,10 +539,8 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"The maximum number of repeats to be used only on cyclic groups.  The total number of repeats is constrained by the end date/time of the last repeat or the end date/time of the parent, whichever is first.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -569,8 +558,7 @@ The time specifies the interval between the predecessor and successor starts or 
                             TableName = null,
                             Description = @"identifier of the medical substance ordered to be given to the patient; it is equivalent to OBR-4-universal service ID code in function.  See the RXE segment for a complete definition of the RXE-2-give code. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.4.1",
                             Type = @"Component",
@@ -676,8 +664,7 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -737,8 +724,7 @@ Another way to say this is that, for pharmacy orders, the quantity component of 
  
 Note:These units can be a ""compound quantity""; i.e., the units may contain the word ""per.""  For example,  micrograms per KG (micg/kg) is an acceptable value, which means that the units are micrograms per KG (of body weight). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.7.1",
                             Type = @"Component",
@@ -844,8 +830,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -863,8 +848,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"use this field when the give code does not specify the dosage form",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.8.1",
                             Type = @"Component",
@@ -970,8 +954,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1025,8 +1008,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"the first component contains the inpatient or outpatient location where the drug was dispensed (if applicable).  The default (null) value is the current census location for the patient.  Site specific table.  This component has the same form as PV1-3-assigned patient location",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.11.1",
                             Type = @"Component",
@@ -1041,8 +1023,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.11.1.1",
                             Type = @"SubComponent",
@@ -1130,8 +1111,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1149,8 +1129,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"The second component can be used to specify an address.  This could be used to fill mail orders to a patient or provider, or to account for home health care. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.11.2.1",
                             Type = @"SubComponent",
@@ -1292,10 +1271,8 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1331,8 +1308,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"pharmacy-generated special instructions to the provider administering the order",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.13.1",
                             Type = @"Component",
@@ -1438,8 +1414,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1475,8 +1450,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"amount (number) of substance to be administered. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.15.1",
                             Type = @"Component",
@@ -1582,8 +1556,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1601,8 +1574,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             TableName = null,
                             Description = @"units for Give Rate Amount.  May be composite.  The ratio of the Give Rate Amount and Give Rate Units fields define the actual rate of administration.  Thus, if Give Rate Amount = 100 and Give Rate Units = ml/hr, the requested rate of administration is 100 ml/hr. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXG.16.1",
                             Type = @"Component",
@@ -1708,8 +1680,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1720,8 +1691,7 @@ Note:These units can be a ""compound quantity""; i.e., the units may contain the
             this.message = message;
         }
 
-        
-internal HL7V22Field giveSubidCounter;
+        internal HL7V22Field giveSubidCounter;
 
 public HL7V22Field GiveSubidCounter
 {
@@ -3826,6 +3796,5 @@ public HL7V22Field GiveRateUnits
         return giveRateUnits;
     } 
 }
-
     }
 }

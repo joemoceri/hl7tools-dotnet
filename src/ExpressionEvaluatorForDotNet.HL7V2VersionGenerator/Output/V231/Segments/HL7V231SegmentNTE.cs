@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentNTE
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NTE"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -103,8 +104,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Comment type",
                             Description = @"This field contains a value to identify the type of comment text being sent in the specific comment record. Refer to user-defined table 0364-Comment type for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NTE.4.1",
                             Type = @"Component",
@@ -210,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -222,8 +221,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V231Field setIDNTE;
+        internal HL7V231Field setIDNTE;
 
 public HL7V231Field SetIDNTE
 {
@@ -746,6 +744,5 @@ public HL7V231Field CommentType
         return commentType;
     } 
 }
-
     }
 }

@@ -4,19 +4,19 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventRPA_I09
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V25SegmentMSH msh;
-public readonly HL7V25SegmentSFT sft;
-public readonly HL7V25SegmentMSA msa;
-public readonly HL7V25SegmentRF1 rf1;
-public readonly HL7V25SegmentPID pid;
-public readonly HL7V25SegmentNK1 nk1;
-public readonly HL7V25SegmentGT1 gt1;
-public readonly HL7V25SegmentACC acc;
-public readonly HL7V25SegmentDG1 dg1;
-public readonly HL7V25SegmentDRG drg;
-public readonly HL7V25SegmentAL1 al1;
-public readonly HL7V25SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V25SegmentMSH msh;
+private readonly HL7V25SegmentSFT sft;
+private readonly HL7V25SegmentMSA msa;
+private readonly HL7V25SegmentRF1 rf1;
+private readonly HL7V25SegmentPID pid;
+private readonly HL7V25SegmentNK1 nk1;
+private readonly HL7V25SegmentGT1 gt1;
+private readonly HL7V25SegmentACC acc;
+private readonly HL7V25SegmentDG1 dg1;
+private readonly HL7V25SegmentDRG drg;
+private readonly HL7V25SegmentAL1 al1;
+private readonly HL7V25SegmentNTE nte;
 
 
         public string Id { get { return @"RPA_I09"; } }
@@ -32,6 +32,7 @@ public readonly HL7V25SegmentNTE nte;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

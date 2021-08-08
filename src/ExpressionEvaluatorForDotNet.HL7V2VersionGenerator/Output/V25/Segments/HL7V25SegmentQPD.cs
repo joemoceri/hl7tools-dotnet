@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentQPD
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"QPD"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Query name",
                             Description = @"This field contains the name of the query. These names are assigned by the function-specific chapters of this specification. It is one to one with the conformance statement for this query name, and it is in fact an identifier for that conformance statement. Site-specific query names begin with the letter Z. Refer to User defined table 0471 - Query name for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QPD.1.1",
                             Type = @"Component",
@@ -156,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -204,8 +203,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V25Field messageQueryName;
+        internal HL7V25Field messageQueryName;
 
 public HL7V25Field MessageQueryName
 {
@@ -597,6 +595,5 @@ public HL7V25Field UserParametersinsuccessivefields
         return userParametersinsuccessivefields;
     } 
 }
-
     }
 }

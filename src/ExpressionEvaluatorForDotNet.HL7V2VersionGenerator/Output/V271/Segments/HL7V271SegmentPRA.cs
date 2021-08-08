@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentPRA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PRA"; } }
 
@@ -26,6 +26,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                 return new[]
                     {
                         "CH_15",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = @"no table for CE",
                             Description = @"For MFN Master File Notification, this field is required and must match MFE-4 Primary Key Value to identify which entry is being referenced.  For all other messages, this field should not be used.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.1.1",
                             Type = @"Component",
@@ -478,8 +478,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -497,8 +496,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Practitioner Group",
                             Description = @"This field contains the name and/or code of a group of practitioners to which this practitioner belongs.  Refer to User-defined Table 0358 Practitioner Group for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.2.1",
                             Type = @"Component",
@@ -924,8 +922,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -943,8 +940,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Practitioner Category",
                             Description = @"This field contains the category of practitioner. Refer to User-defined Table 0186 - Practitioner Category for suggested values. Values may include codes for staff physician, courtesy physician, resident, physician assistant, physical therapist, psychiatrist, psychologist, pharmacist, registered nurse, licensed practical nurse, licensed vocational nurse, nurse practitioner, etc. If the provider works in different Practitioner Categories in different organization units, then this information should be recorded separately in ORG-6,7,8.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.3.1",
                             Type = @"Component",
@@ -1370,8 +1366,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1407,8 +1402,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This repeating field is made up of multiple components to record the practitioner's specialties.  The multiple components of each specialty are: (1) specialty name or abbreviation, identifies provider's specialty, (2) name of specialty governing board, (3) Certification Status, (4) certified date contains the date of certification, if certified.  Refer to HL7 Table 0337 - Certification Status for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.5.1",
                             Type = @"Component",
@@ -1478,8 +1472,7 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Specifies when certification occurred.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1497,8 +1490,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"As of version 2.5, this field has been retained for backward compatibility only.  Practitioner ID numbers should be contained in STF-2 Staff Identifier List.  This repeating field contains this practitioner's license numbers and other ID numbers.  This is a field made up of the following components: (1) the ID number, and (2) the type of number, and optionally (3) the state or province in which it is valid, if relevant, or other qualifying information.  It is recommended that state qualifications use the abbreviations from the postal service of the country.  The practitioner ID number type (component 2) is a user-defined table (User-defined Table 0338 - Practitioner ID Number in Chapter 2C, Code Tables)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.6.1",
                             Type = @"Component",
@@ -1533,8 +1525,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 Refer to User-defined Table 0338 – Practitioner ID Number Type for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.6.2.1",
                             Type = @"SubComponent",
@@ -1960,8 +1951,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1998,8 +1988,7 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Specifies the date when the license or ID is no longer valid.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2017,8 +2006,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the institutional privileges which this provider may exercise.  Depends upon institutional needs.  For example, admit, transfer, discharge, place orders, verify orders, review results, etc.  Can also be used for privileges other than patient services.  This is a repeating field, with each privilege made up of the following components: (1) privilege; (2) privilege class; (3) privilege expiration date, if any; (4) privilege activation date, if any, and (5) facility.  Note that the privilege and privilege class components are CWE data types, and thus they are encoded with the subcomponent delimiter (&) rather than the component delimiter (^).  The facility component is an EI data type specifying the facility to which the privilege applies and is encoded with the subcomponent delimiter (&) rather than the component delimiter (^).  The facility component is an EI data type specifying the facility to which the privilege applies and is encoded with the subcomponent delimiter (&) rather than the component delimiter (^).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.7.1",
                             Type = @"Component",
@@ -2033,8 +2021,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Privilege",
                             Description = @"Specifies the institutional privilege itself. Refer to User-defined Table 0525 – Privilege for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.7.1.1",
                             Type = @"SubComponent",
@@ -2460,8 +2447,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2479,8 +2465,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Privilege Class",
                             Description = @"Specifies the class category of institutional privilege. Refer to User-defined Table 0526 – Privilege Class for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.7.2.1",
                             Type = @"SubComponent",
@@ -2906,8 +2891,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2961,8 +2945,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"Specifies the facility in which the institutional privilege is/was valid.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.7.5.1",
                             Type = @"SubComponent",
@@ -3040,10 +3023,8 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3079,8 +3060,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             TableName = @"Institution",
                             Description = @"This field contains the institution the practitioner began or intends to begin practicing at (e.g., at hospital, at physician organization, at managed care network).  Refer to User-defined Table 0537 - Institution for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.9.1",
                             Type = @"Component",
@@ -3506,8 +3486,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3543,8 +3522,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Government Reimbursement Program",
                             Description = @"This field contains a code that indicates the agency that the practitioner is authorized to bill for medical services.  Refer to User-defined Table 0401 - Government Reimbursement Program for valid values.  This is a repeating field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.11.1",
                             Type = @"Component",
@@ -3970,8 +3948,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4000,8 +3977,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field primaryKeyValuePra;
+        internal HL7V271Field primaryKeyValuePra;
 
 public HL7V271Field PrimaryKeyValuePra
 {
@@ -5572,6 +5548,5 @@ public HL7V271Field SetIdPra
         return setIdPra;
     } 
 }
-
     }
 }

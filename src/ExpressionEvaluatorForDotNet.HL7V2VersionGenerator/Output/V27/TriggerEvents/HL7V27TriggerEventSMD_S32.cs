@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventSMD_S32
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V27SegmentMSH msh;
-public readonly HL7V27SegmentSFT sft;
-public readonly HL7V27SegmentUAC uac;
-public readonly HL7V27SegmentSDD sdd;
+        private readonly HL7V2Message message;
+        private readonly HL7V27SegmentMSH msh;
+private readonly HL7V27SegmentSFT sft;
+private readonly HL7V27SegmentUAC uac;
+private readonly HL7V27SegmentSDD sdd;
 
 
         public string Id { get { return @"SMD_S32"; } }
@@ -24,6 +24,7 @@ public readonly HL7V27SegmentSDD sdd;
                 return new[]
                     {
                         "CH_17",
+
                     };
             }
         }

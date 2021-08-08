@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentMRG
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MRG"; } }
 
@@ -27,6 +27,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }
@@ -52,8 +53,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"This field contains the internal prior patient identifier.  This field contains a list of potential “old” numbers to match.  Only one old number can be merged with one new number in a transaction.  When merging patient IDs, A34 (merge patient information - patient ID only) and A36 (merge patient informationpatient ID & account number), the patient ID contained in the PID segment cannot repeat.  Refer to HL7 table 0061 - Check digit scheme",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.1.1",
                             Type = @"Component",
@@ -122,8 +122,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.1.4.1",
                             Type = @"SubComponent",
@@ -175,8 +174,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -212,8 +210,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.1.6.1",
                             Type = @"SubComponent",
@@ -265,10 +262,8 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -286,8 +281,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"This field contains the prior alternate patient identifier.  Refer to HL7 table 0061 - Check digit scheme ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.2.1",
                             Type = @"Component",
@@ -356,8 +350,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.2.4.1",
                             Type = @"SubComponent",
@@ -409,8 +402,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -446,8 +438,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.2.6.1",
                             Type = @"SubComponent",
@@ -499,10 +490,8 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -520,8 +509,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"This field contains the prior patient account number.   Refer to HL7 table 0061 - Check digit scheme ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.3.1",
                             Type = @"Component",
@@ -590,8 +578,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.3.4.1",
                             Type = @"SubComponent",
@@ -643,8 +630,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -680,8 +666,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.3.6.1",
                             Type = @"SubComponent",
@@ -733,10 +718,8 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -754,8 +737,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"This field contains the external prior patient identifier.  Refer to HL7 table 0061 - Check digit scheme",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.4.1",
                             Type = @"Component",
@@ -824,8 +806,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.4.4.1",
                             Type = @"SubComponent",
@@ -877,8 +858,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -914,8 +894,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.4.6.1",
                             Type = @"SubComponent",
@@ -967,10 +946,8 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -988,8 +965,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"This field contains the prior visit number.  Refer to HL7 table 0061 - Check digit scheme ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.5.1",
                             Type = @"Component",
@@ -1058,8 +1034,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.5.4.1",
                             Type = @"SubComponent",
@@ -1111,8 +1086,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1148,8 +1122,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.5.6.1",
                             Type = @"SubComponent",
@@ -1201,10 +1174,8 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1222,8 +1193,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"This field contains the prior alternate visit number.  Refer to HL7 table 0061 - Check digit scheme",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.6.1",
                             Type = @"Component",
@@ -1292,8 +1262,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.6.4.1",
                             Type = @"SubComponent",
@@ -1345,8 +1314,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1382,8 +1350,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.6.6.1",
                             Type = @"SubComponent",
@@ -1435,10 +1402,8 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1456,8 +1421,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             TableName = null,
                             Description = @"This field contains the prior name of the patient  This field is not used to change a patient name.  Refer to Chapter 2 for the name type code table",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.7.1",
                             Type = @"Component",
@@ -1599,8 +1563,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1611,8 +1574,7 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
             this.message = message;
         }
 
-        
-internal HL7V23Field priorPatientIDInternal;
+        internal HL7V23Field priorPatientIDInternal;
 
 public HL7V23Field PriorPatientIDInternal
 {
@@ -2528,6 +2490,5 @@ public HL7V23Field PriorPatientName
         return priorPatientName;
     } 
 }
-
     }
 }

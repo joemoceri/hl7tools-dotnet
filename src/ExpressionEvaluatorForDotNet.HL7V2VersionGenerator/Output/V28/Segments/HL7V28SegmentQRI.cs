@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentQRI
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"QRI"; } }
 
@@ -26,6 +26,7 @@ Examples of the use of this segment appear in Chapter 3, ""Patient Administratio
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -75,8 +76,7 @@ One use of this optional field is in Patient Look-up transactions where the sear
 
 Refer to User-defined Table 0392 - Match reason in Chapter 2C, Code Tables, for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QRI.2.1",
                             Type = @"Component",
@@ -504,8 +504,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -527,8 +526,7 @@ Example: |MATCHWARE_1.2^^HL70393| or |LINKSOFT_2.01^^HL70393|
 
 One use of this optional field is in Patient Look-up transactions where the searching system employs a numeric algorithm for determining potential matches to patient/person look-ups.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QRI.3.1",
                             Type = @"Component",
@@ -956,8 +954,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -968,8 +965,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field candidateConfidence;
+        internal HL7V28Field candidateConfidence;
 
 public HL7V28Field CandidateConfidence
 {
@@ -1371,6 +1367,5 @@ One use of this optional field is in Patient Look-up transactions where the sear
         return algorithmDescriptor;
     } 
 }
-
     }
 }

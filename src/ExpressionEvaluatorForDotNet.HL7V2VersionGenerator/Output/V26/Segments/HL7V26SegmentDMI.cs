@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentDMI
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"DMI"; } }
 
@@ -26,6 +26,7 @@ The DMI segment contains the DRG related basic information, for example, relativ
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -53,8 +54,7 @@ The DMI segment contains the DRG related basic information, for example, relativ
 
 As of v2.6, the known applicable external coding systems include those in Z001 - Diagnostic Related Group Coding Systems. If the code set you are using is in this table, then you must use that designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DMI.1.1",
                             Type = @"Component",
@@ -214,8 +214,7 @@ As of v2.6, the known applicable external coding systems include those in Z001 -
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -235,8 +234,7 @@ As of v2.6, the known applicable external coding systems include those in Z001 -
 
 As of v2.6, the known applicable external coding systems include those in Z002 - Major Diagnostic Category Coding Systems. If the code set you are using is in this table, then you must use that designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DMI.2.1",
                             Type = @"Component",
@@ -396,8 +394,7 @@ As of v2.6, the known applicable external coding systems include those in Z002 -
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -415,8 +412,7 @@ As of v2.6, the known applicable external coding systems include those in Z002 -
                             TableName = null,
                             Description = @"This field contains the lower and upper trim points as calculated for this DRG..",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DMI.3.1",
                             Type = @"Component",
@@ -450,8 +446,7 @@ As of v2.6, the known applicable external coding systems include those in Z002 -
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -498,8 +493,7 @@ As of v2.6, the known applicable external coding systems include those in Z002 -
             this.message = message;
         }
 
-        
-internal HL7V26Field diagnosticRelatedGroup;
+        internal HL7V26Field diagnosticRelatedGroup;
 
 public HL7V26Field DiagnosticRelatedGroup
 {
@@ -1157,6 +1151,5 @@ public HL7V26Field RelativeWeight
         return relativeWeight;
     } 
 }
-
     }
 }

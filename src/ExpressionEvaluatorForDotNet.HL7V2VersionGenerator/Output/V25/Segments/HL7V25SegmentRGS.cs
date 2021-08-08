@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentRGS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RGS"; } }
 
@@ -26,6 +26,7 @@ If a message does not require any grouping of resources, then specify a single R
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ If a message does not require any grouping of resources, then specify a single R
                             TableName = null,
                             Description = @"This field contains an identifier code describing the group of resources following this RGS segment.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RGS.3.1",
                             Type = @"Component",
@@ -194,8 +194,7 @@ If a message does not require any grouping of resources, then specify a single R
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -206,8 +205,7 @@ If a message does not require any grouping of resources, then specify a single R
             this.message = message;
         }
 
-        
-internal HL7V25Field setIDRGS;
+        internal HL7V25Field setIDRGS;
 
 public HL7V25Field SetIDRGS
 {
@@ -599,6 +597,5 @@ public HL7V25Field ResourceGroupID
         return resourceGroupID;
     } 
 }
-
     }
 }

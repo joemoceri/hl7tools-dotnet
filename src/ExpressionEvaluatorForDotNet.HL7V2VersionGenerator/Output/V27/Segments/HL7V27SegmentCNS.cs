@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentCNS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"CNS"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }
@@ -121,8 +122,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"no table for CE",
                             Description = @"This field contains the starting notification code that is to be cleared (see 13.4.7.4, ""NDS-4   Notification Code   (CWE)   01401"").",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CNS.5.1",
                             Type = @"Component",
@@ -548,8 +548,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -567,8 +566,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"no table for CE",
                             Description = @"This field contains the ending notification code that is to be cleared (see 13.4.7.4, ""NDS-4   Notification Code   (CWE)   01401"").  If empty, then only notification with Starting Notification Code will be cleared.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CNS.6.1",
                             Type = @"Component",
@@ -994,8 +992,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1006,8 +1003,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V27Field startingNotificationReferenceNumber;
+        internal HL7V27Field startingNotificationReferenceNumber;
 
 public HL7V27Field StartingNotificationReferenceNumber
 {
@@ -1792,6 +1788,5 @@ public HL7V27Field EndingNotificationCode
         return endingNotificationCode;
     } 
 }
-
     }
 }

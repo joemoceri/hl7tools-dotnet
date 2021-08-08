@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventQSX_J02
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V26SegmentMSH msh;
-public readonly HL7V26SegmentSFT sft;
-public readonly HL7V26SegmentUAC uac;
-public readonly HL7V26SegmentQID qid;
+        private readonly HL7V2Message message;
+        private readonly HL7V26SegmentMSH msh;
+private readonly HL7V26SegmentSFT sft;
+private readonly HL7V26SegmentUAC uac;
+private readonly HL7V26SegmentQID qid;
 
 
         public string Id { get { return @"QSX_J02"; } }
@@ -24,6 +24,7 @@ public readonly HL7V26SegmentQID qid;
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }

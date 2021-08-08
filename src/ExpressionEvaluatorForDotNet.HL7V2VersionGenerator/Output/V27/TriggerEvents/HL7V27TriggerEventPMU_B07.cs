@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventPMU_B07
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V27SegmentMSH msh;
-public readonly HL7V27SegmentSFT sft;
-public readonly HL7V27SegmentUAC uac;
-public readonly HL7V27SegmentEVN evn;
-public readonly HL7V27SegmentSTF stf;
-public readonly HL7V27SegmentPRA pra;
+        private readonly HL7V2Message message;
+        private readonly HL7V27SegmentMSH msh;
+private readonly HL7V27SegmentSFT sft;
+private readonly HL7V27SegmentUAC uac;
+private readonly HL7V27SegmentEVN evn;
+private readonly HL7V27SegmentSTF stf;
+private readonly HL7V27SegmentPRA pra;
 
 
         public string Id { get { return @"PMU_B07"; } }
@@ -26,6 +26,7 @@ public readonly HL7V27SegmentPRA pra;
                 return new[]
                     {
                         "CH_15",
+
                     };
             }
         }

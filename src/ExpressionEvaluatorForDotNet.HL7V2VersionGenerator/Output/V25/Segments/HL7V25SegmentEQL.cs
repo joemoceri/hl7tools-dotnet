@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentEQL
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"EQL"; } }
 
@@ -26,6 +26,7 @@ This segment is not carried forward to the recommended queries for v 2.4."; } }
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -88,8 +89,7 @@ This segment is not carried forward to the recommended queries for v 2.4."; } }
                             TableName = null,
                             Description = @"This field contains the name of the query.  Where the default HL7 coding system is used, these names are assigned by the function-specific chapters of this specification.  The values for this field are equivalent to those of SPR-3-Stored procedure name.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"EQL.3.1",
                             Type = @"Component",
@@ -195,8 +195,7 @@ This segment is not carried forward to the recommended queries for v 2.4."; } }
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -225,8 +224,7 @@ This segment is not carried forward to the recommended queries for v 2.4."; } }
             this.message = message;
         }
 
-        
-internal HL7V25Field queryTag;
+        internal HL7V25Field queryTag;
 
 public HL7V25Field QueryTag
 {
@@ -750,6 +748,5 @@ public HL7V25Field EQLQueryStatement
         return eQLQueryStatement;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentTQ1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"TQ1"; } }
 
@@ -36,6 +36,7 @@ j) scopolamine, xxx mg, 1 hour before surgery. Relative time = -1^hour, priority
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -81,8 +82,7 @@ j) scopolamine, xxx mg, 1 hour before surgery. Relative time = -1^hour, priority
 
 If multiple identical services are to be requested, it is strongly recommended that multiple service requests be placed, giving each service request its own unique placer/filler number.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.2.1",
                             Type = @"Component",
@@ -115,8 +115,7 @@ If multiple identical services are to be requested, it is strongly recommended t
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed.  As of v2.7 the externally-defined Unified Code for Units of Measure (UCUM) case sensitive code is the required code for units of measure. Refer to the external table ""Unified Code for Units of Measure"" (UCUM) [http://aurora.rg.iupui.edu/UCUM] for valid values. Local codes may be transmitted in addition to UCUM codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.2.2.1",
                             Type = @"SubComponent",
@@ -542,10 +541,8 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -567,8 +564,7 @@ This field may be repeated to build up more complex repeat patterns. For example
 
 When the quantity timing specification must change to a different repeat pattern after some period of time, a new TQ1 segment must be used to show the new repeat pattern. Note that the end date of the current TQ1 will show when the current timing specification ends, and the start date of the next TQ1 shows when the new timing specification begins. The Conjunction field, TQ1-12 determines if the next TQ1 segment is to be performed sequentially or in parallel.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.3.1",
                             Type = @"Component",
@@ -583,8 +579,7 @@ When the quantity timing specification must change to a different repeat pattern
                             TableName = @"Repeat Pattern",
                             Description = @"A code representing the repeat pattern defined by the other components of this data type. Refer to User-defined Table 0335 – Repeat Pattern for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.3.1.1",
                             Type = @"SubComponent",
@@ -1010,8 +1005,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1115,8 +1109,7 @@ The units of measure for this component are derived from the Calendar Alignment 
 
 Condition Rule: This component is required if RPT.5 - Period Quantity is populated.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.3.6.1",
                             Type = @"SubComponent",
@@ -1542,8 +1535,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1620,8 +1612,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 Condition Rule: This component is required if RPT.9 - Event Offset Quantity is populated.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.3.10.1",
                             Type = @"SubComponent",
@@ -2047,8 +2038,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2067,8 +2057,7 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"The General Timing Specification as defined by the Version 3 Data Types document.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2110,8 +2099,7 @@ TQ1|1|1|Q1H||60^min&&ANS+ - Q1H is defined with an interval between services of 
 TQ1|1|1|Q6H||6^hr&&ANS+ - Q6H is defined with an interval between services of 6 hours
 TQ1|1|1|QD||1^d&&ANS+ - QD is defined with an interval between services of 1 day",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.5.1",
                             Type = @"Component",
@@ -2144,8 +2132,7 @@ TQ1|1|1|QD||1^d&&ANS+ - QD is defined with an interval between services of 1 day
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed.  As of v2.7 the externally-defined Unified Code for Units of Measure (UCUM) case sensitive code is the required code for units of measure. Refer to the external table ""Unified Code for Units of Measure"" (UCUM) [http://aurora.rg.iupui.edu/UCUM] for valid values. Local codes may be transmitted in addition to UCUM codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.5.2.1",
                             Type = @"SubComponent",
@@ -2571,10 +2558,8 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2597,8 +2582,7 @@ The quantity component of this field must be a positive, non-zero number. The un
 Example: Whirlpool twenty minutes three times per day for 3 days. Three days is the service duration.
 TQ1|1||TID|||3^d&&ANS+||||||20^min&&ANS+|9<cr>",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.6.1",
                             Type = @"Component",
@@ -2631,8 +2615,7 @@ TQ1|1||TID|||3^d&&ANS+||||||20^min&&ANS+|9<cr>",
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed.  As of v2.7 the externally-defined Unified Code for Units of Measure (UCUM) case sensitive code is the required code for units of measure. Refer to the external table ""Unified Code for Units of Measure"" (UCUM) [http://aurora.rg.iupui.edu/UCUM] for valid values. Local codes may be transmitted in addition to UCUM codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.6.2.1",
                             Type = @"SubComponent",
@@ -3058,10 +3041,8 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3119,8 +3100,7 @@ Regardless of the value of the end date/time, the service should be stopped at t
                             TableName = @"Extended Priority Codes",
                             Description = @"This field describes the urgency of the request. If this field is blank, the default is R. Refer to User-Defined Table 0485 – Extended Priority Codes for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.9.1",
                             Type = @"Component",
@@ -3546,8 +3526,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3630,8 +3609,7 @@ Condition Rule: If the TQ1 segment is repeated in the message, this field must b
 Example: Whirlpool twenty minutes three times per day for three days. Twenty minutes is the occurrence duration.
 TQ1|1||TID|||3^d&&ANS+||||||20^min&&ANS+|9<cr>",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.13.1",
                             Type = @"Component",
@@ -3664,8 +3642,7 @@ TQ1|1||TID|||3^d&&ANS+||||||20^min&&ANS+|9<cr>",
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed.  As of v2.7 the externally-defined Unified Code for Units of Measure (UCUM) case sensitive code is the required code for units of measure. Refer to the external table ""Unified Code for Units of Measure"" (UCUM) [http://aurora.rg.iupui.edu/UCUM] for valid values. Local codes may be transmitted in addition to UCUM codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.13.2.1",
                             Type = @"SubComponent",
@@ -4091,10 +4068,8 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4126,8 +4101,7 @@ TQ1|1||TID|||3^d&&ANS+||||||20^min&&ANS+|9<cr>",
             this.message = message;
         }
 
-        
-internal HL7V271Field setIdTq1;
+        internal HL7V271Field setIdTq1;
 
 public HL7V271Field SetIdTq1
 {
@@ -5995,6 +5969,5 @@ TQ1|1||TID|||3^d&&ANS+||||||20^min&&ANS+|9<cr>",
         return totalOccurrences;
     } 
 }
-
     }
 }

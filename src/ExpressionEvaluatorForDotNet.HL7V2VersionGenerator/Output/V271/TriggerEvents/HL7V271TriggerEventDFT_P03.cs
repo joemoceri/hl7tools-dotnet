@@ -4,22 +4,22 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventDFT_P03
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V271SegmentMSH msh;
-public readonly HL7V271SegmentSFT sft;
-public readonly HL7V271SegmentUAC uac;
-public readonly HL7V271SegmentEVN evn;
-public readonly HL7V271SegmentPID pid;
-public readonly HL7V271SegmentPD1 pd1;
-public readonly HL7V271SegmentROL rol;
-public readonly HL7V271SegmentPV1 pv1;
-public readonly HL7V271SegmentPV2 pv2;
-public readonly HL7V271SegmentROL rol;
-public readonly HL7V271SegmentDB1 db1;
-public readonly HL7V271SegmentDG1 dg1;
-public readonly HL7V271SegmentDRG drg;
-public readonly HL7V271SegmentGT1 gt1;
-public readonly HL7V271SegmentACC acc;
+        private readonly HL7V2Message message;
+        private readonly HL7V271SegmentMSH msh;
+private readonly HL7V271SegmentSFT sft;
+private readonly HL7V271SegmentUAC uac;
+private readonly HL7V271SegmentEVN evn;
+private readonly HL7V271SegmentPID pid;
+private readonly HL7V271SegmentPD1 pd1;
+private readonly HL7V271SegmentROL rol;
+private readonly HL7V271SegmentPV1 pv1;
+private readonly HL7V271SegmentPV2 pv2;
+private readonly HL7V271SegmentROL rol;
+private readonly HL7V271SegmentDB1 db1;
+private readonly HL7V271SegmentDG1 dg1;
+private readonly HL7V271SegmentDRG drg;
+private readonly HL7V271SegmentGT1 gt1;
+private readonly HL7V271SegmentACC acc;
 
 
         public string Id { get { return @"DFT_P03"; } }
@@ -35,6 +35,7 @@ public readonly HL7V271SegmentACC acc;
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }

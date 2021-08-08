@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentADD
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ADD"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -60,8 +61,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V251Field addendumContinuationPointer;
+        internal HL7V251Field addendumContinuationPointer;
 
 public HL7V251Field AddendumContinuationPointer
 {
@@ -191,6 +191,5 @@ public HL7V251Field AddendumContinuationPointer
         return addendumContinuationPointer;
     } 
 }
-
     }
 }

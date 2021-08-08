@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentPV1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PV1"; } }
 
@@ -27,6 +27,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }
@@ -88,8 +89,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"This field contains the patient’s initial assigned location or the location to which the patient is being moved.  The first component may be the nursing station for inpatient locations, or clinic, department, or home for locations other than inpatient.  For canceling a transaction or discharging a patient, the current location (after the cancellation event or before the discharge event) should be in this field.  If a value exists in the fifth component (bed status), it supersedes the value in PV1-40-bed status",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.3.1",
                             Type = @"Component",
@@ -158,8 +158,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.3.4.1",
                             Type = @"SubComponent",
@@ -211,8 +210,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -303,8 +301,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -340,8 +337,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"This field uniquely identifies the patient’s pre-admit account.  Some systems will continue to use the pre-admit number as the billing number after the patient has been admitted.  For backward compatibility, an ST data type can be sent; however HL7 recommends use of the CX data type, like the account number, for new implementations",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.5.1",
                             Type = @"Component",
@@ -410,8 +406,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.5.4.1",
                             Type = @"SubComponent",
@@ -463,8 +458,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -500,8 +494,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.5.6.1",
                             Type = @"SubComponent",
@@ -553,10 +546,8 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -574,8 +565,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"This field contains the prior patient location if the patient is being transferred.  The old location is null if the patient is new.  If a value exists in the fifth component (bed status), it supersedes the value in PV1-40-bed status",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.6.1",
                             Type = @"Component",
@@ -644,8 +634,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.6.4.1",
                             Type = @"SubComponent",
@@ -697,8 +686,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -789,8 +777,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -808,8 +795,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = @"Physician ID",
                             Description = @"This field contains the attending physician information.  Multiple names and identifiers for the same physician may be sent.  The field sequences are not used to indicate multiple attending doctors.  The legal name must be sent in the first sequence.  If the legal name is not sent, then a repeat delimiter must be sent in the first sequence.  Depending on local agreements, either ID or the name may be absent in this field.  Refer to user-defined table 0010 - Physician ID for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.7.1",
                             Type = @"Component",
@@ -968,8 +954,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.7.9.1",
                             Type = @"SubComponent",
@@ -1021,8 +1006,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1112,8 +1096,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.7.14.1",
                             Type = @"SubComponent",
@@ -1165,10 +1148,8 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1186,8 +1167,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = @"Physician ID",
                             Description = @"This field contains the referring physician information.  Multiple names and identifiers for the same physician may be sent.  The field sequences are not used to indicate multiple referring doctors.  The legal name must be sent in the first sequence.  If the legal name is not sent, then a repeat delimiter must be sent in the first sequence.  Depending on local agreements, either the ID or the name may be absent from this field.  Refer to user-defined table 0010 - Physician ID for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.8.1",
                             Type = @"Component",
@@ -1346,8 +1326,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.8.9.1",
                             Type = @"SubComponent",
@@ -1399,8 +1378,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1490,8 +1468,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.8.14.1",
                             Type = @"SubComponent",
@@ -1543,10 +1520,8 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1564,8 +1539,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = @"Physician ID",
                             Description = @"This field contains the consulting physician information. The field sequences are used to indicate multiple consulting doctors. Depending on local agreements, either the ID or the name may be absent from this field.  Refer to user-defined table 0010 - Physician ID for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.9.1",
                             Type = @"Component",
@@ -1724,8 +1698,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.9.9.1",
                             Type = @"SubComponent",
@@ -1777,8 +1750,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1868,8 +1840,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.9.14.1",
                             Type = @"SubComponent",
@@ -1921,10 +1892,8 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1960,8 +1929,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"This field contains a location other than the assigned location required for a temporary period of time (e.g., OR).  If a value exists in the fifth component (bed status), it supersedes the value in PV1-40-bed status",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.11.1",
                             Type = @"Component",
@@ -2030,8 +1998,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.11.4.1",
                             Type = @"SubComponent",
@@ -2083,8 +2050,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2175,8 +2141,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2284,8 +2249,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"This field contains the admitting physician information.  Multiple names and identifiers for the same physician may be sent.  The field sequences are not used to indicate multiple admitting doctors.  The legal name must be sent in the first sequence.  If the legal name is not sent, then a repeat delimiter must be sent in the first sequence.  By local agreement, the name or ID may be absent in this field.  Refer to userdefined table 0010 - Physician ID for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.17.1",
                             Type = @"Component",
@@ -2444,8 +2408,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.17.9.1",
                             Type = @"SubComponent",
@@ -2497,8 +2460,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2588,8 +2550,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.17.14.1",
                             Type = @"SubComponent",
@@ -2641,10 +2602,8 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2680,8 +2639,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"For backward compatibility, an NM data type may be sent, but HL7 recommends that new implementations use the CX data type.  This field contains the unique number assigned to each patient visit",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.19.1",
                             Type = @"Component",
@@ -2750,8 +2708,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.19.4.1",
                             Type = @"SubComponent",
@@ -2803,8 +2760,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2840,8 +2796,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.19.6.1",
                             Type = @"SubComponent",
@@ -2893,10 +2848,8 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2914,8 +2867,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"This field contains the primary financial class assigned to the patient for the purpose of identifying sources of reimbursement.  Repeats up to four times.  Refer to user-defined table 0064 - Financial class for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.20.1",
                             Type = @"Component",
@@ -2948,8 +2900,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"This component contains the effective date/time of the person’s assignment to the financial class specified in the first component",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.20.2.1",
                             Type = @"SubComponent",
@@ -2965,10 +2916,8 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3274,8 +3223,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = @"This field indicates a facility to which the patient was discharged.  Refer to user-defined table 0113 - Discharged to location for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.37.1",
                             Type = @"Component",
@@ -3308,8 +3256,7 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.37.2.1",
                             Type = @"SubComponent",
@@ -3325,10 +3272,8 @@ The facility (servicing) ID, the optional fourth component of each patient locat
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3420,8 +3365,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"This field indicates the point of care, room, bed, facility ID, and bed status to which the patient may be moved.  The first component may be the nursing station for inpatient locations, or the clinic, department, or home for locations other than inpatient.  If a value exists in the fifth component (bed status), it supersedes the value in PV1-40-bed status",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.42.1",
                             Type = @"Component",
@@ -3490,8 +3434,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.42.4.1",
                             Type = @"SubComponent",
@@ -3543,8 +3486,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3635,8 +3577,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3654,8 +3595,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"This field is used to reflect the patient’s temporary location (such as the OR or X-RAY) prior to a transfer from a temporary location to an actual location, or from a temporary location to another temporary location. The first component may be the nursing station for inpatient locations, or the clinic, department, or home for locations other than inpatient.  If a value exists in the fifth component (bed status), it supersedes the value in PV1-40-bed status",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.43.1",
                             Type = @"Component",
@@ -3724,8 +3664,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"Most general person location designation. (See Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.43.4.1",
                             Type = @"SubComponent",
@@ -3777,8 +3716,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3869,8 +3807,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3888,8 +3825,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"This field contains the admit date/time.  It is to be used if the event date/time is different than the admit date and time, i.e., a retroactive update.  This field is also used to reflect the date/time of an outpatient/emergency patient registration",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.44.1",
                             Type = @"Component",
@@ -3905,8 +3841,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3924,8 +3859,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"This field contains the discharge date/time.  It is to be used if the event date/time is different than the discharge date and time, that is, a retroactive update.  This field is also used to reflect the date/time of an outpatient/emergency patient discharge",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.45.1",
                             Type = @"Component",
@@ -3941,8 +3875,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4032,8 +3965,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"This field contains the alternative, temporary, or pending optional visit ID number to be used if needed.  Refer to HL7 table 0061 - Check digit scheme for valid values.  Refer to user-defined table 0192 - Visit ID type for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.50.1",
                             Type = @"Component",
@@ -4102,8 +4034,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.50.4.1",
                             Type = @"SubComponent",
@@ -4155,8 +4086,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4192,8 +4122,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.50.6.1",
                             Type = @"SubComponent",
@@ -4245,10 +4174,8 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4284,8 +4211,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = @"Physician ID",
                             Description = @"This field contains the other healthcare providers (e.g., Nurse care practitioner, midwife, physician assistant).  Multiple healthcare providers can be sent.  Depending on local agreements, either the ID or the name may be absent from this field.  Use values in user-defined table 0010 - Physician ID for first component",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.52.1",
                             Type = @"Component",
@@ -4444,8 +4370,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.52.9.1",
                             Type = @"SubComponent",
@@ -4497,8 +4422,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4588,8 +4512,7 @@ An optional fifth component, bed status, may be valued in each individual locati
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.52.14.1",
                             Type = @"SubComponent",
@@ -4641,10 +4564,8 @@ An optional fifth component, bed status, may be valued in each individual locati
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         };
             }
@@ -4655,8 +4576,7 @@ An optional fifth component, bed status, may be valued in each individual locati
             this.message = message;
         }
 
-        
-internal HL7V23Field setIDPatientVisit;
+        internal HL7V23Field setIDPatientVisit;
 
 public HL7V23Field SetIDPatientVisit
 {
@@ -11469,6 +11389,5 @@ public HL7V23Field OtherHealthcareProvider
         return otherHealthcareProvider;
     } 
 }
-
     }
 }

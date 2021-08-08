@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentRCP
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RCP"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Refer to HL7 Table 0126 - Quantity limited request for valid entries for the second component.  In a segment pattern response, a line is defined as a single segment. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RCP.2.1",
                             Type = @"Component",
@@ -103,8 +103,7 @@ Refer to HL7 Table 0126 - Quantity limited request for valid entries for the sec
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed.  As of v2.7 the externally-defined Unified Code for Units of Measure (UCUM) case sensitive code is the required code for units of measure. Refer to the external table ""Unified Code for Units of Measure"" (UCUM) [http://aurora.rg.iupui.edu/UCUM] for valid values. Local codes may be transmitted in addition to UCUM codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RCP.2.2.1",
                             Type = @"SubComponent",
@@ -530,10 +529,8 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -551,8 +548,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Response Modality",
                             Description = @"This field specifies the timing and grouping of the response message(s).  Refer to HL7 Table 0394 – Response modality for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RCP.3.1",
                             Type = @"Component",
@@ -989,8 +985,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1048,8 +1043,7 @@ Specification and Commentary; see section 5.9.4.1, ""Pharmacy example"" for an e
 
 Each repetition of this field specifies a single sort field.  Thus, the first repetition of this field specifies the primary sort field; the second repetition specifies the secondary sort field; etc.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RCP.6.1",
                             Type = @"Component",
@@ -1083,8 +1077,7 @@ Each repetition of this field specifies a single sort field.  Thus, the first re
                             Description = @"Identifies how the field or parameter will be sorted; and, if sorted, whether the sort will be case sensitive (the default) or not. Refer to HL7 Table 0397 – Sequencing  for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1113,8 +1106,7 @@ Each repetition of this field specifies a single sort field.  Thus, the first re
             this.message = message;
         }
 
-        
-internal HL7V271Field queryPriority;
+        internal HL7V271Field queryPriority;
 
 public HL7V271Field QueryPriority
 {
@@ -2036,6 +2028,5 @@ public HL7V271Field SegmentGroupInclusion
         return segmentGroupInclusion;
     } 
 }
-
     }
 }

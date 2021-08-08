@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentOM1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM1"; } }
 
@@ -26,6 +26,7 @@ The OM1 segment contains the attributes that apply to the definition of most obs
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ The OM1 segment contains the attributes that apply to the definition of most obs
                             TableName = null,
                             Description = @"This field contains the producer's usual or preferred identification of the test or observation. Only three components should be included: <ID code>^<service text name/description>^<source list of code> . All components should be non-null. The source list may be any of those included in ASTM Tables 3 and 5, or a local code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.2.1",
                             Type = @"Component",
@@ -230,8 +230,7 @@ The OM1 segment contains the attributes that apply to the definition of most obs
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -285,8 +284,7 @@ The OM1 segment contains the attributes that apply to the definition of most obs
                             TableName = null,
                             Description = @"This field uniquely identifies the service producing the observation described in this segment. Three components should be included: an identifying code, the name of the producer, and the identity of the coding system (e.g., 323-5678^Acme Special Lab^MC). The identity of the coding system will usually be MC (Medicare provider number or HIBCC site codes) in the United States. Each country may want to specify its preferred coding system and define a coding system ID to identify it.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.5.1",
                             Type = @"Component",
@@ -446,8 +444,7 @@ The OM1 segment contains the attributes that apply to the definition of most obs
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -485,8 +482,7 @@ The OM1 segment contains the attributes that apply to the definition of most obs
 
 Note: In this field, the names within the CWE data type are required.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.7.1",
                             Type = @"Component",
@@ -646,8 +642,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -755,8 +750,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"When applicable, this field identifies the instrument or device that is used to generate this observation or battery. Examples are the automated instrument in the laboratory, the imaging device and model number in radiology, and the automatic blood pressure machine on the ward. The instrument is specified as a coded entry in anticipation that these identifiers could be specified as codes. Initially, we expect that most of the information about devices will be transmitted as text in the second component of the CWE identifier. If more than one kind of instrument is used, all of them can be listed, separated by repeat delimiters.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.13.1",
                             Type = @"Component",
@@ -916,8 +910,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -935,8 +928,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the method(s) used to produce the observation and should be recorded in a computer-understandable (coded) form here. This field should report the same method(s) reported in narrative in the following field. More than one method may be listed, but only if they produce results that are clinically indistinguishable. Multiple methods must be separated by repeat delimiters.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.14.1",
                             Type = @"Component",
@@ -1096,8 +1088,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1133,8 +1124,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field permits the sorting of observation orders and values by the providing service's department/section. It provides ""source oriented"" reporting when required. The codes for this field should be taken from ASTM Table 15 (Diagnostic Service Codes). Free text may be used instead of these codes, but in that case, they should be recorded as the second ""component"" of the field to distinguish them from the standard codes. Multiple codes in this field are separated by repeat delimiters.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.16.1",
                             Type = @"Component",
@@ -1294,8 +1284,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1313,8 +1302,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the telephone number for calling responsible parties in this section to ask results or advice about the use of this test.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.17.1",
                             Type = @"Component",
@@ -1581,8 +1569,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Telecommunication expiration reason",
                             Description = @"Indicates why this contact number/e-mail was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.17.15.1",
                             Type = @"SubComponent",
@@ -1742,8 +1729,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1761,8 +1747,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Protection Code",
                             Description = @"Indicates whether this information is considered sensitive or should be protected in some way. Refer to User-defined table 0618 - Protection Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.17.16.1",
                             Type = @"SubComponent",
@@ -1922,8 +1907,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1941,8 +1925,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"A unique identifier for the phone number or e-mail address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.17.17.1",
                             Type = @"SubComponent",
@@ -2012,8 +1995,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2032,8 +2014,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2069,8 +2050,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains an optional string that defines the preferred header under which this observation should be listed on a standard display. For example, if the test is hemoglobin, this string might be ""Complete blood count."" It is represented as a coded data type so that a battery can be a header. Only the description part of the string may be included in case the subheader does not have an associated code. When a series of observations is displayed according to the sort order given below, the subheader that groups those observations is presented whenever the subheader changes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.19.1",
                             Type = @"Component",
@@ -2230,8 +2210,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2375,8 +2354,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the identification(s) of the outside service(s) that produce(s) the observation. The format of this CWE field uses the producer ID (as defined in OM1-5 - Producer ID ) and the name of the service separated by component delimiters. An example is ...|39221^ACME lab^MC|... If multiple services are used, they should be separated by repeat delimiter(s).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.27.1",
                             Type = @"Component",
@@ -2536,8 +2514,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2555,8 +2532,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the address of the outside services listed in OM1-28 - Address of Outside Site(s) where observation may be performed. If multiple services are recorded in that field, their addresses should be separated by repeat delimiters, and the addresses should appear in the same order in which the services appear in the preceding field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.28.1",
                             Type = @"Component",
@@ -2571,8 +2547,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Street",
                             Description = @"This component contains the house number, apartment number, street name, street direction, P.O. Box number, and similar address information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.28.1.1",
                             Type = @"SubComponent",
@@ -2624,8 +2599,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2823,8 +2797,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This component cannot be fully expressed. Identified as v 2.4 erratum. Retained for backward compatibility only as of v 2.5. Refer to 2.A.85.13, Effective Date and 2.A.85.14, Expiration Date components.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.28.12.1",
                             Type = @"SubComponent",
@@ -2858,8 +2831,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2913,8 +2885,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Address Expiration Reason",
                             Description = @"This identifies why this address was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.28.15.1",
                             Type = @"SubComponent",
@@ -3074,8 +3045,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3201,8 +3171,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Protection Code",
                             Description = @"Identifies that an address needs to be treated with special care or sensitivity.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.28.22.1",
                             Type = @"SubComponent",
@@ -3362,8 +3331,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3381,8 +3349,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"A unique identifier for the address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.28.23.1",
                             Type = @"SubComponent",
@@ -3452,10 +3419,8 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3473,8 +3438,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the telephone number of the outside site.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.29.1",
                             Type = @"Component",
@@ -3741,8 +3705,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Telecommunication expiration reason",
                             Description = @"Indicates why this contact number/e-mail was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.29.15.1",
                             Type = @"SubComponent",
@@ -3902,8 +3865,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3921,8 +3883,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Protection Code",
                             Description = @"Indicates whether this information is considered sensitive or should be protected in some way. Refer to User-defined table 0618 - Protection Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.29.16.1",
                             Type = @"SubComponent",
@@ -4082,8 +4043,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4101,8 +4061,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"A unique identifier for the phone number or e-mail address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.29.17.1",
                             Type = @"SubComponent",
@@ -4172,8 +4131,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4192,8 +4150,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4211,8 +4168,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Confidentiality code",
                             Description = @"This field contains the degree to which special confidentiality protection should be applied to the observation. For example, a tighter control may be applied to an HIV test than to a CBC. Refer to User-defined Table 0177 - Confidentiality code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.30.1",
                             Type = @"Component",
@@ -4372,8 +4328,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4391,8 +4346,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the list of variables that the diagnostic service needs to interpret the results of an ordered study. The observations specified here should be sent to the diagnostic service as OBX segments along with the order (OBR) segment.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.31.1",
                             Type = @"Component",
@@ -4552,8 +4506,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4589,8 +4542,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the diagnosis or problem for which the test is a contraindication or of possible danger (e.g., pacemaker, pregnancy, diabetes). For example, if the test identified in OM1 was an intravenous pyelogram, this field would include warnings about the use of contrast media in diabetes. The contraindication diagnoses should be separated by repeat delimiters.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.33.1",
                             Type = @"Component",
@@ -4750,8 +4702,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4769,8 +4720,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the test names as type CWE (i.e., <code>^<text name>^<coding system>) that may be ordered automatically by the diagnostic service, depending on the results obtained from the ordered battery. A screening CBC might trigger a reticulocyte count if the Hgb is less than 12. Multiple reflex tests are separated by repeat delimiters.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.34.1",
                             Type = @"Component",
@@ -4930,8 +4880,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4967,8 +4916,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the codes and a fixed text message that is always associated with an abbreviation. The field may include multiple messages separated by repeat delimiters.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.36.1",
                             Type = @"Component",
@@ -5128,8 +5076,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5165,8 +5112,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = null,
                             Description = @"This field contains the treatments that may be needed as part of the procedure. Examples are radioactive iodine for a thyroid screen, and methacholine for a methacholine spirometry challenge. This field should be identified as a CWE data type.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.38.1",
                             Type = @"Component",
@@ -5326,8 +5272,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5399,8 +5344,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Kind of quantity",
                             Description = @"This field contains the text description of the methods used to perform the text and generate the observations.  Bibliographic citations may be included.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.42.1",
                             Type = @"Component",
@@ -5560,8 +5504,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5579,8 +5522,7 @@ Note: In this field, the names within the CWE data type are required.",
                             TableName = @"Duration categories",
                             Description = @"This optional attribute allows master files to classify observations as measuring the patient's state at a point in time (e.g., spot urines, random urines, serum potassium), or averaged over an interval of time (e.g., concentration, total amount, or clearance over a 24-hour collection). Interval measures most often apply to urine and stool specimens (e.g., 24-hour urines, 3-day stool fats). They also apply to clinical measurements such as urine outputs, which are reported as shift totals and 24-hour totals, and event counts on physiologic monitors such as the number of PVCs on a 24-hour Holter monitor.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.43.1",
                             Type = @"Component",
@@ -5740,8 +5682,7 @@ Note: In this field, the names within the CWE data type are required.",
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5792,8 +5733,7 @@ The nature of a physiologic (non-drug) challenge may also be specified, using th
                             TableName = @"Relationship modifier",
                             Description = @"This optional attribute provides a mechanism for classifying observations according to the subject, in relation to the patient whose results might be stored with as ""patient"" data. It is standard practice, for example, to report values for controls, donors, and blood product units as well as the patient's own values, and store them in the patient's record. (This may not be the best way to model such information, but it is the way it is usually reported.) This should be valued when two values (e.g., one for patient and one for a blood product unit) could otherwise be confused.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.45.1",
                             Type = @"Component",
@@ -5953,8 +5893,7 @@ The nature of a physiologic (non-drug) challenge may also be specified, using th
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -5972,8 +5911,7 @@ The nature of a physiologic (non-drug) challenge may also be specified, using th
                             TableName = null,
                             Description = @"This optional attribute formally indicates the site of the observation (to make it easy for a system to find all tests related to one anatomic site). It can be used to classify the observation by target site of the examination. For example, ""heart"" might be recorded as the target of the electrocardiogram, cardiac echo, and thallium exercise test. This attribute would be applicable to most imaging and electro-physiologic examinations. The SNOMED topology axis is an example of a coding system for anatomic sites. User-defined tables may also apply here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.46.1",
                             Type = @"Component",
@@ -6133,8 +6071,7 @@ The nature of a physiologic (non-drug) challenge may also be specified, using th
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -6152,8 +6089,7 @@ The nature of a physiologic (non-drug) challenge may also be specified, using th
                             TableName = @"Modality",
                             Description = @"This optional attribute describes the modality used to classify the observations, e.g., radiograph, ultrasound, CT scan, NMR, etc. This attribute is especially important for imaging studies. Refer to User-defined Table 0259 - Modality for suggested values; they are adopted from DICOM C.7.3.1.1.1 Modality. If these are used, the code source ID would be DCM.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.47.1",
                             Type = @"Component",
@@ -6313,8 +6249,7 @@ The nature of a physiologic (non-drug) challenge may also be specified, using th
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -6325,8 +6260,7 @@ The nature of a physiologic (non-drug) challenge may also be specified, using th
             this.message = message;
         }
 
-        
-internal HL7V26Field sequenceNumberTestObservationMasterFile;
+        internal HL7V26Field sequenceNumberTestObservationMasterFile;
 
 public HL7V26Field SequenceNumberTestObservationMasterFile
 {
@@ -12499,6 +12433,5 @@ public HL7V26Field ModalityOfImagingMeasurement
         return modalityOfImagingMeasurement;
     } 
 }
-
     }
 }

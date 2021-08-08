@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentOM2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM2"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the single tests/observations (those with a nature code of A or C, as described in OM1-18 - Nature of Service/Test/Observation) that have numeric values. This field contains their customary units of measure.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.2.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -211,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the single tests/observations - the corresponding SI units of measure in the format, when these differ from the customary units of measure given in the previous field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.4.1",
                             Type = @"Component",
@@ -318,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -355,8 +352,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the reference (normal) ranges for ""numeric"" observations/tests with a nature code of A or C (see OM1-18 - Nature of Service/Test/Observation). It can identify different reference (normal) ranges for different categories of patients according to age, sex, race, and other conditions.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.6.1",
                             Type = @"Component",
@@ -371,8 +367,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component specifies the numeric interval of the reference data. Range is taken to be inclusive (i.e., the range includes the end points). Units are context sensitive and are defined in the usage note for the field where this data type is used.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.6.1.1",
                             Type = @"SubComponent",
@@ -406,8 +401,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -443,8 +437,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component specifies the age range for which the reference range is valid. Ages of less than one year should be specified as a fraction (e.g., 1 month = 0.0830, 1 week = 0.01920, 1 day = 0.0027300). However, for most purposes involving infants, the gestational age (measured in weeks) is preferred. The lower end of the range is not indicated; the upper end is, assuring that series of ranges do not overlap.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.6.3.1",
                             Type = @"SubComponent",
@@ -478,8 +471,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -497,8 +489,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This component specifies the gestational age range for which the reference range is valid. Gestational age is relevant only when the reference range is influenced by the stage of pregnancy. The gestational age is measured in weeks from conception. For example, |1&4| implies that the normals apply to gestational ages from 1 week to 4 weeks inclusive. The lower end of the range is not included; the upper end is, assuring that series of age ranges do not overlap.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.6.4.1",
                             Type = @"SubComponent",
@@ -532,8 +523,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -588,8 +578,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component specifies any arbitrary condition for which the reference range is valid. This may include such conditions as phase of menstrual cycle or dose of a particular drug. It is provided as a way to communicate the normal ranges for special conditions. It does not allow automatic checking of these text conditions.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -610,8 +599,7 @@ namespace ExpressionEvaluatorForDotNet
 Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narrative conflicted with the component model.  There was an ARB decision to bring the component model into conformity with the narrative. For versions prior to v2.5, the expected format would utilize the component separator (|10^20|); however for v2.5 the format will utilize the sub-component separator (|10&20|). 
 8",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.7.1",
                             Type = @"Component",
@@ -626,8 +614,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"This component specifies the numeric interval of the reference data. Range is taken to be inclusive (i.e., the range includes the end points). Units are context sensitive and are defined in the usage note for the field where this data type is used.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.7.1.1",
                             Type = @"SubComponent",
@@ -661,8 +648,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -698,8 +684,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"This component specifies the age range for which the reference range is valid. Ages of less than one year should be specified as a fraction (e.g., 1 month = 0.0830, 1 week = 0.01920, 1 day = 0.0027300). However, for most purposes involving infants, the gestational age (measured in weeks) is preferred. The lower end of the range is not indicated; the upper end is, assuring that series of ranges do not overlap.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.7.3.1",
                             Type = @"SubComponent",
@@ -733,8 +718,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -752,8 +736,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"This component specifies the gestational age range for which the reference range is valid. Gestational age is relevant only when the reference range is influenced by the stage of pregnancy. The gestational age is measured in weeks from conception. For example, |1&4| implies that the normals apply to gestational ages from 1 week to 4 weeks inclusive. The lower end of the range is not included; the upper end is, assuring that series of age ranges do not overlap.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.7.4.1",
                             Type = @"SubComponent",
@@ -787,8 +770,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -843,8 +825,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"This component specifies any arbitrary condition for which the reference range is valid. This may include such conditions as phase of menstrual cycle or dose of a particular drug. It is provided as a way to communicate the normal ranges for special conditions. It does not allow automatic checking of these text conditions.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -862,8 +843,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"This field applies only to single tests/observations with a nature code of A or C (see OM1-18 - Nature of Service/Test/Observation). It defines the range of possible results. Results outside this range are not possible. The field should be recorded in the same format as the normal and critical ranges.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.8.1",
                             Type = @"Component",
@@ -878,8 +858,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"This component specifies the numeric interval of the reference data. Range is taken to be inclusive (i.e., the range includes the end points). Units are context sensitive and are defined in the usage note for the field where this data type is used.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.8.1.1",
                             Type = @"SubComponent",
@@ -913,8 +892,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -950,8 +928,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"This component specifies the age range for which the reference range is valid. Ages of less than one year should be specified as a fraction (e.g., 1 month = 0.0830, 1 week = 0.01920, 1 day = 0.0027300). However, for most purposes involving infants, the gestational age (measured in weeks) is preferred. The lower end of the range is not indicated; the upper end is, assuring that series of ranges do not overlap.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.8.3.1",
                             Type = @"SubComponent",
@@ -985,8 +962,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1004,8 +980,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"This component specifies the gestational age range for which the reference range is valid. Gestational age is relevant only when the reference range is influenced by the stage of pregnancy. The gestational age is measured in weeks from conception. For example, |1&4| implies that the normals apply to gestational ages from 1 week to 4 weeks inclusive. The lower end of the range is not included; the upper end is, assuring that series of age ranges do not overlap.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.8.4.1",
                             Type = @"SubComponent",
@@ -1039,8 +1014,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1095,8 +1069,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"This component specifies any arbitrary condition for which the reference range is valid. This may include such conditions as phase of menstrual cycle or dose of a particular drug. It is provided as a way to communicate the normal ranges for special conditions. It does not allow automatic checking of these text conditions.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1114,8 +1087,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"This field applies to numeric tests/observations with a nature code of A or C (see OM1-18 - Nature of Service/Test/Observation). The field describes the information that controls delta check warnings and includes four components.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.9.1",
                             Type = @"Component",
@@ -1130,8 +1102,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             TableName = null,
                             Description = @"Specifies the normal interval of the reference data",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.9.1.1",
                             Type = @"SubComponent",
@@ -1165,8 +1136,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1221,8 +1191,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
                             Description = @"The length of time in days that the value is retained for computing delta checks.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1251,8 +1220,7 @@ Note:  This field is not backward compatible from v2.5.  Prior to v2.5, the narr
             this.message = message;
         }
 
-        
-internal HL7V25Field sequenceNumberTestObservationMasterFile;
+        internal HL7V25Field sequenceNumberTestObservationMasterFile;
 
 public HL7V25Field SequenceNumberTestObservationMasterFile
 {
@@ -2564,6 +2532,5 @@ public HL7V25Field MinimumMeaningfulIncrements
         return minimumMeaningfulIncrements;
     } 
 }
-
     }
 }

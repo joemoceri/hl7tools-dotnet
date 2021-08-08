@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventQRY_PC4
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V231SegmentMSH msh;
-public readonly HL7V231SegmentQRD qrd;
-public readonly HL7V231SegmentQRF qrf;
+        private readonly HL7V2Message message;
+        private readonly HL7V231SegmentMSH msh;
+private readonly HL7V231SegmentQRD qrd;
+private readonly HL7V231SegmentQRF qrf;
 
 
         public string Id { get { return @"QRY_PC4"; } }
@@ -23,6 +23,7 @@ public readonly HL7V231SegmentQRF qrf;
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentEVN
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"EVN"; } }
 
@@ -111,8 +111,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field eventTypeCode;
+        internal HL7V21Field eventTypeCode;
 
 public HL7V21Field EventTypeCode
 {
@@ -635,6 +634,5 @@ public HL7V21Field EventReasonCode
         return eventReasonCode;
     } 
 }
-
     }
 }

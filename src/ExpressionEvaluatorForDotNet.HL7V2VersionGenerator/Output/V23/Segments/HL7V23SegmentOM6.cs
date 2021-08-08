@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentOM6
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM6"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -80,8 +81,7 @@ When possible, however, they should be defined in terms of the Arden Syntax for 
             this.message = message;
         }
 
-        
-internal HL7V23Field sequenceNumber;
+        internal HL7V23Field sequenceNumber;
 
 public HL7V23Field SequenceNumber
 {
@@ -344,6 +344,5 @@ When possible, however, they should be defined in terms of the Arden Syntax for 
         return derivationRule;
     } 
 }
-
     }
 }

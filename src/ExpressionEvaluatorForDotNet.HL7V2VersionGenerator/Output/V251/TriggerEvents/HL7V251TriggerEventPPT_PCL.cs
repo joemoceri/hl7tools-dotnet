@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventPPT_PCL
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V251SegmentMSH msh;
-public readonly HL7V251SegmentSFT sft;
-public readonly HL7V251SegmentMSA msa;
-public readonly HL7V251SegmentERR err;
-public readonly HL7V251SegmentQAK qak;
-public readonly HL7V251SegmentQRD qrd;
+        private readonly HL7V2Message message;
+        private readonly HL7V251SegmentMSH msh;
+private readonly HL7V251SegmentSFT sft;
+private readonly HL7V251SegmentMSA msa;
+private readonly HL7V251SegmentERR err;
+private readonly HL7V251SegmentQAK qak;
+private readonly HL7V251SegmentQRD qrd;
 
 
         public string Id { get { return @"PPT_PCL"; } }
@@ -26,6 +26,7 @@ public readonly HL7V251SegmentQRD qrd;
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }

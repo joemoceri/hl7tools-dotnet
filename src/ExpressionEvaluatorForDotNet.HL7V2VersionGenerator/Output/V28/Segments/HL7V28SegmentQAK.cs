@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentQAK
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"QAK"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Query Name",
                             Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  Site-specific event replay query names begin with the letter ""Z."" Refer to User defined table 0471 - Query name for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QAK.3.1",
                             Type = @"Component",
@@ -514,8 +514,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -580,8 +579,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field queryTag;
+        internal HL7V28Field queryTag;
 
 public HL7V28Field QueryTag
 {
@@ -1366,6 +1364,5 @@ public HL7V28Field HitsRemaining
         return hitsRemaining;
     } 
 }
-
     }
 }

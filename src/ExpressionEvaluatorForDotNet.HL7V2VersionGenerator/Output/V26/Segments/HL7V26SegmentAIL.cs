@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentAIL
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"AIL"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -89,8 +90,7 @@ This field is conditionally required.  It is required for all updating or modify
 
 This field is required for all unsolicited transactions from the filler application.  It is optional for all query transactions.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.3.1",
                             Type = @"Component",
@@ -159,8 +159,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             TableName = null,
                             Description = @"This component is subject to site interpretation but generally describes the highest level physical designation of an institution, medical center or enterprise. It is the most general person location designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.3.4.1",
                             Type = @"SubComponent",
@@ -212,8 +211,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -321,8 +319,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             TableName = null,
                             Description = @"The unique identifier that represents the physical location as a whole without regard for the individual components. This accommodates sites that may have a different method of defining physical units or who may code at a less granular level. For example, point of care, room, and bed may be 1 indivisible code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.3.10.1",
                             Type = @"SubComponent",
@@ -392,8 +389,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -411,8 +407,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             TableName = null,
                             Description = @"The entity that creates the data for the individual physical location components. If populated, it should be the authority for all components populated. Refer to User-defined Table 0363 - Assigning authority for suggested values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.3.11.1",
                             Type = @"SubComponent",
@@ -464,10 +459,8 @@ This field is required for all unsolicited transactions from the filler applicat
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -485,8 +478,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             TableName = @"Person location type",
                             Description = @"This field identifies the type of the location requested/scheduled for this appointment. For all messages, this field is conditionally required if a specific location is not identified in AIL-3-Location resource ID. Refer to HL7 Table 0305 - Person location type in Chapter 2 for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.4.1",
                             Type = @"Component",
@@ -646,8 +638,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -665,8 +656,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             TableName = null,
                             Description = @"This field identifies the requested resource as a member of the indicated group. If, in a Schedule Request Message (SRM), no specific location is requested, but a location type is requested, AIL-5-Location group can be used to further qualify the type of resource being requested.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.5.1",
                             Type = @"Component",
@@ -826,8 +816,7 @@ This field is required for all unsolicited transactions from the filler applicat
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -887,8 +876,7 @@ This field is conditionally required.  If a value for AIL-6-Start date/time is n
 
 This field is conditionally required.  If a value for AIL-7-Start date/time offset is provided, then a value is required for this field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.8.1",
                             Type = @"Component",
@@ -1048,8 +1036,7 @@ This field is conditionally required.  If a value for AIL-7-Start date/time offs
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1085,8 +1072,7 @@ This field is conditionally required.  If a value for AIL-7-Start date/time offs
                             TableName = null,
                             Description = @"This field contains a code describing the units of time used associated with AIL-9-Duration. This field should be valued according to the recommendations made in Chapters 2 and 7. If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed. Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.10.1",
                             Type = @"Component",
@@ -1246,8 +1232,7 @@ This field is conditionally required.  If a value for AIL-7-Start date/time offs
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1287,8 +1272,7 @@ This field is conditionally required.  It is required for all request messages. 
 
 This is a conditionally required field.  Because the information contained in this field is only appropriate in transactions originating from a filler application, it is required for those messages.  This includes all unsolicited transactions originating from a filler application, as well as all response messages originating from a filler application.  This field is optional for all transactions originating from placer, querying and auxiliary applications.  It is recommended that this field be left unvalued in transactions originating from applications other than the filler application.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIL.12.1",
                             Type = @"Component",
@@ -1448,8 +1432,7 @@ This is a conditionally required field.  Because the information contained in th
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1460,8 +1443,7 @@ This is a conditionally required field.  Because the information contained in th
             this.message = message;
         }
 
-        
-internal HL7V26Field setIDAIL;
+        internal HL7V26Field setIDAIL;
 
 public HL7V26Field SetIDAIL
 {
@@ -3046,6 +3028,5 @@ This is a conditionally required field.  Because the information contained in th
         return fillerStatusCode;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentPR1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PR1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ When used for backward compatibility, PR1-2-procedure coding method contains the
                             TableName = @"Procedure code",
                             Description = @"Use this field instead of  PR1-2-procedure coding method and  PR1-4-procedure description.  Those two fields have been retained for backward compatibility only.  This field contains a unique identifier assigned to the procedure.  Refer to user-defined table 0088 - Procedure code for suggested values.  This field is a CE data type for compatibility with clinical and ancillary systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.3.1",
                             Type = @"Component",
@@ -194,8 +194,7 @@ When used for backward compatibility, PR1-2-procedure coding method contains the
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -231,8 +230,7 @@ When used for backward compatibility, PR1-2-procedure coding method contains the
                             TableName = null,
                             Description = @"This field contains the date/time that the procedure was performed.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.5.1",
                             Type = @"Component",
@@ -248,8 +246,7 @@ When used for backward compatibility, PR1-2-procedure coding method contains the
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -307,8 +304,7 @@ However, in order to maintain backward compatibility, the practitioner roles exi
 
 When this field is used for backward compatibility, the XCN data type applies.  It contains the anesthesiologist who administered the anesthesia.  Use values in  user-defined table 0010 - Physician ID for first component.  Multiple names and identifiers for the same person should be sent in this field, not multiple anesthesiologists.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.8.1",
                             Type = @"Component",
@@ -467,8 +463,7 @@ When this field is used for backward compatibility, the XCN data type applies.  
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.8.9.1",
                             Type = @"SubComponent",
@@ -520,8 +515,7 @@ When this field is used for backward compatibility, the XCN data type applies.  
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -611,8 +605,7 @@ When this field is used for backward compatibility, the XCN data type applies.  
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.8.14.1",
                             Type = @"SubComponent",
@@ -664,10 +657,8 @@ When this field is used for backward compatibility, the XCN data type applies.  
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -725,8 +716,7 @@ However, in order to maintain backward compatibility, the practitioner roles exi
 
 When this field is being used for backward compatibility, the XCN data type applies.  It contains the surgeon who performed the procedure.  Use the values in user-defined table 0010 - Physician ID for the first component.  Multiple names and identifiers for the same person should be sent in this field, not multiple surgeons.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.11.1",
                             Type = @"Component",
@@ -885,8 +875,7 @@ When this field is being used for backward compatibility, the XCN data type appl
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.11.9.1",
                             Type = @"SubComponent",
@@ -938,8 +927,7 @@ When this field is being used for backward compatibility, the XCN data type appl
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1029,8 +1017,7 @@ When this field is being used for backward compatibility, the XCN data type appl
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.11.14.1",
                             Type = @"SubComponent",
@@ -1082,10 +1069,8 @@ When this field is being used for backward compatibility, the XCN data type appl
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1107,8 +1092,7 @@ However, in order to maintain backward compatibility, the practitioner roles exi
 
 This field contains the different types of practitioners associated with this procedure.  The ID and name components follow the standard rules defined for a composite name (XCN) field.  The last component, identifier type code, indicates which type of procedure practitioner is shown.  When the identifier type component is unvalued, it is assumed that the practitioner identified is a resident.  Use values in userdefined table 0010 - Physician ID for the first component.  Refer to user-defined table 0133 - Procedure practitioner identifier code type for suggested values for the identifier type code component",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.12.1",
                             Type = @"Component",
@@ -1267,8 +1251,7 @@ This field contains the different types of practitioners associated with this pr
                             TableName = null,
                             Description = @" In this version an optional 9th component, the assigning authority (HD), has been added.  It is an HD data type (see Section 2.8.18, “HD - hierarchic designator”). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.12.9.1",
                             Type = @"SubComponent",
@@ -1320,8 +1303,7 @@ This field contains the different types of practitioners associated with this pr
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1411,8 +1393,7 @@ This field contains the different types of practitioners associated with this pr
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the patient.  This component is not an inherent part of the identifier but rather part of the history of the identifier:  as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.12.14.1",
                             Type = @"SubComponent",
@@ -1464,10 +1445,8 @@ This field contains the different types of practitioners associated with this pr
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1485,8 +1464,7 @@ This field contains the different types of practitioners associated with this pr
                             TableName = @"Consent code",
                             Description = @"This field contains the type of consent that was obtained for permission to treat the patient.  Refer to user-defined table 0059 - Consent code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.13.1",
                             Type = @"Component",
@@ -1592,8 +1570,7 @@ This field contains the different types of practitioners associated with this pr
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1633,8 +1610,7 @@ This field contains the different types of practitioners associated with this pr
                             TableName = null,
                             Description = @"This field contains the diagnosis which is the primary reason this procedure was performed, e.g., Medicare wants to know for which diagnosis this procedure is submitted for inclusion on  HCFA 1500 form.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.15.1",
                             Type = @"Component",
@@ -1740,8 +1716,7 @@ This field contains the different types of practitioners associated with this pr
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1752,8 +1727,7 @@ This field contains the different types of practitioners associated with this pr
             this.message = message;
         }
 
-        
-internal HL7V23Field setIDProcedure;
+        internal HL7V23Field setIDProcedure;
 
 public HL7V23Field SetIDProcedure
 {
@@ -3735,6 +3709,5 @@ public HL7V23Field AssociatedDiagnosisCode
         return associatedDiagnosisCode;
     } 
 }
-
     }
 }

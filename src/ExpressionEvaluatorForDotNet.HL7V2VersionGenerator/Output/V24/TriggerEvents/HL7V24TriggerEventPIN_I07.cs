@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventPIN_I07
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentPID pid;
-public readonly HL7V24SegmentNK1 nk1;
-public readonly HL7V24SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentPID pid;
+private readonly HL7V24SegmentNK1 nk1;
+private readonly HL7V24SegmentNTE nte;
 
 
         public string Id { get { return @"PIN_I07"; } }
@@ -24,6 +24,7 @@ public readonly HL7V24SegmentNTE nte;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

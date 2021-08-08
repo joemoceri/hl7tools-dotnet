@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentMFA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MFA"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -105,8 +106,7 @@ Note: If the MFI-3 - File-level event code is ""REP"" (replace file), then each 
                             TableName = @"MFN record-level error return",
                             Description = @"This field contains the status of the requested update. Site-defined table, specific to each master file being updated via this transaction.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFA.4.1",
                             Type = @"Component",
@@ -266,8 +266,7 @@ Note: If the MFI-3 - File-level event code is ""REP"" (replace file), then each 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -314,8 +313,7 @@ Note: If the MFI-3 - File-level event code is ""REP"" (replace file), then each 
             this.message = message;
         }
 
-        
-internal HL7V26Field recordLevelEventCode;
+        internal HL7V26Field recordLevelEventCode;
 
 public HL7V26Field RecordLevelEventCode
 {
@@ -1102,6 +1100,5 @@ public HL7V26Field PrimaryKeyValueTypeMFA
         return primaryKeyValueTypeMFA;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentECD
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ECD"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Remote Control Command",
                             Description = @"This field identifies the command that the component is to initiate.  Refer to User-defined Table 0368 – Remote Control Command for valid values.  Refer to LECIS standard for details.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ECD.2.1",
                             Type = @"Component",
@@ -494,8 +494,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -562,8 +561,7 @@ Note:  Elements of this segment (or other elements not defined here) may be requ
             this.message = message;
         }
 
-        
-internal HL7V271Field referenceCommandNumber;
+        internal HL7V271Field referenceCommandNumber;
 
 public HL7V271Field ReferenceCommandNumber
 {
@@ -1219,6 +1217,5 @@ Note:  Elements of this segment (or other elements not defined here) may be requ
         return parameters;
     } 
 }
-
     }
 }

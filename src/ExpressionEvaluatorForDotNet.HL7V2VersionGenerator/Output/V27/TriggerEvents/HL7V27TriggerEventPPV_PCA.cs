@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventPPV_PCA
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V27SegmentMSH msh;
-public readonly HL7V27SegmentSFT sft;
-public readonly HL7V27SegmentUAC uac;
-public readonly HL7V27SegmentMSA msa;
-public readonly HL7V27SegmentERR err;
-public readonly HL7V27SegmentQAK qak;
-public readonly HL7V27SegmentQRD qrd;
+        private readonly HL7V2Message message;
+        private readonly HL7V27SegmentMSH msh;
+private readonly HL7V27SegmentSFT sft;
+private readonly HL7V27SegmentUAC uac;
+private readonly HL7V27SegmentMSA msa;
+private readonly HL7V27SegmentERR err;
+private readonly HL7V27SegmentQAK qak;
+private readonly HL7V27SegmentQRD qrd;
 
 
         public string Id { get { return @"PPV_PCA"; } }
@@ -27,6 +27,7 @@ public readonly HL7V27SegmentQRD qrd;
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }

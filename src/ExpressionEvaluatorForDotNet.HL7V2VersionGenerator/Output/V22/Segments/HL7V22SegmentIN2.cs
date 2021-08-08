@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentIN2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"IN2"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"name of insured's employer",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IN2.3.1",
                             Type = @"Component",
@@ -228,8 +228,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -301,8 +300,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"this field is defined by HCFA or other regulatory agencies",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IN2.7.1",
                             Type = @"Component",
@@ -408,8 +406,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -445,8 +442,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"this field is defined by HCFA or other regulatory agencies",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IN2.9.1",
                             Type = @"Component",
@@ -552,8 +548,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -787,8 +782,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"name of the individual that approves any special coverage",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IN2.22.1",
                             Type = @"Component",
@@ -894,8 +888,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1003,8 +996,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"room type (e.g., private, semi-private) and amount (e.g., rate, percentage, differential) covered by the insurance.  It is recommended that this field be used instead of IN1-40-room rate - semi-private and IN141-room rate - private.  Refer to user-defined tables 0145 - room type and 0146 - amount type for suggested entries",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IN2.28.1",
                             Type = @"Component",
@@ -1056,8 +1048,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1075,8 +1066,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"policy type (e.g., ancillary, major medical) and amount (e.g., amount, percentage, limit) covered by the insurance.  It is recommended that this field is used instead of IN1-38-policy limit - amount.  Refer to userdefined tables 0147 - policy type and 0193 - amount class for suggested entries",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IN2.29.1",
                             Type = @"Component",
@@ -1128,8 +1118,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1147,8 +1136,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"number of days after which to begin the daily deductible, the amount of the deductible, and the number of days to apply the deductible",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IN2.30.1",
                             Type = @"Component",
@@ -1200,8 +1188,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1212,8 +1199,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V22Field insuredsEmployeeId;
+        internal HL7V22Field insuredsEmployeeId;
 
 public HL7V22Field InsuredsEmployeeId
 {
@@ -5142,6 +5128,5 @@ public HL7V22Field DailyDeductible
         return dailyDeductible;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentOM6
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM6"; } }
 
@@ -26,6 +26,7 @@ This segment contains the information about quantities that are derived from one
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -80,8 +81,7 @@ This segment contains the information about quantities that are derived from one
             this.message = message;
         }
 
-        
-internal HL7V26Field sequenceNumberTestObservationMasterFile;
+        internal HL7V26Field sequenceNumberTestObservationMasterFile;
 
 public HL7V26Field SequenceNumberTestObservationMasterFile
 {
@@ -342,6 +342,5 @@ public HL7V26Field DerivationRule
         return derivationRule;
     } 
 }
-
     }
 }

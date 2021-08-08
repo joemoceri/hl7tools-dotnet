@@ -4,20 +4,20 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventPMU_B02
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V27SegmentMSH msh;
-public readonly HL7V27SegmentSFT sft;
-public readonly HL7V27SegmentUAC uac;
-public readonly HL7V27SegmentEVN evn;
-public readonly HL7V27SegmentSTF stf;
-public readonly HL7V27SegmentPRA pra;
-public readonly HL7V27SegmentORG org;
-public readonly HL7V27SegmentAFF aff;
-public readonly HL7V27SegmentLAN lan;
-public readonly HL7V27SegmentEDU edu;
-public readonly HL7V27SegmentCER cer;
-public readonly HL7V27SegmentNK1 nk1;
-public readonly HL7V27SegmentROL rol;
+        private readonly HL7V2Message message;
+        private readonly HL7V27SegmentMSH msh;
+private readonly HL7V27SegmentSFT sft;
+private readonly HL7V27SegmentUAC uac;
+private readonly HL7V27SegmentEVN evn;
+private readonly HL7V27SegmentSTF stf;
+private readonly HL7V27SegmentPRA pra;
+private readonly HL7V27SegmentORG org;
+private readonly HL7V27SegmentAFF aff;
+private readonly HL7V27SegmentLAN lan;
+private readonly HL7V27SegmentEDU edu;
+private readonly HL7V27SegmentCER cer;
+private readonly HL7V27SegmentNK1 nk1;
+private readonly HL7V27SegmentROL rol;
 
 
         public string Id { get { return @"PMU_B02"; } }
@@ -33,6 +33,7 @@ public readonly HL7V27SegmentROL rol;
                 return new[]
                     {
                         "CH_15",
+
                     };
             }
         }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentPRA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PRA"; } }
 
@@ -26,6 +26,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                 return new[]
                     {
                         "CH_15",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = null,
                             Description = @"For MFN Master File Notification, this field is required and must match MFE-4-primary key value to identify which entry is being referenced. For all other messages, this field should not be used.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.1.1",
                             Type = @"Component",
@@ -212,8 +212,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -231,8 +230,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = @"Practitioner group",
                             Description = @"This field contains the name and/or code of a group of practitioners to which this practitioner belongs. Refer to User-defined Table 0358 Practitioner group for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.2.1",
                             Type = @"Component",
@@ -392,8 +390,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -447,8 +444,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = null,
                             Description = @"This repeating field is made up of multiple components to record the practitioner's specialties. The multiple components of each specialty are: (1) specialty name or abbreviation, identifies provider's specialty, (2) name of specialty governing board, (3) Certification Status, (4) certified date contains the date of certification, if certified. Refer to HL7 Table 0337 - Certification status for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.5.1",
                             Type = @"Component",
@@ -518,8 +514,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = @"Specifies when certification occurred.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -537,8 +532,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = null,
                             Description = @"As of version 2.5, this field has been retained for backward compatibility only.  Practitioner ID numbers should be contained in STF-2 Staff Identifier List . This repeating field contains this practitioner's license numbers and other ID numbers. This is a field made up of the following components: (1) the ID number, and (2) the type of number, and optionally (3) the state or province in which it is valid, if relevant, or other qualifying information. It is recommended that state qualifications use the abbreviations from the postal service of the country. The practitioner ID number type (component 2) is a user-defined table (User-defined Table 0338 - Practitioner ID Number in Chapter 2A)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.6.1",
                             Type = @"Component",
@@ -608,8 +602,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = @"Specifies the date when the license or ID is no longer valid.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -627,8 +620,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = null,
                             Description = @"This field contains the institutional privileges which this provider may exercise. Depends upon institutional needs. For example, admit, transfer, discharge, place orders, verify orders, review results, etc. Can also be used for privileges other than patient services. This is a repeating field, with each privilege made up of the following components: (1) privilege; (2) privilege class; (3) privilege expiration date, if any; (4) privilege activation date, if any, and (5) facility. Note that the privilege and privilege class components are CWE data types, and thus they are encoded with the subcomponent delimiter (&) rather than the component delimiter (^). The facility component is an EI data type specifying the facility to which the privilege applies and is encoded with the subcomponent delimiter (&) rather than the component delimiter (^). The facility component is an EI data type specifying the facility to which the privilege applies and is encoded with the subcomponent delimiter (&) rather than the component delimiter (^).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.7.1",
                             Type = @"Component",
@@ -643,8 +635,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = @"Privilege",
                             Description = @"Specifies the institutional privilege itself. Refer to User-defined table 0525 - Privilege for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.7.1.1",
                             Type = @"SubComponent",
@@ -804,8 +795,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -823,8 +813,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = @"Privilege class",
                             Description = @"Specifies the class category of institutional privilege. Refer to User-Defined Table 0526 - Privilege Class for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.7.2.1",
                             Type = @"SubComponent",
@@ -984,8 +973,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1039,8 +1027,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = null,
                             Description = @"Specifies the facility in which the institutional privilege is/was valid.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.7.5.1",
                             Type = @"SubComponent",
@@ -1110,10 +1097,8 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1149,8 +1134,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = @"Institution",
                             Description = @"This field contains the institution the practitioner began or intends to begin practicing at (e.g., at hospital, at physician organization, at managed care network). Refer to User-defined Table 0537 - Institution for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.9.1",
                             Type = @"Component",
@@ -1310,8 +1294,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1347,8 +1330,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             TableName = @"Government reimbursement program",
                             Description = @"This field contains a code that indicates the agency that the practitioner is authorized to bill for medical services. Refer to User-defined Table 0401 - Government reimbursement program for valid values. This is a repeating field.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.11.1",
                             Type = @"Component",
@@ -1508,8 +1490,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1538,8 +1519,7 @@ The PRA segment adds detailed medical practitioner information to the personnel 
             this.message = message;
         }
 
-        
-internal HL7V26Field primaryKeyValuePRA;
+        internal HL7V26Field primaryKeyValuePRA;
 
 public HL7V26Field PrimaryKeyValuePRA
 {
@@ -3110,6 +3090,5 @@ public HL7V26Field SetIDPRA
         return setIDPRA;
     } 
 }
-
     }
 }

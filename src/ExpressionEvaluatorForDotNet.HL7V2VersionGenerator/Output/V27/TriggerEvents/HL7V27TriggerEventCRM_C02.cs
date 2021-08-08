@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventCRM_C02
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V27SegmentMSH msh;
-public readonly HL7V27SegmentSFT sft;
-public readonly HL7V27SegmentUAC uac;
+        private readonly HL7V2Message message;
+        private readonly HL7V27SegmentMSH msh;
+private readonly HL7V27SegmentSFT sft;
+private readonly HL7V27SegmentUAC uac;
 
 
         public string Id { get { return @"CRM_C02"; } }
@@ -23,6 +23,7 @@ public readonly HL7V27SegmentUAC uac;
                 return new[]
                     {
                         "CH_07",
+
                     };
             }
         }

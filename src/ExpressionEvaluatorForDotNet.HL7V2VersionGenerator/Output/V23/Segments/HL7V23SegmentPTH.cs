@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentPTH
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PTH"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the pathway master data identifier associated with the referenced problem or goal. Examples; open heart pathway, new diabetic, total hip replace",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.2.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -195,8 +194,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Note: It is required that this value remain unique over time.  This instance ID identifies a specific instance for a specific patient and is unique across all patients.  See entity ID data type description in Chapter ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.3.1",
                             Type = @"Component",
@@ -266,8 +264,7 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -285,8 +282,7 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             TableName = null,
                             Description = @"This field contains the identification of the event time for the current pathway record",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.4.1",
                             Type = @"Component",
@@ -302,8 +298,7 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -321,8 +316,7 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             TableName = null,
                             Description = @"This field contains an application-specific set of state identifiers (e.g.,  Active, Suspended, Complete, Canceled, Delayed, Scheduled). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.5.1",
                             Type = @"Component",
@@ -428,8 +422,7 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -447,8 +440,7 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             TableName = null,
                             Description = @"This field contains the date/time when pathway has been modified or deactivated.  (Marked as conditional - must be filled in if trigger event is update or terminate pathway) ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.6.1",
                             Type = @"Component",
@@ -464,8 +456,7 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -476,8 +467,7 @@ Note: It is required that this value remain unique over time.  This instance ID 
             this.message = message;
         }
 
-        
-internal HL7V23Field actionCode;
+        internal HL7V23Field actionCode;
 
 public HL7V23Field ActionCode
 {
@@ -1264,6 +1254,5 @@ public HL7V23Field ChangePathwayLifecycleStatusDateTime
         return changePathwayLifecycleStatusDateTime;
     } 
 }
-
     }
 }

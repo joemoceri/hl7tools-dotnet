@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentNSC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NSC"; } }
 
@@ -30,6 +30,7 @@ Fields 2-3, 6-7: entirely site-defined."; } }
                 return new[]
                     {
                         "CH_14",
+
                     };
             }
         }
@@ -55,8 +56,7 @@ Fields 2-3, 6-7: entirely site-defined."; } }
                             TableName = @"Application Change Type",
                             Description = @"This field contains the type of change being requested (if NMR query) or announced (if NMD unsolicited update).  Refer to User-Defined Table 0409 - Application Change Type in Chapter 2C, Code Tables, for suggested values. It is assumed that ""new"" version starts up with no loss or duplication of data as old one is shutting down (if possible).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NSC.1.1",
                             Type = @"Component",
@@ -484,8 +484,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -541,8 +540,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NSC.4.1",
                             Type = @"Component",
@@ -598,8 +596,7 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -619,8 +616,7 @@ Note: When the HD is used in a given segment (either as a field or as a componen
 
 Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NSC.5.1",
                             Type = @"Component",
@@ -676,8 +672,7 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -733,8 +728,7 @@ Note: When the HD is used in a given segment (either as a field or as a componen
 
 Note:By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NSC.8.1",
                             Type = @"Component",
@@ -790,8 +784,7 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -813,8 +806,7 @@ This field further describes the new application, NSC-8 New Application.  With t
 
 Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NSC.9.1",
                             Type = @"Component",
@@ -870,8 +862,7 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -882,8 +873,7 @@ Note: When the HD is used in a given segment (either as a field or as a componen
             this.message = message;
         }
 
-        
-internal HL7V28Field applicationChangeType;
+        internal HL7V28Field applicationChangeType;
 
 public HL7V28Field ApplicationChangeType
 {
@@ -2071,6 +2061,5 @@ Note: By site agreement, implementors may continue to use User-defined Table 030
         return newFacility;
     } 
 }
-
     }
 }

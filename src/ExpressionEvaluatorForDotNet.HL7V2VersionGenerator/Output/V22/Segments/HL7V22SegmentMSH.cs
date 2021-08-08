@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentMSH
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MSH"; } }
 
@@ -26,6 +26,7 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -159,8 +160,7 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
                             TableName = null,
                             Description = @"date/time that the sending system created the message.  If the time zone is specified, it will be used throughout the message as the default time zone",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.7.1",
                             Type = @"Component",
@@ -194,8 +194,7 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -231,8 +230,7 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
                             TableName = null,
                             Description = @"first component is the message type edited by table 0076 - message type; second is the trigger event code edited by table 0003 - event type code.  Receiving system uses this field to know the data segments to recognize, and possibly, the application to which to route this message.  For certain queries, which may have more than a single response event type, the second component may, in the response message, vary to indicate the response event type.  See the discussion of the display query variants in Section 2.8.6.1.1.  The second component is not required on response or acknowledgement messages",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.9.1",
                             Type = @"Component",
@@ -266,8 +264,7 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -422,8 +419,7 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
             this.message = message;
         }
 
-        
-internal HL7V22Field fieldSeparator;
+        internal HL7V22Field fieldSeparator;
 
 public HL7V22Field FieldSeparator
 {
@@ -2649,6 +2645,5 @@ public HL7V22Field CountryCode
         return countryCode;
     } 
 }
-
     }
 }

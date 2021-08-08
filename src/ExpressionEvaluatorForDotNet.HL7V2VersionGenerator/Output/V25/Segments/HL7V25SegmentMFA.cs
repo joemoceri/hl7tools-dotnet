@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentMFA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MFA"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ Note:  If the MFI-3 - File-level event code is ""REP"" (replace file), then each
                             TableName = null,
                             Description = @"This field may be required or optional depending on the site specifications for the given master file, master file event, and receiving facility.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFA.3.1",
                             Type = @"Component",
@@ -124,8 +124,7 @@ Note:  If the MFI-3 - File-level event code is ""REP"" (replace file), then each
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -143,8 +142,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             TableName = @"MFN record-level error return",
                             Description = @"This field contains the status of the requested update. Site-defined table, specific to each master file being updated via this transaction.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFA.4.1",
                             Type = @"Component",
@@ -250,8 +248,7 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -300,8 +297,7 @@ The following exception to the use of the CE data type is deprecated in V2.3.1, 
             this.message = message;
         }
 
-        
-internal HL7V25Field recordLevelEventCode;
+        internal HL7V25Field recordLevelEventCode;
 
 public HL7V25Field RecordLevelEventCode
 {
@@ -1090,6 +1086,5 @@ public HL7V25Field PrimaryKeyValueTypeMFA
         return primaryKeyValueTypeMFA;
     } 
 }
-
     }
 }

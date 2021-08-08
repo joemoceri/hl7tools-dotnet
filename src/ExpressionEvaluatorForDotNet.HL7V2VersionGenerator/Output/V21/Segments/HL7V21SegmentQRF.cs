@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentQRF
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"QRF"; } }
 
@@ -129,8 +129,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field whereSubjectFilter;
+        internal HL7V21Field whereSubjectFilter;
 
 public HL7V21Field WhereSubjectFilter
 {
@@ -784,6 +783,5 @@ public HL7V21Field OtherQrySubjectFilter
         return otherQrySubjectFilter;
     } 
 }
-
     }
 }

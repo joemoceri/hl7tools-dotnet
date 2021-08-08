@@ -4,8 +4,8 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventNMQ_N01
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V231SegmentMSH msh;
+        private readonly HL7V2Message message;
+        private readonly HL7V231SegmentMSH msh;
 
 
         public string Id { get { return @"NMQ_N01"; } }
@@ -21,6 +21,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentUB1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB1"; } }
 
@@ -26,6 +26,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -213,8 +214,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = null,
                             Description = @"This field contains a monetary amount and an associated billing code. The pair in this field can repeat up to eight times to represent/contain UB82 form locators 46A, 47A, 48A, 49A, 46B, 47B, 48B, and 49B. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.1",
                             Type = @"Component",
@@ -229,8 +229,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = @"Value code",
                             Description = @"Specifies the National Uniform Billing Committee (NUBC) code itself.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.1.1",
                             Type = @"SubComponent",
@@ -390,8 +389,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -409,8 +407,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = null,
                             Description = @"Specifies the numeric amount when needed to pair with the value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.10.2.1",
                             Type = @"SubComponent",
@@ -444,10 +441,8 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, MSH-17-country code is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -483,8 +478,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = @"Special Program Indicator",
                             Description = @"This field contains the special program indicator. UB82 Field 44. This field is defined by CMS or other regulatory agencies. Refer to User-defined Table 0348 - Special Program Indicator for suggested values. Refer to a UB specification for additional information",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.12.1",
                             Type = @"Component",
@@ -590,8 +584,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -609,8 +602,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = @"PSRO/UR Approval Indicator",
                             Description = @"This field contains the PSRO/UR approval indicator. UB82 field 87. This field is defined by CMS or other regulatory agencies. Refer to User-defined Table 0349 - PSRO/UR Approval Indicator for suggested values. Refer to a UB specification for additional information.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.13.1",
                             Type = @"Component",
@@ -716,8 +708,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -771,8 +762,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = null,
                             Description = @"The set of values in this field can repeat up to five times.  UB82 Fields 28-32.  This field is defined by CMS or other regulatory agencies. Refer to a UB specification for additional information. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.16.1",
                             Type = @"Component",
@@ -787,8 +777,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = @"Occurrence code",
                             Description = @"The NUBC code for the event or occurrence relating to a bill that may affect payer processing.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.16.1.1",
                             Type = @"SubComponent",
@@ -948,8 +937,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -968,8 +956,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = @"The date the event, relating to a bill that may affect payer processing, occurred.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -987,8 +974,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             TableName = @"Occurrence span",
                             Description = @"UB82 Field 33.  This field is defined by CMS or other regulatory agencies.  Refer to Userdefined Table 0351 - Occurrence Span in Chapter 2 for suggested values",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB1.17.1",
                             Type = @"Component",
@@ -1094,8 +1080,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1214,8 +1199,7 @@ The Uniform Billing segments are specific to the US and may not be implemented i
             this.message = message;
         }
 
-        
-internal HL7V25Field setIDUB1;
+        internal HL7V25Field setIDUB1;
 
 public HL7V25Field SetIDUB1
 {
@@ -4227,6 +4211,5 @@ public HL7V25Field UB82Locator45
         return uB82Locator45;
     } 
 }
-
     }
 }

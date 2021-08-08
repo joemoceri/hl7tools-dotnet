@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentCDM
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"CDM"; } }
 
@@ -26,6 +26,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = @"Transaction code",
                             Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged.  The key field of the entry.  For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes.  Probably the same set of values as used in FT1-7 transaction code in financial messages.  Must match MFE-4-primary key.  Refer to user-defined table 0132 - Transaction code.  See Chapter 7 for discussion of the universal service ID.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.1.1",
                             Type = @"Component",
@@ -158,8 +158,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -177,8 +176,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             TableName = null,
                             Description = @"This field contains an alternative charge code.  For example, points to another charge description master entry in cases where one code supersedes or overrides another code.  Repeating field allows for different codes used by different systems which should be handled as if they were the same; for example, the general ledger code may differ from the billing code.  Or, in a multi-facility environment which does facility-specific pricing, there may be more than one of these master file entries for one charge description, each with a different facility.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.2.1",
                             Type = @"Component",
@@ -284,8 +282,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -359,8 +356,7 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
 
 In the case of “chained” charges where the “lead” charge must be included in the exploded charges, the “lead” charge should be included in the list of exploding charges.  If the price of this parent charge is included in the message, then it overrides the sum of the exploded charges prices",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.6.1",
                             Type = @"Component",
@@ -466,8 +462,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -485,8 +480,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             TableName = null,
                             Description = @"This field contains the procedure code for procedure, if any, associated with this charge description.  Repeating field allows for different procedure coding systems such as CPT4, ASTM, ICD9.  Coded entry made up of code plus coding schema",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.7.1",
                             Type = @"Component",
@@ -592,8 +586,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -629,8 +622,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             TableName = null,
                             Description = @"This optional field contains an identifying stock number, if any, which might be used, for example, as a cross reference for materials management",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.9.1",
                             Type = @"Component",
@@ -736,8 +728,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -773,8 +764,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             TableName = null,
                             Description = @"This field contains any contract number pertaining to this chargeable item.  For example, supplier contract or service contract",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.11.1",
                             Type = @"Component",
@@ -843,8 +833,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.11.4.1",
                             Type = @"SubComponent",
@@ -896,10 +885,8 @@ In the case of “chained” charges where the “lead” charge must be include
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -917,8 +904,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             TableName = null,
                             Description = @"This field contains the organization with whom there is a contractual arrangement for providing the service or material used for this chargeable item",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.12.1",
                             Type = @"Component",
@@ -1023,8 +1009,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             TableName = null,
                             Description = @"The assigning authority is a unique name of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.12.6.1",
                             Type = @"SubComponent",
@@ -1076,8 +1061,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1113,8 +1097,7 @@ In the case of “chained” charges where the “lead” charge must be include
                             TableName = null,
                             Description = @"The assigning facility is a unique identifier of the system that creates the data.  It is an HD data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning authorities are unique across a given HL7 implementation",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.12.8.1",
                             Type = @"SubComponent",
@@ -1166,10 +1149,8 @@ In the case of “chained” charges where the “lead” charge must be include
                             Description = @"The third component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1200,8 +1181,7 @@ N this is any other chargeable item other than room fees ",
             this.message = message;
         }
 
-        
-internal HL7V23Field primaryKeyValue;
+        internal HL7V23Field primaryKeyValue;
 
 public HL7V23Field PrimaryKeyValue
 {
@@ -2907,6 +2887,5 @@ N this is any other chargeable item other than room fees ",
         return roomFeeIndicator;
     } 
 }
-
     }
 }

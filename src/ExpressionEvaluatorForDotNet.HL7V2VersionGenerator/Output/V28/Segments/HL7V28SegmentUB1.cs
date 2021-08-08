@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentUB1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"UB1"; } }
 
@@ -26,6 +26,7 @@ Attention: UB1-2 was deprecated as of v2.3 and the detail was withdrawn and remo
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -458,8 +459,7 @@ Attention: UB1-2 was deprecated as of v2.3 and the detail was withdrawn and remo
             this.message = message;
         }
 
-        
-internal HL7V28Field setIdUb1;
+        internal HL7V28Field setIdUb1;
 
 public HL7V28Field SetIdUb1
 {
@@ -3471,6 +3471,5 @@ public HL7V28Field Ub82Locator45
         return ub82Locator45;
     } 
 }
-
     }
 }

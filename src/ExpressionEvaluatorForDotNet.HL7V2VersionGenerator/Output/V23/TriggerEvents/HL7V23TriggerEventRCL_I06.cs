@@ -4,18 +4,18 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventRCL_I06
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentMSA msa;
-public readonly HL7V23SegmentQRD qrd;
-public readonly HL7V23SegmentQRF qrf;
-public readonly HL7V23SegmentPID pid;
-public readonly HL7V23SegmentDG1 dg1;
-public readonly HL7V23SegmentDRG drg;
-public readonly HL7V23SegmentAL1 al1;
-public readonly HL7V23SegmentNTE nte;
-public readonly HL7V23SegmentDSP dsp;
-public readonly HL7V23SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentMSA msa;
+private readonly HL7V23SegmentQRD qrd;
+private readonly HL7V23SegmentQRF qrf;
+private readonly HL7V23SegmentPID pid;
+private readonly HL7V23SegmentDG1 dg1;
+private readonly HL7V23SegmentDRG drg;
+private readonly HL7V23SegmentAL1 al1;
+private readonly HL7V23SegmentNTE nte;
+private readonly HL7V23SegmentDSP dsp;
+private readonly HL7V23SegmentDSC dsc;
 
 
         public string Id { get { return @"RCL_I06"; } }
@@ -31,6 +31,7 @@ public readonly HL7V23SegmentDSC dsc;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

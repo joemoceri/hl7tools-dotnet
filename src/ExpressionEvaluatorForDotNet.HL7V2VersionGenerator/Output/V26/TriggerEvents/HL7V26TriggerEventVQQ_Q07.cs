@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventVQQ_Q07
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V26SegmentMSH msh;
-public readonly HL7V26SegmentSFT sft;
-public readonly HL7V26SegmentVTQ vtq;
-public readonly HL7V26SegmentRDF rdf;
-public readonly HL7V26SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V26SegmentMSH msh;
+private readonly HL7V26SegmentSFT sft;
+private readonly HL7V26SegmentVTQ vtq;
+private readonly HL7V26SegmentRDF rdf;
+private readonly HL7V26SegmentDSC dsc;
 
 
         public string Id { get { return @"VQQ_Q07"; } }
@@ -25,6 +25,7 @@ public readonly HL7V26SegmentDSC dsc;
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }

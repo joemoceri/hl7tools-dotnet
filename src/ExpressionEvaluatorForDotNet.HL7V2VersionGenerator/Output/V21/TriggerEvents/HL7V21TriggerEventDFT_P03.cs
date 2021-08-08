@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21TriggerEventDFT_P03
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V21SegmentMSH msh;
-public readonly HL7V21SegmentEVN evn;
-public readonly HL7V21SegmentPID pid;
-public readonly HL7V21SegmentPV1 pv1;
-public readonly HL7V21SegmentFT1 ft1;
+        private readonly HL7V2Message message;
+        private readonly HL7V21SegmentMSH msh;
+private readonly HL7V21SegmentEVN evn;
+private readonly HL7V21SegmentPID pid;
+private readonly HL7V21SegmentPV1 pv1;
+private readonly HL7V21SegmentFT1 ft1;
 
 
         public string Id { get { return @"DFT_P03"; } }

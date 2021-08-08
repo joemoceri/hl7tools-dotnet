@@ -4,18 +4,18 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventRQA_I08
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V26SegmentMSH msh;
-public readonly HL7V26SegmentSFT sft;
-public readonly HL7V26SegmentUAC uac;
-public readonly HL7V26SegmentRF1 rf1;
-public readonly HL7V26SegmentPID pid;
-public readonly HL7V26SegmentNK1 nk1;
-public readonly HL7V26SegmentACC acc;
-public readonly HL7V26SegmentDG1 dg1;
-public readonly HL7V26SegmentDRG drg;
-public readonly HL7V26SegmentAL1 al1;
-public readonly HL7V26SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V26SegmentMSH msh;
+private readonly HL7V26SegmentSFT sft;
+private readonly HL7V26SegmentUAC uac;
+private readonly HL7V26SegmentRF1 rf1;
+private readonly HL7V26SegmentPID pid;
+private readonly HL7V26SegmentNK1 nk1;
+private readonly HL7V26SegmentACC acc;
+private readonly HL7V26SegmentDG1 dg1;
+private readonly HL7V26SegmentDRG drg;
+private readonly HL7V26SegmentAL1 al1;
+private readonly HL7V26SegmentNTE nte;
 
 
         public string Id { get { return @"RQA_I08"; } }
@@ -31,6 +31,7 @@ public readonly HL7V26SegmentNTE nte;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

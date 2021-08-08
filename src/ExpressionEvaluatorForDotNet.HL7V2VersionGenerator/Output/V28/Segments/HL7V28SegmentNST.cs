@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentNST
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NST"; } }
 
@@ -26,6 +26,7 @@ Usage Notes: Fields 2-15.  These are all marked optional since the statistics ke
                 return new[]
                     {
                         "CH_14",
+
                     };
             }
         }
@@ -317,8 +318,7 @@ Y - the responding application does keep statistics, fields 4 and 5 are required
             this.message = message;
         }
 
-        
-internal HL7V28Field statisticsAvailable;
+        internal HL7V28Field statisticsAvailable;
 
 public HL7V28Field StatisticsAvailable
 {
@@ -2285,6 +2285,5 @@ public HL7V28Field ApplicationControllevelErrors
         return applicationControllevelErrors;
     } 
 }
-
     }
 }

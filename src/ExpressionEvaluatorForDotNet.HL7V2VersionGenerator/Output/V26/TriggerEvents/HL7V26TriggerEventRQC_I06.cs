@@ -4,16 +4,16 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventRQC_I06
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V26SegmentMSH msh;
-public readonly HL7V26SegmentSFT sft;
-public readonly HL7V26SegmentUAC uac;
-public readonly HL7V26SegmentQRD qrd;
-public readonly HL7V26SegmentQRF qrf;
-public readonly HL7V26SegmentPID pid;
-public readonly HL7V26SegmentNK1 nk1;
-public readonly HL7V26SegmentGT1 gt1;
-public readonly HL7V26SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V26SegmentMSH msh;
+private readonly HL7V26SegmentSFT sft;
+private readonly HL7V26SegmentUAC uac;
+private readonly HL7V26SegmentQRD qrd;
+private readonly HL7V26SegmentQRF qrf;
+private readonly HL7V26SegmentPID pid;
+private readonly HL7V26SegmentNK1 nk1;
+private readonly HL7V26SegmentGT1 gt1;
+private readonly HL7V26SegmentNTE nte;
 
 
         public string Id { get { return @"RQC_I06"; } }
@@ -29,6 +29,7 @@ public readonly HL7V26SegmentNTE nte;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

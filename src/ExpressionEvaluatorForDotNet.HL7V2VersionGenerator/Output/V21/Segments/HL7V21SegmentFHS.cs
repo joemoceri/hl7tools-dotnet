@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentFHS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"FHS"; } }
 
@@ -255,8 +255,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field fileFieldSeparator;
+        internal HL7V21Field fileFieldSeparator;
 
 public HL7V21Field FileFieldSeparator
 {
@@ -1827,6 +1826,5 @@ public HL7V21Field ReferenceFileControlId
         return referenceFileControlId;
     } 
 }
-
     }
 }

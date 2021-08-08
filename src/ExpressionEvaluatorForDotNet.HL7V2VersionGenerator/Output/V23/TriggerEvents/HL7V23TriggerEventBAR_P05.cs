@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventBAR_P05
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentEVN evn;
-public readonly HL7V23SegmentPID pid;
-public readonly HL7V23SegmentPD1 pd1;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentEVN evn;
+private readonly HL7V23SegmentPID pid;
+private readonly HL7V23SegmentPD1 pd1;
 
 
         public string Id { get { return @"BAR_P05"; } }
@@ -24,6 +24,7 @@ public readonly HL7V23SegmentPD1 pd1;
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }

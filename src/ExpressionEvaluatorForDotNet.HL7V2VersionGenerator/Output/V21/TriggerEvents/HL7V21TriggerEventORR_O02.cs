@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21TriggerEventORR_O02
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V21SegmentMSH msh;
-public readonly HL7V21SegmentMSA msa;
-public readonly HL7V21SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V21SegmentMSH msh;
+private readonly HL7V21SegmentMSA msa;
+private readonly HL7V21SegmentNTE nte;
 
 
         public string Id { get { return @"ORR_O02"; } }

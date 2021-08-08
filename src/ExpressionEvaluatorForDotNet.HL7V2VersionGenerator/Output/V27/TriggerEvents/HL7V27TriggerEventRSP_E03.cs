@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventRSP_E03
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V27SegmentMSH msh;
-public readonly HL7V27SegmentSFT sft;
-public readonly HL7V27SegmentUAC uac;
-public readonly HL7V27SegmentMSA msa;
-public readonly HL7V27SegmentERR err;
+        private readonly HL7V2Message message;
+        private readonly HL7V27SegmentMSH msh;
+private readonly HL7V27SegmentSFT sft;
+private readonly HL7V27SegmentUAC uac;
+private readonly HL7V27SegmentMSA msa;
+private readonly HL7V27SegmentERR err;
 
 
         public string Id { get { return @"RSP_E03"; } }
@@ -26,6 +26,7 @@ public readonly HL7V27SegmentERR err;
                     {
                         "CH_05",
 "CH_16",
+
                     };
             }
         }

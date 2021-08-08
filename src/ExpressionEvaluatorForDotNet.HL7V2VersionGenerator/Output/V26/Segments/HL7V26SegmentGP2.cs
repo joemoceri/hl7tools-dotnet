@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentGP2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"GP2"; } }
 
@@ -26,6 +26,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"This field contains the amount charged for the specific individual line item (HCPC/CPT). This field is the same as UB92 Form Locator 56. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.3.1",
                             Type = @"Component",
@@ -103,8 +103,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.3.1.1",
                             Type = @"SubComponent",
@@ -138,8 +137,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -211,8 +209,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"A coded value, data type CWE, defined by the standard table of units for either time or quantity (see for example, the tables in Section 7.1.4, ""Coding schemes""). This describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (i.e., count); it is required if <from value> and <to value> are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.3.5.1",
                             Type = @"SubComponent",
@@ -372,8 +369,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -392,8 +388,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -465,8 +460,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = @"Ambulatory Payment Classification Code",
                             Description = @"This field contains the derived APC code. This is the APC code used for payment, which is the same as the assigned APC, for all situations except partial hospitalization. If partial hospitalization is billed in this visit, the assigned APC will differ from the APC used for payment. Partial hospitalization is the only time an assigned APC differs from the APC used for payment. The payment APC is used for billing and should be displayed in this field. The first component contains the APC identifier. The second component reports the text description for the APC group. Refer to User-defined table 0466 - Ambulatory Payment Classification Code for suggested values. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.7.1",
                             Type = @"Component",
@@ -626,8 +620,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -699,8 +692,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"This field contains the calculated dollar amount that CMS is expected to pay for the line item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.11.1",
                             Type = @"Component",
@@ -715,8 +707,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.11.1.1",
                             Type = @"SubComponent",
@@ -750,8 +741,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -823,8 +813,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"A coded value, data type CWE, defined by the standard table of units for either time or quantity (see for example, the tables in Section 7.1.4, ""Coding schemes""). This describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (i.e., count); it is required if <from value> and <to value> are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.11.5.1",
                             Type = @"SubComponent",
@@ -984,8 +973,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1004,8 +992,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1041,8 +1028,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"This field contains the patient's Co-pay amount for the line item.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.13.1",
                             Type = @"Component",
@@ -1057,8 +1043,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.13.1.1",
                             Type = @"SubComponent",
@@ -1092,8 +1077,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1165,8 +1149,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"A coded value, data type CWE, defined by the standard table of units for either time or quantity (see for example, the tables in Section 7.1.4, ""Coding schemes""). This describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (i.e., count); it is required if <from value> and <to value> are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.13.5.1",
                             Type = @"SubComponent",
@@ -1326,8 +1309,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1346,8 +1328,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1376,8 +1357,7 @@ The GP2 segment is specific to the US and may not be implemented in non-US syste
             this.message = message;
         }
 
-        
-internal HL7V26Field revenueCode;
+        internal HL7V26Field revenueCode;
 
 public HL7V26Field RevenueCode
 {
@@ -3210,6 +3190,5 @@ public HL7V26Field PayRateperServiceUnit
         return payRateperServiceUnit;
     } 
 }
-
     }
 }

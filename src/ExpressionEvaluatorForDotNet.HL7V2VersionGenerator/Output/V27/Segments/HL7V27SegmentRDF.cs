@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentRDF
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RDF"; } }
 
@@ -26,6 +26,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -73,8 +74,7 @@ The segment field name that identifies the field occupying the column.  The segm
 - The 2 or 3 character HL7 data type, as defined in Chapter 2.  Refer to HL7 Table 0440 - Data types for valid values.
 - The maximum width of the column, as dictated by the responding system.  (This may vary from the HL7-defined maximum field length.)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RDF.2.1",
                             Type = @"Component",
@@ -134,8 +134,7 @@ Note: If the “@” is being used as one of the delimiter characters defined in
                             Description = @"The maximum width of the column, as dictated by the responding system. This may vary from the HL7-defined maximum field length.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -146,8 +145,7 @@ Note: If the “@” is being used as one of the delimiter characters defined in
             this.message = message;
         }
 
-        
-internal HL7V27Field numberOfColumnsPerRow;
+        internal HL7V27Field numberOfColumnsPerRow;
 
 public HL7V27Field NumberOfColumnsPerRow
 {
@@ -412,6 +410,5 @@ The segment field name that identifies the field occupying the column.  The segm
         return columnDescription;
     } 
 }
-
     }
 }

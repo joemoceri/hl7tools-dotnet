@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentNTE
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NTE"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -98,8 +99,7 @@ Note:  In the current HL7 version,  this is an FT rather than a TX data type.  S
             this.message = message;
         }
 
-        
-internal HL7V23Field setIDNotesandComments;
+        internal HL7V23Field setIDNotesandComments;
 
 public HL7V23Field SetIDNotesandComments
 {
@@ -493,6 +493,5 @@ Note:  In the current HL7 version,  this is an FT rather than a TX data type.  S
         return comment;
     } 
 }
-
     }
 }

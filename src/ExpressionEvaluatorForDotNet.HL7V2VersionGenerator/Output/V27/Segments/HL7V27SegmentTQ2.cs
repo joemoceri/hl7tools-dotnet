@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentTQ2
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"TQ2"; } }
 
@@ -48,6 +48,7 @@ b) Inheritance of service request status
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -111,8 +112,7 @@ b) Inheritance of service request status
 
 Conditional Rule: At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.3.1",
                             Type = @"Component",
@@ -190,8 +190,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -211,8 +210,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
 
 Conditional Rule: At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.4.1",
                             Type = @"Component",
@@ -290,8 +288,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -311,8 +308,7 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
 
 Conditional Rule: At least one of TQ2-3, TQ2-4, TQ2-5 must contain a value.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.5.1",
                             Type = @"Component",
@@ -390,8 +386,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -449,8 +444,7 @@ Conditional Rule: Should not be populated when TQ2-2 (Sequence/Results Flag) is 
                             TableName = null,
                             Description = @"Defines the interval of time between the start/end of the related service request(s) and the start/end of the current service request. The unit's component is constrained to units of time. If this field is not populated, then there should be no interruption between start/ending the current service request, and the related service request(s).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.8.1",
                             Type = @"Component",
@@ -483,8 +477,7 @@ Conditional Rule: Should not be populated when TQ2-2 (Sequence/Results Flag) is 
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed.  As of v2.7 the externally-defined Unified Code for Units of Measure (UCUM) case sensitive code is the required code for units of measure. Refer to the external table ""Unified Code for Units of Measure"" (UCUM) [http://aurora.rg.iupui.edu/UCUM] for valid values. Local codes may be transmitted in addition to UCUM codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.8.2.1",
                             Type = @"SubComponent",
@@ -910,10 +903,8 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -966,8 +957,7 @@ Conditional Rule: Either this field or TQ2-6 must be present.",
             this.message = message;
         }
 
-        
-internal HL7V27Field setIdTq2;
+        internal HL7V27Field setIdTq2;
 
 public HL7V27Field SetIdTq2
 {
@@ -2292,6 +2282,5 @@ Conditional Rule: Either this field or TQ2-6 must be present.",
         return specialServiceRequestRelationship;
     } 
 }
-
     }
 }

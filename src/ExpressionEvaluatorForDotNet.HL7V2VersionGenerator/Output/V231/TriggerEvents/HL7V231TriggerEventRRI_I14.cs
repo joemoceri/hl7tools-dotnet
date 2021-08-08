@@ -4,16 +4,16 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventRRI_I14
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V231SegmentMSH msh;
-public readonly HL7V231SegmentMSA msa;
-public readonly HL7V231SegmentRF1 rf1;
-public readonly HL7V231SegmentPID pid;
-public readonly HL7V231SegmentACC acc;
-public readonly HL7V231SegmentDG1 dg1;
-public readonly HL7V231SegmentDRG drg;
-public readonly HL7V231SegmentAL1 al1;
-public readonly HL7V231SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V231SegmentMSH msh;
+private readonly HL7V231SegmentMSA msa;
+private readonly HL7V231SegmentRF1 rf1;
+private readonly HL7V231SegmentPID pid;
+private readonly HL7V231SegmentACC acc;
+private readonly HL7V231SegmentDG1 dg1;
+private readonly HL7V231SegmentDRG drg;
+private readonly HL7V231SegmentAL1 al1;
+private readonly HL7V231SegmentNTE nte;
 
 
         public string Id { get { return @"RRI_I14"; } }
@@ -29,6 +29,7 @@ public readonly HL7V231SegmentNTE nte;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentMSA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MSA"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -201,8 +202,7 @@ See MSA-7 above for Use Case.",
             this.message = message;
         }
 
-        
-internal HL7V28Field acknowledgmentCode;
+        internal HL7V28Field acknowledgmentCode;
 
 public HL7V28Field AcknowledgmentCode
 {
@@ -1264,6 +1264,5 @@ See MSA-7 above for Use Case.",
         return messageWaitingPriority;
     } 
 }
-
     }
 }

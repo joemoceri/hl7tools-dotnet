@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentOM5
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM5"; } }
 
@@ -26,6 +26,7 @@ This segment contains the information about batteries and supersets (a nature co
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ This segment contains the information about batteries and supersets (a nature co
                             TableName = null,
                             Description = @"This field contains the codes and names of all tests/observations included within a single battery (nature code P, as described in OM1-18 - Nature of Service/Test/Observation ), a single functional procedure (nature code F), or a given superset (nature code S). When a segment includes a list of component elements, the sending system should be sure that the segments defining all of the components are sent before the segment that references them. An entry in this list can itself be a battery.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM5.2.1",
                             Type = @"Component",
@@ -230,8 +230,7 @@ This segment contains the information about batteries and supersets (a nature co
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -260,8 +259,7 @@ This segment contains the information about batteries and supersets (a nature co
             this.message = message;
         }
 
-        
-internal HL7V26Field sequenceNumberTestObservationMasterFile;
+        internal HL7V26Field sequenceNumberTestObservationMasterFile;
 
 public HL7V26Field SequenceNumberTestObservationMasterFile
 {
@@ -653,6 +651,5 @@ public HL7V26Field ObservationIDSuffixes
         return observationIDSuffixes;
     } 
 }
-
     }
 }

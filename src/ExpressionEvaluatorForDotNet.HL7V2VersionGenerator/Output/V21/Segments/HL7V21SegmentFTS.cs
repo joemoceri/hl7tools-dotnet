@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentFTS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"FTS"; } }
 
@@ -75,8 +75,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field fileBatchCount;
+        internal HL7V21Field fileBatchCount;
 
 public HL7V21Field FileBatchCount
 {
@@ -337,6 +336,5 @@ public HL7V21Field FileTrailerComment
         return fileTrailerComment;
     } 
 }
-
     }
 }

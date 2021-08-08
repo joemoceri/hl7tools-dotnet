@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentSPR
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SPR"; } }
 
@@ -26,6 +26,7 @@ The SPR segment is used to issue queries using stored procedure calls.  Refer to
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ The SPR segment is used to issue queries using stored procedure calls.  Refer to
                             TableName = null,
                             Description = @"This field contains the name of the stored procedure that is to be executed.  Values for this field are defined in the function-specific chapters of this specification; site-specific stored procedure names begin with the letter “Z.” ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPR.3.1",
                             Type = @"Component",
@@ -194,8 +194,7 @@ The SPR segment is used to issue queries using stored procedure calls.  Refer to
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -213,8 +212,7 @@ The SPR segment is used to issue queries using stored procedure calls.  Refer to
                             TableName = null,
                             Description = @"This field contains the list of parameter names and values to be passed to the stored procedure, in the form “<segment field name> ^ <value1& value2 & value3 ...>.”  A single valued parameter contains only a single subcomponent in the second component: thus no subcomponent delimiters are needed (e.g., <segment field name> ^ <value>).  A simple list of values (i.e., a one-dimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: “<segment field name> ^ <value1& value2 &...>.”",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPR.4.1",
                             Type = @"Component",
@@ -248,8 +246,7 @@ The SPR segment is used to issue queries using stored procedure calls.  Refer to
                             Description = @"This component contains the field value or values in the form ""value1& value2 & value3""",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -260,8 +257,7 @@ The SPR segment is used to issue queries using stored procedure calls.  Refer to
             this.message = message;
         }
 
-        
-internal HL7V251Field queryTag;
+        internal HL7V251Field queryTag;
 
 public HL7V251Field QueryTag
 {
@@ -784,6 +780,5 @@ public HL7V251Field InputParameterList
         return inputParameterList;
     } 
 }
-
     }
 }

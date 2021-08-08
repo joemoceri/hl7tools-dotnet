@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentMSH
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MSH"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Note:By site agreement, implementers may continue to use User-defined Table 0300 – Namespace ID for the first component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.3.1",
                             Type = @"Component",
@@ -140,8 +140,7 @@ Note:By site agreement, implementers may continue to use User-defined Table 0300
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -161,8 +160,7 @@ Note:By site agreement, implementers may continue to use User-defined Table 0300
 
 Note:By site agreement, implementers may continue to use User-defined Table 0300 – Namespace ID for the first component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.4.1",
                             Type = @"Component",
@@ -214,8 +212,7 @@ Note:By site agreement, implementers may continue to use User-defined Table 0300
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -235,8 +232,7 @@ Note:By site agreement, implementers may continue to use User-defined Table 0300
 
 Note:By site agreement, implementers may continue to use User-defined Table 0300 – Namespace ID for the first component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.5.1",
                             Type = @"Component",
@@ -288,8 +284,7 @@ Note:By site agreement, implementers may continue to use User-defined Table 0300
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -309,8 +304,7 @@ Note:By site agreement, implementers may continue to use User-defined Table 0300
 
 Note:By site agreement, implementers may continue to use User-defined Table 0300 – Namespace ID for the first component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.6.1",
                             Type = @"Component",
@@ -362,8 +356,7 @@ Note:By site agreement, implementers may continue to use User-defined Table 0300
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -425,8 +418,7 @@ Refer to HL7 Table 0354 - Message structure for valid values for the message str
 
 The receiving system uses this field to recognize the data segments, and possibly, the application to which to route this message. For certain queries, which may have more than a single response event type, the second component may, in the response message, vary to indicate the response event type. See the discussion of the display query variants in chapter 5.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.9.1",
                             Type = @"Component",
@@ -478,8 +470,7 @@ The receiving system uses this field to recognize the data segments, and possibl
                             Description = @"Specifies the abstract message structure code. Refer to HL7 Table 0354 - Message Structure in section 2.17.3 for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -515,8 +506,7 @@ The receiving system uses this field to recognize the data segments, and possibl
                             TableName = null,
                             Description = @"This field is used to decide whether to process the message as defined in HL7 Application (level 7) Processing rules.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.11.1",
                             Type = @"Component",
@@ -550,8 +540,7 @@ The receiving system uses this field to recognize the data segments, and possibl
                             Description = @"A value that defines whether the message is part of an archival process or an initial load. Refer to HL7 Table 0207 - Processing mode for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -569,8 +558,7 @@ The receiving system uses this field to recognize the data segments, and possibl
                             TableName = null,
                             Description = @"This field is matched by the receiving system to its own version to be sure the message will be interpreted correctly. Beginning with Version 2.3.1, it has two additional ""internationalization"" components, for use by HL7 international affiliates. The <internationalization code> is CE data type (using the ISO country codes where appropriate) which represents the HL7 affiliate. The <internal version ID> is used if the HL7 Affiliate has more than a single 'local' version associated with a single US version. The <international version ID> has a CE data type, since the table values vary for each HL7 Affiliate.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.12.1",
                             Type = @"Component",
@@ -603,8 +591,7 @@ The receiving system uses this field to recognize the data segments, and possibl
                             TableName = @"Advanced Beneficiary Notice Code",
                             Description = @"Used to identify the international affiliate country code. The values to be used are those of ISO 3166 -1:1977. The ISO 3166 table has three separate forms of the country code: HL7 specifies that the 3-character (alphabetic) form be used for the country code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.12.2.1",
                             Type = @"SubComponent",
@@ -764,8 +751,7 @@ The receiving system uses this field to recognize the data segments, and possibl
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -783,8 +769,7 @@ The receiving system uses this field to recognize the data segments, and possibl
                             TableName = null,
                             Description = @"This field component identifies international affiliates version; it is especially important when the international affiliate has more than a single local version associated with a single US version.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.12.3.1",
                             Type = @"SubComponent",
@@ -944,10 +929,8 @@ The receiving system uses this field to recognize the data segments, and possibl
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1081,8 +1064,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = null,
                             Description = @"This field contains the principal language of the message. Codes come from ISO 639.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.19.1",
                             Type = @"Component",
@@ -1242,8 +1224,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1279,8 +1260,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = null,
                             Description = @"Sites may use this field to assert adherence to, or reference, a message profile. Message profiles contain detailed explanations of grammar, syntax, and usage for a particular message or set of messages. See section 2B, ""Conformance Using Message Profiles"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.21.1",
                             Type = @"Component",
@@ -1350,8 +1330,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1369,8 +1348,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = null,
                             Description = @"Business organization that originated and is accountable for the content of the message.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.22.1",
                             Type = @"Component",
@@ -1475,8 +1453,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency or department) that creates the data. Assigning authorities are unique across a given HL7 implementation. Refer to User-defined Table 0363 - Assigning Authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.22.6.1",
                             Type = @"SubComponent",
@@ -1528,8 +1505,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1565,8 +1541,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.22.8.1",
                             Type = @"SubComponent",
@@ -1618,8 +1593,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1656,8 +1630,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1675,8 +1648,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = null,
                             Description = @"Business organization that is the intended receiver of the message and is accountable for acting on the data conveyed by the transaction.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.23.1",
                             Type = @"Component",
@@ -1781,8 +1753,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = @"Assigning authority",
                             Description = @"The assigning authority is a unique identifier of the system (or organization or agency or department) that creates the data. Assigning authorities are unique across a given HL7 implementation. Refer to User-defined Table 0363 - Assigning Authority for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.23.6.1",
                             Type = @"SubComponent",
@@ -1834,8 +1805,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1871,8 +1841,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = null,
                             Description = @"The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.23.8.1",
                             Type = @"SubComponent",
@@ -1924,8 +1893,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1962,8 +1930,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1981,8 +1948,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = null,
                             Description = @"Identifier of the network location the message was transmitted from. Identified by an OID or text string (e.g., URI). The reader is referred to the ""Report from the Joint W3C/IETF URI Planning Interest Group: Uniform Resource Identifiers (URIs), URLs, and Uniform Resource Names (URNs): Clarifications and Recommendations"".[6]",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.24.1",
                             Type = @"Component",
@@ -2034,8 +2000,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2053,8 +2018,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             TableName = null,
                             Description = @"Identifier of the network location the message was transmitted to. Identified by an OID or text string (e.g., URL).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.25.1",
                             Type = @"Component",
@@ -2106,8 +2070,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -2118,8 +2081,7 @@ Refer to External Table 0399 - Country Code for the 3-character codes as defined
             this.message = message;
         }
 
-        
-internal HL7V26Field fieldSeparator;
+        internal HL7V26Field fieldSeparator;
 
 public HL7V26Field FieldSeparator
 {
@@ -5417,6 +5379,5 @@ public HL7V26Field ReceivingNetworkAddress
         return receivingNetworkAddress;
     } 
 }
-
     }
 }

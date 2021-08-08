@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventRPL_I02
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V271SegmentMSH msh;
-public readonly HL7V271SegmentSFT sft;
-public readonly HL7V271SegmentUAC uac;
-public readonly HL7V271SegmentMSA msa;
-public readonly HL7V271SegmentNTE nte;
-public readonly HL7V271SegmentDSP dsp;
-public readonly HL7V271SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V271SegmentMSH msh;
+private readonly HL7V271SegmentSFT sft;
+private readonly HL7V271SegmentUAC uac;
+private readonly HL7V271SegmentMSA msa;
+private readonly HL7V271SegmentNTE nte;
+private readonly HL7V271SegmentDSP dsp;
+private readonly HL7V271SegmentDSC dsc;
 
 
         public string Id { get { return @"RPL_I02"; } }
@@ -27,6 +27,7 @@ public readonly HL7V271SegmentDSC dsc;
                 return new[]
                     {
                         "CH_11",
+
                     };
             }
         }

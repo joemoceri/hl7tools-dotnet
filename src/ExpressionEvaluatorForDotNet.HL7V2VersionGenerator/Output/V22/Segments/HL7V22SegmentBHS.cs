@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentBHS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"BHS"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -157,8 +158,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"has the same definition as the corresponding field in the MSH segment",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"BHS.7.1",
                             Type = @"Component",
@@ -192,8 +192,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -294,8 +293,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V22Field batchFieldSeparator;
+        internal HL7V22Field batchFieldSeparator;
 
 public HL7V22Field BatchFieldSeparator
 {
@@ -1866,6 +1864,5 @@ public HL7V22Field ReferenceBatchControlId
         return referenceBatchControlId;
     } 
 }
-
     }
 }

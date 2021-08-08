@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25SegmentVTQ
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"VTQ"; } }
 
@@ -26,6 +26,7 @@ The VTQ segment is used to define queries that are responded to with the Tabular
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ The VTQ segment is used to define queries that are responded to with the Tabular
                             TableName = null,
                             Description = @"This field contains the name of the Virtual Table query.  These names are assigned by the function-specific chapters of this specification.  Site-specific VT query names begin with the letter “Z.”",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.3.1",
                             Type = @"Component",
@@ -194,8 +194,7 @@ The VTQ segment is used to define queries that are responded to with the Tabular
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -213,8 +212,7 @@ The VTQ segment is used to define queries that are responded to with the Tabular
                             TableName = null,
                             Description = @"This field contains the name of the Virtual Table being referenced.  This table name may refer to an HL7-defined segment, an HL7 Virtual Table (refer to the functional chapters), or a site-specific “Z table.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.4.1",
                             Type = @"Component",
@@ -320,8 +318,7 @@ The VTQ segment is used to define queries that are responded to with the Tabular
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -349,8 +346,7 @@ This field indicates the conditions that qualify the rows to be returned in the 
 
 If more than one comparison is to be made to select qualifying rows, a conjunction (defined by HL7 Table 0210 - Relational conjunction) relating this repetition of the field to the next: ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VTQ.5.1",
                             Type = @"Component",
@@ -420,8 +416,7 @@ If more than one comparison is to be made to select qualifying rows, a conjuncti
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -432,8 +427,7 @@ If more than one comparison is to be made to select qualifying rows, a conjuncti
             this.message = message;
         }
 
-        
-internal HL7V25Field queryTag;
+        internal HL7V25Field queryTag;
 
 public HL7V25Field QueryTag
 {
@@ -1097,6 +1091,5 @@ If more than one comparison is to be made to select qualifying rows, a conjuncti
         return selectionCriteria;
     } 
 }
-
     }
 }

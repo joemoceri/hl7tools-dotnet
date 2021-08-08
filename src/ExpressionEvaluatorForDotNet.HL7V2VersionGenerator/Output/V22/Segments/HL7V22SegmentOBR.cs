@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentOBR
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OBR"; } }
 
@@ -31,6 +31,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                     {
                         "CH_04",
 "CH_07",
+
                     };
             }
         }
@@ -74,8 +75,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"identical to ORC-2-placer order number",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.2.1",
                             Type = @"Component",
@@ -109,8 +109,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"The second component contains the application ID of the placing application.  The application ID is a string of up to six (6) characters that will be uniquely associated with an application.  A given institution or group of intercommunicating institutions should establish a unique list of applications that may be potential placers and fillers and assign unique application ID's.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -128,8 +127,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"a permanent identifier for an order and its associated observations. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.3.1",
                             Type = @"Component",
@@ -163,8 +161,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"The second component contains the filler application ID.  The filler application ID is a string of up to six characters that uniquely defines the application from other applications on the network.  The second component of the filler order number always identifies the actual filler of an order. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -182,8 +179,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"Identifier code for the requested observation/test/battery.  This can be based on local and/or ""universal"" codes.  We recommend the ""universal"" procedure identifier.  The structure of this CE data type is described in the control section",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.4.1",
                             Type = @"Component",
@@ -289,8 +285,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -326,8 +321,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"Not used.  Previously requested date/time.  That information is now carried in the 4th component of the OBR-27-quantity/timin",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.6.1",
                             Type = @"Component",
@@ -361,8 +355,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -380,8 +373,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"clinically relevant date/time of the observation.  In the case of observations taken directly from a subject, it is the actual date and time the observation was obtained.  In the case of a specimen-associated study, this field shall represent the date and time the specimen was collected or obtained.  (This is a resultsonly field except when the placer or a third-party has already drawn the specimen.) ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.7.1",
                             Type = @"Component",
@@ -415,8 +407,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -434,8 +425,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"end date and time of a study or timed specimen collection.  If an observation takes place over a substantial period of time, it will indicate when the observation period ended.  For observations made at a point in time, it will be null.  This is a results field except when the placer or a party other than the filler has already drawn the specimen",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.8.1",
                             Type = @"Component",
@@ -469,8 +459,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -488,8 +477,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"for laboratory tests, the volume of a specimen.  The default unit is ML.  Specifically, units should be expressed in the ISO Standard unit abbreviations (ISO-2955,1977).  This is a results-only field except when the placer or a party has already drawn the specimen.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.9.1",
                             Type = @"Component",
@@ -523,8 +511,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"The units in which the quantity is expressed.  Field-by-field, default units may be defined within the specifications.  When the observation is measured in the default units, the units need not be transmitted.  If the measure is recorded in units different from the default, the measurement units must be transmitted as the second component.  If the units are ISO+ units, then units should be recorded as lowercase abbreviations as specified in Chapter 7.  If the units are ANSI or local, the units and the source table must be recorded as specified in Chapter 7.  But in these cases the component separator should be replaced by the subcomponent delimiter ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -542,8 +529,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"when a specimen is required for the study, this field will identify the person, department, or facility that collected the specimen.  Either name or ID code, or both, may be present",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.10.1",
                             Type = @"Component",
@@ -685,8 +671,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -722,8 +707,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"code and/or text indicating any known or suspected patient or specimen hazards, e.g., patient with active tuberculosis or blood from a hepatitis patient.  Either code and/or text may be absent.  However, the code is always placed in the first component position and any free text in the second component.  Thus, free text without a code must be preceded by a component delimiter",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.12.1",
                             Type = @"Component",
@@ -829,8 +813,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -866,8 +849,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"for observations requiring a specimen, the actual login time at the diagnostic service",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.14.1",
                             Type = @"Component",
@@ -901,8 +883,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -920,8 +901,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"site where the specimen should be obtained or where the service should be performed",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.15.1",
                             Type = @"Component",
@@ -936,8 +916,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"The first component contains the specimen source name or code (as a CE data type component).  (Even in the case of observations whose name implies the source, a source may be required, e.g., blood culture-heart blood.) ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.15.1.1",
                             Type = @"SubComponent",
@@ -1043,8 +1022,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1098,8 +1076,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = @"SOURCE OF SPECIMEN",
                             Description = @"The fourth component specifies the body site from which the specimen was obtained, and the fifth is the site modifier.  For example, the site could be anticubital foss, and the site modifier ""right.""   The components of the CE data elements become subcomponents.  Refer to table 0070 - source of specimen for valid entries",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.15.4.1",
                             Type = @"SubComponent",
@@ -1205,8 +1182,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1224,8 +1200,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.15.5.1",
                             Type = @"SubComponent",
@@ -1331,10 +1306,8 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1352,8 +1325,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"Identification of the provider who ordered the test.  Either the ID code or the name, or both, may be present.  This is the same as ORC-12-ordering provider",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.16.1",
                             Type = @"Component",
@@ -1495,8 +1467,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1604,8 +1575,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"date/time results reported or status changed.  This field is used to indicate the date and time that the results are composed into a report and released, or that a status, as defined in Order Status, is entered or changed.  (This is a results field only.)  When other applications (such as office or clinical database applications) query the laboratory application for untransmitted results, the information in this field may be used to control processing on the communications link.  Usually, the ordering service would want only those results for which the reporting date/time is greater than the date/time the inquiring application last received results.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.22.1",
                             Type = @"Component",
@@ -1639,8 +1609,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1658,8 +1627,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"charge to the ordering entity for the studies performed when applicable.  The first component is a dollar amount when known by the Filler.  The second is a charge code when known by the filler (results only). ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.23.1",
                             Type = @"Component",
@@ -1693,8 +1661,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1748,8 +1715,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.26.1",
                             Type = @"Component",
@@ -1800,8 +1766,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.26.3.1",
                             Type = @"SubComponent",
@@ -1907,10 +1872,8 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1928,8 +1891,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"information about how many services to perform at one service time and how often the service times are repeated, and to fix duration of the request",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.27.1",
                             Type = @"Component",
@@ -1944,8 +1906,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"quantity of the service that should be provided at each service interval.  E.g, if two blood cultures to be obtained every 4 hours, the quantity would be 2.  If three units of blood are to be typed and cross-matched, the quantity would be 3.  The default value is 1.  When units are required, they can be added, specified by a subcomponent delimiter",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.27.1.1",
                             Type = @"SubComponent",
@@ -1979,8 +1940,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"The units in which the quantity is expressed.  Field-by-field, default units may be defined within the specifications.  When the observation is measured in the default units, the units need not be transmitted.  If the measure is recorded in units different from the default, the measurement units must be transmitted as the second component.  If the units are ISO+ units, then units should be recorded as lowercase abbreviations as specified in Chapter 7.  If the units are ANSI or local, the units and the source table must be recorded as specified in Chapter 7.  But in these cases the component separator should be replaced by the subcomponent delimiter ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1998,8 +1958,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"determines the interval between repeated services.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.27.2.1",
                             Type = @"SubComponent",
@@ -2033,8 +1992,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = @"explicitly lists the actual times referenced by the code in the first subcomponent, in the following format: HHMM,HHMM,HHMM,...  This second subcomponent will be used to clarify the first subcomponent in cases where the actual administration times vary within an institution.  If the time of the order spans more than a single day, this new subcomponent is only practical if the same times of administration occur for each day of the order.  If the actual start time of the order (as given by the fourth subcomponent of the quantity/timing field) is after the first explicit time, the first administration is taken to be the first explicit time after the start time.  In the case where the patient moves to a location having a different set of explicit times, the existing order may be updated with a new quantity/timing field showing the changed explicit times",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2070,8 +2028,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"May be specified by the orderer, in which case it indicates the earliest date/time at which the services should be started.  In many cases, however, the start date time will be implied or will be defined by other fields in the order record (e.g., urgency - STAT).  In such a case, this field will be empty",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.27.4.1",
                             Type = @"SubComponent",
@@ -2105,8 +2062,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2124,8 +2080,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             TableName = null,
                             Description = @"when filled in by the requester of the service, this field should be the latest date-time that the service should be performed.  If it has not been performed by the specified time, it should not be performed at all.  The requester may not always fill in this value, yet the filling service may fill it in on the basis of the instruction it receives and the actual start time.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.27.5.1",
                             Type = @"SubComponent",
@@ -2159,8 +2114,7 @@ OBR-7-observation date/time and OBR-8-observation end date/time are the physiolo
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2254,8 +2208,7 @@ C =  This is an actuation time ",
                             TableName = null,
                             Description = @"there are many situations, such as the creation of an order for a group of intervenous (IV) solutions, where the sequence of the individual intervenous solutions (each an order in itself) needs to be specified.  There are other situations, where part of the order's instructions contains a results condition of some type, such as ""PRN pain.""  There is currently a free text ""condition"" component of ORC-4-quantity/timing which allows any condition to be specified.  However, to support a fully encoded version of order sequencing, or results condition, we have defined in the following paragraphs a 10th component of ORC-4quantity/timing",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.27.10.1",
                             Type = @"SubComponent",
@@ -2387,10 +2340,8 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"The maximum number of repeats to be used only on cyclic groups.  The total number of repeats is constrained by the end date/time of the last repeat or the end date/time of the parent, whichever is first.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2408,8 +2359,7 @@ The time specifies the interval between the predecessor and successor starts or 
                             TableName = null,
                             Description = @"people who are to receive copies of the results.  By local convention, either the ID number or the name may be absent",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.28.1",
                             Type = @"Component",
@@ -2551,8 +2501,7 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2572,8 +2521,7 @@ The time specifies the interval between the predecessor and successor starts or 
 
 Parent is a two-component field.  The first component contains the parent's placer order number.  The second component is optional and contains the parent's filler order number.  The components of the placer order number and the filler order number are transmitted in subcomponents of the two components of this field",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.29.1",
                             Type = @"Component",
@@ -2607,8 +2555,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = @"The second component contains the filler order number of the parent order.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2644,8 +2591,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = @"code or text using the conventions for coded fields given in the Control/Query Chapter (Chapter 2).  This is required for some studies to obtain proper reimbursement",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.31.1",
                             Type = @"Component",
@@ -2751,8 +2697,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2770,8 +2715,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = @"identity of the physician or other clinician who interpreted the observation and is responsible for the report content",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.32.1",
                             Type = @"Component",
@@ -2786,8 +2730,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.32.1.1",
                             Type = @"SubComponent",
@@ -2929,8 +2872,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2948,8 +2890,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.32.2.1",
                             Type = @"SubComponent",
@@ -2983,8 +2924,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3002,8 +2942,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.32.3.1",
                             Type = @"SubComponent",
@@ -3037,8 +2976,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3056,8 +2994,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.32.4.1",
                             Type = @"SubComponent",
@@ -3145,10 +3082,8 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3166,8 +3101,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = @"clinical observer who assisted with the interpretation of this study",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.33.1",
                             Type = @"Component",
@@ -3182,8 +3116,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.33.1.1",
                             Type = @"SubComponent",
@@ -3325,8 +3258,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3344,8 +3276,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.33.2.1",
                             Type = @"SubComponent",
@@ -3379,8 +3310,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3398,8 +3328,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.33.3.1",
                             Type = @"SubComponent",
@@ -3433,8 +3362,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3452,8 +3380,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.33.4.1",
                             Type = @"SubComponent",
@@ -3541,10 +3468,8 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3562,8 +3487,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = @"performing technician",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.34.1",
                             Type = @"Component",
@@ -3578,8 +3502,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.34.1.1",
                             Type = @"SubComponent",
@@ -3721,8 +3644,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3740,8 +3662,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.34.2.1",
                             Type = @"SubComponent",
@@ -3775,8 +3696,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3794,8 +3714,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.34.3.1",
                             Type = @"SubComponent",
@@ -3829,8 +3748,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3848,8 +3766,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.34.4.1",
                             Type = @"SubComponent",
@@ -3937,10 +3854,8 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3958,8 +3873,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = @"report transcriber",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.35.1",
                             Type = @"Component",
@@ -3974,8 +3888,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.35.1.1",
                             Type = @"SubComponent",
@@ -4117,8 +4030,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4136,8 +4048,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.35.2.1",
                             Type = @"SubComponent",
@@ -4171,8 +4082,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4190,8 +4100,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.35.3.1",
                             Type = @"SubComponent",
@@ -4225,8 +4134,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4244,8 +4152,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.35.4.1",
                             Type = @"SubComponent",
@@ -4333,10 +4240,8 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4354,8 +4259,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             TableName = null,
                             Description = @"date/time the filler scheduled an observation, when applicable (e.g., action code in OBR-11-specimen action code  = ""S"").  This is a result of a request to schedule a particular test and provides a way to inform the Placer of the date/time a study is scheduled (result only).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBR.36.1",
                             Type = @"Component",
@@ -4389,8 +4293,7 @@ Parent is a two-component field.  The first component contains the parent's plac
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -4401,8 +4304,7 @@ Parent is a two-component field.  The first component contains the parent's plac
             this.message = message;
         }
 
-        
-internal HL7V22Field setIdObservationRequest;
+        internal HL7V22Field setIdObservationRequest;
 
 public HL7V22Field SetIdObservationRequest
 {
@@ -9119,6 +9021,5 @@ public HL7V22Field ScheduledDateTime+
         return scheduledDateTime+;
     } 
 }
-
     }
 }

@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentODS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ODS"; } }
 
@@ -27,6 +27,7 @@ Example:
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -80,8 +81,7 @@ service 6 is bedtime snack
 
 Ex: |1~5| means service 1 and service 5, whatever these are locally defined to be.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ODS.2.1",
                             Type = @"Component",
@@ -509,8 +509,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -533,8 +532,7 @@ Example:
 
 In the case where this segment requests a diet supplement, i.e., ODS-1-type = S, this attribute specifies a particular item or class of items. If institutional codes for patient food preferences (P) have been codified, they are also expressed as coded segments; otherwise, the information is passed as a text string in the fourth component of the ODS segment, described below.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ODS.3.1",
                             Type = @"Component",
@@ -962,8 +960,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -992,8 +989,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field type;
+        internal HL7V28Field type;
 
 public HL7V28Field Type
 {
@@ -1531,6 +1527,5 @@ public HL7V28Field TextInstruction
         return textInstruction;
     } 
 }
-
     }
 }

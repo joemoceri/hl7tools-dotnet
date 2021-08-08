@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventACK
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V231SegmentMSH msh;
-public readonly HL7V231SegmentMSA msa;
-public readonly HL7V231SegmentERR err;
+        private readonly HL7V2Message message;
+        private readonly HL7V231SegmentMSH msh;
+private readonly HL7V231SegmentMSA msa;
+private readonly HL7V231SegmentERR err;
 
 
         public string Id { get { return @"ACK"; } }
@@ -23,6 +23,7 @@ public readonly HL7V231SegmentERR err;
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }

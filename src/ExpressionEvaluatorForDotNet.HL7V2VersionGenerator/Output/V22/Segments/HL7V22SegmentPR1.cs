@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentPR1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PR1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -121,8 +122,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"date/time the procedure was performed",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.5.1",
                             Type = @"Component",
@@ -156,8 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -211,8 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"PHYSICIAN ID",
                             Description = @"Anesthesiologist who administered the anesthesia.  It is recommended that PR1-12-procedure MD be used instead of this field.  This field remains only for backward compatibility.  Refer to user-defined table 0010 - physician ID. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.8.1",
                             Type = @"Component",
@@ -354,8 +352,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -409,8 +406,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"PHYSICIAN ID",
                             Description = @"surgeon who performed the procedure. It is recommended that PR1-12-procedure MD be used instead of this field.  This field remains only for backward compatibility.  Refer to user-defined table 0010 - physician ID",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.11.1",
                             Type = @"Component",
@@ -552,8 +548,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -571,8 +566,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"PHYSICIAN ID",
                             Description = @"different types of practitioners associated with this procedure.  The ID and name components follow the standard rules defined for a composite name (CN) field.  If the procedure type component is unvalued, it is assumed that the physician identified is a resident.  Refer to user-defined table 0010 - physician ID.  Refer to user-defined table 0133 - procedure practitioner type for suggested entries. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.12.1",
                             Type = @"Component",
@@ -587,8 +581,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.12.1.1",
                             Type = @"SubComponent",
@@ -730,8 +723,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -750,8 +742,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -798,8 +789,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V22Field setIdProcedure;
+        internal HL7V22Field setIdProcedure;
 
 public HL7V22Field SetIdProcedure
 {
@@ -2632,6 +2622,5 @@ public HL7V22Field ProcedurePriority
         return procedurePriority;
     } 
 }
-
     }
 }

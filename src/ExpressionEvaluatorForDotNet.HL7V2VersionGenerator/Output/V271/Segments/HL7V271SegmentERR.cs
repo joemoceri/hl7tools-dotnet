@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentERR
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ERR"; } }
 
@@ -47,6 +47,7 @@ Support for multiple Error Locations: Two fields are marked as conditional, with
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -90,8 +91,7 @@ Support for multiple Error Locations: Two fields are marked as conditional, with
                             TableName = null,
                             Description = @"Identifies the location in a message related to the identified error, warning or message. If multiple repetitions are present, the error results from the values in a combination of places.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.2.1",
                             Type = @"Component",
@@ -197,8 +197,7 @@ Support for multiple Error Locations: Two fields are marked as conditional, with
                             Description = @"Identifies the number of the sub-component within the component. The first sub-component is assigned a number of 1. Sub-component number should not be specified when referring to the entire component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -216,8 +215,7 @@ Support for multiple Error Locations: Two fields are marked as conditional, with
                             TableName = @"Message Error Condition Codes",
                             Description = @"Identifies the HL7 (communications) error code. Refer to HL7 Table 0357 – Message Error Condition Codes for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.3.1",
                             Type = @"Component",
@@ -643,8 +641,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -686,8 +683,7 @@ Example of Information: When submitting a claim, a payor might indicate remainin
 
 If the message associated with the code has parameters, it is recommended that the message be indicated in the format of the java.text.MessageFormat approach.2 This style provides information on the parameter type to allow numbers, dates and times to be formatted appropriately for the language.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.5.1",
                             Type = @"Component",
@@ -1113,8 +1109,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1192,8 +1187,7 @@ This differs from the actual error code and may provide more diagnostic informat
                             TableName = @"Inform Person Code",
                             Description = @"A code to indicate who (if anyone) should be informed of the error. This field may also be used to indicate that a particular person should NOT be informed of the error (e.g., Do not inform patient). Refer to User-defined table 0517- Inform Person Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.9.1",
                             Type = @"Component",
@@ -1619,8 +1613,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1638,8 +1631,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Override Type",
                             Description = @"Identifies what type of override can be used to override the specific error identified. Refer to User-defined Table 0518 - Override Type for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.10.1",
                             Type = @"Component",
@@ -2065,8 +2057,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2084,8 +2075,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Override Reason",
                             Description = @"Provides a list of potential override codes that can be used to override enforcement of the application rule that generated the error. Refer to User-defined table 0519 – Override Reason for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.11.1",
                             Type = @"Component",
@@ -2511,8 +2501,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2530,8 +2519,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"Lists phone, e-mail, fax, and other relevant numbers for helpdesk support related to the specified error.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.12.1",
                             Type = @"Component",
@@ -2811,8 +2799,7 @@ Example: |^^^^^^^^^^^1-800-Dentist|",
                             TableName = @"Telecommunication Expiration Reason",
                             Description = @"Indicates why this contact number/e-mail was marked as ""ended"".  Refer to User-defined Table 0868 – Telecommunication Expiration Reason for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.12.15.1",
                             Type = @"SubComponent",
@@ -3238,8 +3225,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3259,8 +3245,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 The specific set of codes and appropriate handling of such telecommunications addresses will vary by jurisdiction and is subject to site-specific negotiation. For example, a provider address marked as 'unlisted' might not be printed in an internal address listing.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.12.16.1",
                             Type = @"SubComponent",
@@ -3686,8 +3671,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3709,8 +3693,7 @@ This component allows a phone number to be uniquely identified, and enables the 
 
 HL7 does not assume responsibility for the processing rules for this component.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.12.17.1",
                             Type = @"SubComponent",
@@ -3788,8 +3771,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3812,8 +3794,7 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -3824,8 +3805,7 @@ Preference order numbers need not be sequential (i.e., three numbers with the pr
             this.message = message;
         }
 
-        
-internal HL7V271Field errorCodeAndLocation;
+        internal HL7V271Field errorCodeAndLocation;
 
 public HL7V271Field ErrorCodeAndLocation
 {
@@ -5408,6 +5388,5 @@ public HL7V271Field HelpDeskContactPoint
         return helpDeskContactPoint;
     } 
 }
-
     }
 }

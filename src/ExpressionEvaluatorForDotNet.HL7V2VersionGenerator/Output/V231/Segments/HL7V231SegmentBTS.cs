@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231SegmentBTS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"BTS"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -98,8 +99,7 @@ This field may be defined as a CM data type for backward compatibility with HL7 
             this.message = message;
         }
 
-        
-internal HL7V231Field batchMessageCount;
+        internal HL7V231Field batchMessageCount;
 
 public HL7V231Field BatchMessageCount
 {
@@ -493,6 +493,5 @@ This field may be defined as a CM data type for backward compatibility with HL7 
         return batchTotals;
     } 
 }
-
     }
 }

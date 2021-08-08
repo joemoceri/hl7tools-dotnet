@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentHxx
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"Hxx"; } }
 
@@ -57,8 +57,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V271Field hxx1;
+        internal HL7V271Field hxx1;
 
 public HL7V271Field Hxx1
 {
@@ -188,6 +187,5 @@ public HL7V271Field Hxx1
         return hxx1;
     } 
 }
-
     }
 }

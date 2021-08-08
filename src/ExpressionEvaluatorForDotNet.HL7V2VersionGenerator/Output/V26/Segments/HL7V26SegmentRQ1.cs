@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentRQ1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"RQ1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ namespace ExpressionEvaluatorForDotNet
 
 Refer to User-defined Table 0385 – Manufacturer identifier for suggested values, or relevant external code sets may be used (e.g., HIBCC Manufacturers Labeler ID Code (LIC), UPC, NDC).",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RQ1.2.1",
                             Type = @"Component",
@@ -230,8 +230,7 @@ Refer to User-defined Table 0385 – Manufacturer identifier for suggested value
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -267,8 +266,7 @@ Refer to User-defined Table 0385 – Manufacturer identifier for suggested value
                             TableName = null,
                             Description = @"This field is the unique code that identifies the vendor on the application receiving the requisition. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RQ1.4.1",
                             Type = @"Component",
@@ -428,8 +426,7 @@ Refer to User-defined Table 0385 – Manufacturer identifier for suggested value
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -494,8 +491,7 @@ Refer to User-defined Table 0385 – Manufacturer identifier for suggested value
             this.message = message;
         }
 
-        
-internal HL7V26Field anticipatedPrice;
+        internal HL7V26Field anticipatedPrice;
 
 public HL7V26Field AnticipatedPrice
 {
@@ -1413,6 +1409,5 @@ public HL7V26Field SubstituteAllowed
         return substituteAllowed;
     } 
 }
-
     }
 }

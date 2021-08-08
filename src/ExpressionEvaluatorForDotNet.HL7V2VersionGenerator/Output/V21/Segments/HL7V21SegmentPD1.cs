@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentPD1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PD1"; } }
 
@@ -57,8 +57,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field pD11;
+        internal HL7V21Field pD11;
 
 public HL7V21Field PD11
 {
@@ -188,6 +187,5 @@ public HL7V21Field PD11
         return pD11;
     } 
 }
-
     }
 }

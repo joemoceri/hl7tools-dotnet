@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentMSA
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MSA"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -143,8 +144,7 @@ The MSA-3 was deprecated as of v 2.4. The reader is referred to the ERR segment.
 
 The MSA-6 was deprecated as of v2.4. The reader is referred to the ERR segment. The ERR segment allows for richer descriptions of the erroneous conditions.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSA.6.1",
                             Type = @"Component",
@@ -250,8 +250,7 @@ The MSA-6 was deprecated as of v2.4. The reader is referred to the ERR segment. 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -298,8 +297,7 @@ The MSA-6 was deprecated as of v2.4. The reader is referred to the ERR segment. 
             this.message = message;
         }
 
-        
-internal HL7V26Field acknowledgmentCode;
+        internal HL7V26Field acknowledgmentCode;
 
 public HL7V26Field AcknowledgmentCode
 {
@@ -1350,6 +1348,5 @@ public HL7V26Field MessageWaitingPriority
         return messageWaitingPriority;
     } 
 }
-
     }
 }

@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventPGL_PC6
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V25SegmentMSH msh;
-public readonly HL7V25SegmentSFT sft;
-public readonly HL7V25SegmentPID pid;
+        private readonly HL7V2Message message;
+        private readonly HL7V25SegmentMSH msh;
+private readonly HL7V25SegmentSFT sft;
+private readonly HL7V25SegmentPID pid;
 
 
         public string Id { get { return @"PGL_PC6"; } }
@@ -23,6 +23,7 @@ public readonly HL7V25SegmentPID pid;
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }

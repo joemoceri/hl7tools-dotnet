@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentCM1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"CM1"; } }
 
@@ -26,6 +26,7 @@ The Technical Steward for the CM1 segment is ORDERS."; } }
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ The Technical Steward for the CM1 segment is ORDERS."; } }
                             TableName = null,
                             Description = @"This field should correspond to the study phase ID coding system in Section 7.7.2.1, ""Study phase ID.""",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CM1.2.1",
                             Type = @"Component",
@@ -180,8 +180,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -210,8 +209,7 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
             this.message = message;
         }
 
-        
-internal HL7V24Field setIDCM1;
+        internal HL7V24Field setIDCM1;
 
 public HL7V24Field SetIDCM1
 {
@@ -603,6 +601,5 @@ public HL7V24Field DescriptionofStudyPhase
         return descriptionofStudyPhase;
     } 
 }
-
     }
 }

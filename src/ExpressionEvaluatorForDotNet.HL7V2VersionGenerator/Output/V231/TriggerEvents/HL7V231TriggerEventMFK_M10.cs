@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventMFK_M10
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V231SegmentMSH msh;
-public readonly HL7V231SegmentMSA msa;
-public readonly HL7V231SegmentMFI mfi;
-public readonly HL7V231SegmentMFA mfa;
+        private readonly HL7V2Message message;
+        private readonly HL7V231SegmentMSH msh;
+private readonly HL7V231SegmentMSA msa;
+private readonly HL7V231SegmentMFI mfi;
+private readonly HL7V231SegmentMFA mfa;
 
 
         public string Id { get { return @"MFK_M10"; } }
@@ -24,6 +24,7 @@ public readonly HL7V231SegmentMFA mfa;
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }

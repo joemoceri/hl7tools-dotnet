@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentSPM
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SPM"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains a unique identifier for the specimen as referenced by the Placer application, the Filler application, or both.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.2.1",
                             Type = @"Component",
@@ -83,8 +83,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Specifies an identifier assigned to an entity by the placer system.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.2.1.1",
                             Type = @"SubComponent",
@@ -154,8 +153,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -173,8 +171,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Specifies an identifier assigned to an entity by the filler system.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.2.2.1",
                             Type = @"SubComponent",
@@ -244,10 +241,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -265,8 +260,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the identifiers for the specimen or specimens that contributed to the specimen that is described by the segment instance.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.3.1",
                             Type = @"Component",
@@ -281,8 +275,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Specifies an identifier assigned to an entity by the placer system.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.3.1.1",
                             Type = @"SubComponent",
@@ -352,8 +345,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -371,8 +363,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"Specifies an identifier assigned to an entity by the filler system.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.3.2.1",
                             Type = @"SubComponent",
@@ -442,10 +433,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -463,8 +452,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Specimen Type",
                             Description = @"This field describes the precise nature of the entity that will be the source material for the observation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.4.1",
                             Type = @"Component",
@@ -624,8 +612,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -643,8 +630,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Specimen Type Modifier",
                             Description = @"This field contains modifying or qualifying description(s) about the specimen type",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.5.1",
                             Type = @"Component",
@@ -804,8 +790,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -823,8 +808,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Additive/Preservative",
                             Description = @"This field identifies any additives introduced to the specimen before or at the time of collection. These additives may be introduced in order to preserve, maintain or enhance the particular nature or component of the specimen. Refer to HL7 Table 0371 - Additivefor valid values. When multiple additives are introduced and valid individual additive codes exist but a valid value for the combination does not exist, repeating the field with individual values is most appropriate.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.6.1",
                             Type = @"Component",
@@ -984,8 +968,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1003,8 +986,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Specimen Collection Method",
                             Description = @"Describes the procedure or process by which the specimen was collected.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.7.1",
                             Type = @"Component",
@@ -1164,8 +1146,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1183,8 +1164,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"specifies the source from which the specimen was obtained. For example, in the case where a liver biopsy is obtained via a percutaneous needle, the source would be liver.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.8.1",
                             Type = @"Component",
@@ -1344,8 +1324,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1363,8 +1342,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Specimen Source Type Modifier",
                             Description = @"This field contains modifying or qualifying description(s) about the specimen source site",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.9.1",
                             Type = @"Component",
@@ -1524,8 +1502,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1543,8 +1520,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Specimen Collection Site",
                             Description = @"This field differs from SPM-8-Specimen Source Site in those cases where the source site must be approached via a particular site (e.g., anatomic location). For example, in the case where a liver biopsy is obtained via a percutaneous needle, the collection site would be the point of entry of the needle. For venous blood collected from the left radial vein, the collection site could be ""antecubital fossa"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.10.1",
                             Type = @"Component",
@@ -1704,8 +1680,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1729,8 +1704,7 @@ A grouped specimen consists of identical specimen types from multiple individual
 
 If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) represent the individual parent specimens that contribute to the pooled specimen.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.11.1",
                             Type = @"Component",
@@ -1890,8 +1864,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1909,8 +1882,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = null,
                             Description = @"This field specifies the volume or mass of the collected specimen. For laboratory tests, the collection volume is the volume of a specimen. Specifically, units should be expressed in the ISO Standard unit abbreviations (ISO-2955, 1977). This is a results-only field except when the placer or a party has already drawn the specimen. (See Chapter 7 for full details about units.)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.12.1",
                             Type = @"Component",
@@ -1943,8 +1915,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.12.2.1",
                             Type = @"SubComponent",
@@ -2104,10 +2075,8 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2161,8 +2130,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = @"Special Handling Code",
                             Description = @"This describes how the specimen and/or container need to be handled from the time of collection through the initiation of testing. As this field is not required, no assumptions can be made as to meaning when this field is not populated.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.15.1",
                             Type = @"Component",
@@ -2322,8 +2290,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2341,8 +2308,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = @"Risk Codes",
                             Description = @"This field contains any known or suspected specimen hazards, e.g., exceptionally infectious agent or blood from a hepatitis patient. Either code and/or text may be absent. However, the code is always placed in the first component position and any free text in the second component. Thus, a component delimiter must precede free text without a code. Refer to User-defined Table 0489 - Risk Codes for suggested entries",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.16.1",
                             Type = @"Component",
@@ -2502,8 +2468,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2521,8 +2486,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = null,
                             Description = @"The date and time when the specimen was acquired from the source. The use of the Date Range data type allows for description of specimens collected over a period of time, for example, 24-hour urine collection. For specimens collected at a point in time, only the first component (start date/time) will be populated.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.17.1",
                             Type = @"Component",
@@ -2556,8 +2520,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2629,8 +2592,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = @"Specimen Reject Reason",
                             Description = @"This describes one or more reasons the specimen is rejected for the specified observation/result/analysis. Refer to HL7 Table 0490 - Specimen Reject Reason for valid values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.21.1",
                             Type = @"Component",
@@ -2790,8 +2752,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2809,8 +2770,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = @"Specimen Quality",
                             Description = @"The degree or grade of excellence of the specimen at receipt. The filler populates this attribute. Refer to User-defined Table 0491 - Specimen Quality for suggested entries.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.22.1",
                             Type = @"Component",
@@ -2970,8 +2930,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2989,8 +2948,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = @"Specimen Appropriateness",
                             Description = @"The suitability of the specimen for the particular planned use as determined by the filler. Refer to User-defined Table 0492 - Specimen Appropriateness for suggested entries.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.23.1",
                             Type = @"Component",
@@ -3150,8 +3108,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3169,8 +3126,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = @"Specimen Condition",
                             Description = @"A mode or state of being that describes the nature of the specimen. Refer to User-defined Table 0493 - Specimen Condition for suggested entries.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.24.1",
                             Type = @"Component",
@@ -3330,8 +3286,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3349,8 +3304,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = null,
                             Description = @"This attributes contains the amount of specimen that currently exists or is available for use in further testing.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.25.1",
                             Type = @"Component",
@@ -3383,8 +3337,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.25.2.1",
                             Type = @"SubComponent",
@@ -3544,10 +3497,8 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3583,8 +3534,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = null,
                             Description = @"The container in or on which a specimen is transported.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.27.1",
                             Type = @"Component",
@@ -3744,8 +3694,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3763,8 +3712,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = @"Container Condition",
                             Description = @"In chain of custody cases where specimens are moved from lab to lab, the status of the container that the specimen is shipped in must be recorded at each receipt. If the container is compromised in any way (seal broken, container cracked or leaking, etc) then this needs to be recorded for legal reasons.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.28.1",
                             Type = @"Component",
@@ -3924,8 +3872,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3943,8 +3890,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             TableName = @"Specimen Child Role",
                             Description = @"For child specimens, this field identifies the relationship between this specimen and the parent specimen. If this field is populated, then SPM-3-Specimen Parent ID must be populated. This field differs from SPM-15-Specimen Role in that this field refers to the role of this specimen relative to a parent role rather than the role of this specimen to the ordered service.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SPM.29.1",
                             Type = @"Component",
@@ -4104,8 +4050,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -4116,8 +4061,7 @@ If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) rep
             this.message = message;
         }
 
-        
-internal HL7V26Field setIDSPM;
+        internal HL7V26Field setIDSPM;
 
 public HL7V26Field SetIDSPM
 {
@@ -7921,6 +7865,5 @@ public HL7V26Field SpecimenChildRole
         return specimenChildRole;
     } 
 }
-
     }
 }

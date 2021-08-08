@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventNMR_N01
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V26SegmentMSH msh;
-public readonly HL7V26SegmentSFT sft;
-public readonly HL7V26SegmentUAC uac;
-public readonly HL7V26SegmentMSA msa;
-public readonly HL7V26SegmentERR err;
-public readonly HL7V26SegmentQRD qrd;
+        private readonly HL7V2Message message;
+        private readonly HL7V26SegmentMSH msh;
+private readonly HL7V26SegmentSFT sft;
+private readonly HL7V26SegmentUAC uac;
+private readonly HL7V26SegmentMSA msa;
+private readonly HL7V26SegmentERR err;
+private readonly HL7V26SegmentQRD qrd;
 
 
         public string Id { get { return @"NMR_N01"; } }
@@ -26,6 +26,7 @@ public readonly HL7V26SegmentQRD qrd;
                 return new[]
                     {
                         "CH_14",
+
                     };
             }
         }

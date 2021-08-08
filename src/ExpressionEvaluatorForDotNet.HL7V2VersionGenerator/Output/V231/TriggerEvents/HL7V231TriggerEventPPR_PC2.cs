@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventPPR_PC2
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V231SegmentMSH msh;
-public readonly HL7V231SegmentPID pid;
+        private readonly HL7V2Message message;
+        private readonly HL7V231SegmentMSH msh;
+private readonly HL7V231SegmentPID pid;
 
 
         public string Id { get { return @"PPR_PC2"; } }
@@ -22,6 +22,7 @@ public readonly HL7V231SegmentPID pid;
                 return new[]
                     {
                         "CH_12",
+
                     };
             }
         }

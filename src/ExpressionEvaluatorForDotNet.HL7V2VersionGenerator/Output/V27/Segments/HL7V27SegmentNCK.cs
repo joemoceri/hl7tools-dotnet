@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentNCK
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NCK"; } }
 
@@ -28,6 +28,7 @@ If this message is used only to gather information on the various systems' clock
                 return new[]
                     {
                         "CH_14",
+
                     };
             }
         }
@@ -64,8 +65,7 @@ If this message is used only to gather information on the various systems' clock
             this.message = message;
         }
 
-        
-internal HL7V27Field systemDateTime;
+        internal HL7V27Field systemDateTime;
 
 public HL7V27Field SystemDateTime
 {
@@ -195,6 +195,5 @@ public HL7V27Field SystemDateTime
         return systemDateTime;
     } 
 }
-
     }
 }

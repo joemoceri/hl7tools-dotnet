@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentERQ
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ERQ"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -67,8 +68,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"This field contains the HL7 event identifier corresponding to the original trigger event.  Its contents dictate the format of the response message.  Hence, a value of “A04” in this field indicates a request for the data associated with the “register a patient” trigger event.  The ERP response message returns the contents of the “register a patient” message defined in Chapter 3.  If more than one match is found, the ERP returns repeating groups of the segments defined by the “A04” message",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERQ.2.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -194,8 +193,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @" This field contains the list of parameter names and values to be passed to the responding system, in the form “<field name> ^ <value1 & value2 & value3 ...>.”  A single valued parameter contains only a single subcomponent in the second component: thus no subcomponent delimiters are needed (e.g., <field name> ^ <value>).  A simple list of values (i.e., a one-dimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: “<field name> ^ <value1&value2 &...>”  Refer to Section 2.24.16.4, “EQL query statement  (ST)   00710,” for field naming conventions. 
 For example, , a value of “@00122^123-45-6789” could be combined with the A04 event identifier to request patient registration data for the patient with the social security number 123-45-6789. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERQ.3.1",
                             Type = @"Component",
@@ -238,8 +236,7 @@ Values for this field are defined in the function-specific chapters of this spec
 A single valued parameter contains only a single subcomponent in the second component:  thus no subcomponent delimiters are needed (e.g., <field name> ^ <value>).  A simple list of values (i.e., a one-dimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: ,”<field name> ^ <value1 & value2 &…>” ",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -250,8 +247,7 @@ A single valued parameter contains only a single subcomponent in the second comp
             this.message = message;
         }
 
-        
-internal HL7V23Field querytag;
+        internal HL7V23Field querytag;
 
 public HL7V23Field Querytag
 {
@@ -644,6 +640,5 @@ For example, , a value of “@00122^123-45-6789” could be combined with the A0
         return inputparameterlist;
     } 
 }
-
     }
 }

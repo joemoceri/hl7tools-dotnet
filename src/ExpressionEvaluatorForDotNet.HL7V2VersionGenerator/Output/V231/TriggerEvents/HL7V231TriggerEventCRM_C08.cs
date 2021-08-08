@@ -4,8 +4,8 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventCRM_C08
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V231SegmentMSH msh;
+        private readonly HL7V2Message message;
+        private readonly HL7V231SegmentMSH msh;
 
 
         public string Id { get { return @"CRM_C08"; } }
@@ -21,6 +21,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             }
         }

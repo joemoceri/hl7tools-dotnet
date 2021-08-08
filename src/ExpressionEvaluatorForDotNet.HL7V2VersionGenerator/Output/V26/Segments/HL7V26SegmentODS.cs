@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentODS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"ODS"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }
@@ -76,8 +77,7 @@ service 6	is	bedtime snack
 
 Ex: |1~5| means service 1 and service 5, whatever these are locally defined to be.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ODS.2.1",
                             Type = @"Component",
@@ -237,8 +237,7 @@ Ex: |1~5| means service 1 and service 5, whatever these are locally defined to b
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -258,8 +257,7 @@ Ex: |1~5| means service 1 and service 5, whatever these are locally defined to b
 
 |^REG|, |023^^99FD6|, |^NOLACT|, |^TUBEFD|, and |011^HIPRO100^99FD1~123^LOFAT20^99FD1|",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ODS.3.1",
                             Type = @"Component",
@@ -419,8 +417,7 @@ Ex: |1~5| means service 1 and service 5, whatever these are locally defined to b
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -449,8 +446,7 @@ Ex: |1~5| means service 1 and service 5, whatever these are locally defined to b
             this.message = message;
         }
 
-        
-internal HL7V26Field type;
+        internal HL7V26Field type;
 
 public HL7V26Field Type
 {
@@ -984,6 +980,5 @@ public HL7V26Field TextInstruction
         return textInstruction;
     } 
 }
-
     }
 }

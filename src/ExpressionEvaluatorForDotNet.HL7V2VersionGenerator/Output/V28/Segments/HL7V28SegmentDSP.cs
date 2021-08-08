@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentDSP
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"DSP"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -134,8 +135,7 @@ Often the lines of display text will fall into logical groups that differ from t
             this.message = message;
         }
 
-        
-internal HL7V28Field setIdDsp;
+        internal HL7V28Field setIdDsp;
 
 public HL7V28Field SetIdDsp
 {
@@ -791,6 +791,5 @@ public HL7V28Field ResultId
         return resultId;
     } 
 }
-
     }
 }

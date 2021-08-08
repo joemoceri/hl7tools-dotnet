@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentNTE
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"NTE"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -107,8 +108,7 @@ Note: As of v2.2, this field uses the FT rather than a TX data type. Since there
 
 Note: A field already exists on the NTE record that identifies the Sources of Comment (e.g., ancillary, placer, other). However some applications need to support other types of comment text (e.g., instructions, reason, remarks, etc.). A separate NTE segment can be used for each type of comment (e.g., instructions are on one NTE and remarks on another NTE)",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NTE.4.1",
                             Type = @"Component",
@@ -214,8 +214,7 @@ Note: A field already exists on the NTE record that identifies the Sources of Co
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -226,8 +225,7 @@ Note: A field already exists on the NTE record that identifies the Sources of Co
             this.message = message;
         }
 
-        
-internal HL7V251Field setIDNTE;
+        internal HL7V251Field setIDNTE;
 
 public HL7V251Field SetIDNTE
 {
@@ -754,6 +752,5 @@ Note: A field already exists on the NTE record that identifies the Sources of Co
         return commentType;
     } 
 }
-
     }
 }

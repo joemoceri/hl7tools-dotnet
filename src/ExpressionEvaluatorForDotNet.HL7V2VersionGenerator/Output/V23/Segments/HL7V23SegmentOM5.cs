@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentOM5
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"OM5"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -77,8 +78,7 @@ If the definition segment defined serum electrolytes, this field might look like
 For S (superset) parameters, this field contains the batteries that are included within the “super” battery. For example, ROUTINES might be defined as:
 402^Electrolytes~352^Urinalysis~432^CBC~520^SMA12 ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM5.2.1",
                             Type = @"Component",
@@ -184,8 +184,7 @@ For S (superset) parameters, this field contains the batteries that are included
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -214,8 +213,7 @@ For S (superset) parameters, this field contains the batteries that are included
             this.message = message;
         }
 
-        
-internal HL7V23Field sequenceNumber;
+        internal HL7V23Field sequenceNumber;
 
 public HL7V23Field SequenceNumber
 {
@@ -617,6 +615,5 @@ public HL7V23Field ObservationIDSuffixes
         return observationIDSuffixes;
     } 
 }
-
     }
 }

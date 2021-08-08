@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251SegmentAIS
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"AIS"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -87,8 +88,7 @@ This field is conditionally required.  It is required for all updating or modify
                             TableName = null,
                             Description = @"This field contains an identifier code for a service to be scheduled. This field may contain a universal service identifier describing the observation/test/battery/procedure or other activity that is to be performed during the requested appointment, similar to the universal service identifier defined for the OBR segment. This code can be based on local and/or universal codes. The use of universal codes is recommended.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.3.1",
                             Type = @"Component",
@@ -194,8 +194,7 @@ This field is conditionally required.  It is required for all updating or modify
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -215,8 +214,7 @@ This field is conditionally required.  It is required for all updating or modify
 
 This field is conditionally required.  If a value for AIS-5-Start date/time offset is not provided, then a value is required for this field.  To specify that there is no difference between the appointment's start date/time and the resource's start date/time either replicate the appointment's start date/time into this field, or specify an offset of zero (0) in AIS-5-Start date/time offset and any valid time unit code in AIS-6-Start date/time offset units",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.4.1",
                             Type = @"Component",
@@ -252,8 +250,7 @@ This field is conditionally required.  If a value for AIS-5-Start date/time offs
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -295,8 +292,7 @@ This field is conditionally required.  If a value for AIS-5-Start date/time offs
 
 This field is conditionally required.  If a value for AIS-5-Start date/time offset is provided, then a value is required for this field. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.6.1",
                             Type = @"Component",
@@ -402,8 +398,7 @@ This field is conditionally required.  If a value for AIS-5-Start date/time offs
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -441,8 +436,7 @@ This field must be a positive, non-zero number.  A negative number or zero (0) i
                             TableName = null,
                             Description = @"This field contains a code describing the units of time used for expressing the duration. If this field is not valued, the ISO base unit of seconds (code s) will be assumed",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.8.1",
                             Type = @"Component",
@@ -548,8 +542,7 @@ This field must be a positive, non-zero number.  A negative number or zero (0) i
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -589,8 +582,7 @@ This field is conditionally required.  It is required for all request messages. 
 
 This is a conditionally required field.  Because the information contained in this field is only appropriate in transactions originating from a filler application, it is required for those messages.  This includes all unsolicited transactions originating from a filler application, as well as all response messages originating from a filler application.  This field is optional for all transactions originating from placer, querying and auxiliary applications.  It is recommended that this field be left unvalued in transactions originating from applications other than the filler application",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.10.1",
                             Type = @"Component",
@@ -696,8 +688,7 @@ This is a conditionally required field.  Because the information contained in th
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -715,8 +706,7 @@ This is a conditionally required field.  Because the information contained in th
                             TableName = @"Supplemental Service Information Values",
                             Description = @"This field contains supplemental service and/or logistical information sent from the placer system to the filler system for the universal procedure code reported in field AIS-3. This field will be used to provide scheduling information detail that is not available in other, specific fields in the AIS segment. Multiple supplemental service information elements may be reported. Refer to User-defined Table 0411 - Supplemental service information values for possible values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.11.1",
                             Type = @"Component",
@@ -822,8 +812,7 @@ This is a conditionally required field.  Because the information contained in th
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -841,8 +830,7 @@ This is a conditionally required field.  Because the information contained in th
                             TableName = @"Supplemental Service Information Values",
                             Description = @"This field contains supplemental service and/or logistical information sent from the filler system to the placer system for the procedure code reported in field AIS-3. This field will be used to report scheduling information details that is not available in other, specific fields in the AIS segment. Typically it will reflect the same information as was sent to the filler system in AIS-11-Placer supplemental information unless the scheduling was modified in which case the filler system will report what was actually performed using this field. Multiple supplemental service information elements may be reported. Refer to User-defined Table 0411 - Supplemental service information values for possible values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIS.12.1",
                             Type = @"Component",
@@ -948,8 +936,7 @@ This is a conditionally required field.  Because the information contained in th
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -960,8 +947,7 @@ This is a conditionally required field.  Because the information contained in th
             this.message = message;
         }
 
-        
-internal HL7V251Field setIDAIS;
+        internal HL7V251Field setIDAIS;
 
 public HL7V251Field SetIDAIS
 {
@@ -2548,6 +2534,5 @@ public HL7V251Field FillerSupplementalServiceInformation
         return fillerSupplementalServiceInformation;
     } 
 }
-
     }
 }

@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventEAC_U07
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentEQU equ;
-public readonly HL7V24SegmentECD ecd;
-public readonly HL7V24SegmentSAC sac;
-public readonly HL7V24SegmentCNS cns;
-public readonly HL7V24SegmentROL rol;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentEQU equ;
+private readonly HL7V24SegmentECD ecd;
+private readonly HL7V24SegmentSAC sac;
+private readonly HL7V24SegmentCNS cns;
+private readonly HL7V24SegmentROL rol;
 
 
         public string Id { get { return @"EAC_U07"; } }
@@ -26,6 +26,7 @@ public readonly HL7V24SegmentROL rol;
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }

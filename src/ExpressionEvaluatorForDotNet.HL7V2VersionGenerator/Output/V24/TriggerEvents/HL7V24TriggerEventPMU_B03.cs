@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventPMU_B03
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentEVN evn;
-public readonly HL7V24SegmentSTF stf;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentEVN evn;
+private readonly HL7V24SegmentSTF stf;
 
 
         public string Id { get { return @"PMU_B03"; } }
@@ -23,6 +23,7 @@ public readonly HL7V24SegmentSTF stf;
                 return new[]
                     {
                         "CH_15",
+
                     };
             }
         }

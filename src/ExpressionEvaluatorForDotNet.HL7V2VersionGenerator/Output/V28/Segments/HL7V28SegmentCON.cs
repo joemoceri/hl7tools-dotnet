@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentCON
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"CON"; } }
 
@@ -26,6 +26,7 @@ The segment will be used in conjunction with various other segments to identify 
                 return new[]
                     {
                         "CH_09",
+
                     };
             }
         }
@@ -69,8 +70,7 @@ The segment will be used in conjunction with various other segments to identify 
                             TableName = @"Consent Type",
                             Description = @"This field describes what the subject is consenting to, i.e., what type of service, surgical procedure, information access/release or other event.  For values see User-Defined Table 0496 – Consent Type.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.2.1",
                             Type = @"Component",
@@ -498,8 +498,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -535,8 +534,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"Uniquely identifies a specific recorded consent.  This may be the number assigned to an electronic consent, or may be the number on a printed consent form.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.4.1",
                             Type = @"Component",
@@ -612,8 +610,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -721,8 +718,7 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             TableName = @"Consent Mode",
                             Description = @"The method in which a subject provides consent. For values see HL7 Table 0497 – Consent Mode.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.10.1",
                             Type = @"Component",
@@ -1159,8 +1155,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1178,8 +1173,7 @@ Value set version ID is required if CNE.21 is populated.",
                             TableName = @"Consent Status",
                             Description = @"Indicates whether consent has been sought and granted. For values see HL7 Table 0498 – Consent Status.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.11.1",
                             Type = @"Component",
@@ -1616,8 +1610,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1743,8 +1736,7 @@ Value set version ID is required if CNE.21 is populated.",
                             TableName = @"Primary Language",
                             Description = @"Identifies the language the consent material must be translated to.  Refer to User Defined table 0296 – Primary Language which contains no suggested values.  This table may be populated with values similar to those that may be found in ISO table 639 – Language Codes.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.18.1",
                             Type = @"Component",
@@ -2172,8 +2164,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2209,8 +2200,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Consent Bypass Reason",
                             Description = @"Identifies why the subject's consent was not sought.  This field must be populated when CON-11 - Consent Status is B – Bypassed.  Refer to User Defined table 0499 – Consent Bypass Reason for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.20.1",
                             Type = @"Component",
@@ -2638,8 +2628,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2675,8 +2664,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Consent Non-Disclosure Reason",
                             Description = @"Identifies why the subject did not receive full disclosure. . Refer to User-Defined Table 0501 – Consent Non-Disclosure Reason for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.22.1",
                             Type = @"Component",
@@ -3104,8 +3092,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3123,8 +3110,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Non-Subject Consenter Reason",
                             Description = @"Identifies why consent was granted by a person other than the subject of the consent. Refer to User-defined Table 0502 – Non-Subject Consenter Reason for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.23.1",
                             Type = @"Component",
@@ -3552,8 +3538,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3571,8 +3556,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"Identification of the individual(s) who is (are) consenting.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.24.1",
                             Type = @"Component",
@@ -3591,8 +3575,7 @@ XPN.1 will be empty when XPN.7 is MSK. It MAY be empty when XPN.7 is NAV.
 
 Usage Note: If a person’s name has only one component, that name will be sent in XPN.1 Family Name. This is common practice in some countries such as Indonesia. This note does not cover the case where only one part of a person's multi-part name is known (e.g., only know ""John"" of ""John Doe"").",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.24.1.1",
                             Type = @"SubComponent",
@@ -3692,8 +3675,7 @@ Also, for clarity, the <last name prefix> has been renamed to <own surname prefi
 If no portion of the person's surname is derived from the surname of the person's partner or spouse, this component is not valued. Otherwise, if the surname of the partner or spouse has legally changed to become (or incorporate) the person's surname, this is the surname of the partner or spouse immediately prior to such change.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -3844,8 +3826,7 @@ In general this component provides an indication of the representation provided 
                             TableName = @"Name Context",
                             Description = @"This component is used to designate the context in which a name is used. The main use case is in Australian healthcare for indigenous patients who prefer to use different names when attending different healthcare institutions. Another use case occurs in the US where health practitioners can be licensed under slightly different names and the reporting of the correct name is vital for administrative purposes. Refer to User-defined Table 0448 – Name Context for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.24.9.1",
                             Type = @"SubComponent",
@@ -4273,8 +4254,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4390,8 +4370,7 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -4409,8 +4388,7 @@ Examples:
                             TableName = @"Signatory's Relationship to Subject",
                             Description = @"Identification of the relationship of the consenter to the subject.  Receivers are required to inspect the Coding System component of the CWE data type to accurately interpret the meaning of the code. Senders transmitting messages to Receivers on earlier version of the standard may elect to negotiate business rules to ensure that expected data is not lost. HL7 does not assign positional meaning to user-defined codes.  Refer to User-Defined Table 0548 – Signatory's Relationship to Subject for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.25.1",
                             Type = @"Component",
@@ -4838,8 +4816,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -4850,8 +4827,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field setIdCon;
+        internal HL7V28Field setIdCon;
 
 public HL7V28Field SetIdCon
 {
@@ -8125,6 +8101,5 @@ public HL7V28Field RelationshipToSubject
         return relationshipToSubject;
     } 
 }
-
     }
 }

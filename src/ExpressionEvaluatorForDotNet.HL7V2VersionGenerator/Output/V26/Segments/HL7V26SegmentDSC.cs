@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentDSC
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"DSC"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             }
         }
@@ -80,8 +81,7 @@ Refer to HL7 Table 0398 – Continuation Style Code for valid values.",
             this.message = message;
         }
 
-        
-internal HL7V26Field continuationPointer;
+        internal HL7V26Field continuationPointer;
 
 public HL7V26Field ContinuationPointer
 {
@@ -344,6 +344,5 @@ Refer to HL7 Table 0398 – Continuation Style Code for valid values.",
         return continuationStyle;
     } 
 }
-
     }
 }

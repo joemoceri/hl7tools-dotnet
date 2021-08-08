@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27SegmentDMI
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"DMI"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -49,8 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"Diagnosis Related Group",
                             Description = @"This field contains the DRG for the transaction.  Interim DRG's could be determined for an encounter.  Refer to External Table 0055 – Diagnosis Related Group for suggested values.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DMI.1.1",
                             Type = @"Component",
@@ -487,8 +487,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -506,8 +505,7 @@ Value set version ID is required if CNE.21 is populated.",
                             TableName = @"Major Diagnostic Category",
                             Description = @"This field indicates the determined Major Diagnostic Category (MDC) value. Refer to External Table 0118 – Major Diagnostic Category for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DMI.2.1",
                             Type = @"Component",
@@ -944,8 +942,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -965,8 +962,7 @@ Value set version ID is required if CNE.21 is populated.",
 
 Example as used in Germany: The ""lower trim point"" is equivalent to 1/3 of the average length of stay for patients having this DRG.  The ""upper trim point"" is equivalent to 3 times the average length of stay.  ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DMI.3.1",
                             Type = @"Component",
@@ -1000,8 +996,7 @@ Example as used in Germany: The ""lower trim point"" is equivalent to 1/3 of the
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1048,8 +1043,7 @@ Example as used in Germany: The ""lower trim point"" is equivalent to 1/3 of the
             this.message = message;
         }
 
-        
-internal HL7V27Field diagnosticRelatedGroup;
+        internal HL7V27Field diagnosticRelatedGroup;
 
 public HL7V27Field DiagnosticRelatedGroup
 {
@@ -1705,6 +1699,5 @@ public HL7V27Field RelativeWeight
         return relativeWeight;
     } 
 }
-
     }
 }

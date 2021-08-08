@@ -4,15 +4,15 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventTBR_R08
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V26SegmentMSH msh;
-public readonly HL7V26SegmentSFT sft;
-public readonly HL7V26SegmentMSA msa;
-public readonly HL7V26SegmentERR err;
-public readonly HL7V26SegmentQAK qak;
-public readonly HL7V26SegmentRDF rdf;
-public readonly HL7V26SegmentRDT rdt;
-public readonly HL7V26SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V26SegmentMSH msh;
+private readonly HL7V26SegmentSFT sft;
+private readonly HL7V26SegmentMSA msa;
+private readonly HL7V26SegmentERR err;
+private readonly HL7V26SegmentQAK qak;
+private readonly HL7V26SegmentRDF rdf;
+private readonly HL7V26SegmentRDT rdt;
+private readonly HL7V26SegmentDSC dsc;
 
 
         public string Id { get { return @"TBR_R08"; } }
@@ -28,6 +28,7 @@ public readonly HL7V26SegmentDSC dsc;
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }

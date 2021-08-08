@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventEAN_U09
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V25SegmentMSH msh;
-public readonly HL7V25SegmentSFT sft;
-public readonly HL7V25SegmentEQU equ;
-public readonly HL7V25SegmentROL rol;
+        private readonly HL7V2Message message;
+        private readonly HL7V25SegmentMSH msh;
+private readonly HL7V25SegmentSFT sft;
+private readonly HL7V25SegmentEQU equ;
+private readonly HL7V25SegmentROL rol;
 
 
         public string Id { get { return @"EAN_U09"; } }
@@ -24,6 +24,7 @@ public readonly HL7V25SegmentROL rol;
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }

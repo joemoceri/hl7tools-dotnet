@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21SegmentMRG
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"MRG"; } }
 
@@ -93,8 +93,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field priorPatientIdInternal;
+        internal HL7V21Field priorPatientIdInternal;
 
 public HL7V21Field PriorPatientIdInternal
 {
@@ -486,6 +485,5 @@ public HL7V21Field PriorPatientAccountNumber
         return priorPatientAccountNumber;
     } 
 }
-
     }
 }

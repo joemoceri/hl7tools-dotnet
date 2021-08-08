@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28SegmentGP1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"GP1"; } }
 
@@ -26,6 +26,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                             TableName = @"Type of Bill Code",
                             Description = @"This field is the same as UB92 Form Locator 4 ""Type of Bill"". Refer to User-defined Table 0455 - Type of Bill Code for suggested values. Refer to a UB specification for additional information. This field is defined by CMS or other regulatory agencies. It is a code indicating the specific type of bill with digit 1 showing type of facility, digit 2 showing bill classification, and digit 3 showing frequency.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.1.1",
                             Type = @"Component",
@@ -480,8 +480,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -501,8 +500,7 @@ Value set version ID is required if CWE.21 is populated.",
 
 There can also be a revenue code linked to a HCPCS/CPT code. These are found in GP2-1 - Revenue Code. Refer to UB92 specifications.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.2.1",
                             Type = @"Component",
@@ -930,8 +928,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -949,8 +946,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Overall Claim Disposition Code",
                             Description = @"This field identifies the final status of the claim. The codes listed as examples are not an exhaustive or current list, refer to OPPS Final Rule. Refer to User-defined Table 0457 - Overall Claim Disposition Code for suggested values. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.3.1",
                             Type = @"Component",
@@ -1378,8 +1374,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1397,8 +1392,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"OCE Edit Code",
                             Description = @"This field contains the edits that result from processing the HCPCS/CPT procedures for a record after evaluating all the codes, revenue codes, and modifiers. The codes listed as examples are not an exhaustive or current list, refer to OPPS Final Rule. OCE (Outpatient Code Editor) edits also exist at the pre-procedure level. Refer to User-defined Table 0458 - OCE Edit Code for suggested values. This field is defined by CMS or other regulatory agencies.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.4.1",
                             Type = @"Component",
@@ -1826,8 +1820,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1845,8 +1838,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"This field contains the amount that exceeds the outlier limitation as defined by APC regulations. This field is analogous to DRG-7 - Outlier Cost; however, the definition in this field note supersedes the DRG-7 definition.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.1",
                             Type = @"Component",
@@ -1861,8 +1853,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.1.1",
                             Type = @"SubComponent",
@@ -1901,8 +1892,7 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1978,8 +1968,7 @@ Note that, if the CP.2 Price Type component is TP, both CP.3 and CP.4 may be nul
 
 This component is required if CP.3 From Value and/or CP.4 To Value are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.5.1",
                             Type = @"SubComponent",
@@ -2407,8 +2396,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2427,8 +2415,7 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -2439,8 +2426,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V28Field typeOfBillCode;
+        internal HL7V28Field typeOfBillCode;
 
 public HL7V28Field TypeOfBillCode
 {
@@ -3096,6 +3082,5 @@ public HL7V28Field OutlierCost
         return outlierCost;
     } 
 }
-
     }
 }

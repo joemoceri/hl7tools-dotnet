@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentPV1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"PV1"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_03",
+
                     };
             }
         }
@@ -85,8 +86,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"LOCATION",
                             Description = @"New location is the patient's initial assigned location, or the location to which he is being moved.  For canceling a transaction or discharging a patient, the current room number should be in this field.  If a value exists in the fifth component (bed status) it supercedes the value in 3.3.3.40",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.3.1",
                             Type = @"Component",
@@ -174,8 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -229,8 +228,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"old location is null if the patient is new.  It contains the prior patient location if the patient is being transferred.  If a value exists in the fifth component (bed status) it supercedes the value in 3.3.3.40",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.6.1",
                             Type = @"Component",
@@ -318,8 +316,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -337,8 +334,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"PHYSICIAN ID",
                             Description = @"Depending on local agreements, either ID or the name may be absent.  Refer to user-defined table 0010 - physician ID",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.7.1",
                             Type = @"Component",
@@ -480,8 +476,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -499,8 +494,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"PHYSICIAN ID",
                             Description = @"depending on local agreements, either ID or the name may be absent.  Refer to user-defined table 0010 - physician ID",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.8.1",
                             Type = @"Component",
@@ -642,8 +636,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -661,8 +654,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"PHYSICIAN ID",
                             Description = @"depending on local agreements, either ID or the name may be absent.  Refer to user-defined table 0010 - physician ID",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.9.1",
                             Type = @"Component",
@@ -804,8 +796,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -841,8 +832,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"LOCATION",
                             Description = @"location other than the assigned location required for a temporary period of time (e.g., OR).  If a value exists in the fifth component (bed status) it supercedes the value in 3.3.3.40",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.11.1",
                             Type = @"Component",
@@ -930,8 +920,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1039,8 +1028,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = @"PHYSICIAN ID",
                             Description = @"by local agreement name or ID may not be present.  Refer to user-defined table 0010 - physician ID",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.17.1",
                             Type = @"Component",
@@ -1182,8 +1170,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1219,8 +1206,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"unique number assigned to each patient visit.  This is left as NM data type for backwards compatibility but HL7 recommends new implementations use CK data type",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.19.1",
                             Type = @"Component",
@@ -1308,8 +1294,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1327,8 +1312,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"primary financial class assigned to the patient for the purpose of identifying sources of reimbursement.  Repeats up to 4 times.  Refer to user-defined table 0064 - financial class for suggested codes",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.20.1",
                             Type = @"Component",
@@ -1361,8 +1345,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = null,
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.20.2.1",
                             Type = @"SubComponent",
@@ -1396,10 +1379,8 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1705,8 +1686,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"indicates a facility to which the patient was discharged.  Refer to user-defined table 0113  - discharged to location",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.37.1",
                             Type = @"Component",
@@ -1740,8 +1720,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1831,8 +1810,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"indicates the nursing station, room, bed, facility ID and bed status to which the patient may be moved.  If a value exists in the fifth component (bed status) it supercedes the value in 3.3.3.40",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.42.1",
                             Type = @"Component",
@@ -1920,8 +1898,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1939,8 +1916,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"can be used when a patient is arriving or departing or for general update events.   If a value exists in the fifth component (bed status) it supercedes the value in 3.3.3.40",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.43.1",
                             Type = @"Component",
@@ -2028,8 +2004,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2047,8 +2022,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"admit date/time.  To be used if the event date/time is different than the admit date and time, i.e., a retroactive update",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.44.1",
                             Type = @"Component",
@@ -2082,8 +2056,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2101,8 +2074,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"discharge date/time.  To be used if the event date/time is different than the admit date and time, i.e., a retroactive update",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.45.1",
                             Type = @"Component",
@@ -2136,8 +2108,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -2227,8 +2198,7 @@ namespace ExpressionEvaluatorForDotNet
                             TableName = null,
                             Description = @"optional visit ID number to be used if needed.   -  ID used by the facility to uniquely identify a patient at the time of admit.  Refer to HL7 table 0061 - check digit scheme as defined in Chapter 2.  Refer to userdefined table 0192 - visit ID type",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV1.50.1",
                             Type = @"Component",
@@ -2316,8 +2286,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -2328,8 +2297,7 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V22Field setIdPatientVisit;
+        internal HL7V22Field setIdPatientVisit;
 
 public HL7V22Field SetIdPatientVisit
 {
@@ -8878,6 +8846,5 @@ public HL7V22Field AlternateVisitId
         return alternateVisitId;
     } 
 }
-
     }
 }

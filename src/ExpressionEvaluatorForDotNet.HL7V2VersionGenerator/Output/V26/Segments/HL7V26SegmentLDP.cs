@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentLDP
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"LDP"; } }
 
@@ -26,6 +26,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = null,
                             Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The contents of this field must exactly match the content of its preceding MFE ( MFE-4 - Primary Key Value - MFE) and its preceding LOC ( LOC-1 - Primary Key Value - LOC) .",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.1.1",
                             Type = @"Component",
@@ -121,8 +121,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = null,
                             Description = @"This component is subject to site interpretation but generally describes the highest level physical designation of an institution, medical center or enterprise. It is the most general person location designation.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.1.4.1",
                             Type = @"SubComponent",
@@ -174,8 +173,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -283,8 +281,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = null,
                             Description = @"The unique identifier that represents the physical location as a whole without regard for the individual components. This accommodates sites that may have a different method of defining physical units or who may code at a less granular level. For example, point of care, room, and bed may be 1 indivisible code.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.1.10.1",
                             Type = @"SubComponent",
@@ -354,8 +351,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -373,8 +369,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = null,
                             Description = @"The entity that creates the data for the individual physical location components. If populated, it should be the authority for all components populated. Refer to User-defined Table 0363 - Assigning authority for suggested values for the first sub-component of the HD component, <namespace ID>.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.1.11.1",
                             Type = @"SubComponent",
@@ -426,10 +421,8 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -447,8 +440,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = @"Location Department",
                             Description = @"This field contains the institution's department to which this location belongs, or its cost center. Refer to User-defined Table 0264 - Location Department for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.2.1",
                             Type = @"Component",
@@ -608,8 +600,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -645,8 +636,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = @"Specialty Type",
                             Description = @"This field contains the specialty type (if any) of the department or clinic. This may also be considered a bed type. Specialty type is a physical accommodation type, whereas 'accommodation type' (LCC-3 - Accommodation Type) is a financial accommodation type. Refer to User-defined Table 0265 - Specialty type for suggested values. See also LCH-4 - Location Characteristic ID and LHC-5 - Location Characteristic Value .",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.4.1",
                             Type = @"Component",
@@ -806,8 +796,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -915,8 +904,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = null,
                             Description = @"This field contains the hours when this location is open for visiting. Refer to HL7 Table 0267 - Days of the week for valid values for the first two components.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.10.1",
                             Type = @"Component",
@@ -986,8 +974,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"Ending hour on ending day of visiting hours range See second component, 2.A.80.2, ""End Day Range (ID)"".",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1005,8 +992,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = null,
                             Description = @"This field contains the phone number to use to contact facility personnel about the patient location, in case of inquiries about the location. This phone is not necessarily within the named patient location.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.11.1",
                             Type = @"Component",
@@ -1273,8 +1259,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = @"Telecommunication expiration reason",
                             Description = @"Indicates why this contact number/e-mail was marked as ""ended"".",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.11.15.1",
                             Type = @"SubComponent",
@@ -1434,8 +1419,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1453,8 +1437,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = @"Protection Code",
                             Description = @"Indicates whether this information is considered sensitive or should be protected in some way. Refer to User-defined table 0618 - Protection Code for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.11.16.1",
                             Type = @"SubComponent",
@@ -1614,8 +1597,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1633,8 +1615,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = null,
                             Description = @"A unique identifier for the phone number or e-mail address.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.11.17.1",
                             Type = @"SubComponent",
@@ -1704,8 +1685,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1724,8 +1704,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1743,8 +1722,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             TableName = @"Location cost center",
                             Description = @"This field contains the cost center to which this location belongs. Refer to User-defined Table 0462 - Location cost centerfor suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.12.1",
                             Type = @"Component",
@@ -1904,8 +1882,7 @@ The LDP segment identifies how a patient location room is being used by a certai
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -1916,8 +1893,7 @@ The LDP segment identifies how a patient location room is being used by a certai
             this.message = message;
         }
 
-        
-internal HL7V26Field primaryKeyValueLDP;
+        internal HL7V26Field primaryKeyValueLDP;
 
 public HL7V26Field PrimaryKeyValueLDP
 {
@@ -3488,6 +3464,5 @@ public HL7V26Field LocationCostCenter
         return locationCostCenter;
     } 
 }
-
     }
 }

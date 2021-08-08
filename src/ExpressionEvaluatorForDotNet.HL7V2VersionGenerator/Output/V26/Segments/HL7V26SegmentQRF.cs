@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentQRF
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"QRF"; } }
 
@@ -26,6 +26,7 @@ This segment is retained for backward compatibility as of V2.4.  "; } }
                 return new[]
                     {
                         "CH_05",
+
                     };
             }
         }
@@ -195,8 +196,7 @@ This segment is retained for backward compatibility as of V2.4.  "; } }
                             TableName = null,
                             Description = @"This field allows an interval definition to be used for specifying multiple responses to a query. With the addition of this filter, new query specifications should no longer use QRF-2-When data start date/time and QRF-3-When data end date/time in future implementations.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QRF.9.1",
                             Type = @"Component",
@@ -211,8 +211,7 @@ This segment is retained for backward compatibility as of V2.4.  "; } }
                             TableName = null,
                             Description = @"This component specifies the quantity of the service that should be provided at each service interval. For example, if two blood cultures are to be obtained every 4 hours, the quantity would be 2. If three units of blood are to be typed and cross-matched, the quantity would be 3. The default value is 1. When units are required, they can be added, specified by a subcomponent delimiter.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QRF.9.1.1",
                             Type = @"SubComponent",
@@ -245,8 +244,7 @@ This segment is retained for backward compatibility as of V2.4.  "; } }
                             TableName = null,
                             Description = @"This component species the units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the quantity is measured in the default units, the units need not be transmitted. If the quantity is recorded in units different from the default, the units must be transmitted.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QRF.9.1.1",
                             Type = @"SubComponent",
@@ -406,10 +404,8 @@ This segment is retained for backward compatibility as of V2.4.  "; } }
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = null,
                             FieldDatas = null
-                        },
-                        }
-                        },
-                        }
+                        },}
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -427,8 +423,7 @@ This segment is retained for backward compatibility as of V2.4.  "; } }
                             TableName = null,
                             Description = @"Determines the interval between repeated services.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QRF.9.2.1",
                             Type = @"SubComponent",
@@ -462,8 +457,7 @@ This segment is retained for backward compatibility as of V2.4.  "; } }
                             Description = @"This component explicitly lists the actual times referenced by the code in the first component, in the following format: HHMM,HHMM,HHMM,.... This second component will be used to clarify the first component in cases where the actual times vary within an institution. If the time of the order spans more than a single day, this new component is only practical if the same times of administration occur for each day of the order. If the actual start time of the order (as given by the fourth component of the quantity/timing field) is after the first explicit time, the first administration is taken to be the first explicit time after the start time. In the case where the patient moves to a location having a different set of explicit times, the existing order may be updated with a new quantity/timing field showing the changed explicit times.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -611,8 +605,7 @@ There are other situations where part of the order’s instructions contains a r
 
 The sequencing conditions supported by this 10th component are based on the completion of a predecessor service.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QRF.9.10.1",
                             Type = @"SubComponent",
@@ -808,8 +801,7 @@ The sequencing conditions supported by this 10th component are based on the comp
                             Description = @"Contains the last component of the placer order number. Refer to HL7 table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -827,8 +819,7 @@ The sequencing conditions supported by this 10th component are based on the comp
                             TableName = null,
                             Description = @"This component contains the duration for a single performance of a service, e.g., whirlpool twenty minutes three times per day for three days. It is optional within TQ and does not repeat.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QRF.9.11.1",
                             Type = @"SubComponent",
@@ -988,8 +979,7 @@ The sequencing conditions supported by this 10th component are based on the comp
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1008,8 +998,7 @@ The sequencing conditions supported by this 10th component are based on the comp
                             Description = @"This component contains the total number of occurrences of a service that should result from this order. It is optional within TQ and does not repeat. If both the end date/time and the total occurrences are valued and the occurrences would extend beyond the end date/time, then the end date/time takes precedence. Otherwise the number of occurrences takes precedence.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -1038,8 +1027,7 @@ The sequencing conditions supported by this 10th component are based on the comp
             this.message = message;
         }
 
-        
-internal HL7V26Field whereSubjectFilter;
+        internal HL7V26Field whereSubjectFilter;
 
 public HL7V26Field WhereSubjectFilter
 {
@@ -2348,6 +2336,5 @@ public HL7V26Field SearchConfidenceThreshold
         return searchConfidenceThreshold;
     } 
 }
-
     }
 }

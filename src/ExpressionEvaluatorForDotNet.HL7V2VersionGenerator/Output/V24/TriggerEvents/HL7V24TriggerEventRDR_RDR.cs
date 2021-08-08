@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventRDR_RDR
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentMSA msa;
-public readonly HL7V24SegmentERR err;
-public readonly HL7V24SegmentDSC dsc;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentMSA msa;
+private readonly HL7V24SegmentERR err;
+private readonly HL7V24SegmentDSC dsc;
 
 
         public string Id { get { return @"RDR_RDR"; } }
@@ -25,6 +25,7 @@ public readonly HL7V24SegmentDSC dsc;
                     {
                         "CH_04",
 "CH_05",
+
                     };
             }
         }

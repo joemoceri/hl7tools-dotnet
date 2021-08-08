@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventOML_O21
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V24SegmentMSH msh;
-public readonly HL7V24SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V24SegmentMSH msh;
+private readonly HL7V24SegmentNTE nte;
 
 
         public string Id { get { return @"OML_O21"; } }
@@ -22,6 +22,7 @@ public readonly HL7V24SegmentNTE nte;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

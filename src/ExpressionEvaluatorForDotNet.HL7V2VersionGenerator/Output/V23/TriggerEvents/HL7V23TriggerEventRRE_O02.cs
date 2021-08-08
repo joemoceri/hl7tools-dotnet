@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventRRE_O02
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentMSA msa;
-public readonly HL7V23SegmentERR err;
-public readonly HL7V23SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentMSA msa;
+private readonly HL7V23SegmentERR err;
+private readonly HL7V23SegmentNTE nte;
 
 
         public string Id { get { return @"RRE_O02"; } }
@@ -24,6 +24,7 @@ public readonly HL7V23SegmentNTE nte;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

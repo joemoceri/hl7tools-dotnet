@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271SegmentSID
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"SID"; } }
 
@@ -26,6 +26,7 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
                 return new[]
                     {
                         "CH_13",
+
                     };
             }
         }
@@ -53,8 +54,7 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
 
 Example: GLUCOSE is an orderable test. GLUCOSE can be analyzed using various applications/methods, which have manufacturer specific identifiers. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SID.1.1",
                             Type = @"Component",
@@ -480,8 +480,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -535,8 +534,7 @@ Value set version ID is required if CWE.21 is populated.",
                             TableName = @"Manufacturer Identifier",
                             Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0385 - Manufacturer Identifier for suggested values.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SID.4.1",
                             Type = @"Component",
@@ -962,8 +960,7 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -974,8 +971,7 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
-        
-internal HL7V271Field applicationMethodIdentifier;
+        internal HL7V271Field applicationMethodIdentifier;
 
 public HL7V271Field ApplicationMethodIdentifier
 {
@@ -1500,6 +1496,5 @@ public HL7V271Field SubstanceManufacturerIdentifier
         return substanceManufacturerIdentifier;
     } 
 }
-
     }
 }

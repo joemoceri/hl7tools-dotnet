@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26SegmentGP1
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"GP1"; } }
 
@@ -26,6 +26,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                 return new[]
                     {
                         "CH_06",
+
                     };
             }
         }
@@ -123,8 +124,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"This field contains the amount that exceeds the outlier limitation as defined by APC regulations. This field is analogous to DRG-7 - Outlier Cost ; however, the definition in this field note supersedes the DRG-7 definition.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.1",
                             Type = @"Component",
@@ -139,8 +139,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"The only required component; usually containing a decimal point. Note that each component of the MO data type (Section 2.A.41, ""MO - money"") is a subcomponent here.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.1.1",
                             Type = @"SubComponent",
@@ -174,8 +173,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -247,8 +245,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                             TableName = null,
                             Description = @"A coded value, data type CWE, defined by the standard table of units for either time or quantity (see for example, the tables in Section 7.1.4, ""Coding schemes""). This describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (i.e., count); it is required if <from value> and <to value> are present.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.5.5.1",
                             Type = @"SubComponent",
@@ -408,8 +405,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -428,8 +424,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -440,8 +435,7 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
             this.message = message;
         }
 
-        
-internal HL7V26Field typeofBillCode;
+        internal HL7V26Field typeofBillCode;
 
 public HL7V26Field TypeofBillCode
 {
@@ -1095,6 +1089,5 @@ public HL7V26Field OutlierCost
         return outlierCost;
     } 
 }
-
     }
 }

@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventRAS_O17
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V25SegmentMSH msh;
-public readonly HL7V25SegmentSFT sft;
-public readonly HL7V25SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V25SegmentMSH msh;
+private readonly HL7V25SegmentSFT sft;
+private readonly HL7V25SegmentNTE nte;
 
 
         public string Id { get { return @"RAS_O17"; } }
@@ -23,6 +23,7 @@ public readonly HL7V25SegmentNTE nte;
                 return new[]
                     {
                         "CH_04",
+
                     };
             }
         }

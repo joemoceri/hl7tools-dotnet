@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventSIU_S24
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V26SegmentMSH msh;
-public readonly HL7V26SegmentSCH sch;
-public readonly HL7V26SegmentTQ1 tq1;
-public readonly HL7V26SegmentNTE nte;
+        private readonly HL7V2Message message;
+        private readonly HL7V26SegmentMSH msh;
+private readonly HL7V26SegmentSCH sch;
+private readonly HL7V26SegmentTQ1 tq1;
+private readonly HL7V26SegmentNTE nte;
 
 
         public string Id { get { return @"SIU_S24"; } }
@@ -24,6 +24,7 @@ public readonly HL7V26SegmentNTE nte;
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }

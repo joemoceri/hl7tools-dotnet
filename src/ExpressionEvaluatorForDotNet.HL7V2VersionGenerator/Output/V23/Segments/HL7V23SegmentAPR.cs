@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23SegmentAPR
     {
-        public readonly HL7V2Message message;
+        private readonly HL7V2Message message;
 
         public string Id { get { return @"APR"; } }
 
@@ -24,6 +24,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_10",
+
                     };
             }
         }
@@ -51,8 +52,7 @@ namespace ExpressionEvaluatorForDotNet
 
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"APR.1.1",
                             Type = @"Component",
@@ -88,8 +88,7 @@ For example, if a filler application allows preference parameters to be passed t
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -111,8 +110,7 @@ Refer to Section 10.5.8.1, “Time selection criteria  (SVC)   00908,” for an 
 
 The valid set of preferences should be determined by the placer and filler applications during implementation of the interface.  Refer to user-defined table 0294 - Time selection criteria parameter class codes for suggested examples. ",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"APR.2.1",
                             Type = @"Component",
@@ -148,8 +146,7 @@ The valid set of preferences should be determined by the placer and filler appli
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -171,8 +168,7 @@ Refer to Section 10.5.8.1, “Time selection criteria  (SVC)   00908,” for an 
 
 The valid set of preferences should be determined by the placer and filler applications during implementation of the interface.  Refer to user-defined table 0294 - Time selection criteria parameter class codes for suggested examples.",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"APR.3.1",
                             Type = @"Component",
@@ -208,8 +204,7 @@ The valid set of preferences should be determined by the placer and filler appli
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         
                         new HL7V2FieldData
@@ -250,8 +245,7 @@ Refer to Section 10.5.8.1, “Time selection criteria  (SVC)   00908,” for an 
 
 The valid set of parameters should be determined by the placer and filler applications during implementation of the interface",
                             Sample = @"",
-                            FieldDatas = new []{
-                        new HL7V2FieldData
+                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"APR.5.1",
                             Type = @"Component",
@@ -287,8 +281,7 @@ The valid set of parameters should be determined by the placer and filler applic
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets",
                             Sample = @"",
                             FieldDatas = null
-                        },
-                        }
+                        },}
                         },
                         };
             }
@@ -299,8 +292,7 @@ For example, if a filler application allows preference parameters to be passed t
             this.message = message;
         }
 
-        
-internal HL7V23Field timeSelectionCriteria;
+        internal HL7V23Field timeSelectionCriteria;
 
 public HL7V23Field TimeSelectionCriteria
 {
@@ -969,6 +961,5 @@ The valid set of parameters should be determined by the placer and filler applic
         return fillerOverrideCriteria;
     } 
 }
-
     }
 }

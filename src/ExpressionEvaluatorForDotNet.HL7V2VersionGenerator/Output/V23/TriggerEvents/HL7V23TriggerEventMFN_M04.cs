@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventMFN_M04
     {
-        public readonly HL7V2Message message;
-        public readonly HL7V23SegmentMSH msh;
-public readonly HL7V23SegmentMFI mfi;
+        private readonly HL7V2Message message;
+        private readonly HL7V23SegmentMSH msh;
+private readonly HL7V23SegmentMFI mfi;
 
 
         public string Id { get { return @"MFN_M04"; } }
@@ -22,6 +22,7 @@ public readonly HL7V23SegmentMFI mfi;
                 return new[]
                     {
                         "CH_08",
+
                     };
             }
         }
