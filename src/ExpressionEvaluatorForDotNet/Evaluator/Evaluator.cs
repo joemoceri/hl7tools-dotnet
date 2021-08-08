@@ -278,7 +278,6 @@ namespace ExpressionEvaluatorForDotNet
 						if (!inQuote)
 						{
 							start = i; 
-							length = 0;
 						}
 						// if it's inside a quoted string, grab it and add it to the result. Do it this way to not remove whitespace from quoted strings
 						else

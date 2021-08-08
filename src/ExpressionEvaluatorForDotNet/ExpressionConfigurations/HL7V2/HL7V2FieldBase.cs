@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace ExpressionEvaluatorForDotNet
 {
@@ -34,14 +35,14 @@ namespace ExpressionEvaluatorForDotNet
 		/// <returns><see cref="string"/> of the combined fields.</returns>
 		protected string CombineHL7Fields(IList<HL7V2FieldBase> fields)
 		{
-			var result = string.Empty;
+			var result = new StringBuilder();
 
 			for (var i = 0; i < fields.Count; i++)
 			{
-				result += $"{(i == 0 ? "" : fields[i].Delimiter)}{fields[i].Value}";
+				result.Append($"{(i == 0 ? "" : fields[i].Delimiter)}{fields[i].Value}");
 			}
 
-			return result;
+			return result.ToString();
 		}
 	}
 }

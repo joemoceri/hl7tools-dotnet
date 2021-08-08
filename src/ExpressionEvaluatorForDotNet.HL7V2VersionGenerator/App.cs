@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 {
@@ -178,13 +179,11 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                     if (triggerEvent.Chapters != null && triggerEvent.Chapters.Count > 0)
                     {
-                        var chaptersStrings = string.Empty;
+                        var chaptersStrings = new StringBuilder();
                         for (var i = 0; i < triggerEvent.Chapters.Count; i++)
                         {
-                            chaptersStrings += $"\"{triggerEvent.Chapters[i]}\",{Environment.NewLine}";
+                            chaptersStrings.Append($"\"{triggerEvent.Chapters[i]}\",{Environment.NewLine}");
                         }
-
-                        chaptersStrings = chaptersStrings.Trim();
 
                         chapters = @$"new[]
                     {{
@@ -198,30 +197,30 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                     string GetSegmentProperties()
                     {
-                        var result = string.Empty;
+                        var result = new StringBuilder();
 
                         for (var i = 0; i < triggerEvent.Segments.Count; i++)
                         {
                             var id = triggerEvent.Segments[i].Id;
                             var template = $"public readonly HL7V{version}Segment{id} {id.ToLower()};{Environment.NewLine}";
-                            result += template;
+                            result.Append(template);
                         }
 
-                        return result;
+                        return result.ToString();
                     }
 
                     string GetSegmentInitializers()
                     {
-                        var result = string.Empty;
+                        var result = new StringBuilder();
 
                         for (var i = 0; i < triggerEvent.Segments.Count; i++)
                         {
                             var id = triggerEvent.Segments[i].Id;
                             var template = $"this.{id.ToLower()} = new HL7V{version}Segment{id}(this.message);{Environment.NewLine}";
-                            result += template;
+                            result.Append(template);
                         }
 
-                        return result;
+                        return result.ToString();
                     }
                 }
             }
@@ -260,14 +259,15 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     string fieldDatasStrings = null;
                     if (segment.Fields != null && segment.Fields.Count > 0)
                     {
+                        var r = new StringBuilder();
                         for (var i = 0; i < segment.Fields.Count; i++)
                         {
                             var field = segment.Fields[i];
 
-                            fieldDatasStrings += CreateFieldData(field);
+                            r.Append(CreateFieldData(field));
                         }
 
-                        fieldDatasStrings = fieldDatasStrings.Trim();
+                        fieldDatasStrings = r.ToString().Trim();
                     }
 
                     if (fieldDatasStrings != null)
@@ -284,13 +284,11 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     string chapters = null;
                     if (segment.Chapters != null && segment.Chapters.Count > 0)
                     {
-                        var chaptersStrings = string.Empty;
+                        var chaptersStrings = new StringBuilder();
                         for (var i = 0; i < segment.Chapters.Count; i++)
                         {
-                            chaptersStrings += $"\"{segment.Chapters[i]}\",{Environment.NewLine}";
+                            chaptersStrings.Append($"\"{segment.Chapters[i]}\",{Environment.NewLine}");
                         }
-
-                        chaptersStrings = chaptersStrings.Trim();
 
                         chapters = @$"new[]
                     {{
@@ -304,12 +302,15 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                     if (segment.Fields != null && segment.Fields.Count > 0)
                     {
+                        var r = new StringBuilder();
                         for (var i = 0; i < segment.Fields.Count; i++)
                         {
                             var field = segment.Fields[i];
 
-                            fields += CreateSegmentField(version, segment.Id, field);
+                            r.Append(CreateSegmentField(version, segment.Id, field));
                         }
+
+                        fields = r.ToString().Trim();
                     }
 
                     result.Add("[{-FIELDS-}]", WrapInQuotesOrNull(fields, true));
@@ -361,14 +362,15 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     string fieldsStrings = null;
                     if (dataType.Fields != null && dataType.Fields.Count > 0)
                     {
+                        var r = new StringBuilder();
                         for (var i = 0; i < dataType.Fields.Count; i++)
                         {
                             var field = dataType.Fields[i];
 
-                            fieldsStrings += CreateFieldData(field);
+                            r.Append(CreateFieldData(field));
                         }
 
-                        fieldsStrings = fieldsStrings.Trim();
+                        fieldsStrings = r.ToString().Trim();
                     }
 
                     if (fieldsStrings != null)
@@ -414,18 +416,16 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     result.Add("[{-TABLE_TYPE-}]", WrapInQuotesOrNull(table.TableType));
                     result.Add("[{-NAME-}]", WrapInQuotesOrNull(table.Name));
 
+                    // chapters
                     string chapters = null;
-                    string entries = null;
 
                     if (table.Chapters != null && table.Chapters.Count > 0)
                     {
-                        var chaptersStrings = string.Empty;
+                        var chaptersStrings = new StringBuilder();
                         for (var i = 0; i < table.Chapters.Count; i++)
                         {
-                            chaptersStrings += $"\"{table.Chapters[i]}\",{Environment.NewLine}";
+                            chaptersStrings.Append($"\"{table.Chapters[i]}\",{Environment.NewLine}");
                         }
-
-                        chaptersStrings = chaptersStrings.Trim();
 
                         chapters = @$"new[]
                     {{
@@ -435,24 +435,25 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                     result.Add("[{-CHAPTERS-}]", WrapInQuotesOrNull(chapters, true));
 
+                    // entries
+                    string entries = null;
+
                     if (table.Entries != null && table.Entries.Count > 0)
                     {
-                        var entriesStrings = string.Empty;
+                        var entriesStrings = new StringBuilder();
                         for (var i = 0; i < table.Entries.Count; i++)
                         {
                             var value = WrapInQuotesOrNull(table.Entries[i].Value);
                             var description = WrapInQuotesOrNull(table.Entries[i].Description);
                             var comment = WrapInQuotesOrNull(table.Entries[i].Comment);
 
-                            entriesStrings += @$"new HL7V2TableEntry
+                            entriesStrings.Append(@$"new HL7V2TableEntry
                         {{
                             Value = {value},
                             Description = {description},
                             Comment = {comment}
-                        }},{Environment.NewLine}                        ";
+                        }},{Environment.NewLine}                        ");
                         }
-
-                        entriesStrings = entriesStrings.Trim();
 
                         entries = @$"new[]
                     {{

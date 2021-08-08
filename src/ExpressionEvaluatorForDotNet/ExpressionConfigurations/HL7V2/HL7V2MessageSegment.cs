@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ExpressionEvaluatorForDotNet
 {
@@ -41,9 +42,9 @@ namespace ExpressionEvaluatorForDotNet
 					return null;
 				}
 
-				var result = string.Empty;
+				var result = new StringBuilder();
 
-				result = SegmentName;
+				result.Append(SegmentName);
 
 				for (var i = 0; i < fields.Count; i++)
 				{
@@ -52,10 +53,10 @@ namespace ExpressionEvaluatorForDotNet
 						continue;
 					}
 
-					result += $"{(fields[i].Delimiter)}{fields[i].Value}";
+					result.Append($"{(fields[i].Delimiter)}{fields[i].Value}");
 				}
 
-				return result;
+				return result.ToString();
 			}
 		}
 
