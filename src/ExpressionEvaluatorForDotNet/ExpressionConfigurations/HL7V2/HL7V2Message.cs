@@ -57,8 +57,8 @@ namespace ExpressionEvaluatorForDotNet
         {
             int GetRepetitionIndex(string input)
             {
-                var startIndex = input.IndexOf("(") + 1;
-                var endIndex = input.LastIndexOf(")");
+                var startIndex = input.IndexOf("(", StringComparison.InvariantCulture) + 1;
+                var endIndex = input.LastIndexOf(")", StringComparison.InvariantCulture);
 
                 var indexString = input.Substring(startIndex, endIndex - startIndex);
 
@@ -85,7 +85,7 @@ namespace ExpressionEvaluatorForDotNet
             }
 
             var containsRepetition = split[0].Contains("(");
-            var messageSegmentName = containsRepetition ? split[0].Substring(0, split[0].IndexOf("(")) : split[0];
+            var messageSegmentName = containsRepetition ? split[0].Substring(0, split[0].IndexOf("(", StringComparison.InvariantCulture)) : split[0];
             int? segmentRepetitionIndex = null;
 
             if (containsRepetition)
@@ -110,7 +110,7 @@ namespace ExpressionEvaluatorForDotNet
                 fieldRepetitionIndex = GetRepetitionIndex(split[1]);
             }
 
-            if (int.TryParse(containsFieldRepetition ? split[1].Substring(0, split[1].IndexOf("(")) : split[1], out parsedInt))
+            if (int.TryParse(containsFieldRepetition ? split[1].Substring(0, split[1].IndexOf("(", StringComparison.InvariantCulture)) : split[1], out parsedInt))
             {
                 fieldIndex = parsedInt;
             }
@@ -299,21 +299,21 @@ namespace ExpressionEvaluatorForDotNet
         /// <summary>
         /// Compare two <see cref="HL7V2Message"/>'s.
         /// </summary>
-        /// <param name="otherMessage">The other <see cref="HL7V2Message"/> to compare against.</param>
+        /// <param name="obj">The other <see cref="HL7V2Message"/> to compare against.</param>
         /// <returns><see cref="true"/> if equal, otherwise <see cref="false"/>.</returns>
-        public override bool Equals(object otherMessage)
+        public override bool Equals(object obj)
         {
-            if (otherMessage == null)
+            if (obj == null)
             {
                 return false;
             }
 
-            if (otherMessage.GetType() != this.GetType())
+            if (obj.GetType() != this.GetType())
             {
                 return false;
             }
 
-            var compareTo = (HL7V2Message)otherMessage;
+            var compareTo = (HL7V2Message)obj;
 
             return AreMessagesTheSame(this, compareTo);
 

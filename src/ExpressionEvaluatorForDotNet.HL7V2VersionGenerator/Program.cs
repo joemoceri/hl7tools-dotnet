@@ -2,7 +2,7 @@
 
 namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {

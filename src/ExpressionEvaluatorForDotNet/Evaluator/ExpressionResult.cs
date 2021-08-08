@@ -32,21 +32,21 @@ namespace ExpressionEvaluatorForDotNet
 		/// <summary>
 		/// Compares two <see cref="ExpressionResult"/> using the <see cref="Value"/> and <see cref="VariableType"/> for equality.
 		/// </summary>
-		/// <param name="expressionResult">The object to compare against.</param>
+		/// <param name="obj">The object to compare against.</param>
 		/// <returns><see cref="bool"/></returns>
-		public override bool Equals(object expressionResult)
+		public override bool Equals(object obj)
 		{
-			if (expressionResult == null)
+			if (obj == null)
 			{ 
 				return false; 
 			}
 
-			if (expressionResult.GetType() != GetType())
+			if (obj.GetType() != GetType())
 			{
 				return false;
 			}
 
-			var compareTo = (ExpressionResult)expressionResult;
+			var compareTo = (ExpressionResult)obj;
 
 			return compareTo.Value == Value && compareTo.Type == Type && compareTo.GetHashCode() == GetHashCode();
 		}

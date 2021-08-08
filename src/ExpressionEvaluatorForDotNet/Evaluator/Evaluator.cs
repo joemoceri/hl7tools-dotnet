@@ -1291,7 +1291,7 @@ namespace ExpressionEvaluatorForDotNet
 			string ReplaceExpressionWithResult(string expression, string expressionSearchingFor, string expressionResultToReplace)
 			{
 				// get the start and end points
-				var startPoint = expression.IndexOf(expressionSearchingFor);
+				var startPoint = expression.IndexOf(expressionSearchingFor, StringComparison.InvariantCulture);
 				var endPoint = startPoint + expressionSearchingFor.Length;
 
 				// get everything before the searching strings starting point, add it to the new replace, and append everything after the searching strings ending point
