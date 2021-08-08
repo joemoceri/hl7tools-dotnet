@@ -40,7 +40,7 @@ namespace ExpressionEvaluatorForDotNet
         public HL7V2ValidationResult Validate()
         {
             var issues = new Dictionary<string, string>();
-            var result = true;
+            var valid = true;
             Exception error = null;
 
             try
@@ -58,14 +58,14 @@ namespace ExpressionEvaluatorForDotNet
             catch(Exception e)
             {
                 error = e;
-                result = false;
+                valid = false;
             }
 
             return new HL7V2ValidationResult
             {
                 Issues = issues,
                 Error = error,
-                Result = result
+                Valid = valid
             };
         }
     }

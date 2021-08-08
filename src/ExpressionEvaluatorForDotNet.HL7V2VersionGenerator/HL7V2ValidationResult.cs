@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V2ValidationResult
     {
-        public bool Result { get; set; }
+        public bool Valid { get; set; }
 
         public IDictionary<string, string> Issues { get; set; }
 
