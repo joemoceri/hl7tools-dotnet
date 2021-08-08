@@ -9663,18 +9663,18 @@ public HL7V28Field CertaintyOfProblem
     } 
 }
 
-internal HL7V28Field probabilityOfProblem(01);
+internal HL7V28Field probabilityOfProblem01;
 
-public HL7V28Field ProbabilityOfProblem(01)
+public HL7V28Field ProbabilityOfProblem01
 {
     get
     {
-        if (probabilityOfProblem(01) != null)
+        if (probabilityOfProblem01 != null)
         {
-            return probabilityOfProblem(01);
+            return probabilityOfProblem01;
         }
 
-        probabilityOfProblem(01) = new HL7V28Field
+        probabilityOfProblem01 = new HL7V28Field
         {
             field = message[@"PRB"][20],
             Id = @"PRB.20",
@@ -9695,17 +9695,17 @@ Note:  We have provided for two different representations of the certainty of th
         };
 
         // check for repetitions
-        if (probabilityOfProblem(01).field.FieldRepetitions != null && probabilityOfProblem(01).field.FieldRepetitions.Count > 0)
+        if (probabilityOfProblem01.field.FieldRepetitions != null && probabilityOfProblem01.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(probabilityOfProblem(01).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(probabilityOfProblem01.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < probabilityOfProblem(01).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < probabilityOfProblem01.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = probabilityOfProblem(01).field.FieldRepetitions[i],
+                    fieldRepetition = probabilityOfProblem01.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -9727,12 +9727,12 @@ Note:  We have provided for two different representations of the certainty of th
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < probabilityOfProblem(01).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < probabilityOfProblem01.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = probabilityOfProblem(01).field.FieldRepetitions[i].Components[j],
+                            component = probabilityOfProblem01.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -9753,12 +9753,12 @@ Note:  We have provided for two different representations of the certainty of th
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < probabilityOfProblem(01).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < probabilityOfProblem01.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = probabilityOfProblem(01).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = probabilityOfProblem01.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -9789,10 +9789,10 @@ Note:  We have provided for two different representations of the certainty of th
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            probabilityOfProblem(01).fieldRepetitions = fieldRepetitions;
+            probabilityOfProblem01.fieldRepetitions = fieldRepetitions;
         }
 
-        return probabilityOfProblem(01);
+        return probabilityOfProblem01;
     } 
 }
 

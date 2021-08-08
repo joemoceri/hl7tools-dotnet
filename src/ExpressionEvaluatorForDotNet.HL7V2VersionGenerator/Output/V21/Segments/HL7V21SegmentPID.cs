@@ -10,24 +10,24 @@ namespace ExpressionEvaluatorForDotNet
         public string Id { get { return @"PID"; } }
 
         public string SegmentId { get { return @"PID"; } }
-        
+
         public string LongName { get { return @"Patient Identification"; } }
-        
+
         public string Description { get { return @""; } }
-        
+
         public string Sample { get { return @""; } }
 
-        public IList<string> Chapters 
-        { 
-            get 
+        public IList<string> Chapters
+        {
+            get
             {
                 return null;
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
+        public IList<HL7V2FieldData> Fields
+        {
+            get
             {
                 return new[]
                         {
@@ -48,7 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.2",
@@ -66,7 +66,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.3",
@@ -84,7 +84,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.4",
@@ -102,7 +102,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.5",
@@ -120,7 +120,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.6",
@@ -138,7 +138,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.7",
@@ -156,7 +156,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.8",
@@ -174,7 +174,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.9",
@@ -192,7 +192,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.10",
@@ -210,7 +210,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.11",
@@ -228,7 +228,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.12",
@@ -246,7 +246,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.13",
@@ -264,7 +264,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.14",
@@ -282,7 +282,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.15",
@@ -300,7 +300,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.16",
@@ -318,7 +318,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.17",
@@ -336,7 +336,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.18",
@@ -354,7 +354,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.19",
@@ -372,7 +372,7 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"PID.20",
@@ -399,101 +399,75 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
         }
 
-        
-internal HL7V21Field setIdPatientId;
 
-public HL7V21Field SetIdPatientId
-{
-    get
-    {
-        if (setIdPatientId != null)
+        internal HL7V21Field setIdPatientId;
+
+        public HL7V21Field SetIdPatientId
         {
-            return setIdPatientId;
-        }
-
-        setIdPatientId = new HL7V21Field
-        {
-            field = message[@"PID"][1],
-            Id = @"PID.1",
-            Type = @"Field",
-            Position = @"PID.1",
-            Name = @"Set Id - Patient Id",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Set Id",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdPatientId.field.FieldRepetitions != null && setIdPatientId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdPatientId.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < setIdPatientId.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (setIdPatientId != null)
                 {
-                    fieldRepetition = setIdPatientId.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return setIdPatientId;
+                }
+
+                setIdPatientId = new HL7V21Field
+                {
+                    field = message[@"PID"][1],
+                    Id = @"PID.1",
+                    Type = @"Field",
+                    Position = @"PID.1",
+                    Name = @"Set Id - Patient Id",
+                    Length = 4,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"SI",
+                    DataTypeName = @"Set Id",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (setIdPatientId.field.FieldRepetitions != null && setIdPatientId.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(setIdPatientId.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < setIdPatientId.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < setIdPatientId.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = setIdPatientId.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = setIdPatientId.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < setIdPatientId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < setIdPatientId.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = setIdPatientId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = setIdPatientId.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -509,122 +483,122 @@ public HL7V21Field SetIdPatientId
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < setIdPatientId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = setIdPatientId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    setIdPatientId.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return setIdPatientId;
             }
-                     
-            setIdPatientId.fieldRepetitions = fieldRepetitions;
         }
 
-        return setIdPatientId;
-    } 
-}
+        internal HL7V21Field patientIdExternalexternalId;
 
-internal HL7V21Field patientIdExternal(externalId);
-
-public HL7V21Field PatientIdExternal(externalId)
-{
-    get
-    {
-        if (patientIdExternal(externalId) != null)
+        public HL7V21Field PatientIdExternalexternalId
         {
-            return patientIdExternal(externalId);
-        }
-
-        patientIdExternal(externalId) = new HL7V21Field
-        {
-            field = message[@"PID"][2],
-            Id = @"PID.2",
-            Type = @"Field",
-            Position = @"PID.2",
-            Name = @"Patient Id External (external Id)",
-            Length = 16,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CK",
-            DataTypeName = @"Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientIdExternal(externalId).field.FieldRepetitions != null && patientIdExternal(externalId).field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientIdExternal(externalId).Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < patientIdExternal(externalId).field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (patientIdExternalexternalId != null)
                 {
-                    fieldRepetition = patientIdExternal(externalId).field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return patientIdExternalexternalId;
+                }
+
+                patientIdExternalexternalId = new HL7V21Field
+                {
+                    field = message[@"PID"][2],
+                    Id = @"PID.2",
+                    Type = @"Field",
+                    Position = @"PID.2",
+                    Name = @"Patient Id External (external Id)",
+                    Length = 16,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"CK",
+                    DataTypeName = @"Composite Id With Check Digit",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (patientIdExternalexternalId.field.FieldRepetitions != null && patientIdExternalexternalId.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(patientIdExternalexternalId.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < patientIdExternal(externalId).field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < patientIdExternalexternalId.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = patientIdExternal(externalId).field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = patientIdExternalexternalId.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < patientIdExternal(externalId).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < patientIdExternalexternalId.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = patientIdExternal(externalId).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = patientIdExternalexternalId.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -640,122 +614,122 @@ public HL7V21Field PatientIdExternal(externalId)
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < patientIdExternalexternalId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = patientIdExternalexternalId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    patientIdExternalexternalId.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return patientIdExternalexternalId;
             }
-                     
-            patientIdExternal(externalId).fieldRepetitions = fieldRepetitions;
         }
 
-        return patientIdExternal(externalId);
-    } 
-}
+        internal HL7V21Field patientIdInternalinternalId;
 
-internal HL7V21Field patientIdInternal(internalId);
-
-public HL7V21Field PatientIdInternal(internalId)
-{
-    get
-    {
-        if (patientIdInternal(internalId) != null)
+        public HL7V21Field PatientIdInternalinternalId
         {
-            return patientIdInternal(internalId);
-        }
-
-        patientIdInternal(internalId) = new HL7V21Field
-        {
-            field = message[@"PID"][3],
-            Id = @"PID.3",
-            Type = @"Field",
-            Position = @"PID.3",
-            Name = @"Patient Id Internal (internal Id)",
-            Length = 16,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CK",
-            DataTypeName = @"Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientIdInternal(internalId).field.FieldRepetitions != null && patientIdInternal(internalId).field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientIdInternal(internalId).Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < patientIdInternal(internalId).field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (patientIdInternalinternalId != null)
                 {
-                    fieldRepetition = patientIdInternal(internalId).field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return patientIdInternalinternalId;
+                }
+
+                patientIdInternalinternalId = new HL7V21Field
+                {
+                    field = message[@"PID"][3],
+                    Id = @"PID.3",
+                    Type = @"Field",
+                    Position = @"PID.3",
+                    Name = @"Patient Id Internal (internal Id)",
+                    Length = 16,
+                    Usage = @"R",
+                    Rpt = @"1",
+                    DataType = @"CK",
+                    DataTypeName = @"Composite Id With Check Digit",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (patientIdInternalinternalId.field.FieldRepetitions != null && patientIdInternalinternalId.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(patientIdInternalinternalId.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < patientIdInternal(internalId).field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < patientIdInternalinternalId.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = patientIdInternal(internalId).field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = patientIdInternalinternalId.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < patientIdInternal(internalId).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < patientIdInternalinternalId.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = patientIdInternal(internalId).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = patientIdInternalinternalId.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -771,122 +745,122 @@ public HL7V21Field PatientIdInternal(internalId)
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < patientIdInternalinternalId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = patientIdInternalinternalId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    patientIdInternalinternalId.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return patientIdInternalinternalId;
             }
-                     
-            patientIdInternal(internalId).fieldRepetitions = fieldRepetitions;
         }
 
-        return patientIdInternal(internalId);
-    } 
-}
+        internal HL7V21Field alternatePatientId;
 
-internal HL7V21Field alternatePatientId;
-
-public HL7V21Field AlternatePatientId
-{
-    get
-    {
-        if (alternatePatientId != null)
+        public HL7V21Field AlternatePatientId
         {
-            return alternatePatientId;
-        }
-
-        alternatePatientId = new HL7V21Field
-        {
-            field = message[@"PID"][4],
-            Id = @"PID.4",
-            Type = @"Field",
-            Position = @"PID.4",
-            Name = @"Alternate Patient Id",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (alternatePatientId.field.FieldRepetitions != null && alternatePatientId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alternatePatientId.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < alternatePatientId.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (alternatePatientId != null)
                 {
-                    fieldRepetition = alternatePatientId.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return alternatePatientId;
+                }
+
+                alternatePatientId = new HL7V21Field
+                {
+                    field = message[@"PID"][4],
+                    Id = @"PID.4",
+                    Type = @"Field",
+                    Position = @"PID.4",
+                    Name = @"Alternate Patient Id",
+                    Length = 12,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ST",
+                    DataTypeName = @"String Data",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (alternatePatientId.field.FieldRepetitions != null && alternatePatientId.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(alternatePatientId.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < alternatePatientId.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < alternatePatientId.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = alternatePatientId.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = alternatePatientId.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < alternatePatientId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < alternatePatientId.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = alternatePatientId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = alternatePatientId.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -902,122 +876,122 @@ public HL7V21Field AlternatePatientId
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < alternatePatientId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = alternatePatientId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    alternatePatientId.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return alternatePatientId;
             }
-                     
-            alternatePatientId.fieldRepetitions = fieldRepetitions;
         }
 
-        return alternatePatientId;
-    } 
-}
+        internal HL7V21Field patientName;
 
-internal HL7V21Field patientName;
-
-public HL7V21Field PatientName
-{
-    get
-    {
-        if (patientName != null)
+        public HL7V21Field PatientName
         {
-            return patientName;
-        }
-
-        patientName = new HL7V21Field
-        {
-            field = message[@"PID"][5],
-            Id = @"PID.5",
-            Type = @"Field",
-            Position = @"PID.5",
-            Name = @"Patient Name",
-            Length = 48,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"PN",
-            DataTypeName = @"Person Name",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientName.field.FieldRepetitions != null && patientName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientName.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < patientName.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (patientName != null)
                 {
-                    fieldRepetition = patientName.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return patientName;
+                }
+
+                patientName = new HL7V21Field
+                {
+                    field = message[@"PID"][5],
+                    Id = @"PID.5",
+                    Type = @"Field",
+                    Position = @"PID.5",
+                    Name = @"Patient Name",
+                    Length = 48,
+                    Usage = @"R",
+                    Rpt = @"1",
+                    DataType = @"PN",
+                    DataTypeName = @"Person Name",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (patientName.field.FieldRepetitions != null && patientName.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(patientName.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < patientName.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < patientName.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = patientName.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = patientName.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < patientName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < patientName.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = patientName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = patientName.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1033,122 +1007,122 @@ public HL7V21Field PatientName
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < patientName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = patientName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    patientName.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return patientName;
             }
-                     
-            patientName.fieldRepetitions = fieldRepetitions;
         }
 
-        return patientName;
-    } 
-}
+        internal HL7V21Field mothersMaidenName;
 
-internal HL7V21Field mother'sMaidenName;
-
-public HL7V21Field Mother'sMaidenName
-{
-    get
-    {
-        if (mother'sMaidenName != null)
+        public HL7V21Field MothersMaidenName
         {
-            return mother'sMaidenName;
-        }
-
-        mother'sMaidenName = new HL7V21Field
-        {
-            field = message[@"PID"][6],
-            Id = @"PID.6",
-            Type = @"Field",
-            Position = @"PID.6",
-            Name = @"Mother's Maiden Name",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mother'sMaidenName.field.FieldRepetitions != null && mother'sMaidenName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mother'sMaidenName.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < mother'sMaidenName.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (mothersMaidenName != null)
                 {
-                    fieldRepetition = mother'sMaidenName.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return mothersMaidenName;
+                }
+
+                mothersMaidenName = new HL7V21Field
+                {
+                    field = message[@"PID"][6],
+                    Id = @"PID.6",
+                    Type = @"Field",
+                    Position = @"PID.6",
+                    Name = @"Mother's Maiden Name",
+                    Length = 30,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ST",
+                    DataTypeName = @"String Data",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < mother'sMaidenName.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < mothersMaidenName.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = mother'sMaidenName.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = mothersMaidenName.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < mother'sMaidenName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < mothersMaidenName.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = mother'sMaidenName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = mothersMaidenName.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1164,122 +1138,122 @@ public HL7V21Field Mother'sMaidenName
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < mothersMaidenName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = mothersMaidenName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    mothersMaidenName.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return mothersMaidenName;
             }
-                     
-            mother'sMaidenName.fieldRepetitions = fieldRepetitions;
         }
 
-        return mother'sMaidenName;
-    } 
-}
+        internal HL7V21Field dateOfBirth;
 
-internal HL7V21Field dateOfBirth;
-
-public HL7V21Field DateOfBirth
-{
-    get
-    {
-        if (dateOfBirth != null)
+        public HL7V21Field DateOfBirth
         {
-            return dateOfBirth;
-        }
-
-        dateOfBirth = new HL7V21Field
-        {
-            field = message[@"PID"][7],
-            Id = @"PID.7",
-            Type = @"Field",
-            Position = @"PID.7",
-            Name = @"Date Of Birth",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateOfBirth.field.FieldRepetitions != null && dateOfBirth.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateOfBirth.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < dateOfBirth.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (dateOfBirth != null)
                 {
-                    fieldRepetition = dateOfBirth.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return dateOfBirth;
+                }
+
+                dateOfBirth = new HL7V21Field
+                {
+                    field = message[@"PID"][7],
+                    Id = @"PID.7",
+                    Type = @"Field",
+                    Position = @"PID.7",
+                    Name = @"Date Of Birth",
+                    Length = 8,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"DT",
+                    DataTypeName = @"Date",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (dateOfBirth.field.FieldRepetitions != null && dateOfBirth.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(dateOfBirth.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < dateOfBirth.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < dateOfBirth.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = dateOfBirth.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = dateOfBirth.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < dateOfBirth.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < dateOfBirth.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = dateOfBirth.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = dateOfBirth.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1295,122 +1269,122 @@ public HL7V21Field DateOfBirth
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < dateOfBirth.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = dateOfBirth.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    dateOfBirth.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return dateOfBirth;
             }
-                     
-            dateOfBirth.fieldRepetitions = fieldRepetitions;
         }
 
-        return dateOfBirth;
-    } 
-}
+        internal HL7V21Field sex;
 
-internal HL7V21Field sex;
-
-public HL7V21Field Sex
-{
-    get
-    {
-        if (sex != null)
+        public HL7V21Field Sex
         {
-            return sex;
-        }
-
-        sex = new HL7V21Field
-        {
-            field = message[@"PID"][8],
-            Id = @"PID.8",
-            Type = @"Field",
-            Position = @"PID.8",
-            Name = @"Sex",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0001",
-            TableName = @"SEX",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sex.field.FieldRepetitions != null && sex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sex.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < sex.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (sex != null)
                 {
-                    fieldRepetition = sex.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return sex;
+                }
+
+                sex = new HL7V21Field
+                {
+                    field = message[@"PID"][8],
+                    Id = @"PID.8",
+                    Type = @"Field",
+                    Position = @"PID.8",
+                    Name = @"Sex",
+                    Length = 1,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ID",
+                    DataTypeName = @"Coded Value",
+                    TableId = @"0001",
+                    TableName = @"SEX",
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (sex.field.FieldRepetitions != null && sex.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(sex.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < sex.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < sex.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = sex.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = sex.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < sex.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < sex.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = sex.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = sex.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1426,122 +1400,122 @@ public HL7V21Field Sex
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < sex.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = sex.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    sex.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return sex;
             }
-                     
-            sex.fieldRepetitions = fieldRepetitions;
         }
 
-        return sex;
-    } 
-}
+        internal HL7V21Field patientAlias;
 
-internal HL7V21Field patientAlias;
-
-public HL7V21Field PatientAlias
-{
-    get
-    {
-        if (patientAlias != null)
+        public HL7V21Field PatientAlias
         {
-            return patientAlias;
-        }
-
-        patientAlias = new HL7V21Field
-        {
-            field = message[@"PID"][9],
-            Id = @"PID.9",
-            Type = @"Field",
-            Position = @"PID.9",
-            Name = @"Patient Alias",
-            Length = 48,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"PN",
-            DataTypeName = @"Person Name",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAlias.field.FieldRepetitions != null && patientAlias.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAlias.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < patientAlias.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (patientAlias != null)
                 {
-                    fieldRepetition = patientAlias.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return patientAlias;
+                }
+
+                patientAlias = new HL7V21Field
+                {
+                    field = message[@"PID"][9],
+                    Id = @"PID.9",
+                    Type = @"Field",
+                    Position = @"PID.9",
+                    Name = @"Patient Alias",
+                    Length = 48,
+                    Usage = @"O",
+                    Rpt = @"*",
+                    DataType = @"PN",
+                    DataTypeName = @"Person Name",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (patientAlias.field.FieldRepetitions != null && patientAlias.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(patientAlias.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < patientAlias.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < patientAlias.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = patientAlias.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = patientAlias.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < patientAlias.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < patientAlias.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = patientAlias.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = patientAlias.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1557,122 +1531,122 @@ public HL7V21Field PatientAlias
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < patientAlias.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = patientAlias.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    patientAlias.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return patientAlias;
             }
-                     
-            patientAlias.fieldRepetitions = fieldRepetitions;
         }
 
-        return patientAlias;
-    } 
-}
+        internal HL7V21Field ethnicGroup;
 
-internal HL7V21Field ethnicGroup;
-
-public HL7V21Field EthnicGroup
-{
-    get
-    {
-        if (ethnicGroup != null)
+        public HL7V21Field EthnicGroup
         {
-            return ethnicGroup;
-        }
-
-        ethnicGroup = new HL7V21Field
-        {
-            field = message[@"PID"][10],
-            Id = @"PID.10",
-            Type = @"Field",
-            Position = @"PID.10",
-            Name = @"Ethnic Group",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0005",
-            TableName = @"ETHNIC GROUP",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < ethnicGroup.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (ethnicGroup != null)
                 {
-                    fieldRepetition = ethnicGroup.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return ethnicGroup;
+                }
+
+                ethnicGroup = new HL7V21Field
+                {
+                    field = message[@"PID"][10],
+                    Id = @"PID.10",
+                    Type = @"Field",
+                    Position = @"PID.10",
+                    Name = @"Ethnic Group",
+                    Length = 1,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ID",
+                    DataTypeName = @"Coded Value",
+                    TableId = @"0005",
+                    TableName = @"ETHNIC GROUP",
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < ethnicGroup.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < ethnicGroup.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = ethnicGroup.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = ethnicGroup.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < ethnicGroup.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < ethnicGroup.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = ethnicGroup.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = ethnicGroup.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1688,122 +1662,122 @@ public HL7V21Field EthnicGroup
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < ethnicGroup.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = ethnicGroup.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    ethnicGroup.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return ethnicGroup;
             }
-                     
-            ethnicGroup.fieldRepetitions = fieldRepetitions;
         }
 
-        return ethnicGroup;
-    } 
-}
+        internal HL7V21Field patientAddress;
 
-internal HL7V21Field patientAddress;
-
-public HL7V21Field PatientAddress
-{
-    get
-    {
-        if (patientAddress != null)
+        public HL7V21Field PatientAddress
         {
-            return patientAddress;
-        }
-
-        patientAddress = new HL7V21Field
-        {
-            field = message[@"PID"][11],
-            Id = @"PID.11",
-            Type = @"Field",
-            Position = @"PID.11",
-            Name = @"Patient Address",
-            Length = 106,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"AD",
-            DataTypeName = @"Address",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAddress.field.FieldRepetitions != null && patientAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAddress.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < patientAddress.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (patientAddress != null)
                 {
-                    fieldRepetition = patientAddress.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return patientAddress;
+                }
+
+                patientAddress = new HL7V21Field
+                {
+                    field = message[@"PID"][11],
+                    Id = @"PID.11",
+                    Type = @"Field",
+                    Position = @"PID.11",
+                    Name = @"Patient Address",
+                    Length = 106,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"AD",
+                    DataTypeName = @"Address",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (patientAddress.field.FieldRepetitions != null && patientAddress.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(patientAddress.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < patientAddress.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < patientAddress.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = patientAddress.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = patientAddress.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < patientAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < patientAddress.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = patientAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = patientAddress.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1819,122 +1793,122 @@ public HL7V21Field PatientAddress
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < patientAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = patientAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    patientAddress.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return patientAddress;
             }
-                     
-            patientAddress.fieldRepetitions = fieldRepetitions;
         }
 
-        return patientAddress;
-    } 
-}
+        internal HL7V21Field countyCode;
 
-internal HL7V21Field countyCode;
-
-public HL7V21Field CountyCode
-{
-    get
-    {
-        if (countyCode != null)
+        public HL7V21Field CountyCode
         {
-            return countyCode;
-        }
-
-        countyCode = new HL7V21Field
-        {
-            field = message[@"PID"][12],
-            Id = @"PID.12",
-            Type = @"Field",
-            Position = @"PID.12",
-            Name = @"County Code",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (countyCode.field.FieldRepetitions != null && countyCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(countyCode.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < countyCode.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (countyCode != null)
                 {
-                    fieldRepetition = countyCode.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return countyCode;
+                }
+
+                countyCode = new HL7V21Field
+                {
+                    field = message[@"PID"][12],
+                    Id = @"PID.12",
+                    Type = @"Field",
+                    Position = @"PID.12",
+                    Name = @"County Code",
+                    Length = 4,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ID",
+                    DataTypeName = @"Coded Value",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (countyCode.field.FieldRepetitions != null && countyCode.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(countyCode.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < countyCode.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < countyCode.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = countyCode.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = countyCode.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < countyCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < countyCode.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = countyCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = countyCode.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1950,122 +1924,122 @@ public HL7V21Field CountyCode
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < countyCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = countyCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    countyCode.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return countyCode;
             }
-                     
-            countyCode.fieldRepetitions = fieldRepetitions;
         }
 
-        return countyCode;
-    } 
-}
+        internal HL7V21Field phoneNumberHome;
 
-internal HL7V21Field phoneNumberHome;
-
-public HL7V21Field PhoneNumberHome
-{
-    get
-    {
-        if (phoneNumberHome != null)
+        public HL7V21Field PhoneNumberHome
         {
-            return phoneNumberHome;
-        }
-
-        phoneNumberHome = new HL7V21Field
-        {
-            field = message[@"PID"][13],
-            Id = @"PID.13",
-            Type = @"Field",
-            Position = @"PID.13",
-            Name = @"Phone Number - Home",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"3",
-            DataType = @"TN",
-            DataTypeName = @"Telephone Number",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phoneNumberHome.field.FieldRepetitions != null && phoneNumberHome.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberHome.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < phoneNumberHome.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (phoneNumberHome != null)
                 {
-                    fieldRepetition = phoneNumberHome.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return phoneNumberHome;
+                }
+
+                phoneNumberHome = new HL7V21Field
+                {
+                    field = message[@"PID"][13],
+                    Id = @"PID.13",
+                    Type = @"Field",
+                    Position = @"PID.13",
+                    Name = @"Phone Number - Home",
+                    Length = 40,
+                    Usage = @"O",
+                    Rpt = @"3",
+                    DataType = @"TN",
+                    DataTypeName = @"Telephone Number",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (phoneNumberHome.field.FieldRepetitions != null && phoneNumberHome.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberHome.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < phoneNumberHome.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < phoneNumberHome.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = phoneNumberHome.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = phoneNumberHome.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < phoneNumberHome.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < phoneNumberHome.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = phoneNumberHome.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = phoneNumberHome.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2081,122 +2055,122 @@ public HL7V21Field PhoneNumberHome
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < phoneNumberHome.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = phoneNumberHome.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    phoneNumberHome.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return phoneNumberHome;
             }
-                     
-            phoneNumberHome.fieldRepetitions = fieldRepetitions;
         }
 
-        return phoneNumberHome;
-    } 
-}
+        internal HL7V21Field phoneNumberBusiness;
 
-internal HL7V21Field phoneNumberBusiness;
-
-public HL7V21Field PhoneNumberBusiness
-{
-    get
-    {
-        if (phoneNumberBusiness != null)
+        public HL7V21Field PhoneNumberBusiness
         {
-            return phoneNumberBusiness;
-        }
-
-        phoneNumberBusiness = new HL7V21Field
-        {
-            field = message[@"PID"][14],
-            Id = @"PID.14",
-            Type = @"Field",
-            Position = @"PID.14",
-            Name = @"Phone Number - Business",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"3",
-            DataType = @"TN",
-            DataTypeName = @"Telephone Number",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phoneNumberBusiness.field.FieldRepetitions != null && phoneNumberBusiness.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberBusiness.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < phoneNumberBusiness.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (phoneNumberBusiness != null)
                 {
-                    fieldRepetition = phoneNumberBusiness.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return phoneNumberBusiness;
+                }
+
+                phoneNumberBusiness = new HL7V21Field
+                {
+                    field = message[@"PID"][14],
+                    Id = @"PID.14",
+                    Type = @"Field",
+                    Position = @"PID.14",
+                    Name = @"Phone Number - Business",
+                    Length = 40,
+                    Usage = @"O",
+                    Rpt = @"3",
+                    DataType = @"TN",
+                    DataTypeName = @"Telephone Number",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (phoneNumberBusiness.field.FieldRepetitions != null && phoneNumberBusiness.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberBusiness.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < phoneNumberBusiness.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < phoneNumberBusiness.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = phoneNumberBusiness.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = phoneNumberBusiness.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < phoneNumberBusiness.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < phoneNumberBusiness.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = phoneNumberBusiness.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = phoneNumberBusiness.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2212,122 +2186,122 @@ public HL7V21Field PhoneNumberBusiness
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < phoneNumberBusiness.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = phoneNumberBusiness.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    phoneNumberBusiness.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return phoneNumberBusiness;
             }
-                     
-            phoneNumberBusiness.fieldRepetitions = fieldRepetitions;
         }
 
-        return phoneNumberBusiness;
-    } 
-}
+        internal HL7V21Field languagePatient;
 
-internal HL7V21Field languagePatient;
-
-public HL7V21Field LanguagePatient
-{
-    get
-    {
-        if (languagePatient != null)
+        public HL7V21Field LanguagePatient
         {
-            return languagePatient;
-        }
-
-        languagePatient = new HL7V21Field
-        {
-            field = message[@"PID"][15],
-            Id = @"PID.15",
-            Type = @"Field",
-            Position = @"PID.15",
-            Name = @"Language - Patient",
-            Length = 25,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (languagePatient.field.FieldRepetitions != null && languagePatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(languagePatient.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < languagePatient.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (languagePatient != null)
                 {
-                    fieldRepetition = languagePatient.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return languagePatient;
+                }
+
+                languagePatient = new HL7V21Field
+                {
+                    field = message[@"PID"][15],
+                    Id = @"PID.15",
+                    Type = @"Field",
+                    Position = @"PID.15",
+                    Name = @"Language - Patient",
+                    Length = 25,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ST",
+                    DataTypeName = @"String Data",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (languagePatient.field.FieldRepetitions != null && languagePatient.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(languagePatient.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < languagePatient.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < languagePatient.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = languagePatient.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = languagePatient.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < languagePatient.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < languagePatient.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = languagePatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = languagePatient.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2343,122 +2317,122 @@ public HL7V21Field LanguagePatient
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < languagePatient.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = languagePatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    languagePatient.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return languagePatient;
             }
-                     
-            languagePatient.fieldRepetitions = fieldRepetitions;
         }
 
-        return languagePatient;
-    } 
-}
+        internal HL7V21Field maritalStatus;
 
-internal HL7V21Field maritalStatus;
-
-public HL7V21Field MaritalStatus
-{
-    get
-    {
-        if (maritalStatus != null)
+        public HL7V21Field MaritalStatus
         {
-            return maritalStatus;
-        }
-
-        maritalStatus = new HL7V21Field
-        {
-            field = message[@"PID"][16],
-            Id = @"PID.16",
-            Type = @"Field",
-            Position = @"PID.16",
-            Name = @"Marital Status",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0002",
-            TableName = @"MARITAL STATUS",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maritalStatus.field.FieldRepetitions != null && maritalStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maritalStatus.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < maritalStatus.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (maritalStatus != null)
                 {
-                    fieldRepetition = maritalStatus.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return maritalStatus;
+                }
+
+                maritalStatus = new HL7V21Field
+                {
+                    field = message[@"PID"][16],
+                    Id = @"PID.16",
+                    Type = @"Field",
+                    Position = @"PID.16",
+                    Name = @"Marital Status",
+                    Length = 1,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ID",
+                    DataTypeName = @"Coded Value",
+                    TableId = @"0002",
+                    TableName = @"MARITAL STATUS",
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (maritalStatus.field.FieldRepetitions != null && maritalStatus.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(maritalStatus.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < maritalStatus.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < maritalStatus.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = maritalStatus.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = maritalStatus.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < maritalStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < maritalStatus.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = maritalStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = maritalStatus.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2474,122 +2448,122 @@ public HL7V21Field MaritalStatus
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < maritalStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = maritalStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    maritalStatus.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return maritalStatus;
             }
-                     
-            maritalStatus.fieldRepetitions = fieldRepetitions;
         }
 
-        return maritalStatus;
-    } 
-}
+        internal HL7V21Field religion;
 
-internal HL7V21Field religion;
-
-public HL7V21Field Religion
-{
-    get
-    {
-        if (religion != null)
+        public HL7V21Field Religion
         {
-            return religion;
-        }
-
-        religion = new HL7V21Field
-        {
-            field = message[@"PID"][17],
-            Id = @"PID.17",
-            Type = @"Field",
-            Position = @"PID.17",
-            Name = @"Religion",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0006",
-            TableName = @"RELIGION",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (religion.field.FieldRepetitions != null && religion.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(religion.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < religion.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (religion != null)
                 {
-                    fieldRepetition = religion.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return religion;
+                }
+
+                religion = new HL7V21Field
+                {
+                    field = message[@"PID"][17],
+                    Id = @"PID.17",
+                    Type = @"Field",
+                    Position = @"PID.17",
+                    Name = @"Religion",
+                    Length = 3,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ID",
+                    DataTypeName = @"Coded Value",
+                    TableId = @"0006",
+                    TableName = @"RELIGION",
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (religion.field.FieldRepetitions != null && religion.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(religion.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < religion.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < religion.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = religion.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = religion.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < religion.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < religion.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = religion.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = religion.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2605,122 +2579,122 @@ public HL7V21Field Religion
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < religion.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = religion.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    religion.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return religion;
             }
-                     
-            religion.fieldRepetitions = fieldRepetitions;
         }
 
-        return religion;
-    } 
-}
+        internal HL7V21Field patientAccountNumber;
 
-internal HL7V21Field patientAccountNumber;
-
-public HL7V21Field PatientAccountNumber
-{
-    get
-    {
-        if (patientAccountNumber != null)
+        public HL7V21Field PatientAccountNumber
         {
-            return patientAccountNumber;
-        }
-
-        patientAccountNumber = new HL7V21Field
-        {
-            field = message[@"PID"][18],
-            Id = @"PID.18",
-            Type = @"Field",
-            Position = @"PID.18",
-            Name = @"Patient Account Number",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CK",
-            DataTypeName = @"Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAccountNumber.field.FieldRepetitions != null && patientAccountNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAccountNumber.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < patientAccountNumber.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (patientAccountNumber != null)
                 {
-                    fieldRepetition = patientAccountNumber.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return patientAccountNumber;
+                }
+
+                patientAccountNumber = new HL7V21Field
+                {
+                    field = message[@"PID"][18],
+                    Id = @"PID.18",
+                    Type = @"Field",
+                    Position = @"PID.18",
+                    Name = @"Patient Account Number",
+                    Length = 20,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"CK",
+                    DataTypeName = @"Composite Id With Check Digit",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (patientAccountNumber.field.FieldRepetitions != null && patientAccountNumber.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(patientAccountNumber.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < patientAccountNumber.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < patientAccountNumber.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = patientAccountNumber.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = patientAccountNumber.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < patientAccountNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < patientAccountNumber.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = patientAccountNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = patientAccountNumber.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2736,122 +2710,122 @@ public HL7V21Field PatientAccountNumber
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < patientAccountNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = patientAccountNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    patientAccountNumber.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return patientAccountNumber;
             }
-                     
-            patientAccountNumber.fieldRepetitions = fieldRepetitions;
         }
 
-        return patientAccountNumber;
-    } 
-}
+        internal HL7V21Field ssnNumberPatient;
 
-internal HL7V21Field ssnNumberPatient;
-
-public HL7V21Field SsnNumberPatient
-{
-    get
-    {
-        if (ssnNumberPatient != null)
+        public HL7V21Field SsnNumberPatient
         {
-            return ssnNumberPatient;
-        }
-
-        ssnNumberPatient = new HL7V21Field
-        {
-            field = message[@"PID"][19],
-            Id = @"PID.19",
-            Type = @"Field",
-            Position = @"PID.19",
-            Name = @"Ssn Number - Patient",
-            Length = 16,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ssnNumberPatient.field.FieldRepetitions != null && ssnNumberPatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ssnNumberPatient.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < ssnNumberPatient.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (ssnNumberPatient != null)
                 {
-                    fieldRepetition = ssnNumberPatient.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return ssnNumberPatient;
+                }
+
+                ssnNumberPatient = new HL7V21Field
+                {
+                    field = message[@"PID"][19],
+                    Id = @"PID.19",
+                    Type = @"Field",
+                    Position = @"PID.19",
+                    Name = @"Ssn Number - Patient",
+                    Length = 16,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"ST",
+                    DataTypeName = @"String Data",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (ssnNumberPatient.field.FieldRepetitions != null && ssnNumberPatient.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(ssnNumberPatient.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < ssnNumberPatient.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < ssnNumberPatient.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = ssnNumberPatient.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = ssnNumberPatient.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < ssnNumberPatient.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < ssnNumberPatient.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = ssnNumberPatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = ssnNumberPatient.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2867,122 +2841,122 @@ public HL7V21Field SsnNumberPatient
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < ssnNumberPatient.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = ssnNumberPatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    ssnNumberPatient.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return ssnNumberPatient;
             }
-                     
-            ssnNumberPatient.fieldRepetitions = fieldRepetitions;
         }
 
-        return ssnNumberPatient;
-    } 
-}
+        internal HL7V21Field driversLicNumPatient;
 
-internal HL7V21Field driver'sLicNumPatient;
-
-public HL7V21Field Driver'sLicNumPatient
-{
-    get
-    {
-        if (driver'sLicNumPatient != null)
+        public HL7V21Field DriversLicNumPatient
         {
-            return driver'sLicNumPatient;
-        }
-
-        driver'sLicNumPatient = new HL7V21Field
-        {
-            field = message[@"PID"][20],
-            Id = @"PID.20",
-            Type = @"Field",
-            Position = @"PID.20",
-            Name = @"Driver's Lic Num - Patient",
-            Length = 25,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM",
-            DataTypeName = @"",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (driver'sLicNumPatient.field.FieldRepetitions != null && driver'sLicNumPatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(driver'sLicNumPatient.Id));
-            var fieldRepetitions = new List<HL7V21FieldRepetition>();
-
-            for (var i = 0; i < driver'sLicNumPatient.field.FieldRepetitions.Count; i++)
+            get
             {
-                var fieldRepetition = new HL7V21FieldRepetition
+                if (driversLicNumPatient != null)
                 {
-                    fieldRepetition = driver'sLicNumPatient.field.FieldRepetitions[i],
-                    Id = fieldData.Id,
-                    Type = fieldData.Type,
-                    Position = fieldData.Position,
-                    Name = fieldData.Name,
-                    Length = fieldData.Length,
-                    Usage = fieldData.Usage,
-                    Rpt = fieldData.Rpt,
-                    DataType = fieldData.DataType,
-                    DataTypeName = fieldData.DataTypeName,
-                    TableId = fieldData.TableId,
-                    TableName = fieldData.TableName,
-                    Description = fieldData.Description,
-                    Sample = fieldData.Sample
+                    return driversLicNumPatient;
+                }
+
+                driversLicNumPatient = new HL7V21Field
+                {
+                    field = message[@"PID"][20],
+                    Id = @"PID.20",
+                    Type = @"Field",
+                    Position = @"PID.20",
+                    Name = @"Driver's Lic Num - Patient",
+                    Length = 25,
+                    Usage = @"O",
+                    Rpt = @"1",
+                    DataType = @"CM",
+                    DataTypeName = @"",
+                    TableId = null,
+                    TableName = null,
+                    Description = null,
+                    Sample = @"",
                 };
 
-                // check for components if the definition specifies it does
-                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                // check for repetitions
+                if (driversLicNumPatient.field.FieldRepetitions != null && driversLicNumPatient.field.FieldRepetitions.Count > 0)
                 {
-                    var components = new List<HL7V21Component>();
+                    // get this fields data
+                    var fieldData = Fields.First(fd => fd.Id.Equals(driversLicNumPatient.Id));
+                    var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-                    // there should be components per repetition
-                    for (var j = 0; j < driver'sLicNumPatient.field.Components(i + 1).Count; j++)
+                    for (var i = 0; i < driversLicNumPatient.field.FieldRepetitions.Count; i++)
                     {
-                        var componentFieldData = fieldData.FieldDatas[j];
-                        var component = new HL7V21Component
+                        var fieldRepetition = new HL7V21FieldRepetition
                         {
-                            component = driver'sLicNumPatient.field.FieldRepetitions[i].Components[j],
-                            Id = componentFieldData.Id,
-                            Type = componentFieldData.Type,
-                            Position = componentFieldData.Position,
-                            Name = componentFieldData.Name,
-                            Length = componentFieldData.Length,
-                            Usage = componentFieldData.Usage,
-                            Rpt = componentFieldData.Rpt,
-                            DataType = componentFieldData.DataType,
-                            DataTypeName = componentFieldData.DataTypeName,
-                            TableId = componentFieldData.TableId,
-                            TableName = componentFieldData.TableName,
-                            Description = componentFieldData.Description,
-                            Sample = componentFieldData.Sample
+                            fieldRepetition = driversLicNumPatient.field.FieldRepetitions[i],
+                            Id = fieldData.Id,
+                            Type = fieldData.Type,
+                            Position = fieldData.Position,
+                            Name = fieldData.Name,
+                            Length = fieldData.Length,
+                            Usage = fieldData.Usage,
+                            Rpt = fieldData.Rpt,
+                            DataType = fieldData.DataType,
+                            DataTypeName = fieldData.DataTypeName,
+                            TableId = fieldData.TableId,
+                            TableName = fieldData.TableName,
+                            Description = fieldData.Description,
+                            Sample = fieldData.Sample
                         };
 
-                        // check for sub components
-                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                        // check for components if the definition specifies it does
+                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                         {
-                            var subComponents = new List<HL7V21SubComponent>();
+                            var components = new List<HL7V21Component>();
 
-                            for (var k = 0; k < driver'sLicNumPatient.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            // there should be components per repetition
+                            for (var j = 0; j < driversLicNumPatient.field.Components(i + 1).Count; j++)
                             {
-                                var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                var subComponent = new HL7V21SubComponent
+                                var componentFieldData = fieldData.FieldDatas[j];
+                                var component = new HL7V21Component
                                 {
-                                    subComponent = driver'sLicNumPatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    component = driversLicNumPatient.field.FieldRepetitions[i].Components[j],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2998,27 +2972,53 @@ public HL7V21Field Driver'sLicNumPatient
                                     Sample = componentFieldData.Sample
                                 };
 
-                                subComponents.Add(subComponent);
+                                // check for sub components
+                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
+                                {
+                                    var subComponents = new List<HL7V21SubComponent>();
+
+                                    for (var k = 0; k < driversLicNumPatient.field.Components(i + 1)[j].SubComponents.Count; k++)
+                                    {
+                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                        var subComponent = new HL7V21SubComponent
+                                        {
+                                            subComponent = driversLicNumPatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                            Id = componentFieldData.Id,
+                                            Type = componentFieldData.Type,
+                                            Position = componentFieldData.Position,
+                                            Name = componentFieldData.Name,
+                                            Length = componentFieldData.Length,
+                                            Usage = componentFieldData.Usage,
+                                            Rpt = componentFieldData.Rpt,
+                                            DataType = componentFieldData.DataType,
+                                            DataTypeName = componentFieldData.DataTypeName,
+                                            TableId = componentFieldData.TableId,
+                                            TableName = componentFieldData.TableName,
+                                            Description = componentFieldData.Description,
+                                            Sample = componentFieldData.Sample
+                                        };
+
+                                        subComponents.Add(subComponent);
+                                    }
+
+                                    component.subComponents = subComponents;
+                                }
+
+                                components.Add(component);
                             }
 
-                            component.subComponents = subComponents;
+                            fieldRepetition.components = components;
                         }
 
-                        components.Add(component);
+                        fieldRepetitions.Add(fieldRepetition);
                     }
 
-                    fieldRepetition.components = components;
+                    driversLicNumPatient.fieldRepetitions = fieldRepetitions;
                 }
 
-                fieldRepetitions.Add(fieldRepetition);
+                return driversLicNumPatient;
             }
-                     
-            driver'sLicNumPatient.fieldRepetitions = fieldRepetitions;
         }
-
-        return driver'sLicNumPatient;
-    } 
-}
 
     }
 }

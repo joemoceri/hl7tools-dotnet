@@ -2573,18 +2573,18 @@ public HL7V22Field SequenceNumberTestObservationMasterFile
     } 
 }
 
-internal HL7V22Field producer'sTestObservationId;
+internal HL7V22Field producersTestObservationId;
 
-public HL7V22Field Producer'sTestObservationId
+public HL7V22Field ProducersTestObservationId
 {
     get
     {
-        if (producer'sTestObservationId != null)
+        if (producersTestObservationId != null)
         {
-            return producer'sTestObservationId;
+            return producersTestObservationId;
         }
 
-        producer'sTestObservationId = new HL7V22Field
+        producersTestObservationId = new HL7V22Field
         {
             field = message[@"OM1"][3],
             Id = @"OM1.3",
@@ -2603,17 +2603,17 @@ public HL7V22Field Producer'sTestObservationId
         };
 
         // check for repetitions
-        if (producer'sTestObservationId.field.FieldRepetitions != null && producer'sTestObservationId.field.FieldRepetitions.Count > 0)
+        if (producersTestObservationId.field.FieldRepetitions != null && producersTestObservationId.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(producer'sTestObservationId.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(producersTestObservationId.Id));
             var fieldRepetitions = new List<HL7V22FieldRepetition>();
 
-            for (var i = 0; i < producer'sTestObservationId.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < producersTestObservationId.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V22FieldRepetition
                 {
-                    fieldRepetition = producer'sTestObservationId.field.FieldRepetitions[i],
+                    fieldRepetition = producersTestObservationId.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2635,12 +2635,12 @@ public HL7V22Field Producer'sTestObservationId
                     var components = new List<HL7V22Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < producer'sTestObservationId.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < producersTestObservationId.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V22Component
                         {
-                            component = producer'sTestObservationId.field.FieldRepetitions[i].Components[j],
+                            component = producersTestObservationId.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2661,12 +2661,12 @@ public HL7V22Field Producer'sTestObservationId
                         {
                             var subComponents = new List<HL7V22SubComponent>();
 
-                            for (var k = 0; k < producer'sTestObservationId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < producersTestObservationId.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V22SubComponent
                                 {
-                                    subComponent = producer'sTestObservationId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = producersTestObservationId.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2697,10 +2697,10 @@ public HL7V22Field Producer'sTestObservationId
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            producer'sTestObservationId.fieldRepetitions = fieldRepetitions;
+            producersTestObservationId.fieldRepetitions = fieldRepetitions;
         }
 
-        return producer'sTestObservationId;
+        return producersTestObservationId;
     } 
 }
 
@@ -5848,18 +5848,18 @@ public HL7V22Field ReportingPriority
     } 
 }
 
-internal HL7V22Field outsideSite(s)WhereObservationMayBePerformed;
+internal HL7V22Field outsideSitesWhereObservationMayBePerformed;
 
-public HL7V22Field OutsideSite(s)WhereObservationMayBePerformed
+public HL7V22Field OutsideSitesWhereObservationMayBePerformed
 {
     get
     {
-        if (outsideSite(s)WhereObservationMayBePerformed != null)
+        if (outsideSitesWhereObservationMayBePerformed != null)
         {
-            return outsideSite(s)WhereObservationMayBePerformed;
+            return outsideSitesWhereObservationMayBePerformed;
         }
 
-        outsideSite(s)WhereObservationMayBePerformed = new HL7V22Field
+        outsideSitesWhereObservationMayBePerformed = new HL7V22Field
         {
             field = message[@"OM1"][28],
             Id = @"OM1.28",
@@ -5878,17 +5878,17 @@ public HL7V22Field OutsideSite(s)WhereObservationMayBePerformed
         };
 
         // check for repetitions
-        if (outsideSite(s)WhereObservationMayBePerformed.field.FieldRepetitions != null && outsideSite(s)WhereObservationMayBePerformed.field.FieldRepetitions.Count > 0)
+        if (outsideSitesWhereObservationMayBePerformed.field.FieldRepetitions != null && outsideSitesWhereObservationMayBePerformed.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outsideSite(s)WhereObservationMayBePerformed.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(outsideSitesWhereObservationMayBePerformed.Id));
             var fieldRepetitions = new List<HL7V22FieldRepetition>();
 
-            for (var i = 0; i < outsideSite(s)WhereObservationMayBePerformed.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < outsideSitesWhereObservationMayBePerformed.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V22FieldRepetition
                 {
-                    fieldRepetition = outsideSite(s)WhereObservationMayBePerformed.field.FieldRepetitions[i],
+                    fieldRepetition = outsideSitesWhereObservationMayBePerformed.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -5910,12 +5910,12 @@ public HL7V22Field OutsideSite(s)WhereObservationMayBePerformed
                     var components = new List<HL7V22Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < outsideSite(s)WhereObservationMayBePerformed.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < outsideSitesWhereObservationMayBePerformed.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V22Component
                         {
-                            component = outsideSite(s)WhereObservationMayBePerformed.field.FieldRepetitions[i].Components[j],
+                            component = outsideSitesWhereObservationMayBePerformed.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -5936,12 +5936,12 @@ public HL7V22Field OutsideSite(s)WhereObservationMayBePerformed
                         {
                             var subComponents = new List<HL7V22SubComponent>();
 
-                            for (var k = 0; k < outsideSite(s)WhereObservationMayBePerformed.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < outsideSitesWhereObservationMayBePerformed.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V22SubComponent
                                 {
-                                    subComponent = outsideSite(s)WhereObservationMayBePerformed.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = outsideSitesWhereObservationMayBePerformed.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -5972,25 +5972,25 @@ public HL7V22Field OutsideSite(s)WhereObservationMayBePerformed
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            outsideSite(s)WhereObservationMayBePerformed.fieldRepetitions = fieldRepetitions;
+            outsideSitesWhereObservationMayBePerformed.fieldRepetitions = fieldRepetitions;
         }
 
-        return outsideSite(s)WhereObservationMayBePerformed;
+        return outsideSitesWhereObservationMayBePerformed;
     } 
 }
 
-internal HL7V22Field addressOfOutsideSite(s);
+internal HL7V22Field addressOfOutsideSites;
 
-public HL7V22Field AddressOfOutsideSite(s)
+public HL7V22Field AddressOfOutsideSites
 {
     get
     {
-        if (addressOfOutsideSite(s) != null)
+        if (addressOfOutsideSites != null)
         {
-            return addressOfOutsideSite(s);
+            return addressOfOutsideSites;
         }
 
-        addressOfOutsideSite(s) = new HL7V22Field
+        addressOfOutsideSites = new HL7V22Field
         {
             field = message[@"OM1"][29],
             Id = @"OM1.29",
@@ -6009,17 +6009,17 @@ public HL7V22Field AddressOfOutsideSite(s)
         };
 
         // check for repetitions
-        if (addressOfOutsideSite(s).field.FieldRepetitions != null && addressOfOutsideSite(s).field.FieldRepetitions.Count > 0)
+        if (addressOfOutsideSites.field.FieldRepetitions != null && addressOfOutsideSites.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(addressOfOutsideSite(s).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(addressOfOutsideSites.Id));
             var fieldRepetitions = new List<HL7V22FieldRepetition>();
 
-            for (var i = 0; i < addressOfOutsideSite(s).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < addressOfOutsideSites.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V22FieldRepetition
                 {
-                    fieldRepetition = addressOfOutsideSite(s).field.FieldRepetitions[i],
+                    fieldRepetition = addressOfOutsideSites.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -6041,12 +6041,12 @@ public HL7V22Field AddressOfOutsideSite(s)
                     var components = new List<HL7V22Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < addressOfOutsideSite(s).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < addressOfOutsideSites.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V22Component
                         {
-                            component = addressOfOutsideSite(s).field.FieldRepetitions[i].Components[j],
+                            component = addressOfOutsideSites.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -6067,12 +6067,12 @@ public HL7V22Field AddressOfOutsideSite(s)
                         {
                             var subComponents = new List<HL7V22SubComponent>();
 
-                            for (var k = 0; k < addressOfOutsideSite(s).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < addressOfOutsideSites.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V22SubComponent
                                 {
-                                    subComponent = addressOfOutsideSite(s).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = addressOfOutsideSites.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -6103,10 +6103,10 @@ public HL7V22Field AddressOfOutsideSite(s)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            addressOfOutsideSite(s).fieldRepetitions = fieldRepetitions;
+            addressOfOutsideSites.fieldRepetitions = fieldRepetitions;
         }
 
-        return addressOfOutsideSite(s);
+        return addressOfOutsideSites;
     } 
 }
 

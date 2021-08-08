@@ -12805,18 +12805,18 @@ public HL7V28Field ProcessDate
     } 
 }
 
-internal HL7V28Field requestedDiscipline(s);
+internal HL7V28Field requestedDisciplines;
 
-public HL7V28Field RequestedDiscipline(s)
+public HL7V28Field RequestedDisciplines
 {
     get
     {
-        if (requestedDiscipline(s) != null)
+        if (requestedDisciplines != null)
         {
-            return requestedDiscipline(s);
+            return requestedDisciplines;
         }
 
-        requestedDiscipline(s) = new HL7V28Field
+        requestedDisciplines = new HL7V28Field
         {
             field = message[@"AUT"][11],
             Id = @"AUT.11",
@@ -12835,17 +12835,17 @@ public HL7V28Field RequestedDiscipline(s)
         };
 
         // check for repetitions
-        if (requestedDiscipline(s).field.FieldRepetitions != null && requestedDiscipline(s).field.FieldRepetitions.Count > 0)
+        if (requestedDisciplines.field.FieldRepetitions != null && requestedDisciplines.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedDiscipline(s).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(requestedDisciplines.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < requestedDiscipline(s).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < requestedDisciplines.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = requestedDiscipline(s).field.FieldRepetitions[i],
+                    fieldRepetition = requestedDisciplines.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -12867,12 +12867,12 @@ public HL7V28Field RequestedDiscipline(s)
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < requestedDiscipline(s).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < requestedDisciplines.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = requestedDiscipline(s).field.FieldRepetitions[i].Components[j],
+                            component = requestedDisciplines.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -12893,12 +12893,12 @@ public HL7V28Field RequestedDiscipline(s)
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < requestedDiscipline(s).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < requestedDisciplines.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = requestedDiscipline(s).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = requestedDisciplines.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -12929,25 +12929,25 @@ public HL7V28Field RequestedDiscipline(s)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            requestedDiscipline(s).fieldRepetitions = fieldRepetitions;
+            requestedDisciplines.fieldRepetitions = fieldRepetitions;
         }
 
-        return requestedDiscipline(s);
+        return requestedDisciplines;
     } 
 }
 
-internal HL7V28Field authorizedDiscipline(s);
+internal HL7V28Field authorizedDisciplines;
 
-public HL7V28Field AuthorizedDiscipline(s)
+public HL7V28Field AuthorizedDisciplines
 {
     get
     {
-        if (authorizedDiscipline(s) != null)
+        if (authorizedDisciplines != null)
         {
-            return authorizedDiscipline(s);
+            return authorizedDisciplines;
         }
 
-        authorizedDiscipline(s) = new HL7V28Field
+        authorizedDisciplines = new HL7V28Field
         {
             field = message[@"AUT"][12],
             Id = @"AUT.12",
@@ -12966,17 +12966,17 @@ public HL7V28Field AuthorizedDiscipline(s)
         };
 
         // check for repetitions
-        if (authorizedDiscipline(s).field.FieldRepetitions != null && authorizedDiscipline(s).field.FieldRepetitions.Count > 0)
+        if (authorizedDisciplines.field.FieldRepetitions != null && authorizedDisciplines.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizedDiscipline(s).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(authorizedDisciplines.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < authorizedDiscipline(s).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < authorizedDisciplines.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = authorizedDiscipline(s).field.FieldRepetitions[i],
+                    fieldRepetition = authorizedDisciplines.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -12998,12 +12998,12 @@ public HL7V28Field AuthorizedDiscipline(s)
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < authorizedDiscipline(s).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < authorizedDisciplines.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = authorizedDiscipline(s).field.FieldRepetitions[i].Components[j],
+                            component = authorizedDisciplines.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -13024,12 +13024,12 @@ public HL7V28Field AuthorizedDiscipline(s)
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < authorizedDiscipline(s).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < authorizedDisciplines.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = authorizedDiscipline(s).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = authorizedDisciplines.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -13060,10 +13060,10 @@ public HL7V28Field AuthorizedDiscipline(s)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            authorizedDiscipline(s).fieldRepetitions = fieldRepetitions;
+            authorizedDisciplines.fieldRepetitions = fieldRepetitions;
         }
 
-        return authorizedDiscipline(s);
+        return authorizedDisciplines;
     } 
 }
 

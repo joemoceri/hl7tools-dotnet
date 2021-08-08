@@ -4527,18 +4527,18 @@ public HL7V251Field ProblemRanking
     } 
 }
 
-internal HL7V251Field certaintyofProblem(01);
+internal HL7V251Field certaintyofProblem01;
 
-public HL7V251Field CertaintyofProblem(01)
+public HL7V251Field CertaintyofProblem01
 {
     get
     {
-        if (certaintyofProblem(01) != null)
+        if (certaintyofProblem01 != null)
         {
-            return certaintyofProblem(01);
+            return certaintyofProblem01;
         }
 
-        certaintyofProblem(01) = new HL7V251Field
+        certaintyofProblem01 = new HL7V251Field
         {
             field = message[@"PRB"][19],
             Id = @"PRB.19",
@@ -4557,17 +4557,17 @@ public HL7V251Field CertaintyofProblem(01)
         };
 
         // check for repetitions
-        if (certaintyofProblem(01).field.FieldRepetitions != null && certaintyofProblem(01).field.FieldRepetitions.Count > 0)
+        if (certaintyofProblem01.field.FieldRepetitions != null && certaintyofProblem01.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certaintyofProblem(01).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(certaintyofProblem01.Id));
             var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-            for (var i = 0; i < certaintyofProblem(01).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < certaintyofProblem01.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V251FieldRepetition
                 {
-                    fieldRepetition = certaintyofProblem(01).field.FieldRepetitions[i],
+                    fieldRepetition = certaintyofProblem01.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -4589,12 +4589,12 @@ public HL7V251Field CertaintyofProblem(01)
                     var components = new List<HL7V251Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < certaintyofProblem(01).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < certaintyofProblem01.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V251Component
                         {
-                            component = certaintyofProblem(01).field.FieldRepetitions[i].Components[j],
+                            component = certaintyofProblem01.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -4615,12 +4615,12 @@ public HL7V251Field CertaintyofProblem(01)
                         {
                             var subComponents = new List<HL7V251SubComponent>();
 
-                            for (var k = 0; k < certaintyofProblem(01).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < certaintyofProblem01.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V251SubComponent
                                 {
-                                    subComponent = certaintyofProblem(01).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = certaintyofProblem01.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -4651,10 +4651,10 @@ public HL7V251Field CertaintyofProblem(01)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            certaintyofProblem(01).fieldRepetitions = fieldRepetitions;
+            certaintyofProblem01.fieldRepetitions = fieldRepetitions;
         }
 
-        return certaintyofProblem(01);
+        return certaintyofProblem01;
     } 
 }
 

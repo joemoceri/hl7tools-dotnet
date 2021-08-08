@@ -11402,18 +11402,18 @@ Condition: At least one of the Participation Person, Participation Organization,
     } 
 }
 
-internal HL7V271Field participationBeginDateTime(arrivalTime);
+internal HL7V271Field participationBeginDateTimearrivalTime;
 
-public HL7V271Field ParticipationBeginDateTime(arrivalTime)
+public HL7V271Field ParticipationBeginDateTimearrivalTime
 {
     get
     {
-        if (participationBeginDateTime(arrivalTime) != null)
+        if (participationBeginDateTimearrivalTime != null)
         {
-            return participationBeginDateTime(arrivalTime);
+            return participationBeginDateTimearrivalTime;
         }
 
-        participationBeginDateTime(arrivalTime) = new HL7V271Field
+        participationBeginDateTimearrivalTime = new HL7V271Field
         {
             field = message[@"PRT"][11],
             Id = @"PRT.11",
@@ -11434,17 +11434,17 @@ In the case of waypoints, this reflects the time a shipment arrives at the waypo
         };
 
         // check for repetitions
-        if (participationBeginDateTime(arrivalTime).field.FieldRepetitions != null && participationBeginDateTime(arrivalTime).field.FieldRepetitions.Count > 0)
+        if (participationBeginDateTimearrivalTime.field.FieldRepetitions != null && participationBeginDateTimearrivalTime.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationBeginDateTime(arrivalTime).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(participationBeginDateTimearrivalTime.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < participationBeginDateTime(arrivalTime).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < participationBeginDateTimearrivalTime.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = participationBeginDateTime(arrivalTime).field.FieldRepetitions[i],
+                    fieldRepetition = participationBeginDateTimearrivalTime.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11466,12 +11466,12 @@ In the case of waypoints, this reflects the time a shipment arrives at the waypo
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < participationBeginDateTime(arrivalTime).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < participationBeginDateTimearrivalTime.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = participationBeginDateTime(arrivalTime).field.FieldRepetitions[i].Components[j],
+                            component = participationBeginDateTimearrivalTime.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11492,12 +11492,12 @@ In the case of waypoints, this reflects the time a shipment arrives at the waypo
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < participationBeginDateTime(arrivalTime).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < participationBeginDateTimearrivalTime.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = participationBeginDateTime(arrivalTime).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = participationBeginDateTimearrivalTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11528,25 +11528,25 @@ In the case of waypoints, this reflects the time a shipment arrives at the waypo
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            participationBeginDateTime(arrivalTime).fieldRepetitions = fieldRepetitions;
+            participationBeginDateTimearrivalTime.fieldRepetitions = fieldRepetitions;
         }
 
-        return participationBeginDateTime(arrivalTime);
+        return participationBeginDateTimearrivalTime;
     } 
 }
 
-internal HL7V271Field participationEndDateTime(departureTime);
+internal HL7V271Field participationEndDateTimedepartureTime;
 
-public HL7V271Field ParticipationEndDateTime(departureTime)
+public HL7V271Field ParticipationEndDateTimedepartureTime
 {
     get
     {
-        if (participationEndDateTime(departureTime) != null)
+        if (participationEndDateTimedepartureTime != null)
         {
-            return participationEndDateTime(departureTime);
+            return participationEndDateTimedepartureTime;
         }
 
-        participationEndDateTime(departureTime) = new HL7V271Field
+        participationEndDateTimedepartureTime = new HL7V271Field
         {
             field = message[@"PRT"][12],
             Id = @"PRT.12",
@@ -11567,17 +11567,17 @@ In the case of waypoints, this reflects the time a shipment departs from the way
         };
 
         // check for repetitions
-        if (participationEndDateTime(departureTime).field.FieldRepetitions != null && participationEndDateTime(departureTime).field.FieldRepetitions.Count > 0)
+        if (participationEndDateTimedepartureTime.field.FieldRepetitions != null && participationEndDateTimedepartureTime.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationEndDateTime(departureTime).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(participationEndDateTimedepartureTime.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < participationEndDateTime(departureTime).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < participationEndDateTimedepartureTime.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = participationEndDateTime(departureTime).field.FieldRepetitions[i],
+                    fieldRepetition = participationEndDateTimedepartureTime.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11599,12 +11599,12 @@ In the case of waypoints, this reflects the time a shipment departs from the way
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < participationEndDateTime(departureTime).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < participationEndDateTimedepartureTime.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = participationEndDateTime(departureTime).field.FieldRepetitions[i].Components[j],
+                            component = participationEndDateTimedepartureTime.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11625,12 +11625,12 @@ In the case of waypoints, this reflects the time a shipment departs from the way
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < participationEndDateTime(departureTime).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < participationEndDateTimedepartureTime.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = participationEndDateTime(departureTime).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = participationEndDateTimedepartureTime.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11661,10 +11661,10 @@ In the case of waypoints, this reflects the time a shipment departs from the way
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            participationEndDateTime(departureTime).fieldRepetitions = fieldRepetitions;
+            participationEndDateTimedepartureTime.fieldRepetitions = fieldRepetitions;
         }
 
-        return participationEndDateTime(departureTime);
+        return participationEndDateTimedepartureTime;
     } 
 }
 

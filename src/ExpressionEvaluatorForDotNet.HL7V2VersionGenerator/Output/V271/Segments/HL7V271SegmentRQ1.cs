@@ -1295,18 +1295,18 @@ Refer to User-defined Table 0385 – Manufacturer identifier for suggested value
     } 
 }
 
-internal HL7V271Field manufacturer'sCatalog;
+internal HL7V271Field manufacturersCatalog;
 
-public HL7V271Field Manufacturer'sCatalog
+public HL7V271Field ManufacturersCatalog
 {
     get
     {
-        if (manufacturer'sCatalog != null)
+        if (manufacturersCatalog != null)
         {
-            return manufacturer'sCatalog;
+            return manufacturersCatalog;
         }
 
-        manufacturer'sCatalog = new HL7V271Field
+        manufacturersCatalog = new HL7V271Field
         {
             field = message[@"RQ1"][3],
             Id = @"RQ1.3",
@@ -1325,17 +1325,17 @@ public HL7V271Field Manufacturer'sCatalog
         };
 
         // check for repetitions
-        if (manufacturer'sCatalog.field.FieldRepetitions != null && manufacturer'sCatalog.field.FieldRepetitions.Count > 0)
+        if (manufacturersCatalog.field.FieldRepetitions != null && manufacturersCatalog.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturer'sCatalog.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturersCatalog.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < manufacturer'sCatalog.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < manufacturersCatalog.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = manufacturer'sCatalog.field.FieldRepetitions[i],
+                    fieldRepetition = manufacturersCatalog.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1357,12 +1357,12 @@ public HL7V271Field Manufacturer'sCatalog
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < manufacturer'sCatalog.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < manufacturersCatalog.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = manufacturer'sCatalog.field.FieldRepetitions[i].Components[j],
+                            component = manufacturersCatalog.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1383,12 +1383,12 @@ public HL7V271Field Manufacturer'sCatalog
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < manufacturer'sCatalog.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < manufacturersCatalog.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = manufacturer'sCatalog.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = manufacturersCatalog.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1419,10 +1419,10 @@ public HL7V271Field Manufacturer'sCatalog
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            manufacturer'sCatalog.fieldRepetitions = fieldRepetitions;
+            manufacturersCatalog.fieldRepetitions = fieldRepetitions;
         }
 
-        return manufacturer'sCatalog;
+        return manufacturersCatalog;
     } 
 }
 

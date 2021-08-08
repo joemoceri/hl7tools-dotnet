@@ -716,18 +716,18 @@ public HL7V21Field BloodDeductible
     } 
 }
 
-internal HL7V21Field bloodFurnpintsOf(40);
+internal HL7V21Field bloodFurnpintsOf40;
 
-public HL7V21Field BloodFurnpintsOf(40)
+public HL7V21Field BloodFurnpintsOf40
 {
     get
     {
-        if (bloodFurnpintsOf(40) != null)
+        if (bloodFurnpintsOf40 != null)
         {
-            return bloodFurnpintsOf(40);
+            return bloodFurnpintsOf40;
         }
 
-        bloodFurnpintsOf(40) = new HL7V21Field
+        bloodFurnpintsOf40 = new HL7V21Field
         {
             field = message[@"UB1"][3],
             Id = @"UB1.3",
@@ -746,17 +746,17 @@ public HL7V21Field BloodFurnpintsOf(40)
         };
 
         // check for repetitions
-        if (bloodFurnpintsOf(40).field.FieldRepetitions != null && bloodFurnpintsOf(40).field.FieldRepetitions.Count > 0)
+        if (bloodFurnpintsOf40.field.FieldRepetitions != null && bloodFurnpintsOf40.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodFurnpintsOf(40).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(bloodFurnpintsOf40.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < bloodFurnpintsOf(40).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < bloodFurnpintsOf40.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = bloodFurnpintsOf(40).field.FieldRepetitions[i],
+                    fieldRepetition = bloodFurnpintsOf40.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -778,12 +778,12 @@ public HL7V21Field BloodFurnpintsOf(40)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < bloodFurnpintsOf(40).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < bloodFurnpintsOf40.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = bloodFurnpintsOf(40).field.FieldRepetitions[i].Components[j],
+                            component = bloodFurnpintsOf40.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -804,12 +804,12 @@ public HL7V21Field BloodFurnpintsOf(40)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < bloodFurnpintsOf(40).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < bloodFurnpintsOf40.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = bloodFurnpintsOf(40).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = bloodFurnpintsOf40.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -840,25 +840,25 @@ public HL7V21Field BloodFurnpintsOf(40)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            bloodFurnpintsOf(40).fieldRepetitions = fieldRepetitions;
+            bloodFurnpintsOf40.fieldRepetitions = fieldRepetitions;
         }
 
-        return bloodFurnpintsOf(40);
+        return bloodFurnpintsOf40;
     } 
 }
 
-internal HL7V21Field bloodReplacedpints(41);
+internal HL7V21Field bloodReplacedpints41;
 
-public HL7V21Field BloodReplacedpints(41)
+public HL7V21Field BloodReplacedpints41
 {
     get
     {
-        if (bloodReplacedpints(41) != null)
+        if (bloodReplacedpints41 != null)
         {
-            return bloodReplacedpints(41);
+            return bloodReplacedpints41;
         }
 
-        bloodReplacedpints(41) = new HL7V21Field
+        bloodReplacedpints41 = new HL7V21Field
         {
             field = message[@"UB1"][4],
             Id = @"UB1.4",
@@ -877,17 +877,17 @@ public HL7V21Field BloodReplacedpints(41)
         };
 
         // check for repetitions
-        if (bloodReplacedpints(41).field.FieldRepetitions != null && bloodReplacedpints(41).field.FieldRepetitions.Count > 0)
+        if (bloodReplacedpints41.field.FieldRepetitions != null && bloodReplacedpints41.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodReplacedpints(41).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(bloodReplacedpints41.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < bloodReplacedpints(41).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < bloodReplacedpints41.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = bloodReplacedpints(41).field.FieldRepetitions[i],
+                    fieldRepetition = bloodReplacedpints41.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -909,12 +909,12 @@ public HL7V21Field BloodReplacedpints(41)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < bloodReplacedpints(41).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < bloodReplacedpints41.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = bloodReplacedpints(41).field.FieldRepetitions[i].Components[j],
+                            component = bloodReplacedpints41.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -935,12 +935,12 @@ public HL7V21Field BloodReplacedpints(41)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < bloodReplacedpints(41).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < bloodReplacedpints41.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = bloodReplacedpints(41).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = bloodReplacedpints41.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -971,25 +971,25 @@ public HL7V21Field BloodReplacedpints(41)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            bloodReplacedpints(41).fieldRepetitions = fieldRepetitions;
+            bloodReplacedpints41.fieldRepetitions = fieldRepetitions;
         }
 
-        return bloodReplacedpints(41);
+        return bloodReplacedpints41;
     } 
 }
 
-internal HL7V21Field bloodNotRplcdpints(42);
+internal HL7V21Field bloodNotRplcdpints42;
 
-public HL7V21Field BloodNotRplcdpints(42)
+public HL7V21Field BloodNotRplcdpints42
 {
     get
     {
-        if (bloodNotRplcdpints(42) != null)
+        if (bloodNotRplcdpints42 != null)
         {
-            return bloodNotRplcdpints(42);
+            return bloodNotRplcdpints42;
         }
 
-        bloodNotRplcdpints(42) = new HL7V21Field
+        bloodNotRplcdpints42 = new HL7V21Field
         {
             field = message[@"UB1"][5],
             Id = @"UB1.5",
@@ -1008,17 +1008,17 @@ public HL7V21Field BloodNotRplcdpints(42)
         };
 
         // check for repetitions
-        if (bloodNotRplcdpints(42).field.FieldRepetitions != null && bloodNotRplcdpints(42).field.FieldRepetitions.Count > 0)
+        if (bloodNotRplcdpints42.field.FieldRepetitions != null && bloodNotRplcdpints42.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodNotRplcdpints(42).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(bloodNotRplcdpints42.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < bloodNotRplcdpints(42).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < bloodNotRplcdpints42.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = bloodNotRplcdpints(42).field.FieldRepetitions[i],
+                    fieldRepetition = bloodNotRplcdpints42.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1040,12 +1040,12 @@ public HL7V21Field BloodNotRplcdpints(42)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < bloodNotRplcdpints(42).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < bloodNotRplcdpints42.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = bloodNotRplcdpints(42).field.FieldRepetitions[i].Components[j],
+                            component = bloodNotRplcdpints42.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1066,12 +1066,12 @@ public HL7V21Field BloodNotRplcdpints(42)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < bloodNotRplcdpints(42).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < bloodNotRplcdpints42.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = bloodNotRplcdpints(42).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = bloodNotRplcdpints42.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1102,25 +1102,25 @@ public HL7V21Field BloodNotRplcdpints(42)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            bloodNotRplcdpints(42).fieldRepetitions = fieldRepetitions;
+            bloodNotRplcdpints42.fieldRepetitions = fieldRepetitions;
         }
 
-        return bloodNotRplcdpints(42);
+        return bloodNotRplcdpints42;
     } 
 }
 
-internal HL7V21Field coinsuranceDays(25);
+internal HL7V21Field coinsuranceDays25;
 
-public HL7V21Field CoinsuranceDays(25)
+public HL7V21Field CoinsuranceDays25
 {
     get
     {
-        if (coinsuranceDays(25) != null)
+        if (coinsuranceDays25 != null)
         {
-            return coinsuranceDays(25);
+            return coinsuranceDays25;
         }
 
-        coinsuranceDays(25) = new HL7V21Field
+        coinsuranceDays25 = new HL7V21Field
         {
             field = message[@"UB1"][6],
             Id = @"UB1.6",
@@ -1139,17 +1139,17 @@ public HL7V21Field CoinsuranceDays(25)
         };
 
         // check for repetitions
-        if (coinsuranceDays(25).field.FieldRepetitions != null && coinsuranceDays(25).field.FieldRepetitions.Count > 0)
+        if (coinsuranceDays25.field.FieldRepetitions != null && coinsuranceDays25.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(coinsuranceDays(25).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(coinsuranceDays25.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < coinsuranceDays(25).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < coinsuranceDays25.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = coinsuranceDays(25).field.FieldRepetitions[i],
+                    fieldRepetition = coinsuranceDays25.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1171,12 +1171,12 @@ public HL7V21Field CoinsuranceDays(25)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < coinsuranceDays(25).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < coinsuranceDays25.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = coinsuranceDays(25).field.FieldRepetitions[i].Components[j],
+                            component = coinsuranceDays25.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1197,12 +1197,12 @@ public HL7V21Field CoinsuranceDays(25)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < coinsuranceDays(25).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < coinsuranceDays25.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = coinsuranceDays(25).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = coinsuranceDays25.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1233,10 +1233,10 @@ public HL7V21Field CoinsuranceDays(25)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            coinsuranceDays(25).fieldRepetitions = fieldRepetitions;
+            coinsuranceDays25.fieldRepetitions = fieldRepetitions;
         }
 
-        return coinsuranceDays(25);
+        return coinsuranceDays25;
     } 
 }
 
@@ -1371,18 +1371,18 @@ public HL7V21Field ConditionCode
     } 
 }
 
-internal HL7V21Field coveredDays(23);
+internal HL7V21Field coveredDays23;
 
-public HL7V21Field CoveredDays(23)
+public HL7V21Field CoveredDays23
 {
     get
     {
-        if (coveredDays(23) != null)
+        if (coveredDays23 != null)
         {
-            return coveredDays(23);
+            return coveredDays23;
         }
 
-        coveredDays(23) = new HL7V21Field
+        coveredDays23 = new HL7V21Field
         {
             field = message[@"UB1"][8],
             Id = @"UB1.8",
@@ -1401,17 +1401,17 @@ public HL7V21Field CoveredDays(23)
         };
 
         // check for repetitions
-        if (coveredDays(23).field.FieldRepetitions != null && coveredDays(23).field.FieldRepetitions.Count > 0)
+        if (coveredDays23.field.FieldRepetitions != null && coveredDays23.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(coveredDays(23).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(coveredDays23.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < coveredDays(23).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < coveredDays23.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = coveredDays(23).field.FieldRepetitions[i],
+                    fieldRepetition = coveredDays23.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1433,12 +1433,12 @@ public HL7V21Field CoveredDays(23)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < coveredDays(23).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < coveredDays23.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = coveredDays(23).field.FieldRepetitions[i].Components[j],
+                            component = coveredDays23.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1459,12 +1459,12 @@ public HL7V21Field CoveredDays(23)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < coveredDays(23).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < coveredDays23.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = coveredDays(23).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = coveredDays23.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1495,25 +1495,25 @@ public HL7V21Field CoveredDays(23)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            coveredDays(23).fieldRepetitions = fieldRepetitions;
+            coveredDays23.fieldRepetitions = fieldRepetitions;
         }
 
-        return coveredDays(23);
+        return coveredDays23;
     } 
 }
 
-internal HL7V21Field nonCoveredDays(24);
+internal HL7V21Field nonCoveredDays24;
 
-public HL7V21Field NonCoveredDays(24)
+public HL7V21Field NonCoveredDays24
 {
     get
     {
-        if (nonCoveredDays(24) != null)
+        if (nonCoveredDays24 != null)
         {
-            return nonCoveredDays(24);
+            return nonCoveredDays24;
         }
 
-        nonCoveredDays(24) = new HL7V21Field
+        nonCoveredDays24 = new HL7V21Field
         {
             field = message[@"UB1"][9],
             Id = @"UB1.9",
@@ -1532,17 +1532,17 @@ public HL7V21Field NonCoveredDays(24)
         };
 
         // check for repetitions
-        if (nonCoveredDays(24).field.FieldRepetitions != null && nonCoveredDays(24).field.FieldRepetitions.Count > 0)
+        if (nonCoveredDays24.field.FieldRepetitions != null && nonCoveredDays24.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nonCoveredDays(24).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(nonCoveredDays24.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < nonCoveredDays(24).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < nonCoveredDays24.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = nonCoveredDays(24).field.FieldRepetitions[i],
+                    fieldRepetition = nonCoveredDays24.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1564,12 +1564,12 @@ public HL7V21Field NonCoveredDays(24)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < nonCoveredDays(24).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < nonCoveredDays24.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = nonCoveredDays(24).field.FieldRepetitions[i].Components[j],
+                            component = nonCoveredDays24.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1590,12 +1590,12 @@ public HL7V21Field NonCoveredDays(24)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < nonCoveredDays(24).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < nonCoveredDays24.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = nonCoveredDays(24).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = nonCoveredDays24.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1626,10 +1626,10 @@ public HL7V21Field NonCoveredDays(24)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            nonCoveredDays(24).fieldRepetitions = fieldRepetitions;
+            nonCoveredDays24.fieldRepetitions = fieldRepetitions;
         }
 
-        return nonCoveredDays(24);
+        return nonCoveredDays24;
     } 
 }
 
@@ -1764,18 +1764,18 @@ public HL7V21Field ValueAmountAndCode
     } 
 }
 
-internal HL7V21Field numberOfGraceDays(90);
+internal HL7V21Field numberOfGraceDays90;
 
-public HL7V21Field NumberOfGraceDays(90)
+public HL7V21Field NumberOfGraceDays90
 {
     get
     {
-        if (numberOfGraceDays(90) != null)
+        if (numberOfGraceDays90 != null)
         {
-            return numberOfGraceDays(90);
+            return numberOfGraceDays90;
         }
 
-        numberOfGraceDays(90) = new HL7V21Field
+        numberOfGraceDays90 = new HL7V21Field
         {
             field = message[@"UB1"][11],
             Id = @"UB1.11",
@@ -1794,17 +1794,17 @@ public HL7V21Field NumberOfGraceDays(90)
         };
 
         // check for repetitions
-        if (numberOfGraceDays(90).field.FieldRepetitions != null && numberOfGraceDays(90).field.FieldRepetitions.Count > 0)
+        if (numberOfGraceDays90.field.FieldRepetitions != null && numberOfGraceDays90.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfGraceDays(90).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfGraceDays90.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < numberOfGraceDays(90).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < numberOfGraceDays90.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = numberOfGraceDays(90).field.FieldRepetitions[i],
+                    fieldRepetition = numberOfGraceDays90.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1826,12 +1826,12 @@ public HL7V21Field NumberOfGraceDays(90)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < numberOfGraceDays(90).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < numberOfGraceDays90.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = numberOfGraceDays(90).field.FieldRepetitions[i].Components[j],
+                            component = numberOfGraceDays90.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1852,12 +1852,12 @@ public HL7V21Field NumberOfGraceDays(90)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < numberOfGraceDays(90).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < numberOfGraceDays90.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = numberOfGraceDays(90).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = numberOfGraceDays90.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1888,25 +1888,25 @@ public HL7V21Field NumberOfGraceDays(90)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            numberOfGraceDays(90).fieldRepetitions = fieldRepetitions;
+            numberOfGraceDays90.fieldRepetitions = fieldRepetitions;
         }
 
-        return numberOfGraceDays(90);
+        return numberOfGraceDays90;
     } 
 }
 
-internal HL7V21Field specProgIndicator(44);
+internal HL7V21Field specProgIndicator44;
 
-public HL7V21Field SpecProgIndicator(44)
+public HL7V21Field SpecProgIndicator44
 {
     get
     {
-        if (specProgIndicator(44) != null)
+        if (specProgIndicator44 != null)
         {
-            return specProgIndicator(44);
+            return specProgIndicator44;
         }
 
-        specProgIndicator(44) = new HL7V21Field
+        specProgIndicator44 = new HL7V21Field
         {
             field = message[@"UB1"][12],
             Id = @"UB1.12",
@@ -1925,17 +1925,17 @@ public HL7V21Field SpecProgIndicator(44)
         };
 
         // check for repetitions
-        if (specProgIndicator(44).field.FieldRepetitions != null && specProgIndicator(44).field.FieldRepetitions.Count > 0)
+        if (specProgIndicator44.field.FieldRepetitions != null && specProgIndicator44.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specProgIndicator(44).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(specProgIndicator44.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < specProgIndicator(44).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < specProgIndicator44.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = specProgIndicator(44).field.FieldRepetitions[i],
+                    fieldRepetition = specProgIndicator44.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1957,12 +1957,12 @@ public HL7V21Field SpecProgIndicator(44)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < specProgIndicator(44).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < specProgIndicator44.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = specProgIndicator(44).field.FieldRepetitions[i].Components[j],
+                            component = specProgIndicator44.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1983,12 +1983,12 @@ public HL7V21Field SpecProgIndicator(44)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < specProgIndicator(44).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < specProgIndicator44.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = specProgIndicator(44).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = specProgIndicator44.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2019,25 +2019,25 @@ public HL7V21Field SpecProgIndicator(44)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            specProgIndicator(44).fieldRepetitions = fieldRepetitions;
+            specProgIndicator44.fieldRepetitions = fieldRepetitions;
         }
 
-        return specProgIndicator(44);
+        return specProgIndicator44;
     } 
 }
 
-internal HL7V21Field psroUrApprovalInd(87);
+internal HL7V21Field psroUrApprovalInd87;
 
-public HL7V21Field PsroUrApprovalInd(87)
+public HL7V21Field PsroUrApprovalInd87
 {
     get
     {
-        if (psroUrApprovalInd(87) != null)
+        if (psroUrApprovalInd87 != null)
         {
-            return psroUrApprovalInd(87);
+            return psroUrApprovalInd87;
         }
 
-        psroUrApprovalInd(87) = new HL7V21Field
+        psroUrApprovalInd87 = new HL7V21Field
         {
             field = message[@"UB1"][13],
             Id = @"UB1.13",
@@ -2056,17 +2056,17 @@ public HL7V21Field PsroUrApprovalInd(87)
         };
 
         // check for repetitions
-        if (psroUrApprovalInd(87).field.FieldRepetitions != null && psroUrApprovalInd(87).field.FieldRepetitions.Count > 0)
+        if (psroUrApprovalInd87.field.FieldRepetitions != null && psroUrApprovalInd87.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrApprovalInd(87).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrApprovalInd87.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < psroUrApprovalInd(87).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < psroUrApprovalInd87.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = psroUrApprovalInd(87).field.FieldRepetitions[i],
+                    fieldRepetition = psroUrApprovalInd87.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2088,12 +2088,12 @@ public HL7V21Field PsroUrApprovalInd(87)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < psroUrApprovalInd(87).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < psroUrApprovalInd87.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = psroUrApprovalInd(87).field.FieldRepetitions[i].Components[j],
+                            component = psroUrApprovalInd87.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2114,12 +2114,12 @@ public HL7V21Field PsroUrApprovalInd(87)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < psroUrApprovalInd(87).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < psroUrApprovalInd87.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = psroUrApprovalInd(87).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = psroUrApprovalInd87.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2150,25 +2150,25 @@ public HL7V21Field PsroUrApprovalInd(87)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            psroUrApprovalInd(87).fieldRepetitions = fieldRepetitions;
+            psroUrApprovalInd87.fieldRepetitions = fieldRepetitions;
         }
 
-        return psroUrApprovalInd(87);
+        return psroUrApprovalInd87;
     } 
 }
 
-internal HL7V21Field psroUrAprvdStayfm(88);
+internal HL7V21Field psroUrAprvdStayfm88;
 
-public HL7V21Field PsroUrAprvdStayfm(88)
+public HL7V21Field PsroUrAprvdStayfm88
 {
     get
     {
-        if (psroUrAprvdStayfm(88) != null)
+        if (psroUrAprvdStayfm88 != null)
         {
-            return psroUrAprvdStayfm(88);
+            return psroUrAprvdStayfm88;
         }
 
-        psroUrAprvdStayfm(88) = new HL7V21Field
+        psroUrAprvdStayfm88 = new HL7V21Field
         {
             field = message[@"UB1"][14],
             Id = @"UB1.14",
@@ -2187,17 +2187,17 @@ public HL7V21Field PsroUrAprvdStayfm(88)
         };
 
         // check for repetitions
-        if (psroUrAprvdStayfm(88).field.FieldRepetitions != null && psroUrAprvdStayfm(88).field.FieldRepetitions.Count > 0)
+        if (psroUrAprvdStayfm88.field.FieldRepetitions != null && psroUrAprvdStayfm88.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrAprvdStayfm(88).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrAprvdStayfm88.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < psroUrAprvdStayfm(88).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < psroUrAprvdStayfm88.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = psroUrAprvdStayfm(88).field.FieldRepetitions[i],
+                    fieldRepetition = psroUrAprvdStayfm88.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2219,12 +2219,12 @@ public HL7V21Field PsroUrAprvdStayfm(88)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < psroUrAprvdStayfm(88).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < psroUrAprvdStayfm88.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = psroUrAprvdStayfm(88).field.FieldRepetitions[i].Components[j],
+                            component = psroUrAprvdStayfm88.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2245,12 +2245,12 @@ public HL7V21Field PsroUrAprvdStayfm(88)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < psroUrAprvdStayfm(88).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < psroUrAprvdStayfm88.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = psroUrAprvdStayfm(88).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = psroUrAprvdStayfm88.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2281,25 +2281,25 @@ public HL7V21Field PsroUrAprvdStayfm(88)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            psroUrAprvdStayfm(88).fieldRepetitions = fieldRepetitions;
+            psroUrAprvdStayfm88.fieldRepetitions = fieldRepetitions;
         }
 
-        return psroUrAprvdStayfm(88);
+        return psroUrAprvdStayfm88;
     } 
 }
 
-internal HL7V21Field psroUrAprvdStayto(89);
+internal HL7V21Field psroUrAprvdStayto89;
 
-public HL7V21Field PsroUrAprvdStayto(89)
+public HL7V21Field PsroUrAprvdStayto89
 {
     get
     {
-        if (psroUrAprvdStayto(89) != null)
+        if (psroUrAprvdStayto89 != null)
         {
-            return psroUrAprvdStayto(89);
+            return psroUrAprvdStayto89;
         }
 
-        psroUrAprvdStayto(89) = new HL7V21Field
+        psroUrAprvdStayto89 = new HL7V21Field
         {
             field = message[@"UB1"][15],
             Id = @"UB1.15",
@@ -2318,17 +2318,17 @@ public HL7V21Field PsroUrAprvdStayto(89)
         };
 
         // check for repetitions
-        if (psroUrAprvdStayto(89).field.FieldRepetitions != null && psroUrAprvdStayto(89).field.FieldRepetitions.Count > 0)
+        if (psroUrAprvdStayto89.field.FieldRepetitions != null && psroUrAprvdStayto89.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrAprvdStayto(89).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrAprvdStayto89.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < psroUrAprvdStayto(89).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < psroUrAprvdStayto89.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = psroUrAprvdStayto(89).field.FieldRepetitions[i],
+                    fieldRepetition = psroUrAprvdStayto89.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2350,12 +2350,12 @@ public HL7V21Field PsroUrAprvdStayto(89)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < psroUrAprvdStayto(89).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < psroUrAprvdStayto89.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = psroUrAprvdStayto(89).field.FieldRepetitions[i].Components[j],
+                            component = psroUrAprvdStayto89.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2376,12 +2376,12 @@ public HL7V21Field PsroUrAprvdStayto(89)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < psroUrAprvdStayto(89).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < psroUrAprvdStayto89.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = psroUrAprvdStayto(89).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = psroUrAprvdStayto89.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2412,25 +2412,25 @@ public HL7V21Field PsroUrAprvdStayto(89)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            psroUrAprvdStayto(89).fieldRepetitions = fieldRepetitions;
+            psroUrAprvdStayto89.fieldRepetitions = fieldRepetitions;
         }
 
-        return psroUrAprvdStayto(89);
+        return psroUrAprvdStayto89;
     } 
 }
 
-internal HL7V21Field occurrence(2832);
+internal HL7V21Field occurrence2832;
 
-public HL7V21Field Occurrence(2832)
+public HL7V21Field Occurrence2832
 {
     get
     {
-        if (occurrence(2832) != null)
+        if (occurrence2832 != null)
         {
-            return occurrence(2832);
+            return occurrence2832;
         }
 
-        occurrence(2832) = new HL7V21Field
+        occurrence2832 = new HL7V21Field
         {
             field = message[@"UB1"][16],
             Id = @"UB1.16",
@@ -2449,17 +2449,17 @@ public HL7V21Field Occurrence(2832)
         };
 
         // check for repetitions
-        if (occurrence(2832).field.FieldRepetitions != null && occurrence(2832).field.FieldRepetitions.Count > 0)
+        if (occurrence2832.field.FieldRepetitions != null && occurrence2832.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrence(2832).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(occurrence2832.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < occurrence(2832).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < occurrence2832.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = occurrence(2832).field.FieldRepetitions[i],
+                    fieldRepetition = occurrence2832.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2481,12 +2481,12 @@ public HL7V21Field Occurrence(2832)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < occurrence(2832).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < occurrence2832.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = occurrence(2832).field.FieldRepetitions[i].Components[j],
+                            component = occurrence2832.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2507,12 +2507,12 @@ public HL7V21Field Occurrence(2832)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < occurrence(2832).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < occurrence2832.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = occurrence(2832).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = occurrence2832.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2543,25 +2543,25 @@ public HL7V21Field Occurrence(2832)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            occurrence(2832).fieldRepetitions = fieldRepetitions;
+            occurrence2832.fieldRepetitions = fieldRepetitions;
         }
 
-        return occurrence(2832);
+        return occurrence2832;
     } 
 }
 
-internal HL7V21Field occurrenceSpan(33);
+internal HL7V21Field occurrenceSpan33;
 
-public HL7V21Field OccurrenceSpan(33)
+public HL7V21Field OccurrenceSpan33
 {
     get
     {
-        if (occurrenceSpan(33) != null)
+        if (occurrenceSpan33 != null)
         {
-            return occurrenceSpan(33);
+            return occurrenceSpan33;
         }
 
-        occurrenceSpan(33) = new HL7V21Field
+        occurrenceSpan33 = new HL7V21Field
         {
             field = message[@"UB1"][17],
             Id = @"UB1.17",
@@ -2580,17 +2580,17 @@ public HL7V21Field OccurrenceSpan(33)
         };
 
         // check for repetitions
-        if (occurrenceSpan(33).field.FieldRepetitions != null && occurrenceSpan(33).field.FieldRepetitions.Count > 0)
+        if (occurrenceSpan33.field.FieldRepetitions != null && occurrenceSpan33.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceSpan(33).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceSpan33.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < occurrenceSpan(33).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < occurrenceSpan33.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = occurrenceSpan(33).field.FieldRepetitions[i],
+                    fieldRepetition = occurrenceSpan33.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2612,12 +2612,12 @@ public HL7V21Field OccurrenceSpan(33)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < occurrenceSpan(33).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < occurrenceSpan33.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = occurrenceSpan(33).field.FieldRepetitions[i].Components[j],
+                            component = occurrenceSpan33.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2638,12 +2638,12 @@ public HL7V21Field OccurrenceSpan(33)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < occurrenceSpan(33).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < occurrenceSpan33.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = occurrenceSpan(33).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = occurrenceSpan33.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2674,25 +2674,25 @@ public HL7V21Field OccurrenceSpan(33)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            occurrenceSpan(33).fieldRepetitions = fieldRepetitions;
+            occurrenceSpan33.fieldRepetitions = fieldRepetitions;
         }
 
-        return occurrenceSpan(33);
+        return occurrenceSpan33;
     } 
 }
 
-internal HL7V21Field occurrenceSpanStartDate(33);
+internal HL7V21Field occurrenceSpanStartDate33;
 
-public HL7V21Field OccurrenceSpanStartDate(33)
+public HL7V21Field OccurrenceSpanStartDate33
 {
     get
     {
-        if (occurrenceSpanStartDate(33) != null)
+        if (occurrenceSpanStartDate33 != null)
         {
-            return occurrenceSpanStartDate(33);
+            return occurrenceSpanStartDate33;
         }
 
-        occurrenceSpanStartDate(33) = new HL7V21Field
+        occurrenceSpanStartDate33 = new HL7V21Field
         {
             field = message[@"UB1"][18],
             Id = @"UB1.18",
@@ -2711,17 +2711,17 @@ public HL7V21Field OccurrenceSpanStartDate(33)
         };
 
         // check for repetitions
-        if (occurrenceSpanStartDate(33).field.FieldRepetitions != null && occurrenceSpanStartDate(33).field.FieldRepetitions.Count > 0)
+        if (occurrenceSpanStartDate33.field.FieldRepetitions != null && occurrenceSpanStartDate33.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceSpanStartDate(33).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceSpanStartDate33.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < occurrenceSpanStartDate(33).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < occurrenceSpanStartDate33.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = occurrenceSpanStartDate(33).field.FieldRepetitions[i],
+                    fieldRepetition = occurrenceSpanStartDate33.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2743,12 +2743,12 @@ public HL7V21Field OccurrenceSpanStartDate(33)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < occurrenceSpanStartDate(33).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < occurrenceSpanStartDate33.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = occurrenceSpanStartDate(33).field.FieldRepetitions[i].Components[j],
+                            component = occurrenceSpanStartDate33.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2769,12 +2769,12 @@ public HL7V21Field OccurrenceSpanStartDate(33)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < occurrenceSpanStartDate(33).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < occurrenceSpanStartDate33.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = occurrenceSpanStartDate(33).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = occurrenceSpanStartDate33.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2805,25 +2805,25 @@ public HL7V21Field OccurrenceSpanStartDate(33)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            occurrenceSpanStartDate(33).fieldRepetitions = fieldRepetitions;
+            occurrenceSpanStartDate33.fieldRepetitions = fieldRepetitions;
         }
 
-        return occurrenceSpanStartDate(33);
+        return occurrenceSpanStartDate33;
     } 
 }
 
-internal HL7V21Field occurSpanEndDate(33);
+internal HL7V21Field occurSpanEndDate33;
 
-public HL7V21Field OccurSpanEndDate(33)
+public HL7V21Field OccurSpanEndDate33
 {
     get
     {
-        if (occurSpanEndDate(33) != null)
+        if (occurSpanEndDate33 != null)
         {
-            return occurSpanEndDate(33);
+            return occurSpanEndDate33;
         }
 
-        occurSpanEndDate(33) = new HL7V21Field
+        occurSpanEndDate33 = new HL7V21Field
         {
             field = message[@"UB1"][19],
             Id = @"UB1.19",
@@ -2842,17 +2842,17 @@ public HL7V21Field OccurSpanEndDate(33)
         };
 
         // check for repetitions
-        if (occurSpanEndDate(33).field.FieldRepetitions != null && occurSpanEndDate(33).field.FieldRepetitions.Count > 0)
+        if (occurSpanEndDate33.field.FieldRepetitions != null && occurSpanEndDate33.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurSpanEndDate(33).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(occurSpanEndDate33.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < occurSpanEndDate(33).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < occurSpanEndDate33.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = occurSpanEndDate(33).field.FieldRepetitions[i],
+                    fieldRepetition = occurSpanEndDate33.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2874,12 +2874,12 @@ public HL7V21Field OccurSpanEndDate(33)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < occurSpanEndDate(33).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < occurSpanEndDate33.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = occurSpanEndDate(33).field.FieldRepetitions[i].Components[j],
+                            component = occurSpanEndDate33.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2900,12 +2900,12 @@ public HL7V21Field OccurSpanEndDate(33)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < occurSpanEndDate(33).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < occurSpanEndDate33.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = occurSpanEndDate(33).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = occurSpanEndDate33.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2936,10 +2936,10 @@ public HL7V21Field OccurSpanEndDate(33)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            occurSpanEndDate(33).fieldRepetitions = fieldRepetitions;
+            occurSpanEndDate33.fieldRepetitions = fieldRepetitions;
         }
 
-        return occurSpanEndDate(33);
+        return occurSpanEndDate33;
     } 
 }
 

@@ -16209,18 +16209,18 @@ public HL7V25Field TransportLogisticsofCollectedSample
     } 
 }
 
-internal HL7V25Field collector'sComment;
+internal HL7V25Field collectorsComment;
 
-public HL7V25Field Collector'sComment
+public HL7V25Field CollectorsComment
 {
     get
     {
-        if (collector'sComment != null)
+        if (collectorsComment != null)
         {
-            return collector'sComment;
+            return collectorsComment;
         }
 
-        collector'sComment = new HL7V25Field
+        collectorsComment = new HL7V25Field
         {
             field = message[@"OBR"][39],
             Id = @"OBR.39",
@@ -16239,17 +16239,17 @@ public HL7V25Field Collector'sComment
         };
 
         // check for repetitions
-        if (collector'sComment.field.FieldRepetitions != null && collector'sComment.field.FieldRepetitions.Count > 0)
+        if (collectorsComment.field.FieldRepetitions != null && collectorsComment.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(collector'sComment.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(collectorsComment.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < collector'sComment.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < collectorsComment.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = collector'sComment.field.FieldRepetitions[i],
+                    fieldRepetition = collectorsComment.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -16271,12 +16271,12 @@ public HL7V25Field Collector'sComment
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < collector'sComment.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < collectorsComment.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = collector'sComment.field.FieldRepetitions[i].Components[j],
+                            component = collectorsComment.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -16297,12 +16297,12 @@ public HL7V25Field Collector'sComment
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < collector'sComment.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < collectorsComment.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = collector'sComment.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = collectorsComment.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -16333,10 +16333,10 @@ public HL7V25Field Collector'sComment
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            collector'sComment.fieldRepetitions = fieldRepetitions;
+            collectorsComment.fieldRepetitions = fieldRepetitions;
         }
 
-        return collector'sComment;
+        return collectorsComment;
     } 
 }
 

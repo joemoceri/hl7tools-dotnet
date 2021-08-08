@@ -10550,18 +10550,18 @@ public HL7V25Field GroupName
     } 
 }
 
-internal HL7V25Field insured'sGroupEmpID;
+internal HL7V25Field insuredsGroupEmpID;
 
-public HL7V25Field Insured'sGroupEmpID
+public HL7V25Field InsuredsGroupEmpID
 {
     get
     {
-        if (insured'sGroupEmpID != null)
+        if (insuredsGroupEmpID != null)
         {
-            return insured'sGroupEmpID;
+            return insuredsGroupEmpID;
         }
 
-        insured'sGroupEmpID = new HL7V25Field
+        insuredsGroupEmpID = new HL7V25Field
         {
             field = message[@"IN1"][10],
             Id = @"IN1.10",
@@ -10580,17 +10580,17 @@ public HL7V25Field Insured'sGroupEmpID
         };
 
         // check for repetitions
-        if (insured'sGroupEmpID.field.FieldRepetitions != null && insured'sGroupEmpID.field.FieldRepetitions.Count > 0)
+        if (insuredsGroupEmpID.field.FieldRepetitions != null && insuredsGroupEmpID.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sGroupEmpID.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsGroupEmpID.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sGroupEmpID.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsGroupEmpID.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sGroupEmpID.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsGroupEmpID.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -10612,12 +10612,12 @@ public HL7V25Field Insured'sGroupEmpID
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sGroupEmpID.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsGroupEmpID.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sGroupEmpID.field.FieldRepetitions[i].Components[j],
+                            component = insuredsGroupEmpID.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -10638,12 +10638,12 @@ public HL7V25Field Insured'sGroupEmpID
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sGroupEmpID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsGroupEmpID.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sGroupEmpID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsGroupEmpID.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -10674,25 +10674,25 @@ public HL7V25Field Insured'sGroupEmpID
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sGroupEmpID.fieldRepetitions = fieldRepetitions;
+            insuredsGroupEmpID.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sGroupEmpID;
+        return insuredsGroupEmpID;
     } 
 }
 
-internal HL7V25Field insured'sGroupEmpName;
+internal HL7V25Field insuredsGroupEmpName;
 
-public HL7V25Field Insured'sGroupEmpName
+public HL7V25Field InsuredsGroupEmpName
 {
     get
     {
-        if (insured'sGroupEmpName != null)
+        if (insuredsGroupEmpName != null)
         {
-            return insured'sGroupEmpName;
+            return insuredsGroupEmpName;
         }
 
-        insured'sGroupEmpName = new HL7V25Field
+        insuredsGroupEmpName = new HL7V25Field
         {
             field = message[@"IN1"][11],
             Id = @"IN1.11",
@@ -10711,17 +10711,17 @@ public HL7V25Field Insured'sGroupEmpName
         };
 
         // check for repetitions
-        if (insured'sGroupEmpName.field.FieldRepetitions != null && insured'sGroupEmpName.field.FieldRepetitions.Count > 0)
+        if (insuredsGroupEmpName.field.FieldRepetitions != null && insuredsGroupEmpName.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sGroupEmpName.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsGroupEmpName.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sGroupEmpName.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsGroupEmpName.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sGroupEmpName.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsGroupEmpName.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -10743,12 +10743,12 @@ public HL7V25Field Insured'sGroupEmpName
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sGroupEmpName.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsGroupEmpName.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sGroupEmpName.field.FieldRepetitions[i].Components[j],
+                            component = insuredsGroupEmpName.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -10769,12 +10769,12 @@ public HL7V25Field Insured'sGroupEmpName
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sGroupEmpName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsGroupEmpName.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sGroupEmpName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsGroupEmpName.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -10805,10 +10805,10 @@ public HL7V25Field Insured'sGroupEmpName
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sGroupEmpName.fieldRepetitions = fieldRepetitions;
+            insuredsGroupEmpName.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sGroupEmpName;
+        return insuredsGroupEmpName;
     } 
 }
 
@@ -11467,18 +11467,18 @@ public HL7V25Field NameOfInsured
     } 
 }
 
-internal HL7V25Field insured'sRelationshipToPatient;
+internal HL7V25Field insuredsRelationshipToPatient;
 
-public HL7V25Field Insured'sRelationshipToPatient
+public HL7V25Field InsuredsRelationshipToPatient
 {
     get
     {
-        if (insured'sRelationshipToPatient != null)
+        if (insuredsRelationshipToPatient != null)
         {
-            return insured'sRelationshipToPatient;
+            return insuredsRelationshipToPatient;
         }
 
-        insured'sRelationshipToPatient = new HL7V25Field
+        insuredsRelationshipToPatient = new HL7V25Field
         {
             field = message[@"IN1"][17],
             Id = @"IN1.17",
@@ -11497,17 +11497,17 @@ public HL7V25Field Insured'sRelationshipToPatient
         };
 
         // check for repetitions
-        if (insured'sRelationshipToPatient.field.FieldRepetitions != null && insured'sRelationshipToPatient.field.FieldRepetitions.Count > 0)
+        if (insuredsRelationshipToPatient.field.FieldRepetitions != null && insuredsRelationshipToPatient.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sRelationshipToPatient.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsRelationshipToPatient.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sRelationshipToPatient.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsRelationshipToPatient.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sRelationshipToPatient.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsRelationshipToPatient.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11529,12 +11529,12 @@ public HL7V25Field Insured'sRelationshipToPatient
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sRelationshipToPatient.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsRelationshipToPatient.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sRelationshipToPatient.field.FieldRepetitions[i].Components[j],
+                            component = insuredsRelationshipToPatient.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11555,12 +11555,12 @@ public HL7V25Field Insured'sRelationshipToPatient
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sRelationshipToPatient.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsRelationshipToPatient.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sRelationshipToPatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsRelationshipToPatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11591,25 +11591,25 @@ public HL7V25Field Insured'sRelationshipToPatient
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sRelationshipToPatient.fieldRepetitions = fieldRepetitions;
+            insuredsRelationshipToPatient.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sRelationshipToPatient;
+        return insuredsRelationshipToPatient;
     } 
 }
 
-internal HL7V25Field insured'sDateOfBirth;
+internal HL7V25Field insuredsDateOfBirth;
 
-public HL7V25Field Insured'sDateOfBirth
+public HL7V25Field InsuredsDateOfBirth
 {
     get
     {
-        if (insured'sDateOfBirth != null)
+        if (insuredsDateOfBirth != null)
         {
-            return insured'sDateOfBirth;
+            return insuredsDateOfBirth;
         }
 
-        insured'sDateOfBirth = new HL7V25Field
+        insuredsDateOfBirth = new HL7V25Field
         {
             field = message[@"IN1"][18],
             Id = @"IN1.18",
@@ -11628,17 +11628,17 @@ public HL7V25Field Insured'sDateOfBirth
         };
 
         // check for repetitions
-        if (insured'sDateOfBirth.field.FieldRepetitions != null && insured'sDateOfBirth.field.FieldRepetitions.Count > 0)
+        if (insuredsDateOfBirth.field.FieldRepetitions != null && insuredsDateOfBirth.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sDateOfBirth.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsDateOfBirth.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sDateOfBirth.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsDateOfBirth.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sDateOfBirth.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsDateOfBirth.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11660,12 +11660,12 @@ public HL7V25Field Insured'sDateOfBirth
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sDateOfBirth.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsDateOfBirth.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sDateOfBirth.field.FieldRepetitions[i].Components[j],
+                            component = insuredsDateOfBirth.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11686,12 +11686,12 @@ public HL7V25Field Insured'sDateOfBirth
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sDateOfBirth.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsDateOfBirth.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sDateOfBirth.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsDateOfBirth.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11722,25 +11722,25 @@ public HL7V25Field Insured'sDateOfBirth
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sDateOfBirth.fieldRepetitions = fieldRepetitions;
+            insuredsDateOfBirth.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sDateOfBirth;
+        return insuredsDateOfBirth;
     } 
 }
 
-internal HL7V25Field insured'sAddress;
+internal HL7V25Field insuredsAddress;
 
-public HL7V25Field Insured'sAddress
+public HL7V25Field InsuredsAddress
 {
     get
     {
-        if (insured'sAddress != null)
+        if (insuredsAddress != null)
         {
-            return insured'sAddress;
+            return insuredsAddress;
         }
 
-        insured'sAddress = new HL7V25Field
+        insuredsAddress = new HL7V25Field
         {
             field = message[@"IN1"][19],
             Id = @"IN1.19",
@@ -11759,17 +11759,17 @@ public HL7V25Field Insured'sAddress
         };
 
         // check for repetitions
-        if (insured'sAddress.field.FieldRepetitions != null && insured'sAddress.field.FieldRepetitions.Count > 0)
+        if (insuredsAddress.field.FieldRepetitions != null && insuredsAddress.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sAddress.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsAddress.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sAddress.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsAddress.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sAddress.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsAddress.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11791,12 +11791,12 @@ public HL7V25Field Insured'sAddress
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sAddress.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsAddress.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sAddress.field.FieldRepetitions[i].Components[j],
+                            component = insuredsAddress.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11817,12 +11817,12 @@ public HL7V25Field Insured'sAddress
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11853,10 +11853,10 @@ public HL7V25Field Insured'sAddress
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sAddress.fieldRepetitions = fieldRepetitions;
+            insuredsAddress.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sAddress;
+        return insuredsAddress;
     } 
 }
 
@@ -12908,18 +12908,18 @@ public HL7V25Field ReleaseInformationCode
     } 
 }
 
-internal HL7V25Field preAdmitCert(PAC);
+internal HL7V25Field preAdmitCertPAC;
 
-public HL7V25Field PreAdmitCert(PAC)
+public HL7V25Field PreAdmitCertPAC
 {
     get
     {
-        if (preAdmitCert(PAC) != null)
+        if (preAdmitCertPAC != null)
         {
-            return preAdmitCert(PAC);
+            return preAdmitCertPAC;
         }
 
-        preAdmitCert(PAC) = new HL7V25Field
+        preAdmitCertPAC = new HL7V25Field
         {
             field = message[@"IN1"][28],
             Id = @"IN1.28",
@@ -12938,17 +12938,17 @@ public HL7V25Field PreAdmitCert(PAC)
         };
 
         // check for repetitions
-        if (preAdmitCert(PAC).field.FieldRepetitions != null && preAdmitCert(PAC).field.FieldRepetitions.Count > 0)
+        if (preAdmitCertPAC.field.FieldRepetitions != null && preAdmitCertPAC.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preAdmitCert(PAC).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(preAdmitCertPAC.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < preAdmitCert(PAC).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < preAdmitCertPAC.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = preAdmitCert(PAC).field.FieldRepetitions[i],
+                    fieldRepetition = preAdmitCertPAC.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -12970,12 +12970,12 @@ public HL7V25Field PreAdmitCert(PAC)
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < preAdmitCert(PAC).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < preAdmitCertPAC.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = preAdmitCert(PAC).field.FieldRepetitions[i].Components[j],
+                            component = preAdmitCertPAC.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -12996,12 +12996,12 @@ public HL7V25Field PreAdmitCert(PAC)
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < preAdmitCert(PAC).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < preAdmitCertPAC.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = preAdmitCert(PAC).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = preAdmitCertPAC.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -13032,10 +13032,10 @@ public HL7V25Field PreAdmitCert(PAC)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            preAdmitCert(PAC).fieldRepetitions = fieldRepetitions;
+            preAdmitCertPAC.fieldRepetitions = fieldRepetitions;
         }
 
-        return preAdmitCert(PAC);
+        return preAdmitCertPAC;
     } 
 }
 
@@ -14742,18 +14742,18 @@ public HL7V25Field RoomRatePrivate
     } 
 }
 
-internal HL7V25Field insured'sEmploymentStatus;
+internal HL7V25Field insuredsEmploymentStatus;
 
-public HL7V25Field Insured'sEmploymentStatus
+public HL7V25Field InsuredsEmploymentStatus
 {
     get
     {
-        if (insured'sEmploymentStatus != null)
+        if (insuredsEmploymentStatus != null)
         {
-            return insured'sEmploymentStatus;
+            return insuredsEmploymentStatus;
         }
 
-        insured'sEmploymentStatus = new HL7V25Field
+        insuredsEmploymentStatus = new HL7V25Field
         {
             field = message[@"IN1"][42],
             Id = @"IN1.42",
@@ -14772,17 +14772,17 @@ public HL7V25Field Insured'sEmploymentStatus
         };
 
         // check for repetitions
-        if (insured'sEmploymentStatus.field.FieldRepetitions != null && insured'sEmploymentStatus.field.FieldRepetitions.Count > 0)
+        if (insuredsEmploymentStatus.field.FieldRepetitions != null && insuredsEmploymentStatus.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sEmploymentStatus.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsEmploymentStatus.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sEmploymentStatus.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsEmploymentStatus.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sEmploymentStatus.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsEmploymentStatus.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -14804,12 +14804,12 @@ public HL7V25Field Insured'sEmploymentStatus
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sEmploymentStatus.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsEmploymentStatus.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sEmploymentStatus.field.FieldRepetitions[i].Components[j],
+                            component = insuredsEmploymentStatus.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -14830,12 +14830,12 @@ public HL7V25Field Insured'sEmploymentStatus
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sEmploymentStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsEmploymentStatus.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sEmploymentStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsEmploymentStatus.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -14866,25 +14866,25 @@ public HL7V25Field Insured'sEmploymentStatus
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sEmploymentStatus.fieldRepetitions = fieldRepetitions;
+            insuredsEmploymentStatus.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sEmploymentStatus;
+        return insuredsEmploymentStatus;
     } 
 }
 
-internal HL7V25Field insured'sAdministrativeSex;
+internal HL7V25Field insuredsAdministrativeSex;
 
-public HL7V25Field Insured'sAdministrativeSex
+public HL7V25Field InsuredsAdministrativeSex
 {
     get
     {
-        if (insured'sAdministrativeSex != null)
+        if (insuredsAdministrativeSex != null)
         {
-            return insured'sAdministrativeSex;
+            return insuredsAdministrativeSex;
         }
 
-        insured'sAdministrativeSex = new HL7V25Field
+        insuredsAdministrativeSex = new HL7V25Field
         {
             field = message[@"IN1"][43],
             Id = @"IN1.43",
@@ -14903,17 +14903,17 @@ public HL7V25Field Insured'sAdministrativeSex
         };
 
         // check for repetitions
-        if (insured'sAdministrativeSex.field.FieldRepetitions != null && insured'sAdministrativeSex.field.FieldRepetitions.Count > 0)
+        if (insuredsAdministrativeSex.field.FieldRepetitions != null && insuredsAdministrativeSex.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sAdministrativeSex.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsAdministrativeSex.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sAdministrativeSex.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsAdministrativeSex.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sAdministrativeSex.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsAdministrativeSex.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -14935,12 +14935,12 @@ public HL7V25Field Insured'sAdministrativeSex
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sAdministrativeSex.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsAdministrativeSex.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sAdministrativeSex.field.FieldRepetitions[i].Components[j],
+                            component = insuredsAdministrativeSex.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -14961,12 +14961,12 @@ public HL7V25Field Insured'sAdministrativeSex
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sAdministrativeSex.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsAdministrativeSex.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sAdministrativeSex.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsAdministrativeSex.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -14997,25 +14997,25 @@ public HL7V25Field Insured'sAdministrativeSex
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sAdministrativeSex.fieldRepetitions = fieldRepetitions;
+            insuredsAdministrativeSex.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sAdministrativeSex;
+        return insuredsAdministrativeSex;
     } 
 }
 
-internal HL7V25Field insured'sEmployer'sAddress;
+internal HL7V25Field insuredsEmployersAddress;
 
-public HL7V25Field Insured'sEmployer'sAddress
+public HL7V25Field InsuredsEmployersAddress
 {
     get
     {
-        if (insured'sEmployer'sAddress != null)
+        if (insuredsEmployersAddress != null)
         {
-            return insured'sEmployer'sAddress;
+            return insuredsEmployersAddress;
         }
 
-        insured'sEmployer'sAddress = new HL7V25Field
+        insuredsEmployersAddress = new HL7V25Field
         {
             field = message[@"IN1"][44],
             Id = @"IN1.44",
@@ -15034,17 +15034,17 @@ public HL7V25Field Insured'sEmployer'sAddress
         };
 
         // check for repetitions
-        if (insured'sEmployer'sAddress.field.FieldRepetitions != null && insured'sEmployer'sAddress.field.FieldRepetitions.Count > 0)
+        if (insuredsEmployersAddress.field.FieldRepetitions != null && insuredsEmployersAddress.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sEmployer'sAddress.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsEmployersAddress.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sEmployer'sAddress.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsEmployersAddress.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sEmployer'sAddress.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsEmployersAddress.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -15066,12 +15066,12 @@ public HL7V25Field Insured'sEmployer'sAddress
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sEmployer'sAddress.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsEmployersAddress.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sEmployer'sAddress.field.FieldRepetitions[i].Components[j],
+                            component = insuredsEmployersAddress.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -15092,12 +15092,12 @@ public HL7V25Field Insured'sEmployer'sAddress
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sEmployer'sAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsEmployersAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sEmployer'sAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsEmployersAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -15128,10 +15128,10 @@ public HL7V25Field Insured'sEmployer'sAddress
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sEmployer'sAddress.fieldRepetitions = fieldRepetitions;
+            insuredsEmployersAddress.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sEmployer'sAddress;
+        return insuredsEmployersAddress;
     } 
 }
 
@@ -15659,18 +15659,18 @@ public HL7V25Field Handicap
     } 
 }
 
-internal HL7V25Field insured'sIDNumber;
+internal HL7V25Field insuredsIDNumber;
 
-public HL7V25Field Insured'sIDNumber
+public HL7V25Field InsuredsIDNumber
 {
     get
     {
-        if (insured'sIDNumber != null)
+        if (insuredsIDNumber != null)
         {
-            return insured'sIDNumber;
+            return insuredsIDNumber;
         }
 
-        insured'sIDNumber = new HL7V25Field
+        insuredsIDNumber = new HL7V25Field
         {
             field = message[@"IN1"][49],
             Id = @"IN1.49",
@@ -15689,17 +15689,17 @@ public HL7V25Field Insured'sIDNumber
         };
 
         // check for repetitions
-        if (insured'sIDNumber.field.FieldRepetitions != null && insured'sIDNumber.field.FieldRepetitions.Count > 0)
+        if (insuredsIDNumber.field.FieldRepetitions != null && insuredsIDNumber.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sIDNumber.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsIDNumber.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sIDNumber.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsIDNumber.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sIDNumber.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsIDNumber.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -15721,12 +15721,12 @@ public HL7V25Field Insured'sIDNumber
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sIDNumber.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsIDNumber.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sIDNumber.field.FieldRepetitions[i].Components[j],
+                            component = insuredsIDNumber.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -15747,12 +15747,12 @@ public HL7V25Field Insured'sIDNumber
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sIDNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsIDNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sIDNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsIDNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -15783,10 +15783,10 @@ public HL7V25Field Insured'sIDNumber
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sIDNumber.fieldRepetitions = fieldRepetitions;
+            insuredsIDNumber.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sIDNumber;
+        return insuredsIDNumber;
     } 
 }
 
@@ -16052,18 +16052,18 @@ public HL7V25Field SignatureCodeDate
     } 
 }
 
-internal HL7V25Field insured'sBirthPlace;
+internal HL7V25Field insuredsBirthPlace;
 
-public HL7V25Field Insured'sBirthPlace
+public HL7V25Field InsuredsBirthPlace
 {
     get
     {
-        if (insured'sBirthPlace != null)
+        if (insuredsBirthPlace != null)
         {
-            return insured'sBirthPlace;
+            return insuredsBirthPlace;
         }
 
-        insured'sBirthPlace = new HL7V25Field
+        insuredsBirthPlace = new HL7V25Field
         {
             field = message[@"IN1"][52],
             Id = @"IN1.52",
@@ -16082,17 +16082,17 @@ public HL7V25Field Insured'sBirthPlace
         };
 
         // check for repetitions
-        if (insured'sBirthPlace.field.FieldRepetitions != null && insured'sBirthPlace.field.FieldRepetitions.Count > 0)
+        if (insuredsBirthPlace.field.FieldRepetitions != null && insuredsBirthPlace.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insured'sBirthPlace.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(insuredsBirthPlace.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < insured'sBirthPlace.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < insuredsBirthPlace.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = insured'sBirthPlace.field.FieldRepetitions[i],
+                    fieldRepetition = insuredsBirthPlace.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -16114,12 +16114,12 @@ public HL7V25Field Insured'sBirthPlace
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < insured'sBirthPlace.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < insuredsBirthPlace.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = insured'sBirthPlace.field.FieldRepetitions[i].Components[j],
+                            component = insuredsBirthPlace.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -16140,12 +16140,12 @@ public HL7V25Field Insured'sBirthPlace
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < insured'sBirthPlace.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < insuredsBirthPlace.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = insured'sBirthPlace.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = insuredsBirthPlace.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -16176,10 +16176,10 @@ public HL7V25Field Insured'sBirthPlace
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            insured'sBirthPlace.fieldRepetitions = fieldRepetitions;
+            insuredsBirthPlace.fieldRepetitions = fieldRepetitions;
         }
 
-        return insured'sBirthPlace;
+        return insuredsBirthPlace;
     } 
 }
 

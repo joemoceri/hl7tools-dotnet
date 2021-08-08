@@ -7322,18 +7322,18 @@ No - Indicates no warning is present.  This is the equivalent default (null) val
     } 
 }
 
-internal HL7V26Field pharmacyTreatmentSupplier'sSpecialDispensingInstructions;
+internal HL7V26Field pharmacyTreatmentSuppliersSpecialDispensingInstructions;
 
-public HL7V26Field PharmacyTreatmentSupplier'sSpecialDispensingInstructions
+public HL7V26Field PharmacyTreatmentSuppliersSpecialDispensingInstructions
 {
     get
     {
-        if (pharmacyTreatmentSupplier'sSpecialDispensingInstructions != null)
+        if (pharmacyTreatmentSuppliersSpecialDispensingInstructions != null)
         {
-            return pharmacyTreatmentSupplier'sSpecialDispensingInstructions;
+            return pharmacyTreatmentSuppliersSpecialDispensingInstructions;
         }
 
-        pharmacyTreatmentSupplier'sSpecialDispensingInstructions = new HL7V26Field
+        pharmacyTreatmentSuppliersSpecialDispensingInstructions = new HL7V26Field
         {
             field = message[@"RXD"][15],
             Id = @"RXD.15",
@@ -7352,17 +7352,17 @@ public HL7V26Field PharmacyTreatmentSupplier'sSpecialDispensingInstructions
         };
 
         // check for repetitions
-        if (pharmacyTreatmentSupplier'sSpecialDispensingInstructions.field.FieldRepetitions != null && pharmacyTreatmentSupplier'sSpecialDispensingInstructions.field.FieldRepetitions.Count > 0)
+        if (pharmacyTreatmentSuppliersSpecialDispensingInstructions.field.FieldRepetitions != null && pharmacyTreatmentSuppliersSpecialDispensingInstructions.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pharmacyTreatmentSupplier'sSpecialDispensingInstructions.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(pharmacyTreatmentSuppliersSpecialDispensingInstructions.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < pharmacyTreatmentSupplier'sSpecialDispensingInstructions.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < pharmacyTreatmentSuppliersSpecialDispensingInstructions.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = pharmacyTreatmentSupplier'sSpecialDispensingInstructions.field.FieldRepetitions[i],
+                    fieldRepetition = pharmacyTreatmentSuppliersSpecialDispensingInstructions.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -7384,12 +7384,12 @@ public HL7V26Field PharmacyTreatmentSupplier'sSpecialDispensingInstructions
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < pharmacyTreatmentSupplier'sSpecialDispensingInstructions.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < pharmacyTreatmentSuppliersSpecialDispensingInstructions.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = pharmacyTreatmentSupplier'sSpecialDispensingInstructions.field.FieldRepetitions[i].Components[j],
+                            component = pharmacyTreatmentSuppliersSpecialDispensingInstructions.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -7410,12 +7410,12 @@ public HL7V26Field PharmacyTreatmentSupplier'sSpecialDispensingInstructions
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < pharmacyTreatmentSupplier'sSpecialDispensingInstructions.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < pharmacyTreatmentSuppliersSpecialDispensingInstructions.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = pharmacyTreatmentSupplier'sSpecialDispensingInstructions.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = pharmacyTreatmentSuppliersSpecialDispensingInstructions.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -7446,10 +7446,10 @@ public HL7V26Field PharmacyTreatmentSupplier'sSpecialDispensingInstructions
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            pharmacyTreatmentSupplier'sSpecialDispensingInstructions.fieldRepetitions = fieldRepetitions;
+            pharmacyTreatmentSuppliersSpecialDispensingInstructions.fieldRepetitions = fieldRepetitions;
         }
 
-        return pharmacyTreatmentSupplier'sSpecialDispensingInstructions;
+        return pharmacyTreatmentSuppliersSpecialDispensingInstructions;
     } 
 }
 

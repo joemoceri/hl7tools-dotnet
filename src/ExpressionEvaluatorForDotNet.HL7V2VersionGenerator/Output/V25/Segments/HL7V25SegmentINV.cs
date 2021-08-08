@@ -4459,18 +4459,18 @@ public HL7V25Field OnBoardStabilityDuration
     } 
 }
 
-internal HL7V25Field testFluidIdentifier(s);
+internal HL7V25Field testFluidIdentifiers;
 
-public HL7V25Field TestFluidIdentifier(s)
+public HL7V25Field TestFluidIdentifiers
 {
     get
     {
-        if (testFluidIdentifier(s) != null)
+        if (testFluidIdentifiers != null)
         {
-            return testFluidIdentifier(s);
+            return testFluidIdentifiers;
         }
 
-        testFluidIdentifier(s) = new HL7V25Field
+        testFluidIdentifiers = new HL7V25Field
         {
             field = message[@"INV"][15],
             Id = @"INV.15",
@@ -4489,17 +4489,17 @@ public HL7V25Field TestFluidIdentifier(s)
         };
 
         // check for repetitions
-        if (testFluidIdentifier(s).field.FieldRepetitions != null && testFluidIdentifier(s).field.FieldRepetitions.Count > 0)
+        if (testFluidIdentifiers.field.FieldRepetitions != null && testFluidIdentifiers.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testFluidIdentifier(s).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(testFluidIdentifiers.Id));
             var fieldRepetitions = new List<HL7V25FieldRepetition>();
 
-            for (var i = 0; i < testFluidIdentifier(s).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < testFluidIdentifiers.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V25FieldRepetition
                 {
-                    fieldRepetition = testFluidIdentifier(s).field.FieldRepetitions[i],
+                    fieldRepetition = testFluidIdentifiers.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -4521,12 +4521,12 @@ public HL7V25Field TestFluidIdentifier(s)
                     var components = new List<HL7V25Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < testFluidIdentifier(s).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < testFluidIdentifiers.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V25Component
                         {
-                            component = testFluidIdentifier(s).field.FieldRepetitions[i].Components[j],
+                            component = testFluidIdentifiers.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -4547,12 +4547,12 @@ public HL7V25Field TestFluidIdentifier(s)
                         {
                             var subComponents = new List<HL7V25SubComponent>();
 
-                            for (var k = 0; k < testFluidIdentifier(s).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < testFluidIdentifiers.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V25SubComponent
                                 {
-                                    subComponent = testFluidIdentifier(s).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = testFluidIdentifiers.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -4583,10 +4583,10 @@ public HL7V25Field TestFluidIdentifier(s)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            testFluidIdentifier(s).fieldRepetitions = fieldRepetitions;
+            testFluidIdentifiers.fieldRepetitions = fieldRepetitions;
         }
 
-        return testFluidIdentifier(s);
+        return testFluidIdentifiers;
     } 
 }
 

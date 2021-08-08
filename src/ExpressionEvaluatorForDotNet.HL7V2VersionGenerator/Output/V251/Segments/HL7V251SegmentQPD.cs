@@ -471,18 +471,18 @@ public HL7V251Field QueryTag
     } 
 }
 
-internal HL7V251Field userParameters(insuccessivefields);
+internal HL7V251Field userParametersinsuccessivefields;
 
-public HL7V251Field UserParameters(insuccessivefields)
+public HL7V251Field UserParametersinsuccessivefields
 {
     get
     {
-        if (userParameters(insuccessivefields) != null)
+        if (userParametersinsuccessivefields != null)
         {
-            return userParameters(insuccessivefields);
+            return userParametersinsuccessivefields;
         }
 
-        userParameters(insuccessivefields) = new HL7V251Field
+        userParametersinsuccessivefields = new HL7V251Field
         {
             field = message[@"QPD"][3],
             Id = @"QPD.3",
@@ -501,17 +501,17 @@ public HL7V251Field UserParameters(insuccessivefields)
         };
 
         // check for repetitions
-        if (userParameters(insuccessivefields).field.FieldRepetitions != null && userParameters(insuccessivefields).field.FieldRepetitions.Count > 0)
+        if (userParametersinsuccessivefields.field.FieldRepetitions != null && userParametersinsuccessivefields.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userParameters(insuccessivefields).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(userParametersinsuccessivefields.Id));
             var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-            for (var i = 0; i < userParameters(insuccessivefields).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < userParametersinsuccessivefields.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V251FieldRepetition
                 {
-                    fieldRepetition = userParameters(insuccessivefields).field.FieldRepetitions[i],
+                    fieldRepetition = userParametersinsuccessivefields.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -533,12 +533,12 @@ public HL7V251Field UserParameters(insuccessivefields)
                     var components = new List<HL7V251Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < userParameters(insuccessivefields).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < userParametersinsuccessivefields.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V251Component
                         {
-                            component = userParameters(insuccessivefields).field.FieldRepetitions[i].Components[j],
+                            component = userParametersinsuccessivefields.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -559,12 +559,12 @@ public HL7V251Field UserParameters(insuccessivefields)
                         {
                             var subComponents = new List<HL7V251SubComponent>();
 
-                            for (var k = 0; k < userParameters(insuccessivefields).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < userParametersinsuccessivefields.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V251SubComponent
                                 {
-                                    subComponent = userParameters(insuccessivefields).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = userParametersinsuccessivefields.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -595,10 +595,10 @@ public HL7V251Field UserParameters(insuccessivefields)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            userParameters(insuccessivefields).fieldRepetitions = fieldRepetitions;
+            userParametersinsuccessivefields.fieldRepetitions = fieldRepetitions;
         }
 
-        return userParameters(insuccessivefields);
+        return userParametersinsuccessivefields;
     } 
 }
 

@@ -21267,18 +21267,18 @@ public HL7V271Field SideOfBody
     } 
 }
 
-internal HL7V271Field numberOfTp'sPp;
+internal HL7V271Field numberOfTpsPp;
 
-public HL7V271Field NumberOfTp'sPp
+public HL7V271Field NumberOfTpsPp
 {
     get
     {
-        if (numberOfTp'sPp != null)
+        if (numberOfTpsPp != null)
         {
-            return numberOfTp'sPp;
+            return numberOfTpsPp;
         }
 
-        numberOfTp'sPp = new HL7V271Field
+        numberOfTpsPp = new HL7V271Field
         {
             field = message[@"PSL"][34],
             Id = @"PSL.34",
@@ -21297,17 +21297,17 @@ public HL7V271Field NumberOfTp'sPp
         };
 
         // check for repetitions
-        if (numberOfTp'sPp.field.FieldRepetitions != null && numberOfTp'sPp.field.FieldRepetitions.Count > 0)
+        if (numberOfTpsPp.field.FieldRepetitions != null && numberOfTpsPp.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfTp'sPp.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfTpsPp.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < numberOfTp'sPp.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < numberOfTpsPp.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = numberOfTp'sPp.field.FieldRepetitions[i],
+                    fieldRepetition = numberOfTpsPp.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -21329,12 +21329,12 @@ public HL7V271Field NumberOfTp'sPp
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < numberOfTp'sPp.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < numberOfTpsPp.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = numberOfTp'sPp.field.FieldRepetitions[i].Components[j],
+                            component = numberOfTpsPp.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -21355,12 +21355,12 @@ public HL7V271Field NumberOfTp'sPp
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < numberOfTp'sPp.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < numberOfTpsPp.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = numberOfTp'sPp.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = numberOfTpsPp.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -21391,10 +21391,10 @@ public HL7V271Field NumberOfTp'sPp
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            numberOfTp'sPp.fieldRepetitions = fieldRepetitions;
+            numberOfTpsPp.fieldRepetitions = fieldRepetitions;
         }
 
-        return numberOfTp'sPp;
+        return numberOfTpsPp;
     } 
 }
 
@@ -21922,18 +21922,18 @@ public HL7V271Field AmountPp
     } 
 }
 
-internal HL7V271Field numberOfTp'sTechnicalPart;
+internal HL7V271Field numberOfTpsTechnicalPart;
 
-public HL7V271Field NumberOfTp'sTechnicalPart
+public HL7V271Field NumberOfTpsTechnicalPart
 {
     get
     {
-        if (numberOfTp'sTechnicalPart != null)
+        if (numberOfTpsTechnicalPart != null)
         {
-            return numberOfTp'sTechnicalPart;
+            return numberOfTpsTechnicalPart;
         }
 
-        numberOfTp'sTechnicalPart = new HL7V271Field
+        numberOfTpsTechnicalPart = new HL7V271Field
         {
             field = message[@"PSL"][39],
             Id = @"PSL.39",
@@ -21952,17 +21952,17 @@ public HL7V271Field NumberOfTp'sTechnicalPart
         };
 
         // check for repetitions
-        if (numberOfTp'sTechnicalPart.field.FieldRepetitions != null && numberOfTp'sTechnicalPart.field.FieldRepetitions.Count > 0)
+        if (numberOfTpsTechnicalPart.field.FieldRepetitions != null && numberOfTpsTechnicalPart.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfTp'sTechnicalPart.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfTpsTechnicalPart.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < numberOfTp'sTechnicalPart.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < numberOfTpsTechnicalPart.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = numberOfTp'sTechnicalPart.field.FieldRepetitions[i],
+                    fieldRepetition = numberOfTpsTechnicalPart.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -21984,12 +21984,12 @@ public HL7V271Field NumberOfTp'sTechnicalPart
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < numberOfTp'sTechnicalPart.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < numberOfTpsTechnicalPart.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = numberOfTp'sTechnicalPart.field.FieldRepetitions[i].Components[j],
+                            component = numberOfTpsTechnicalPart.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -22010,12 +22010,12 @@ public HL7V271Field NumberOfTp'sTechnicalPart
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < numberOfTp'sTechnicalPart.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < numberOfTpsTechnicalPart.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = numberOfTp'sTechnicalPart.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = numberOfTpsTechnicalPart.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -22046,10 +22046,10 @@ public HL7V271Field NumberOfTp'sTechnicalPart
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            numberOfTp'sTechnicalPart.fieldRepetitions = fieldRepetitions;
+            numberOfTpsTechnicalPart.fieldRepetitions = fieldRepetitions;
         }
 
-        return numberOfTp'sTechnicalPart;
+        return numberOfTpsTechnicalPart;
     } 
 }
 

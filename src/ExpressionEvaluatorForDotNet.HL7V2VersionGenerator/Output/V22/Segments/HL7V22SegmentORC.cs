@@ -3751,18 +3751,18 @@ public HL7V22Field OrderingProvider
     } 
 }
 
-internal HL7V22Field enterer'sLocation;
+internal HL7V22Field enterersLocation;
 
-public HL7V22Field Enterer'sLocation
+public HL7V22Field EnterersLocation
 {
     get
     {
-        if (enterer'sLocation != null)
+        if (enterersLocation != null)
         {
-            return enterer'sLocation;
+            return enterersLocation;
         }
 
-        enterer'sLocation = new HL7V22Field
+        enterersLocation = new HL7V22Field
         {
             field = message[@"ORC"][13],
             Id = @"ORC.13",
@@ -3781,17 +3781,17 @@ public HL7V22Field Enterer'sLocation
         };
 
         // check for repetitions
-        if (enterer'sLocation.field.FieldRepetitions != null && enterer'sLocation.field.FieldRepetitions.Count > 0)
+        if (enterersLocation.field.FieldRepetitions != null && enterersLocation.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enterer'sLocation.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(enterersLocation.Id));
             var fieldRepetitions = new List<HL7V22FieldRepetition>();
 
-            for (var i = 0; i < enterer'sLocation.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < enterersLocation.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V22FieldRepetition
                 {
-                    fieldRepetition = enterer'sLocation.field.FieldRepetitions[i],
+                    fieldRepetition = enterersLocation.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3813,12 +3813,12 @@ public HL7V22Field Enterer'sLocation
                     var components = new List<HL7V22Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < enterer'sLocation.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < enterersLocation.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V22Component
                         {
-                            component = enterer'sLocation.field.FieldRepetitions[i].Components[j],
+                            component = enterersLocation.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3839,12 +3839,12 @@ public HL7V22Field Enterer'sLocation
                         {
                             var subComponents = new List<HL7V22SubComponent>();
 
-                            for (var k = 0; k < enterer'sLocation.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < enterersLocation.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V22SubComponent
                                 {
-                                    subComponent = enterer'sLocation.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = enterersLocation.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3875,10 +3875,10 @@ public HL7V22Field Enterer'sLocation
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            enterer'sLocation.fieldRepetitions = fieldRepetitions;
+            enterersLocation.fieldRepetitions = fieldRepetitions;
         }
 
-        return enterer'sLocation;
+        return enterersLocation;
     } 
 }
 

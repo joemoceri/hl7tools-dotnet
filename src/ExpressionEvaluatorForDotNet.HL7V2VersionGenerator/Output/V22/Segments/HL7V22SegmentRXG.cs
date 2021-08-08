@@ -3434,18 +3434,18 @@ public HL7V22Field PharmacySpecialAdministrationInstructions
     } 
 }
 
-internal HL7V22Field givePer(timeUnit);
+internal HL7V22Field givePertimeUnit;
 
-public HL7V22Field GivePer(timeUnit)
+public HL7V22Field GivePertimeUnit
 {
     get
     {
-        if (givePer(timeUnit) != null)
+        if (givePertimeUnit != null)
         {
-            return givePer(timeUnit);
+            return givePertimeUnit;
         }
 
-        givePer(timeUnit) = new HL7V22Field
+        givePertimeUnit = new HL7V22Field
         {
             field = message[@"RXG"][14],
             Id = @"RXG.14",
@@ -3464,17 +3464,17 @@ public HL7V22Field GivePer(timeUnit)
         };
 
         // check for repetitions
-        if (givePer(timeUnit).field.FieldRepetitions != null && givePer(timeUnit).field.FieldRepetitions.Count > 0)
+        if (givePertimeUnit.field.FieldRepetitions != null && givePertimeUnit.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(givePer(timeUnit).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(givePertimeUnit.Id));
             var fieldRepetitions = new List<HL7V22FieldRepetition>();
 
-            for (var i = 0; i < givePer(timeUnit).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < givePertimeUnit.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V22FieldRepetition
                 {
-                    fieldRepetition = givePer(timeUnit).field.FieldRepetitions[i],
+                    fieldRepetition = givePertimeUnit.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3496,12 +3496,12 @@ public HL7V22Field GivePer(timeUnit)
                     var components = new List<HL7V22Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < givePer(timeUnit).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < givePertimeUnit.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V22Component
                         {
-                            component = givePer(timeUnit).field.FieldRepetitions[i].Components[j],
+                            component = givePertimeUnit.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3522,12 +3522,12 @@ public HL7V22Field GivePer(timeUnit)
                         {
                             var subComponents = new List<HL7V22SubComponent>();
 
-                            for (var k = 0; k < givePer(timeUnit).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < givePertimeUnit.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V22SubComponent
                                 {
-                                    subComponent = givePer(timeUnit).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = givePertimeUnit.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3558,10 +3558,10 @@ public HL7V22Field GivePer(timeUnit)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            givePer(timeUnit).fieldRepetitions = fieldRepetitions;
+            givePertimeUnit.fieldRepetitions = fieldRepetitions;
         }
 
-        return givePer(timeUnit);
+        return givePertimeUnit;
     } 
 }
 

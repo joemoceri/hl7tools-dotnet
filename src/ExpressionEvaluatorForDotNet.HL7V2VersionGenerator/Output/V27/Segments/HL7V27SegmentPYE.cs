@@ -5564,18 +5564,18 @@ public HL7V27Field PayeeType
     } 
 }
 
-internal HL7V27Field payeeRelationshipToInvoice(patient);
+internal HL7V27Field payeeRelationshipToInvoicepatient;
 
-public HL7V27Field PayeeRelationshipToInvoice(patient)
+public HL7V27Field PayeeRelationshipToInvoicepatient
 {
     get
     {
-        if (payeeRelationshipToInvoice(patient) != null)
+        if (payeeRelationshipToInvoicepatient != null)
         {
-            return payeeRelationshipToInvoice(patient);
+            return payeeRelationshipToInvoicepatient;
         }
 
-        payeeRelationshipToInvoice(patient) = new HL7V27Field
+        payeeRelationshipToInvoicepatient = new HL7V27Field
         {
             field = message[@"PYE"][3],
             Id = @"PYE.3",
@@ -5596,17 +5596,17 @@ For Person Payee Types, the relationship to Invoice.  Refer to User-defined Tabl
         };
 
         // check for repetitions
-        if (payeeRelationshipToInvoice(patient).field.FieldRepetitions != null && payeeRelationshipToInvoice(patient).field.FieldRepetitions.Count > 0)
+        if (payeeRelationshipToInvoicepatient.field.FieldRepetitions != null && payeeRelationshipToInvoicepatient.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeeRelationshipToInvoice(patient).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(payeeRelationshipToInvoicepatient.Id));
             var fieldRepetitions = new List<HL7V27FieldRepetition>();
 
-            for (var i = 0; i < payeeRelationshipToInvoice(patient).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < payeeRelationshipToInvoicepatient.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V27FieldRepetition
                 {
-                    fieldRepetition = payeeRelationshipToInvoice(patient).field.FieldRepetitions[i],
+                    fieldRepetition = payeeRelationshipToInvoicepatient.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -5628,12 +5628,12 @@ For Person Payee Types, the relationship to Invoice.  Refer to User-defined Tabl
                     var components = new List<HL7V27Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < payeeRelationshipToInvoice(patient).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < payeeRelationshipToInvoicepatient.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V27Component
                         {
-                            component = payeeRelationshipToInvoice(patient).field.FieldRepetitions[i].Components[j],
+                            component = payeeRelationshipToInvoicepatient.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -5654,12 +5654,12 @@ For Person Payee Types, the relationship to Invoice.  Refer to User-defined Tabl
                         {
                             var subComponents = new List<HL7V27SubComponent>();
 
-                            for (var k = 0; k < payeeRelationshipToInvoice(patient).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < payeeRelationshipToInvoicepatient.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V27SubComponent
                                 {
-                                    subComponent = payeeRelationshipToInvoice(patient).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = payeeRelationshipToInvoicepatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -5690,10 +5690,10 @@ For Person Payee Types, the relationship to Invoice.  Refer to User-defined Tabl
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            payeeRelationshipToInvoice(patient).fieldRepetitions = fieldRepetitions;
+            payeeRelationshipToInvoicepatient.fieldRepetitions = fieldRepetitions;
         }
 
-        return payeeRelationshipToInvoice(patient);
+        return payeeRelationshipToInvoicepatient;
     } 
 }
 

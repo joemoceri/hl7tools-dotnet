@@ -2014,18 +2014,18 @@ public HL7V26Field SIConversionFactor
     } 
 }
 
-internal HL7V26Field reference(Normal)RangeforOrdinalandContinuousObservations;
+internal HL7V26Field referenceNormalRangeforOrdinalandContinuousObservations;
 
-public HL7V26Field Reference(Normal)RangeforOrdinalandContinuousObservations
+public HL7V26Field ReferenceNormalRangeforOrdinalandContinuousObservations
 {
     get
     {
-        if (reference(Normal)RangeforOrdinalandContinuousObservations != null)
+        if (referenceNormalRangeforOrdinalandContinuousObservations != null)
         {
-            return reference(Normal)RangeforOrdinalandContinuousObservations;
+            return referenceNormalRangeforOrdinalandContinuousObservations;
         }
 
-        reference(Normal)RangeforOrdinalandContinuousObservations = new HL7V26Field
+        referenceNormalRangeforOrdinalandContinuousObservations = new HL7V26Field
         {
             field = message[@"OM2"][6],
             Id = @"OM2.6",
@@ -2044,17 +2044,17 @@ public HL7V26Field Reference(Normal)RangeforOrdinalandContinuousObservations
         };
 
         // check for repetitions
-        if (reference(Normal)RangeforOrdinalandContinuousObservations.field.FieldRepetitions != null && reference(Normal)RangeforOrdinalandContinuousObservations.field.FieldRepetitions.Count > 0)
+        if (referenceNormalRangeforOrdinalandContinuousObservations.field.FieldRepetitions != null && referenceNormalRangeforOrdinalandContinuousObservations.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reference(Normal)RangeforOrdinalandContinuousObservations.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(referenceNormalRangeforOrdinalandContinuousObservations.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < reference(Normal)RangeforOrdinalandContinuousObservations.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < referenceNormalRangeforOrdinalandContinuousObservations.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = reference(Normal)RangeforOrdinalandContinuousObservations.field.FieldRepetitions[i],
+                    fieldRepetition = referenceNormalRangeforOrdinalandContinuousObservations.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2076,12 +2076,12 @@ public HL7V26Field Reference(Normal)RangeforOrdinalandContinuousObservations
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < reference(Normal)RangeforOrdinalandContinuousObservations.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < referenceNormalRangeforOrdinalandContinuousObservations.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = reference(Normal)RangeforOrdinalandContinuousObservations.field.FieldRepetitions[i].Components[j],
+                            component = referenceNormalRangeforOrdinalandContinuousObservations.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2102,12 +2102,12 @@ public HL7V26Field Reference(Normal)RangeforOrdinalandContinuousObservations
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < reference(Normal)RangeforOrdinalandContinuousObservations.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < referenceNormalRangeforOrdinalandContinuousObservations.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = reference(Normal)RangeforOrdinalandContinuousObservations.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = referenceNormalRangeforOrdinalandContinuousObservations.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2138,10 +2138,10 @@ public HL7V26Field Reference(Normal)RangeforOrdinalandContinuousObservations
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            reference(Normal)RangeforOrdinalandContinuousObservations.fieldRepetitions = fieldRepetitions;
+            referenceNormalRangeforOrdinalandContinuousObservations.fieldRepetitions = fieldRepetitions;
         }
 
-        return reference(Normal)RangeforOrdinalandContinuousObservations;
+        return referenceNormalRangeforOrdinalandContinuousObservations;
     } 
 }
 

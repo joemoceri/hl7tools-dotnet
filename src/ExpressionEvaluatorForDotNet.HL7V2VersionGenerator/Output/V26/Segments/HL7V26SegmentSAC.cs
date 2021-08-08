@@ -6366,18 +6366,18 @@ The NCCLS standard requires a unique identifier for each container introduced in
     } 
 }
 
-internal HL7V26Field primary(Parent)ContainerIdentifier;
+internal HL7V26Field primaryParentContainerIdentifier;
 
-public HL7V26Field Primary(Parent)ContainerIdentifier
+public HL7V26Field PrimaryParentContainerIdentifier
 {
     get
     {
-        if (primary(Parent)ContainerIdentifier != null)
+        if (primaryParentContainerIdentifier != null)
         {
-            return primary(Parent)ContainerIdentifier;
+            return primaryParentContainerIdentifier;
         }
 
-        primary(Parent)ContainerIdentifier = new HL7V26Field
+        primaryParentContainerIdentifier = new HL7V26Field
         {
             field = message[@"SAC"][4],
             Id = @"SAC.4",
@@ -6396,17 +6396,17 @@ public HL7V26Field Primary(Parent)ContainerIdentifier
         };
 
         // check for repetitions
-        if (primary(Parent)ContainerIdentifier.field.FieldRepetitions != null && primary(Parent)ContainerIdentifier.field.FieldRepetitions.Count > 0)
+        if (primaryParentContainerIdentifier.field.FieldRepetitions != null && primaryParentContainerIdentifier.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primary(Parent)ContainerIdentifier.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(primaryParentContainerIdentifier.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < primary(Parent)ContainerIdentifier.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < primaryParentContainerIdentifier.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = primary(Parent)ContainerIdentifier.field.FieldRepetitions[i],
+                    fieldRepetition = primaryParentContainerIdentifier.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -6428,12 +6428,12 @@ public HL7V26Field Primary(Parent)ContainerIdentifier
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < primary(Parent)ContainerIdentifier.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < primaryParentContainerIdentifier.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = primary(Parent)ContainerIdentifier.field.FieldRepetitions[i].Components[j],
+                            component = primaryParentContainerIdentifier.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -6454,12 +6454,12 @@ public HL7V26Field Primary(Parent)ContainerIdentifier
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < primary(Parent)ContainerIdentifier.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < primaryParentContainerIdentifier.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = primary(Parent)ContainerIdentifier.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = primaryParentContainerIdentifier.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -6490,10 +6490,10 @@ public HL7V26Field Primary(Parent)ContainerIdentifier
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            primary(Parent)ContainerIdentifier.fieldRepetitions = fieldRepetitions;
+            primaryParentContainerIdentifier.fieldRepetitions = fieldRepetitions;
         }
 
-        return primary(Parent)ContainerIdentifier;
+        return primaryParentContainerIdentifier;
     } 
 }
 

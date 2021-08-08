@@ -5857,18 +5857,18 @@ public HL7V26Field PriorityNo
     } 
 }
 
-internal HL7V26Field prioritySequenceNo(relpreferenceforconsideration);
+internal HL7V26Field prioritySequenceNorelpreferenceforconsideration;
 
-public HL7V26Field PrioritySequenceNo(relpreferenceforconsideration)
+public HL7V26Field PrioritySequenceNorelpreferenceforconsideration
 {
     get
     {
-        if (prioritySequenceNo(relpreferenceforconsideration) != null)
+        if (prioritySequenceNorelpreferenceforconsideration != null)
         {
-            return prioritySequenceNo(relpreferenceforconsideration);
+            return prioritySequenceNorelpreferenceforconsideration;
         }
 
-        prioritySequenceNo(relpreferenceforconsideration) = new HL7V26Field
+        prioritySequenceNorelpreferenceforconsideration = new HL7V26Field
         {
             field = message[@"REL"][15],
             Id = @"REL.15",
@@ -5887,17 +5887,17 @@ public HL7V26Field PrioritySequenceNo(relpreferenceforconsideration)
         };
 
         // check for repetitions
-        if (prioritySequenceNo(relpreferenceforconsideration).field.FieldRepetitions != null && prioritySequenceNo(relpreferenceforconsideration).field.FieldRepetitions.Count > 0)
+        if (prioritySequenceNorelpreferenceforconsideration.field.FieldRepetitions != null && prioritySequenceNorelpreferenceforconsideration.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(prioritySequenceNo(relpreferenceforconsideration).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(prioritySequenceNorelpreferenceforconsideration.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < prioritySequenceNo(relpreferenceforconsideration).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < prioritySequenceNorelpreferenceforconsideration.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = prioritySequenceNo(relpreferenceforconsideration).field.FieldRepetitions[i],
+                    fieldRepetition = prioritySequenceNorelpreferenceforconsideration.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -5919,12 +5919,12 @@ public HL7V26Field PrioritySequenceNo(relpreferenceforconsideration)
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < prioritySequenceNo(relpreferenceforconsideration).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < prioritySequenceNorelpreferenceforconsideration.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = prioritySequenceNo(relpreferenceforconsideration).field.FieldRepetitions[i].Components[j],
+                            component = prioritySequenceNorelpreferenceforconsideration.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -5945,12 +5945,12 @@ public HL7V26Field PrioritySequenceNo(relpreferenceforconsideration)
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < prioritySequenceNo(relpreferenceforconsideration).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < prioritySequenceNorelpreferenceforconsideration.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = prioritySequenceNo(relpreferenceforconsideration).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = prioritySequenceNorelpreferenceforconsideration.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -5981,10 +5981,10 @@ public HL7V26Field PrioritySequenceNo(relpreferenceforconsideration)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            prioritySequenceNo(relpreferenceforconsideration).fieldRepetitions = fieldRepetitions;
+            prioritySequenceNorelpreferenceforconsideration.fieldRepetitions = fieldRepetitions;
         }
 
-        return prioritySequenceNo(relpreferenceforconsideration);
+        return prioritySequenceNorelpreferenceforconsideration;
     } 
 }
 

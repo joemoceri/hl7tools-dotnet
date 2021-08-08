@@ -16085,18 +16085,18 @@ public HL7V28Field MaterialDataSafetySheetNumber
     } 
 }
 
-internal HL7V28Field unitedNationsStandardProductsandServicesCode(UNSPSC);
+internal HL7V28Field unitedNationsStandardProductsandServicesCodeUNSPSC;
 
-public HL7V28Field UnitedNationsStandardProductsandServicesCode(UNSPSC)
+public HL7V28Field UnitedNationsStandardProductsandServicesCodeUNSPSC
 {
     get
     {
-        if (unitedNationsStandardProductsandServicesCode(UNSPSC) != null)
+        if (unitedNationsStandardProductsandServicesCodeUNSPSC != null)
         {
-            return unitedNationsStandardProductsandServicesCode(UNSPSC);
+            return unitedNationsStandardProductsandServicesCodeUNSPSC;
         }
 
-        unitedNationsStandardProductsandServicesCode(UNSPSC) = new HL7V28Field
+        unitedNationsStandardProductsandServicesCodeUNSPSC = new HL7V28Field
         {
             field = message[@"ITM"][33],
             Id = @"ITM.33",
@@ -16115,17 +16115,17 @@ public HL7V28Field UnitedNationsStandardProductsandServicesCode(UNSPSC)
         };
 
         // check for repetitions
-        if (unitedNationsStandardProductsandServicesCode(UNSPSC).field.FieldRepetitions != null && unitedNationsStandardProductsandServicesCode(UNSPSC).field.FieldRepetitions.Count > 0)
+        if (unitedNationsStandardProductsandServicesCodeUNSPSC.field.FieldRepetitions != null && unitedNationsStandardProductsandServicesCodeUNSPSC.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unitedNationsStandardProductsandServicesCode(UNSPSC).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(unitedNationsStandardProductsandServicesCodeUNSPSC.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < unitedNationsStandardProductsandServicesCode(UNSPSC).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < unitedNationsStandardProductsandServicesCodeUNSPSC.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = unitedNationsStandardProductsandServicesCode(UNSPSC).field.FieldRepetitions[i],
+                    fieldRepetition = unitedNationsStandardProductsandServicesCodeUNSPSC.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -16147,12 +16147,12 @@ public HL7V28Field UnitedNationsStandardProductsandServicesCode(UNSPSC)
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < unitedNationsStandardProductsandServicesCode(UNSPSC).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < unitedNationsStandardProductsandServicesCodeUNSPSC.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = unitedNationsStandardProductsandServicesCode(UNSPSC).field.FieldRepetitions[i].Components[j],
+                            component = unitedNationsStandardProductsandServicesCodeUNSPSC.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -16173,12 +16173,12 @@ public HL7V28Field UnitedNationsStandardProductsandServicesCode(UNSPSC)
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < unitedNationsStandardProductsandServicesCode(UNSPSC).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < unitedNationsStandardProductsandServicesCodeUNSPSC.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = unitedNationsStandardProductsandServicesCode(UNSPSC).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = unitedNationsStandardProductsandServicesCodeUNSPSC.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -16209,10 +16209,10 @@ public HL7V28Field UnitedNationsStandardProductsandServicesCode(UNSPSC)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            unitedNationsStandardProductsandServicesCode(UNSPSC).fieldRepetitions = fieldRepetitions;
+            unitedNationsStandardProductsandServicesCodeUNSPSC.fieldRepetitions = fieldRepetitions;
         }
 
-        return unitedNationsStandardProductsandServicesCode(UNSPSC);
+        return unitedNationsStandardProductsandServicesCodeUNSPSC;
     } 
 }
 

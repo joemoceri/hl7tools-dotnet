@@ -2049,18 +2049,18 @@ public HL7V26Field OccurrenceSpanCodeDates
     } 
 }
 
-internal HL7V26Field uB92Locator2(State);
+internal HL7V26Field uB92Locator2State;
 
-public HL7V26Field UB92Locator2(State)
+public HL7V26Field UB92Locator2State
 {
     get
     {
-        if (uB92Locator2(State) != null)
+        if (uB92Locator2State != null)
         {
-            return uB92Locator2(State);
+            return uB92Locator2State;
         }
 
-        uB92Locator2(State) = new HL7V26Field
+        uB92Locator2State = new HL7V26Field
         {
             field = message[@"UB2"][9],
             Id = @"UB2.9",
@@ -2079,17 +2079,17 @@ public HL7V26Field UB92Locator2(State)
         };
 
         // check for repetitions
-        if (uB92Locator2(State).field.FieldRepetitions != null && uB92Locator2(State).field.FieldRepetitions.Count > 0)
+        if (uB92Locator2State.field.FieldRepetitions != null && uB92Locator2State.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator2(State).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator2State.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < uB92Locator2(State).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < uB92Locator2State.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = uB92Locator2(State).field.FieldRepetitions[i],
+                    fieldRepetition = uB92Locator2State.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2111,12 +2111,12 @@ public HL7V26Field UB92Locator2(State)
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < uB92Locator2(State).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < uB92Locator2State.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = uB92Locator2(State).field.FieldRepetitions[i].Components[j],
+                            component = uB92Locator2State.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2137,12 +2137,12 @@ public HL7V26Field UB92Locator2(State)
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < uB92Locator2(State).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < uB92Locator2State.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = uB92Locator2(State).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = uB92Locator2State.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2173,25 +2173,25 @@ public HL7V26Field UB92Locator2(State)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            uB92Locator2(State).fieldRepetitions = fieldRepetitions;
+            uB92Locator2State.fieldRepetitions = fieldRepetitions;
         }
 
-        return uB92Locator2(State);
+        return uB92Locator2State;
     } 
 }
 
-internal HL7V26Field uB92Locator11(State);
+internal HL7V26Field uB92Locator11State;
 
-public HL7V26Field UB92Locator11(State)
+public HL7V26Field UB92Locator11State
 {
     get
     {
-        if (uB92Locator11(State) != null)
+        if (uB92Locator11State != null)
         {
-            return uB92Locator11(State);
+            return uB92Locator11State;
         }
 
-        uB92Locator11(State) = new HL7V26Field
+        uB92Locator11State = new HL7V26Field
         {
             field = message[@"UB2"][10],
             Id = @"UB2.10",
@@ -2210,17 +2210,17 @@ public HL7V26Field UB92Locator11(State)
         };
 
         // check for repetitions
-        if (uB92Locator11(State).field.FieldRepetitions != null && uB92Locator11(State).field.FieldRepetitions.Count > 0)
+        if (uB92Locator11State.field.FieldRepetitions != null && uB92Locator11State.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator11(State).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator11State.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < uB92Locator11(State).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < uB92Locator11State.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = uB92Locator11(State).field.FieldRepetitions[i],
+                    fieldRepetition = uB92Locator11State.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2242,12 +2242,12 @@ public HL7V26Field UB92Locator11(State)
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < uB92Locator11(State).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < uB92Locator11State.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = uB92Locator11(State).field.FieldRepetitions[i].Components[j],
+                            component = uB92Locator11State.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2268,12 +2268,12 @@ public HL7V26Field UB92Locator11(State)
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < uB92Locator11(State).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < uB92Locator11State.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = uB92Locator11(State).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = uB92Locator11State.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2304,25 +2304,25 @@ public HL7V26Field UB92Locator11(State)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            uB92Locator11(State).fieldRepetitions = fieldRepetitions;
+            uB92Locator11State.fieldRepetitions = fieldRepetitions;
         }
 
-        return uB92Locator11(State);
+        return uB92Locator11State;
     } 
 }
 
-internal HL7V26Field uB92Locator31(National);
+internal HL7V26Field uB92Locator31National;
 
-public HL7V26Field UB92Locator31(National)
+public HL7V26Field UB92Locator31National
 {
     get
     {
-        if (uB92Locator31(National) != null)
+        if (uB92Locator31National != null)
         {
-            return uB92Locator31(National);
+            return uB92Locator31National;
         }
 
-        uB92Locator31(National) = new HL7V26Field
+        uB92Locator31National = new HL7V26Field
         {
             field = message[@"UB2"][11],
             Id = @"UB2.11",
@@ -2341,17 +2341,17 @@ public HL7V26Field UB92Locator31(National)
         };
 
         // check for repetitions
-        if (uB92Locator31(National).field.FieldRepetitions != null && uB92Locator31(National).field.FieldRepetitions.Count > 0)
+        if (uB92Locator31National.field.FieldRepetitions != null && uB92Locator31National.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator31(National).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator31National.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < uB92Locator31(National).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < uB92Locator31National.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = uB92Locator31(National).field.FieldRepetitions[i],
+                    fieldRepetition = uB92Locator31National.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2373,12 +2373,12 @@ public HL7V26Field UB92Locator31(National)
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < uB92Locator31(National).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < uB92Locator31National.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = uB92Locator31(National).field.FieldRepetitions[i].Components[j],
+                            component = uB92Locator31National.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2399,12 +2399,12 @@ public HL7V26Field UB92Locator31(National)
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < uB92Locator31(National).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < uB92Locator31National.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = uB92Locator31(National).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = uB92Locator31National.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2435,10 +2435,10 @@ public HL7V26Field UB92Locator31(National)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            uB92Locator31(National).fieldRepetitions = fieldRepetitions;
+            uB92Locator31National.fieldRepetitions = fieldRepetitions;
         }
 
-        return uB92Locator31(National);
+        return uB92Locator31National;
     } 
 }
 
@@ -2573,18 +2573,18 @@ public HL7V26Field DocumentControlNumber
     } 
 }
 
-internal HL7V26Field uB92Locator49(National);
+internal HL7V26Field uB92Locator49National;
 
-public HL7V26Field UB92Locator49(National)
+public HL7V26Field UB92Locator49National
 {
     get
     {
-        if (uB92Locator49(National) != null)
+        if (uB92Locator49National != null)
         {
-            return uB92Locator49(National);
+            return uB92Locator49National;
         }
 
-        uB92Locator49(National) = new HL7V26Field
+        uB92Locator49National = new HL7V26Field
         {
             field = message[@"UB2"][13],
             Id = @"UB2.13",
@@ -2603,17 +2603,17 @@ public HL7V26Field UB92Locator49(National)
         };
 
         // check for repetitions
-        if (uB92Locator49(National).field.FieldRepetitions != null && uB92Locator49(National).field.FieldRepetitions.Count > 0)
+        if (uB92Locator49National.field.FieldRepetitions != null && uB92Locator49National.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator49(National).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator49National.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < uB92Locator49(National).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < uB92Locator49National.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = uB92Locator49(National).field.FieldRepetitions[i],
+                    fieldRepetition = uB92Locator49National.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2635,12 +2635,12 @@ public HL7V26Field UB92Locator49(National)
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < uB92Locator49(National).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < uB92Locator49National.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = uB92Locator49(National).field.FieldRepetitions[i].Components[j],
+                            component = uB92Locator49National.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2661,12 +2661,12 @@ public HL7V26Field UB92Locator49(National)
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < uB92Locator49(National).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < uB92Locator49National.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = uB92Locator49(National).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = uB92Locator49National.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2697,25 +2697,25 @@ public HL7V26Field UB92Locator49(National)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            uB92Locator49(National).fieldRepetitions = fieldRepetitions;
+            uB92Locator49National.fieldRepetitions = fieldRepetitions;
         }
 
-        return uB92Locator49(National);
+        return uB92Locator49National;
     } 
 }
 
-internal HL7V26Field uB92Locator56(State);
+internal HL7V26Field uB92Locator56State;
 
-public HL7V26Field UB92Locator56(State)
+public HL7V26Field UB92Locator56State
 {
     get
     {
-        if (uB92Locator56(State) != null)
+        if (uB92Locator56State != null)
         {
-            return uB92Locator56(State);
+            return uB92Locator56State;
         }
 
-        uB92Locator56(State) = new HL7V26Field
+        uB92Locator56State = new HL7V26Field
         {
             field = message[@"UB2"][14],
             Id = @"UB2.14",
@@ -2734,17 +2734,17 @@ public HL7V26Field UB92Locator56(State)
         };
 
         // check for repetitions
-        if (uB92Locator56(State).field.FieldRepetitions != null && uB92Locator56(State).field.FieldRepetitions.Count > 0)
+        if (uB92Locator56State.field.FieldRepetitions != null && uB92Locator56State.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator56(State).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator56State.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < uB92Locator56(State).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < uB92Locator56State.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = uB92Locator56(State).field.FieldRepetitions[i],
+                    fieldRepetition = uB92Locator56State.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2766,12 +2766,12 @@ public HL7V26Field UB92Locator56(State)
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < uB92Locator56(State).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < uB92Locator56State.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = uB92Locator56(State).field.FieldRepetitions[i].Components[j],
+                            component = uB92Locator56State.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2792,12 +2792,12 @@ public HL7V26Field UB92Locator56(State)
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < uB92Locator56(State).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < uB92Locator56State.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = uB92Locator56(State).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = uB92Locator56State.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2828,25 +2828,25 @@ public HL7V26Field UB92Locator56(State)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            uB92Locator56(State).fieldRepetitions = fieldRepetitions;
+            uB92Locator56State.fieldRepetitions = fieldRepetitions;
         }
 
-        return uB92Locator56(State);
+        return uB92Locator56State;
     } 
 }
 
-internal HL7V26Field uB92Locator57(National);
+internal HL7V26Field uB92Locator57National;
 
-public HL7V26Field UB92Locator57(National)
+public HL7V26Field UB92Locator57National
 {
     get
     {
-        if (uB92Locator57(National) != null)
+        if (uB92Locator57National != null)
         {
-            return uB92Locator57(National);
+            return uB92Locator57National;
         }
 
-        uB92Locator57(National) = new HL7V26Field
+        uB92Locator57National = new HL7V26Field
         {
             field = message[@"UB2"][15],
             Id = @"UB2.15",
@@ -2865,17 +2865,17 @@ public HL7V26Field UB92Locator57(National)
         };
 
         // check for repetitions
-        if (uB92Locator57(National).field.FieldRepetitions != null && uB92Locator57(National).field.FieldRepetitions.Count > 0)
+        if (uB92Locator57National.field.FieldRepetitions != null && uB92Locator57National.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator57(National).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator57National.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < uB92Locator57(National).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < uB92Locator57National.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = uB92Locator57(National).field.FieldRepetitions[i],
+                    fieldRepetition = uB92Locator57National.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -2897,12 +2897,12 @@ public HL7V26Field UB92Locator57(National)
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < uB92Locator57(National).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < uB92Locator57National.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = uB92Locator57(National).field.FieldRepetitions[i].Components[j],
+                            component = uB92Locator57National.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -2923,12 +2923,12 @@ public HL7V26Field UB92Locator57(National)
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < uB92Locator57(National).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < uB92Locator57National.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = uB92Locator57(National).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = uB92Locator57National.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2959,25 +2959,25 @@ public HL7V26Field UB92Locator57(National)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            uB92Locator57(National).fieldRepetitions = fieldRepetitions;
+            uB92Locator57National.fieldRepetitions = fieldRepetitions;
         }
 
-        return uB92Locator57(National);
+        return uB92Locator57National;
     } 
 }
 
-internal HL7V26Field uB92Locator78(State);
+internal HL7V26Field uB92Locator78State;
 
-public HL7V26Field UB92Locator78(State)
+public HL7V26Field UB92Locator78State
 {
     get
     {
-        if (uB92Locator78(State) != null)
+        if (uB92Locator78State != null)
         {
-            return uB92Locator78(State);
+            return uB92Locator78State;
         }
 
-        uB92Locator78(State) = new HL7V26Field
+        uB92Locator78State = new HL7V26Field
         {
             field = message[@"UB2"][16],
             Id = @"UB2.16",
@@ -2996,17 +2996,17 @@ public HL7V26Field UB92Locator78(State)
         };
 
         // check for repetitions
-        if (uB92Locator78(State).field.FieldRepetitions != null && uB92Locator78(State).field.FieldRepetitions.Count > 0)
+        if (uB92Locator78State.field.FieldRepetitions != null && uB92Locator78State.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator78(State).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator78State.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < uB92Locator78(State).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < uB92Locator78State.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = uB92Locator78(State).field.FieldRepetitions[i],
+                    fieldRepetition = uB92Locator78State.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3028,12 +3028,12 @@ public HL7V26Field UB92Locator78(State)
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < uB92Locator78(State).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < uB92Locator78State.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = uB92Locator78(State).field.FieldRepetitions[i].Components[j],
+                            component = uB92Locator78State.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3054,12 +3054,12 @@ public HL7V26Field UB92Locator78(State)
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < uB92Locator78(State).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < uB92Locator78State.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = uB92Locator78(State).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = uB92Locator78State.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3090,10 +3090,10 @@ public HL7V26Field UB92Locator78(State)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            uB92Locator78(State).fieldRepetitions = fieldRepetitions;
+            uB92Locator78State.fieldRepetitions = fieldRepetitions;
         }
 
-        return uB92Locator78(State);
+        return uB92Locator78State;
     } 
 }
 

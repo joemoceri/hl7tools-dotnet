@@ -8960,18 +8960,18 @@ public HL7V28Field DrgDiagnosisDeterminationStatus
     } 
 }
 
-internal HL7V28Field presentOnAdmission(poa)Indicator;
+internal HL7V28Field presentOnAdmissionpoaIndicator;
 
-public HL7V28Field PresentOnAdmission(poa)Indicator
+public HL7V28Field PresentOnAdmissionpoaIndicator
 {
     get
     {
-        if (presentOnAdmission(poa)Indicator != null)
+        if (presentOnAdmissionpoaIndicator != null)
         {
-            return presentOnAdmission(poa)Indicator;
+            return presentOnAdmissionpoaIndicator;
         }
 
-        presentOnAdmission(poa)Indicator = new HL7V28Field
+        presentOnAdmissionpoaIndicator = new HL7V28Field
         {
             field = message[@"DG1"][26],
             Id = @"DG1.26",
@@ -8990,17 +8990,17 @@ public HL7V28Field PresentOnAdmission(poa)Indicator
         };
 
         // check for repetitions
-        if (presentOnAdmission(poa)Indicator.field.FieldRepetitions != null && presentOnAdmission(poa)Indicator.field.FieldRepetitions.Count > 0)
+        if (presentOnAdmissionpoaIndicator.field.FieldRepetitions != null && presentOnAdmissionpoaIndicator.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(presentOnAdmission(poa)Indicator.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(presentOnAdmissionpoaIndicator.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < presentOnAdmission(poa)Indicator.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < presentOnAdmissionpoaIndicator.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = presentOnAdmission(poa)Indicator.field.FieldRepetitions[i],
+                    fieldRepetition = presentOnAdmissionpoaIndicator.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -9022,12 +9022,12 @@ public HL7V28Field PresentOnAdmission(poa)Indicator
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < presentOnAdmission(poa)Indicator.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < presentOnAdmissionpoaIndicator.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = presentOnAdmission(poa)Indicator.field.FieldRepetitions[i].Components[j],
+                            component = presentOnAdmissionpoaIndicator.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -9048,12 +9048,12 @@ public HL7V28Field PresentOnAdmission(poa)Indicator
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < presentOnAdmission(poa)Indicator.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < presentOnAdmissionpoaIndicator.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = presentOnAdmission(poa)Indicator.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = presentOnAdmissionpoaIndicator.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -9084,10 +9084,10 @@ public HL7V28Field PresentOnAdmission(poa)Indicator
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            presentOnAdmission(poa)Indicator.fieldRepetitions = fieldRepetitions;
+            presentOnAdmissionpoaIndicator.fieldRepetitions = fieldRepetitions;
         }
 
-        return presentOnAdmission(poa)Indicator;
+        return presentOnAdmissionpoaIndicator;
     } 
 }
 

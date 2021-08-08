@@ -6300,18 +6300,18 @@ public HL7V251Field SubjectName
     } 
 }
 
-internal HL7V251Field subjectDirectoryAttributeExtension(HealthProfessionalData);
+internal HL7V251Field subjectDirectoryAttributeExtensionHealthProfessionalData;
 
-public HL7V251Field SubjectDirectoryAttributeExtension(HealthProfessionalData)
+public HL7V251Field SubjectDirectoryAttributeExtensionHealthProfessionalData
 {
     get
     {
-        if (subjectDirectoryAttributeExtension(HealthProfessionalData) != null)
+        if (subjectDirectoryAttributeExtensionHealthProfessionalData != null)
         {
-            return subjectDirectoryAttributeExtension(HealthProfessionalData);
+            return subjectDirectoryAttributeExtensionHealthProfessionalData;
         }
 
-        subjectDirectoryAttributeExtension(HealthProfessionalData) = new HL7V251Field
+        subjectDirectoryAttributeExtensionHealthProfessionalData = new HL7V251Field
         {
             field = message[@"CER"][14],
             Id = @"CER.14",
@@ -6330,17 +6330,17 @@ public HL7V251Field SubjectDirectoryAttributeExtension(HealthProfessionalData)
         };
 
         // check for repetitions
-        if (subjectDirectoryAttributeExtension(HealthProfessionalData).field.FieldRepetitions != null && subjectDirectoryAttributeExtension(HealthProfessionalData).field.FieldRepetitions.Count > 0)
+        if (subjectDirectoryAttributeExtensionHealthProfessionalData.field.FieldRepetitions != null && subjectDirectoryAttributeExtensionHealthProfessionalData.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjectDirectoryAttributeExtension(HealthProfessionalData).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(subjectDirectoryAttributeExtensionHealthProfessionalData.Id));
             var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-            for (var i = 0; i < subjectDirectoryAttributeExtension(HealthProfessionalData).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < subjectDirectoryAttributeExtensionHealthProfessionalData.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V251FieldRepetition
                 {
-                    fieldRepetition = subjectDirectoryAttributeExtension(HealthProfessionalData).field.FieldRepetitions[i],
+                    fieldRepetition = subjectDirectoryAttributeExtensionHealthProfessionalData.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -6362,12 +6362,12 @@ public HL7V251Field SubjectDirectoryAttributeExtension(HealthProfessionalData)
                     var components = new List<HL7V251Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < subjectDirectoryAttributeExtension(HealthProfessionalData).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < subjectDirectoryAttributeExtensionHealthProfessionalData.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V251Component
                         {
-                            component = subjectDirectoryAttributeExtension(HealthProfessionalData).field.FieldRepetitions[i].Components[j],
+                            component = subjectDirectoryAttributeExtensionHealthProfessionalData.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -6388,12 +6388,12 @@ public HL7V251Field SubjectDirectoryAttributeExtension(HealthProfessionalData)
                         {
                             var subComponents = new List<HL7V251SubComponent>();
 
-                            for (var k = 0; k < subjectDirectoryAttributeExtension(HealthProfessionalData).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < subjectDirectoryAttributeExtensionHealthProfessionalData.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V251SubComponent
                                 {
-                                    subComponent = subjectDirectoryAttributeExtension(HealthProfessionalData).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = subjectDirectoryAttributeExtensionHealthProfessionalData.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -6424,10 +6424,10 @@ public HL7V251Field SubjectDirectoryAttributeExtension(HealthProfessionalData)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            subjectDirectoryAttributeExtension(HealthProfessionalData).fieldRepetitions = fieldRepetitions;
+            subjectDirectoryAttributeExtensionHealthProfessionalData.fieldRepetitions = fieldRepetitions;
         }
 
-        return subjectDirectoryAttributeExtension(HealthProfessionalData);
+        return subjectDirectoryAttributeExtensionHealthProfessionalData;
     } 
 }
 

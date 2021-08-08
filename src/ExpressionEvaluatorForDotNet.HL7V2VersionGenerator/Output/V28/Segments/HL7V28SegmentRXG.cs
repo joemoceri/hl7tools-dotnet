@@ -13211,18 +13211,18 @@ N - Indicates no warning is present. This is the equivalent default (null) value
     } 
 }
 
-internal HL7V28Field pharmacyTreatmentSupplier'sSpecialAdministrationInstructions;
+internal HL7V28Field pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
 
-public HL7V28Field PharmacyTreatmentSupplier'sSpecialAdministrationInstructions
+public HL7V28Field PharmacyTreatmentSuppliersSpecialAdministrationInstructions
 {
     get
     {
-        if (pharmacyTreatmentSupplier'sSpecialAdministrationInstructions != null)
+        if (pharmacyTreatmentSuppliersSpecialAdministrationInstructions != null)
         {
-            return pharmacyTreatmentSupplier'sSpecialAdministrationInstructions;
+            return pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
         }
 
-        pharmacyTreatmentSupplier'sSpecialAdministrationInstructions = new HL7V28Field
+        pharmacyTreatmentSuppliersSpecialAdministrationInstructions = new HL7V28Field
         {
             field = message[@"RXG"][13],
             Id = @"RXG.13",
@@ -13241,17 +13241,17 @@ public HL7V28Field PharmacyTreatmentSupplier'sSpecialAdministrationInstructions
         };
 
         // check for repetitions
-        if (pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.field.FieldRepetitions != null && pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.field.FieldRepetitions.Count > 0)
+        if (pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions != null && pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(pharmacyTreatmentSuppliersSpecialAdministrationInstructions.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.field.FieldRepetitions[i],
+                    fieldRepetition = pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -13273,12 +13273,12 @@ public HL7V28Field PharmacyTreatmentSupplier'sSpecialAdministrationInstructions
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.field.FieldRepetitions[i].Components[j],
+                            component = pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -13299,12 +13299,12 @@ public HL7V28Field PharmacyTreatmentSupplier'sSpecialAdministrationInstructions
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -13335,25 +13335,25 @@ public HL7V28Field PharmacyTreatmentSupplier'sSpecialAdministrationInstructions
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            pharmacyTreatmentSupplier'sSpecialAdministrationInstructions.fieldRepetitions = fieldRepetitions;
+            pharmacyTreatmentSuppliersSpecialAdministrationInstructions.fieldRepetitions = fieldRepetitions;
         }
 
-        return pharmacyTreatmentSupplier'sSpecialAdministrationInstructions;
+        return pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
     } 
 }
 
-internal HL7V28Field givePer(timeUnit);
+internal HL7V28Field givePertimeUnit;
 
-public HL7V28Field GivePer(timeUnit)
+public HL7V28Field GivePertimeUnit
 {
     get
     {
-        if (givePer(timeUnit) != null)
+        if (givePertimeUnit != null)
         {
-            return givePer(timeUnit);
+            return givePertimeUnit;
         }
 
-        givePer(timeUnit) = new HL7V28Field
+        givePertimeUnit = new HL7V28Field
         {
             field = message[@"RXG"][14],
             Id = @"RXG.14",
@@ -13385,17 +13385,17 @@ Required when relevant (e.g., certain IVs). For example, if the ""give amount/un
         };
 
         // check for repetitions
-        if (givePer(timeUnit).field.FieldRepetitions != null && givePer(timeUnit).field.FieldRepetitions.Count > 0)
+        if (givePertimeUnit.field.FieldRepetitions != null && givePertimeUnit.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(givePer(timeUnit).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(givePertimeUnit.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < givePer(timeUnit).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < givePertimeUnit.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = givePer(timeUnit).field.FieldRepetitions[i],
+                    fieldRepetition = givePertimeUnit.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -13417,12 +13417,12 @@ Required when relevant (e.g., certain IVs). For example, if the ""give amount/un
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < givePer(timeUnit).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < givePertimeUnit.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = givePer(timeUnit).field.FieldRepetitions[i].Components[j],
+                            component = givePertimeUnit.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -13443,12 +13443,12 @@ Required when relevant (e.g., certain IVs). For example, if the ""give amount/un
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < givePer(timeUnit).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < givePertimeUnit.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = givePer(timeUnit).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = givePertimeUnit.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -13479,10 +13479,10 @@ Required when relevant (e.g., certain IVs). For example, if the ""give amount/un
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            givePer(timeUnit).fieldRepetitions = fieldRepetitions;
+            givePertimeUnit.fieldRepetitions = fieldRepetitions;
         }
 
-        return givePer(timeUnit);
+        return givePertimeUnit;
     } 
 }
 

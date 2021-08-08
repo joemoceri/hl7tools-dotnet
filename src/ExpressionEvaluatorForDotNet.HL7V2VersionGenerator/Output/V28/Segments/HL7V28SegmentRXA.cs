@@ -11820,18 +11820,18 @@ public HL7V28Field AdministeredatLocation
     } 
 }
 
-internal HL7V28Field administeredPer(timeUnit);
+internal HL7V28Field administeredPertimeUnit;
 
-public HL7V28Field AdministeredPer(timeUnit)
+public HL7V28Field AdministeredPertimeUnit
 {
     get
     {
-        if (administeredPer(timeUnit) != null)
+        if (administeredPertimeUnit != null)
         {
-            return administeredPer(timeUnit);
+            return administeredPertimeUnit;
         }
 
-        administeredPer(timeUnit) = new HL7V28Field
+        administeredPertimeUnit = new HL7V28Field
         {
             field = message[@"RXA"][12],
             Id = @"RXA.12",
@@ -11850,17 +11850,17 @@ public HL7V28Field AdministeredPer(timeUnit)
         };
 
         // check for repetitions
-        if (administeredPer(timeUnit).field.FieldRepetitions != null && administeredPer(timeUnit).field.FieldRepetitions.Count > 0)
+        if (administeredPertimeUnit.field.FieldRepetitions != null && administeredPertimeUnit.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administeredPer(timeUnit).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(administeredPertimeUnit.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < administeredPer(timeUnit).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < administeredPertimeUnit.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = administeredPer(timeUnit).field.FieldRepetitions[i],
+                    fieldRepetition = administeredPertimeUnit.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11882,12 +11882,12 @@ public HL7V28Field AdministeredPer(timeUnit)
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < administeredPer(timeUnit).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < administeredPertimeUnit.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = administeredPer(timeUnit).field.FieldRepetitions[i].Components[j],
+                            component = administeredPertimeUnit.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11908,12 +11908,12 @@ public HL7V28Field AdministeredPer(timeUnit)
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < administeredPer(timeUnit).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < administeredPertimeUnit.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = administeredPer(timeUnit).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = administeredPertimeUnit.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11944,10 +11944,10 @@ public HL7V28Field AdministeredPer(timeUnit)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            administeredPer(timeUnit).fieldRepetitions = fieldRepetitions;
+            administeredPertimeUnit.fieldRepetitions = fieldRepetitions;
         }
 
-        return administeredPer(timeUnit);
+        return administeredPertimeUnit;
     } 
 }
 

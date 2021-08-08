@@ -91,37 +91,37 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}SubComponent.cs"), subComponentTemplate);
 
-                //// segments
-                //var segments = caristixService.GetSegments(version);
+                // segments
+                var segments = caristixService.GetSegments(version);
 
-                //foreach (var segment in segments)
-                //{
-                //    var segmentTokens = GetSegmentTokens(v, segment);
-                //    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Segment.template.cs.txt"));
-
-                //    foreach (var token in segmentTokens)
-                //    {
-                //        template = template.Replace(token.Key, token.Value);
-                //    }
-
-                //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Segments", $"HL7V{v}Segment{segment.Id}.cs"), template);
-                //}
-
-                // trigger events
-                var triggerEvents = caristixService.GetTriggerEvents(version);
-
-                foreach (var triggerEvent in triggerEvents)
+                foreach (var segment in segments)
                 {
-                    var triggerEventTokens = GetTriggerEventTokens(v, triggerEvent);
-                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2TriggerEvent.template.cs.txt"));
+                    var segmentTokens = GetSegmentTokens(v, segment);
+                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Segment.template.cs.txt"));
 
-                    foreach (var token in triggerEventTokens)
+                    foreach (var token in segmentTokens)
                     {
                         template = template.Replace(token.Key, token.Value);
                     }
 
-                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "TriggerEvents", $"HL7V{v}TriggerEvent{triggerEvent.Id}.cs"), template);
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Segments", $"HL7V{v}Segment{segment.Id}.cs"), template);
                 }
+
+                //// trigger events
+                //var triggerEvents = caristixService.GetTriggerEvents(version);
+
+                //foreach (var triggerEvent in triggerEvents)
+                //{
+                //    var triggerEventTokens = GetTriggerEventTokens(v, triggerEvent);
+                //    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2TriggerEvent.template.cs.txt"));
+
+                //    foreach (var token in triggerEventTokens)
+                //    {
+                //        template = template.Replace(token.Key, token.Value);
+                //    }
+
+                //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "TriggerEvents", $"HL7V{v}TriggerEvent{triggerEvent.Id}.cs"), template);
+                //}
             }
 
             Dictionary<string, string> GetTriggerEventTokens(string version, TriggerEventResponse triggerEvent)
@@ -512,7 +512,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             string ConvertToPropertyString(string input)
             {
-                var chars = new[] { " ", "-", "/", "&", "." };
+                var chars = new[] { " ", "-", "/", "&", ".", "'", "(", ")" };
 
                 foreach (var ch in chars)
                 {

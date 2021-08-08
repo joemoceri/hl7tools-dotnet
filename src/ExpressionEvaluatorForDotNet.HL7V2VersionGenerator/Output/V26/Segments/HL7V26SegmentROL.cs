@@ -5869,18 +5869,18 @@ public HL7V26Field Phone
     } 
 }
 
-internal HL7V26Field person'sLocation;
+internal HL7V26Field personsLocation;
 
-public HL7V26Field Person'sLocation
+public HL7V26Field PersonsLocation
 {
     get
     {
-        if (person'sLocation != null)
+        if (personsLocation != null)
         {
-            return person'sLocation;
+            return personsLocation;
         }
 
-        person'sLocation = new HL7V26Field
+        personsLocation = new HL7V26Field
         {
             field = message[@"ROL"][13],
             Id = @"ROL.13",
@@ -5899,17 +5899,17 @@ public HL7V26Field Person'sLocation
         };
 
         // check for repetitions
-        if (person'sLocation.field.FieldRepetitions != null && person'sLocation.field.FieldRepetitions.Count > 0)
+        if (personsLocation.field.FieldRepetitions != null && personsLocation.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(person'sLocation.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(personsLocation.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < person'sLocation.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < personsLocation.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = person'sLocation.field.FieldRepetitions[i],
+                    fieldRepetition = personsLocation.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -5931,12 +5931,12 @@ public HL7V26Field Person'sLocation
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < person'sLocation.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < personsLocation.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = person'sLocation.field.FieldRepetitions[i].Components[j],
+                            component = personsLocation.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -5957,12 +5957,12 @@ public HL7V26Field Person'sLocation
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < person'sLocation.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < personsLocation.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = person'sLocation.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = personsLocation.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -5993,10 +5993,10 @@ public HL7V26Field Person'sLocation
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            person'sLocation.fieldRepetitions = fieldRepetitions;
+            personsLocation.fieldRepetitions = fieldRepetitions;
         }
 
-        return person'sLocation;
+        return personsLocation;
     } 
 }
 

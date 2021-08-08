@@ -11277,18 +11277,18 @@ public HL7V251Field AuthenticationPerson,TimeStamp
     } 
 }
 
-internal HL7V251Field distributedCopies(CodeandNameofRecipients);
+internal HL7V251Field distributedCopiesCodeandNameofRecipients;
 
-public HL7V251Field DistributedCopies(CodeandNameofRecipients)
+public HL7V251Field DistributedCopiesCodeandNameofRecipients
 {
     get
     {
-        if (distributedCopies(CodeandNameofRecipients) != null)
+        if (distributedCopiesCodeandNameofRecipients != null)
         {
-            return distributedCopies(CodeandNameofRecipients);
+            return distributedCopiesCodeandNameofRecipients;
         }
 
-        distributedCopies(CodeandNameofRecipients) = new HL7V251Field
+        distributedCopiesCodeandNameofRecipients = new HL7V251Field
         {
             field = message[@"TXA"][23],
             Id = @"TXA.23",
@@ -11307,17 +11307,17 @@ public HL7V251Field DistributedCopies(CodeandNameofRecipients)
         };
 
         // check for repetitions
-        if (distributedCopies(CodeandNameofRecipients).field.FieldRepetitions != null && distributedCopies(CodeandNameofRecipients).field.FieldRepetitions.Count > 0)
+        if (distributedCopiesCodeandNameofRecipients.field.FieldRepetitions != null && distributedCopiesCodeandNameofRecipients.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(distributedCopies(CodeandNameofRecipients).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(distributedCopiesCodeandNameofRecipients.Id));
             var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-            for (var i = 0; i < distributedCopies(CodeandNameofRecipients).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < distributedCopiesCodeandNameofRecipients.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V251FieldRepetition
                 {
-                    fieldRepetition = distributedCopies(CodeandNameofRecipients).field.FieldRepetitions[i],
+                    fieldRepetition = distributedCopiesCodeandNameofRecipients.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11339,12 +11339,12 @@ public HL7V251Field DistributedCopies(CodeandNameofRecipients)
                     var components = new List<HL7V251Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < distributedCopies(CodeandNameofRecipients).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < distributedCopiesCodeandNameofRecipients.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V251Component
                         {
-                            component = distributedCopies(CodeandNameofRecipients).field.FieldRepetitions[i].Components[j],
+                            component = distributedCopiesCodeandNameofRecipients.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11365,12 +11365,12 @@ public HL7V251Field DistributedCopies(CodeandNameofRecipients)
                         {
                             var subComponents = new List<HL7V251SubComponent>();
 
-                            for (var k = 0; k < distributedCopies(CodeandNameofRecipients).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < distributedCopiesCodeandNameofRecipients.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V251SubComponent
                                 {
-                                    subComponent = distributedCopies(CodeandNameofRecipients).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = distributedCopiesCodeandNameofRecipients.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11401,10 +11401,10 @@ public HL7V251Field DistributedCopies(CodeandNameofRecipients)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            distributedCopies(CodeandNameofRecipients).fieldRepetitions = fieldRepetitions;
+            distributedCopiesCodeandNameofRecipients.fieldRepetitions = fieldRepetitions;
         }
 
-        return distributedCopies(CodeandNameofRecipients);
+        return distributedCopiesCodeandNameofRecipients;
     } 
 }
 

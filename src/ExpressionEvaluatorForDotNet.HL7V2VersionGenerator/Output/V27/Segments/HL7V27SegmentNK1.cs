@@ -29702,18 +29702,18 @@ public HL7V27Field Religion
     } 
 }
 
-internal HL7V27Field mother'sMaidenName;
+internal HL7V27Field mothersMaidenName;
 
-public HL7V27Field Mother'sMaidenName
+public HL7V27Field MothersMaidenName
 {
     get
     {
-        if (mother'sMaidenName != null)
+        if (mothersMaidenName != null)
         {
-            return mother'sMaidenName;
+            return mothersMaidenName;
         }
 
-        mother'sMaidenName = new HL7V27Field
+        mothersMaidenName = new HL7V27Field
         {
             field = message[@"NK1"][26],
             Id = @"NK1.26",
@@ -29732,17 +29732,17 @@ public HL7V27Field Mother'sMaidenName
         };
 
         // check for repetitions
-        if (mother'sMaidenName.field.FieldRepetitions != null && mother'sMaidenName.field.FieldRepetitions.Count > 0)
+        if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mother'sMaidenName.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
             var fieldRepetitions = new List<HL7V27FieldRepetition>();
 
-            for (var i = 0; i < mother'sMaidenName.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < mothersMaidenName.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V27FieldRepetition
                 {
-                    fieldRepetition = mother'sMaidenName.field.FieldRepetitions[i],
+                    fieldRepetition = mothersMaidenName.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -29764,12 +29764,12 @@ public HL7V27Field Mother'sMaidenName
                     var components = new List<HL7V27Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < mother'sMaidenName.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < mothersMaidenName.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V27Component
                         {
-                            component = mother'sMaidenName.field.FieldRepetitions[i].Components[j],
+                            component = mothersMaidenName.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -29790,12 +29790,12 @@ public HL7V27Field Mother'sMaidenName
                         {
                             var subComponents = new List<HL7V27SubComponent>();
 
-                            for (var k = 0; k < mother'sMaidenName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < mothersMaidenName.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V27SubComponent
                                 {
-                                    subComponent = mother'sMaidenName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = mothersMaidenName.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -29826,10 +29826,10 @@ public HL7V27Field Mother'sMaidenName
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            mother'sMaidenName.fieldRepetitions = fieldRepetitions;
+            mothersMaidenName.fieldRepetitions = fieldRepetitions;
         }
 
-        return mother'sMaidenName;
+        return mothersMaidenName;
     } 
 }
 
@@ -30226,18 +30226,18 @@ public HL7V27Field ContactReason
     } 
 }
 
-internal HL7V27Field contactPerson'sName;
+internal HL7V27Field contactPersonsName;
 
-public HL7V27Field ContactPerson'sName
+public HL7V27Field ContactPersonsName
 {
     get
     {
-        if (contactPerson'sName != null)
+        if (contactPersonsName != null)
         {
-            return contactPerson'sName;
+            return contactPersonsName;
         }
 
-        contactPerson'sName = new HL7V27Field
+        contactPersonsName = new HL7V27Field
         {
             field = message[@"NK1"][30],
             Id = @"NK1.30",
@@ -30258,17 +30258,17 @@ In addition to allowing repetition of this field for transmitting multiple names
         };
 
         // check for repetitions
-        if (contactPerson'sName.field.FieldRepetitions != null && contactPerson'sName.field.FieldRepetitions.Count > 0)
+        if (contactPersonsName.field.FieldRepetitions != null && contactPersonsName.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPerson'sName.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsName.Id));
             var fieldRepetitions = new List<HL7V27FieldRepetition>();
 
-            for (var i = 0; i < contactPerson'sName.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < contactPersonsName.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V27FieldRepetition
                 {
-                    fieldRepetition = contactPerson'sName.field.FieldRepetitions[i],
+                    fieldRepetition = contactPersonsName.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -30290,12 +30290,12 @@ In addition to allowing repetition of this field for transmitting multiple names
                     var components = new List<HL7V27Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < contactPerson'sName.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < contactPersonsName.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V27Component
                         {
-                            component = contactPerson'sName.field.FieldRepetitions[i].Components[j],
+                            component = contactPersonsName.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -30316,12 +30316,12 @@ In addition to allowing repetition of this field for transmitting multiple names
                         {
                             var subComponents = new List<HL7V27SubComponent>();
 
-                            for (var k = 0; k < contactPerson'sName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < contactPersonsName.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V27SubComponent
                                 {
-                                    subComponent = contactPerson'sName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = contactPersonsName.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -30352,25 +30352,25 @@ In addition to allowing repetition of this field for transmitting multiple names
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            contactPerson'sName.fieldRepetitions = fieldRepetitions;
+            contactPersonsName.fieldRepetitions = fieldRepetitions;
         }
 
-        return contactPerson'sName;
+        return contactPersonsName;
     } 
 }
 
-internal HL7V27Field contactPerson'sTelephoneNumber;
+internal HL7V27Field contactPersonsTelephoneNumber;
 
-public HL7V27Field ContactPerson'sTelephoneNumber
+public HL7V27Field ContactPersonsTelephoneNumber
 {
     get
     {
-        if (contactPerson'sTelephoneNumber != null)
+        if (contactPersonsTelephoneNumber != null)
         {
-            return contactPerson'sTelephoneNumber;
+            return contactPersonsTelephoneNumber;
         }
 
-        contactPerson'sTelephoneNumber = new HL7V27Field
+        contactPersonsTelephoneNumber = new HL7V27Field
         {
             field = message[@"NK1"][31],
             Id = @"NK1.31",
@@ -30389,17 +30389,17 @@ public HL7V27Field ContactPerson'sTelephoneNumber
         };
 
         // check for repetitions
-        if (contactPerson'sTelephoneNumber.field.FieldRepetitions != null && contactPerson'sTelephoneNumber.field.FieldRepetitions.Count > 0)
+        if (contactPersonsTelephoneNumber.field.FieldRepetitions != null && contactPersonsTelephoneNumber.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPerson'sTelephoneNumber.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsTelephoneNumber.Id));
             var fieldRepetitions = new List<HL7V27FieldRepetition>();
 
-            for (var i = 0; i < contactPerson'sTelephoneNumber.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < contactPersonsTelephoneNumber.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V27FieldRepetition
                 {
-                    fieldRepetition = contactPerson'sTelephoneNumber.field.FieldRepetitions[i],
+                    fieldRepetition = contactPersonsTelephoneNumber.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -30421,12 +30421,12 @@ public HL7V27Field ContactPerson'sTelephoneNumber
                     var components = new List<HL7V27Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < contactPerson'sTelephoneNumber.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < contactPersonsTelephoneNumber.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V27Component
                         {
-                            component = contactPerson'sTelephoneNumber.field.FieldRepetitions[i].Components[j],
+                            component = contactPersonsTelephoneNumber.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -30447,12 +30447,12 @@ public HL7V27Field ContactPerson'sTelephoneNumber
                         {
                             var subComponents = new List<HL7V27SubComponent>();
 
-                            for (var k = 0; k < contactPerson'sTelephoneNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < contactPersonsTelephoneNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V27SubComponent
                                 {
-                                    subComponent = contactPerson'sTelephoneNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = contactPersonsTelephoneNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -30483,25 +30483,25 @@ public HL7V27Field ContactPerson'sTelephoneNumber
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            contactPerson'sTelephoneNumber.fieldRepetitions = fieldRepetitions;
+            contactPersonsTelephoneNumber.fieldRepetitions = fieldRepetitions;
         }
 
-        return contactPerson'sTelephoneNumber;
+        return contactPersonsTelephoneNumber;
     } 
 }
 
-internal HL7V27Field contactPerson'sAddress;
+internal HL7V27Field contactPersonsAddress;
 
-public HL7V27Field ContactPerson'sAddress
+public HL7V27Field ContactPersonsAddress
 {
     get
     {
-        if (contactPerson'sAddress != null)
+        if (contactPersonsAddress != null)
         {
-            return contactPerson'sAddress;
+            return contactPersonsAddress;
         }
 
-        contactPerson'sAddress = new HL7V27Field
+        contactPersonsAddress = new HL7V27Field
         {
             field = message[@"NK1"][32],
             Id = @"NK1.32",
@@ -30520,17 +30520,17 @@ public HL7V27Field ContactPerson'sAddress
         };
 
         // check for repetitions
-        if (contactPerson'sAddress.field.FieldRepetitions != null && contactPerson'sAddress.field.FieldRepetitions.Count > 0)
+        if (contactPersonsAddress.field.FieldRepetitions != null && contactPersonsAddress.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPerson'sAddress.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsAddress.Id));
             var fieldRepetitions = new List<HL7V27FieldRepetition>();
 
-            for (var i = 0; i < contactPerson'sAddress.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < contactPersonsAddress.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V27FieldRepetition
                 {
-                    fieldRepetition = contactPerson'sAddress.field.FieldRepetitions[i],
+                    fieldRepetition = contactPersonsAddress.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -30552,12 +30552,12 @@ public HL7V27Field ContactPerson'sAddress
                     var components = new List<HL7V27Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < contactPerson'sAddress.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < contactPersonsAddress.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V27Component
                         {
-                            component = contactPerson'sAddress.field.FieldRepetitions[i].Components[j],
+                            component = contactPersonsAddress.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -30578,12 +30578,12 @@ public HL7V27Field ContactPerson'sAddress
                         {
                             var subComponents = new List<HL7V27SubComponent>();
 
-                            for (var k = 0; k < contactPerson'sAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < contactPersonsAddress.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V27SubComponent
                                 {
-                                    subComponent = contactPerson'sAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = contactPersonsAddress.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -30614,25 +30614,25 @@ public HL7V27Field ContactPerson'sAddress
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            contactPerson'sAddress.fieldRepetitions = fieldRepetitions;
+            contactPersonsAddress.fieldRepetitions = fieldRepetitions;
         }
 
-        return contactPerson'sAddress;
+        return contactPersonsAddress;
     } 
 }
 
-internal HL7V27Field nextOfKinAssociatedParty'sIdentifiers;
+internal HL7V27Field nextOfKinAssociatedPartysIdentifiers;
 
-public HL7V27Field NextOfKinAssociatedParty'sIdentifiers
+public HL7V27Field NextOfKinAssociatedPartysIdentifiers
 {
     get
     {
-        if (nextOfKinAssociatedParty'sIdentifiers != null)
+        if (nextOfKinAssociatedPartysIdentifiers != null)
         {
-            return nextOfKinAssociatedParty'sIdentifiers;
+            return nextOfKinAssociatedPartysIdentifiers;
         }
 
-        nextOfKinAssociatedParty'sIdentifiers = new HL7V27Field
+        nextOfKinAssociatedPartysIdentifiers = new HL7V27Field
         {
             field = message[@"NK1"][33],
             Id = @"NK1.33",
@@ -30651,17 +30651,17 @@ public HL7V27Field NextOfKinAssociatedParty'sIdentifiers
         };
 
         // check for repetitions
-        if (nextOfKinAssociatedParty'sIdentifiers.field.FieldRepetitions != null && nextOfKinAssociatedParty'sIdentifiers.field.FieldRepetitions.Count > 0)
+        if (nextOfKinAssociatedPartysIdentifiers.field.FieldRepetitions != null && nextOfKinAssociatedPartysIdentifiers.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextOfKinAssociatedParty'sIdentifiers.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(nextOfKinAssociatedPartysIdentifiers.Id));
             var fieldRepetitions = new List<HL7V27FieldRepetition>();
 
-            for (var i = 0; i < nextOfKinAssociatedParty'sIdentifiers.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < nextOfKinAssociatedPartysIdentifiers.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V27FieldRepetition
                 {
-                    fieldRepetition = nextOfKinAssociatedParty'sIdentifiers.field.FieldRepetitions[i],
+                    fieldRepetition = nextOfKinAssociatedPartysIdentifiers.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -30683,12 +30683,12 @@ public HL7V27Field NextOfKinAssociatedParty'sIdentifiers
                     var components = new List<HL7V27Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < nextOfKinAssociatedParty'sIdentifiers.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < nextOfKinAssociatedPartysIdentifiers.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V27Component
                         {
-                            component = nextOfKinAssociatedParty'sIdentifiers.field.FieldRepetitions[i].Components[j],
+                            component = nextOfKinAssociatedPartysIdentifiers.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -30709,12 +30709,12 @@ public HL7V27Field NextOfKinAssociatedParty'sIdentifiers
                         {
                             var subComponents = new List<HL7V27SubComponent>();
 
-                            for (var k = 0; k < nextOfKinAssociatedParty'sIdentifiers.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < nextOfKinAssociatedPartysIdentifiers.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V27SubComponent
                                 {
-                                    subComponent = nextOfKinAssociatedParty'sIdentifiers.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = nextOfKinAssociatedPartysIdentifiers.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -30745,10 +30745,10 @@ public HL7V27Field NextOfKinAssociatedParty'sIdentifiers
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            nextOfKinAssociatedParty'sIdentifiers.fieldRepetitions = fieldRepetitions;
+            nextOfKinAssociatedPartysIdentifiers.fieldRepetitions = fieldRepetitions;
         }
 
-        return nextOfKinAssociatedParty'sIdentifiers;
+        return nextOfKinAssociatedPartysIdentifiers;
     } 
 }
 
@@ -31669,18 +31669,18 @@ public HL7V27Field NextOfKinTelecommunicationInformation
     } 
 }
 
-internal HL7V27Field contactPerson'sTelecommunicationInformation;
+internal HL7V27Field contactPersonsTelecommunicationInformation;
 
-public HL7V27Field ContactPerson'sTelecommunicationInformation
+public HL7V27Field ContactPersonsTelecommunicationInformation
 {
     get
     {
-        if (contactPerson'sTelecommunicationInformation != null)
+        if (contactPersonsTelecommunicationInformation != null)
         {
-            return contactPerson'sTelecommunicationInformation;
+            return contactPersonsTelecommunicationInformation;
         }
 
-        contactPerson'sTelecommunicationInformation = new HL7V27Field
+        contactPersonsTelecommunicationInformation = new HL7V27Field
         {
             field = message[@"NK1"][41],
             Id = @"NK1.41",
@@ -31699,17 +31699,17 @@ public HL7V27Field ContactPerson'sTelecommunicationInformation
         };
 
         // check for repetitions
-        if (contactPerson'sTelecommunicationInformation.field.FieldRepetitions != null && contactPerson'sTelecommunicationInformation.field.FieldRepetitions.Count > 0)
+        if (contactPersonsTelecommunicationInformation.field.FieldRepetitions != null && contactPersonsTelecommunicationInformation.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPerson'sTelecommunicationInformation.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsTelecommunicationInformation.Id));
             var fieldRepetitions = new List<HL7V27FieldRepetition>();
 
-            for (var i = 0; i < contactPerson'sTelecommunicationInformation.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < contactPersonsTelecommunicationInformation.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V27FieldRepetition
                 {
-                    fieldRepetition = contactPerson'sTelecommunicationInformation.field.FieldRepetitions[i],
+                    fieldRepetition = contactPersonsTelecommunicationInformation.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -31731,12 +31731,12 @@ public HL7V27Field ContactPerson'sTelecommunicationInformation
                     var components = new List<HL7V27Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < contactPerson'sTelecommunicationInformation.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < contactPersonsTelecommunicationInformation.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V27Component
                         {
-                            component = contactPerson'sTelecommunicationInformation.field.FieldRepetitions[i].Components[j],
+                            component = contactPersonsTelecommunicationInformation.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -31757,12 +31757,12 @@ public HL7V27Field ContactPerson'sTelecommunicationInformation
                         {
                             var subComponents = new List<HL7V27SubComponent>();
 
-                            for (var k = 0; k < contactPerson'sTelecommunicationInformation.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < contactPersonsTelecommunicationInformation.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V27SubComponent
                                 {
-                                    subComponent = contactPerson'sTelecommunicationInformation.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = contactPersonsTelecommunicationInformation.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -31793,10 +31793,10 @@ public HL7V27Field ContactPerson'sTelecommunicationInformation
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            contactPerson'sTelecommunicationInformation.fieldRepetitions = fieldRepetitions;
+            contactPersonsTelecommunicationInformation.fieldRepetitions = fieldRepetitions;
         }
 
-        return contactPerson'sTelecommunicationInformation;
+        return contactPersonsTelecommunicationInformation;
     } 
 }
 

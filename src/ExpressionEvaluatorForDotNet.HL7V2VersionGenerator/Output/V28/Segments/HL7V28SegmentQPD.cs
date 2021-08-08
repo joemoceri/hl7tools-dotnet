@@ -799,18 +799,18 @@ This field differs from MSA-2-Message control ID in that its value remains const
     } 
 }
 
-internal HL7V28Field userParameters(inSuccessiveFields);
+internal HL7V28Field userParametersinSuccessiveFields;
 
-public HL7V28Field UserParameters(inSuccessiveFields)
+public HL7V28Field UserParametersinSuccessiveFields
 {
     get
     {
-        if (userParameters(inSuccessiveFields) != null)
+        if (userParametersinSuccessiveFields != null)
         {
-            return userParameters(inSuccessiveFields);
+            return userParametersinSuccessiveFields;
         }
 
-        userParameters(inSuccessiveFields) = new HL7V28Field
+        userParametersinSuccessiveFields = new HL7V28Field
         {
             field = message[@"QPD"][3],
             Id = @"QPD.3",
@@ -835,17 +835,17 @@ Parameter fields in the QPD segment appear in the same order as in the Query Pro
         };
 
         // check for repetitions
-        if (userParameters(inSuccessiveFields).field.FieldRepetitions != null && userParameters(inSuccessiveFields).field.FieldRepetitions.Count > 0)
+        if (userParametersinSuccessiveFields.field.FieldRepetitions != null && userParametersinSuccessiveFields.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userParameters(inSuccessiveFields).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(userParametersinSuccessiveFields.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < userParameters(inSuccessiveFields).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < userParametersinSuccessiveFields.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = userParameters(inSuccessiveFields).field.FieldRepetitions[i],
+                    fieldRepetition = userParametersinSuccessiveFields.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -867,12 +867,12 @@ Parameter fields in the QPD segment appear in the same order as in the Query Pro
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < userParameters(inSuccessiveFields).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < userParametersinSuccessiveFields.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = userParameters(inSuccessiveFields).field.FieldRepetitions[i].Components[j],
+                            component = userParametersinSuccessiveFields.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -893,12 +893,12 @@ Parameter fields in the QPD segment appear in the same order as in the Query Pro
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < userParameters(inSuccessiveFields).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < userParametersinSuccessiveFields.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = userParameters(inSuccessiveFields).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = userParametersinSuccessiveFields.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -929,10 +929,10 @@ Parameter fields in the QPD segment appear in the same order as in the Query Pro
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            userParameters(inSuccessiveFields).fieldRepetitions = fieldRepetitions;
+            userParametersinSuccessiveFields.fieldRepetitions = fieldRepetitions;
         }
 
-        return userParameters(inSuccessiveFields);
+        return userParametersinSuccessiveFields;
     } 
 }
 

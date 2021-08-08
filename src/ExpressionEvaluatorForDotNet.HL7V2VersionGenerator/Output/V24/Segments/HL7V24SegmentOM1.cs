@@ -3812,18 +3812,18 @@ public HL7V24Field SequenceNumberTestObservationMasterFile
     } 
 }
 
-internal HL7V24Field producer'sServiceTestObservationID;
+internal HL7V24Field producersServiceTestObservationID;
 
-public HL7V24Field Producer'sServiceTestObservationID
+public HL7V24Field ProducersServiceTestObservationID
 {
     get
     {
-        if (producer'sServiceTestObservationID != null)
+        if (producersServiceTestObservationID != null)
         {
-            return producer'sServiceTestObservationID;
+            return producersServiceTestObservationID;
         }
 
-        producer'sServiceTestObservationID = new HL7V24Field
+        producersServiceTestObservationID = new HL7V24Field
         {
             field = message[@"OM1"][2],
             Id = @"OM1.2",
@@ -3842,17 +3842,17 @@ public HL7V24Field Producer'sServiceTestObservationID
         };
 
         // check for repetitions
-        if (producer'sServiceTestObservationID.field.FieldRepetitions != null && producer'sServiceTestObservationID.field.FieldRepetitions.Count > 0)
+        if (producersServiceTestObservationID.field.FieldRepetitions != null && producersServiceTestObservationID.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(producer'sServiceTestObservationID.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(producersServiceTestObservationID.Id));
             var fieldRepetitions = new List<HL7V24FieldRepetition>();
 
-            for (var i = 0; i < producer'sServiceTestObservationID.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < producersServiceTestObservationID.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V24FieldRepetition
                 {
-                    fieldRepetition = producer'sServiceTestObservationID.field.FieldRepetitions[i],
+                    fieldRepetition = producersServiceTestObservationID.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3874,12 +3874,12 @@ public HL7V24Field Producer'sServiceTestObservationID
                     var components = new List<HL7V24Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < producer'sServiceTestObservationID.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < producersServiceTestObservationID.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V24Component
                         {
-                            component = producer'sServiceTestObservationID.field.FieldRepetitions[i].Components[j],
+                            component = producersServiceTestObservationID.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3900,12 +3900,12 @@ public HL7V24Field Producer'sServiceTestObservationID
                         {
                             var subComponents = new List<HL7V24SubComponent>();
 
-                            for (var k = 0; k < producer'sServiceTestObservationID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < producersServiceTestObservationID.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V24SubComponent
                                 {
-                                    subComponent = producer'sServiceTestObservationID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = producersServiceTestObservationID.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3936,10 +3936,10 @@ public HL7V24Field Producer'sServiceTestObservationID
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            producer'sServiceTestObservationID.fieldRepetitions = fieldRepetitions;
+            producersServiceTestObservationID.fieldRepetitions = fieldRepetitions;
         }
 
-        return producer'sServiceTestObservationID;
+        return producersServiceTestObservationID;
     } 
 }
 

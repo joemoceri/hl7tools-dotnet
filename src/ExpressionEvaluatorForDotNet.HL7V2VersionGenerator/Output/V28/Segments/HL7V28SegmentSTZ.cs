@@ -10,16 +10,16 @@ namespace ExpressionEvaluatorForDotNet
         public string Id { get { return @"STZ"; } }
 
         public string SegmentId { get { return @"STZ"; } }
-
+        
         public string LongName { get { return @"Sterilization Parameter"; } }
-
+        
         public string Description { get { return @"The STZ segment contains sterilization-specific attributes of a supply item."; } }
-
+        
         public string Sample { get { return @""; } }
 
-        public IList<string> Chapters
-        {
-            get
+        public IList<string> Chapters 
+        { 
+            get 
             {
                 return new[]
                     {
@@ -28,9 +28,9 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields
-        {
-            get
+        public IList<HL7V2FieldData> Fields 
+        { 
+            get 
             {
                 return new[]
                         {
@@ -69,7 +69,7 @@ In the context of “Data Missing”, described above in the Usage Note, refer t
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.2",
@@ -87,7 +87,7 @@ In the context of “Data Missing”, described above in the Usage Note, refer t
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.3",
@@ -109,7 +109,7 @@ Refer to section 2.A.8.3, ""Name of Coding System (ID)"" for a discussion of cod
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.4",
@@ -129,7 +129,7 @@ Usage Notes: The Alternate Identifier is used to represent the local or user see
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.5",
@@ -147,7 +147,7 @@ Usage Notes: The Alternate Identifier is used to represent the local or user see
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.6",
@@ -167,7 +167,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.7",
@@ -185,7 +185,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.8",
@@ -203,7 +203,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.9",
@@ -221,7 +221,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.10",
@@ -239,7 +239,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.11",
@@ -257,7 +257,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.12",
@@ -277,7 +277,7 @@ As of v2.7 this component is required when CWE.10 is populated and CWE.20 is not
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.13",
@@ -295,7 +295,7 @@ As of v2.7 this component is required when CWE.10 is populated and CWE.20 is not
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.14",
@@ -315,7 +315,7 @@ This component is required when CWE.1 is populated and CWE.3 is not populated. B
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.15",
@@ -335,7 +335,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.16",
@@ -355,7 +355,7 @@ Value set version ID is required if CWE.15 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.17",
@@ -377,7 +377,7 @@ This component is required when CWE.4 is populated and CWE.6 is not populated. B
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.18",
@@ -397,7 +397,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.19",
@@ -417,7 +417,7 @@ Value set version ID is required if CWE.18 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.20",
@@ -439,7 +439,7 @@ This component is required when CWE.10 is populated and CWE.12 is not populated.
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.21",
@@ -459,7 +459,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.1.22",
@@ -481,7 +481,7 @@ Value set version ID is required if CWE.21 is populated.",
                         },
                         }
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2",
@@ -517,7 +517,7 @@ In the context of “Data Missing”, described above in the Usage Note, refer t
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.2",
@@ -535,7 +535,7 @@ In the context of “Data Missing”, described above in the Usage Note, refer t
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.3",
@@ -557,7 +557,7 @@ Refer to section 2.A.8.3, ""Name of Coding System (ID)"" for a discussion of cod
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.4",
@@ -577,7 +577,7 @@ Usage Notes: The Alternate Identifier is used to represent the local or user see
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.5",
@@ -595,7 +595,7 @@ Usage Notes: The Alternate Identifier is used to represent the local or user see
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.6",
@@ -615,7 +615,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.7",
@@ -633,7 +633,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.8",
@@ -651,7 +651,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.9",
@@ -669,7 +669,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.10",
@@ -687,7 +687,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.11",
@@ -705,7 +705,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.12",
@@ -725,7 +725,7 @@ As of v2.7 this component is required when CWE.10 is populated and CWE.20 is not
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.13",
@@ -743,7 +743,7 @@ As of v2.7 this component is required when CWE.10 is populated and CWE.20 is not
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.14",
@@ -763,7 +763,7 @@ This component is required when CWE.1 is populated and CWE.3 is not populated. B
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.15",
@@ -783,7 +783,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.16",
@@ -803,7 +803,7 @@ Value set version ID is required if CWE.15 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.17",
@@ -825,7 +825,7 @@ This component is required when CWE.4 is populated and CWE.6 is not populated. B
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.18",
@@ -845,7 +845,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.19",
@@ -865,7 +865,7 @@ Value set version ID is required if CWE.18 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.20",
@@ -887,7 +887,7 @@ This component is required when CWE.10 is populated and CWE.12 is not populated.
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.21",
@@ -907,7 +907,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.2.22",
@@ -929,7 +929,7 @@ Value set version ID is required if CWE.21 is populated.",
                         },
                         }
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3",
@@ -965,7 +965,7 @@ In the context of “Data Missing”, described above in the Usage Note, refer t
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.2",
@@ -983,7 +983,7 @@ In the context of “Data Missing”, described above in the Usage Note, refer t
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.3",
@@ -1005,7 +1005,7 @@ Refer to section 2.A.8.3, ""Name of Coding System (ID)"" for a discussion of cod
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.4",
@@ -1025,7 +1025,7 @@ Usage Notes: The Alternate Identifier is used to represent the local or user see
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.5",
@@ -1043,7 +1043,7 @@ Usage Notes: The Alternate Identifier is used to represent the local or user see
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.6",
@@ -1063,7 +1063,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.7",
@@ -1081,7 +1081,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.8",
@@ -1099,7 +1099,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.9",
@@ -1117,7 +1117,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.10",
@@ -1135,7 +1135,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.11",
@@ -1153,7 +1153,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.12",
@@ -1173,7 +1173,7 @@ As of v2.7 this component is required when CWE.10 is populated and CWE.20 is not
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.13",
@@ -1191,7 +1191,7 @@ As of v2.7 this component is required when CWE.10 is populated and CWE.20 is not
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.14",
@@ -1211,7 +1211,7 @@ This component is required when CWE.1 is populated and CWE.3 is not populated. B
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.15",
@@ -1231,7 +1231,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.16",
@@ -1251,7 +1251,7 @@ Value set version ID is required if CWE.15 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.17",
@@ -1273,7 +1273,7 @@ This component is required when CWE.4 is populated and CWE.6 is not populated. B
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.18",
@@ -1293,7 +1293,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.19",
@@ -1313,7 +1313,7 @@ Value set version ID is required if CWE.18 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.20",
@@ -1335,7 +1335,7 @@ This component is required when CWE.10 is populated and CWE.12 is not populated.
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.21",
@@ -1355,7 +1355,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.3.22",
@@ -1377,7 +1377,7 @@ Value set version ID is required if CWE.21 is populated.",
                         },
                         }
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4",
@@ -1413,7 +1413,7 @@ In the context of “Data Missing”, described above in the Usage Note, refer t
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.2",
@@ -1431,7 +1431,7 @@ In the context of “Data Missing”, described above in the Usage Note, refer t
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.3",
@@ -1453,7 +1453,7 @@ Refer to section 2.A.8.3, ""Name of Coding System (ID)"" for a discussion of cod
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.4",
@@ -1473,7 +1473,7 @@ Usage Notes: The Alternate Identifier is used to represent the local or user see
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.5",
@@ -1491,7 +1491,7 @@ Usage Notes: The Alternate Identifier is used to represent the local or user see
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.6",
@@ -1511,7 +1511,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.7",
@@ -1529,7 +1529,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.8",
@@ -1547,7 +1547,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.9",
@@ -1565,7 +1565,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.10",
@@ -1583,7 +1583,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.11",
@@ -1601,7 +1601,7 @@ As of v2.7 this component is required when CWE.4 is populated and CWE.17 is not 
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.12",
@@ -1621,7 +1621,7 @@ As of v2.7 this component is required when CWE.10 is populated and CWE.20 is not
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.13",
@@ -1639,7 +1639,7 @@ As of v2.7 this component is required when CWE.10 is populated and CWE.20 is not
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.14",
@@ -1659,7 +1659,7 @@ This component is required when CWE.1 is populated and CWE.3 is not populated. B
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.15",
@@ -1679,7 +1679,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.16",
@@ -1699,7 +1699,7 @@ Value set version ID is required if CWE.15 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.17",
@@ -1721,7 +1721,7 @@ This component is required when CWE.4 is populated and CWE.6 is not populated. B
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.18",
@@ -1741,7 +1741,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.19",
@@ -1761,7 +1761,7 @@ Value set version ID is required if CWE.18 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.20",
@@ -1783,7 +1783,7 @@ This component is required when CWE.10 is populated and CWE.12 is not populated.
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.21",
@@ -1803,7 +1803,7 @@ A value set may or need not be present irrespective of other fields. Note that i
                             Sample = @"",
                             FieldDatas = null
                         },
-
+                        
                         new HL7V2FieldData
                         {
                             Id = @"STZ.4.22",
@@ -1834,75 +1834,101 @@ Value set version ID is required if CWE.21 is populated.",
             this.message = message;
         }
 
+        
+internal HL7V28Field sterilizationType;
 
-        internal HL7V28Field sterilizationType;
-
-        public HL7V28Field SterilizationType
+public HL7V28Field SterilizationType
+{
+    get
+    {
+        if (sterilizationType != null)
         {
-            get
-            {
-                if (sterilizationType != null)
-                {
-                    return sterilizationType;
-                }
+            return sterilizationType;
+        }
 
-                sterilizationType = new HL7V28Field
+        sterilizationType = new HL7V28Field
+        {
+            field = message[@"STZ"][1],
+            Id = @"STZ.1",
+            Type = @"Field",
+            Position = @"STZ.1",
+            Name = @"Sterilization Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0806",
+            TableName = @"Sterilization Type",
+            Description = @"This field contains the type of sterilization used for sterilizing the inventory supply item in the ITM segment.  Refer to User-defined Table 0806 – Sterilization Type in Chapter 2C, Code Tables, for suggested values. ",
+            Sample = @"",
+        };
+
+        // check for repetitions
+        if (sterilizationType.field.FieldRepetitions != null && sterilizationType.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(sterilizationType.Id));
+            var fieldRepetitions = new List<HL7V28FieldRepetition>();
+
+            for (var i = 0; i < sterilizationType.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    field = message[@"STZ"][1],
-                    Id = @"STZ.1",
-                    Type = @"Field",
-                    Position = @"STZ.1",
-                    Name = @"Sterilization Type",
-                    Length = 0,
-                    Usage = @"O",
-                    Rpt = @"1",
-                    DataType = @"CWE",
-                    DataTypeName = @"Coded With Exceptions",
-                    TableId = @"0806",
-                    TableName = @"Sterilization Type",
-                    Description = @"This field contains the type of sterilization used for sterilizing the inventory supply item in the ITM segment.  Refer to User-defined Table 0806 – Sterilization Type in Chapter 2C, Code Tables, for suggested values. ",
-                    Sample = @"",
+                    fieldRepetition = sterilizationType.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
                 };
 
-                // check for repetitions
-                if (sterilizationType.field.FieldRepetitions != null && sterilizationType.field.FieldRepetitions.Count > 0)
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                 {
-                    // get this fields data
-                    var fieldData = Fields.First(fd => fd.Id.Equals(sterilizationType.Id));
-                    var fieldRepetitions = new List<HL7V28FieldRepetition>();
+                    var components = new List<HL7V28Component>();
 
-                    for (var i = 0; i < sterilizationType.field.FieldRepetitions.Count; i++)
+                    // there should be components per repetition
+                    for (var j = 0; j < sterilizationType.field.Components(i + 1).Count; j++)
                     {
-                        var fieldRepetition = new HL7V28FieldRepetition
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V28Component
                         {
-                            fieldRepetition = sterilizationType.field.FieldRepetitions[i],
-                            Id = fieldData.Id,
-                            Type = fieldData.Type,
-                            Position = fieldData.Position,
-                            Name = fieldData.Name,
-                            Length = fieldData.Length,
-                            Usage = fieldData.Usage,
-                            Rpt = fieldData.Rpt,
-                            DataType = fieldData.DataType,
-                            DataTypeName = fieldData.DataTypeName,
-                            TableId = fieldData.TableId,
-                            TableName = fieldData.TableName,
-                            Description = fieldData.Description,
-                            Sample = fieldData.Sample
+                            component = sterilizationType.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
                         };
 
-                        // check for components if the definition specifies it does
-                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
                         {
-                            var components = new List<HL7V28Component>();
+                            var subComponents = new List<HL7V28SubComponent>();
 
-                            // there should be components per repetition
-                            for (var j = 0; j < sterilizationType.field.Components(i + 1).Count; j++)
+                            for (var k = 0; k < sterilizationType.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
-                                var componentFieldData = fieldData.FieldDatas[j];
-                                var component = new HL7V28Component
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V28SubComponent
                                 {
-                                    component = sterilizationType.field.FieldRepetitions[i].Components[j],
+                                    subComponent = sterilizationType.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1918,122 +1944,122 @@ Value set version ID is required if CWE.21 is populated.",
                                     Sample = componentFieldData.Sample
                                 };
 
-                                // check for sub components
-                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
-                                {
-                                    var subComponents = new List<HL7V28SubComponent>();
-
-                                    for (var k = 0; k < sterilizationType.field.Components(i + 1)[j].SubComponents.Count; k++)
-                                    {
-                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                        var subComponent = new HL7V28SubComponent
-                                        {
-                                            subComponent = sterilizationType.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                            Id = componentFieldData.Id,
-                                            Type = componentFieldData.Type,
-                                            Position = componentFieldData.Position,
-                                            Name = componentFieldData.Name,
-                                            Length = componentFieldData.Length,
-                                            Usage = componentFieldData.Usage,
-                                            Rpt = componentFieldData.Rpt,
-                                            DataType = componentFieldData.DataType,
-                                            DataTypeName = componentFieldData.DataTypeName,
-                                            TableId = componentFieldData.TableId,
-                                            TableName = componentFieldData.TableName,
-                                            Description = componentFieldData.Description,
-                                            Sample = componentFieldData.Sample
-                                        };
-
-                                        subComponents.Add(subComponent);
-                                    }
-
-                                    component.subComponents = subComponents;
-                                }
-
-                                components.Add(component);
+                                subComponents.Add(subComponent);
                             }
 
-                            fieldRepetition.components = components;
+                            component.subComponents = subComponents;
                         }
 
-                        fieldRepetitions.Add(fieldRepetition);
+                        components.Add(component);
                     }
 
-                    sterilizationType.fieldRepetitions = fieldRepetitions;
+                    fieldRepetition.components = components;
                 }
 
-                return sterilizationType;
+                fieldRepetitions.Add(fieldRepetition);
             }
+                     
+            sterilizationType.fieldRepetitions = fieldRepetitions;
         }
 
-        internal HL7V28Field sterilizationCycle;
+        return sterilizationType;
+    } 
+}
 
-        public HL7V28Field SterilizationCycle
+internal HL7V28Field sterilizationCycle;
+
+public HL7V28Field SterilizationCycle
+{
+    get
+    {
+        if (sterilizationCycle != null)
         {
-            get
-            {
-                if (sterilizationCycle != null)
-                {
-                    return sterilizationCycle;
-                }
+            return sterilizationCycle;
+        }
 
-                sterilizationCycle = new HL7V28Field
+        sterilizationCycle = new HL7V28Field
+        {
+            field = message[@"STZ"][2],
+            Id = @"STZ.2",
+            Type = @"Field",
+            Position = @"STZ.2",
+            Name = @"Sterilization Cycle",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0702",
+            TableName = @"Cycle Type-",
+            Description = @"This field contains the sterilization cycle used for sterilization of the inventory supply item.  The AAMI Standard defines steam sterilization cycles – cycle names: pressure, temperature, dry time.  Refer to SCD-28   Cycle Type   (CWE)   02131 which references User-defined Table 0702 – Cycle Type in Chapter 2C, Code Tables, providing suggested values.",
+            Sample = @"",
+        };
+
+        // check for repetitions
+        if (sterilizationCycle.field.FieldRepetitions != null && sterilizationCycle.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(sterilizationCycle.Id));
+            var fieldRepetitions = new List<HL7V28FieldRepetition>();
+
+            for (var i = 0; i < sterilizationCycle.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    field = message[@"STZ"][2],
-                    Id = @"STZ.2",
-                    Type = @"Field",
-                    Position = @"STZ.2",
-                    Name = @"Sterilization Cycle",
-                    Length = 0,
-                    Usage = @"O",
-                    Rpt = @"1",
-                    DataType = @"CWE",
-                    DataTypeName = @"Coded With Exceptions",
-                    TableId = @"0702",
-                    TableName = @"Cycle Type-",
-                    Description = @"This field contains the sterilization cycle used for sterilization of the inventory supply item.  The AAMI Standard defines steam sterilization cycles – cycle names: pressure, temperature, dry time.  Refer to SCD-28   Cycle Type   (CWE)   02131 which references User-defined Table 0702 – Cycle Type in Chapter 2C, Code Tables, providing suggested values.",
-                    Sample = @"",
+                    fieldRepetition = sterilizationCycle.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
                 };
 
-                // check for repetitions
-                if (sterilizationCycle.field.FieldRepetitions != null && sterilizationCycle.field.FieldRepetitions.Count > 0)
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                 {
-                    // get this fields data
-                    var fieldData = Fields.First(fd => fd.Id.Equals(sterilizationCycle.Id));
-                    var fieldRepetitions = new List<HL7V28FieldRepetition>();
+                    var components = new List<HL7V28Component>();
 
-                    for (var i = 0; i < sterilizationCycle.field.FieldRepetitions.Count; i++)
+                    // there should be components per repetition
+                    for (var j = 0; j < sterilizationCycle.field.Components(i + 1).Count; j++)
                     {
-                        var fieldRepetition = new HL7V28FieldRepetition
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V28Component
                         {
-                            fieldRepetition = sterilizationCycle.field.FieldRepetitions[i],
-                            Id = fieldData.Id,
-                            Type = fieldData.Type,
-                            Position = fieldData.Position,
-                            Name = fieldData.Name,
-                            Length = fieldData.Length,
-                            Usage = fieldData.Usage,
-                            Rpt = fieldData.Rpt,
-                            DataType = fieldData.DataType,
-                            DataTypeName = fieldData.DataTypeName,
-                            TableId = fieldData.TableId,
-                            TableName = fieldData.TableName,
-                            Description = fieldData.Description,
-                            Sample = fieldData.Sample
+                            component = sterilizationCycle.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
                         };
 
-                        // check for components if the definition specifies it does
-                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
                         {
-                            var components = new List<HL7V28Component>();
+                            var subComponents = new List<HL7V28SubComponent>();
 
-                            // there should be components per repetition
-                            for (var j = 0; j < sterilizationCycle.field.Components(i + 1).Count; j++)
+                            for (var k = 0; k < sterilizationCycle.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
-                                var componentFieldData = fieldData.FieldDatas[j];
-                                var component = new HL7V28Component
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V28SubComponent
                                 {
-                                    component = sterilizationCycle.field.FieldRepetitions[i].Components[j],
+                                    subComponent = sterilizationCycle.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2049,122 +2075,122 @@ Value set version ID is required if CWE.21 is populated.",
                                     Sample = componentFieldData.Sample
                                 };
 
-                                // check for sub components
-                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
-                                {
-                                    var subComponents = new List<HL7V28SubComponent>();
-
-                                    for (var k = 0; k < sterilizationCycle.field.Components(i + 1)[j].SubComponents.Count; k++)
-                                    {
-                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                        var subComponent = new HL7V28SubComponent
-                                        {
-                                            subComponent = sterilizationCycle.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                            Id = componentFieldData.Id,
-                                            Type = componentFieldData.Type,
-                                            Position = componentFieldData.Position,
-                                            Name = componentFieldData.Name,
-                                            Length = componentFieldData.Length,
-                                            Usage = componentFieldData.Usage,
-                                            Rpt = componentFieldData.Rpt,
-                                            DataType = componentFieldData.DataType,
-                                            DataTypeName = componentFieldData.DataTypeName,
-                                            TableId = componentFieldData.TableId,
-                                            TableName = componentFieldData.TableName,
-                                            Description = componentFieldData.Description,
-                                            Sample = componentFieldData.Sample
-                                        };
-
-                                        subComponents.Add(subComponent);
-                                    }
-
-                                    component.subComponents = subComponents;
-                                }
-
-                                components.Add(component);
+                                subComponents.Add(subComponent);
                             }
 
-                            fieldRepetition.components = components;
+                            component.subComponents = subComponents;
                         }
 
-                        fieldRepetitions.Add(fieldRepetition);
+                        components.Add(component);
                     }
 
-                    sterilizationCycle.fieldRepetitions = fieldRepetitions;
+                    fieldRepetition.components = components;
                 }
 
-                return sterilizationCycle;
+                fieldRepetitions.Add(fieldRepetition);
             }
+                     
+            sterilizationCycle.fieldRepetitions = fieldRepetitions;
         }
 
-        internal HL7V28Field maintenanceCycle;
+        return sterilizationCycle;
+    } 
+}
 
-        public HL7V28Field MaintenanceCycle
+internal HL7V28Field maintenanceCycle;
+
+public HL7V28Field MaintenanceCycle
+{
+    get
+    {
+        if (maintenanceCycle != null)
         {
-            get
-            {
-                if (maintenanceCycle != null)
-                {
-                    return maintenanceCycle;
-                }
+            return maintenanceCycle;
+        }
 
-                maintenanceCycle = new HL7V28Field
+        maintenanceCycle = new HL7V28Field
+        {
+            field = message[@"STZ"][3],
+            Id = @"STZ.3",
+            Type = @"Field",
+            Position = @"STZ.3",
+            Name = @"Maintenance Cycle",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0809",
+            TableName = @"Maintenance Cycle",
+            Description = @"This field contains the maintenance cycle used for the inventory supply item, such as the number of times to sharpen after five uses. Refer to User-defined Table 0809 – Maintenance Cycle in Chapter 2C, Code Tables, for suggested values. ",
+            Sample = @"",
+        };
+
+        // check for repetitions
+        if (maintenanceCycle.field.FieldRepetitions != null && maintenanceCycle.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(maintenanceCycle.Id));
+            var fieldRepetitions = new List<HL7V28FieldRepetition>();
+
+            for (var i = 0; i < maintenanceCycle.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    field = message[@"STZ"][3],
-                    Id = @"STZ.3",
-                    Type = @"Field",
-                    Position = @"STZ.3",
-                    Name = @"Maintenance Cycle",
-                    Length = 0,
-                    Usage = @"O",
-                    Rpt = @"1",
-                    DataType = @"CWE",
-                    DataTypeName = @"Coded With Exceptions",
-                    TableId = @"0809",
-                    TableName = @"Maintenance Cycle",
-                    Description = @"This field contains the maintenance cycle used for the inventory supply item, such as the number of times to sharpen after five uses. Refer to User-defined Table 0809 – Maintenance Cycle in Chapter 2C, Code Tables, for suggested values. ",
-                    Sample = @"",
+                    fieldRepetition = maintenanceCycle.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
                 };
 
-                // check for repetitions
-                if (maintenanceCycle.field.FieldRepetitions != null && maintenanceCycle.field.FieldRepetitions.Count > 0)
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                 {
-                    // get this fields data
-                    var fieldData = Fields.First(fd => fd.Id.Equals(maintenanceCycle.Id));
-                    var fieldRepetitions = new List<HL7V28FieldRepetition>();
+                    var components = new List<HL7V28Component>();
 
-                    for (var i = 0; i < maintenanceCycle.field.FieldRepetitions.Count; i++)
+                    // there should be components per repetition
+                    for (var j = 0; j < maintenanceCycle.field.Components(i + 1).Count; j++)
                     {
-                        var fieldRepetition = new HL7V28FieldRepetition
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V28Component
                         {
-                            fieldRepetition = maintenanceCycle.field.FieldRepetitions[i],
-                            Id = fieldData.Id,
-                            Type = fieldData.Type,
-                            Position = fieldData.Position,
-                            Name = fieldData.Name,
-                            Length = fieldData.Length,
-                            Usage = fieldData.Usage,
-                            Rpt = fieldData.Rpt,
-                            DataType = fieldData.DataType,
-                            DataTypeName = fieldData.DataTypeName,
-                            TableId = fieldData.TableId,
-                            TableName = fieldData.TableName,
-                            Description = fieldData.Description,
-                            Sample = fieldData.Sample
+                            component = maintenanceCycle.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
                         };
 
-                        // check for components if the definition specifies it does
-                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
                         {
-                            var components = new List<HL7V28Component>();
+                            var subComponents = new List<HL7V28SubComponent>();
 
-                            // there should be components per repetition
-                            for (var j = 0; j < maintenanceCycle.field.Components(i + 1).Count; j++)
+                            for (var k = 0; k < maintenanceCycle.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
-                                var componentFieldData = fieldData.FieldDatas[j];
-                                var component = new HL7V28Component
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V28SubComponent
                                 {
-                                    component = maintenanceCycle.field.FieldRepetitions[i].Components[j],
+                                    subComponent = maintenanceCycle.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2180,122 +2206,122 @@ Value set version ID is required if CWE.21 is populated.",
                                     Sample = componentFieldData.Sample
                                 };
 
-                                // check for sub components
-                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
-                                {
-                                    var subComponents = new List<HL7V28SubComponent>();
-
-                                    for (var k = 0; k < maintenanceCycle.field.Components(i + 1)[j].SubComponents.Count; k++)
-                                    {
-                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                        var subComponent = new HL7V28SubComponent
-                                        {
-                                            subComponent = maintenanceCycle.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                            Id = componentFieldData.Id,
-                                            Type = componentFieldData.Type,
-                                            Position = componentFieldData.Position,
-                                            Name = componentFieldData.Name,
-                                            Length = componentFieldData.Length,
-                                            Usage = componentFieldData.Usage,
-                                            Rpt = componentFieldData.Rpt,
-                                            DataType = componentFieldData.DataType,
-                                            DataTypeName = componentFieldData.DataTypeName,
-                                            TableId = componentFieldData.TableId,
-                                            TableName = componentFieldData.TableName,
-                                            Description = componentFieldData.Description,
-                                            Sample = componentFieldData.Sample
-                                        };
-
-                                        subComponents.Add(subComponent);
-                                    }
-
-                                    component.subComponents = subComponents;
-                                }
-
-                                components.Add(component);
+                                subComponents.Add(subComponent);
                             }
 
-                            fieldRepetition.components = components;
+                            component.subComponents = subComponents;
                         }
 
-                        fieldRepetitions.Add(fieldRepetition);
+                        components.Add(component);
                     }
 
-                    maintenanceCycle.fieldRepetitions = fieldRepetitions;
+                    fieldRepetition.components = components;
                 }
 
-                return maintenanceCycle;
+                fieldRepetitions.Add(fieldRepetition);
             }
+                     
+            maintenanceCycle.fieldRepetitions = fieldRepetitions;
         }
 
-        internal HL7V28Field maintenanceType;
+        return maintenanceCycle;
+    } 
+}
 
-        public HL7V28Field MaintenanceType
+internal HL7V28Field maintenanceType;
+
+public HL7V28Field MaintenanceType
+{
+    get
+    {
+        if (maintenanceType != null)
         {
-            get
-            {
-                if (maintenanceType != null)
-                {
-                    return maintenanceType;
-                }
+            return maintenanceType;
+        }
 
-                maintenanceType = new HL7V28Field
+        maintenanceType = new HL7V28Field
+        {
+            field = message[@"STZ"][4],
+            Id = @"STZ.4",
+            Type = @"Field",
+            Position = @"STZ.4",
+            Name = @"Maintenance Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0811",
+            TableName = @"Maintenance Type",
+            Description = @"This field contains the type of maintenance performed on the inventory supply item.  This is different than the maintenance cycle in the sense that it can describe the number of maintenance cycles that can be performed before disposing of the inventory supply item.  Refer to User-defined Table 0811 – Maintenance Type in Chapter 2C, Code Tables, for suggested values. ",
+            Sample = @"",
+        };
+
+        // check for repetitions
+        if (maintenanceType.field.FieldRepetitions != null && maintenanceType.field.FieldRepetitions.Count > 0)
+        {
+            // get this fields data
+            var fieldData = Fields.First(fd => fd.Id.Equals(maintenanceType.Id));
+            var fieldRepetitions = new List<HL7V28FieldRepetition>();
+
+            for (var i = 0; i < maintenanceType.field.FieldRepetitions.Count; i++)
+            {
+                var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    field = message[@"STZ"][4],
-                    Id = @"STZ.4",
-                    Type = @"Field",
-                    Position = @"STZ.4",
-                    Name = @"Maintenance Type",
-                    Length = 0,
-                    Usage = @"O",
-                    Rpt = @"1",
-                    DataType = @"CWE",
-                    DataTypeName = @"Coded With Exceptions",
-                    TableId = @"0811",
-                    TableName = @"Maintenance Type",
-                    Description = @"This field contains the type of maintenance performed on the inventory supply item.  This is different than the maintenance cycle in the sense that it can describe the number of maintenance cycles that can be performed before disposing of the inventory supply item.  Refer to User-defined Table 0811 – Maintenance Type in Chapter 2C, Code Tables, for suggested values. ",
-                    Sample = @"",
+                    fieldRepetition = maintenanceType.field.FieldRepetitions[i],
+                    Id = fieldData.Id,
+                    Type = fieldData.Type,
+                    Position = fieldData.Position,
+                    Name = fieldData.Name,
+                    Length = fieldData.Length,
+                    Usage = fieldData.Usage,
+                    Rpt = fieldData.Rpt,
+                    DataType = fieldData.DataType,
+                    DataTypeName = fieldData.DataTypeName,
+                    TableId = fieldData.TableId,
+                    TableName = fieldData.TableName,
+                    Description = fieldData.Description,
+                    Sample = fieldData.Sample
                 };
 
-                // check for repetitions
-                if (maintenanceType.field.FieldRepetitions != null && maintenanceType.field.FieldRepetitions.Count > 0)
+                // check for components if the definition specifies it does
+                if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
                 {
-                    // get this fields data
-                    var fieldData = Fields.First(fd => fd.Id.Equals(maintenanceType.Id));
-                    var fieldRepetitions = new List<HL7V28FieldRepetition>();
+                    var components = new List<HL7V28Component>();
 
-                    for (var i = 0; i < maintenanceType.field.FieldRepetitions.Count; i++)
+                    // there should be components per repetition
+                    for (var j = 0; j < maintenanceType.field.Components(i + 1).Count; j++)
                     {
-                        var fieldRepetition = new HL7V28FieldRepetition
+                        var componentFieldData = fieldData.FieldDatas[j];
+                        var component = new HL7V28Component
                         {
-                            fieldRepetition = maintenanceType.field.FieldRepetitions[i],
-                            Id = fieldData.Id,
-                            Type = fieldData.Type,
-                            Position = fieldData.Position,
-                            Name = fieldData.Name,
-                            Length = fieldData.Length,
-                            Usage = fieldData.Usage,
-                            Rpt = fieldData.Rpt,
-                            DataType = fieldData.DataType,
-                            DataTypeName = fieldData.DataTypeName,
-                            TableId = fieldData.TableId,
-                            TableName = fieldData.TableName,
-                            Description = fieldData.Description,
-                            Sample = fieldData.Sample
+                            component = maintenanceType.field.FieldRepetitions[i].Components[j],
+                            Id = componentFieldData.Id,
+                            Type = componentFieldData.Type,
+                            Position = componentFieldData.Position,
+                            Name = componentFieldData.Name,
+                            Length = componentFieldData.Length,
+                            Usage = componentFieldData.Usage,
+                            Rpt = componentFieldData.Rpt,
+                            DataType = componentFieldData.DataType,
+                            DataTypeName = componentFieldData.DataTypeName,
+                            TableId = componentFieldData.TableId,
+                            TableName = componentFieldData.TableName,
+                            Description = componentFieldData.Description,
+                            Sample = componentFieldData.Sample
                         };
 
-                        // check for components if the definition specifies it does
-                        if (fieldData.FieldDatas != null && fieldData.FieldDatas.Count > 0)
+                        // check for sub components
+                        if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
                         {
-                            var components = new List<HL7V28Component>();
+                            var subComponents = new List<HL7V28SubComponent>();
 
-                            // there should be components per repetition
-                            for (var j = 0; j < maintenanceType.field.Components(i + 1).Count; j++)
+                            for (var k = 0; k < maintenanceType.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
-                                var componentFieldData = fieldData.FieldDatas[j];
-                                var component = new HL7V28Component
+                                var subComponentFieldData = componentFieldData.FieldDatas[k];
+                                var subComponent = new HL7V28SubComponent
                                 {
-                                    component = maintenanceType.field.FieldRepetitions[i].Components[j],
+                                    subComponent = maintenanceType.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -2311,53 +2337,27 @@ Value set version ID is required if CWE.21 is populated.",
                                     Sample = componentFieldData.Sample
                                 };
 
-                                // check for sub components
-                                if (componentFieldData.FieldDatas != null && componentFieldData.FieldDatas.Count > 0)
-                                {
-                                    var subComponents = new List<HL7V28SubComponent>();
-
-                                    for (var k = 0; k < maintenanceType.field.Components(i + 1)[j].SubComponents.Count; k++)
-                                    {
-                                        var subComponentFieldData = componentFieldData.FieldDatas[k];
-                                        var subComponent = new HL7V28SubComponent
-                                        {
-                                            subComponent = maintenanceType.field.FieldRepetitions[i].Components[j].SubComponents[k],
-                                            Id = componentFieldData.Id,
-                                            Type = componentFieldData.Type,
-                                            Position = componentFieldData.Position,
-                                            Name = componentFieldData.Name,
-                                            Length = componentFieldData.Length,
-                                            Usage = componentFieldData.Usage,
-                                            Rpt = componentFieldData.Rpt,
-                                            DataType = componentFieldData.DataType,
-                                            DataTypeName = componentFieldData.DataTypeName,
-                                            TableId = componentFieldData.TableId,
-                                            TableName = componentFieldData.TableName,
-                                            Description = componentFieldData.Description,
-                                            Sample = componentFieldData.Sample
-                                        };
-
-                                        subComponents.Add(subComponent);
-                                    }
-
-                                    component.subComponents = subComponents;
-                                }
-
-                                components.Add(component);
+                                subComponents.Add(subComponent);
                             }
 
-                            fieldRepetition.components = components;
+                            component.subComponents = subComponents;
                         }
 
-                        fieldRepetitions.Add(fieldRepetition);
+                        components.Add(component);
                     }
 
-                    maintenanceType.fieldRepetitions = fieldRepetitions;
+                    fieldRepetition.components = components;
                 }
 
-                return maintenanceType;
+                fieldRepetitions.Add(fieldRepetition);
             }
+                     
+            maintenanceType.fieldRepetitions = fieldRepetitions;
         }
+
+        return maintenanceType;
+    } 
+}
 
     }
 }

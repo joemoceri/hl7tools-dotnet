@@ -14602,18 +14602,18 @@ In all cases, the observation date-time is the physiologically relevant date-tim
     } 
 }
 
-internal HL7V28Field producer'sId;
+internal HL7V28Field producersId;
 
-public HL7V28Field Producer'sId
+public HL7V28Field ProducersId
 {
     get
     {
-        if (producer'sId != null)
+        if (producersId != null)
         {
-            return producer'sId;
+            return producersId;
         }
 
-        producer'sId = new HL7V28Field
+        producersId = new HL7V28Field
         {
             field = message[@"OBX"][15],
             Id = @"OBX.15",
@@ -14632,17 +14632,17 @@ public HL7V28Field Producer'sId
         };
 
         // check for repetitions
-        if (producer'sId.field.FieldRepetitions != null && producer'sId.field.FieldRepetitions.Count > 0)
+        if (producersId.field.FieldRepetitions != null && producersId.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(producer'sId.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(producersId.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < producer'sId.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < producersId.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = producer'sId.field.FieldRepetitions[i],
+                    fieldRepetition = producersId.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -14664,12 +14664,12 @@ public HL7V28Field Producer'sId
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < producer'sId.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < producersId.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = producer'sId.field.FieldRepetitions[i].Components[j],
+                            component = producersId.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -14690,12 +14690,12 @@ public HL7V28Field Producer'sId
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < producer'sId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < producersId.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = producer'sId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = producersId.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -14726,10 +14726,10 @@ public HL7V28Field Producer'sId
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            producer'sId.fieldRepetitions = fieldRepetitions;
+            producersId.fieldRepetitions = fieldRepetitions;
         }
 
-        return producer'sId;
+        return producersId;
     } 
 }
 

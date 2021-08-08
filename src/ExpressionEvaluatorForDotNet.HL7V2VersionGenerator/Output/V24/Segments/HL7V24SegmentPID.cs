@@ -6316,18 +6316,18 @@ public HL7V24Field PatientName
     } 
 }
 
-internal HL7V24Field mother'sMaidenName;
+internal HL7V24Field mothersMaidenName;
 
-public HL7V24Field Mother'sMaidenName
+public HL7V24Field MothersMaidenName
 {
     get
     {
-        if (mother'sMaidenName != null)
+        if (mothersMaidenName != null)
         {
-            return mother'sMaidenName;
+            return mothersMaidenName;
         }
 
-        mother'sMaidenName = new HL7V24Field
+        mothersMaidenName = new HL7V24Field
         {
             field = message[@"PID"][6],
             Id = @"PID.6",
@@ -6346,17 +6346,17 @@ public HL7V24Field Mother'sMaidenName
         };
 
         // check for repetitions
-        if (mother'sMaidenName.field.FieldRepetitions != null && mother'sMaidenName.field.FieldRepetitions.Count > 0)
+        if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mother'sMaidenName.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
             var fieldRepetitions = new List<HL7V24FieldRepetition>();
 
-            for (var i = 0; i < mother'sMaidenName.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < mothersMaidenName.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V24FieldRepetition
                 {
-                    fieldRepetition = mother'sMaidenName.field.FieldRepetitions[i],
+                    fieldRepetition = mothersMaidenName.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -6378,12 +6378,12 @@ public HL7V24Field Mother'sMaidenName
                     var components = new List<HL7V24Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < mother'sMaidenName.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < mothersMaidenName.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V24Component
                         {
-                            component = mother'sMaidenName.field.FieldRepetitions[i].Components[j],
+                            component = mothersMaidenName.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -6404,12 +6404,12 @@ public HL7V24Field Mother'sMaidenName
                         {
                             var subComponents = new List<HL7V24SubComponent>();
 
-                            for (var k = 0; k < mother'sMaidenName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < mothersMaidenName.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V24SubComponent
                                 {
-                                    subComponent = mother'sMaidenName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = mothersMaidenName.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -6440,10 +6440,10 @@ public HL7V24Field Mother'sMaidenName
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            mother'sMaidenName.fieldRepetitions = fieldRepetitions;
+            mothersMaidenName.fieldRepetitions = fieldRepetitions;
         }
 
-        return mother'sMaidenName;
+        return mothersMaidenName;
     } 
 }
 
@@ -8150,18 +8150,18 @@ public HL7V24Field SSNNumberPatient
     } 
 }
 
-internal HL7V24Field driver'sLicenseNumberPatient;
+internal HL7V24Field driversLicenseNumberPatient;
 
-public HL7V24Field Driver'sLicenseNumberPatient
+public HL7V24Field DriversLicenseNumberPatient
 {
     get
     {
-        if (driver'sLicenseNumberPatient != null)
+        if (driversLicenseNumberPatient != null)
         {
-            return driver'sLicenseNumberPatient;
+            return driversLicenseNumberPatient;
         }
 
-        driver'sLicenseNumberPatient = new HL7V24Field
+        driversLicenseNumberPatient = new HL7V24Field
         {
             field = message[@"PID"][20],
             Id = @"PID.20",
@@ -8180,17 +8180,17 @@ public HL7V24Field Driver'sLicenseNumberPatient
         };
 
         // check for repetitions
-        if (driver'sLicenseNumberPatient.field.FieldRepetitions != null && driver'sLicenseNumberPatient.field.FieldRepetitions.Count > 0)
+        if (driversLicenseNumberPatient.field.FieldRepetitions != null && driversLicenseNumberPatient.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(driver'sLicenseNumberPatient.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(driversLicenseNumberPatient.Id));
             var fieldRepetitions = new List<HL7V24FieldRepetition>();
 
-            for (var i = 0; i < driver'sLicenseNumberPatient.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < driversLicenseNumberPatient.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V24FieldRepetition
                 {
-                    fieldRepetition = driver'sLicenseNumberPatient.field.FieldRepetitions[i],
+                    fieldRepetition = driversLicenseNumberPatient.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -8212,12 +8212,12 @@ public HL7V24Field Driver'sLicenseNumberPatient
                     var components = new List<HL7V24Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < driver'sLicenseNumberPatient.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < driversLicenseNumberPatient.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V24Component
                         {
-                            component = driver'sLicenseNumberPatient.field.FieldRepetitions[i].Components[j],
+                            component = driversLicenseNumberPatient.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -8238,12 +8238,12 @@ public HL7V24Field Driver'sLicenseNumberPatient
                         {
                             var subComponents = new List<HL7V24SubComponent>();
 
-                            for (var k = 0; k < driver'sLicenseNumberPatient.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < driversLicenseNumberPatient.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V24SubComponent
                                 {
-                                    subComponent = driver'sLicenseNumberPatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = driversLicenseNumberPatient.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -8274,25 +8274,25 @@ public HL7V24Field Driver'sLicenseNumberPatient
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            driver'sLicenseNumberPatient.fieldRepetitions = fieldRepetitions;
+            driversLicenseNumberPatient.fieldRepetitions = fieldRepetitions;
         }
 
-        return driver'sLicenseNumberPatient;
+        return driversLicenseNumberPatient;
     } 
 }
 
-internal HL7V24Field mother'sIdentifier;
+internal HL7V24Field mothersIdentifier;
 
-public HL7V24Field Mother'sIdentifier
+public HL7V24Field MothersIdentifier
 {
     get
     {
-        if (mother'sIdentifier != null)
+        if (mothersIdentifier != null)
         {
-            return mother'sIdentifier;
+            return mothersIdentifier;
         }
 
-        mother'sIdentifier = new HL7V24Field
+        mothersIdentifier = new HL7V24Field
         {
             field = message[@"PID"][21],
             Id = @"PID.21",
@@ -8311,17 +8311,17 @@ public HL7V24Field Mother'sIdentifier
         };
 
         // check for repetitions
-        if (mother'sIdentifier.field.FieldRepetitions != null && mother'sIdentifier.field.FieldRepetitions.Count > 0)
+        if (mothersIdentifier.field.FieldRepetitions != null && mothersIdentifier.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mother'sIdentifier.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(mothersIdentifier.Id));
             var fieldRepetitions = new List<HL7V24FieldRepetition>();
 
-            for (var i = 0; i < mother'sIdentifier.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < mothersIdentifier.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V24FieldRepetition
                 {
-                    fieldRepetition = mother'sIdentifier.field.FieldRepetitions[i],
+                    fieldRepetition = mothersIdentifier.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -8343,12 +8343,12 @@ public HL7V24Field Mother'sIdentifier
                     var components = new List<HL7V24Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < mother'sIdentifier.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < mothersIdentifier.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V24Component
                         {
-                            component = mother'sIdentifier.field.FieldRepetitions[i].Components[j],
+                            component = mothersIdentifier.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -8369,12 +8369,12 @@ public HL7V24Field Mother'sIdentifier
                         {
                             var subComponents = new List<HL7V24SubComponent>();
 
-                            for (var k = 0; k < mother'sIdentifier.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < mothersIdentifier.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V24SubComponent
                                 {
-                                    subComponent = mother'sIdentifier.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = mothersIdentifier.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -8405,10 +8405,10 @@ public HL7V24Field Mother'sIdentifier
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            mother'sIdentifier.fieldRepetitions = fieldRepetitions;
+            mothersIdentifier.fieldRepetitions = fieldRepetitions;
         }
 
-        return mother'sIdentifier;
+        return mothersIdentifier;
     } 
 }
 

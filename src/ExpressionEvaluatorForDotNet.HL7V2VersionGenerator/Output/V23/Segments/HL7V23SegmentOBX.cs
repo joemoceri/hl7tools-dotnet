@@ -3073,18 +3073,18 @@ In all cases, the observation date-time is the physiologically relevant date-tim
     } 
 }
 
-internal HL7V23Field producer'sID;
+internal HL7V23Field producersID;
 
-public HL7V23Field Producer'sID
+public HL7V23Field ProducersID
 {
     get
     {
-        if (producer'sID != null)
+        if (producersID != null)
         {
-            return producer'sID;
+            return producersID;
         }
 
-        producer'sID = new HL7V23Field
+        producersID = new HL7V23Field
         {
             field = message[@"OBX"][15],
             Id = @"OBX.15",
@@ -3103,17 +3103,17 @@ public HL7V23Field Producer'sID
         };
 
         // check for repetitions
-        if (producer'sID.field.FieldRepetitions != null && producer'sID.field.FieldRepetitions.Count > 0)
+        if (producersID.field.FieldRepetitions != null && producersID.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(producer'sID.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(producersID.Id));
             var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-            for (var i = 0; i < producer'sID.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < producersID.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V23FieldRepetition
                 {
-                    fieldRepetition = producer'sID.field.FieldRepetitions[i],
+                    fieldRepetition = producersID.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3135,12 +3135,12 @@ public HL7V23Field Producer'sID
                     var components = new List<HL7V23Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < producer'sID.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < producersID.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V23Component
                         {
-                            component = producer'sID.field.FieldRepetitions[i].Components[j],
+                            component = producersID.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3161,12 +3161,12 @@ public HL7V23Field Producer'sID
                         {
                             var subComponents = new List<HL7V23SubComponent>();
 
-                            for (var k = 0; k < producer'sID.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < producersID.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V23SubComponent
                                 {
-                                    subComponent = producer'sID.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = producersID.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3197,10 +3197,10 @@ public HL7V23Field Producer'sID
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            producer'sID.fieldRepetitions = fieldRepetitions;
+            producersID.fieldRepetitions = fieldRepetitions;
         }
 
-        return producer'sID;
+        return producersID;
     } 
 }
 

@@ -11534,18 +11534,18 @@ This field is included in this segment to support international requirements and
     } 
 }
 
-internal HL7V27Field person'sLocation;
+internal HL7V27Field personsLocation;
 
-public HL7V27Field Person'sLocation
+public HL7V27Field PersonsLocation
 {
     get
     {
-        if (person'sLocation != null)
+        if (personsLocation != null)
         {
-            return person'sLocation;
+            return personsLocation;
         }
 
-        person'sLocation = new HL7V27Field
+        personsLocation = new HL7V27Field
         {
             field = message[@"ROL"][13],
             Id = @"ROL.13",
@@ -11566,17 +11566,17 @@ If ROL-11 is populated with an Address Type of S (Service Location) and ROL-13 i
         };
 
         // check for repetitions
-        if (person'sLocation.field.FieldRepetitions != null && person'sLocation.field.FieldRepetitions.Count > 0)
+        if (personsLocation.field.FieldRepetitions != null && personsLocation.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(person'sLocation.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(personsLocation.Id));
             var fieldRepetitions = new List<HL7V27FieldRepetition>();
 
-            for (var i = 0; i < person'sLocation.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < personsLocation.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V27FieldRepetition
                 {
-                    fieldRepetition = person'sLocation.field.FieldRepetitions[i],
+                    fieldRepetition = personsLocation.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11598,12 +11598,12 @@ If ROL-11 is populated with an Address Type of S (Service Location) and ROL-13 i
                     var components = new List<HL7V27Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < person'sLocation.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < personsLocation.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V27Component
                         {
-                            component = person'sLocation.field.FieldRepetitions[i].Components[j],
+                            component = personsLocation.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11624,12 +11624,12 @@ If ROL-11 is populated with an Address Type of S (Service Location) and ROL-13 i
                         {
                             var subComponents = new List<HL7V27SubComponent>();
 
-                            for (var k = 0; k < person'sLocation.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < personsLocation.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V27SubComponent
                                 {
-                                    subComponent = person'sLocation.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = personsLocation.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11660,10 +11660,10 @@ If ROL-11 is populated with an Address Type of S (Service Location) and ROL-13 i
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            person'sLocation.fieldRepetitions = fieldRepetitions;
+            personsLocation.fieldRepetitions = fieldRepetitions;
         }
 
-        return person'sLocation;
+        return personsLocation;
     } 
 }
 

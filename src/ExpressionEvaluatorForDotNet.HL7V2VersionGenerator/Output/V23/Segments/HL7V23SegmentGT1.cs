@@ -10755,18 +10755,18 @@ public HL7V23Field EthnicGroup
     } 
 }
 
-internal HL7V23Field contactPerson'sName;
+internal HL7V23Field contactPersonsName;
 
-public HL7V23Field ContactPerson'sName
+public HL7V23Field ContactPersonsName
 {
     get
     {
-        if (contactPerson'sName != null)
+        if (contactPersonsName != null)
         {
-            return contactPerson'sName;
+            return contactPersonsName;
         }
 
-        contactPerson'sName = new HL7V23Field
+        contactPersonsName = new HL7V23Field
         {
             field = message[@"GT1"][45],
             Id = @"GT1.45",
@@ -10787,17 +10787,17 @@ This is a repeating field that allows for multiple names for the same person.  T
         };
 
         // check for repetitions
-        if (contactPerson'sName.field.FieldRepetitions != null && contactPerson'sName.field.FieldRepetitions.Count > 0)
+        if (contactPersonsName.field.FieldRepetitions != null && contactPersonsName.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPerson'sName.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsName.Id));
             var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-            for (var i = 0; i < contactPerson'sName.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < contactPersonsName.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V23FieldRepetition
                 {
-                    fieldRepetition = contactPerson'sName.field.FieldRepetitions[i],
+                    fieldRepetition = contactPersonsName.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -10819,12 +10819,12 @@ This is a repeating field that allows for multiple names for the same person.  T
                     var components = new List<HL7V23Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < contactPerson'sName.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < contactPersonsName.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V23Component
                         {
-                            component = contactPerson'sName.field.FieldRepetitions[i].Components[j],
+                            component = contactPersonsName.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -10845,12 +10845,12 @@ This is a repeating field that allows for multiple names for the same person.  T
                         {
                             var subComponents = new List<HL7V23SubComponent>();
 
-                            for (var k = 0; k < contactPerson'sName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < contactPersonsName.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V23SubComponent
                                 {
-                                    subComponent = contactPerson'sName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = contactPersonsName.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -10881,10 +10881,10 @@ This is a repeating field that allows for multiple names for the same person.  T
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            contactPerson'sName.fieldRepetitions = fieldRepetitions;
+            contactPersonsName.fieldRepetitions = fieldRepetitions;
         }
 
-        return contactPerson'sName;
+        return contactPersonsName;
     } 
 }
 
@@ -11543,18 +11543,18 @@ public HL7V23Field JobCodeClass
     } 
 }
 
-internal HL7V23Field guarantorEmployer'sOrganizationName;
+internal HL7V23Field guarantorEmployersOrganizationName;
 
-public HL7V23Field GuarantorEmployer'sOrganizationName
+public HL7V23Field GuarantorEmployersOrganizationName
 {
     get
     {
-        if (guarantorEmployer'sOrganizationName != null)
+        if (guarantorEmployersOrganizationName != null)
         {
-            return guarantorEmployer'sOrganizationName;
+            return guarantorEmployersOrganizationName;
         }
 
-        guarantorEmployer'sOrganizationName = new HL7V23Field
+        guarantorEmployersOrganizationName = new HL7V23Field
         {
             field = message[@"GT1"][51],
             Id = @"GT1.51",
@@ -11573,17 +11573,17 @@ public HL7V23Field GuarantorEmployer'sOrganizationName
         };
 
         // check for repetitions
-        if (guarantorEmployer'sOrganizationName.field.FieldRepetitions != null && guarantorEmployer'sOrganizationName.field.FieldRepetitions.Count > 0)
+        if (guarantorEmployersOrganizationName.field.FieldRepetitions != null && guarantorEmployersOrganizationName.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployer'sOrganizationName.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployersOrganizationName.Id));
             var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-            for (var i = 0; i < guarantorEmployer'sOrganizationName.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < guarantorEmployersOrganizationName.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V23FieldRepetition
                 {
-                    fieldRepetition = guarantorEmployer'sOrganizationName.field.FieldRepetitions[i],
+                    fieldRepetition = guarantorEmployersOrganizationName.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -11605,12 +11605,12 @@ public HL7V23Field GuarantorEmployer'sOrganizationName
                     var components = new List<HL7V23Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < guarantorEmployer'sOrganizationName.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < guarantorEmployersOrganizationName.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V23Component
                         {
-                            component = guarantorEmployer'sOrganizationName.field.FieldRepetitions[i].Components[j],
+                            component = guarantorEmployersOrganizationName.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -11631,12 +11631,12 @@ public HL7V23Field GuarantorEmployer'sOrganizationName
                         {
                             var subComponents = new List<HL7V23SubComponent>();
 
-                            for (var k = 0; k < guarantorEmployer'sOrganizationName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < guarantorEmployersOrganizationName.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V23SubComponent
                                 {
-                                    subComponent = guarantorEmployer'sOrganizationName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = guarantorEmployersOrganizationName.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -11667,10 +11667,10 @@ public HL7V23Field GuarantorEmployer'sOrganizationName
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            guarantorEmployer'sOrganizationName.fieldRepetitions = fieldRepetitions;
+            guarantorEmployersOrganizationName.fieldRepetitions = fieldRepetitions;
         }
 
-        return guarantorEmployer'sOrganizationName;
+        return guarantorEmployersOrganizationName;
     } 
 }
 

@@ -7732,18 +7732,18 @@ public HL7V251Field AdditionalInsuredonAuto
     } 
 }
 
-internal HL7V251Field driver'sLicenseNumberStaff;
+internal HL7V251Field driversLicenseNumberStaff;
 
-public HL7V251Field Driver'sLicenseNumberStaff
+public HL7V251Field DriversLicenseNumberStaff
 {
     get
     {
-        if (driver'sLicenseNumberStaff != null)
+        if (driversLicenseNumberStaff != null)
         {
-            return driver'sLicenseNumberStaff;
+            return driversLicenseNumberStaff;
         }
 
-        driver'sLicenseNumberStaff = new HL7V251Field
+        driversLicenseNumberStaff = new HL7V251Field
         {
             field = message[@"STF"][22],
             Id = @"STF.22",
@@ -7762,17 +7762,17 @@ public HL7V251Field Driver'sLicenseNumberStaff
         };
 
         // check for repetitions
-        if (driver'sLicenseNumberStaff.field.FieldRepetitions != null && driver'sLicenseNumberStaff.field.FieldRepetitions.Count > 0)
+        if (driversLicenseNumberStaff.field.FieldRepetitions != null && driversLicenseNumberStaff.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(driver'sLicenseNumberStaff.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(driversLicenseNumberStaff.Id));
             var fieldRepetitions = new List<HL7V251FieldRepetition>();
 
-            for (var i = 0; i < driver'sLicenseNumberStaff.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < driversLicenseNumberStaff.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V251FieldRepetition
                 {
-                    fieldRepetition = driver'sLicenseNumberStaff.field.FieldRepetitions[i],
+                    fieldRepetition = driversLicenseNumberStaff.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -7794,12 +7794,12 @@ public HL7V251Field Driver'sLicenseNumberStaff
                     var components = new List<HL7V251Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < driver'sLicenseNumberStaff.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < driversLicenseNumberStaff.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V251Component
                         {
-                            component = driver'sLicenseNumberStaff.field.FieldRepetitions[i].Components[j],
+                            component = driversLicenseNumberStaff.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -7820,12 +7820,12 @@ public HL7V251Field Driver'sLicenseNumberStaff
                         {
                             var subComponents = new List<HL7V251SubComponent>();
 
-                            for (var k = 0; k < driver'sLicenseNumberStaff.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < driversLicenseNumberStaff.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V251SubComponent
                                 {
-                                    subComponent = driver'sLicenseNumberStaff.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = driversLicenseNumberStaff.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -7856,10 +7856,10 @@ public HL7V251Field Driver'sLicenseNumberStaff
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            driver'sLicenseNumberStaff.fieldRepetitions = fieldRepetitions;
+            driversLicenseNumberStaff.fieldRepetitions = fieldRepetitions;
         }
 
-        return driver'sLicenseNumberStaff;
+        return driversLicenseNumberStaff;
     } 
 }
 

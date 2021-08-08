@@ -6790,18 +6790,18 @@ public HL7V26Field PrimaryObserverTelephone
     } 
 }
 
-internal HL7V26Field primaryObserver'sQualification;
+internal HL7V26Field primaryObserversQualification;
 
-public HL7V26Field PrimaryObserver'sQualification
+public HL7V26Field PrimaryObserversQualification
 {
     get
     {
-        if (primaryObserver'sQualification != null)
+        if (primaryObserversQualification != null)
         {
-            return primaryObserver'sQualification;
+            return primaryObserversQualification;
         }
 
-        primaryObserver'sQualification = new HL7V26Field
+        primaryObserversQualification = new HL7V26Field
         {
             field = message[@"PEO"][22],
             Id = @"PEO.22",
@@ -6820,17 +6820,17 @@ public HL7V26Field PrimaryObserver'sQualification
         };
 
         // check for repetitions
-        if (primaryObserver'sQualification.field.FieldRepetitions != null && primaryObserver'sQualification.field.FieldRepetitions.Count > 0)
+        if (primaryObserversQualification.field.FieldRepetitions != null && primaryObserversQualification.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserver'sQualification.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserversQualification.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < primaryObserver'sQualification.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < primaryObserversQualification.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = primaryObserver'sQualification.field.FieldRepetitions[i],
+                    fieldRepetition = primaryObserversQualification.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -6852,12 +6852,12 @@ public HL7V26Field PrimaryObserver'sQualification
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < primaryObserver'sQualification.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < primaryObserversQualification.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = primaryObserver'sQualification.field.FieldRepetitions[i].Components[j],
+                            component = primaryObserversQualification.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -6878,12 +6878,12 @@ public HL7V26Field PrimaryObserver'sQualification
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < primaryObserver'sQualification.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < primaryObserversQualification.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = primaryObserver'sQualification.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = primaryObserversQualification.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -6914,10 +6914,10 @@ public HL7V26Field PrimaryObserver'sQualification
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            primaryObserver'sQualification.fieldRepetitions = fieldRepetitions;
+            primaryObserversQualification.fieldRepetitions = fieldRepetitions;
         }
 
-        return primaryObserver'sQualification;
+        return primaryObserversQualification;
     } 
 }
 
@@ -7183,18 +7183,18 @@ public HL7V26Field PrimaryObserverAwareDateTime
     } 
 }
 
-internal HL7V26Field primaryObserver'sIdentityMayBeDivulged;
+internal HL7V26Field primaryObserversIdentityMayBeDivulged;
 
-public HL7V26Field PrimaryObserver'sIdentityMayBeDivulged
+public HL7V26Field PrimaryObserversIdentityMayBeDivulged
 {
     get
     {
-        if (primaryObserver'sIdentityMayBeDivulged != null)
+        if (primaryObserversIdentityMayBeDivulged != null)
         {
-            return primaryObserver'sIdentityMayBeDivulged;
+            return primaryObserversIdentityMayBeDivulged;
         }
 
-        primaryObserver'sIdentityMayBeDivulged = new HL7V26Field
+        primaryObserversIdentityMayBeDivulged = new HL7V26Field
         {
             field = message[@"PEO"][25],
             Id = @"PEO.25",
@@ -7213,17 +7213,17 @@ public HL7V26Field PrimaryObserver'sIdentityMayBeDivulged
         };
 
         // check for repetitions
-        if (primaryObserver'sIdentityMayBeDivulged.field.FieldRepetitions != null && primaryObserver'sIdentityMayBeDivulged.field.FieldRepetitions.Count > 0)
+        if (primaryObserversIdentityMayBeDivulged.field.FieldRepetitions != null && primaryObserversIdentityMayBeDivulged.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserver'sIdentityMayBeDivulged.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserversIdentityMayBeDivulged.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < primaryObserver'sIdentityMayBeDivulged.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < primaryObserversIdentityMayBeDivulged.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = primaryObserver'sIdentityMayBeDivulged.field.FieldRepetitions[i],
+                    fieldRepetition = primaryObserversIdentityMayBeDivulged.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -7245,12 +7245,12 @@ public HL7V26Field PrimaryObserver'sIdentityMayBeDivulged
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < primaryObserver'sIdentityMayBeDivulged.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < primaryObserversIdentityMayBeDivulged.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = primaryObserver'sIdentityMayBeDivulged.field.FieldRepetitions[i].Components[j],
+                            component = primaryObserversIdentityMayBeDivulged.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -7271,12 +7271,12 @@ public HL7V26Field PrimaryObserver'sIdentityMayBeDivulged
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < primaryObserver'sIdentityMayBeDivulged.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < primaryObserversIdentityMayBeDivulged.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = primaryObserver'sIdentityMayBeDivulged.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = primaryObserversIdentityMayBeDivulged.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -7307,10 +7307,10 @@ public HL7V26Field PrimaryObserver'sIdentityMayBeDivulged
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            primaryObserver'sIdentityMayBeDivulged.fieldRepetitions = fieldRepetitions;
+            primaryObserversIdentityMayBeDivulged.fieldRepetitions = fieldRepetitions;
         }
 
-        return primaryObserver'sIdentityMayBeDivulged;
+        return primaryObserversIdentityMayBeDivulged;
     } 
 }
 

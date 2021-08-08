@@ -3462,18 +3462,18 @@ public HL7V21Field DeaClass
     } 
 }
 
-internal HL7V21Field orderingMd'sDeaNumber;
+internal HL7V21Field orderingMdsDeaNumber;
 
-public HL7V21Field OrderingMd'sDeaNumber
+public HL7V21Field OrderingMdsDeaNumber
 {
     get
     {
-        if (orderingMd'sDeaNumber != null)
+        if (orderingMdsDeaNumber != null)
         {
-            return orderingMd'sDeaNumber;
+            return orderingMdsDeaNumber;
         }
 
-        orderingMd'sDeaNumber = new HL7V21Field
+        orderingMdsDeaNumber = new HL7V21Field
         {
             field = message[@"RX1"][23],
             Id = @"RX1.23",
@@ -3492,17 +3492,17 @@ public HL7V21Field OrderingMd'sDeaNumber
         };
 
         // check for repetitions
-        if (orderingMd'sDeaNumber.field.FieldRepetitions != null && orderingMd'sDeaNumber.field.FieldRepetitions.Count > 0)
+        if (orderingMdsDeaNumber.field.FieldRepetitions != null && orderingMdsDeaNumber.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderingMd'sDeaNumber.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(orderingMdsDeaNumber.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < orderingMd'sDeaNumber.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < orderingMdsDeaNumber.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = orderingMd'sDeaNumber.field.FieldRepetitions[i],
+                    fieldRepetition = orderingMdsDeaNumber.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3524,12 +3524,12 @@ public HL7V21Field OrderingMd'sDeaNumber
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < orderingMd'sDeaNumber.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < orderingMdsDeaNumber.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = orderingMd'sDeaNumber.field.FieldRepetitions[i].Components[j],
+                            component = orderingMdsDeaNumber.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3550,12 +3550,12 @@ public HL7V21Field OrderingMd'sDeaNumber
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < orderingMd'sDeaNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < orderingMdsDeaNumber.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = orderingMd'sDeaNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = orderingMdsDeaNumber.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3586,10 +3586,10 @@ public HL7V21Field OrderingMd'sDeaNumber
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            orderingMd'sDeaNumber.fieldRepetitions = fieldRepetitions;
+            orderingMdsDeaNumber.fieldRepetitions = fieldRepetitions;
         }
 
-        return orderingMd'sDeaNumber;
+        return orderingMdsDeaNumber;
     } 
 }
 
@@ -4379,18 +4379,18 @@ public HL7V21Field PatientInstructions
     } 
 }
 
-internal HL7V21Field instructions(sig);
+internal HL7V21Field instructionssig;
 
-public HL7V21Field Instructions(sig)
+public HL7V21Field Instructionssig
 {
     get
     {
-        if (instructions(sig) != null)
+        if (instructionssig != null)
         {
-            return instructions(sig);
+            return instructionssig;
         }
 
-        instructions(sig) = new HL7V21Field
+        instructionssig = new HL7V21Field
         {
             field = message[@"RX1"][30],
             Id = @"RX1.30",
@@ -4409,17 +4409,17 @@ public HL7V21Field Instructions(sig)
         };
 
         // check for repetitions
-        if (instructions(sig).field.FieldRepetitions != null && instructions(sig).field.FieldRepetitions.Count > 0)
+        if (instructionssig.field.FieldRepetitions != null && instructionssig.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(instructions(sig).Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(instructionssig.Id));
             var fieldRepetitions = new List<HL7V21FieldRepetition>();
 
-            for (var i = 0; i < instructions(sig).field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < instructionssig.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V21FieldRepetition
                 {
-                    fieldRepetition = instructions(sig).field.FieldRepetitions[i],
+                    fieldRepetition = instructionssig.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -4441,12 +4441,12 @@ public HL7V21Field Instructions(sig)
                     var components = new List<HL7V21Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < instructions(sig).field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < instructionssig.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V21Component
                         {
-                            component = instructions(sig).field.FieldRepetitions[i].Components[j],
+                            component = instructionssig.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -4467,12 +4467,12 @@ public HL7V21Field Instructions(sig)
                         {
                             var subComponents = new List<HL7V21SubComponent>();
 
-                            for (var k = 0; k < instructions(sig).field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < instructionssig.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V21SubComponent
                                 {
-                                    subComponent = instructions(sig).field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = instructionssig.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -4503,10 +4503,10 @@ public HL7V21Field Instructions(sig)
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            instructions(sig).fieldRepetitions = fieldRepetitions;
+            instructionssig.fieldRepetitions = fieldRepetitions;
         }
 
-        return instructions(sig);
+        return instructionssig;
     } 
 }
 
