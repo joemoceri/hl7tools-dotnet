@@ -31,6 +31,6 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
         public bool IsGroup { get; set; }
 
         [JsonProperty("segments")]
-        public IList<TriggerEventSegmentResponse> Segments { get; set; }
+        public IList<TriggerEventSegmentResponse> Segments { get; set; } 
     }
 }
