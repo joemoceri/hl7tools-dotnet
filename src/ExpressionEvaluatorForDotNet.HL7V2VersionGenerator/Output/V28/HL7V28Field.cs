@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
@@ -35,5 +36,28 @@ namespace ExpressionEvaluatorForDotNet
         public string Sample { get; init; }
 
         public string Value { get { return field?.Value; } }
+
+        public HL7V2ValidationResult Validate()
+        {
+            var issues = new Dictionary<string, string>();
+            var result = true;
+            Exception error = null;
+
+            try
+            {
+
+            }
+            catch(Exception e)
+            {
+                error = e;
+            }
+
+            return new HL7V2ValidationResult
+            {
+                Issues = issues,
+                Error = error,
+                Result = result
+            };
+        }
     }
 }

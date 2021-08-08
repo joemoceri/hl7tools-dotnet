@@ -28,13 +28,13 @@ namespace ExpressionEvaluatorForDotNet
 
         public string Sample { get { return @""; } }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
+        public IList<HL7V2FieldData> Fields
+        {
+            get
             {
                 return new[]
-                        {
-                            new HL7V2FieldData
+                {
+                        new HL7V2FieldData
                         {
                             Id = @"XPN.1",
                             Type = @"DataTypeComponent",
@@ -55,7 +55,7 @@ Usage Note: If a person’s name has only one component, that name will be sent 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.2",
@@ -73,7 +73,7 @@ Usage Note: If a person’s name has only one component, that name will be sent 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.3",
@@ -91,7 +91,7 @@ Usage Note: If a person’s name has only one component, that name will be sent 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.4",
@@ -109,7 +109,7 @@ Usage Note: If a person’s name has only one component, that name will be sent 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.5",
@@ -127,7 +127,7 @@ Usage Note: If a person’s name has only one component, that name will be sent 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.6",
@@ -145,7 +145,7 @@ Usage Note: If a person’s name has only one component, that name will be sent 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.7",
@@ -165,7 +165,7 @@ Note: The content of Legal Name is country specific. In the US the legal name is
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.8",
@@ -188,7 +188,7 @@ In general this component provides an indication of the representation provided 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.9",
@@ -206,7 +206,7 @@ In general this component provides an indication of the representation provided 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.10",
@@ -224,7 +224,7 @@ In general this component provides an indication of the representation provided 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.11",
@@ -242,7 +242,7 @@ In general this component provides an indication of the representation provided 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.12",
@@ -260,7 +260,7 @@ In general this component provides an indication of the representation provided 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.13",
@@ -278,7 +278,7 @@ In general this component provides an indication of the representation provided 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.14",
@@ -296,7 +296,7 @@ In general this component provides an indication of the representation provided 
                             Sample = null,
                             FieldDatas = null
                         },
-                        
+
                         new HL7V2FieldData
                         {
                             Id = @"XPN.15",
