@@ -976,18 +976,18 @@ public HL7V23Field PreferredCodingSystem
     } 
 }
 
-internal HL7V23Field validCoded"Answers";
+internal HL7V23Field validCodedAnswers;
 
-public HL7V23Field ValidCoded"Answers"
+public HL7V23Field ValidCodedAnswers
 {
     get
     {
-        if (validCoded"Answers" != null)
+        if (validCodedAnswers != null)
         {
-            return validCoded"Answers";
+            return validCodedAnswers;
         }
 
-        validCoded"Answers" = new HL7V23Field
+        validCodedAnswers = new HL7V23Field
         {
             field = message[@"OM3"][3],
             Id = @"OM3.3",
@@ -1006,17 +1006,17 @@ public HL7V23Field ValidCoded"Answers"
         };
 
         // check for repetitions
-        if (validCoded"Answers".field.FieldRepetitions != null && validCoded"Answers".field.FieldRepetitions.Count > 0)
+        if (validCodedAnswers.field.FieldRepetitions != null && validCodedAnswers.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(validCoded"Answers".Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(validCodedAnswers.Id));
             var fieldRepetitions = new List<HL7V23FieldRepetition>();
 
-            for (var i = 0; i < validCoded"Answers".field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < validCodedAnswers.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V23FieldRepetition
                 {
-                    fieldRepetition = validCoded"Answers".field.FieldRepetitions[i],
+                    fieldRepetition = validCodedAnswers.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1038,12 +1038,12 @@ public HL7V23Field ValidCoded"Answers"
                     var components = new List<HL7V23Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < validCoded"Answers".field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < validCodedAnswers.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V23Component
                         {
-                            component = validCoded"Answers".field.FieldRepetitions[i].Components[j],
+                            component = validCodedAnswers.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1064,12 +1064,12 @@ public HL7V23Field ValidCoded"Answers"
                         {
                             var subComponents = new List<HL7V23SubComponent>();
 
-                            for (var k = 0; k < validCoded"Answers".field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < validCodedAnswers.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V23SubComponent
                                 {
-                                    subComponent = validCoded"Answers".field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = validCodedAnswers.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1100,10 +1100,10 @@ public HL7V23Field ValidCoded"Answers"
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            validCoded"Answers".fieldRepetitions = fieldRepetitions;
+            validCodedAnswers.fieldRepetitions = fieldRepetitions;
         }
 
-        return validCoded"Answers";
+        return validCodedAnswers;
     } 
 }
 

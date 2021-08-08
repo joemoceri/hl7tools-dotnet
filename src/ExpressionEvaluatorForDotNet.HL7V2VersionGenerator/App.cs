@@ -555,7 +555,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             string ConvertToPropertyString(string input)
             {
-                var chars = new[] { " ", "-", "–", "/", "&", ".", "'", "(", ")", "," };
+                var chars = new[] { " ", "-", "–", "/", "&", ".", "'", "(", ")", ",", "\"" };
 
                 foreach (var ch in chars)
                 {

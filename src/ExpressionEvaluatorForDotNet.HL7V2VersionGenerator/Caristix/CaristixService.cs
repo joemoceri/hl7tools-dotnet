@@ -103,16 +103,23 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                 for (var j = 0; j < segmentIds.Count(); j++)
                 {
+                    // not a group
                     if (segmentIds[j] != null)
                     {
                         triggerEvent.Segments.Add(GetSegment(version, segmentIds[j]));
                     }
+                    // is a group, need to get their groups
                     else
                     {
-                        for (var k = 0; k < triggerEvent.TriggerEventSegments[j].Segments.Count; k++)
-                        {
-                            //triggerEvent.Segments.Add(GetSegment(triggerEvent.TriggerEventSegments[j].Segments[k].Id));
-                        }
+                        //TriggerEventSegmentResponse segment = null;
+
+                        //var k = 0;
+                        //segment = triggerEvent.TriggerEventSegments[j].Segments[k];
+                        
+                        //while (segment != null)
+                        //{
+                        //    triggerEvent.Segments.Add(GetSegment(version, segment.Id));
+                        //}
                     }
                 }
 
