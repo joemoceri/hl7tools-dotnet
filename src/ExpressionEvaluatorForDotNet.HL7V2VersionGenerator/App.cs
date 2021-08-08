@@ -11,7 +11,6 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
         {
             var caristixService = new CaristixService(true);
 
-            // TODO: Pull data from caristix api, create folders, create .cs files for everything
             var basePath = Directory.GetParent(Environment.NewLine).Parent.Parent.Parent.FullName;
             var versionsBasePath = Path.Combine(basePath, "Output");
 
@@ -24,74 +23,95 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             foreach (var version in versions)
             {
-                var v = version.Replace(".", string.Empty);
-
                 //CreateTestData(version);
 
                 // tables
-                //var tables = caristixService.GetTables(version);
+                CreateTables(version);
 
-                //foreach (var table in tables)
-                //{
-                //    var v = version.Replace(".", string.Empty);
-                //    var tableTokens = GetTableTokens(v, table);
-                //    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Table.template.cs.txt"));
+                // data types
+                CreateDataTypes(version);
 
-                //    foreach (var token in tableTokens)
-                //    {
-                //        template = template.Replace(token.Key, token.Value);
-                //    }
+                // fields
+                CreateFields(version);
 
-                //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Tables", $"HL7V{v}Table{table.Id}.cs"), template);
-                //}
+                // field repetitions
+                CreateFieldRepetitions(version);
 
-                //// data types
-                //var dataTypes = caristixService.GetDataTypes(version);
+                // components
+                CreateComponents(version);
 
-                //foreach (var dataType in dataTypes)
-                //{
-                //    var v = version.Replace(".", string.Empty);
-                //    var dataTypeTokens = GetDataTypeTokens(v, dataType);
-                //    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2DataType.template.cs.txt"));
-
-                //    foreach (var token in dataTypeTokens)
-                //    {
-                //        template = template.Replace(token.Key, token.Value);
-                //    }
-
-                //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "DataTypes", $"HL7V{v}DataType{dataType.Id}.cs"), template);
-                //}
-
-
-                //// fields
-                //var fieldTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Field.template.cs.txt"));
-
-                //fieldTemplate = fieldTemplate.Replace("[{-VERSION-}]", v);
-
-                //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Field.cs"), fieldTemplate);
-
-                //// field repetitions
-                //var fieldRepetitionTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2FieldRepetition.template.cs.txt"));
-
-                //fieldRepetitionTemplate = fieldRepetitionTemplate.Replace("[{-VERSION-}]", v);
-
-                //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}FieldRepetition.cs"), fieldRepetitionTemplate);
-
-                //// components
-                //var componentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Component.template.cs.txt"));
-
-                //componentTemplate = componentTemplate.Replace("[{-VERSION-}]", v);
-
-                //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Component.cs"), componentTemplate);
-
-                //// sub components
-                //var subComponentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2SubComponent.template.cs.txt"));
-
-                //subComponentTemplate = subComponentTemplate.Replace("[{-VERSION-}]", v);
-
-                //File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}SubComponent.cs"), subComponentTemplate);
+                // sub components
+                CreateSubComponents(version);
 
                 // segments
+                CreateSegments(version);
+
+                // trigger events
+                CreateTriggerEvents(version);
+            }
+
+            void CreateFields(string version)
+            {
+                var v = version.Replace(".", string.Empty);
+                var fieldTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Field.template.cs.txt"));
+
+                fieldTemplate = fieldTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Field.cs"), fieldTemplate);
+            }
+
+            void CreateFieldRepetitions(string version)
+            {
+                var v = version.Replace(".", string.Empty);
+                var fieldRepetitionTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2FieldRepetition.template.cs.txt"));
+
+                fieldRepetitionTemplate = fieldRepetitionTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}FieldRepetition.cs"), fieldRepetitionTemplate);
+            }
+
+            void CreateComponents(string version)
+            {
+                var v = version.Replace(".", string.Empty);
+                var componentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Component.template.cs.txt"));
+
+                componentTemplate = componentTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}Component.cs"), componentTemplate);
+            }
+
+            void CreateSubComponents(string version)
+            {
+                var v = version.Replace(".", string.Empty);
+                var subComponentTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2SubComponent.template.cs.txt"));
+
+                subComponentTemplate = subComponentTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}SubComponent.cs"), subComponentTemplate);
+            }
+
+            void CreateTriggerEvents(string version)
+            {
+                var v = version.Replace(".", string.Empty);
+                var triggerEvents = caristixService.GetTriggerEvents(version);
+
+                foreach (var triggerEvent in triggerEvents)
+                {
+                    var triggerEventTokens = GetTriggerEventTokens(v, triggerEvent);
+                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2TriggerEvent.template.cs.txt"));
+
+                    foreach (var token in triggerEventTokens)
+                    {
+                        template = template.Replace(token.Key, token.Value);
+                    }
+
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "TriggerEvents", $"HL7V{v}TriggerEvent{triggerEvent.Id}.cs"), template);
+                }
+            }
+
+            void CreateSegments(string version)
+            {
+                var v = version.Replace(".", string.Empty);
                 var segments = caristixService.GetSegments(version);
 
                 foreach (var segment in segments)
@@ -106,22 +126,45 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                     File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Segments", $"HL7V{v}Segment{segment.Id}.cs"), template);
                 }
+            }
 
-                //// trigger events
-                //var triggerEvents = caristixService.GetTriggerEvents(version);
+            void CreateDataTypes(string version)
+            {
+                var v = version.Replace(".", string.Empty);
 
-                //foreach (var triggerEvent in triggerEvents)
-                //{
-                //    var triggerEventTokens = GetTriggerEventTokens(v, triggerEvent);
-                //    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2TriggerEvent.template.cs.txt"));
+                var dataTypes = caristixService.GetDataTypes(version);
 
-                //    foreach (var token in triggerEventTokens)
-                //    {
-                //        template = template.Replace(token.Key, token.Value);
-                //    }
+                foreach (var dataType in dataTypes)
+                {
+                    var dataTypeTokens = GetDataTypeTokens(v, dataType);
+                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2DataType.template.cs.txt"));
 
-                //    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "TriggerEvents", $"HL7V{v}TriggerEvent{triggerEvent.Id}.cs"), template);
-                //}
+                    foreach (var token in dataTypeTokens)
+                    {
+                        template = template.Replace(token.Key, token.Value);
+                    }
+
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "DataTypes", $"HL7V{v}DataType{dataType.Id}.cs"), template);
+                }
+            }
+
+            void CreateTables(string version)
+            {
+                var v = version.Replace(".", string.Empty);
+                var tables = caristixService.GetTables(version);
+
+                foreach (var table in tables)
+                {
+                    var tableTokens = GetTableTokens(v, table);
+                    var template = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2Table.template.cs.txt"));
+
+                    foreach (var token in tableTokens)
+                    {
+                        template = template.Replace(token.Key, token.Value);
+                    }
+
+                    File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", "Tables", $"HL7V{v}Table{table.Id}.cs"), template);
+                }
             }
 
             Dictionary<string, string> GetTriggerEventTokens(string version, TriggerEventResponse triggerEvent)

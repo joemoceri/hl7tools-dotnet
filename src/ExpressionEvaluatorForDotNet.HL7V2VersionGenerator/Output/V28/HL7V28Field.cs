@@ -45,11 +45,20 @@ namespace ExpressionEvaluatorForDotNet
 
             try
             {
+                // TODO: Fill out
+                if (Usage.Equals("O"))
+                {
 
+                }
+                else if (Usage.Equals("R"))
+                {
+
+                }
             }
             catch(Exception e)
             {
                 error = e;
+                result = false;
             }
 
             return new HL7V2ValidationResult
