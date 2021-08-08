@@ -3566,18 +3566,18 @@ Value set version ID is required if CWE.21 is populated.",
         }
 
         
-internal HL7V271Field authorizingPayor,PlanId;
+internal HL7V271Field authorizingPayorPlanId;
 
-public HL7V271Field AuthorizingPayor,PlanId
+public HL7V271Field AuthorizingPayorPlanId
 {
     get
     {
-        if (authorizingPayor,PlanId != null)
+        if (authorizingPayorPlanId != null)
         {
-            return authorizingPayor,PlanId;
+            return authorizingPayorPlanId;
         }
 
-        authorizingPayor,PlanId = new HL7V271Field
+        authorizingPayorPlanId = new HL7V271Field
         {
             field = message[@"AUT"][1],
             Id = @"AUT.1",
@@ -3596,17 +3596,17 @@ public HL7V271Field AuthorizingPayor,PlanId
         };
 
         // check for repetitions
-        if (authorizingPayor,PlanId.field.FieldRepetitions != null && authorizingPayor,PlanId.field.FieldRepetitions.Count > 0)
+        if (authorizingPayorPlanId.field.FieldRepetitions != null && authorizingPayorPlanId.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayor,PlanId.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayorPlanId.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < authorizingPayor,PlanId.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < authorizingPayorPlanId.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = authorizingPayor,PlanId.field.FieldRepetitions[i],
+                    fieldRepetition = authorizingPayorPlanId.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3628,12 +3628,12 @@ public HL7V271Field AuthorizingPayor,PlanId
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < authorizingPayor,PlanId.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < authorizingPayorPlanId.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = authorizingPayor,PlanId.field.FieldRepetitions[i].Components[j],
+                            component = authorizingPayorPlanId.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3654,12 +3654,12 @@ public HL7V271Field AuthorizingPayor,PlanId
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < authorizingPayor,PlanId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < authorizingPayorPlanId.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = authorizingPayor,PlanId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = authorizingPayorPlanId.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3690,25 +3690,25 @@ public HL7V271Field AuthorizingPayor,PlanId
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            authorizingPayor,PlanId.fieldRepetitions = fieldRepetitions;
+            authorizingPayorPlanId.fieldRepetitions = fieldRepetitions;
         }
 
-        return authorizingPayor,PlanId;
+        return authorizingPayorPlanId;
     } 
 }
 
-internal HL7V271Field authorizingPayor,CompanyId;
+internal HL7V271Field authorizingPayorCompanyId;
 
-public HL7V271Field AuthorizingPayor,CompanyId
+public HL7V271Field AuthorizingPayorCompanyId
 {
     get
     {
-        if (authorizingPayor,CompanyId != null)
+        if (authorizingPayorCompanyId != null)
         {
-            return authorizingPayor,CompanyId;
+            return authorizingPayorCompanyId;
         }
 
-        authorizingPayor,CompanyId = new HL7V271Field
+        authorizingPayorCompanyId = new HL7V271Field
         {
             field = message[@"AUT"][2],
             Id = @"AUT.2",
@@ -3727,17 +3727,17 @@ public HL7V271Field AuthorizingPayor,CompanyId
         };
 
         // check for repetitions
-        if (authorizingPayor,CompanyId.field.FieldRepetitions != null && authorizingPayor,CompanyId.field.FieldRepetitions.Count > 0)
+        if (authorizingPayorCompanyId.field.FieldRepetitions != null && authorizingPayorCompanyId.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayor,CompanyId.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayorCompanyId.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < authorizingPayor,CompanyId.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < authorizingPayorCompanyId.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = authorizingPayor,CompanyId.field.FieldRepetitions[i],
+                    fieldRepetition = authorizingPayorCompanyId.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3759,12 +3759,12 @@ public HL7V271Field AuthorizingPayor,CompanyId
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < authorizingPayor,CompanyId.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < authorizingPayorCompanyId.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = authorizingPayor,CompanyId.field.FieldRepetitions[i].Components[j],
+                            component = authorizingPayorCompanyId.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3785,12 +3785,12 @@ public HL7V271Field AuthorizingPayor,CompanyId
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < authorizingPayor,CompanyId.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < authorizingPayorCompanyId.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = authorizingPayor,CompanyId.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = authorizingPayorCompanyId.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3821,25 +3821,25 @@ public HL7V271Field AuthorizingPayor,CompanyId
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            authorizingPayor,CompanyId.fieldRepetitions = fieldRepetitions;
+            authorizingPayorCompanyId.fieldRepetitions = fieldRepetitions;
         }
 
-        return authorizingPayor,CompanyId;
+        return authorizingPayorCompanyId;
     } 
 }
 
-internal HL7V271Field authorizingPayor,CompanyName;
+internal HL7V271Field authorizingPayorCompanyName;
 
-public HL7V271Field AuthorizingPayor,CompanyName
+public HL7V271Field AuthorizingPayorCompanyName
 {
     get
     {
-        if (authorizingPayor,CompanyName != null)
+        if (authorizingPayorCompanyName != null)
         {
-            return authorizingPayor,CompanyName;
+            return authorizingPayorCompanyName;
         }
 
-        authorizingPayor,CompanyName = new HL7V271Field
+        authorizingPayorCompanyName = new HL7V271Field
         {
             field = message[@"AUT"][3],
             Id = @"AUT.3",
@@ -3858,17 +3858,17 @@ public HL7V271Field AuthorizingPayor,CompanyName
         };
 
         // check for repetitions
-        if (authorizingPayor,CompanyName.field.FieldRepetitions != null && authorizingPayor,CompanyName.field.FieldRepetitions.Count > 0)
+        if (authorizingPayorCompanyName.field.FieldRepetitions != null && authorizingPayorCompanyName.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayor,CompanyName.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayorCompanyName.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < authorizingPayor,CompanyName.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < authorizingPayorCompanyName.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = authorizingPayor,CompanyName.field.FieldRepetitions[i],
+                    fieldRepetition = authorizingPayorCompanyName.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3890,12 +3890,12 @@ public HL7V271Field AuthorizingPayor,CompanyName
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < authorizingPayor,CompanyName.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < authorizingPayorCompanyName.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = authorizingPayor,CompanyName.field.FieldRepetitions[i].Components[j],
+                            component = authorizingPayorCompanyName.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3916,12 +3916,12 @@ public HL7V271Field AuthorizingPayor,CompanyName
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < authorizingPayor,CompanyName.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < authorizingPayorCompanyName.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = authorizingPayor,CompanyName.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = authorizingPayorCompanyName.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3952,10 +3952,10 @@ public HL7V271Field AuthorizingPayor,CompanyName
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            authorizingPayor,CompanyName.fieldRepetitions = fieldRepetitions;
+            authorizingPayorCompanyName.fieldRepetitions = fieldRepetitions;
         }
 
-        return authorizingPayor,CompanyName;
+        return authorizingPayorCompanyName;
     } 
 }
 

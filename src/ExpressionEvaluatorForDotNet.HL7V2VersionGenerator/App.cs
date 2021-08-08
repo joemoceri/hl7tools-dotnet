@@ -23,7 +23,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             foreach (var version in versions)
             {
-                CreateTestData(version);
+                //CreateTestData(version);
 
                 //// tables
                 //CreateTables(version);
@@ -43,8 +43,8 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 //// sub components
                 //CreateSubComponents(version);
 
-                //// segments
-                //CreateSegments(version);
+                // segments
+                CreateSegments(version);
 
                 //// trigger events
                 //CreateTriggerEvents(version);
@@ -555,7 +555,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
             string ConvertToPropertyString(string input)
             {
-                var chars = new[] { " ", "-", "/", "&", ".", "'", "(", ")" };
+                var chars = new[] { " ", "-", "–", "/", "&", ".", "'", "(", ")", "," };
 
                 foreach (var ch in chars)
                 {

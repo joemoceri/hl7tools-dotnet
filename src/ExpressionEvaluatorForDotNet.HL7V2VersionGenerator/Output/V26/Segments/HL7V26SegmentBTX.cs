@@ -4239,18 +4239,18 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
         }
 
         
-internal HL7V26Field setID–BTX;
+internal HL7V26Field setIDBTX;
 
-public HL7V26Field SetID–BTX
+public HL7V26Field SetIDBTX
 {
     get
     {
-        if (setID–BTX != null)
+        if (setIDBTX != null)
         {
-            return setID–BTX;
+            return setIDBTX;
         }
 
-        setID–BTX = new HL7V26Field
+        setIDBTX = new HL7V26Field
         {
             field = message[@"BTX"][1],
             Id = @"BTX.1",
@@ -4269,17 +4269,17 @@ public HL7V26Field SetID–BTX
         };
 
         // check for repetitions
-        if (setID–BTX.field.FieldRepetitions != null && setID–BTX.field.FieldRepetitions.Count > 0)
+        if (setIDBTX.field.FieldRepetitions != null && setIDBTX.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setID–BTX.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(setIDBTX.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < setID–BTX.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < setIDBTX.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = setID–BTX.field.FieldRepetitions[i],
+                    fieldRepetition = setIDBTX.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -4301,12 +4301,12 @@ public HL7V26Field SetID–BTX
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < setID–BTX.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < setIDBTX.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = setID–BTX.field.FieldRepetitions[i].Components[j],
+                            component = setIDBTX.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -4327,12 +4327,12 @@ public HL7V26Field SetID–BTX
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < setID–BTX.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < setIDBTX.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = setID–BTX.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = setIDBTX.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -4363,10 +4363,10 @@ public HL7V26Field SetID–BTX
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            setID–BTX.fieldRepetitions = fieldRepetitions;
+            setIDBTX.fieldRepetitions = fieldRepetitions;
         }
 
-        return setID–BTX;
+        return setIDBTX;
     } 
 }
 

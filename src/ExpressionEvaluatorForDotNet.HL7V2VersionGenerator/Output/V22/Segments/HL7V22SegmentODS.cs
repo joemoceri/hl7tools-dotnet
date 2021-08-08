@@ -593,18 +593,18 @@ public HL7V22Field ServicePeriod
     } 
 }
 
-internal HL7V22Field diet,Supplement,OrPreferenceCode;
+internal HL7V22Field dietSupplementOrPreferenceCode;
 
-public HL7V22Field Diet,Supplement,OrPreferenceCode
+public HL7V22Field DietSupplementOrPreferenceCode
 {
     get
     {
-        if (diet,Supplement,OrPreferenceCode != null)
+        if (dietSupplementOrPreferenceCode != null)
         {
-            return diet,Supplement,OrPreferenceCode;
+            return dietSupplementOrPreferenceCode;
         }
 
-        diet,Supplement,OrPreferenceCode = new HL7V22Field
+        dietSupplementOrPreferenceCode = new HL7V22Field
         {
             field = message[@"ODS"][3],
             Id = @"ODS.3",
@@ -623,17 +623,17 @@ public HL7V22Field Diet,Supplement,OrPreferenceCode
         };
 
         // check for repetitions
-        if (diet,Supplement,OrPreferenceCode.field.FieldRepetitions != null && diet,Supplement,OrPreferenceCode.field.FieldRepetitions.Count > 0)
+        if (dietSupplementOrPreferenceCode.field.FieldRepetitions != null && dietSupplementOrPreferenceCode.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diet,Supplement,OrPreferenceCode.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(dietSupplementOrPreferenceCode.Id));
             var fieldRepetitions = new List<HL7V22FieldRepetition>();
 
-            for (var i = 0; i < diet,Supplement,OrPreferenceCode.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < dietSupplementOrPreferenceCode.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V22FieldRepetition
                 {
-                    fieldRepetition = diet,Supplement,OrPreferenceCode.field.FieldRepetitions[i],
+                    fieldRepetition = dietSupplementOrPreferenceCode.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -655,12 +655,12 @@ public HL7V22Field Diet,Supplement,OrPreferenceCode
                     var components = new List<HL7V22Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < diet,Supplement,OrPreferenceCode.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < dietSupplementOrPreferenceCode.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V22Component
                         {
-                            component = diet,Supplement,OrPreferenceCode.field.FieldRepetitions[i].Components[j],
+                            component = dietSupplementOrPreferenceCode.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -681,12 +681,12 @@ public HL7V22Field Diet,Supplement,OrPreferenceCode
                         {
                             var subComponents = new List<HL7V22SubComponent>();
 
-                            for (var k = 0; k < diet,Supplement,OrPreferenceCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < dietSupplementOrPreferenceCode.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V22SubComponent
                                 {
-                                    subComponent = diet,Supplement,OrPreferenceCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = dietSupplementOrPreferenceCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -717,10 +717,10 @@ public HL7V22Field Diet,Supplement,OrPreferenceCode
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            diet,Supplement,OrPreferenceCode.fieldRepetitions = fieldRepetitions;
+            dietSupplementOrPreferenceCode.fieldRepetitions = fieldRepetitions;
         }
 
-        return diet,Supplement,OrPreferenceCode;
+        return dietSupplementOrPreferenceCode;
     } 
 }
 

@@ -6088,18 +6088,18 @@ public HL7V231Field DocumentChangeReason
     } 
 }
 
-internal HL7V231Field authenticationPerson,TimeStamp;
+internal HL7V231Field authenticationPersonTimeStamp;
 
-public HL7V231Field AuthenticationPerson,TimeStamp
+public HL7V231Field AuthenticationPersonTimeStamp
 {
     get
     {
-        if (authenticationPerson,TimeStamp != null)
+        if (authenticationPersonTimeStamp != null)
         {
-            return authenticationPerson,TimeStamp;
+            return authenticationPersonTimeStamp;
         }
 
-        authenticationPerson,TimeStamp = new HL7V231Field
+        authenticationPersonTimeStamp = new HL7V231Field
         {
             field = message[@"TXA"][22],
             Id = @"TXA.22",
@@ -6118,17 +6118,17 @@ public HL7V231Field AuthenticationPerson,TimeStamp
         };
 
         // check for repetitions
-        if (authenticationPerson,TimeStamp.field.FieldRepetitions != null && authenticationPerson,TimeStamp.field.FieldRepetitions.Count > 0)
+        if (authenticationPersonTimeStamp.field.FieldRepetitions != null && authenticationPersonTimeStamp.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authenticationPerson,TimeStamp.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(authenticationPersonTimeStamp.Id));
             var fieldRepetitions = new List<HL7V231FieldRepetition>();
 
-            for (var i = 0; i < authenticationPerson,TimeStamp.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < authenticationPersonTimeStamp.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V231FieldRepetition
                 {
-                    fieldRepetition = authenticationPerson,TimeStamp.field.FieldRepetitions[i],
+                    fieldRepetition = authenticationPersonTimeStamp.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -6150,12 +6150,12 @@ public HL7V231Field AuthenticationPerson,TimeStamp
                     var components = new List<HL7V231Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < authenticationPerson,TimeStamp.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < authenticationPersonTimeStamp.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V231Component
                         {
-                            component = authenticationPerson,TimeStamp.field.FieldRepetitions[i].Components[j],
+                            component = authenticationPersonTimeStamp.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -6176,12 +6176,12 @@ public HL7V231Field AuthenticationPerson,TimeStamp
                         {
                             var subComponents = new List<HL7V231SubComponent>();
 
-                            for (var k = 0; k < authenticationPerson,TimeStamp.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < authenticationPersonTimeStamp.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V231SubComponent
                                 {
-                                    subComponent = authenticationPerson,TimeStamp.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = authenticationPersonTimeStamp.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -6212,10 +6212,10 @@ public HL7V231Field AuthenticationPerson,TimeStamp
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            authenticationPerson,TimeStamp.fieldRepetitions = fieldRepetitions;
+            authenticationPersonTimeStamp.fieldRepetitions = fieldRepetitions;
         }
 
-        return authenticationPerson,TimeStamp;
+        return authenticationPersonTimeStamp;
     } 
 }
 

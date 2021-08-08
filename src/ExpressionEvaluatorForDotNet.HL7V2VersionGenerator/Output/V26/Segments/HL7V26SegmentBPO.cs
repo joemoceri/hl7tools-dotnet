@@ -3499,18 +3499,18 @@ namespace ExpressionEvaluatorForDotNet
         }
 
         
-internal HL7V26Field setID–BPO;
+internal HL7V26Field setIDBPO;
 
-public HL7V26Field SetID–BPO
+public HL7V26Field SetIDBPO
 {
     get
     {
-        if (setID–BPO != null)
+        if (setIDBPO != null)
         {
-            return setID–BPO;
+            return setIDBPO;
         }
 
-        setID–BPO = new HL7V26Field
+        setIDBPO = new HL7V26Field
         {
             field = message[@"BPO"][1],
             Id = @"BPO.1",
@@ -3529,17 +3529,17 @@ public HL7V26Field SetID–BPO
         };
 
         // check for repetitions
-        if (setID–BPO.field.FieldRepetitions != null && setID–BPO.field.FieldRepetitions.Count > 0)
+        if (setIDBPO.field.FieldRepetitions != null && setIDBPO.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setID–BPO.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(setIDBPO.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < setID–BPO.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < setIDBPO.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = setID–BPO.field.FieldRepetitions[i],
+                    fieldRepetition = setIDBPO.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3561,12 +3561,12 @@ public HL7V26Field SetID–BPO
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < setID–BPO.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < setIDBPO.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = setID–BPO.field.FieldRepetitions[i].Components[j],
+                            component = setIDBPO.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3587,12 +3587,12 @@ public HL7V26Field SetID–BPO
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < setID–BPO.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < setIDBPO.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = setID–BPO.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = setIDBPO.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3623,10 +3623,10 @@ public HL7V26Field SetID–BPO
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            setID–BPO.fieldRepetitions = fieldRepetitions;
+            setIDBPO.fieldRepetitions = fieldRepetitions;
         }
 
-        return setID–BPO;
+        return setIDBPO;
     } 
 }
 

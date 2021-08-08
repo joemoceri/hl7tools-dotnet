@@ -3339,18 +3339,18 @@ If valued with a 'Y', this indicates to the system that the item to be issued is
         }
 
         
-internal HL7V26Field setId–IVT;
+internal HL7V26Field setIdIVT;
 
-public HL7V26Field SetId–IVT
+public HL7V26Field SetIdIVT
 {
     get
     {
-        if (setId–IVT != null)
+        if (setIdIVT != null)
         {
-            return setId–IVT;
+            return setIdIVT;
         }
 
-        setId–IVT = new HL7V26Field
+        setIdIVT = new HL7V26Field
         {
             field = message[@"IVT"][1],
             Id = @"IVT.1",
@@ -3369,17 +3369,17 @@ public HL7V26Field SetId–IVT
         };
 
         // check for repetitions
-        if (setId–IVT.field.FieldRepetitions != null && setId–IVT.field.FieldRepetitions.Count > 0)
+        if (setIdIVT.field.FieldRepetitions != null && setIdIVT.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setId–IVT.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(setIdIVT.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < setId–IVT.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < setIdIVT.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = setId–IVT.field.FieldRepetitions[i],
+                    fieldRepetition = setIdIVT.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -3401,12 +3401,12 @@ public HL7V26Field SetId–IVT
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < setId–IVT.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < setIdIVT.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = setId–IVT.field.FieldRepetitions[i].Components[j],
+                            component = setIdIVT.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -3427,12 +3427,12 @@ public HL7V26Field SetId–IVT
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < setId–IVT.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < setIdIVT.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = setId–IVT.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = setIdIVT.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -3463,10 +3463,10 @@ public HL7V26Field SetId–IVT
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            setId–IVT.fieldRepetitions = fieldRepetitions;
+            setIdIVT.fieldRepetitions = fieldRepetitions;
         }
 
-        return setId–IVT;
+        return setIdIVT;
     } 
 }
 

@@ -1049,18 +1049,18 @@ Value set version ID is required if CWE.21 is populated.",
         }
 
         
-internal HL7V28Field setID–CDO;
+internal HL7V28Field setIDCDO;
 
-public HL7V28Field SetID–CDO
+public HL7V28Field SetIDCDO
 {
     get
     {
-        if (setID–CDO != null)
+        if (setIDCDO != null)
         {
-            return setID–CDO;
+            return setIDCDO;
         }
 
-        setID–CDO = new HL7V28Field
+        setIDCDO = new HL7V28Field
         {
             field = message[@"CDO"][1],
             Id = @"CDO.1",
@@ -1079,17 +1079,17 @@ public HL7V28Field SetID–CDO
         };
 
         // check for repetitions
-        if (setID–CDO.field.FieldRepetitions != null && setID–CDO.field.FieldRepetitions.Count > 0)
+        if (setIDCDO.field.FieldRepetitions != null && setIDCDO.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setID–CDO.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(setIDCDO.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < setID–CDO.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < setIDCDO.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = setID–CDO.field.FieldRepetitions[i],
+                    fieldRepetition = setIDCDO.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1111,12 +1111,12 @@ public HL7V28Field SetID–CDO
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < setID–CDO.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < setIDCDO.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = setID–CDO.field.FieldRepetitions[i].Components[j],
+                            component = setIDCDO.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1137,12 +1137,12 @@ public HL7V28Field SetID–CDO
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < setID–CDO.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < setIDCDO.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = setID–CDO.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = setIDCDO.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1173,10 +1173,10 @@ public HL7V28Field SetID–CDO
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            setID–CDO.fieldRepetitions = fieldRepetitions;
+            setIDCDO.fieldRepetitions = fieldRepetitions;
         }
 
-        return setID–CDO;
+        return setIDCDO;
     } 
 }
 

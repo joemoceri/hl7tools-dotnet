@@ -439,18 +439,18 @@ namespace ExpressionEvaluatorForDotNet
         }
 
         
-internal HL7V26Field setId–VND;
+internal HL7V26Field setIdVND;
 
-public HL7V26Field SetId–VND
+public HL7V26Field SetIdVND
 {
     get
     {
-        if (setId–VND != null)
+        if (setIdVND != null)
         {
-            return setId–VND;
+            return setIdVND;
         }
 
-        setId–VND = new HL7V26Field
+        setIdVND = new HL7V26Field
         {
             field = message[@"VND"][1],
             Id = @"VND.1",
@@ -469,17 +469,17 @@ public HL7V26Field SetId–VND
         };
 
         // check for repetitions
-        if (setId–VND.field.FieldRepetitions != null && setId–VND.field.FieldRepetitions.Count > 0)
+        if (setIdVND.field.FieldRepetitions != null && setIdVND.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setId–VND.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(setIdVND.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < setId–VND.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < setIdVND.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = setId–VND.field.FieldRepetitions[i],
+                    fieldRepetition = setIdVND.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -501,12 +501,12 @@ public HL7V26Field SetId–VND
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < setId–VND.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < setIdVND.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = setId–VND.field.FieldRepetitions[i].Components[j],
+                            component = setIdVND.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -527,12 +527,12 @@ public HL7V26Field SetId–VND
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < setId–VND.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < setIdVND.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = setId–VND.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = setIdVND.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -563,10 +563,10 @@ public HL7V26Field SetId–VND
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            setId–VND.fieldRepetitions = fieldRepetitions;
+            setIdVND.fieldRepetitions = fieldRepetitions;
         }
 
-        return setId–VND;
+        return setIdVND;
     } 
 }
 

@@ -93,19 +93,27 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 response = Retry<string>(request);
             }
 
-            var ids = JsonConvert.DeserializeObject<IList<TriggerEventResponse>>(response.Data.Trim('"')).Where(te => te.Id != null).Select(t => t.Id).ToList();
+            var ids = JsonConvert.DeserializeObject<IList<TriggerEventResponse>>(response.Data.Trim('"')).Select(t => t.Id).ToList();
 
             for (var i = 0; i < ids.Count(); i++)
             {
                 var triggerEvent = GetTriggerEvent(version, ids[i]);
 
-                var segmentIds = triggerEvent.Segments.Where(s => s.Id != null).Select(s => s.Id).ToList();
-
-                triggerEvent.Segments.Clear();
+                var segmentIds = triggerEvent.TriggerEventSegments.Select(s => s.Id).ToList();
 
                 for (var j = 0; j < segmentIds.Count(); j++)
                 {
-                    triggerEvent.Segments.Add(GetSegment(version, segmentIds[j]));
+                    if (segmentIds[j] != null)
+                    {
+                        triggerEvent.Segments.Add(GetSegment(version, segmentIds[j]));
+                    }
+                    else
+                    {
+                        for (var k = 0; k < triggerEvent.TriggerEventSegments[j].Segments.Count; k++)
+                        {
+                            //triggerEvent.Segments.Add(GetSegment(triggerEvent.TriggerEventSegments[j].Segments[k].Id));
+                        }
+                    }
                 }
 
                 result.Add(triggerEvent);

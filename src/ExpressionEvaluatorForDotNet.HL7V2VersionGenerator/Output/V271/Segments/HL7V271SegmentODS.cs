@@ -1261,18 +1261,18 @@ Ex: |1~5| means service 1 and service 5, whatever these are locally defined to b
     } 
 }
 
-internal HL7V271Field diet,Supplement,OrPreferenceCode;
+internal HL7V271Field dietSupplementOrPreferenceCode;
 
-public HL7V271Field Diet,Supplement,OrPreferenceCode
+public HL7V271Field DietSupplementOrPreferenceCode
 {
     get
     {
-        if (diet,Supplement,OrPreferenceCode != null)
+        if (dietSupplementOrPreferenceCode != null)
         {
-            return diet,Supplement,OrPreferenceCode;
+            return dietSupplementOrPreferenceCode;
         }
 
-        diet,Supplement,OrPreferenceCode = new HL7V271Field
+        dietSupplementOrPreferenceCode = new HL7V271Field
         {
             field = message[@"ODS"][3],
             Id = @"ODS.3",
@@ -1296,17 +1296,17 @@ In the case where this segment requests a diet supplement, i.e., ODS-1-type = S,
         };
 
         // check for repetitions
-        if (diet,Supplement,OrPreferenceCode.field.FieldRepetitions != null && diet,Supplement,OrPreferenceCode.field.FieldRepetitions.Count > 0)
+        if (dietSupplementOrPreferenceCode.field.FieldRepetitions != null && dietSupplementOrPreferenceCode.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diet,Supplement,OrPreferenceCode.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(dietSupplementOrPreferenceCode.Id));
             var fieldRepetitions = new List<HL7V271FieldRepetition>();
 
-            for (var i = 0; i < diet,Supplement,OrPreferenceCode.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < dietSupplementOrPreferenceCode.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V271FieldRepetition
                 {
-                    fieldRepetition = diet,Supplement,OrPreferenceCode.field.FieldRepetitions[i],
+                    fieldRepetition = dietSupplementOrPreferenceCode.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -1328,12 +1328,12 @@ In the case where this segment requests a diet supplement, i.e., ODS-1-type = S,
                     var components = new List<HL7V271Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < diet,Supplement,OrPreferenceCode.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < dietSupplementOrPreferenceCode.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V271Component
                         {
-                            component = diet,Supplement,OrPreferenceCode.field.FieldRepetitions[i].Components[j],
+                            component = dietSupplementOrPreferenceCode.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -1354,12 +1354,12 @@ In the case where this segment requests a diet supplement, i.e., ODS-1-type = S,
                         {
                             var subComponents = new List<HL7V271SubComponent>();
 
-                            for (var k = 0; k < diet,Supplement,OrPreferenceCode.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < dietSupplementOrPreferenceCode.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V271SubComponent
                                 {
-                                    subComponent = diet,Supplement,OrPreferenceCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = dietSupplementOrPreferenceCode.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -1390,10 +1390,10 @@ In the case where this segment requests a diet supplement, i.e., ODS-1-type = S,
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            diet,Supplement,OrPreferenceCode.fieldRepetitions = fieldRepetitions;
+            dietSupplementOrPreferenceCode.fieldRepetitions = fieldRepetitions;
         }
 
-        return diet,Supplement,OrPreferenceCode;
+        return dietSupplementOrPreferenceCode;
     } 
 }
 

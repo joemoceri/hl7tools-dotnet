@@ -601,18 +601,18 @@ namespace ExpressionEvaluatorForDotNet
         }
 
         
-internal HL7V26Field setID–LAN;
+internal HL7V26Field setIDLAN;
 
-public HL7V26Field SetID–LAN
+public HL7V26Field SetIDLAN
 {
     get
     {
-        if (setID–LAN != null)
+        if (setIDLAN != null)
         {
-            return setID–LAN;
+            return setIDLAN;
         }
 
-        setID–LAN = new HL7V26Field
+        setIDLAN = new HL7V26Field
         {
             field = message[@"LAN"][1],
             Id = @"LAN.1",
@@ -631,17 +631,17 @@ public HL7V26Field SetID–LAN
         };
 
         // check for repetitions
-        if (setID–LAN.field.FieldRepetitions != null && setID–LAN.field.FieldRepetitions.Count > 0)
+        if (setIDLAN.field.FieldRepetitions != null && setIDLAN.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setID–LAN.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(setIDLAN.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < setID–LAN.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < setIDLAN.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = setID–LAN.field.FieldRepetitions[i],
+                    fieldRepetition = setIDLAN.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -663,12 +663,12 @@ public HL7V26Field SetID–LAN
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < setID–LAN.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < setIDLAN.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = setID–LAN.field.FieldRepetitions[i].Components[j],
+                            component = setIDLAN.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -689,12 +689,12 @@ public HL7V26Field SetID–LAN
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < setID–LAN.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < setIDLAN.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = setID–LAN.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = setIDLAN.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -725,10 +725,10 @@ public HL7V26Field SetID–LAN
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            setID–LAN.fieldRepetitions = fieldRepetitions;
+            setIDLAN.fieldRepetitions = fieldRepetitions;
         }
 
-        return setID–LAN;
+        return setIDLAN;
     } 
 }
 

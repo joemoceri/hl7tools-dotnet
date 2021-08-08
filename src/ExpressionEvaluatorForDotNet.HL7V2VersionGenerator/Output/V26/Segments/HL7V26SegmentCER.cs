@@ -4275,18 +4275,18 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
         }
 
         
-internal HL7V26Field setID–CER;
+internal HL7V26Field setIDCER;
 
-public HL7V26Field SetID–CER
+public HL7V26Field SetIDCER
 {
     get
     {
-        if (setID–CER != null)
+        if (setIDCER != null)
         {
-            return setID–CER;
+            return setIDCER;
         }
 
-        setID–CER = new HL7V26Field
+        setIDCER = new HL7V26Field
         {
             field = message[@"CER"][1],
             Id = @"CER.1",
@@ -4305,17 +4305,17 @@ public HL7V26Field SetID–CER
         };
 
         // check for repetitions
-        if (setID–CER.field.FieldRepetitions != null && setID–CER.field.FieldRepetitions.Count > 0)
+        if (setIDCER.field.FieldRepetitions != null && setIDCER.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setID–CER.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(setIDCER.Id));
             var fieldRepetitions = new List<HL7V26FieldRepetition>();
 
-            for (var i = 0; i < setID–CER.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < setIDCER.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V26FieldRepetition
                 {
-                    fieldRepetition = setID–CER.field.FieldRepetitions[i],
+                    fieldRepetition = setIDCER.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -4337,12 +4337,12 @@ public HL7V26Field SetID–CER
                     var components = new List<HL7V26Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < setID–CER.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < setIDCER.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V26Component
                         {
-                            component = setID–CER.field.FieldRepetitions[i].Components[j],
+                            component = setIDCER.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -4363,12 +4363,12 @@ public HL7V26Field SetID–CER
                         {
                             var subComponents = new List<HL7V26SubComponent>();
 
-                            for (var k = 0; k < setID–CER.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < setIDCER.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V26SubComponent
                                 {
-                                    subComponent = setID–CER.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = setIDCER.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -4399,10 +4399,10 @@ public HL7V26Field SetID–CER
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            setID–CER.fieldRepetitions = fieldRepetitions;
+            setIDCER.fieldRepetitions = fieldRepetitions;
         }
 
-        return setID–CER;
+        return setIDCER;
     } 
 }
 

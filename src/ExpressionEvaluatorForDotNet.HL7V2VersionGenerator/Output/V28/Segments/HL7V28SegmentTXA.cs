@@ -18995,18 +18995,18 @@ public HL7V28Field DocumentChangeReason
     } 
 }
 
-internal HL7V28Field authenticationPerson,TimeStampset;
+internal HL7V28Field authenticationPersonTimeStampset;
 
-public HL7V28Field AuthenticationPerson,TimeStampset
+public HL7V28Field AuthenticationPersonTimeStampset
 {
     get
     {
-        if (authenticationPerson,TimeStampset != null)
+        if (authenticationPersonTimeStampset != null)
         {
-            return authenticationPerson,TimeStampset;
+            return authenticationPersonTimeStampset;
         }
 
-        authenticationPerson,TimeStampset = new HL7V28Field
+        authenticationPersonTimeStampset = new HL7V28Field
         {
             field = message[@"TXA"][22],
             Id = @"TXA.22",
@@ -19027,17 +19027,17 @@ TXA-22 - Condition: If TXA-22 is valued and the corresponding OBR segment is pre
         };
 
         // check for repetitions
-        if (authenticationPerson,TimeStampset.field.FieldRepetitions != null && authenticationPerson,TimeStampset.field.FieldRepetitions.Count > 0)
+        if (authenticationPersonTimeStampset.field.FieldRepetitions != null && authenticationPersonTimeStampset.field.FieldRepetitions.Count > 0)
         {
             // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authenticationPerson,TimeStampset.Id));
+            var fieldData = Fields.First(fd => fd.Id.Equals(authenticationPersonTimeStampset.Id));
             var fieldRepetitions = new List<HL7V28FieldRepetition>();
 
-            for (var i = 0; i < authenticationPerson,TimeStampset.field.FieldRepetitions.Count; i++)
+            for (var i = 0; i < authenticationPersonTimeStampset.field.FieldRepetitions.Count; i++)
             {
                 var fieldRepetition = new HL7V28FieldRepetition
                 {
-                    fieldRepetition = authenticationPerson,TimeStampset.field.FieldRepetitions[i],
+                    fieldRepetition = authenticationPersonTimeStampset.field.FieldRepetitions[i],
                     Id = fieldData.Id,
                     Type = fieldData.Type,
                     Position = fieldData.Position,
@@ -19059,12 +19059,12 @@ TXA-22 - Condition: If TXA-22 is valued and the corresponding OBR segment is pre
                     var components = new List<HL7V28Component>();
 
                     // there should be components per repetition
-                    for (var j = 0; j < authenticationPerson,TimeStampset.field.Components(i + 1).Count; j++)
+                    for (var j = 0; j < authenticationPersonTimeStampset.field.Components(i + 1).Count; j++)
                     {
                         var componentFieldData = fieldData.FieldDatas[j];
                         var component = new HL7V28Component
                         {
-                            component = authenticationPerson,TimeStampset.field.FieldRepetitions[i].Components[j],
+                            component = authenticationPersonTimeStampset.field.FieldRepetitions[i].Components[j],
                             Id = componentFieldData.Id,
                             Type = componentFieldData.Type,
                             Position = componentFieldData.Position,
@@ -19085,12 +19085,12 @@ TXA-22 - Condition: If TXA-22 is valued and the corresponding OBR segment is pre
                         {
                             var subComponents = new List<HL7V28SubComponent>();
 
-                            for (var k = 0; k < authenticationPerson,TimeStampset.field.Components(i + 1)[j].SubComponents.Count; k++)
+                            for (var k = 0; k < authenticationPersonTimeStampset.field.Components(i + 1)[j].SubComponents.Count; k++)
                             {
                                 var subComponentFieldData = componentFieldData.FieldDatas[k];
                                 var subComponent = new HL7V28SubComponent
                                 {
-                                    subComponent = authenticationPerson,TimeStampset.field.FieldRepetitions[i].Components[j].SubComponents[k],
+                                    subComponent = authenticationPersonTimeStampset.field.FieldRepetitions[i].Components[j].SubComponents[k],
                                     Id = componentFieldData.Id,
                                     Type = componentFieldData.Type,
                                     Position = componentFieldData.Position,
@@ -19121,10 +19121,10 @@ TXA-22 - Condition: If TXA-22 is valued and the corresponding OBR segment is pre
                 fieldRepetitions.Add(fieldRepetition);
             }
                      
-            authenticationPerson,TimeStampset.fieldRepetitions = fieldRepetitions;
+            authenticationPersonTimeStampset.fieldRepetitions = fieldRepetitions;
         }
 
-        return authenticationPerson,TimeStampset;
+        return authenticationPersonTimeStampset;
     } 
 }
 
