@@ -525,11 +525,13 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 string fieldDatas = null;
                 if (field.Fields != null && field.Fields.Count > 0)
                 {
-                    fieldDatas = string.Empty;
+                    var r = new StringBuilder();
                     for (var i = 0; i < field.Fields.Count; i++)
                     {
-                        fieldDatas += CreateFieldData(field.Fields[i]);
+                        r.Append(CreateFieldData(field.Fields[i]));
                     }
+
+                    fieldDatas = r.ToString().Trim();
                 }
 
                 var result = @$"
