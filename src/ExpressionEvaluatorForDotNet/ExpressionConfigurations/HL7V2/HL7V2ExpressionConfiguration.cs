@@ -38,7 +38,7 @@ namespace ExpressionEvaluatorForDotNet
         /// <summary>
         /// The encoding conversions define how <see cref="EncodeString(string)"/> behaves. It uses the escape character and delimiters to hl7 encode data.
         /// </summary>
-        public IDictionary<string, string> encodingConversions;
+        public IDictionary<string, string> encodingConversions { get; set; }
 
         /// <summary>
         /// The end character is used internally to handle when there is a delimiter at the end of a message segment (expression) when evaluating expressions.
