@@ -138,7 +138,17 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component AddComponent(string value)
         {
-            return AddComponent(value, 1);
+            return AddComponent(value, 1, "^", "&");
+        }
+
+        /// <summary>
+        /// Add's a <see cref="HL7V2Component"/> to this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+        /// </summary>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component AddComponent(string value, int repetitionId)
+        {
+            return AddComponent(value, repetitionId, "^", "&");
         }
 
         /// <summary>
@@ -147,7 +157,7 @@ namespace ExpressionEvaluatorForDotNet
         /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
         /// <param name="repetitionId">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
-        public HL7V2Component AddComponent(string value, int repetitionId)
+        public HL7V2Component AddComponent(string value, int repetitionId, string componentDelimiter, string subComponentDelimiter)
         {
             var fieldRepetition = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(repetitionId));
 
@@ -158,14 +168,14 @@ namespace ExpressionEvaluatorForDotNet
 
             var result = new HL7V2Component
             {
-                Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
+                Delimiter = componentDelimiter,
                 Id = fieldRepetition.Components.Count > 0 ? fieldRepetition.Components.Last().Id + 1 : 1,
                 Value = value
             };
 
             if (!string.IsNullOrWhiteSpace(result.Value))
             {
-                var subComponents = result.Value.Split(HL7V2ExpressionConfiguration.subComponentDelimiter);
+                var subComponents = result.Value.Split(subComponentDelimiter);
                 for (var i = 0; i < subComponents.Length; i++)
                 {
                     result.AddSubComponent(subComponents[i]);
@@ -224,7 +234,18 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value)
         {
-            return InsertComponent(id, value, 1);
+            return InsertComponent(id, value, 1, "^");
+        }
+
+        /// <summary>
+        /// Insert's a <see cref="HL7V2Component"/> into this Fields <see cref="Components(int)"/> by it's <see cref="HL7V2FieldRepetition.Id"/>. Default repetitionId is 1.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component InsertComponent(int id, string value, int repetition)
+        {
+            return InsertComponent(id, value, repetition, "^");
         }
 
         /// <summary>
@@ -234,7 +255,7 @@ namespace ExpressionEvaluatorForDotNet
         /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
         /// <param name="repetition">The <see cref="HL7V2FieldRepetition.Id"/>. Default is 1.</param>
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
-        public HL7V2Component InsertComponent(int id, string value, int repetition)
+        public HL7V2Component InsertComponent(int id, string value, int repetition, string componentDelimiter)
         {
             if (FieldRepetitions.Count == 0)
             {
@@ -260,7 +281,7 @@ namespace ExpressionEvaluatorForDotNet
 
             var component = new HL7V2Component
             {
-                Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
+                Delimiter = componentDelimiter,
                 Id = id,
                 Value = value
             };
@@ -344,16 +365,26 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition AddFieldRepetition(string value)
         {
+            return AddFieldRepetition(value, "~", "^");
+        }
+
+        /// <summary>
+        /// Adds a <see cref="HL7V2FieldRepetition"/> to this Fields <see cref="FieldRepetitions"/>.
+        /// </summary>
+        /// <param name="value">The <see cref="HL7V2FieldRepetition.Value"/>.</param>
+        /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2FieldRepetition AddFieldRepetition(string value, string fieldRepetitionDelimiter, string componentDelimiter)
+        {
             var result = new HL7V2FieldRepetition
             {
-                Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
+                Delimiter = fieldRepetitionDelimiter,
                 Id = FieldRepetitions.Count > 0 ? FieldRepetitions.Last().Id + 1 : 1,
                 Value = value,
             };
 
-            if (value.Contains(HL7V2ExpressionConfiguration.componentDelimiter))
+            if (value.Contains(componentDelimiter))
             {
-                var components = result.Value.Split(HL7V2ExpressionConfiguration.componentDelimiter);
+                var components = result.Value.Split(componentDelimiter);
                 for (var i = 0; i < components.Length; i++)
                 {
                     result.AddComponent(components[i]);
@@ -394,6 +425,17 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition InsertFieldRepetition(int id, string value)
         {
+            return InsertFieldRepetition(id, value, "~");
+        }
+
+        /// <summary>
+        /// Inserts a <see cref="HL7V2FieldRepetition"/> into this Fields <see cref="FieldRepetitions"/>.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2FieldRepetition.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2FieldRepetition.Value"/>.</param>
+        /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2FieldRepetition InsertFieldRepetition(int id, string value, string fieldRepetitionDelimiter)
+        {
             if (FieldRepetitions.Count == 0)
             {
                 return null;
@@ -406,7 +448,7 @@ namespace ExpressionEvaluatorForDotNet
 
             var fieldRepetition = new HL7V2FieldRepetition
             {
-                Delimiter = HL7V2ExpressionConfiguration.fieldRepetitionDelimiter,
+                Delimiter = fieldRepetitionDelimiter,
                 Id = id,
                 Value = value
             };

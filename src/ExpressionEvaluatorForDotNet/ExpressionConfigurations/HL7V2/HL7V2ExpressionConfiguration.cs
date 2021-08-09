@@ -18,45 +18,27 @@ namespace ExpressionEvaluatorForDotNet
         /// </summary>
         private readonly ExpressionConfigurationOptions options;
 
-        /// <summary>
-        /// The field delimiter used by the expression configuration. By default is "|".
-        /// </summary>
-        public static string fieldDelimiter = "|";
+        private readonly HL7V2MessageDelimiters messageDelimiters;
 
-        /// <summary>
-        /// The component delimiter used by the expression configuration. By default is "^".
-        /// </summary>
-        public static string componentDelimiter = "^";
-
-        /// <summary>
-        /// The escape character used by the expression configuration. By default is "\".
-        /// </summary>
-        public static string escapeCharacter = "\\";
-
-        /// <summary>
-        /// The sub component delimiter used by the expression configuration. By default is "&".
-        /// </summary>
-        public static string subComponentDelimiter = "&";
-        
-        /// <summary>
-        /// The field repetition delimiter used by the expression configuration. By default is "~".
-        /// </summary>
-        public static string fieldRepetitionDelimiter = "~";
+        public HL7V2MessageDelimiters GetMessageDelimiters()
+        {
+            return messageDelimiters;
+        }
 
         /// <summary>
         /// The present but null character used by the expression configuration. By default is """" (two double quotes).
         /// </summary>
-        public static string presentButNull = "\"\"";
+        public string presentButNull { get; set; }
 
         /// <summary>
         /// Special segment headers are special headers defined by the hl7 spec that should be treated uniquely. MSH, BSH, and FSH.
         /// </summary>
-        public static IList<string> specialSegmentHeaders;
+        public static readonly IList<string> specialSegmentHeaders;
 
         /// <summary>
         /// The encoding conversions define how <see cref="EncodeString(string)"/> behaves. It uses the escape character and delimiters to hl7 encode data.
         /// </summary>
-        public static IDictionary<string, string> encodingConversions;
+        public IDictionary<string, string> encodingConversions;
 
         /// <summary>
         /// The end character is used internally to handle when there is a delimiter at the end of a message segment (expression) when evaluating expressions.
@@ -69,32 +51,16 @@ namespace ExpressionEvaluatorForDotNet
         private HL7V2MessageSegment messageSegment;
 
         /// <summary>
-        /// On static constructor load, the encoding conversions are rebuilt, and the special segment headers are initialized.
-        /// </summary>
-        static HL7V2ExpressionConfiguration()
-        {
-            RebuildEncodingConversions();
-
-            // TODO: I think this should update the delimiters. I need more concrete examples to test against. But this will work for single FHS / BHS segments, I'm not sure for more. I need a test message to see.
-            specialSegmentHeaders = new List<string>
-            {
-                "MSH",
-                "FHS",
-                "BHS"
-            };
-        }
-
-        /// <summary>
         /// Rebuilds the <see cref="encodingConversions"/>, using the <see cref="escapeCharacter"/>, <see cref="fieldDelimiter"/>, <see cref="fieldRepetitionDelimiter"/>, <see cref="componentDelimiter"/>, <see cref="subComponentDelimiter"/>. Call this if you update any of those fields before calling <see cref="EncodeString(string)"/>.
         /// </summary>
-        public static void RebuildEncodingConversions()
+        public void RebuildEncodingConversions()
         {
             encodingConversions = new Dictionary<string, string>();
-            encodingConversions.Add(escapeCharacter, $"{escapeCharacter}E{escapeCharacter}");
-            encodingConversions.Add(fieldDelimiter, $"{escapeCharacter}F{escapeCharacter}");
-            encodingConversions.Add(fieldRepetitionDelimiter, $"{escapeCharacter}R{escapeCharacter}");
-            encodingConversions.Add(componentDelimiter, $"{escapeCharacter}S{escapeCharacter}");
-            encodingConversions.Add(subComponentDelimiter, $"{escapeCharacter}T{escapeCharacter}");
+            encodingConversions.Add(messageDelimiters.escapeCharacter, $"{messageDelimiters.escapeCharacter}E{messageDelimiters.escapeCharacter}");
+            encodingConversions.Add(messageDelimiters.fieldDelimiter, $"{messageDelimiters.escapeCharacter}F{messageDelimiters.escapeCharacter}");
+            encodingConversions.Add(messageDelimiters.fieldRepetitionDelimiter, $"{messageDelimiters.escapeCharacter}R{messageDelimiters.escapeCharacter}");
+            encodingConversions.Add(messageDelimiters.componentDelimiter, $"{messageDelimiters.escapeCharacter}S{messageDelimiters.escapeCharacter}");
+            encodingConversions.Add(messageDelimiters.subComponentDelimiter, $"{messageDelimiters.escapeCharacter}T{messageDelimiters.escapeCharacter}");
         }
 
         /// <summary>
@@ -102,7 +68,7 @@ namespace ExpressionEvaluatorForDotNet
         /// </summary>
         /// <param name="input">The data to encode.</param>
         /// <returns>The newly encoded <see cref="string"/> data.</returns>
-        public static string EncodeString(string input)
+        public string EncodeString(string input)
         {
             foreach (var encodingConversion in encodingConversions)
             {
@@ -117,7 +83,7 @@ namespace ExpressionEvaluatorForDotNet
         /// </summary>
         /// <param name="input">The data to decode.</param>
         /// <returns>The newly decoded <see cref="string"/> data.</returns>
-        public static string DecodeString(string input)
+        public string DecodeString(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -132,14 +98,38 @@ namespace ExpressionEvaluatorForDotNet
             return input;
         }
 
+        static HL7V2ExpressionConfiguration()
+        {
+            // TODO: I think this should update the delimiters. I need more concrete examples to test against. But this will work for single FHS / BHS segments, I'm not sure for more. I need a test message to see.
+            specialSegmentHeaders = new List<string>
+            {
+                "MSH",
+                "FHS",
+                "BHS"
+            };
+        }
+
         /// <summary>
         /// Initializes the operators with one Addition operator and it's <see cref="ExpressionConfigurationOperator.SolveOperatorExpression"/> callback to grab the fields from the Evaluator, initializes the options, and initializes the <see cref="messageSegment"/>.
         /// </summary>
         public HL7V2ExpressionConfiguration()
         {
+            messageDelimiters = new HL7V2MessageDelimiters
+            {
+                fieldDelimiter = "|",
+                componentDelimiter = "^",
+                escapeCharacter = "\\",
+                subComponentDelimiter = "&",
+                fieldRepetitionDelimiter = "~",
+            };
+
+            presentButNull = "\"\"";
+
+            RebuildEncodingConversions();
+
             operators = new List<ExpressionConfigurationOperator>
             {
-                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, fieldDelimiter, null, null, null)
+                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, messageDelimiters.fieldDelimiter, null, null, null)
             };
 
             options = new ExpressionConfigurationOptions
@@ -170,12 +160,12 @@ namespace ExpressionEvaluatorForDotNet
                     messageSegment.SegmentName = expGroup.LeftOperand;
                     if (specialSegmentHeaders.Any(a => a.Equals(messageSegment.SegmentName)))
                     {
-                        messageSegment.AddField(fieldDelimiter, false);
+                        messageSegment.AddField(messageDelimiters.fieldDelimiter, false);
                     }
                 }
 
                 //^~\&
-                var input = $"{componentDelimiter}{fieldRepetitionDelimiter}{escapeCharacter}{subComponentDelimiter}";
+                var input = $"{messageDelimiters.componentDelimiter}{messageDelimiters.fieldRepetitionDelimiter}{messageDelimiters.escapeCharacter}{messageDelimiters.subComponentDelimiter}";
                 var includeFieldRepetition = !expGroup.RightOperand.Equals(input);
 
                 var field = messageSegment.AddField(endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand, includeFieldRepetition);
@@ -189,7 +179,7 @@ namespace ExpressionEvaluatorForDotNet
         /// </summary>
         internal void Setup()
         {
-            messageSegment = new HL7V2MessageSegment();
+            messageSegment = new HL7V2MessageSegment(messageDelimiters);
         }
 
         /// <summary>

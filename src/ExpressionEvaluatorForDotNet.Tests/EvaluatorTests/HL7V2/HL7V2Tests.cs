@@ -9,7 +9,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
     [TestClass]
     public class HL7V2Tests
     {
-		private void CompareFileWithMessage(string path, HL7V2Message message)
+		private void CompareFileWithMessage(string path, HL7V2Message message, HL7V2MessageDelimiters messageDelimiters)
         {
 			var lines = File.ReadAllLines(path);
 
@@ -41,11 +41,11 @@ namespace ExpressionEvaluatorForDotNet.Tests
 				lines[i] = lines[i].Remove(0, 4);
 
 				// Compare this to the message Values, they should be the same and order should be respected
-				var fields = lines[i].Split(HL7V2ExpressionConfiguration.fieldDelimiter).ToList();
+				var fields = lines[i].Split(messageDelimiters.fieldDelimiter).ToList();
 
 				if (HL7V2ExpressionConfiguration.specialSegmentHeaders.Any(a => a.Equals(segmentName)))
 				{
-					fields.Insert(0, HL7V2ExpressionConfiguration.fieldDelimiter);
+					fields.Insert(0, messageDelimiters.fieldDelimiter);
 				}
 
 				// check field values
@@ -56,7 +56,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 					// check the field ids
 					Assert.AreEqual(j + 1, field.Id);
 
-					Assert.AreEqual(field.Delimiter, HL7V2ExpressionConfiguration.fieldDelimiter);
+					Assert.AreEqual(field.Delimiter, messageDelimiters.fieldDelimiter);
 
 					Assert.AreEqual(fields[j], field.Value);
 
@@ -66,7 +66,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
                     }
 
 					// check field repetitions
-					var fieldRepetitions = fields[j].Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+					var fieldRepetitions = fields[j].Split(messageDelimiters.fieldRepetitionDelimiter);
 
 					for (var a = 0; a < fieldRepetitions.Length; a++)
                     {
@@ -74,11 +74,11 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
                         Assert.AreEqual(a + 1, fieldRepetition.Id);
 
-						Assert.AreEqual(fieldRepetition.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+						Assert.AreEqual(fieldRepetition.Delimiter, messageDelimiters.fieldRepetitionDelimiter);
 
 						Assert.AreEqual(fieldRepetitions[a], fieldRepetition.Value);
 
-						var components = fieldRepetitions[a].Split(HL7V2ExpressionConfiguration.componentDelimiter);
+						var components = fieldRepetitions[a].Split(messageDelimiters.componentDelimiter);
 
 						// check components
 						if (components.Length > 1)
@@ -89,11 +89,11 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 								Assert.AreEqual(b + 1, component.Id);
 
-								Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+								Assert.AreEqual(component.Delimiter, messageDelimiters.componentDelimiter);
 
 								Assert.AreEqual(components[b], component.Value);
 
-								var subComponents = components[b].Split(HL7V2ExpressionConfiguration.subComponentDelimiter);
+								var subComponents = components[b].Split(messageDelimiters.subComponentDelimiter);
 
 								// check sub components
 								if (subComponents.Length > 1)
@@ -104,7 +104,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 										Assert.AreEqual(c + 1, subComponent.Id);
 
-										Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
+										Assert.AreEqual(subComponent.Delimiter, messageDelimiters.subComponentDelimiter);
 
 										Assert.AreEqual(subComponents[c], subComponent.Value);
                                     }
@@ -131,7 +131,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			for (var i = 0; i < paths.Length; i++)
             {
 				var message = evaluator.EvaluateHL7V2File(paths[i]);
-				CompareFileWithMessage(paths[i], message);
+				CompareFileWithMessage(paths[i], message, expressionConfiguration.GetMessageDelimiters());
 
 				Assert.IsNull(message.Error);
             }
@@ -144,6 +144,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+			var messageDelimiters = expressionConfiguration.GetMessageDelimiters();
 
 			var evaluator = new Evaluator(expressionConfiguration);
 
@@ -544,6 +545,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+			var messageDelimiters = expressionConfiguration.GetMessageDelimiters();
 
 			var evaluator = new Evaluator(expressionConfiguration);
 
@@ -555,14 +557,14 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			var gt16 = (HL7V2Field)message.Get("GT1.6");
 
-			Assert.AreEqual(gt16.Delimiter, HL7V2ExpressionConfiguration.fieldDelimiter);
+			Assert.AreEqual(gt16.Delimiter, messageDelimiters.fieldDelimiter);
 
 			Assert.AreEqual(gt16.Id, 6);
 
 			Assert.AreEqual(gt16.Value, message["GT1"][6].Value);
 
 			// get field repetition
-			var frSplit = gt16.Value.Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+			var frSplit = gt16.Value.Split(messageDelimiters.fieldRepetitionDelimiter);
 
 			Assert.AreEqual(gt16.GetFieldRepetition(1).Value, frSplit[0]);
 			Assert.AreEqual(gt16.GetFieldRepetition(2).Value, frSplit[1]);
@@ -745,7 +747,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(fieldRepetition.Id, gt16.FieldRepetitions.Count);
 
-			Assert.AreEqual(fieldRepetition.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+			Assert.AreEqual(fieldRepetition.Delimiter, messageDelimiters.fieldRepetitionDelimiter);
 
 			// remove field repetition
 			removed = gt16.RemoveFieldRepetition(fieldRepetition.Id);
@@ -871,6 +873,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+			var messageDelimiters = expressionConfiguration.GetMessageDelimiters();
 
 			var evaluator = new Evaluator(expressionConfiguration);
 
@@ -882,7 +885,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			// Assert
 			Assert.IsNull(message.Error);
 			
-			Assert.AreEqual(gt161.Delimiter, HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+			Assert.AreEqual(gt161.Delimiter, messageDelimiters.fieldRepetitionDelimiter);
 			Assert.AreEqual(gt161.Id, 1);
 
 			// get component
@@ -897,7 +900,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(component.Value, "_test");
 			Assert.AreEqual(component.Id, gt161.Components.Count);
-			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+			Assert.AreEqual(component.Delimiter, messageDelimiters.componentDelimiter);
 			Assert.AreEqual(previousCount + 1, gt161.Components.Count);
 
 			// remove component
@@ -921,7 +924,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(component.Value, "_test");
 			Assert.AreEqual(component.Id, id);
-			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+			Assert.AreEqual(component.Delimiter, messageDelimiters.componentDelimiter);
 
 			for (var i = 0; i < gt161.Components.Count; i++)
 			{
@@ -950,7 +953,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(component.Value, "_test");
 			Assert.AreEqual(component.Id, 1);
-			Assert.AreEqual(component.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+			Assert.AreEqual(component.Delimiter, messageDelimiters.componentDelimiter);
 
 			// validation
 			component = gt161.UpdateComponent(0, "_test");
@@ -990,6 +993,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+			var messageDelimiters = expressionConfiguration.GetMessageDelimiters();
 
 			var evaluator = new Evaluator(expressionConfiguration);
 
@@ -1001,7 +1005,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			// Assert
 			Assert.IsNull(message.Error);
 
-			Assert.AreEqual(pv179.Delimiter, HL7V2ExpressionConfiguration.componentDelimiter);
+			Assert.AreEqual(pv179.Delimiter, messageDelimiters.componentDelimiter);
 			Assert.AreEqual(pv179.Id, 9);
 
 			// add sub component
@@ -1010,7 +1014,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(subComponent.Value, "_test");
 			Assert.AreEqual(subComponent.Id, pv179.SubComponents.Count);
-			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
+			Assert.AreEqual(subComponent.Delimiter, messageDelimiters.subComponentDelimiter);
 			Assert.AreEqual(previousCount + 1, pv179.SubComponents.Count);
 
 			// validation
@@ -1042,7 +1046,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(subComponent.Value, "_test");
 			Assert.AreEqual(subComponent.Id, id);
-			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
+			Assert.AreEqual(subComponent.Delimiter, messageDelimiters.subComponentDelimiter);
 			for (var i = 0; i < pv179.SubComponents.Count; i++)
 			{
 				Assert.AreEqual(pv179.SubComponents[i].Id, i + 1);
@@ -1075,7 +1079,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(subComponent.Value, "_test");
 			Assert.AreEqual(subComponent.Id, 1);
-			Assert.AreEqual(subComponent.Delimiter, HL7V2ExpressionConfiguration.subComponentDelimiter);
+			Assert.AreEqual(subComponent.Delimiter, messageDelimiters.subComponentDelimiter);
 
 			// validations
 			subComponent = pv179.UpdateSubComponent(0, "_test");
@@ -1112,63 +1116,65 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		[TestMethod]
 		public void HL7V2Tests_HL7V2ExpressionConfiguration()
         {
-			// static
-			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldDelimiter, "|");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.componentDelimiter, "^");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.escapeCharacter, "\\");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.subComponentDelimiter, "&");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter, "~");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.presentButNull, "\"\"");
-
-			foreach (var ssh in HL7V2ExpressionConfiguration.specialSegmentHeaders)
-            {
-				var valid = new[] { "MSH", "FHS", "BHS" }.Contains(ssh);
-				Assert.AreEqual(valid, true);
-            }
-
-			var ec = HL7V2ExpressionConfiguration.encodingConversions;
-
-			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.escapeCharacter], $"{HL7V2ExpressionConfiguration.escapeCharacter}E{HL7V2ExpressionConfiguration.escapeCharacter}");
-			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.fieldDelimiter], $"{HL7V2ExpressionConfiguration.escapeCharacter}F{HL7V2ExpressionConfiguration.escapeCharacter}");
-			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.fieldRepetitionDelimiter], $"{HL7V2ExpressionConfiguration.escapeCharacter}R{HL7V2ExpressionConfiguration.escapeCharacter}");
-			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.componentDelimiter], $"{HL7V2ExpressionConfiguration.escapeCharacter}S{HL7V2ExpressionConfiguration.escapeCharacter}");
-			Assert.AreEqual(ec[HL7V2ExpressionConfiguration.subComponentDelimiter], $"{HL7V2ExpressionConfiguration.escapeCharacter}T{HL7V2ExpressionConfiguration.escapeCharacter}");
-
-			var input = HL7V2ExpressionConfiguration.escapeCharacter;
-
-			// encode string
-			var output = HL7V2ExpressionConfiguration.EncodeString(input);
-
-			Assert.AreEqual(ec[input], output);
-
-			// decode string
-			output = HL7V2ExpressionConfiguration.DecodeString(output);
-
-			var t = HL7V2ExpressionConfiguration.DecodeString(null);
-
-			Assert.AreEqual(t, null);
-
-			t = HL7V2ExpressionConfiguration.DecodeString("");
-
-			Assert.AreEqual(t, "");
-
-			t = HL7V2ExpressionConfiguration.DecodeString("    ");
-
-			Assert.AreEqual(t, "    ");
-
-			Assert.AreEqual(input, output);
-
-			// rebuild encoding conversions
-			HL7V2ExpressionConfiguration.escapeCharacter = "$";
-			Assert.AreEqual(ec.ContainsKey(HL7V2ExpressionConfiguration.escapeCharacter), false);
-
-			HL7V2ExpressionConfiguration.RebuildEncodingConversions();
-
-			ec = HL7V2ExpressionConfiguration.encodingConversions;
-
-			Assert.AreEqual(ec.ContainsKey(HL7V2ExpressionConfiguration.escapeCharacter), true);
-
 			var expConfig = new HL7V2ExpressionConfiguration();
+			var messageDelimiters = expConfig.GetMessageDelimiters();
+
+			//// static
+			//Assert.AreEqual(HL7V2ExpressionConfiguration.fieldDelimiter, "|");
+			//Assert.AreEqual(HL7V2ExpressionConfiguration.componentDelimiter, "^");
+			//Assert.AreEqual(HL7V2ExpressionConfiguration.escapeCharacter, "\\");
+			//Assert.AreEqual(HL7V2ExpressionConfiguration.subComponentDelimiter, "&");
+			//Assert.AreEqual(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter, "~");
+			//Assert.AreEqual(HL7V2ExpressionConfiguration.presentButNull, "\"\"");
+
+			//foreach (var ssh in HL7V2ExpressionConfiguration.specialSegmentHeaders)
+			//         {
+			//	var valid = new[] { "MSH", "FHS", "BHS" }.Contains(ssh);
+			//	Assert.AreEqual(valid, true);
+			//         }
+
+			//var ec = HL7V2ExpressionConfiguration.encodingConversions;
+
+			//Assert.AreEqual(ec[HL7V2ExpressionConfiguration.escapeCharacter], $"{HL7V2ExpressionConfiguration.escapeCharacter}E{HL7V2ExpressionConfiguration.escapeCharacter}");
+			//Assert.AreEqual(ec[HL7V2ExpressionConfiguration.fieldDelimiter], $"{HL7V2ExpressionConfiguration.escapeCharacter}F{HL7V2ExpressionConfiguration.escapeCharacter}");
+			//Assert.AreEqual(ec[HL7V2ExpressionConfiguration.fieldRepetitionDelimiter], $"{HL7V2ExpressionConfiguration.escapeCharacter}R{HL7V2ExpressionConfiguration.escapeCharacter}");
+			//Assert.AreEqual(ec[HL7V2ExpressionConfiguration.componentDelimiter], $"{HL7V2ExpressionConfiguration.escapeCharacter}S{HL7V2ExpressionConfiguration.escapeCharacter}");
+			//Assert.AreEqual(ec[HL7V2ExpressionConfiguration.subComponentDelimiter], $"{HL7V2ExpressionConfiguration.escapeCharacter}T{HL7V2ExpressionConfiguration.escapeCharacter}");
+
+			//var input = HL7V2ExpressionConfiguration.escapeCharacter;
+
+			//// encode string
+			//var output = HL7V2ExpressionConfiguration.EncodeString(input);
+
+			//Assert.AreEqual(ec[input], output);
+
+			//// decode string
+			//output = HL7V2ExpressionConfiguration.DecodeString(output);
+
+			//var t = HL7V2ExpressionConfiguration.DecodeString(null);
+
+			//Assert.AreEqual(t, null);
+
+			//t = HL7V2ExpressionConfiguration.DecodeString("");
+
+			//Assert.AreEqual(t, "");
+
+			//t = HL7V2ExpressionConfiguration.DecodeString("    ");
+
+			//Assert.AreEqual(t, "    ");
+
+			//Assert.AreEqual(input, output);
+
+			//// rebuild encoding conversions
+			//HL7V2ExpressionConfiguration.escapeCharacter = "$";
+			//Assert.AreEqual(ec.ContainsKey(HL7V2ExpressionConfiguration.escapeCharacter), false);
+
+			//HL7V2ExpressionConfiguration.RebuildEncodingConversions();
+
+			var ec = expConfig.encodingConversions;
+
+			Assert.AreEqual(ec.ContainsKey(messageDelimiters.escapeCharacter), true);
+
 
 			Assert.AreEqual(expConfig.Operators.Count, 1);
 
@@ -1184,7 +1190,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(expConfig.Operators[0].ExpressionOperator, Operator.Addition);
 			
-			Assert.AreEqual(expConfig.Operators[0].OperatorName, HL7V2ExpressionConfiguration.fieldDelimiter);
+			Assert.AreEqual(expConfig.Operators[0].OperatorName, messageDelimiters.fieldDelimiter);
 
 			Assert.AreNotEqual(expConfig.Operators[0].SolveOperatorExpression, null);
 
@@ -1196,6 +1202,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		public void HL7V2Tests_EvaluateHL7V2File()
         {
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+			var messageDelimiters = expressionConfiguration.GetMessageDelimiters();
 
 			var evaluator = new Evaluator(expressionConfiguration);
 
@@ -1212,20 +1219,20 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			evaluator = new Evaluator(expressionConfiguration);
 
-			HL7V2ExpressionConfiguration.fieldDelimiter = "_test";
-			HL7V2ExpressionConfiguration.componentDelimiter = "_test";
-			HL7V2ExpressionConfiguration.fieldRepetitionDelimiter = "_test";
-			HL7V2ExpressionConfiguration.escapeCharacter = "_test";
-			HL7V2ExpressionConfiguration.subComponentDelimiter = "_test";
+			messageDelimiters.fieldDelimiter = "_test";
+			messageDelimiters.componentDelimiter = "_test";
+			messageDelimiters.fieldRepetitionDelimiter = "_test";
+			messageDelimiters.escapeCharacter = "_test";
+			messageDelimiters.subComponentDelimiter = "_test";
 
 			// MSH|^~\&
 			message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldDelimiter, "|");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.componentDelimiter, "^");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter, "~");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.escapeCharacter, "\\");
-			Assert.AreEqual(HL7V2ExpressionConfiguration.subComponentDelimiter, "&");
+			Assert.AreEqual(messageDelimiters.fieldDelimiter, "|");
+			Assert.AreEqual(messageDelimiters.componentDelimiter, "^");
+			Assert.AreEqual(messageDelimiters.fieldRepetitionDelimiter, "~");
+			Assert.AreEqual(messageDelimiters.escapeCharacter, "\\");
+			Assert.AreEqual(messageDelimiters.subComponentDelimiter, "&");
 
 			Assert.AreEqual(message.Error, null);
 		}
@@ -1236,6 +1243,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
+			var messageDelimiters = expressionConfiguration.GetMessageDelimiters();
 
 			var evaluator = new Evaluator(expressionConfiguration);
 

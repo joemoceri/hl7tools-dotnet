@@ -72,7 +72,7 @@ namespace ExpressionEvaluatorForDotNet.Sample
 
             var url = "https://test.com/test?id=1&test=2";
 
-            var newUrl = HL7V2ExpressionConfiguration.EncodeString(url);
+            var newUrl = expressionConfiguration.EncodeString(url);
 
             Console.WriteLine("Before:");
 

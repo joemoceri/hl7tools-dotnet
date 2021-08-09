@@ -80,13 +80,15 @@ namespace ExpressionEvaluatorForDotNet
 
 				var fieldDelimiter = expressions[0].Substring(3, 1);
 
-				HL7V2ExpressionConfiguration.fieldDelimiter = fieldDelimiter;
+				var messageDelimiters = expConfig.GetMessageDelimiters();
+
+				messageDelimiters.fieldDelimiter = fieldDelimiter;
 				additionOperator.OperatorName = fieldDelimiter;
 
-				HL7V2ExpressionConfiguration.componentDelimiter = expressions[0].Substring(4, 1);
-				HL7V2ExpressionConfiguration.fieldRepetitionDelimiter = expressions[0].Substring(5, 1);
-				HL7V2ExpressionConfiguration.escapeCharacter = expressions[0].Substring(6, 1);
-				HL7V2ExpressionConfiguration.subComponentDelimiter = expressions[0].Substring(7, 1);
+				messageDelimiters.componentDelimiter = expressions[0].Substring(4, 1);
+				messageDelimiters.fieldRepetitionDelimiter = expressions[0].Substring(5, 1);
+				messageDelimiters.escapeCharacter = expressions[0].Substring(6, 1);
+				messageDelimiters.subComponentDelimiter = expressions[0].Substring(7, 1);
 
 				foreach (var expression in expressions)
 				{
@@ -114,14 +116,16 @@ namespace ExpressionEvaluatorForDotNet
         {
             if (expressionConfiguration is HL7V2ExpressionConfiguration)
             {
-                if (
-				expression.EndsWith(HL7V2ExpressionConfiguration.fieldDelimiter) ||
-                expression.EndsWith(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter) ||
-                expression.EndsWith(HL7V2ExpressionConfiguration.componentDelimiter) ||
-                expression.EndsWith(HL7V2ExpressionConfiguration.subComponentDelimiter)
+				var expConfig = ((HL7V2ExpressionConfiguration)expressionConfiguration);
+				var messageDelimiters = expConfig.GetMessageDelimiters();
+
+				if (
+				expression.EndsWith(messageDelimiters.fieldDelimiter) ||
+                expression.EndsWith(messageDelimiters.fieldRepetitionDelimiter) ||
+                expression.EndsWith(messageDelimiters.componentDelimiter) ||
+                expression.EndsWith(messageDelimiters.subComponentDelimiter)
                 )
                 {
-					var expConfig = ((HL7V2ExpressionConfiguration)expressionConfiguration);
                     expConfig.endCharacter = $"{{END_CHARACTER:{Guid.NewGuid()}}}";
                     expression += expConfig.endCharacter;
                 }

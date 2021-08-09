@@ -12,10 +12,13 @@ namespace ExpressionEvaluatorForDotNet
         /// <summary>
         /// Initializes the <see cref="Fields"/>.
         /// </summary>s
-		public HL7V2MessageSegment()
+		public HL7V2MessageSegment(HL7V2MessageDelimiters messageDelimiters)
         {
 			Fields = new List<HL7V2Field>();
+            this.messageDelimiters = messageDelimiters;
         }
+
+        private readonly HL7V2MessageDelimiters messageDelimiters;
 
         /// <summary>
         /// The name of this segment.
@@ -116,7 +119,7 @@ namespace ExpressionEvaluatorForDotNet
         {
             var field = new HL7V2Field
             {
-                Delimiter = HL7V2ExpressionConfiguration.fieldDelimiter,
+                Delimiter = messageDelimiters.fieldDelimiter,
                 Id = Fields.Count > 0 ? Fields.Last().Id + 1 : 1,
                 Value = value,
             };
@@ -125,9 +128,9 @@ namespace ExpressionEvaluatorForDotNet
 
             if (includeFieldRepetition)
             {
-                if (value.Contains(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter))
+                if (value.Contains(messageDelimiters.fieldRepetitionDelimiter))
                 {
-                    var fieldRepetitions = field.Value.Split(HL7V2ExpressionConfiguration.fieldRepetitionDelimiter);
+                    var fieldRepetitions = field.Value.Split(messageDelimiters.fieldRepetitionDelimiter);
                     for (var i = 0; i < fieldRepetitions.Length; i++)
                     {
                         field.AddFieldRepetition(fieldRepetitions[i]);
@@ -183,7 +186,7 @@ namespace ExpressionEvaluatorForDotNet
 
             var field = new HL7V2Field
             {
-                Delimiter = HL7V2ExpressionConfiguration.fieldDelimiter,
+                Delimiter = messageDelimiters.fieldDelimiter,
                 Id = id,
                 Value = value
             };

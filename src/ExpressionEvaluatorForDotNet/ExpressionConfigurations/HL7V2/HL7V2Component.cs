@@ -83,9 +83,18 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2SubComponent"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2SubComponent AddSubComponent(string value)
         {
+            return AddSubComponent(value, "&");
+        }
+        /// <summary>
+        /// Add's a <see cref="HL7V2SubComponent"/> to <see cref="SubComponents"/>. 
+        /// </summary>
+        /// <param name="value">The <see cref="HL7V2SubComponent.Value"/>.</param>
+        /// <returns><see cref="HL7V2SubComponent"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2SubComponent AddSubComponent(string value, string subComponentDelimiter)
+        {
             var result = new HL7V2SubComponent
             {
-                Delimiter = HL7V2ExpressionConfiguration.subComponentDelimiter,
+                Delimiter = subComponentDelimiter,
                 Id = SubComponents.Count > 0 ? SubComponents.Last().Id + 1 : 1,
                 Value = value
             };
@@ -124,6 +133,18 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2SubComponent"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2SubComponent InsertSubComponent(int id, string value)
         {
+            return InsertSubComponent(id, value, "&");
+        }
+
+        /// <summary>
+        /// Inserts a <see cref="HL7V2SubComponent"/> by <see cref="HL7V2SubComponent.Id"/> into <see cref="SubComponents"/>.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2SubComponent.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2SubComponent.Value"/>.</param>
+        /// <param name="subComponentDelimiter">The <see cref="HL7V2SubComponent.Delimiter"/>.</param>
+        /// <returns><see cref="HL7V2SubComponent"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2SubComponent InsertSubComponent(int id, string value, string subComponentDelimiter)
+        {
             if (SubComponents.Count == 0)
             {
                 return null;
@@ -136,7 +157,7 @@ namespace ExpressionEvaluatorForDotNet
 
             var subComponent = new HL7V2SubComponent
             {
-                Delimiter = HL7V2ExpressionConfiguration.subComponentDelimiter,
+                Delimiter = subComponentDelimiter,
                 Id = id,
                 Value = value
             };

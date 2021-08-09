@@ -84,16 +84,26 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component AddComponent(string value)
         {
+            return AddComponent(value, "^", "&");
+        }
+
+        /// <summary>
+        /// Adds a <see cref="HL7V2Component"/> to this Field Repetitions <see cref="Components"/>.
+        /// </summary>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component AddComponent(string value, string componentDelimiter, string subComponentDelimiter)
+        {
             var result = new HL7V2Component
             {
-                Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
+                Delimiter = componentDelimiter,
                 Id = Components.Count > 0 ? Components.Last().Id + 1 : 1,
                 Value = value
             };
 
-            if (value.Contains(HL7V2ExpressionConfiguration.subComponentDelimiter))
+            if (value.Contains(subComponentDelimiter))
             {
-                var subComponents = result.Value.Split(HL7V2ExpressionConfiguration.subComponentDelimiter);
+                var subComponents = result.Value.Split(subComponentDelimiter);
                 for (var i = 0; i < subComponents.Length; i++)
                 {
                     result.AddSubComponent(subComponents[i]);
@@ -134,6 +144,17 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value)
         {
+            return InsertComponent(id, value, "^");
+        }
+
+        /// <summary>
+        /// Inserts a <see cref="HL7V2Component"/> into this Field Repetitions <see cref="Components"/>.
+        /// </summary>
+        /// <param name="id">The <see cref="HL7V2Component.Id"/>.</param>
+        /// <param name="value">The <see cref="HL7V2Component.Value"/>.</param>
+        /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
+        public HL7V2Component InsertComponent(int id, string value, string componentDelimiter)
+        {
             if (Components.Count == 0)
             {
                 return null;
@@ -146,7 +167,7 @@ namespace ExpressionEvaluatorForDotNet
 
             var component = new HL7V2Component
             {
-                Delimiter = HL7V2ExpressionConfiguration.componentDelimiter,
+                Delimiter = componentDelimiter,
                 Id = id,
                 Value = value
             };

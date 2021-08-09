@@ -24,13 +24,21 @@ namespace ExpressionEvaluatorForDotNet
         /// </summary>
         public Exception Error;
 
+        public HL7V2Message(): this(HL7V2MessageDelimiters.DefaultMessageDelimiters)
+        {
+
+        }
+
         /// <summary>
         /// Initializes the <see cref="MessageSegments"/>.
         /// </summary>
-        public HL7V2Message()
+        public HL7V2Message(HL7V2MessageDelimiters messageDelimiters)
         {
             messageSegments = new List<HL7V2MessageSegment>();
+            this.messageDelimiters = messageDelimiters;
         }
+
+        private readonly HL7V2MessageDelimiters messageDelimiters;
 
         /// <summary>
         /// Rebuild the HL7 Message after making modifications, this updates the Value of each <see cref="HL7V2FieldBase"/> in this message and the <see cref="ToString"/> method. Calls each <see cref="MessageSegments"/> <see cref="HL7V2MessageSegment.Rebuild"/> method.
@@ -244,7 +252,7 @@ namespace ExpressionEvaluatorForDotNet
         /// <returns><see cref="HL7V2MessageSegment"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2MessageSegment AddMessageSegment(string segmentName)
         {
-            var result = new HL7V2MessageSegment
+            var result = new HL7V2MessageSegment(messageDelimiters)
             {
                 SegmentName = segmentName,
             };
@@ -306,7 +314,7 @@ namespace ExpressionEvaluatorForDotNet
                 return null;
             }
 
-            var messageSegment = new HL7V2MessageSegment
+            var messageSegment = new HL7V2MessageSegment(messageDelimiters)
             {
                 SegmentName = segmentName,
             };
