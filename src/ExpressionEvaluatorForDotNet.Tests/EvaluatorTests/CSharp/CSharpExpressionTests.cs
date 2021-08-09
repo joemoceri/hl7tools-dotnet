@@ -53,7 +53,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		[DataRow(((1) + (2) - (3)), "((1) + (2) - (3))", VariableType.Int)]
 		[DataRow(-(-(-1) + -(-2) - -(-3)), "-(-(-1) + -(-2) - -(-3))", VariableType.Int)]
 		[DataRow(-(-(-(-1) + -(-2)) - -(-3)), "-(-(-(-1) + -(-2)) - -(-3))", VariableType.Int)]
-		[DataRow(-(-(-(-1 * 2 + (3 / 3) - 41 * 4 / (5) % 6) + -(-2)) - -(-3)), "-(-(-(-1 * 2 + (3 / 3) - 41 * 4 / (5) % 6) + -(-2)) - -(-3))", VariableType.Int)]
+		[DataRow(-(-(-(-1 * 2 + (31 / 3) - 41 * 4 / (5) % 6) + -(-2)) - -(-3)), "-(-(-(-1 * 2 + (31 / 3) - 41 * 4 / (5) % 6) + -(-2)) - -(-3))", VariableType.Int)]
 		[DataRow(-(-(-(-1.25f * 2.5f + (3.75f / 3f) - 4.01f * 4.03f / (5.00f) % 6.0f) + -(-2.1234567890f)) - -(-3.000f)), "-(-(-(-1.25 * 2.5 + (3.75 / 3) - 4.01 * 4.03 / (5.00) % 6.0) + -(-2.1234567890)) - -(-3.000))", VariableType.Float)]
 		#endregion
 		#region Boolean test cases
@@ -76,8 +76,8 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		[DataRow(1 == 11, "1 == 11", VariableType.Boolean)]
 		[DataRow(1 == 2, "1 == 2", VariableType.Boolean)]
 		[DataRow(2 == 1, "2 == 1", VariableType.Boolean)]
-		[DataRow(true && true && 1 == 11, "true && true && 1 == 11", VariableType.Boolean)]
-		[DataRow(true || true, "true || true", VariableType.Boolean)]
+		[DataRow(true && false && 1 == 11, "true && false && 1 == 11", VariableType.Boolean)]
+		[DataRow(true || false, "true || false", VariableType.Boolean)]
 		[DataRow(true && false, "true && false", VariableType.Boolean)]
 		[DataRow(false && true, "false && true", VariableType.Boolean)]
 		[DataRow(true || false, "true || false", VariableType.Boolean)]

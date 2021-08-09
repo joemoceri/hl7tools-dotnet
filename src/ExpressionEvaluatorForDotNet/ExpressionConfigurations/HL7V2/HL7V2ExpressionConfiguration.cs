@@ -168,7 +168,7 @@ namespace ExpressionEvaluatorForDotNet
                 var input = $"{messageDelimiters.componentDelimiter}{messageDelimiters.fieldRepetitionDelimiter}{messageDelimiters.escapeCharacter}{messageDelimiters.subComponentDelimiter}";
                 var includeFieldRepetition = !expGroup.RightOperand.Equals(input);
 
-                var field = messageSegment.AddField(endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand, includeFieldRepetition);
+                messageSegment.AddField(endCharacterFound.Value ? expGroup.RightOperand.Split(endCharacter)[0] : expGroup.RightOperand, includeFieldRepetition);
 
                 return DefaultExpressionResult;
             }

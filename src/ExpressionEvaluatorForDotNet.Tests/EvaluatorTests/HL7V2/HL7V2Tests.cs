@@ -144,7 +144,6 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
-			var messageDelimiters = expressionConfiguration.GetMessageDelimiters();
 
 			var evaluator = new Evaluator(expressionConfiguration);
 
@@ -1469,8 +1468,6 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			Assert.AreEqual(message.Equals(new string("")), false);
 
-			var oldValue = message["MSH"][4].Value;
-
 			message["MSH"][4].Value = $"{Guid.NewGuid()}";
 
 			Assert.AreEqual(message.Equals(evaluatedMessage), false);
@@ -1494,7 +1491,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			var result = message.Get("MSH(A).A");
+			message.Get("MSH(A).A");
 		}
 
 		[TestMethod]
@@ -1509,7 +1506,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			var message = evaluator.EvaluateHL7V2File("ADT-A08 Update Patient.txt");
 
-			var result = message.Get("MSH.1(A)");
+			message.Get("MSH.1(A)");
 		}
 	}
 }
