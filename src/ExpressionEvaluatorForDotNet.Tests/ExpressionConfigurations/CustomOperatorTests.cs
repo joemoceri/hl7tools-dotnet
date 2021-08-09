@@ -52,20 +52,18 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			var greaterThan = expressionConfiguration.BooleanOperators.First(o => o.ExpressionOperator == Operator.GreaterThan);
 
-			var guid = $"{Guid.NewGuid()}";
-
 			greaterThan.OnBeforeOperatorExpressionSolved = (expResult) =>
 			{
 				count++;
 			};
 
-			result = evaluator.Evaluate("1>2");
+			evaluator.Evaluate("1>2");
 
 			Assert.AreEqual(count, 3);
 
 			greaterThan.OnBeforeOperatorExpressionSolved = null;
 
-			result = evaluator.Evaluate("1>2");
+			evaluator.Evaluate("1>2");
 
 			Assert.AreEqual(count, 3);
 		}
@@ -93,7 +91,7 @@ namespace ExpressionEvaluatorForDotNet.Tests
 			var exp = "1+2";
 
 			// Act
-			var result = evaluator.Evaluate(exp);
+			evaluator.Evaluate(exp);
 
 			// Assert
 			Assert.AreEqual(count, 3);
@@ -118,13 +116,13 @@ namespace ExpressionEvaluatorForDotNet.Tests
 				count++;
 			};
 
-			result = evaluator.Evaluate("1>2");
+			evaluator.Evaluate("1>2");
 
 			Assert.AreEqual(count, 7);
 
 			greaterThan.OnAfterOperatorExpressionSolved = null;
 
-			result = evaluator.Evaluate("1>2");
+			evaluator.Evaluate("1>2");
 
 			Assert.AreEqual(count, 7);
 		}

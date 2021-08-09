@@ -22,7 +22,7 @@ namespace ExpressionEvaluatorForDotNet
         /// <summary>
         /// The error if something failed, otherwise <see cref="null"/>.
         /// </summary>
-        public Exception Error;
+        public Exception Error { get; set; }
 
         public HL7V2Message(): this(HL7V2MessageDelimiters.DefaultMessageDelimiters)
         {

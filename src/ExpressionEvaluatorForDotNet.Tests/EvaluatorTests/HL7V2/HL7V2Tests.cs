@@ -1242,7 +1242,6 @@ namespace ExpressionEvaluatorForDotNet.Tests
 		{
 			// Arrange
 			var expressionConfiguration = new HL7V2ExpressionConfiguration();
-			var messageDelimiters = expressionConfiguration.GetMessageDelimiters();
 
 			var evaluator = new Evaluator(expressionConfiguration);
 
