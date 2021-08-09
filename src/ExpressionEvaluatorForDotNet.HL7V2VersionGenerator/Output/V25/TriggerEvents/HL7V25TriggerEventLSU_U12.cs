@@ -5,11 +5,11 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V25TriggerEventLSU_U12
     {
         private readonly HL7V2Message message;
-        private readonly HL7V25SegmentMSH msh;
-private readonly HL7V25SegmentSFT sft;
-private readonly HL7V25SegmentEQU equ;
-private readonly HL7V25SegmentEQP eqp;
-private readonly HL7V25SegmentROL rol;
+        public HL7V25SegmentMSH msh{get; init;}
+public HL7V25SegmentSFT sft{get; init;}
+public HL7V25SegmentEQU equ{get; init;}
+public HL7V25SegmentEQP eqp{get; init;}
+public HL7V25SegmentROL rol{get; init;}
 
 
         public string Id { get { return @"LSU_U12"; } }

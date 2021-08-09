@@ -5,11 +5,11 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V25TriggerEventNMR_N01
     {
         private readonly HL7V2Message message;
-        private readonly HL7V25SegmentMSH msh;
-private readonly HL7V25SegmentSFT sft;
-private readonly HL7V25SegmentMSA msa;
-private readonly HL7V25SegmentERR err;
-private readonly HL7V25SegmentQRD qrd;
+        public HL7V25SegmentMSH msh{get; init;}
+public HL7V25SegmentSFT sft{get; init;}
+public HL7V25SegmentMSA msa{get; init;}
+public HL7V25SegmentERR err{get; init;}
+public HL7V25SegmentQRD qrd{get; init;}
 
 
         public string Id { get { return @"NMR_N01"; } }

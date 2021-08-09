@@ -5,15 +5,15 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V271TriggerEventCCI_I22
     {
         private readonly HL7V2Message message;
-        private readonly HL7V271SegmentMSH msh;
-private readonly HL7V271SegmentSFT sft;
-private readonly HL7V271SegmentUAC uac;
-private readonly HL7V271SegmentMSA msa;
-private readonly HL7V271SegmentERR err;
-private readonly HL7V271SegmentPID pid;
-private readonly HL7V271SegmentPD1 pd1;
-private readonly HL7V271SegmentNK1 nk1;
-private readonly HL7V271SegmentREL rel;
+        public HL7V271SegmentMSH msh{get; init;}
+public HL7V271SegmentSFT sft{get; init;}
+public HL7V271SegmentUAC uac{get; init;}
+public HL7V271SegmentMSA msa{get; init;}
+public HL7V271SegmentERR err{get; init;}
+public HL7V271SegmentPID pid{get; init;}
+public HL7V271SegmentPD1 pd1{get; init;}
+public HL7V271SegmentNK1 nk1{get; init;}
+public HL7V271SegmentREL rel{get; init;}
 
 
         public string Id { get { return @"CCI_I22"; } }

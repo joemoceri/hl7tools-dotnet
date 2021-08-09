@@ -5,8 +5,8 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V23TriggerEventMFN_M04
     {
         private readonly HL7V2Message message;
-        private readonly HL7V23SegmentMSH msh;
-private readonly HL7V23SegmentMFI mfi;
+        public HL7V23SegmentMSH msh{get; init;}
+public HL7V23SegmentMFI mfi{get; init;}
 
 
         public string Id { get { return @"MFN_M04"; } }

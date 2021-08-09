@@ -5,11 +5,11 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V28TriggerEventDEL_O46
     {
         private readonly HL7V2Message message;
-        private readonly HL7V28SegmentMSH msh;
-private readonly HL7V28SegmentSTF stf;
-private readonly HL7V28SegmentUAC uac;
-private readonly HL7V28SegmentDON don;
-private readonly HL7V28SegmentNTE nte;
+        public HL7V28SegmentMSH msh{get; init;}
+public HL7V28SegmentSTF stf{get; init;}
+public HL7V28SegmentUAC uac{get; init;}
+public HL7V28SegmentDON don{get; init;}
+public HL7V28SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"DEL_O46"; } }

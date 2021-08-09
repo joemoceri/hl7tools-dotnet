@@ -5,13 +5,13 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventRSP_K23
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
-private readonly HL7V24SegmentMSA msa;
-private readonly HL7V24SegmentERR err;
-private readonly HL7V24SegmentQAK qak;
-private readonly HL7V24SegmentQPD qpd;
-private readonly HL7V24SegmentPID pid;
-private readonly HL7V24SegmentDSC dsc;
+        public HL7V24SegmentMSH msh{get; init;}
+public HL7V24SegmentMSA msa{get; init;}
+public HL7V24SegmentERR err{get; init;}
+public HL7V24SegmentQAK qak{get; init;}
+public HL7V24SegmentQPD qpd{get; init;}
+public HL7V24SegmentPID pid{get; init;}
+public HL7V24SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"RSP_K23"; } }

@@ -5,13 +5,13 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V271TriggerEventRSP_K32
     {
         private readonly HL7V2Message message;
-        private readonly HL7V271SegmentMSH msh;
-private readonly HL7V271SegmentSFT sft;
-private readonly HL7V271SegmentMSA msa;
-private readonly HL7V271SegmentERR err;
-private readonly HL7V271SegmentQAK qak;
-private readonly HL7V271SegmentQPD qpd;
-private readonly HL7V271SegmentDSC dsc;
+        public HL7V271SegmentMSH msh{get; init;}
+public HL7V271SegmentSFT sft{get; init;}
+public HL7V271SegmentMSA msa{get; init;}
+public HL7V271SegmentERR err{get; init;}
+public HL7V271SegmentQAK qak{get; init;}
+public HL7V271SegmentQPD qpd{get; init;}
+public HL7V271SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"RSP_K32"; } }

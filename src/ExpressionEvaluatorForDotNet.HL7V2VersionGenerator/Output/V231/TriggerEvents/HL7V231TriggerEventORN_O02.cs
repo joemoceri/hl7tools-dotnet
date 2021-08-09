@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V231TriggerEventORN_O02
     {
         private readonly HL7V2Message message;
-        private readonly HL7V231SegmentMSH msh;
-private readonly HL7V231SegmentMSA msa;
-private readonly HL7V231SegmentERR err;
-private readonly HL7V231SegmentNTE nte;
+        public HL7V231SegmentMSH msh{get; init;}
+public HL7V231SegmentMSA msa{get; init;}
+public HL7V231SegmentERR err{get; init;}
+public HL7V231SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"ORN_O02"; } }

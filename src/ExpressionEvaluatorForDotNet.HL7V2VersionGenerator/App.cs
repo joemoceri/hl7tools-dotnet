@@ -44,8 +44,8 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 //// sub components
                 //CreateSubComponents(version);
 
-                // segments
-                CreateSegments(version);
+                //// segments
+                //CreateSegments(version);
 
                 // trigger events
                 CreateTriggerEvents(version);
@@ -202,7 +202,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                         for (var i = 0; i < triggerEvent.Segments.Count; i++)
                         {
                             var id = triggerEvent.Segments[i].Id;
-                            var template = $"private readonly HL7V{version}Segment{id} {id.ToLower()};{Environment.NewLine}";
+                            var template = $"public HL7V{version}Segment{id} {id.ToLower()}{{get; init;}}{Environment.NewLine}";
                             result.Append(template);
                         }
 

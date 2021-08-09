@@ -5,16 +5,16 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V251TriggerEventADT_A10
     {
         private readonly HL7V2Message message;
-        private readonly HL7V251SegmentMSH msh;
-private readonly HL7V251SegmentSFT sft;
-private readonly HL7V251SegmentEVN evn;
-private readonly HL7V251SegmentPID pid;
-private readonly HL7V251SegmentPD1 pd1;
-private readonly HL7V251SegmentPV1 pv1;
-private readonly HL7V251SegmentPV2 pv2;
-private readonly HL7V251SegmentDB1 db1;
-private readonly HL7V251SegmentOBX obx;
-private readonly HL7V251SegmentDG1 dg1;
+        public HL7V251SegmentMSH msh{get; init;}
+public HL7V251SegmentSFT sft{get; init;}
+public HL7V251SegmentEVN evn{get; init;}
+public HL7V251SegmentPID pid{get; init;}
+public HL7V251SegmentPD1 pd1{get; init;}
+public HL7V251SegmentPV1 pv1{get; init;}
+public HL7V251SegmentPV2 pv2{get; init;}
+public HL7V251SegmentDB1 db1{get; init;}
+public HL7V251SegmentOBX obx{get; init;}
+public HL7V251SegmentDG1 dg1{get; init;}
 
 
         public string Id { get { return @"ADT_A10"; } }

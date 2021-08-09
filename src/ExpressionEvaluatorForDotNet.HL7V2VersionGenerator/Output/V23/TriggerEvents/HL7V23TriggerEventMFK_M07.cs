@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V23TriggerEventMFK_M07
     {
         private readonly HL7V2Message message;
-        private readonly HL7V23SegmentMSH msh;
-private readonly HL7V23SegmentMSA msa;
-private readonly HL7V23SegmentMFI mfi;
-private readonly HL7V23SegmentMFA mfa;
+        public HL7V23SegmentMSH msh{get; init;}
+public HL7V23SegmentMSA msa{get; init;}
+public HL7V23SegmentMFI mfi{get; init;}
+public HL7V23SegmentMFA mfa{get; init;}
 
 
         public string Id { get { return @"MFK_M07"; } }

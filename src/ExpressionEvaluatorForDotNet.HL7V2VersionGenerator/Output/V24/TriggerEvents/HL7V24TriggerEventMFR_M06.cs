@@ -5,13 +5,13 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventMFR_M06
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
-private readonly HL7V24SegmentMSA msa;
-private readonly HL7V24SegmentERR err;
-private readonly HL7V24SegmentQRD qrd;
-private readonly HL7V24SegmentQRF qrf;
-private readonly HL7V24SegmentMFI mfi;
-private readonly HL7V24SegmentDSC dsc;
+        public HL7V24SegmentMSH msh{get; init;}
+public HL7V24SegmentMSA msa{get; init;}
+public HL7V24SegmentERR err{get; init;}
+public HL7V24SegmentQRD qrd{get; init;}
+public HL7V24SegmentQRF qrf{get; init;}
+public HL7V24SegmentMFI mfi{get; init;}
+public HL7V24SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"MFR_M06"; } }

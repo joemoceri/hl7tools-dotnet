@@ -5,8 +5,8 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V23TriggerEventPPG_PCG
     {
         private readonly HL7V2Message message;
-        private readonly HL7V23SegmentMSH msh;
-private readonly HL7V23SegmentPID pid;
+        public HL7V23SegmentMSH msh{get; init;}
+public HL7V23SegmentPID pid{get; init;}
 
 
         public string Id { get { return @"PPG_PCG"; } }

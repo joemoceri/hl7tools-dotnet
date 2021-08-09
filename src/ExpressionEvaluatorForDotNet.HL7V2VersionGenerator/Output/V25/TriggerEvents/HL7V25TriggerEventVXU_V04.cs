@@ -5,12 +5,12 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V25TriggerEventVXU_V04
     {
         private readonly HL7V2Message message;
-        private readonly HL7V25SegmentMSH msh;
-private readonly HL7V25SegmentSFT sft;
-private readonly HL7V25SegmentPID pid;
-private readonly HL7V25SegmentPD1 pd1;
-private readonly HL7V25SegmentNK1 nk1;
-private readonly HL7V25SegmentGT1 gt1;
+        public HL7V25SegmentMSH msh{get; init;}
+public HL7V25SegmentSFT sft{get; init;}
+public HL7V25SegmentPID pid{get; init;}
+public HL7V25SegmentPD1 pd1{get; init;}
+public HL7V25SegmentNK1 nk1{get; init;}
+public HL7V25SegmentGT1 gt1{get; init;}
 
 
         public string Id { get { return @"VXU_V04"; } }

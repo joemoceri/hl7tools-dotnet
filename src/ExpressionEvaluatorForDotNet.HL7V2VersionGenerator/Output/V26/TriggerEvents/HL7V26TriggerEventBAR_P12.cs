@@ -5,14 +5,14 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V26TriggerEventBAR_P12
     {
         private readonly HL7V2Message message;
-        private readonly HL7V26SegmentMSH msh;
-private readonly HL7V26SegmentSFT sft;
-private readonly HL7V26SegmentUAC uac;
-private readonly HL7V26SegmentEVN evn;
-private readonly HL7V26SegmentPID pid;
-private readonly HL7V26SegmentPV1 pv1;
-private readonly HL7V26SegmentDG1 dg1;
-private readonly HL7V26SegmentDRG drg;
+        public HL7V26SegmentMSH msh{get; init;}
+public HL7V26SegmentSFT sft{get; init;}
+public HL7V26SegmentUAC uac{get; init;}
+public HL7V26SegmentEVN evn{get; init;}
+public HL7V26SegmentPID pid{get; init;}
+public HL7V26SegmentPV1 pv1{get; init;}
+public HL7V26SegmentDG1 dg1{get; init;}
+public HL7V26SegmentDRG drg{get; init;}
 
 
         public string Id { get { return @"BAR_P12"; } }

@@ -5,13 +5,13 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V26TriggerEventUDM_Q05
     {
         private readonly HL7V2Message message;
-        private readonly HL7V26SegmentMSH msh;
-private readonly HL7V26SegmentSFT sft;
-private readonly HL7V26SegmentUAC uac;
-private readonly HL7V26SegmentURD urd;
-private readonly HL7V26SegmentURS urs;
-private readonly HL7V26SegmentDSP dsp;
-private readonly HL7V26SegmentDSC dsc;
+        public HL7V26SegmentMSH msh{get; init;}
+public HL7V26SegmentSFT sft{get; init;}
+public HL7V26SegmentUAC uac{get; init;}
+public HL7V26SegmentURD urd{get; init;}
+public HL7V26SegmentURS urs{get; init;}
+public HL7V26SegmentDSP dsp{get; init;}
+public HL7V26SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"UDM_Q05"; } }

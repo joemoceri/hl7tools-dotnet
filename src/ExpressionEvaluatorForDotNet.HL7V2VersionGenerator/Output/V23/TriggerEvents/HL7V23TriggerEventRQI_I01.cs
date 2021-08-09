@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V23TriggerEventRQI_I01
     {
         private readonly HL7V2Message message;
-        private readonly HL7V23SegmentMSH msh;
-private readonly HL7V23SegmentPID pid;
-private readonly HL7V23SegmentNK1 nk1;
-private readonly HL7V23SegmentNTE nte;
+        public HL7V23SegmentMSH msh{get; init;}
+public HL7V23SegmentPID pid{get; init;}
+public HL7V23SegmentNK1 nk1{get; init;}
+public HL7V23SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"RQI_I01"; } }

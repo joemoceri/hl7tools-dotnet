@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V23TriggerEventRDR_RDR
     {
         private readonly HL7V2Message message;
-        private readonly HL7V23SegmentMSH msh;
-private readonly HL7V23SegmentMSA msa;
-private readonly HL7V23SegmentERR err;
-private readonly HL7V23SegmentDSC dsc;
+        public HL7V23SegmentMSH msh{get; init;}
+public HL7V23SegmentMSA msa{get; init;}
+public HL7V23SegmentERR err{get; init;}
+public HL7V23SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"RDR_RDR"; } }

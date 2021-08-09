@@ -5,13 +5,13 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V25TriggerEventEDR_R07
     {
         private readonly HL7V2Message message;
-        private readonly HL7V25SegmentMSH msh;
-private readonly HL7V25SegmentSFT sft;
-private readonly HL7V25SegmentMSA msa;
-private readonly HL7V25SegmentERR err;
-private readonly HL7V25SegmentQAK qak;
-private readonly HL7V25SegmentDSP dsp;
-private readonly HL7V25SegmentDSC dsc;
+        public HL7V25SegmentMSH msh{get; init;}
+public HL7V25SegmentSFT sft{get; init;}
+public HL7V25SegmentMSA msa{get; init;}
+public HL7V25SegmentERR err{get; init;}
+public HL7V25SegmentQAK qak{get; init;}
+public HL7V25SegmentDSP dsp{get; init;}
+public HL7V25SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"EDR_R07"; } }

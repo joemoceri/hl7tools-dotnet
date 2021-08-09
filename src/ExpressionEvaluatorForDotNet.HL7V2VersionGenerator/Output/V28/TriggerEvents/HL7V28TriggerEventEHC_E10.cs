@@ -5,11 +5,11 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V28TriggerEventEHC_E10
     {
         private readonly HL7V2Message message;
-        private readonly HL7V28SegmentMSH msh;
-private readonly HL7V28SegmentSFT sft;
-private readonly HL7V28SegmentUAC uac;
-private readonly HL7V28SegmentMSA msa;
-private readonly HL7V28SegmentERR err;
+        public HL7V28SegmentMSH msh{get; init;}
+public HL7V28SegmentSFT sft{get; init;}
+public HL7V28SegmentUAC uac{get; init;}
+public HL7V28SegmentMSA msa{get; init;}
+public HL7V28SegmentERR err{get; init;}
 
 
         public string Id { get { return @"EHC_E10"; } }

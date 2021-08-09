@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V28TriggerEventSIU_S14
     {
         private readonly HL7V2Message message;
-        private readonly HL7V28SegmentMSH msh;
-private readonly HL7V28SegmentSCH sch;
-private readonly HL7V28SegmentTQ1 tq1;
-private readonly HL7V28SegmentNTE nte;
+        public HL7V28SegmentMSH msh{get; init;}
+public HL7V28SegmentSCH sch{get; init;}
+public HL7V28SegmentTQ1 tq1{get; init;}
+public HL7V28SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"SIU_S14"; } }

@@ -5,19 +5,19 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V26TriggerEventRCL_I06
     {
         private readonly HL7V2Message message;
-        private readonly HL7V26SegmentMSH msh;
-private readonly HL7V26SegmentSFT sft;
-private readonly HL7V26SegmentUAC uac;
-private readonly HL7V26SegmentMSA msa;
-private readonly HL7V26SegmentQRD qrd;
-private readonly HL7V26SegmentQRF qrf;
-private readonly HL7V26SegmentPID pid;
-private readonly HL7V26SegmentDG1 dg1;
-private readonly HL7V26SegmentDRG drg;
-private readonly HL7V26SegmentAL1 al1;
-private readonly HL7V26SegmentNTE nte;
-private readonly HL7V26SegmentDSP dsp;
-private readonly HL7V26SegmentDSC dsc;
+        public HL7V26SegmentMSH msh{get; init;}
+public HL7V26SegmentSFT sft{get; init;}
+public HL7V26SegmentUAC uac{get; init;}
+public HL7V26SegmentMSA msa{get; init;}
+public HL7V26SegmentQRD qrd{get; init;}
+public HL7V26SegmentQRF qrf{get; init;}
+public HL7V26SegmentPID pid{get; init;}
+public HL7V26SegmentDG1 dg1{get; init;}
+public HL7V26SegmentDRG drg{get; init;}
+public HL7V26SegmentAL1 al1{get; init;}
+public HL7V26SegmentNTE nte{get; init;}
+public HL7V26SegmentDSP dsp{get; init;}
+public HL7V26SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"RCL_I06"; } }

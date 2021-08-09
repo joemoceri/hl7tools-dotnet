@@ -5,14 +5,14 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V231TriggerEventDSR_P04
     {
         private readonly HL7V2Message message;
-        private readonly HL7V231SegmentMSH msh;
-private readonly HL7V231SegmentMSA msa;
-private readonly HL7V231SegmentERR err;
-private readonly HL7V231SegmentQAK qak;
-private readonly HL7V231SegmentQRD qrd;
-private readonly HL7V231SegmentQRF qrf;
-private readonly HL7V231SegmentDSP dsp;
-private readonly HL7V231SegmentDSC dsc;
+        public HL7V231SegmentMSH msh{get; init;}
+public HL7V231SegmentMSA msa{get; init;}
+public HL7V231SegmentERR err{get; init;}
+public HL7V231SegmentQAK qak{get; init;}
+public HL7V231SegmentQRD qrd{get; init;}
+public HL7V231SegmentQRF qrf{get; init;}
+public HL7V231SegmentDSP dsp{get; init;}
+public HL7V231SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"DSR_P04"; } }

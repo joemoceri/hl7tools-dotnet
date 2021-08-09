@@ -5,16 +5,16 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V27TriggerEventORU_R32
     {
         private readonly HL7V2Message message;
-        private readonly HL7V27SegmentMSH msh;
-private readonly HL7V27SegmentSFT sft;
-private readonly HL7V27SegmentUAC uac;
-private readonly HL7V27SegmentPID pid;
-private readonly HL7V27SegmentPD1 pd1;
-private readonly HL7V27SegmentPRT prt;
-private readonly HL7V27SegmentORC orc;
-private readonly HL7V27SegmentOBR obr;
-private readonly HL7V27SegmentNTE nte;
-private readonly HL7V27SegmentPRT prt;
+        public HL7V27SegmentMSH msh{get; init;}
+public HL7V27SegmentSFT sft{get; init;}
+public HL7V27SegmentUAC uac{get; init;}
+public HL7V27SegmentPID pid{get; init;}
+public HL7V27SegmentPD1 pd1{get; init;}
+public HL7V27SegmentPRT prt{get; init;}
+public HL7V27SegmentORC orc{get; init;}
+public HL7V27SegmentOBR obr{get; init;}
+public HL7V27SegmentNTE nte{get; init;}
+public HL7V27SegmentPRT prt{get; init;}
 
 
         public string Id { get { return @"ORU_R32"; } }

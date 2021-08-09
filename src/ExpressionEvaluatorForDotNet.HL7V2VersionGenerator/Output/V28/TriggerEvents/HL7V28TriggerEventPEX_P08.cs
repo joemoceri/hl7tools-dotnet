@@ -5,15 +5,15 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V28TriggerEventPEX_P08
     {
         private readonly HL7V2Message message;
-        private readonly HL7V28SegmentMSH msh;
-private readonly HL7V28SegmentSFT sft;
-private readonly HL7V28SegmentUAC uac;
-private readonly HL7V28SegmentEVN evn;
-private readonly HL7V28SegmentPID pid;
-private readonly HL7V28SegmentPD1 pd1;
-private readonly HL7V28SegmentPRT prt;
-private readonly HL7V28SegmentARV arv;
-private readonly HL7V28SegmentNTE nte;
+        public HL7V28SegmentMSH msh{get; init;}
+public HL7V28SegmentSFT sft{get; init;}
+public HL7V28SegmentUAC uac{get; init;}
+public HL7V28SegmentEVN evn{get; init;}
+public HL7V28SegmentPID pid{get; init;}
+public HL7V28SegmentPD1 pd1{get; init;}
+public HL7V28SegmentPRT prt{get; init;}
+public HL7V28SegmentARV arv{get; init;}
+public HL7V28SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"PEX_P08"; } }

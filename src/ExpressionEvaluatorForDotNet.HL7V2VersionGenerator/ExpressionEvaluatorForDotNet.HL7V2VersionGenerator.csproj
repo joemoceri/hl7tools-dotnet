@@ -44,8 +44,12 @@
 	  <Content Remove="Output\V23\HL7V23Field.cs" />
 	  <Content Remove="Output\V23\HL7V23FieldRepetition.cs" />
 	  <Content Remove="Output\V23\HL7V23SubComponent.cs" />
+	  <Content Remove="Output\V23\Segments\HL7V23SegmentMSH.cs" />
+	  <Content Remove="Output\V23\Segments\HL7V23SegmentNTE.cs" />
 	  <Content Remove="Output\V23\Segments\HL7V23SegmentPD1.cs" />
+	  <Content Remove="Output\V23\Segments\HL7V23SegmentSCH.cs" />
 	  <Content Remove="Output\V23\Segments\HL7V23SegmentUB2.cs" />
+	  <Content Remove="Output\V23\TriggerEvents\HL7V23TriggerEventSIU_S12.cs" />
 	  <Content Remove="Output\V24\HL7V24Component.cs" />
 	  <Content Remove="Output\V24\HL7V24Field.cs" />
 	  <Content Remove="Output\V24\HL7V24FieldRepetition.cs" />
@@ -98,8 +102,11 @@
 	  <Compile Include="Output\V23\HL7V23Field.cs" />
 	  <Compile Include="Output\V23\HL7V23FieldRepetition.cs" />
 	  <Compile Include="Output\V23\HL7V23SubComponent.cs" />
+	  <Compile Include="Output\V23\Segments\HL7V23SegmentNTE.cs" />
 	  <Compile Include="Output\V23\Segments\HL7V23SegmentPD1.cs" />
+	  <Compile Include="Output\V23\Segments\HL7V23SegmentSCH.cs" />
 	  <Compile Include="Output\V23\Segments\HL7V23SegmentUB2.cs" />
+	  <Compile Include="Output\V23\TriggerEvents\HL7V23TriggerEventSIU_S12.cs" />
 	  <Compile Include="Output\V24\HL7V24Component.cs" />
 	  <Compile Include="Output\V24\HL7V24Field.cs" />
 	  <Compile Include="Output\V24\HL7V24FieldRepetition.cs" />
@@ -134,6 +141,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExpressionEvaluatorForDotNet\ExpressionEvaluatorForDotNet.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Output\V23\Segments\HL7V23SegmentMSH.cs" />
   </ItemGroup>
 
 </Project>

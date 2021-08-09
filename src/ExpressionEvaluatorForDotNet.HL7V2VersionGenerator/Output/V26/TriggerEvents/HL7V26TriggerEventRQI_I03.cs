@@ -5,12 +5,12 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V26TriggerEventRQI_I03
     {
         private readonly HL7V2Message message;
-        private readonly HL7V26SegmentMSH msh;
-private readonly HL7V26SegmentSFT sft;
-private readonly HL7V26SegmentUAC uac;
-private readonly HL7V26SegmentPID pid;
-private readonly HL7V26SegmentNK1 nk1;
-private readonly HL7V26SegmentNTE nte;
+        public HL7V26SegmentMSH msh{get; init;}
+public HL7V26SegmentSFT sft{get; init;}
+public HL7V26SegmentUAC uac{get; init;}
+public HL7V26SegmentPID pid{get; init;}
+public HL7V26SegmentNK1 nk1{get; init;}
+public HL7V26SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"RQI_I03"; } }

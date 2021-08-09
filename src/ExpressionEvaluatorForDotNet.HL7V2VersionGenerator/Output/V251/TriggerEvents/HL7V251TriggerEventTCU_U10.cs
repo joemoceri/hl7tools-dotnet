@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V251TriggerEventTCU_U10
     {
         private readonly HL7V2Message message;
-        private readonly HL7V251SegmentMSH msh;
-private readonly HL7V251SegmentSFT sft;
-private readonly HL7V251SegmentEQU equ;
-private readonly HL7V251SegmentROL rol;
+        public HL7V251SegmentMSH msh{get; init;}
+public HL7V251SegmentSFT sft{get; init;}
+public HL7V251SegmentEQU equ{get; init;}
+public HL7V251SegmentROL rol{get; init;}
 
 
         public string Id { get { return @"TCU_U10"; } }

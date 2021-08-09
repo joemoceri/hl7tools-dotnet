@@ -5,11 +5,11 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V27TriggerEventQRY_PC4
     {
         private readonly HL7V2Message message;
-        private readonly HL7V27SegmentMSH msh;
-private readonly HL7V27SegmentSFT sft;
-private readonly HL7V27SegmentUAC uac;
-private readonly HL7V27SegmentQRD qrd;
-private readonly HL7V27SegmentQRF qrf;
+        public HL7V27SegmentMSH msh{get; init;}
+public HL7V27SegmentSFT sft{get; init;}
+public HL7V27SegmentUAC uac{get; init;}
+public HL7V27SegmentQRD qrd{get; init;}
+public HL7V27SegmentQRF qrf{get; init;}
 
 
         public string Id { get { return @"QRY_PC4"; } }

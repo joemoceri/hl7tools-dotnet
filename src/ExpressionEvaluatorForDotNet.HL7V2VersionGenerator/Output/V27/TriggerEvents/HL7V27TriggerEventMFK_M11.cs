@@ -5,12 +5,12 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V27TriggerEventMFK_M11
     {
         private readonly HL7V2Message message;
-        private readonly HL7V27SegmentMSH msh;
-private readonly HL7V27SegmentSFT sft;
-private readonly HL7V27SegmentUAC uac;
-private readonly HL7V27SegmentMSA msa;
-private readonly HL7V27SegmentERR err;
-private readonly HL7V27SegmentMFI mfi;
+        public HL7V27SegmentMSH msh{get; init;}
+public HL7V27SegmentSFT sft{get; init;}
+public HL7V27SegmentUAC uac{get; init;}
+public HL7V27SegmentMSA msa{get; init;}
+public HL7V27SegmentERR err{get; init;}
+public HL7V27SegmentMFI mfi{get; init;}
 
 
         public string Id { get { return @"MFK_M11"; } }

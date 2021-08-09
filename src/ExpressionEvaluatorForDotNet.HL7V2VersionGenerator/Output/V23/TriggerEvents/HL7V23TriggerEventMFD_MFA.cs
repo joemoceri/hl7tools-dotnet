@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V23TriggerEventMFD_MFA
     {
         private readonly HL7V2Message message;
-        private readonly HL7V23SegmentMSH msh;
-private readonly HL7V23SegmentMFI mfi;
-private readonly HL7V23SegmentMFA mfa;
+        public HL7V23SegmentMSH msh{get; init;}
+public HL7V23SegmentMFI mfi{get; init;}
+public HL7V23SegmentMFA mfa{get; init;}
 
 
         public string Id { get { return @"MFD_MFA"; } }

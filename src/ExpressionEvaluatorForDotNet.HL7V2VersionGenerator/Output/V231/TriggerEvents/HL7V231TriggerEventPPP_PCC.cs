@@ -5,8 +5,8 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V231TriggerEventPPP_PCC
     {
         private readonly HL7V2Message message;
-        private readonly HL7V231SegmentMSH msh;
-private readonly HL7V231SegmentPID pid;
+        public HL7V231SegmentMSH msh{get; init;}
+public HL7V231SegmentPID pid{get; init;}
 
 
         public string Id { get { return @"PPP_PCC"; } }

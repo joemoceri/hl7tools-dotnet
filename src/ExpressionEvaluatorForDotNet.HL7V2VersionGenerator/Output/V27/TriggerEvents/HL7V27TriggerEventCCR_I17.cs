@@ -5,12 +5,12 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V27TriggerEventCCR_I17
     {
         private readonly HL7V2Message message;
-        private readonly HL7V27SegmentMSH msh;
-private readonly HL7V27SegmentSFT sft;
-private readonly HL7V27SegmentUAC uac;
-private readonly HL7V27SegmentRF1 rf1;
-private readonly HL7V27SegmentNK1 nk1;
-private readonly HL7V27SegmentREL rel;
+        public HL7V27SegmentMSH msh{get; init;}
+public HL7V27SegmentSFT sft{get; init;}
+public HL7V27SegmentUAC uac{get; init;}
+public HL7V27SegmentRF1 rf1{get; init;}
+public HL7V27SegmentNK1 nk1{get; init;}
+public HL7V27SegmentREL rel{get; init;}
 
 
         public string Id { get { return @"CCR_I17"; } }

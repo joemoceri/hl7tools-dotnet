@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V23TriggerEventPRR_PC5
     {
         private readonly HL7V2Message message;
-        private readonly HL7V23SegmentMSH msh;
-private readonly HL7V23SegmentMSA msa;
-private readonly HL7V23SegmentERR err;
-private readonly HL7V23SegmentQRD qrd;
+        public HL7V23SegmentMSH msh{get; init;}
+public HL7V23SegmentMSA msa{get; init;}
+public HL7V23SegmentERR err{get; init;}
+public HL7V23SegmentQRD qrd{get; init;}
 
 
         public string Id { get { return @"PRR_PC5"; } }

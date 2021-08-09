@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V231TriggerEventSRR_S07
     {
         private readonly HL7V2Message message;
-        private readonly HL7V231SegmentMSH msh;
-private readonly HL7V231SegmentMSA msa;
-private readonly HL7V231SegmentERR err;
+        public HL7V231SegmentMSH msh{get; init;}
+public HL7V231SegmentMSA msa{get; init;}
+public HL7V231SegmentERR err{get; init;}
 
 
         public string Id { get { return @"SRR_S07"; } }

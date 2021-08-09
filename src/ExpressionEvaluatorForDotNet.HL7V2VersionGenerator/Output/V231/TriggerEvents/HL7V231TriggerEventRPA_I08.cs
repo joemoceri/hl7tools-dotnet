@@ -5,17 +5,17 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V231TriggerEventRPA_I08
     {
         private readonly HL7V2Message message;
-        private readonly HL7V231SegmentMSH msh;
-private readonly HL7V231SegmentMSA msa;
-private readonly HL7V231SegmentRF1 rf1;
-private readonly HL7V231SegmentPID pid;
-private readonly HL7V231SegmentNK1 nk1;
-private readonly HL7V231SegmentGT1 gt1;
-private readonly HL7V231SegmentACC acc;
-private readonly HL7V231SegmentDG1 dg1;
-private readonly HL7V231SegmentDRG drg;
-private readonly HL7V231SegmentAL1 al1;
-private readonly HL7V231SegmentNTE nte;
+        public HL7V231SegmentMSH msh{get; init;}
+public HL7V231SegmentMSA msa{get; init;}
+public HL7V231SegmentRF1 rf1{get; init;}
+public HL7V231SegmentPID pid{get; init;}
+public HL7V231SegmentNK1 nk1{get; init;}
+public HL7V231SegmentGT1 gt1{get; init;}
+public HL7V231SegmentACC acc{get; init;}
+public HL7V231SegmentDG1 dg1{get; init;}
+public HL7V231SegmentDRG drg{get; init;}
+public HL7V231SegmentAL1 al1{get; init;}
+public HL7V231SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"RPA_I08"; } }

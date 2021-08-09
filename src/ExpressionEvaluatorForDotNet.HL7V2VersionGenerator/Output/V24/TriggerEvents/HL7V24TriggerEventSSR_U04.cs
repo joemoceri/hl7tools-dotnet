@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventSSR_U04
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
-private readonly HL7V24SegmentEQU equ;
-private readonly HL7V24SegmentSAC sac;
-private readonly HL7V24SegmentROL rol;
+        public HL7V24SegmentMSH msh{get; init;}
+public HL7V24SegmentEQU equ{get; init;}
+public HL7V24SegmentSAC sac{get; init;}
+public HL7V24SegmentROL rol{get; init;}
 
 
         public string Id { get { return @"SSR_U04"; } }

@@ -5,12 +5,12 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V27TriggerEventOUL_R23
     {
         private readonly HL7V2Message message;
-        private readonly HL7V27SegmentMSH msh;
-private readonly HL7V27SegmentSFT sft;
-private readonly HL7V27SegmentUAC uac;
-private readonly HL7V27SegmentNTE nte;
-private readonly HL7V27SegmentNK1 nk1;
-private readonly HL7V27SegmentDSC dsc;
+        public HL7V27SegmentMSH msh{get; init;}
+public HL7V27SegmentSFT sft{get; init;}
+public HL7V27SegmentUAC uac{get; init;}
+public HL7V27SegmentNTE nte{get; init;}
+public HL7V27SegmentNK1 nk1{get; init;}
+public HL7V27SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"OUL_R23"; } }

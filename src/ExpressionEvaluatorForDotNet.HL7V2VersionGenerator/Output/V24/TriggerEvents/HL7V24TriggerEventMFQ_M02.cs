@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventMFQ_M02
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
-private readonly HL7V24SegmentQRD qrd;
-private readonly HL7V24SegmentQRF qrf;
-private readonly HL7V24SegmentDSC dsc;
+        public HL7V24SegmentMSH msh{get; init;}
+public HL7V24SegmentQRD qrd{get; init;}
+public HL7V24SegmentQRF qrf{get; init;}
+public HL7V24SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"MFQ_M02"; } }

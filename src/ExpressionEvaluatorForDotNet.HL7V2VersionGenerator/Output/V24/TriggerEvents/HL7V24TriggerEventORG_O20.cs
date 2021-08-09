@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventORG_O20
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
-private readonly HL7V24SegmentMSA msa;
-private readonly HL7V24SegmentERR err;
-private readonly HL7V24SegmentNTE nte;
+        public HL7V24SegmentMSH msh{get; init;}
+public HL7V24SegmentMSA msa{get; init;}
+public HL7V24SegmentERR err{get; init;}
+public HL7V24SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"ORG_O20"; } }

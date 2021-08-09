@@ -5,17 +5,17 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V23TriggerEventRCL_I06
     {
         private readonly HL7V2Message message;
-        private readonly HL7V23SegmentMSH msh;
-private readonly HL7V23SegmentMSA msa;
-private readonly HL7V23SegmentQRD qrd;
-private readonly HL7V23SegmentQRF qrf;
-private readonly HL7V23SegmentPID pid;
-private readonly HL7V23SegmentDG1 dg1;
-private readonly HL7V23SegmentDRG drg;
-private readonly HL7V23SegmentAL1 al1;
-private readonly HL7V23SegmentNTE nte;
-private readonly HL7V23SegmentDSP dsp;
-private readonly HL7V23SegmentDSC dsc;
+        public HL7V23SegmentMSH msh{get; init;}
+public HL7V23SegmentMSA msa{get; init;}
+public HL7V23SegmentQRD qrd{get; init;}
+public HL7V23SegmentQRF qrf{get; init;}
+public HL7V23SegmentPID pid{get; init;}
+public HL7V23SegmentDG1 dg1{get; init;}
+public HL7V23SegmentDRG drg{get; init;}
+public HL7V23SegmentAL1 al1{get; init;}
+public HL7V23SegmentNTE nte{get; init;}
+public HL7V23SegmentDSP dsp{get; init;}
+public HL7V23SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"RCL_I06"; } }

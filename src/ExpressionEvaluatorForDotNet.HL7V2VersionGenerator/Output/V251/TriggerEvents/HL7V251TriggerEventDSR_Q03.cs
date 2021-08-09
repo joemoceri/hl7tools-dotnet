@@ -5,15 +5,15 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V251TriggerEventDSR_Q03
     {
         private readonly HL7V2Message message;
-        private readonly HL7V251SegmentMSH msh;
-private readonly HL7V251SegmentSFT sft;
-private readonly HL7V251SegmentMSA msa;
-private readonly HL7V251SegmentERR err;
-private readonly HL7V251SegmentQAK qak;
-private readonly HL7V251SegmentQRD qrd;
-private readonly HL7V251SegmentQRF qrf;
-private readonly HL7V251SegmentDSP dsp;
-private readonly HL7V251SegmentDSC dsc;
+        public HL7V251SegmentMSH msh{get; init;}
+public HL7V251SegmentSFT sft{get; init;}
+public HL7V251SegmentMSA msa{get; init;}
+public HL7V251SegmentERR err{get; init;}
+public HL7V251SegmentQAK qak{get; init;}
+public HL7V251SegmentQRD qrd{get; init;}
+public HL7V251SegmentQRF qrf{get; init;}
+public HL7V251SegmentDSP dsp{get; init;}
+public HL7V251SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"DSR_Q03"; } }

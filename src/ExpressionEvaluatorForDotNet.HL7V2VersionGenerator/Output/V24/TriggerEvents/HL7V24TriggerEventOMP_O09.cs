@@ -5,8 +5,8 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventOMP_O09
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
-private readonly HL7V24SegmentNTE nte;
+        public HL7V24SegmentMSH msh{get; init;}
+public HL7V24SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"OMP_O09"; } }

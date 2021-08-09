@@ -5,15 +5,15 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventRQA_I11
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
-private readonly HL7V24SegmentRF1 rf1;
-private readonly HL7V24SegmentPID pid;
-private readonly HL7V24SegmentNK1 nk1;
-private readonly HL7V24SegmentACC acc;
-private readonly HL7V24SegmentDG1 dg1;
-private readonly HL7V24SegmentDRG drg;
-private readonly HL7V24SegmentAL1 al1;
-private readonly HL7V24SegmentNTE nte;
+        public HL7V24SegmentMSH msh{get; init;}
+public HL7V24SegmentRF1 rf1{get; init;}
+public HL7V24SegmentPID pid{get; init;}
+public HL7V24SegmentNK1 nk1{get; init;}
+public HL7V24SegmentACC acc{get; init;}
+public HL7V24SegmentDG1 dg1{get; init;}
+public HL7V24SegmentDRG drg{get; init;}
+public HL7V24SegmentAL1 al1{get; init;}
+public HL7V24SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"RQA_I11"; } }

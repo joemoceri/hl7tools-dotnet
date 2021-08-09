@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V25TriggerEventQBP_Z73
     {
         private readonly HL7V2Message message;
-        private readonly HL7V25SegmentMSH msh;
-private readonly HL7V25SegmentSFT sft;
-private readonly HL7V25SegmentQPD qpd;
-private readonly HL7V25SegmentRCP rcp;
+        public HL7V25SegmentMSH msh{get; init;}
+public HL7V25SegmentSFT sft{get; init;}
+public HL7V25SegmentQPD qpd{get; init;}
+public HL7V25SegmentRCP rcp{get; init;}
 
 
         public string Id { get { return @"QBP_Z73"; } }

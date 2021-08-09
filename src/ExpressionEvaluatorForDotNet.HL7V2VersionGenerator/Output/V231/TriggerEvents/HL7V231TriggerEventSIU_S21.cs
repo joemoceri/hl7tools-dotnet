@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V231TriggerEventSIU_S21
     {
         private readonly HL7V2Message message;
-        private readonly HL7V231SegmentMSH msh;
-private readonly HL7V231SegmentSCH sch;
-private readonly HL7V231SegmentNTE nte;
+        public HL7V231SegmentMSH msh{get; init;}
+public HL7V231SegmentSCH sch{get; init;}
+public HL7V231SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"SIU_S21"; } }

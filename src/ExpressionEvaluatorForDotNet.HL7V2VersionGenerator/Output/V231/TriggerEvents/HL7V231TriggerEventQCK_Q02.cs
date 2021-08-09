@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V231TriggerEventQCK_Q02
     {
         private readonly HL7V2Message message;
-        private readonly HL7V231SegmentMSH msh;
-private readonly HL7V231SegmentMSA msa;
-private readonly HL7V231SegmentERR err;
-private readonly HL7V231SegmentQAK qak;
+        public HL7V231SegmentMSH msh{get; init;}
+public HL7V231SegmentMSA msa{get; init;}
+public HL7V231SegmentERR err{get; init;}
+public HL7V231SegmentQAK qak{get; init;}
 
 
         public string Id { get { return @"QCK_Q02"; } }

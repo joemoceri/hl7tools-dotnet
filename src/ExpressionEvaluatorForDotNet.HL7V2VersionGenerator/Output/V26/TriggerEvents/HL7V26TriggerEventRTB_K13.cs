@@ -5,14 +5,14 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V26TriggerEventRTB_K13
     {
         private readonly HL7V2Message message;
-        private readonly HL7V26SegmentMSH msh;
-private readonly HL7V26SegmentSFT sft;
-private readonly HL7V26SegmentUAC uac;
-private readonly HL7V26SegmentMSA msa;
-private readonly HL7V26SegmentERR err;
-private readonly HL7V26SegmentQAK qak;
-private readonly HL7V26SegmentQPD qpd;
-private readonly HL7V26SegmentDSC dsc;
+        public HL7V26SegmentMSH msh{get; init;}
+public HL7V26SegmentSFT sft{get; init;}
+public HL7V26SegmentUAC uac{get; init;}
+public HL7V26SegmentMSA msa{get; init;}
+public HL7V26SegmentERR err{get; init;}
+public HL7V26SegmentQAK qak{get; init;}
+public HL7V26SegmentQPD qpd{get; init;}
+public HL7V26SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"RTB_K13"; } }

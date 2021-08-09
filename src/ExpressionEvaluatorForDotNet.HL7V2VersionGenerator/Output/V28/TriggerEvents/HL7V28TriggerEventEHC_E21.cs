@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V28TriggerEventEHC_E21
     {
         private readonly HL7V2Message message;
-        private readonly HL7V28SegmentMSH msh;
-private readonly HL7V28SegmentSFT sft;
-private readonly HL7V28SegmentUAC uac;
+        public HL7V28SegmentMSH msh{get; init;}
+public HL7V28SegmentSFT sft{get; init;}
+public HL7V28SegmentUAC uac{get; init;}
 
 
         public string Id { get { return @"EHC_E21"; } }

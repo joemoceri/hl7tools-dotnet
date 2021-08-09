@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V22TriggerEventORF_R04
     {
         private readonly HL7V2Message message;
-        private readonly HL7V22SegmentMSH msh;
-private readonly HL7V22SegmentMSA msa;
-private readonly HL7V22SegmentDSC dsc;
+        public HL7V22SegmentMSH msh{get; init;}
+public HL7V22SegmentMSA msa{get; init;}
+public HL7V22SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"ORF_R04"; } }

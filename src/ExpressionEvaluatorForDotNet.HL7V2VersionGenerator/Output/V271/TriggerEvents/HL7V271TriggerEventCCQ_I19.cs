@@ -5,11 +5,11 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V271TriggerEventCCQ_I19
     {
         private readonly HL7V2Message message;
-        private readonly HL7V271SegmentMSH msh;
-private readonly HL7V271SegmentSFT sft;
-private readonly HL7V271SegmentUAC uac;
-private readonly HL7V271SegmentRF1 rf1;
-private readonly HL7V271SegmentREL rel;
+        public HL7V271SegmentMSH msh{get; init;}
+public HL7V271SegmentSFT sft{get; init;}
+public HL7V271SegmentUAC uac{get; init;}
+public HL7V271SegmentRF1 rf1{get; init;}
+public HL7V271SegmentREL rel{get; init;}
 
 
         public string Id { get { return @"CCQ_I19"; } }

@@ -5,13 +5,13 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V26TriggerEventMFK_M13
     {
         private readonly HL7V2Message message;
-        private readonly HL7V26SegmentMSH msh;
-private readonly HL7V26SegmentSFT sft;
-private readonly HL7V26SegmentUAC uac;
-private readonly HL7V26SegmentMSA msa;
-private readonly HL7V26SegmentERR err;
-private readonly HL7V26SegmentMFI mfi;
-private readonly HL7V26SegmentMFA mfa;
+        public HL7V26SegmentMSH msh{get; init;}
+public HL7V26SegmentSFT sft{get; init;}
+public HL7V26SegmentUAC uac{get; init;}
+public HL7V26SegmentMSA msa{get; init;}
+public HL7V26SegmentERR err{get; init;}
+public HL7V26SegmentMFI mfi{get; init;}
+public HL7V26SegmentMFA mfa{get; init;}
 
 
         public string Id { get { return @"MFK_M13"; } }

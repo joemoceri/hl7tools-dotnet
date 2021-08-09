@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V271TriggerEventQCN_J01
     {
         private readonly HL7V2Message message;
-        private readonly HL7V271SegmentMSH msh;
-private readonly HL7V271SegmentSFT sft;
-private readonly HL7V271SegmentUAC uac;
-private readonly HL7V271SegmentQID qid;
+        public HL7V271SegmentMSH msh{get; init;}
+public HL7V271SegmentSFT sft{get; init;}
+public HL7V271SegmentUAC uac{get; init;}
+public HL7V271SegmentQID qid{get; init;}
 
 
         public string Id { get { return @"QCN_J01"; } }

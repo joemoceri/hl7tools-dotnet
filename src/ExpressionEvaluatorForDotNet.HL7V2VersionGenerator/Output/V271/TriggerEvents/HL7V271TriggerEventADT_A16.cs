@@ -5,26 +5,26 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V271TriggerEventADT_A16
     {
         private readonly HL7V2Message message;
-        private readonly HL7V271SegmentMSH msh;
-private readonly HL7V271SegmentSFT sft;
-private readonly HL7V271SegmentUAC uac;
-private readonly HL7V271SegmentEVN evn;
-private readonly HL7V271SegmentPID pid;
-private readonly HL7V271SegmentPD1 pd1;
-private readonly HL7V271SegmentARV arv;
-private readonly HL7V271SegmentROL rol;
-private readonly HL7V271SegmentNK1 nk1;
-private readonly HL7V271SegmentPV1 pv1;
-private readonly HL7V271SegmentPV2 pv2;
-private readonly HL7V271SegmentARV arv;
-private readonly HL7V271SegmentROL rol;
-private readonly HL7V271SegmentDB1 db1;
-private readonly HL7V271SegmentOBX obx;
-private readonly HL7V271SegmentAL1 al1;
-private readonly HL7V271SegmentDG1 dg1;
-private readonly HL7V271SegmentDRG drg;
-private readonly HL7V271SegmentGT1 gt1;
-private readonly HL7V271SegmentACC acc;
+        public HL7V271SegmentMSH msh{get; init;}
+public HL7V271SegmentSFT sft{get; init;}
+public HL7V271SegmentUAC uac{get; init;}
+public HL7V271SegmentEVN evn{get; init;}
+public HL7V271SegmentPID pid{get; init;}
+public HL7V271SegmentPD1 pd1{get; init;}
+public HL7V271SegmentARV arv{get; init;}
+public HL7V271SegmentROL rol{get; init;}
+public HL7V271SegmentNK1 nk1{get; init;}
+public HL7V271SegmentPV1 pv1{get; init;}
+public HL7V271SegmentPV2 pv2{get; init;}
+public HL7V271SegmentARV arv{get; init;}
+public HL7V271SegmentROL rol{get; init;}
+public HL7V271SegmentDB1 db1{get; init;}
+public HL7V271SegmentOBX obx{get; init;}
+public HL7V271SegmentAL1 al1{get; init;}
+public HL7V271SegmentDG1 dg1{get; init;}
+public HL7V271SegmentDRG drg{get; init;}
+public HL7V271SegmentGT1 gt1{get; init;}
+public HL7V271SegmentACC acc{get; init;}
 
 
         public string Id { get { return @"ADT_A16"; } }

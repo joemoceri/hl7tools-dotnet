@@ -5,16 +5,16 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V271TriggerEventEHC_E12
     {
         private readonly HL7V2Message message;
-        private readonly HL7V271SegmentMSH msh;
-private readonly HL7V271SegmentSFT sft;
-private readonly HL7V271SegmentUAC uac;
-private readonly HL7V271SegmentRFI rfi;
-private readonly HL7V271SegmentCTD ctd;
-private readonly HL7V271SegmentIVC ivc;
-private readonly HL7V271SegmentPSS pss;
-private readonly HL7V271SegmentPSG psg;
-private readonly HL7V271SegmentPID pid;
-private readonly HL7V271SegmentPSL psl;
+        public HL7V271SegmentMSH msh{get; init;}
+public HL7V271SegmentSFT sft{get; init;}
+public HL7V271SegmentUAC uac{get; init;}
+public HL7V271SegmentRFI rfi{get; init;}
+public HL7V271SegmentCTD ctd{get; init;}
+public HL7V271SegmentIVC ivc{get; init;}
+public HL7V271SegmentPSS pss{get; init;}
+public HL7V271SegmentPSG psg{get; init;}
+public HL7V271SegmentPID pid{get; init;}
+public HL7V271SegmentPSL psl{get; init;}
 
 
         public string Id { get { return @"EHC_E12"; } }

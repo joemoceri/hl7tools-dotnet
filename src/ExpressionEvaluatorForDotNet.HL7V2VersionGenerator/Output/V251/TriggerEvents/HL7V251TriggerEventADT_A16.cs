@@ -5,23 +5,23 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V251TriggerEventADT_A16
     {
         private readonly HL7V2Message message;
-        private readonly HL7V251SegmentMSH msh;
-private readonly HL7V251SegmentSFT sft;
-private readonly HL7V251SegmentEVN evn;
-private readonly HL7V251SegmentPID pid;
-private readonly HL7V251SegmentPD1 pd1;
-private readonly HL7V251SegmentROL rol;
-private readonly HL7V251SegmentNK1 nk1;
-private readonly HL7V251SegmentPV1 pv1;
-private readonly HL7V251SegmentPV2 pv2;
-private readonly HL7V251SegmentROL rol;
-private readonly HL7V251SegmentDB1 db1;
-private readonly HL7V251SegmentOBX obx;
-private readonly HL7V251SegmentAL1 al1;
-private readonly HL7V251SegmentDG1 dg1;
-private readonly HL7V251SegmentDRG drg;
-private readonly HL7V251SegmentGT1 gt1;
-private readonly HL7V251SegmentACC acc;
+        public HL7V251SegmentMSH msh{get; init;}
+public HL7V251SegmentSFT sft{get; init;}
+public HL7V251SegmentEVN evn{get; init;}
+public HL7V251SegmentPID pid{get; init;}
+public HL7V251SegmentPD1 pd1{get; init;}
+public HL7V251SegmentROL rol{get; init;}
+public HL7V251SegmentNK1 nk1{get; init;}
+public HL7V251SegmentPV1 pv1{get; init;}
+public HL7V251SegmentPV2 pv2{get; init;}
+public HL7V251SegmentROL rol{get; init;}
+public HL7V251SegmentDB1 db1{get; init;}
+public HL7V251SegmentOBX obx{get; init;}
+public HL7V251SegmentAL1 al1{get; init;}
+public HL7V251SegmentDG1 dg1{get; init;}
+public HL7V251SegmentDRG drg{get; init;}
+public HL7V251SegmentGT1 gt1{get; init;}
+public HL7V251SegmentACC acc{get; init;}
 
 
         public string Id { get { return @"ADT_A16"; } }

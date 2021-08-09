@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V26TriggerEventSCN_S37
     {
         private readonly HL7V2Message message;
-        private readonly HL7V26SegmentMSH msh;
-private readonly HL7V26SegmentSFT sft;
-private readonly HL7V26SegmentUAC uac;
+        public HL7V26SegmentMSH msh{get; init;}
+public HL7V26SegmentSFT sft{get; init;}
+public HL7V26SegmentUAC uac{get; init;}
 
 
         public string Id { get { return @"SCN_S37"; } }

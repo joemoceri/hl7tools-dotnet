@@ -5,10 +5,10 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V28TriggerEventPPR_PC3
     {
         private readonly HL7V2Message message;
-        private readonly HL7V28SegmentMSH msh;
-private readonly HL7V28SegmentSFT sft;
-private readonly HL7V28SegmentUAC uac;
-private readonly HL7V28SegmentPID pid;
+        public HL7V28SegmentMSH msh{get; init;}
+public HL7V28SegmentSFT sft{get; init;}
+public HL7V28SegmentUAC uac{get; init;}
+public HL7V28SegmentPID pid{get; init;}
 
 
         public string Id { get { return @"PPR_PC3"; } }

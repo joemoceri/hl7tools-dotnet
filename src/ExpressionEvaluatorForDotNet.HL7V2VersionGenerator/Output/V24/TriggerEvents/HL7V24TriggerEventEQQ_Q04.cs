@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventEQQ_Q04
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
-private readonly HL7V24SegmentEQL eql;
-private readonly HL7V24SegmentDSC dsc;
+        public HL7V24SegmentMSH msh{get; init;}
+public HL7V24SegmentEQL eql{get; init;}
+public HL7V24SegmentDSC dsc{get; init;}
 
 
         public string Id { get { return @"EQQ_Q04"; } }

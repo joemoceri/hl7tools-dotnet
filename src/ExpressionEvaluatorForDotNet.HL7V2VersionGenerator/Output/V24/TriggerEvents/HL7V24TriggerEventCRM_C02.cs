@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventCRM_C02
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
+        public HL7V24SegmentMSH msh{get; init;}
 
 
         public string Id { get { return @"CRM_C02"; } }

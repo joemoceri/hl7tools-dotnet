@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V22TriggerEventMCF
     {
         private readonly HL7V2Message message;
-        private readonly HL7V22SegmentMSH msh;
-private readonly HL7V22SegmentMFA mfa;
-private readonly HL7V22SegmentERR err;
+        public HL7V22SegmentMSH msh{get; init;}
+public HL7V22SegmentMFA mfa{get; init;}
+public HL7V22SegmentERR err{get; init;}
 
 
         public string Id { get { return @"MCF"; } }

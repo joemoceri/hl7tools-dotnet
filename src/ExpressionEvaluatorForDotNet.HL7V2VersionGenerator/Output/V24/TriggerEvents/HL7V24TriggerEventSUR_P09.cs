@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V24TriggerEventSUR_P09
     {
         private readonly HL7V2Message message;
-        private readonly HL7V24SegmentMSH msh;
+        public HL7V24SegmentMSH msh{get; init;}
 
 
         public string Id { get { return @"SUR_P09"; } }

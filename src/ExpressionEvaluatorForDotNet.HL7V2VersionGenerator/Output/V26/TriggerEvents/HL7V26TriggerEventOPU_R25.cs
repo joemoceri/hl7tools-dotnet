@@ -5,15 +5,15 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V26TriggerEventOPU_R25
     {
         private readonly HL7V2Message message;
-        private readonly HL7V26SegmentMSH msh;
-private readonly HL7V26SegmentSFT sft;
-private readonly HL7V26SegmentUAC uac;
-private readonly HL7V26SegmentNTE nte;
-private readonly HL7V26SegmentPV1 pv1;
-private readonly HL7V26SegmentPV2 pv2;
-private readonly HL7V26SegmentOBX obx;
-private readonly HL7V26SegmentNTE nte;
-private readonly HL7V26SegmentROL rol;
+        public HL7V26SegmentMSH msh{get; init;}
+public HL7V26SegmentSFT sft{get; init;}
+public HL7V26SegmentUAC uac{get; init;}
+public HL7V26SegmentNTE nte{get; init;}
+public HL7V26SegmentPV1 pv1{get; init;}
+public HL7V26SegmentPV2 pv2{get; init;}
+public HL7V26SegmentOBX obx{get; init;}
+public HL7V26SegmentNTE nte{get; init;}
+public HL7V26SegmentROL rol{get; init;}
 
 
         public string Id { get { return @"OPU_R25"; } }

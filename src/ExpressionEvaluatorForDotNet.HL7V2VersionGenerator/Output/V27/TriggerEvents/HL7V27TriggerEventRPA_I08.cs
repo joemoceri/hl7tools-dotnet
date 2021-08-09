@@ -5,19 +5,19 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V27TriggerEventRPA_I08
     {
         private readonly HL7V2Message message;
-        private readonly HL7V27SegmentMSH msh;
-private readonly HL7V27SegmentSFT sft;
-private readonly HL7V27SegmentUAC uac;
-private readonly HL7V27SegmentMSA msa;
-private readonly HL7V27SegmentRF1 rf1;
-private readonly HL7V27SegmentPID pid;
-private readonly HL7V27SegmentNK1 nk1;
-private readonly HL7V27SegmentGT1 gt1;
-private readonly HL7V27SegmentACC acc;
-private readonly HL7V27SegmentDG1 dg1;
-private readonly HL7V27SegmentDRG drg;
-private readonly HL7V27SegmentAL1 al1;
-private readonly HL7V27SegmentNTE nte;
+        public HL7V27SegmentMSH msh{get; init;}
+public HL7V27SegmentSFT sft{get; init;}
+public HL7V27SegmentUAC uac{get; init;}
+public HL7V27SegmentMSA msa{get; init;}
+public HL7V27SegmentRF1 rf1{get; init;}
+public HL7V27SegmentPID pid{get; init;}
+public HL7V27SegmentNK1 nk1{get; init;}
+public HL7V27SegmentGT1 gt1{get; init;}
+public HL7V27SegmentACC acc{get; init;}
+public HL7V27SegmentDG1 dg1{get; init;}
+public HL7V27SegmentDRG drg{get; init;}
+public HL7V27SegmentAL1 al1{get; init;}
+public HL7V27SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"RPA_I08"; } }

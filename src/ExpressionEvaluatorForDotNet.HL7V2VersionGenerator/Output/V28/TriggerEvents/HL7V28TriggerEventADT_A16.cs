@@ -5,26 +5,26 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V28TriggerEventADT_A16
     {
         private readonly HL7V2Message message;
-        private readonly HL7V28SegmentMSH msh;
-private readonly HL7V28SegmentSFT sft;
-private readonly HL7V28SegmentUAC uac;
-private readonly HL7V28SegmentEVN evn;
-private readonly HL7V28SegmentPID pid;
-private readonly HL7V28SegmentPD1 pd1;
-private readonly HL7V28SegmentARV arv;
-private readonly HL7V28SegmentROL rol;
-private readonly HL7V28SegmentNK1 nk1;
-private readonly HL7V28SegmentPV1 pv1;
-private readonly HL7V28SegmentPV2 pv2;
-private readonly HL7V28SegmentARV arv;
-private readonly HL7V28SegmentROL rol;
-private readonly HL7V28SegmentDB1 db1;
-private readonly HL7V28SegmentOBX obx;
-private readonly HL7V28SegmentAL1 al1;
-private readonly HL7V28SegmentDG1 dg1;
-private readonly HL7V28SegmentDRG drg;
-private readonly HL7V28SegmentGT1 gt1;
-private readonly HL7V28SegmentACC acc;
+        public HL7V28SegmentMSH msh{get; init;}
+public HL7V28SegmentSFT sft{get; init;}
+public HL7V28SegmentUAC uac{get; init;}
+public HL7V28SegmentEVN evn{get; init;}
+public HL7V28SegmentPID pid{get; init;}
+public HL7V28SegmentPD1 pd1{get; init;}
+public HL7V28SegmentARV arv{get; init;}
+public HL7V28SegmentROL rol{get; init;}
+public HL7V28SegmentNK1 nk1{get; init;}
+public HL7V28SegmentPV1 pv1{get; init;}
+public HL7V28SegmentPV2 pv2{get; init;}
+public HL7V28SegmentARV arv{get; init;}
+public HL7V28SegmentROL rol{get; init;}
+public HL7V28SegmentDB1 db1{get; init;}
+public HL7V28SegmentOBX obx{get; init;}
+public HL7V28SegmentAL1 al1{get; init;}
+public HL7V28SegmentDG1 dg1{get; init;}
+public HL7V28SegmentDRG drg{get; init;}
+public HL7V28SegmentGT1 gt1{get; init;}
+public HL7V28SegmentACC acc{get; init;}
 
 
         public string Id { get { return @"ADT_A16"; } }

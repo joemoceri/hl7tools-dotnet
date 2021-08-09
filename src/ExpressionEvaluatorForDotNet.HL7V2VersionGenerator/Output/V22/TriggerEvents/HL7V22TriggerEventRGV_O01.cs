@@ -5,8 +5,8 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V22TriggerEventRGV_O01
     {
         private readonly HL7V2Message message;
-        private readonly HL7V22SegmentMSH msh;
-private readonly HL7V22SegmentNTE nte;
+        public HL7V22SegmentMSH msh{get; init;}
+public HL7V22SegmentNTE nte{get; init;}
 
 
         public string Id { get { return @"RGV_O01"; } }

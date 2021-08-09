@@ -5,11 +5,11 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V28TriggerEventLSR_U13
     {
         private readonly HL7V2Message message;
-        private readonly HL7V28SegmentMSH msh;
-private readonly HL7V28SegmentSFT sft;
-private readonly HL7V28SegmentUAC uac;
-private readonly HL7V28SegmentEQU equ;
-private readonly HL7V28SegmentEQP eqp;
+        public HL7V28SegmentMSH msh{get; init;}
+public HL7V28SegmentSFT sft{get; init;}
+public HL7V28SegmentUAC uac{get; init;}
+public HL7V28SegmentEQU equ{get; init;}
+public HL7V28SegmentEQP eqp{get; init;}
 
 
         public string Id { get { return @"LSR_U13"; } }
