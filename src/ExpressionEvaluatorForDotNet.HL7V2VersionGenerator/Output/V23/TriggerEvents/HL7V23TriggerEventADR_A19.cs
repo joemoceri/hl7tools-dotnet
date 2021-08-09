@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventADR_A19
     {
-        private readonly HL7V2Message message;
-        public HL7V23SegmentMSH msh{get; init;}
-public HL7V23SegmentMSA msa{get; init;}
-public HL7V23SegmentERR err{get; init;}
-public HL7V23SegmentQRD qrd{get; init;}
-public HL7V23SegmentQRF qrf{get; init;}
-public HL7V23SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V23SegmentMSH msh{ get; init; }
+public HL7V23SegmentMSA msa{ get; init; }
+public HL7V23SegmentERR err{ get; init; }
+public HL7V23SegmentQRD qrd{ get; init; }
+public HL7V23SegmentQRF qrf{ get; init; }
+public HL7V23SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"ADR_A19"; } }

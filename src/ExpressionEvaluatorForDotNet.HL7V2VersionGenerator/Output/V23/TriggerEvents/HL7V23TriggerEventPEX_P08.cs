@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventPEX_P08
     {
-        private readonly HL7V2Message message;
-        public HL7V23SegmentMSH msh{get; init;}
-public HL7V23SegmentEVN evn{get; init;}
-public HL7V23SegmentPID pid{get; init;}
-public HL7V23SegmentPD1 pd1{get; init;}
-public HL7V23SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V23SegmentMSH msh{ get; init; }
+public HL7V23SegmentEVN evn{ get; init; }
+public HL7V23SegmentPID pid{ get; init; }
+public HL7V23SegmentPD1 pd1{ get; init; }
+public HL7V23SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"PEX_P08"; } }

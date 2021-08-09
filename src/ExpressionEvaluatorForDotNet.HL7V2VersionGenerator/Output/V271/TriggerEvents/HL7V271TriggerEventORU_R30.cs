@@ -4,17 +4,17 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventORU_R30
     {
-        private readonly HL7V2Message message;
-        public HL7V271SegmentMSH msh{get; init;}
-public HL7V271SegmentSFT sft{get; init;}
-public HL7V271SegmentUAC uac{get; init;}
-public HL7V271SegmentPID pid{get; init;}
-public HL7V271SegmentPD1 pd1{get; init;}
-public HL7V271SegmentPRT prt{get; init;}
-public HL7V271SegmentORC orc{get; init;}
-public HL7V271SegmentOBR obr{get; init;}
-public HL7V271SegmentNTE nte{get; init;}
-public HL7V271SegmentPRT prt{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V271SegmentMSH msh{ get; init; }
+public HL7V271SegmentSFT sft{ get; init; }
+public HL7V271SegmentUAC uac{ get; init; }
+public HL7V271SegmentPID pid{ get; init; }
+public HL7V271SegmentPD1 pd1{ get; init; }
+public HL7V271SegmentPRT prt{ get; init; }
+public HL7V271SegmentORC orc{ get; init; }
+public HL7V271SegmentOBR obr{ get; init; }
+public HL7V271SegmentNTE nte{ get; init; }
+public HL7V271SegmentPRT prt{ get; init; }
 
 
         public string Id { get { return @"ORU_R30"; } }

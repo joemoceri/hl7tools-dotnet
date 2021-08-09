@@ -4,8 +4,8 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22TriggerEventNMD_N01
     {
-        private readonly HL7V2Message message;
-        public HL7V22SegmentMSH msh{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V22SegmentMSH msh{ get; init; }
 
 
         public string Id { get { return @"NMD_N01"; } }

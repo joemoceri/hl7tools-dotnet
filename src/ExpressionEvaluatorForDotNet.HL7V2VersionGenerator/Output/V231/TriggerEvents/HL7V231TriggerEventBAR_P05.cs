@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventBAR_P05
     {
-        private readonly HL7V2Message message;
-        public HL7V231SegmentMSH msh{get; init;}
-public HL7V231SegmentEVN evn{get; init;}
-public HL7V231SegmentPID pid{get; init;}
-public HL7V231SegmentPD1 pd1{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V231SegmentMSH msh{ get; init; }
+public HL7V231SegmentEVN evn{ get; init; }
+public HL7V231SegmentPID pid{ get; init; }
+public HL7V231SegmentPD1 pd1{ get; init; }
 
 
         public string Id { get { return @"BAR_P05"; } }

@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventNMD_N02
     {
-        private readonly HL7V2Message message;
-        public HL7V251SegmentMSH msh{get; init;}
-public HL7V251SegmentSFT sft{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V251SegmentMSH msh{ get; init; }
+public HL7V251SegmentSFT sft{ get; init; }
 
 
         public string Id { get { return @"NMD_N02"; } }

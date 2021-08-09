@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V231TriggerEventRPI_I04
     {
-        private readonly HL7V2Message message;
-        public HL7V231SegmentMSH msh{get; init;}
-public HL7V231SegmentMSA msa{get; init;}
-public HL7V231SegmentPID pid{get; init;}
-public HL7V231SegmentNK1 nk1{get; init;}
-public HL7V231SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V231SegmentMSH msh{ get; init; }
+public HL7V231SegmentMSA msa{ get; init; }
+public HL7V231SegmentPID pid{ get; init; }
+public HL7V231SegmentNK1 nk1{ get; init; }
+public HL7V231SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"RPI_I04"; } }

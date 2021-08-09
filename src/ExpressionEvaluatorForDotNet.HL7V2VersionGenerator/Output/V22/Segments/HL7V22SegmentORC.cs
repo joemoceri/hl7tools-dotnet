@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22SegmentORC
     {
-        private readonly HL7V2Message message;
+        public HL7V2Message message { get; init; }
 
         public string Id { get { return @"ORC"; } }
 

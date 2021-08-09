@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventOSR_Q06
     {
-        private readonly HL7V2Message message;
-        public HL7V23SegmentMSH msh{get; init;}
-public HL7V23SegmentMSA msa{get; init;}
-public HL7V23SegmentERR err{get; init;}
-public HL7V23SegmentNTE nte{get; init;}
-public HL7V23SegmentQRD qrd{get; init;}
-public HL7V23SegmentQRF qrf{get; init;}
-public HL7V23SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V23SegmentMSH msh{ get; init; }
+public HL7V23SegmentMSA msa{ get; init; }
+public HL7V23SegmentERR err{ get; init; }
+public HL7V23SegmentNTE nte{ get; init; }
+public HL7V23SegmentQRD qrd{ get; init; }
+public HL7V23SegmentQRF qrf{ get; init; }
+public HL7V23SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"OSR_Q06"; } }

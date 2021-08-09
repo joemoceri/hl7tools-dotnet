@@ -4,16 +4,16 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventRQA_I11
     {
-        private readonly HL7V2Message message;
-        public HL7V23SegmentMSH msh{get; init;}
-public HL7V23SegmentRF1 rf1{get; init;}
-public HL7V23SegmentPID pid{get; init;}
-public HL7V23SegmentNK1 nk1{get; init;}
-public HL7V23SegmentACC acc{get; init;}
-public HL7V23SegmentDG1 dg1{get; init;}
-public HL7V23SegmentDRG drg{get; init;}
-public HL7V23SegmentAL1 al1{get; init;}
-public HL7V23SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V23SegmentMSH msh{ get; init; }
+public HL7V23SegmentRF1 rf1{ get; init; }
+public HL7V23SegmentPID pid{ get; init; }
+public HL7V23SegmentNK1 nk1{ get; init; }
+public HL7V23SegmentACC acc{ get; init; }
+public HL7V23SegmentDG1 dg1{ get; init; }
+public HL7V23SegmentDRG drg{ get; init; }
+public HL7V23SegmentAL1 al1{ get; init; }
+public HL7V23SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"RQA_I11"; } }

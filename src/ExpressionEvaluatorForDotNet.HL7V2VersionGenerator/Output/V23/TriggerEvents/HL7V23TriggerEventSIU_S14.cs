@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V23TriggerEventSIU_S14
     {
-        private readonly HL7V2Message message;
-        public HL7V23SegmentMSH msh{get; init;}
-public HL7V23SegmentSCH sch{get; init;}
-public HL7V23SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V23SegmentMSH msh{ get; init; }
+public HL7V23SegmentSCH sch{ get; init; }
+public HL7V23SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"SIU_S14"; } }

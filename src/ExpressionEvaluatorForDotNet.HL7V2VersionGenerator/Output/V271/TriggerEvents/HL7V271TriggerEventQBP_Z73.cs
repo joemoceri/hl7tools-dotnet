@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventQBP_Z73
     {
-        private readonly HL7V2Message message;
-        public HL7V271SegmentMSH msh{get; init;}
-public HL7V271SegmentSFT sft{get; init;}
-public HL7V271SegmentUAC uac{get; init;}
-public HL7V271SegmentQPD qpd{get; init;}
-public HL7V271SegmentRCP rcp{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V271SegmentMSH msh{ get; init; }
+public HL7V271SegmentSFT sft{ get; init; }
+public HL7V271SegmentUAC uac{ get; init; }
+public HL7V271SegmentQPD qpd{ get; init; }
+public HL7V271SegmentRCP rcp{ get; init; }
 
 
         public string Id { get { return @"QBP_Z73"; } }

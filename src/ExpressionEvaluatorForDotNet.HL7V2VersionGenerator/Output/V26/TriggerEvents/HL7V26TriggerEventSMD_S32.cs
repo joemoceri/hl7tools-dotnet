@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventSMD_S32
     {
-        private readonly HL7V2Message message;
-        public HL7V26SegmentMSH msh{get; init;}
-public HL7V26SegmentSFT sft{get; init;}
-public HL7V26SegmentUAC uac{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V26SegmentMSH msh{ get; init; }
+public HL7V26SegmentSFT sft{ get; init; }
+public HL7V26SegmentUAC uac{ get; init; }
 
 
         public string Id { get { return @"SMD_S32"; } }

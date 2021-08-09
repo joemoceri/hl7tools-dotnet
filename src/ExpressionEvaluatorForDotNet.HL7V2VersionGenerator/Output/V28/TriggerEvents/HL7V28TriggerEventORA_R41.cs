@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventORA_R41
     {
-        private readonly HL7V2Message message;
-        public HL7V28SegmentMSH msh{get; init;}
-public HL7V28SegmentSFT sft{get; init;}
-public HL7V28SegmentUAC uac{get; init;}
-public HL7V28SegmentMSA msa{get; init;}
-public HL7V28SegmentERR err{get; init;}
-public HL7V28SegmentPRT prt{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V28SegmentMSH msh{ get; init; }
+public HL7V28SegmentSFT sft{ get; init; }
+public HL7V28SegmentUAC uac{ get; init; }
+public HL7V28SegmentMSA msa{ get; init; }
+public HL7V28SegmentERR err{ get; init; }
+public HL7V28SegmentPRT prt{ get; init; }
 
 
         public string Id { get { return @"ORA_R41"; } }

@@ -4,7 +4,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_CLASS_NAME-}]
     {
-        private readonly HL7V2Message message;
+        public HL7V2Message message { get; init; }
         [{-SEGMENT_PROPERTIES-}]
 
         public string Id { get { return [{-ID-}]; } }

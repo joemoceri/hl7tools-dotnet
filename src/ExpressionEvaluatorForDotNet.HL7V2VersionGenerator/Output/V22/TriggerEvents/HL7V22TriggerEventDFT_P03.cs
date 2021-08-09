@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22TriggerEventDFT_P03
     {
-        private readonly HL7V2Message message;
-        public HL7V22SegmentMSH msh{get; init;}
-public HL7V22SegmentEVN evn{get; init;}
-public HL7V22SegmentPID pid{get; init;}
-public HL7V22SegmentPV1 pv1{get; init;}
-public HL7V22SegmentPV2 pv2{get; init;}
-public HL7V22SegmentOBX obx{get; init;}
-public HL7V22SegmentFT1 ft1{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V22SegmentMSH msh{ get; init; }
+public HL7V22SegmentEVN evn{ get; init; }
+public HL7V22SegmentPID pid{ get; init; }
+public HL7V22SegmentPV1 pv1{ get; init; }
+public HL7V22SegmentPV2 pv2{ get; init; }
+public HL7V22SegmentOBX obx{ get; init; }
+public HL7V22SegmentFT1 ft1{ get; init; }
 
 
         public string Id { get { return @"DFT_P03"; } }

@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventORM_O01
     {
-        private readonly HL7V2Message message;
-        public HL7V251SegmentMSH msh{get; init;}
-public HL7V251SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V251SegmentMSH msh{ get; init; }
+public HL7V251SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"ORM_O01"; } }

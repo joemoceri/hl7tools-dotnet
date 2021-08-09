@@ -4,17 +4,17 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventRQA_I09
     {
-        private readonly HL7V2Message message;
-        public HL7V251SegmentMSH msh{get; init;}
-public HL7V251SegmentSFT sft{get; init;}
-public HL7V251SegmentRF1 rf1{get; init;}
-public HL7V251SegmentPID pid{get; init;}
-public HL7V251SegmentNK1 nk1{get; init;}
-public HL7V251SegmentACC acc{get; init;}
-public HL7V251SegmentDG1 dg1{get; init;}
-public HL7V251SegmentDRG drg{get; init;}
-public HL7V251SegmentAL1 al1{get; init;}
-public HL7V251SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V251SegmentMSH msh{ get; init; }
+public HL7V251SegmentSFT sft{ get; init; }
+public HL7V251SegmentRF1 rf1{ get; init; }
+public HL7V251SegmentPID pid{ get; init; }
+public HL7V251SegmentNK1 nk1{ get; init; }
+public HL7V251SegmentACC acc{ get; init; }
+public HL7V251SegmentDG1 dg1{ get; init; }
+public HL7V251SegmentDRG drg{ get; init; }
+public HL7V251SegmentAL1 al1{ get; init; }
+public HL7V251SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"RQA_I09"; } }

@@ -4,20 +4,20 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventPMU_B02
     {
-        private readonly HL7V2Message message;
-        public HL7V27SegmentMSH msh{get; init;}
-public HL7V27SegmentSFT sft{get; init;}
-public HL7V27SegmentUAC uac{get; init;}
-public HL7V27SegmentEVN evn{get; init;}
-public HL7V27SegmentSTF stf{get; init;}
-public HL7V27SegmentPRA pra{get; init;}
-public HL7V27SegmentORG org{get; init;}
-public HL7V27SegmentAFF aff{get; init;}
-public HL7V27SegmentLAN lan{get; init;}
-public HL7V27SegmentEDU edu{get; init;}
-public HL7V27SegmentCER cer{get; init;}
-public HL7V27SegmentNK1 nk1{get; init;}
-public HL7V27SegmentROL rol{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V27SegmentMSH msh{ get; init; }
+public HL7V27SegmentSFT sft{ get; init; }
+public HL7V27SegmentUAC uac{ get; init; }
+public HL7V27SegmentEVN evn{ get; init; }
+public HL7V27SegmentSTF stf{ get; init; }
+public HL7V27SegmentPRA pra{ get; init; }
+public HL7V27SegmentORG org{ get; init; }
+public HL7V27SegmentAFF aff{ get; init; }
+public HL7V27SegmentLAN lan{ get; init; }
+public HL7V27SegmentEDU edu{ get; init; }
+public HL7V27SegmentCER cer{ get; init; }
+public HL7V27SegmentNK1 nk1{ get; init; }
+public HL7V27SegmentROL rol{ get; init; }
 
 
         public string Id { get { return @"PMU_B02"; } }

@@ -4,19 +4,19 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventORU_R32
     {
-        private readonly HL7V2Message message;
-        public HL7V28SegmentMSH msh{get; init;}
-public HL7V28SegmentSFT sft{get; init;}
-public HL7V28SegmentUAC uac{get; init;}
-public HL7V28SegmentPID pid{get; init;}
-public HL7V28SegmentPD1 pd1{get; init;}
-public HL7V28SegmentPRT prt{get; init;}
-public HL7V28SegmentARV arv{get; init;}
-public HL7V28SegmentORC orc{get; init;}
-public HL7V28SegmentPRT prt{get; init;}
-public HL7V28SegmentOBR obr{get; init;}
-public HL7V28SegmentNTE nte{get; init;}
-public HL7V28SegmentPRT prt{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V28SegmentMSH msh{ get; init; }
+public HL7V28SegmentSFT sft{ get; init; }
+public HL7V28SegmentUAC uac{ get; init; }
+public HL7V28SegmentPID pid{ get; init; }
+public HL7V28SegmentPD1 pd1{ get; init; }
+public HL7V28SegmentPRT prt{ get; init; }
+public HL7V28SegmentARV arv{ get; init; }
+public HL7V28SegmentORC orc{ get; init; }
+public HL7V28SegmentPRT prt{ get; init; }
+public HL7V28SegmentOBR obr{ get; init; }
+public HL7V28SegmentNTE nte{ get; init; }
+public HL7V28SegmentPRT prt{ get; init; }
 
 
         public string Id { get { return @"ORU_R32"; } }

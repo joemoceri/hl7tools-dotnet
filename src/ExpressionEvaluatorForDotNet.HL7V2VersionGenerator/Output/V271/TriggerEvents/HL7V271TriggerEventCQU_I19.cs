@@ -4,15 +4,15 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventCQU_I19
     {
-        private readonly HL7V2Message message;
-        public HL7V271SegmentMSH msh{get; init;}
-public HL7V271SegmentSFT sft{get; init;}
-public HL7V271SegmentUAC uac{get; init;}
-public HL7V271SegmentMSA msa{get; init;}
-public HL7V271SegmentERR err{get; init;}
-public HL7V271SegmentRF1 rf1{get; init;}
-public HL7V271SegmentNK1 nk1{get; init;}
-public HL7V271SegmentREL rel{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V271SegmentMSH msh{ get; init; }
+public HL7V271SegmentSFT sft{ get; init; }
+public HL7V271SegmentUAC uac{ get; init; }
+public HL7V271SegmentMSA msa{ get; init; }
+public HL7V271SegmentERR err{ get; init; }
+public HL7V271SegmentRF1 rf1{ get; init; }
+public HL7V271SegmentNK1 nk1{ get; init; }
+public HL7V271SegmentREL rel{ get; init; }
 
 
         public string Id { get { return @"CQU_I19"; } }

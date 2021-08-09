@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventOPU_R25
     {
-        private readonly HL7V2Message message;
-        public HL7V271SegmentMSH msh{get; init;}
-public HL7V271SegmentSFT sft{get; init;}
-public HL7V271SegmentUAC uac{get; init;}
-public HL7V271SegmentNTE nte{get; init;}
-public HL7V271SegmentPV1 pv1{get; init;}
-public HL7V271SegmentPV2 pv2{get; init;}
-public HL7V271SegmentPRT prt{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V271SegmentMSH msh{ get; init; }
+public HL7V271SegmentSFT sft{ get; init; }
+public HL7V271SegmentUAC uac{ get; init; }
+public HL7V271SegmentNTE nte{ get; init; }
+public HL7V271SegmentPV1 pv1{ get; init; }
+public HL7V271SegmentPV2 pv2{ get; init; }
+public HL7V271SegmentPRT prt{ get; init; }
 
 
         public string Id { get { return @"OPU_R25"; } }

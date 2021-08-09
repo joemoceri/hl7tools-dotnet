@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventERP_R09
     {
-        private readonly HL7V2Message message;
-        public HL7V26SegmentMSH msh{get; init;}
-public HL7V26SegmentSFT sft{get; init;}
-public HL7V26SegmentMSA msa{get; init;}
-public HL7V26SegmentERR err{get; init;}
-public HL7V26SegmentQAK qak{get; init;}
-public HL7V26SegmentERQ erq{get; init;}
-public HL7V26SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V26SegmentMSH msh{ get; init; }
+public HL7V26SegmentSFT sft{ get; init; }
+public HL7V26SegmentMSA msa{ get; init; }
+public HL7V26SegmentERR err{ get; init; }
+public HL7V26SegmentQAK qak{ get; init; }
+public HL7V26SegmentERQ erq{ get; init; }
+public HL7V26SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"ERP_R09"; } }

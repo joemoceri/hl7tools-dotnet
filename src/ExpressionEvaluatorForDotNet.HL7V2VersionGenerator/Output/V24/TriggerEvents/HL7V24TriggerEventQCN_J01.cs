@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventQCN_J01
     {
-        private readonly HL7V2Message message;
-        public HL7V24SegmentMSH msh{get; init;}
-public HL7V24SegmentQID qid{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V24SegmentMSH msh{ get; init; }
+public HL7V24SegmentQID qid{ get; init; }
 
 
         public string Id { get { return @"QCN_J01"; } }

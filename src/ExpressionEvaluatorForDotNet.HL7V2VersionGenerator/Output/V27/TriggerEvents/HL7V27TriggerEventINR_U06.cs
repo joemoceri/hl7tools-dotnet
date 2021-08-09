@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventINR_U06
     {
-        private readonly HL7V2Message message;
-        public HL7V27SegmentMSH msh{get; init;}
-public HL7V27SegmentSFT sft{get; init;}
-public HL7V27SegmentUAC uac{get; init;}
-public HL7V27SegmentEQU equ{get; init;}
-public HL7V27SegmentINV inv{get; init;}
-public HL7V27SegmentROL rol{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V27SegmentMSH msh{ get; init; }
+public HL7V27SegmentSFT sft{ get; init; }
+public HL7V27SegmentUAC uac{ get; init; }
+public HL7V27SegmentEQU equ{ get; init; }
+public HL7V27SegmentINV inv{ get; init; }
+public HL7V27SegmentROL rol{ get; init; }
 
 
         public string Id { get { return @"INR_U06"; } }

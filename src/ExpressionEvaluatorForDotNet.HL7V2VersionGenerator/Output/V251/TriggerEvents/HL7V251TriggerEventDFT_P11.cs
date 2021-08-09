@@ -4,21 +4,21 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventDFT_P11
     {
-        private readonly HL7V2Message message;
-        public HL7V251SegmentMSH msh{get; init;}
-public HL7V251SegmentSFT sft{get; init;}
-public HL7V251SegmentEVN evn{get; init;}
-public HL7V251SegmentPID pid{get; init;}
-public HL7V251SegmentPD1 pd1{get; init;}
-public HL7V251SegmentROL rol{get; init;}
-public HL7V251SegmentPV1 pv1{get; init;}
-public HL7V251SegmentPV2 pv2{get; init;}
-public HL7V251SegmentROL rol{get; init;}
-public HL7V251SegmentDB1 db1{get; init;}
-public HL7V251SegmentDG1 dg1{get; init;}
-public HL7V251SegmentDRG drg{get; init;}
-public HL7V251SegmentGT1 gt1{get; init;}
-public HL7V251SegmentACC acc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V251SegmentMSH msh{ get; init; }
+public HL7V251SegmentSFT sft{ get; init; }
+public HL7V251SegmentEVN evn{ get; init; }
+public HL7V251SegmentPID pid{ get; init; }
+public HL7V251SegmentPD1 pd1{ get; init; }
+public HL7V251SegmentROL rol{ get; init; }
+public HL7V251SegmentPV1 pv1{ get; init; }
+public HL7V251SegmentPV2 pv2{ get; init; }
+public HL7V251SegmentROL rol{ get; init; }
+public HL7V251SegmentDB1 db1{ get; init; }
+public HL7V251SegmentDG1 dg1{ get; init; }
+public HL7V251SegmentDRG drg{ get; init; }
+public HL7V251SegmentGT1 gt1{ get; init; }
+public HL7V251SegmentACC acc{ get; init; }
 
 
         public string Id { get { return @"DFT_P11"; } }

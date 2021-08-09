@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventSPQ_Q08
     {
-        private readonly HL7V2Message message;
-        public HL7V26SegmentMSH msh{get; init;}
-public HL7V26SegmentSFT sft{get; init;}
-public HL7V26SegmentSPR spr{get; init;}
-public HL7V26SegmentRDF rdf{get; init;}
-public HL7V26SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V26SegmentMSH msh{ get; init; }
+public HL7V26SegmentSFT sft{ get; init; }
+public HL7V26SegmentSPR spr{ get; init; }
+public HL7V26SegmentRDF rdf{ get; init; }
+public HL7V26SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"SPQ_Q08"; } }

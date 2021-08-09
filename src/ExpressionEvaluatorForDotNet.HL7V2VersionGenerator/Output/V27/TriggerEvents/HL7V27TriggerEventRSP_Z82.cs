@@ -4,16 +4,16 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventRSP_Z82
     {
-        private readonly HL7V2Message message;
-        public HL7V27SegmentMSH msh{get; init;}
-public HL7V27SegmentSFT sft{get; init;}
-public HL7V27SegmentUAC uac{get; init;}
-public HL7V27SegmentMSA msa{get; init;}
-public HL7V27SegmentERR err{get; init;}
-public HL7V27SegmentQAK qak{get; init;}
-public HL7V27SegmentQPD qpd{get; init;}
-public HL7V27SegmentRCP rcp{get; init;}
-public HL7V27SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V27SegmentMSH msh{ get; init; }
+public HL7V27SegmentSFT sft{ get; init; }
+public HL7V27SegmentUAC uac{ get; init; }
+public HL7V27SegmentMSA msa{ get; init; }
+public HL7V27SegmentERR err{ get; init; }
+public HL7V27SegmentQAK qak{ get; init; }
+public HL7V27SegmentQPD qpd{ get; init; }
+public HL7V27SegmentRCP rcp{ get; init; }
+public HL7V27SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"RSP_Z82"; } }

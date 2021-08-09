@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventORS_O06
     {
-        private readonly HL7V2Message message;
-        public HL7V251SegmentMSH msh{get; init;}
-public HL7V251SegmentMSA msa{get; init;}
-public HL7V251SegmentERR err{get; init;}
-public HL7V251SegmentSFT sft{get; init;}
-public HL7V251SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V251SegmentMSH msh{ get; init; }
+public HL7V251SegmentMSA msa{ get; init; }
+public HL7V251SegmentERR err{ get; init; }
+public HL7V251SegmentSFT sft{ get; init; }
+public HL7V251SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"ORS_O06"; } }

@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V28TriggerEventRQP_I04
     {
-        private readonly HL7V2Message message;
-        public HL7V28SegmentMSH msh{get; init;}
-public HL7V28SegmentSFT sft{get; init;}
-public HL7V28SegmentUAC uac{get; init;}
-public HL7V28SegmentPID pid{get; init;}
-public HL7V28SegmentNK1 nk1{get; init;}
-public HL7V28SegmentGT1 gt1{get; init;}
-public HL7V28SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V28SegmentMSH msh{ get; init; }
+public HL7V28SegmentSFT sft{ get; init; }
+public HL7V28SegmentUAC uac{ get; init; }
+public HL7V28SegmentPID pid{ get; init; }
+public HL7V28SegmentNK1 nk1{ get; init; }
+public HL7V28SegmentGT1 gt1{ get; init; }
+public HL7V28SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"RQP_I04"; } }

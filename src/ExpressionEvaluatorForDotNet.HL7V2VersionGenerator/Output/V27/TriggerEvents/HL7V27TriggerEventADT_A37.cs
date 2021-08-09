@@ -4,19 +4,19 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventADT_A37
     {
-        private readonly HL7V2Message message;
-        public HL7V27SegmentMSH msh{get; init;}
-public HL7V27SegmentSFT sft{get; init;}
-public HL7V27SegmentUAC uac{get; init;}
-public HL7V27SegmentEVN evn{get; init;}
-public HL7V27SegmentPID pid{get; init;}
-public HL7V27SegmentPD1 pd1{get; init;}
-public HL7V27SegmentPV1 pv1{get; init;}
-public HL7V27SegmentDB1 db1{get; init;}
-public HL7V27SegmentPID pid{get; init;}
-public HL7V27SegmentPD1 pd1{get; init;}
-public HL7V27SegmentPV1 pv1{get; init;}
-public HL7V27SegmentDB1 db1{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V27SegmentMSH msh{ get; init; }
+public HL7V27SegmentSFT sft{ get; init; }
+public HL7V27SegmentUAC uac{ get; init; }
+public HL7V27SegmentEVN evn{ get; init; }
+public HL7V27SegmentPID pid{ get; init; }
+public HL7V27SegmentPD1 pd1{ get; init; }
+public HL7V27SegmentPV1 pv1{ get; init; }
+public HL7V27SegmentDB1 db1{ get; init; }
+public HL7V27SegmentPID pid{ get; init; }
+public HL7V27SegmentPD1 pd1{ get; init; }
+public HL7V27SegmentPV1 pv1{ get; init; }
+public HL7V27SegmentDB1 db1{ get; init; }
 
 
         public string Id { get { return @"ADT_A37"; } }

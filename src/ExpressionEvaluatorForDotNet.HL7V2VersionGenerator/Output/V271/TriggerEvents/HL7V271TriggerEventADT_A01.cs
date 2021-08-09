@@ -4,30 +4,30 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventADT_A01
     {
-        private readonly HL7V2Message message;
-        public HL7V271SegmentMSH msh{get; init;}
-public HL7V271SegmentSFT sft{get; init;}
-public HL7V271SegmentUAC uac{get; init;}
-public HL7V271SegmentEVN evn{get; init;}
-public HL7V271SegmentPID pid{get; init;}
-public HL7V271SegmentPD1 pd1{get; init;}
-public HL7V271SegmentARV arv{get; init;}
-public HL7V271SegmentROL rol{get; init;}
-public HL7V271SegmentNK1 nk1{get; init;}
-public HL7V271SegmentPV1 pv1{get; init;}
-public HL7V271SegmentPV2 pv2{get; init;}
-public HL7V271SegmentARV arv{get; init;}
-public HL7V271SegmentROL rol{get; init;}
-public HL7V271SegmentDB1 db1{get; init;}
-public HL7V271SegmentOBX obx{get; init;}
-public HL7V271SegmentAL1 al1{get; init;}
-public HL7V271SegmentDG1 dg1{get; init;}
-public HL7V271SegmentDRG drg{get; init;}
-public HL7V271SegmentGT1 gt1{get; init;}
-public HL7V271SegmentACC acc{get; init;}
-public HL7V271SegmentUB1 ub1{get; init;}
-public HL7V271SegmentUB2 ub2{get; init;}
-public HL7V271SegmentPDA pda{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V271SegmentMSH msh{ get; init; }
+public HL7V271SegmentSFT sft{ get; init; }
+public HL7V271SegmentUAC uac{ get; init; }
+public HL7V271SegmentEVN evn{ get; init; }
+public HL7V271SegmentPID pid{ get; init; }
+public HL7V271SegmentPD1 pd1{ get; init; }
+public HL7V271SegmentARV arv{ get; init; }
+public HL7V271SegmentROL rol{ get; init; }
+public HL7V271SegmentNK1 nk1{ get; init; }
+public HL7V271SegmentPV1 pv1{ get; init; }
+public HL7V271SegmentPV2 pv2{ get; init; }
+public HL7V271SegmentARV arv{ get; init; }
+public HL7V271SegmentROL rol{ get; init; }
+public HL7V271SegmentDB1 db1{ get; init; }
+public HL7V271SegmentOBX obx{ get; init; }
+public HL7V271SegmentAL1 al1{ get; init; }
+public HL7V271SegmentDG1 dg1{ get; init; }
+public HL7V271SegmentDRG drg{ get; init; }
+public HL7V271SegmentGT1 gt1{ get; init; }
+public HL7V271SegmentACC acc{ get; init; }
+public HL7V271SegmentUB1 ub1{ get; init; }
+public HL7V271SegmentUB2 ub2{ get; init; }
+public HL7V271SegmentPDA pda{ get; init; }
 
 
         public string Id { get { return @"ADT_A01"; } }

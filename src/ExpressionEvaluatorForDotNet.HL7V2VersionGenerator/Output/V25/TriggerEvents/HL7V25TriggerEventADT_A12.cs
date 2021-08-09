@@ -4,17 +4,17 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventADT_A12
     {
-        private readonly HL7V2Message message;
-        public HL7V25SegmentMSH msh{get; init;}
-public HL7V25SegmentSFT sft{get; init;}
-public HL7V25SegmentEVN evn{get; init;}
-public HL7V25SegmentPID pid{get; init;}
-public HL7V25SegmentPD1 pd1{get; init;}
-public HL7V25SegmentPV1 pv1{get; init;}
-public HL7V25SegmentPV2 pv2{get; init;}
-public HL7V25SegmentDB1 db1{get; init;}
-public HL7V25SegmentOBX obx{get; init;}
-public HL7V25SegmentDG1 dg1{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V25SegmentMSH msh{ get; init; }
+public HL7V25SegmentSFT sft{ get; init; }
+public HL7V25SegmentEVN evn{ get; init; }
+public HL7V25SegmentPID pid{ get; init; }
+public HL7V25SegmentPD1 pd1{ get; init; }
+public HL7V25SegmentPV1 pv1{ get; init; }
+public HL7V25SegmentPV2 pv2{ get; init; }
+public HL7V25SegmentDB1 db1{ get; init; }
+public HL7V25SegmentOBX obx{ get; init; }
+public HL7V25SegmentDG1 dg1{ get; init; }
 
 
         public string Id { get { return @"ADT_A12"; } }

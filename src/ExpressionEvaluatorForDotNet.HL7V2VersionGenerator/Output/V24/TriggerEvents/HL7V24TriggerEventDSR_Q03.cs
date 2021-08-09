@@ -4,15 +4,15 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventDSR_Q03
     {
-        private readonly HL7V2Message message;
-        public HL7V24SegmentMSH msh{get; init;}
-public HL7V24SegmentMSA msa{get; init;}
-public HL7V24SegmentERR err{get; init;}
-public HL7V24SegmentQAK qak{get; init;}
-public HL7V24SegmentQRD qrd{get; init;}
-public HL7V24SegmentQRF qrf{get; init;}
-public HL7V24SegmentDSP dsp{get; init;}
-public HL7V24SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V24SegmentMSH msh{ get; init; }
+public HL7V24SegmentMSA msa{ get; init; }
+public HL7V24SegmentERR err{ get; init; }
+public HL7V24SegmentQAK qak{ get; init; }
+public HL7V24SegmentQRD qrd{ get; init; }
+public HL7V24SegmentQRF qrf{ get; init; }
+public HL7V24SegmentDSP dsp{ get; init; }
+public HL7V24SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"DSR_Q03"; } }

@@ -4,9 +4,9 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21TriggerEventQRY_A19
     {
-        private readonly HL7V2Message message;
-        public HL7V21SegmentMSH msh{get; init;}
-public HL7V21SegmentQRD qrd{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V21SegmentMSH msh{ get; init; }
+public HL7V21SegmentQRD qrd{ get; init; }
 
 
         public string Id { get { return @"QRY_A19"; } }

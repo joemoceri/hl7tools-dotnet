@@ -4,8 +4,8 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventCSU_C11
     {
-        private readonly HL7V2Message message;
-        public HL7V24SegmentMSH msh{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V24SegmentMSH msh{ get; init; }
 
 
         public string Id { get { return @"CSU_C11"; } }

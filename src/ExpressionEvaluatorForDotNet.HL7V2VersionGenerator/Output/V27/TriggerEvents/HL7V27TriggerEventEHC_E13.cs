@@ -4,19 +4,19 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventEHC_E13
     {
-        private readonly HL7V2Message message;
-        public HL7V27SegmentMSH msh{get; init;}
-public HL7V27SegmentSFT sft{get; init;}
-public HL7V27SegmentUAC uac{get; init;}
-public HL7V27SegmentMSA msa{get; init;}
-public HL7V27SegmentERR err{get; init;}
-public HL7V27SegmentRFI rfi{get; init;}
-public HL7V27SegmentCTD ctd{get; init;}
-public HL7V27SegmentIVC ivc{get; init;}
-public HL7V27SegmentPSS pss{get; init;}
-public HL7V27SegmentPSG psg{get; init;}
-public HL7V27SegmentPID pid{get; init;}
-public HL7V27SegmentPSL psl{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V27SegmentMSH msh{ get; init; }
+public HL7V27SegmentSFT sft{ get; init; }
+public HL7V27SegmentUAC uac{ get; init; }
+public HL7V27SegmentMSA msa{ get; init; }
+public HL7V27SegmentERR err{ get; init; }
+public HL7V27SegmentRFI rfi{ get; init; }
+public HL7V27SegmentCTD ctd{ get; init; }
+public HL7V27SegmentIVC ivc{ get; init; }
+public HL7V27SegmentPSS pss{ get; init; }
+public HL7V27SegmentPSG psg{ get; init; }
+public HL7V27SegmentPID pid{ get; init; }
+public HL7V27SegmentPSL psl{ get; init; }
 
 
         public string Id { get { return @"EHC_E13"; } }

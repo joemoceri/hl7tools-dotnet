@@ -4,21 +4,21 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22TriggerEventADT_A01
     {
-        private readonly HL7V2Message message;
-        public HL7V22SegmentMSH msh{get; init;}
-public HL7V22SegmentEVN evn{get; init;}
-public HL7V22SegmentPID pid{get; init;}
-public HL7V22SegmentNK1 nk1{get; init;}
-public HL7V22SegmentPV1 pv1{get; init;}
-public HL7V22SegmentPV2 pv2{get; init;}
-public HL7V22SegmentOBX obx{get; init;}
-public HL7V22SegmentAL1 al1{get; init;}
-public HL7V22SegmentDG1 dg1{get; init;}
-public HL7V22SegmentPR1 pr1{get; init;}
-public HL7V22SegmentGT1 gt1{get; init;}
-public HL7V22SegmentACC acc{get; init;}
-public HL7V22SegmentUB1 ub1{get; init;}
-public HL7V22SegmentUB2 ub2{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V22SegmentMSH msh{ get; init; }
+public HL7V22SegmentEVN evn{ get; init; }
+public HL7V22SegmentPID pid{ get; init; }
+public HL7V22SegmentNK1 nk1{ get; init; }
+public HL7V22SegmentPV1 pv1{ get; init; }
+public HL7V22SegmentPV2 pv2{ get; init; }
+public HL7V22SegmentOBX obx{ get; init; }
+public HL7V22SegmentAL1 al1{ get; init; }
+public HL7V22SegmentDG1 dg1{ get; init; }
+public HL7V22SegmentPR1 pr1{ get; init; }
+public HL7V22SegmentGT1 gt1{ get; init; }
+public HL7V22SegmentACC acc{ get; init; }
+public HL7V22SegmentUB1 ub1{ get; init; }
+public HL7V22SegmentUB2 ub2{ get; init; }
 
 
         public string Id { get { return @"ADT_A01"; } }

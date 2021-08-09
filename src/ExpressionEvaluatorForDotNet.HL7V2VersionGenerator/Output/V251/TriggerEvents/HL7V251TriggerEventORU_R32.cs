@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V251TriggerEventORU_R32
     {
-        private readonly HL7V2Message message;
-        public HL7V251SegmentMSH msh{get; init;}
-public HL7V251SegmentSFT sft{get; init;}
-public HL7V251SegmentPID pid{get; init;}
-public HL7V251SegmentPD1 pd1{get; init;}
-public HL7V251SegmentORC orc{get; init;}
-public HL7V251SegmentOBR obr{get; init;}
-public HL7V251SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V251SegmentMSH msh{ get; init; }
+public HL7V251SegmentSFT sft{ get; init; }
+public HL7V251SegmentPID pid{ get; init; }
+public HL7V251SegmentPD1 pd1{ get; init; }
+public HL7V251SegmentORC orc{ get; init; }
+public HL7V251SegmentOBR obr{ get; init; }
+public HL7V251SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"ORU_R32"; } }

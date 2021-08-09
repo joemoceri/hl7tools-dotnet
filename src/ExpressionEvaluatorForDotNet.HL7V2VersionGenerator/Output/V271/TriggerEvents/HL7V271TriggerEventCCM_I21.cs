@@ -4,14 +4,14 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V271TriggerEventCCM_I21
     {
-        private readonly HL7V2Message message;
-        public HL7V271SegmentMSH msh{get; init;}
-public HL7V271SegmentSFT sft{get; init;}
-public HL7V271SegmentUAC uac{get; init;}
-public HL7V271SegmentPID pid{get; init;}
-public HL7V271SegmentPD1 pd1{get; init;}
-public HL7V271SegmentNK1 nk1{get; init;}
-public HL7V271SegmentREL rel{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V271SegmentMSH msh{ get; init; }
+public HL7V271SegmentSFT sft{ get; init; }
+public HL7V271SegmentUAC uac{ get; init; }
+public HL7V271SegmentPID pid{ get; init; }
+public HL7V271SegmentPD1 pd1{ get; init; }
+public HL7V271SegmentNK1 nk1{ get; init; }
+public HL7V271SegmentREL rel{ get; init; }
 
 
         public string Id { get { return @"CCM_I21"; } }

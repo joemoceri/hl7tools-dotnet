@@ -4,18 +4,18 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventRCL_I06
     {
-        private readonly HL7V2Message message;
-        public HL7V24SegmentMSH msh{get; init;}
-public HL7V24SegmentMSA msa{get; init;}
-public HL7V24SegmentQRD qrd{get; init;}
-public HL7V24SegmentQRF qrf{get; init;}
-public HL7V24SegmentPID pid{get; init;}
-public HL7V24SegmentDG1 dg1{get; init;}
-public HL7V24SegmentDRG drg{get; init;}
-public HL7V24SegmentAL1 al1{get; init;}
-public HL7V24SegmentNTE nte{get; init;}
-public HL7V24SegmentDSP dsp{get; init;}
-public HL7V24SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V24SegmentMSH msh{ get; init; }
+public HL7V24SegmentMSA msa{ get; init; }
+public HL7V24SegmentQRD qrd{ get; init; }
+public HL7V24SegmentQRF qrf{ get; init; }
+public HL7V24SegmentPID pid{ get; init; }
+public HL7V24SegmentDG1 dg1{ get; init; }
+public HL7V24SegmentDRG drg{ get; init; }
+public HL7V24SegmentAL1 al1{ get; init; }
+public HL7V24SegmentNTE nte{ get; init; }
+public HL7V24SegmentDSP dsp{ get; init; }
+public HL7V24SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"RCL_I06"; } }

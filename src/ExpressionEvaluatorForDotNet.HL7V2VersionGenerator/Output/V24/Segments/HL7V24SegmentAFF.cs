@@ -5,7 +5,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24SegmentAFF
     {
-        private readonly HL7V2Message message;
+        public HL7V2Message message { get; init; }
 
         public string Id { get { return @"AFF"; } }
 

@@ -4,15 +4,15 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventRTB_Z92
     {
-        private readonly HL7V2Message message;
-        public HL7V26SegmentMSH msh{get; init;}
-public HL7V26SegmentSFT sft{get; init;}
-public HL7V26SegmentUAC uac{get; init;}
-public HL7V26SegmentMSA msa{get; init;}
-public HL7V26SegmentERR err{get; init;}
-public HL7V26SegmentQAK qak{get; init;}
-public HL7V26SegmentQPD qpd{get; init;}
-public HL7V26SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V26SegmentMSH msh{ get; init; }
+public HL7V26SegmentSFT sft{ get; init; }
+public HL7V26SegmentUAC uac{ get; init; }
+public HL7V26SegmentMSA msa{ get; init; }
+public HL7V26SegmentERR err{ get; init; }
+public HL7V26SegmentQAK qak{ get; init; }
+public HL7V26SegmentQPD qpd{ get; init; }
+public HL7V26SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"RTB_Z92"; } }

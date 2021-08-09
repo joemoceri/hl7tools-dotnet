@@ -4,12 +4,12 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V24TriggerEventADT_A30
     {
-        private readonly HL7V2Message message;
-        public HL7V24SegmentMSH msh{get; init;}
-public HL7V24SegmentEVN evn{get; init;}
-public HL7V24SegmentPID pid{get; init;}
-public HL7V24SegmentPD1 pd1{get; init;}
-public HL7V24SegmentMRG mrg{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V24SegmentMSH msh{ get; init; }
+public HL7V24SegmentEVN evn{ get; init; }
+public HL7V24SegmentPID pid{ get; init; }
+public HL7V24SegmentPD1 pd1{ get; init; }
+public HL7V24SegmentMRG mrg{ get; init; }
 
 
         public string Id { get { return @"ADT_A30"; } }

@@ -4,30 +4,30 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V27TriggerEventADT_A07
     {
-        private readonly HL7V2Message message;
-        public HL7V27SegmentMSH msh{get; init;}
-public HL7V27SegmentSFT sft{get; init;}
-public HL7V27SegmentUAC uac{get; init;}
-public HL7V27SegmentEVN evn{get; init;}
-public HL7V27SegmentPID pid{get; init;}
-public HL7V27SegmentPD1 pd1{get; init;}
-public HL7V27SegmentARV arv{get; init;}
-public HL7V27SegmentROL rol{get; init;}
-public HL7V27SegmentMRG mrg{get; init;}
-public HL7V27SegmentNK1 nk1{get; init;}
-public HL7V27SegmentPV1 pv1{get; init;}
-public HL7V27SegmentPV2 pv2{get; init;}
-public HL7V27SegmentARV arv{get; init;}
-public HL7V27SegmentROL rol{get; init;}
-public HL7V27SegmentDB1 db1{get; init;}
-public HL7V27SegmentOBX obx{get; init;}
-public HL7V27SegmentAL1 al1{get; init;}
-public HL7V27SegmentDG1 dg1{get; init;}
-public HL7V27SegmentDRG drg{get; init;}
-public HL7V27SegmentGT1 gt1{get; init;}
-public HL7V27SegmentACC acc{get; init;}
-public HL7V27SegmentUB1 ub1{get; init;}
-public HL7V27SegmentUB2 ub2{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V27SegmentMSH msh{ get; init; }
+public HL7V27SegmentSFT sft{ get; init; }
+public HL7V27SegmentUAC uac{ get; init; }
+public HL7V27SegmentEVN evn{ get; init; }
+public HL7V27SegmentPID pid{ get; init; }
+public HL7V27SegmentPD1 pd1{ get; init; }
+public HL7V27SegmentARV arv{ get; init; }
+public HL7V27SegmentROL rol{ get; init; }
+public HL7V27SegmentMRG mrg{ get; init; }
+public HL7V27SegmentNK1 nk1{ get; init; }
+public HL7V27SegmentPV1 pv1{ get; init; }
+public HL7V27SegmentPV2 pv2{ get; init; }
+public HL7V27SegmentARV arv{ get; init; }
+public HL7V27SegmentROL rol{ get; init; }
+public HL7V27SegmentDB1 db1{ get; init; }
+public HL7V27SegmentOBX obx{ get; init; }
+public HL7V27SegmentAL1 al1{ get; init; }
+public HL7V27SegmentDG1 dg1{ get; init; }
+public HL7V27SegmentDRG drg{ get; init; }
+public HL7V27SegmentGT1 gt1{ get; init; }
+public HL7V27SegmentACC acc{ get; init; }
+public HL7V27SegmentUB1 ub1{ get; init; }
+public HL7V27SegmentUB2 ub2{ get; init; }
 
 
         public string Id { get { return @"ADT_A07"; } }

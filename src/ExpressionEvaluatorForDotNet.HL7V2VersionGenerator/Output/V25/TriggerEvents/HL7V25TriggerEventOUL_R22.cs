@@ -4,11 +4,11 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventOUL_R22
     {
-        private readonly HL7V2Message message;
-        public HL7V25SegmentMSH msh{get; init;}
-public HL7V25SegmentSFT sft{get; init;}
-public HL7V25SegmentNTE nte{get; init;}
-public HL7V25SegmentDSC dsc{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V25SegmentMSH msh{ get; init; }
+public HL7V25SegmentSFT sft{ get; init; }
+public HL7V25SegmentNTE nte{ get; init; }
+public HL7V25SegmentDSC dsc{ get; init; }
 
 
         public string Id { get { return @"OUL_R22"; } }

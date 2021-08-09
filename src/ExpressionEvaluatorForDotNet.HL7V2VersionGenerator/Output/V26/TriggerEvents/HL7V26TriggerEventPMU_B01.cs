@@ -4,18 +4,18 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventPMU_B01
     {
-        private readonly HL7V2Message message;
-        public HL7V26SegmentMSH msh{get; init;}
-public HL7V26SegmentSFT sft{get; init;}
-public HL7V26SegmentUAC uac{get; init;}
-public HL7V26SegmentEVN evn{get; init;}
-public HL7V26SegmentSTF stf{get; init;}
-public HL7V26SegmentPRA pra{get; init;}
-public HL7V26SegmentORG org{get; init;}
-public HL7V26SegmentAFF aff{get; init;}
-public HL7V26SegmentLAN lan{get; init;}
-public HL7V26SegmentEDU edu{get; init;}
-public HL7V26SegmentCER cer{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V26SegmentMSH msh{ get; init; }
+public HL7V26SegmentSFT sft{ get; init; }
+public HL7V26SegmentUAC uac{ get; init; }
+public HL7V26SegmentEVN evn{ get; init; }
+public HL7V26SegmentSTF stf{ get; init; }
+public HL7V26SegmentPRA pra{ get; init; }
+public HL7V26SegmentORG org{ get; init; }
+public HL7V26SegmentAFF aff{ get; init; }
+public HL7V26SegmentLAN lan{ get; init; }
+public HL7V26SegmentEDU edu{ get; init; }
+public HL7V26SegmentCER cer{ get; init; }
 
 
         public string Id { get { return @"PMU_B01"; } }

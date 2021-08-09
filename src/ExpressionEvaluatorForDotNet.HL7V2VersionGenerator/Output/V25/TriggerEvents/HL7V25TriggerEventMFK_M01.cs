@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventMFK_M01
     {
-        private readonly HL7V2Message message;
-        public HL7V25SegmentMSH msh{get; init;}
-public HL7V25SegmentSFT sft{get; init;}
-public HL7V25SegmentMSA msa{get; init;}
-public HL7V25SegmentERR err{get; init;}
-public HL7V25SegmentMFI mfi{get; init;}
-public HL7V25SegmentMFA mfa{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V25SegmentMSH msh{ get; init; }
+public HL7V25SegmentSFT sft{ get; init; }
+public HL7V25SegmentMSA msa{ get; init; }
+public HL7V25SegmentERR err{ get; init; }
+public HL7V25SegmentMFI mfi{ get; init; }
+public HL7V25SegmentMFA mfa{ get; init; }
 
 
         public string Id { get { return @"MFK_M01"; } }

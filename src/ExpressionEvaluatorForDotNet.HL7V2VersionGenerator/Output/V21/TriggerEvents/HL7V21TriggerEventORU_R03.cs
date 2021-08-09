@@ -4,8 +4,8 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V21TriggerEventORU_R03
     {
-        private readonly HL7V2Message message;
-        public HL7V21SegmentMSH msh{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V21SegmentMSH msh{ get; init; }
 
 
         public string Id { get { return @"ORU_R03"; } }

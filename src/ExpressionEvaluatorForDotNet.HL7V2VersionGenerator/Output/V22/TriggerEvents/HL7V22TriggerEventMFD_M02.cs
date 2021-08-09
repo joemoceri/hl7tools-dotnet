@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V22TriggerEventMFD_M02
     {
-        private readonly HL7V2Message message;
-        public HL7V22SegmentMSH msh{get; init;}
-public HL7V22SegmentMFI mfi{get; init;}
-public HL7V22SegmentMFA mfa{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V22SegmentMSH msh{ get; init; }
+public HL7V22SegmentMFI mfi{ get; init; }
+public HL7V22SegmentMFA mfa{ get; init; }
 
 
         public string Id { get { return @"MFD_M02"; } }

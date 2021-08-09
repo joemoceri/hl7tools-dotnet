@@ -4,10 +4,10 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V25TriggerEventSRR_S10
     {
-        private readonly HL7V2Message message;
-        public HL7V25SegmentMSH msh{get; init;}
-public HL7V25SegmentMSA msa{get; init;}
-public HL7V25SegmentERR err{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V25SegmentMSH msh{ get; init; }
+public HL7V25SegmentMSA msa{ get; init; }
+public HL7V25SegmentERR err{ get; init; }
 
 
         public string Id { get { return @"SRR_S10"; } }

@@ -4,13 +4,13 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V26TriggerEventPIN_I07
     {
-        private readonly HL7V2Message message;
-        public HL7V26SegmentMSH msh{get; init;}
-public HL7V26SegmentSFT sft{get; init;}
-public HL7V26SegmentUAC uac{get; init;}
-public HL7V26SegmentPID pid{get; init;}
-public HL7V26SegmentNK1 nk1{get; init;}
-public HL7V26SegmentNTE nte{get; init;}
+        public HL7V2Message message { get; init; }
+        public HL7V26SegmentMSH msh{ get; init; }
+public HL7V26SegmentSFT sft{ get; init; }
+public HL7V26SegmentUAC uac{ get; init; }
+public HL7V26SegmentPID pid{ get; init; }
+public HL7V26SegmentNK1 nk1{ get; init; }
+public HL7V26SegmentNTE nte{ get; init; }
 
 
         public string Id { get { return @"PIN_I07"; } }
