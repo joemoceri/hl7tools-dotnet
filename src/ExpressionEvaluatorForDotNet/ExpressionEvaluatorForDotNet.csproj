@@ -46,4 +46,8 @@ You can also use this to evaluate segments of an hl7v2 pipe delimited message. U
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ExpressionConfigurations\HL7V2\Extensions\" />
+  </ItemGroup>
+
 </Project>

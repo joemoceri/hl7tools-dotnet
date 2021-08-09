@@ -47,8 +47,8 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                 // segments
                 CreateSegments(version);
 
-                // trigger events
-                CreateTriggerEvents(version);
+                //// trigger events
+                //CreateTriggerEvents(version);
             }
 
             void CreateTestData(string version)

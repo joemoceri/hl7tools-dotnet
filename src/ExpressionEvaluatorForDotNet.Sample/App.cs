@@ -64,12 +64,6 @@ namespace ExpressionEvaluatorForDotNet.Sample
 
             var message = evaluator.EvaluateHL7V2File("HL7File.txt");
 
-            var v23 = message.AsV23();
-
-            //Console.WriteLine(v23.msh.ApplicationAcknowledgementType.Value);
-
-            var adta01 = v23.GetADT_A01();
-
             var url = "https://test.com/test?id=1&test=2";
 
             var newUrl = expressionConfiguration.EncodeString(url);
