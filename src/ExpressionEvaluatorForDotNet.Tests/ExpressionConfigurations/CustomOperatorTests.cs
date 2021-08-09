@@ -109,8 +109,6 @@ namespace ExpressionEvaluatorForDotNet.Tests
 
 			var greaterThan = expressionConfiguration.BooleanOperators.First(o => o.ExpressionOperator == Operator.GreaterThan);
 
-			var guid = $"{Guid.NewGuid()}";
-
 			greaterThan.OnAfterOperatorExpressionSolved = (expResult) =>
 			{
 				count++;
