@@ -34,6 +34,7 @@
 	  <Content Remove="Output\V22\HL7V22Field.cs" />
 	  <Content Remove="Output\V22\HL7V22FieldRepetition.cs" />
 	  <Content Remove="Output\V22\HL7V22SubComponent.cs" />
+	  <Content Remove="Output\V22\Segments\HL7V22SegmentFT1.cs" />
 	  <Content Remove="Output\V231\HL7V231Component.cs" />
 	  <Content Remove="Output\V231\HL7V231Field.cs" />
 	  <Content Remove="Output\V231\HL7V231FieldRepetition.cs" />
@@ -92,6 +93,7 @@
 	  <Compile Include="Output\V22\HL7V22Field.cs" />
 	  <Compile Include="Output\V22\HL7V22FieldRepetition.cs" />
 	  <Compile Include="Output\V22\HL7V22SubComponent.cs" />
+	  <Compile Include="Output\V22\Segments\HL7V22SegmentFT1.cs" />
 	  <Compile Include="Output\V231\HL7V231Component.cs" />
 	  <Compile Include="Output\V231\HL7V231Field.cs" />
 	  <Compile Include="Output\V231\HL7V231FieldRepetition.cs" />

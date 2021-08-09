@@ -5,9 +5,9 @@ namespace ExpressionEvaluatorForDotNet
     public class HL7V22TriggerEventACK
     {
         public HL7V2Message message { get; init; }
-        public HL7V22SegmentMSH msh{ get; init; }
-public HL7V22SegmentMSA msa{ get; init; }
-public HL7V22SegmentERR err{ get; init; }
+        public HL7V22SegmentMSH msh { get; init; }
+        public HL7V22SegmentMSA msa { get; init; }
+        public HL7V22SegmentERR err { get; init; }
 
 
         public string Id { get { return @"ACK"; } }
@@ -16,9 +16,9 @@ public HL7V22SegmentERR err{ get; init; }
 
         public string Sample { get { return null; } }
 
-        public IList<string> Chapters 
-        { 
-            get 
+        public IList<string> Chapters
+        {
+            get
             {
                 return new[]
                     {
@@ -32,8 +32,8 @@ public HL7V22SegmentERR err{ get; init; }
         {
             this.message = message;
             this.msh = new HL7V22SegmentMSH(this.message);
-this.msa = new HL7V22SegmentMSA(this.message);
-this.err = new HL7V22SegmentERR(this.message);
+            this.msa = new HL7V22SegmentMSA(this.message);
+            this.err = new HL7V22SegmentERR(this.message);
 
         }
     }
